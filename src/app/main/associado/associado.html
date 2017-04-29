@@ -1,0 +1,38 @@
+<form name="associadoForm">
+<md-card>
+ <md-card-content>
+   <h1>Cadastro de Associado</h1>
+   <p>Insira os dados do novo associado a ser cadastrado.</p>
+
+   <md-input-container>
+     <label>Nome completo</label>
+     <input type="text" ng-model="nome" size="30px" required>
+   </md-input-container>
+   <md-input-container>
+     <label>CPF</label>
+     <input type="text" ng-model="cpf" size="30px" required>
+   </md-input-container>
+   <br>
+   <md-input-container>
+     <label>E-mail</label>
+     <input type="text" ng-model="email" size="30px" required>
+   </md-input-container>
+   <md-input-container>
+     <label>Celular</label>
+     <input type="text" ng-model="celular" size="30px">
+   </md-input-container>
+   <h5>* Obrigatório</h5>
+
+   <md-radio-group ng-model="formaPagamento" required>
+     <h2>Forma de Pagamento</h2>
+     <md-radio-button value="1">Cartão</md-radio-button>
+     <md-radio-button value="2">Boleto</md-radio-button>
+     <md-radio-button value="3">Dinhero</md-radio-button>
+   </md-radio-group>
+ </md-card-content>
+ <md-card-actions layout="row" layout-align="center">
+   <md-button>Salvar</md-button>
+   <md-button>Limpar</md-button>
+ </md-card-actions>
+</md-card>
+</form>

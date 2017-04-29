@@ -45,23 +45,17 @@
             }
         ];
         vm.languages = {
+            br: {
+              'title'      : 'Portuguese (Brazil)',
+              'translation': 'TOOLBAR.BRAZILIAN',
+              'code'       : 'br',
+              'flag'       : 'br'
+          },
             en: {
                 'title'      : 'English',
                 'translation': 'TOOLBAR.ENGLISH',
                 'code'       : 'en',
                 'flag'       : 'us'
-            },
-            es: {
-                'title'      : 'Spanish',
-                'translation': 'TOOLBAR.SPANISH',
-                'code'       : 'es',
-                'flag'       : 'es'
-            },
-            tr: {
-                'title'      : 'Turkish',
-                'translation': 'TOOLBAR.TURKISH',
-                'code'       : 'tr',
-                'flag'       : 'tr'
             }
         };
 

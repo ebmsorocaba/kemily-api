@@ -35,9 +35,9 @@
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {
-            title : 'SAMPLE',
+            title : 'SAMPLE.SAMPLE_MENU',
             group : true,
-            weight: 1
+            weight: 2
         });
 
         msNavigationServiceProvider.saveItem('fuse.sample', {
@@ -47,8 +47,8 @@
             /*stateParams: {
                 'param1': 'page'
              },*/
-            translate: 'SAMPLE.SAMPLE_NAV',
-            weight   : 1
+            translate: 'SAMPLE.SAMPLE_ITEM',
+            weight   : 0
         });
     }
 })();
