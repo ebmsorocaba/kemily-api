@@ -1,0 +1,8 @@
+CREATE TABLE alunos (
+	id INT NOT NULL,
+	nome VARCHAR(255),
+	gender VARCHAR(255),
+	primary key (id)
+);
+
+SELECT * FROM alunos;
