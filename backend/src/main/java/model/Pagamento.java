@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,34 +8,32 @@ public class Pagamento {
 	
 	private Long id;
 	private String formaPgto;
-	private Long cpf;
-	private Long numCartao;
 	private String codBoleto;
 	private double valorPago;
 	private Date vencimento;
-	private Date vencAtual;
+	private Date dataPgto;
+	
 	private Associado associado;
+	private Cartao cartao;
 	
 	public Pagamento(
 			@JsonProperty("id")Long id,
 			@JsonProperty("formaPgto")String formaPgto,
-			@JsonProperty("cpf")Long cpf,
-			@JsonProperty("numCartao")Long numCartao,
 			@JsonProperty("codBoleto")String codBoleto,
 			@JsonProperty("valorPago")double valorPago,
 			@JsonProperty("vencimento")Date vencimento,
-			@JsonProperty("vencAtual")Date vencAtual,
-			@JsonProperty("associado")Associado associado){
+			@JsonProperty("dataPgto")Date vencAtual,
+			@JsonProperty("associado")Associado associado,
+			@JsonProperty("cartao")Cartao cartao){
 		
 		this.id = id;
 		this.formaPgto = formaPgto;
-        this.cpf = cpf;
-        this.numCartao = numCartao;
         this.codBoleto = codBoleto;
         this.valorPago = valorPago;
         this.vencimento = vencimento;
-        this.vencAtual = vencAtual;
+        this.dataPgto = vencAtual;
         this.associado = associado;
+        this.cartao = cartao;
         
     }
 
@@ -53,22 +51,6 @@ public class Pagamento {
 
 	public void setFormaPgto(String formaPgto) {
 		this.formaPgto = formaPgto;
-	}
-
-	public Long getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
-	}
-
-	public Long getNumCartao() {
-		return numCartao;
-	}
-
-	public void setNumCartao(Long numCartao) {
-		this.numCartao = numCartao;
 	}
 
 	public String getCodBoleto() {
@@ -94,13 +76,13 @@ public class Pagamento {
 	public void setVencimento(Date vencimento) {
 		this.vencimento = vencimento;
 	}
-
-	public Date getVencAtual() {
-		return vencAtual;
+	
+	public Date getDataPgto() {
+		return dataPgto;
 	}
 
-	public void setVencAtual(Date vencAtual) {
-		this.vencAtual = vencAtual;
+	public void setDataPgto(Date dataPgto) {
+		this.dataPgto = dataPgto;
 	}
 
 	public Associado getAssociado() {
@@ -109,6 +91,14 @@ public class Pagamento {
 
 	public void setAssociado(Associado associado) {
 		this.associado = associado;
+	}
+
+	public Cartao getCartao() {
+		return cartao;
+	}
+
+	public void setCartao(Cartao cartao) {
+		this.cartao = cartao;
 	}
 	
 	

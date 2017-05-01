@@ -20,12 +20,11 @@ public class CartaoDAO {
 	
 	public void adiciona(Cartao cartao) throws SQLException {
 		// prepared statement para inserção
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO tb_cartao (numero,cpf,bandeira,atual) VALUES (?, ?, ?, ?)");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO tb_cartao (numero, bandeira, atual) VALUES (?, ?, ?)");
 		// seta os valores
 		stmt.setLong(1,cartao.getNumero());
-		stmt.setLong(2,cartao.getCpf());
-		stmt.setString(3,cartao.getBandeira());
-		stmt.setBoolean(4,cartao.isAtual());
+		stmt.setString(2,cartao.getBandeira());
+		stmt.setBoolean(3,cartao.isAtual());
 		// executa
 		stmt.execute();
 		stmt.close();
@@ -39,9 +38,8 @@ public class CartaoDAO {
 		List<Cartao> cartoes = new ArrayList<Cartao>();
 		while (rs.next()) {
 			// criando o objeto Aluno
-			Cartao cartao = new Cartao(null,null,"",false);
+			Cartao cartao = new Cartao(null,"",false);
 			cartao.setNumero(rs.getLong("numero"));
-			cartao.setCpf(rs.getLong("cpf"));
 			cartao.setBandeira(rs.getString("bandeira"));
 			cartao.setAtual(rs.getBoolean("atual"));
 			// adicionando o objeto à lista
@@ -56,7 +54,7 @@ public class CartaoDAO {
 	
 	public Cartao getCartao(Long search) throws SQLException {
 		
-		Cartao cartao = new Cartao(null,null,"",false);
+		Cartao cartao = new Cartao(null,"",false);
 		
 		try {
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM tb_cartao WHERE " + "numero = ?");
@@ -66,7 +64,6 @@ public class CartaoDAO {
            
             if (rs.next() == true) {
             	cartao.setNumero(rs.getLong("numero"));
-				cartao.setCpf(rs.getLong("cpf"));
 				cartao.setBandeira(rs.getString("bandeira"));
 				cartao.setAtual(rs.getBoolean("atual"));
             }
@@ -97,8 +94,7 @@ public class CartaoDAO {
 	
 	public void altera(Cartao cartao) throws SQLException {
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE tb_cartao SET cpf=?, bandeira=?, atual=? WHERE numero=?");
-			stmt.setLong(1, cartao.getCpf());
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE tb_cartao SET bandeira=?, atual=? WHERE numero=?");
 			stmt.setString(2, cartao.getBandeira());
 			stmt.setBoolean(3, cartao.isAtual());
 			stmt.setLong(4, cartao.getNumero());
