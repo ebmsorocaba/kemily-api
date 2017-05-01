@@ -1,12 +1,12 @@
-package com.jdriven.ng2boot;
+package kemily.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Ng2bootApplication {
+public class KemilyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Ng2bootApplication.class, args);
+		SpringApplication.run(KemilyApplication.class, args);
 	}
 }

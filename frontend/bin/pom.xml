@@ -9,7 +9,7 @@
     <description>The ng2boot frontend project</description>
 
     <parent>
-        <groupId>com.jdriven.ng2boot</groupId>
+        <groupId>kemily.app</groupId>
         <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>

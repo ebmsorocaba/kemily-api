@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 
 
 import jdbc.ConnectionFactory;
-import com.jdriven.ng2boot.Usuario;
+import model.Usuario;
 
 public class UsuarioDAO {
 		// a conexão com o banco de dados

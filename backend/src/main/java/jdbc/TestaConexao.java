@@ -1,9 +1,7 @@
-package jdbc.teste;
+package jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
-import jdbc.ConnectionFactory;
 
 public class TestaConexao {
 	public static void main (String[] args) throws SQLException {

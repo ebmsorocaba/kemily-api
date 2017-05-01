@@ -1,4 +1,4 @@
-package com.jdriven.ng2boot;
+package model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

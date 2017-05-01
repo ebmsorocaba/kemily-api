@@ -1,4 +1,4 @@
-package com.jdriven.ng2boot;
+package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import jdbc.dao.UsuarioDAO;
+import model.Usuario;
 
 import java.sql.SQLException;
 

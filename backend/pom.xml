@@ -6,10 +6,10 @@
     <artifactId>backend</artifactId>
 
     <name>backend</name>
-    <description>The ng2boot backend project</description>
+    <description>The Kemily backend project</description>
 
     <parent>
-        <groupId>com.jdriven.ng2boot</groupId>
+        <groupId>kemily.app</groupId>
         <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -27,14 +27,14 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jdriven.ng2boot</groupId>
+            <groupId>kemily.app</groupId>
             <artifactId>frontend</artifactId>
             <version>${project.version}</version>
             <scope>runtime</scope>
         </dependency>
 
 
-		<!--  
+		<!--
 
 		<dependency>
 		    <groupId>mysql</groupId>
@@ -48,7 +48,7 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 		</dependency>
-		
+
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
