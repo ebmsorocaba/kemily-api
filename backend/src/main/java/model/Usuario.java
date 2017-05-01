@@ -9,7 +9,12 @@ public class Usuario {
     private String grupo;
     private boolean ativo;
     
-    public Usuario(@JsonProperty("nome")String nome, @JsonProperty("senha")String senha, @JsonProperty("grupo")String grupo, @JsonProperty("ativo")boolean ativo) {
+    public Usuario(
+    		@JsonProperty("nome")String nome, 
+    		@JsonProperty("senha")String senha, 
+    		@JsonProperty("grupo")String grupo, 
+    		@JsonProperty("ativo")boolean ativo) {
+    	
         this.nome = nome;
         this.senha = senha;
         this.grupo = grupo;
@@ -46,6 +51,10 @@ public class Usuario {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+	
+	public void resetarSenha(String newSenha){
+		
 	}
     
 }
