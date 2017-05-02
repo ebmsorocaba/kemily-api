@@ -43,17 +43,6 @@
                     </execution>
 
                     <execution>
-                        <id>npm run build</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-
-                        <configuration>
-                            <arguments>run build</arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
                         <id>bower install</id>
                         <goals>
                             <goal>bower</goal>
@@ -64,7 +53,7 @@
                         </configuration>
                     </execution>
 
-                    <execution>
+                    <!-- <execution>
                         <id>gulp build</id>
                         <goals>
                             <goal>gulp</goal>
@@ -73,9 +62,18 @@
                             <arguments>build</arguments>
 
                         </configuration>
+                    </execution> -->
+
+                    <execution>
+                        <id>npm run build</id> <!-- Aqui chama o json para dar gulp build -->
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
                     </execution>
-
-
                 </executions>
             </plugin>
         </plugins>
