@@ -10,8 +10,8 @@ public class GrupoUsuario {
     private String nome;
 
     public GrupoUsuario(@JsonProperty("id")int id, @JsonProperty("nome")String nome) {
-        this.id = id;
-        this.nome = nome;
+      this.id = id;
+      this.nome = nome;
     } //JsonProperty no constructor serve para dar apoio ao Jackson Object Mapper
 
 	public int getId() {

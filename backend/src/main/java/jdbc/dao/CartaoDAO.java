@@ -13,11 +13,11 @@ import model.Cartao;
 public class CartaoDAO {
 
 	private Connection connection;
-	
+
 	public CartaoDAO() throws SQLException {
 		this.connection = ConnectionFactory.getConnection();
 	}
-	
+
 	public void adiciona(Cartao cartao) throws SQLException {
 		// prepared statement para inserção
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO tb_cartao (numero, bandeira, atual) VALUES (?, ?, ?)");
@@ -29,13 +29,14 @@ public class CartaoDAO {
 		stmt.execute();
 		stmt.close();
 	}
-	
+
 	public List<Cartao> getLista() throws SQLException {
-		
+
+		List<Cartao> cartoes = new ArrayList<Cartao>();
+
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM tb_cartao");
 		ResultSet rs = stmt.executeQuery();
-		System.out.println("Entrou DAO");
-		List<Cartao> cartoes = new ArrayList<Cartao>();
+
 		while (rs.next()) {
 			// criando o objeto Aluno
 			Cartao cartao = new Cartao(null,"",false);
@@ -44,63 +45,63 @@ public class CartaoDAO {
 			cartao.setAtual(rs.getBoolean("atual"));
 			// adicionando o objeto à lista
 			cartoes.add(cartao);
-		
+
 		}
 		rs.close();
 		stmt.close();
 		return cartoes;
-		
+
 	}
-	
+
 	public Cartao getCartao(Long search) throws SQLException {
-		
+
 		Cartao cartao = new Cartao(null,"",false);
-		
+
 		try {
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM tb_cartao WHERE " + "numero = ?");
-            
+
 			stmt.setLong(1, search); //Note que essa variavel é passada da função principal
-            ResultSet rs = stmt.executeQuery();
-           
-            if (rs.next() == true) {
-            	cartao.setNumero(rs.getLong("numero"));
+      ResultSet rs = stmt.executeQuery();
+
+      if (rs.next() == true) {
+        cartao.setNumero(rs.getLong("numero"));
 				cartao.setBandeira(rs.getString("bandeira"));
 				cartao.setAtual(rs.getBoolean("atual"));
-            }
-        }
-        catch (SQLException ex) { 
-             System.out.println(ex.toString());   
-        }
-		
-		
-        return (cartao);
-}
+      }
+    }
+    catch (SQLException ex) {
+      System.out.println(ex.toString());
+    }
 
-	
+
+    return (cartao);
+	}
+
+
 	public void excluir(Long search) {
-        
+
         try {
         	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM tb_cartao WHERE numero = ?");
-            
+
             stmt.setLong(1, search);
-                      
+
             stmt.execute();
-            
+
         } catch (SQLException ex) {
-             System.out.println(ex.toString());   
+             System.out.println(ex.toString());
         }
     }
 
-	
+
 	public void altera(Cartao cartao) throws SQLException {
 
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE tb_cartao SET bandeira=?, atual=? WHERE numero=?");
 			stmt.setString(2, cartao.getBandeira());
 			stmt.setBoolean(3, cartao.isAtual());
 			stmt.setLong(4, cartao.getNumero());
-			
+
 			stmt.execute();
 			stmt.close();
 		}
-	
+
 }

@@ -5,7 +5,7 @@ import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Associado {
-	
+
 	private Long cpf;
 	private String nome;
 	private Long celular;
@@ -14,7 +14,7 @@ public class Associado {
 	private Cartao cartao;
 	private double valorAtual;
 	private Date vencAtual;
-	
+
 	public Associado(
 			@JsonProperty("cpf")Long cpf,
 			@JsonProperty("nome")String nome,
@@ -24,7 +24,7 @@ public class Associado {
 			@JsonProperty("cartao")Cartao cartao,
 			@JsonProperty("valorAtual")double valorAtual,
 			@JsonProperty("vencAtual")Date vencAtual){
-		
+
         this.cpf = cpf;
         this.nome = nome;
         this.celular = celular;
@@ -33,8 +33,8 @@ public class Associado {
         this.cartao = cartao;
         this.valorAtual = valorAtual;
         this.vencAtual = vencAtual;
-        
-    }
+
+  }
 
 	public Long getCpf() {
 		return cpf;
@@ -99,6 +99,6 @@ public class Associado {
 	public void setVencAtual(Date vencAtual) {
 		this.vencAtual = vencAtual;
 	}
-	
-	
+
+
 }

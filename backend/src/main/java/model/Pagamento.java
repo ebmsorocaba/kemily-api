@@ -5,17 +5,17 @@ import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Pagamento {
-	
+
 	private Long id;
 	private String formaPgto;
 	private String codBoleto;
 	private double valorPago;
 	private Date vencimento;
 	private Date dataPgto;
-	
+
 	private Associado associado;
 	private Cartao cartao;
-	
+
 	public Pagamento(
 			@JsonProperty("id")Long id,
 			@JsonProperty("formaPgto")String formaPgto,
@@ -25,17 +25,17 @@ public class Pagamento {
 			@JsonProperty("dataPgto")Date vencAtual,
 			@JsonProperty("associado")Associado associado,
 			@JsonProperty("cartao")Cartao cartao){
-		
+
 		this.id = id;
 		this.formaPgto = formaPgto;
-        this.codBoleto = codBoleto;
-        this.valorPago = valorPago;
-        this.vencimento = vencimento;
-        this.dataPgto = vencAtual;
-        this.associado = associado;
-        this.cartao = cartao;
-        
-    }
+    this.codBoleto = codBoleto;
+    this.valorPago = valorPago;
+    this.vencimento = vencimento;
+    this.dataPgto = vencAtual;
+    this.associado = associado;
+    this.cartao = cartao;
+
+  }
 
 	public Long getId() {
 		return id;
@@ -76,7 +76,7 @@ public class Pagamento {
 	public void setVencimento(Date vencimento) {
 		this.vencimento = vencimento;
 	}
-	
+
 	public Date getDataPgto() {
 		return dataPgto;
 	}
@@ -100,6 +100,6 @@ public class Pagamento {
 	public void setCartao(Cartao cartao) {
 		this.cartao = cartao;
 	}
-	
-	
+
+
 }

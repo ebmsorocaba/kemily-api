@@ -6,16 +6,16 @@ public class Cartao {
 	private Long numero;
 	private String bandeira;
 	private boolean atual;
-	
+
 	public Cartao(
-    		@JsonProperty("numero")Long numero, 
-    		@JsonProperty("bandeira")String bandeira, 
+    		@JsonProperty("numero")Long numero,
+    		@JsonProperty("bandeira")String bandeira,
     		@JsonProperty("atual")boolean atual) {
-    	
+
         this.numero = numero;
         this.bandeira = bandeira;
         this.atual = atual;
-    }
+  }
 
 	public Long getNumero() {
 		return numero;
@@ -40,6 +40,6 @@ public class Cartao {
 	public void setAtual(boolean atual) {
 		this.atual = atual;
 	}
-	
-	
+
+
 }
