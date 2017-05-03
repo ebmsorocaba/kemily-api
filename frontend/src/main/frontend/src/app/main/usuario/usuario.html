@@ -1,12 +1,38 @@
 <form name="usuarioForm">
-  <md-input-container>
-    <label>Nome de usuário</label>
-    <input type="text" ng-model="usuario" required>
-  </md-input-container>
-  <md-input-container>
-    <label>Senha</label>
-    <input type="password" ng-model="senha" required>
-  </md-input-container>
-  <br>
-  <md-button class="md-accent md-raised">Salvar</md-button>
+  <md-card>
+    <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Bem-vindo ao EBM Kemily</span>
+        <span class="md-subhead">Insira os seus dados de usuário e autentique-se.</span>
+      </md-card-header-text>
+    </md-card-header>
+
+    <md-card-content>
+      <md-input-container>
+        <label>Nome de usuário</label>
+        <input type="text" ng-model="usuario" required>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Senha</label>
+        <input type="password" ng-model="senha" required>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Grupo</label>
+        <input type="text" ng-model="grupo" required>
+      </md-input-container>
+    </md-card-content>
+  </md-card>
+
+  <div layout="row" layout-align="center">
+    <h4>Obs.: Ao cadastrar um novo usuário, todos os campos marcados com asterisco (*) são obrigatórios.</h4>
+  </div>
+
+  <div layout="row" layout-align="center">
+    <md-button class="md-accent md-raised">Iniciar sessão</md-button>
+    <md-button>Novo usuário</md-button>
+    <md-button ng-click="vm.limpaForm()">Limpar</md-button>
+
+  </div>
 </form>

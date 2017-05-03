@@ -1,7 +1,4 @@
-
-/**
-Precisa setar o estilo de data para Dia/Mês/Ano
-*/
+/** Precisa setar o estilo de data para Dia/Mês/Ano */
 SET datestyle = "ISO, DMY";
 
 DROP TABLE tb_pagamentos;
@@ -9,14 +6,10 @@ DROP TABLE tb_associados;
 DROP TABLE tb_cartao;
 DROP TABLE tb_usuarios;
 
-/** Remove o banco completamente, para fins de desenvolvimento:
-DROP DATABASE ebm_admin;
-*/
 /**CREATE DATABASE ebm_admin;*/
 /** Mudar de banco no PostgreSQL (PSQL):
 \c ebm_admin
 */
-
 
 /** Tabelas */
 CREATE TABLE tb_usuarios (
@@ -90,4 +83,3 @@ INSERT INTO tb_pagamentos(id, cpf, forma_pgto, num_cartao, cod_boleto, valor_pag
  VALUES(3, 66666666666, 'boleto', 3132132133213233, 89478948949849849449, 10000, '05/10/15', '15/10/15');
 INSERT INTO tb_pagamentos(id, cpf, forma_pgto, num_cartao, cod_boleto, valor_pago, vencimento, data_pgto)
  VALUES(4, 33333333333, 'boleto', 4564645464611111, 32031325165156156615, 15, '05/10/15', '15/10/15');
-

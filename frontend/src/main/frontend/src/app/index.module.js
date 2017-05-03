@@ -21,12 +21,18 @@
             'app.quick-panel',
 
             // Sample
-            'app.sample',
+            //'app.sample',
 
             // Cadastro de Usuários
             'app.usuario',
 
             // Cadastro de Associados
-            'app.associado'
+            'app.associado',
+
+            // Informar pagamento
+            'app.pagamento',
+
+            // Relatório financeiro
+            'app.relatorio'
         ]);
 })();

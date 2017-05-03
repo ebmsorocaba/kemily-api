@@ -24,4 +24,11 @@ dist/
 nbdist/
 .nb-gradle/
 
+## Node.js ##
 node_modules/
+frontend/src/main/frontend/node
+frontend/src/main/frontend/node_modules
+frontend/src/main/frontend/dist
+
+## Bower ##
+frontend/src/main/frontend/bower_components
