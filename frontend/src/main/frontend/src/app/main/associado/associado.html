@@ -1,38 +1,82 @@
 <form name="associadoForm">
-<md-card>
- <md-card-content>
-   <h1>Cadastro de Associado</h1>
-   <p>Insira os dados do novo associado a ser cadastrado.</p>
+  <md-card>
+    <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Associados Cadastrados</span>
+        <span class="md-subhead">Listagem dos associados cadastrados no sistema.</span>
+      </md-card-header-text>
+    </md-card-header>
 
-   <md-input-container>
-     <label>Nome completo</label>
-     <input type="text" ng-model="nome" size="30px" required>
-   </md-input-container>
-   <md-input-container>
-     <label>CPF</label>
-     <input type="text" ng-model="cpf" size="30px" required>
-   </md-input-container>
-   <br>
-   <md-input-container>
-     <label>E-mail</label>
-     <input type="text" ng-model="email" size="30px" required>
-   </md-input-container>
-   <md-input-container>
-     <label>Celular</label>
-     <input type="text" ng-model="celular" size="30px">
-   </md-input-container>
-   <h5>* Obrigatório</h5>
+    <md-card-content>
+      [Listar usuários aqui.]
+    </md-card-content>
+  </md-card>
 
-   <md-radio-group ng-model="formaPagamento" required>
-     <h2>Forma de Pagamento</h2>
-     <md-radio-button value="1">Cartão</md-radio-button>
-     <md-radio-button value="2">Boleto</md-radio-button>
-     <md-radio-button value="3">Dinhero</md-radio-button>
-   </md-radio-group>
- </md-card-content>
- <md-card-actions layout="row" layout-align="center">
-   <md-button>Salvar</md-button>
-   <md-button>Limpar</md-button>
- </md-card-actions>
-</md-card>
+  <md-card>
+    <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Cadastro de Associado</span>
+        <span class="md-subhead">Insira os dados do novo associado a ser cadastrado.</span>
+      </md-card-header-text>
+    </md-card-header>
+
+    <md-card-content>
+      <md-input-container>
+        <label>Nome completo</label>
+        <input type="text" ng-model="nome" size="30px" md-maxlength="60" required>
+      </md-input-container>
+
+      <md-input-container>
+        <label>CPF</label>
+        <input type="text" ng-model="cpf" size="30px" required>
+      </md-input-container>
+      <br>
+
+      <md-input-container>
+        <label>E-mail</label>
+        <input type="email" ng-model="email" size="34px" required>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Celular</label>
+        <input type="text" ng-model="celular" size="30px">
+      </md-input-container>
+    </md-card-content>
+  </md-card>
+
+  <div layout="row">
+    <md-card>
+      <md-card-content>
+        <h3><b>Forma de Pagamento *</b></h3>
+        <md-radio-group ng-model="formaPagamento" required>
+          <md-radio-button ng-value="1">Cartão de crédito</md-radio-button>
+          <md-radio-button ng-value="2">Boleto bancário</md-radio-button>
+          <md-radio-button ng-value="3">Dinhero</md-radio-button>
+        </md-radio-group>
+      </md-card-content>
+    </md-card>
+    <md-card ng-if="formaPagamento == 1">
+      <md-card-content>
+        <h3>Por favor, insira os dados do cartão:</h3>
+        <md-input-container>
+          <label>Número do cartão</label>
+          <input type="number" ng-model="numCartao" required>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Bandeira</label>
+          <input type="text" ng-model="bandeira" required>
+        </md-input-container>
+  </div>
+  </md-card-content>
+  </md-card>
+
+  <div layout="row" layout-align="center">
+    <h4>Obs.: Todos os campos marcados com asterisco (*) são obrigatórios.</h4>
+  </div>
+
+  <div layout="row" layout-align="center">
+    <md-button class="md-accent md-raised">Salvar</md-button>
+    <md-button ng-click="vm.limpaForm()">Limpar</md-button>
+  </div>
 </form>
