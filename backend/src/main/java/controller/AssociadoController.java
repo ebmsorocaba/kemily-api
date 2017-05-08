@@ -41,10 +41,10 @@ public class AssociadoController {
 	@RequestMapping(value = "/associados", method = RequestMethod.GET)
 	public ResponseEntity<List<Associado>> listar() throws SQLException {
 		int index=0;
-		
+
 		List<Associado> associadosGetted = new ArrayList<Associado>();
 		associados = new HashMap<Integer, Associado>();
-		
+
 		associadosGetted = associadoDao.getLista();
 
 		for (Associado asso : associadosGetted) { //Coloca todos alunos vindos do SELECT da DAO em um hashmap
@@ -56,7 +56,7 @@ public class AssociadoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/associados/{cpf}", method = RequestMethod.GET)
+	@RequestMapping(value = "/associado/{cpf}", method = RequestMethod.GET)
 	public ResponseEntity<Associado> buscar(@PathVariable("cpf") Long cpf) throws SQLException {
 
 	  Associado associado = associadoDao.getAssociado(cpf);
@@ -68,10 +68,10 @@ public class AssociadoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/associados/{cpf}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/associado/{cpf}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("cpf") Long cpf) {
 		//Aluno aluno = alunos.remove(id);
-		
+
 		/*Configurar caso não ache o objeto a ser excluido*/
 		//if (aluno == null) {
 	    //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -82,9 +82,9 @@ public class AssociadoController {
 
 
 	@CrossOrigin
-	@RequestMapping(value = "/associados", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
+	@RequestMapping(value = "/associado", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Associado> addAssociado(@RequestBody String associadoJSON) throws JsonParseException, JsonMappingException, IOException, SQLException {
-		
+
 		Associado associado = new ObjectMapper().readValue(associadoJSON, Associado.class); //Aqui o json é convertido em objeto Java Aluno
 		System.out.println("Json que chegou no backend: " + associadoJSON);
 		associadoDao.adiciona(associado);

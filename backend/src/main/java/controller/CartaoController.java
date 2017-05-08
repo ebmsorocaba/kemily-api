@@ -41,10 +41,10 @@ public class CartaoController {
 	@RequestMapping(value = "/cartoes", method = RequestMethod.GET)
 	public ResponseEntity<List<Cartao>> listar() throws SQLException {
 		int index=0;
-		
+
 		List<Cartao> cartoesGetted = new ArrayList<Cartao>();
 		cartoes = new HashMap<Integer, Cartao>();
-		
+
 		cartoesGetted = cartaoDao.getLista();
 
 		for (Cartao card : cartoesGetted) { //Coloca todos alunos vindos do SELECT da DAO em um hashmap
@@ -56,7 +56,7 @@ public class CartaoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/cartoes/{numero}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cartao/{numero}", method = RequestMethod.GET)
 	public ResponseEntity<Cartao> buscar(@PathVariable("numero") Long numero) throws SQLException {
 
 	  Cartao cartao = cartaoDao.getCartao(numero);
@@ -68,10 +68,10 @@ public class CartaoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/cartoes/{numero}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/cartao/{numero}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("numero") Long numero) {
 		//Aluno aluno = alunos.remove(id);
-		
+
 		/*Configurar caso não ache o objeto a ser excluido*/
 		//if (aluno == null) {
 	    //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -82,9 +82,9 @@ public class CartaoController {
 
 
 	@CrossOrigin
-	@RequestMapping(value = "/cartoes", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
+	@RequestMapping(value = "/cartao", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Cartao> addCartao(@RequestBody String cartaoJSON) throws JsonParseException, JsonMappingException, IOException, SQLException {
-		
+
 		Cartao cartao = new ObjectMapper().readValue(cartaoJSON, Cartao.class); //Aqui o json é convertido em objeto Java Aluno
 		System.out.println("Json que chegou no backend: " + cartaoJSON);
 		cartaoDao.adiciona(cartao);

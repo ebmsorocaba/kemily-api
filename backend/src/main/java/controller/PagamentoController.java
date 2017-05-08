@@ -41,10 +41,10 @@ public class PagamentoController {
 	@RequestMapping(value = "/pagamentos", method = RequestMethod.GET)
 	public ResponseEntity<List<Pagamento>> listar() throws SQLException {
 		int index=0;
-		
+
 		List<Pagamento> pagamentosGetted = new ArrayList<Pagamento>();
 		pagamentos = new HashMap<Integer, Pagamento>();
-		
+
 		pagamentosGetted = pagamentoDao.getLista();
 
 		for (Pagamento pag : pagamentosGetted) { //Coloca todos alunos vindos do SELECT da DAO em um hashmap
@@ -56,7 +56,7 @@ public class PagamentoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/pagamentos/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/pagamento/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Pagamento> buscar(@PathVariable("id") Long id) throws SQLException {
 
 	  Pagamento pagamento = pagamentoDao.getPagamento(id);
@@ -68,10 +68,10 @@ public class PagamentoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/pagamentos/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/pagamento/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("id") Long id) {
 		//Aluno aluno = alunos.remove(id);
-		
+
 		/*Configurar caso não ache o objeto a ser excluido*/
 		//if (aluno == null) {
 	    //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -82,9 +82,9 @@ public class PagamentoController {
 
 
 	@CrossOrigin
-	@RequestMapping(value = "/pagamentos", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
+	@RequestMapping(value = "/pagamento", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Pagamento> addPagamento(@RequestBody String pagamentoJSON) throws JsonParseException, JsonMappingException, IOException, SQLException {
-		
+
 		Pagamento pagamento = new ObjectMapper().readValue(pagamentoJSON, Pagamento.class); //Aqui o json é convertido em objeto Java Aluno
 		System.out.println("Json que chegou no backend: " + pagamentoJSON);
 		pagamentoDao.adiciona(pagamento);
