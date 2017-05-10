@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -38,15 +38,14 @@ public class CartaoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/cartoes", method = RequestMethod.GET)
+	@RequestMapping(value = "/cartao", method = RequestMethod.GET)
 	public ResponseEntity<List<Cartao>> listar() throws SQLException {
 		int index=0;
 
 		List<Cartao> cartoesGetted = new ArrayList<Cartao>();
 		cartoes = new HashMap<Integer, Cartao>();
-
+		
 		cartoesGetted = cartaoDao.getLista();
-
 		for (Cartao card : cartoesGetted) { //Coloca todos alunos vindos do SELECT da DAO em um hashmap
 			cartoes.put(index, card);
 			index++;
@@ -83,10 +82,10 @@ public class CartaoController {
 
 	@CrossOrigin
 	@RequestMapping(value = "/cartao", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
-	public ResponseEntity<Cartao> addCartao(@RequestBody String cartaoJSON) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	public ResponseEntity<Cartao> addCartao(@RequestBody Cartao cartao) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
-		Cartao cartao = new ObjectMapper().readValue(cartaoJSON, Cartao.class); //Aqui o json é convertido em objeto Java Aluno
-		System.out.println("Json que chegou no backend: " + cartaoJSON);
+		//Cartao cartao = new ObjectMapper().readValue(cartaoJSON, Cartao.class); //Aqui o json é convertido em objeto Java Aluno
+		System.out.println("Cartao que chegou no backend: " + cartao.getNumero());
 		cartaoDao.adiciona(cartao);
 		return new ResponseEntity<Cartao>(cartao, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}

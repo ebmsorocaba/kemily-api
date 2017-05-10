@@ -16,6 +16,8 @@ public class Pagamento {
 	private Associado associado;
 	private Cartao cartao;
 
+	public Pagamento() {};
+	
 	public Pagamento(
 			@JsonProperty("id")Long id,
 			@JsonProperty("formaPgto")String formaPgto,

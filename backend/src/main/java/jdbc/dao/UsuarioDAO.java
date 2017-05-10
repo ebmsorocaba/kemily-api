@@ -23,12 +23,14 @@ public class UsuarioDAO {
 
 	public void adiciona(Usuario usuario) throws SQLException {
 		// prepared statement para inserção
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO tb_usuarios (nome,senha,grupo,ativo) VALUES (?, ?, ?, ?)");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO usuario (nome, senha, setor, email, ativo) VALUES (?, ?, ?, ?, ?)");
 		// seta os valores
 		stmt.setString(1,usuario.getNome());
 		stmt.setString(2,usuario.getSenha());
-		stmt.setString(3,usuario.getGrupo());
-		stmt.setBoolean(4,usuario.isAtivo());
+		stmt.setString(3,usuario.getSetor());
+		stmt.setString(4,usuario.getEmail());
+		stmt.setBoolean(5,usuario.isAtivo());
+		
 		// executa
 		stmt.execute();
 		stmt.close();
@@ -38,16 +40,19 @@ public class UsuarioDAO {
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM tb_usuarios");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM usuario");
 		ResultSet rs = stmt.executeQuery();
 
 		while (rs.next()) {
 			// criando o objeto Aluno
-			Usuario usuario = new Usuario("","","",false);
+			Usuario usuario = new Usuario();
+			
 			usuario.setNome(rs.getString("nome"));
 			usuario.setSenha(rs.getString("senha"));
-			usuario.setGrupo(rs.getString("grupo"));
+			usuario.setSetor(rs.getString("setor"));
+			usuario.setEmail(rs.getString("email"));
 			usuario.setAtivo(rs.getBoolean("ativo"));
+			
 			// adicionando o objeto à lista
 			usuarios.add(usuario);
 
@@ -62,26 +67,28 @@ public class UsuarioDAO {
 
 	public Usuario getUsuario(String search) throws SQLException {
 
-		Usuario usuario = new Usuario("","","",false);
+		Usuario usuario = new Usuario();
 
 		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM tb_usuarios WHERE " + "nome = ?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM usuario WHERE " + "nome = ?");
 
 			stmt.setString(1, search); //Note que essa variavel é passada da função principal
-      ResultSet rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
-      if (rs.next() == true) {
-        usuario.setNome(rs.getString("nome"));
+			if (rs.next() == true) {
+				usuario.setNome(rs.getString("nome"));
 				usuario.setSenha(rs.getString("senha"));
-				usuario.setGrupo(rs.getString("grupo"));
-				usuario.setAtivo(rs.getBoolean("grupo"));
-      }
-    }
-    catch (SQLException ex) {
-      System.out.println(ex.toString());
-    }
+				usuario.setSetor(rs.getString("setor"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setAtivo(rs.getBoolean("ativo"));
+			}
+		}
+		
+	    catch (SQLException ex) {
+	    	System.out.println(ex.toString());
+	    }
 	
-    return (usuario);
+		return (usuario);
 
 	}
 
@@ -89,14 +96,15 @@ public class UsuarioDAO {
 	public void excluir(String search) {
 
     try {
-    	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM tb_usuarios WHERE nome = ?");
-
-			stmt.setString(1, search);
-      stmt.execute();
+    	
+    	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM usuario WHERE nome = ?");
+    	stmt.setString(1, search);
+    	stmt.execute();
 
     }
-		catch (SQLException ex) {
-      System.out.println(ex.toString());
+    
+	catch (SQLException ex) {
+		System.out.println(ex.toString());
     }
 
   }
@@ -104,11 +112,12 @@ public class UsuarioDAO {
 
 	public void altera(Usuario usuario) throws SQLException {
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE tb_usuarios SET senha=?, grupo=?, ativo=? WHERE nome=?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE usuario SET senha=?, setor=?, email=?, ativo=? WHERE nome=?");
 			stmt.setString(1, usuario.getSenha());
-			stmt.setString(2, usuario.getGrupo());
-			stmt.setBoolean(3, usuario.isAtivo());
-			stmt.setString(4, usuario.getNome());
+			stmt.setString(2, usuario.getSetor());
+			stmt.setString(3, usuario.getNome());
+			stmt.setBoolean(4, usuario.isAtivo());
+			stmt.setString(5, usuario.getNome());
 
 			stmt.execute();
 			stmt.close();

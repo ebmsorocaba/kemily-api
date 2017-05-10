@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -38,7 +38,7 @@ public class UsuarioController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
+	@RequestMapping(value = "/usuario", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> listar() throws SQLException {
 		int index=0;
 
@@ -81,12 +81,12 @@ public class UsuarioController {
 	}
 
 
-	@CrossOrigin
+	//@CrossOrigin
 	@RequestMapping(value = "/usuario", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
-	public ResponseEntity<Usuario> addUsuario(@RequestBody String usuarioJSON) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
-		Usuario usuario = new ObjectMapper().readValue(usuarioJSON, Usuario.class); //Aqui o json é convertido em objeto Java Aluno
-		System.out.println("Json que chegou no backend: " + usuarioJSON);
+		//Usuario usuario = new ObjectMapper().readValue(usuarioJSON, Usuario.class); //Aqui o json é convertido em objeto Java Aluno
+		System.out.println("Usuario que chegou no backend: " + usuario.getNome());
 		usuarioDao.adiciona(usuario);
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}

@@ -6,15 +6,20 @@ public class Cartao {
 	private Long numero;
 	private String bandeira;
 	private boolean atual;
+	private Associado associado;
 
+	public Cartao() {};
+	
 	public Cartao(
     		@JsonProperty("numero")Long numero,
     		@JsonProperty("bandeira")String bandeira,
-    		@JsonProperty("atual")boolean atual) {
+    		@JsonProperty("atual")boolean atual,
+			@JsonProperty("associado")Associado associado){
 
         this.numero = numero;
         this.bandeira = bandeira;
         this.atual = atual;
+        this.associado = associado;
   }
 
 	public Long getNumero() {
@@ -41,5 +46,12 @@ public class Cartao {
 		this.atual = atual;
 	}
 
+	public Associado getAssociado() {
+		return associado;
+	}
+
+	public void setAssociado(Associado associado) {
+		this.associado = associado;
+	}
 
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -38,7 +38,7 @@ public class PagamentoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/pagamentos", method = RequestMethod.GET)
+	@RequestMapping(value = "/pagamento", method = RequestMethod.GET)
 	public ResponseEntity<List<Pagamento>> listar() throws SQLException {
 		int index=0;
 
@@ -83,10 +83,10 @@ public class PagamentoController {
 
 	@CrossOrigin
 	@RequestMapping(value = "/pagamento", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
-	public ResponseEntity<Pagamento> addPagamento(@RequestBody String pagamentoJSON) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	public ResponseEntity<Pagamento> addPagamento(@RequestBody Pagamento pagamento) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
-		Pagamento pagamento = new ObjectMapper().readValue(pagamentoJSON, Pagamento.class); //Aqui o json é convertido em objeto Java Aluno
-		System.out.println("Json que chegou no backend: " + pagamentoJSON);
+		//Pagamento pagamento = new ObjectMapper().readValue(pagamentoJSON, Pagamento.class); //Aqui o json é convertido em objeto Java Aluno
+		System.out.println("Pagamento que chegou no backend: " + pagamento.getId());
 		pagamentoDao.adiciona(pagamento);
 		return new ResponseEntity<Pagamento>(pagamento, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}

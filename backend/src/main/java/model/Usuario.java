@@ -6,18 +6,23 @@ public class Usuario {
 
     private String nome;
     private String senha;
-    private String grupo;
+    private String setor;
+    private String email;
     private boolean ativo;
+    
+    public Usuario() {};
     
     public Usuario(
     		@JsonProperty("nome")String nome, 
     		@JsonProperty("senha")String senha, 
-    		@JsonProperty("grupo")String grupo, 
+    		@JsonProperty("setor")String setor,
+    		@JsonProperty("email")String email, 
     		@JsonProperty("ativo")boolean ativo) {
     	
         this.nome = nome;
         this.senha = senha;
-        this.grupo = grupo;
+        this.setor = setor;
+        this.email = email;
         this.ativo = ativo;
     } //JsonProperty no constructor serve para dar apoio ao Jackson Object Mapper
 
@@ -37,14 +42,6 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public String getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(String grupo) {
-		this.grupo = grupo;
-	}
-
 	public boolean isAtivo() {
 		return ativo;
 	}
@@ -52,9 +49,25 @@ public class Usuario {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
-	
+
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+    
 	public void resetarSenha(String newSenha){
 		
 	}
-    
+	
 }

@@ -11,17 +11,17 @@ public class Associado {
 	private Long celular;
 	private String email;
 	private String formaPgto;
-	private Cartao cartao;
 	private double valorAtual;
 	private Date vencAtual;
 
+	public Associado() {};
+	
 	public Associado(
 			@JsonProperty("cpf")Long cpf,
 			@JsonProperty("nome")String nome,
 			@JsonProperty("celular")Long celular,
 			@JsonProperty("email")String email,
 			@JsonProperty("formaPgto")String formaPgto,
-			@JsonProperty("cartao")Cartao cartao,
 			@JsonProperty("valorAtual")double valorAtual,
 			@JsonProperty("vencAtual")Date vencAtual){
 
@@ -30,7 +30,6 @@ public class Associado {
         this.celular = celular;
         this.email = email;
         this.formaPgto = formaPgto;
-        this.cartao = cartao;
         this.valorAtual = valorAtual;
         this.vencAtual = vencAtual;
 
@@ -74,14 +73,6 @@ public class Associado {
 
 	public void setFormaPgto(String formaPgto) {
 		this.formaPgto = formaPgto;
-	}
-
-	public Cartao getCartao() {
-		return cartao;
-	}
-
-	public void setCartao(Cartao cartao) {
-		this.cartao = cartao;
 	}
 
 	public double getValorAtual() {
