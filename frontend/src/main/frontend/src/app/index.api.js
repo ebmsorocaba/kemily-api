@@ -178,7 +178,15 @@
         var api = {};
 
         // Base Url
-        api.baseUrl = 'app/data/';
+        //api.baseUrl = 'app/data/';
+
+        api.usuario = {
+            getUsuarios     : $resource('http://localhost:8080/usuario'),
+            getByNome  : $resource('http://localhost:8080/usuario/:nome', {nome: '@nome'}),
+            addUsuario  : $resource('http://localhost:8080/usuario')
+
+        }
+
 
         // api.sample = $resource(api.baseUrl + 'sample/sample.json');
 
