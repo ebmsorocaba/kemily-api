@@ -1,0 +1,293 @@
+<div id="contacts" class="page-layout simple left-sidenav inner-sidenav">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+
+        <!-- APP TITLE -->
+        <div layout="row" layout-align="start center">
+            <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click=""
+                       aria-label="Toggle sidenav"  >
+                <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+            </md-button>
+
+            <div class="logo" layout="row" layout-align="start center">
+                <span class="logo-icon">
+                    <md-icon md-font-icon="icon-account-box" class="s24"></md-icon>
+                </span>
+                <span class="logo-text">Contacts</span>
+            </div>
+        </div>
+        <!-- / APP TITLE -->
+
+        <!-- SEARCH -->
+        <div class="search-input-wrapper" layout="row" layout-align="start center">
+            <label for="search">
+                <md-icon md-font-icon="icon-magnify"></md-icon>
+            </label>
+            <md-input-container md-no-float class="m-0">
+                <input id="search" placeholder="Search for anyone" type="text" ng-model="vm.search">
+            </md-input-container>
+        </div>
+        <!-- / SEARCH -->
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- SELECTED BAR -->
+    <div ng-show="" class="selected-bar header animate-slide-down md-accent-bg"
+         layout="row" layout-align="start center">
+
+        <div class="close-button-wrapper" ng-click="">
+            <md-button layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+                <span>Back</span>
+            </md-button>
+        </div>
+
+        <div flex layout="row" layout-align="space-between center">
+
+            <div>
+                <span class="selected-contacts-count">
+                    <span></span>
+                    <span>selected</span>
+                </span>
+
+                <md-menu class="select-menu" ng-if="">
+                    <md-button class="md-icon-button"
+                               ng-click=""
+                               aria-label="multi select toggle"
+                               >
+                        <md-icon md-font-icon="icon-menu-down"></md-icon>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <md-menu-item>
+                            <md-button ng-click="">
+                                Select all
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="">
+                                Select none
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+
+            <div class="multi-select-actions">
+                <md-button class="md-icon-button" ng-click=""
+                           aria-label="delete selected">
+                    <md-icon md-font-icon="icon-delete"></md-icon>
+                </md-button>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- / SELECTED BAR -->
+
+    <!-- CONTENT -->
+    <div class="content" md-background-bg layout="row" layout-align="start start">
+
+        <!-- SIDENAV -->
+        <md-sidenav class="sidenav main-sidenav md-white-bg" ms-scroll md-is-locked-open=""
+                    layout="column" flex="100" md-component-id="sidenav"
+                    ms-sidenav-helper ng-include="">
+        </md-sidenav>
+        <!-- / SIDENAV -->
+
+        <!-- MAIN -->
+        <div class="main scrollable" ms-scroll>
+
+            <!-- CONTACT LIST -->
+            <md-list class="contacts-list">
+
+                <!-- CONTACT LIST HEADER -->
+                <md-subheader class="md-no-sticky md-white-bg">
+
+                    <div layout="row" layout-align="space-between center">
+
+                        <div class="list-title" layout="row" layout-align="start center"
+                             ng-hide="">
+                            <span ng-if="">All contacts</span>
+                            <span ng-if="">Frequnetly
+                                contacted</span>
+                            <span ng-if="">Starred
+                                contacts</span>
+                            <span ng-if=""></span>
+
+                            <span ng-if="" class="secondary-text contacts-count">
+
+                            </span>
+                        </div>
+
+                        <div class="edit-group-form" ng-show="" layout="row"
+                             layout-align="start center">
+                            <span ng-show=""
+                                  editable-text=""
+                                  e-form=""
+                                  onaftersave="">
+                            </span>
+
+                            <md-button class="md-icon-button edit-group-button" ng-click=""
+                                       ng-hide="" aria-label="edit group name" >
+                                <md-icon md-font-icon="icon-pencil s18"></md-icon>
+                            </md-button>
+
+                            <md-button class="md-icon-button edit-group-button" ng-click=""
+                                       ng-hide="" aria-label="delete group" >
+                                <md-icon md-font-icon="icon-delete s18"></md-icon>
+                            </md-button>
+                        </div>
+
+                        <div flex></div>
+
+                        <md-menu>
+
+                            <md-button class="md-icon-button" aria-label="Sort" >
+                                <md-icon md-font-icon="icon-sort-alphabetical"
+                                         ng-click=""></md-icon>
+                            </md-button>
+
+                            <md-menu-content width="3">
+
+                                <md-menu-item>
+                                    <md-button ng-click=""
+                                               ng-style="">
+                                        <span >First Name</span>
+                                        <small >(A to Z)</small>
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-menu-item>
+                                    <md-button ng-click=""
+                                               ng-style="">
+                                        <span >First Name</span>
+                                        <small >(Z to A)</small>
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-menu-item>
+                                    <md-button ng-click=""
+                                               ng-style="">
+                                        <span>Last Name</span>
+                                        <small>(A to Z)</small>
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-menu-item>
+                                    <md-button ng-click=""
+                                               ng-style="">
+                                        <span>Last Name</span>
+                                        <small>(Z to A)</small>
+                                    </md-button>
+                                </md-menu-item>
+
+                            </md-menu-content>
+
+                        </md-menu>
+
+                    </div>
+
+                </md-subheader>
+                <!-- / CONTACT LIST HEADER -->
+
+                <!-- CONTACT ITEM -->
+                <md-list-item class="contact-item md-white-bg" md-ink-ripple
+                              ng-repeat="usuario in vm.usuarios"
+                              ng-click="vm.openContactDialog($event, contact)"
+                              ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredContacts.length - $index}"
+                              ng-class="">
+
+                    <md-checkbox ng-checked=""
+                                 ng-click=""
+                                 aria-label="">
+                    </md-checkbox>
+                    <!--
+                    <img class="md-avatar" ng-if="" alt=""
+                         ng-src=""/>
+                       -->
+                    <p class="text-truncate font-weight-600">{{usuario.nome}}</p>
+
+
+                    <p class="email text-truncate hide show-gt-sm">
+                        {{usuario.email}}
+                    </p>
+                    <!--
+                    <p class="phone text-truncate hide show-gt-md">
+                        {{contact.phone}}
+                    </p>
+
+                    <p class="job-title text-truncate hide show-gt-lg">
+                        {{contact.jobTitle}}
+                    </p>
+
+                    <p class="company text-truncate hide show-gt-lg">
+                        {{contact.company}}
+                    </p>
+                  -->
+                    <div class="actions" layout="row" layout-align="start center">
+                        <md-button class="md-icon-button  hide show-gt-xs"
+                                   ng-click=""
+                                   aria-label="Toggle starred">
+                            <md-icon ng-if="" md-font-icon="icon-star"
+                                     class="amber-fg"></md-icon>
+                            <md-icon ng-if=""
+                                     md-font-icon="icon-star-outline"></md-icon>
+                        </md-button>
+
+                        <md-menu>
+                            <md-button class="md-icon-button" aria-label="More">
+                                <md-icon md-font-icon="icon-dots-vertical" ng-click=""></md-icon>
+                            </md-button>
+
+                            <md-menu-content width="3">
+                                <md-menu-item>
+                                    <md-button ng-click="">
+                                        Delete Contact
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-divider ng-if=""></md-divider>
+
+                                <md-subheader class="md-no-sticky" ng-if="">Groups</md-subheader>
+
+                                <md-list-item ng-if="" ng-repeat=""
+                                              ng-click="">
+                                    <p class="pl-8"
+                                       ng-style="{'font-weight':'500'}">
+
+                                    </p>
+                                </md-list-item>
+
+                            </md-menu-content>
+                        </md-menu>
+
+                    </div>
+
+                </md-list-item>
+                <!-- CONTACT ITEM -->
+
+            </md-list>
+            <!-- / CONTACT LIST -->
+
+            <!-- NO RESULTS -->
+            <md-list-item class="no-results md-white-bg" ng-show="">
+                <p >No results..</p>
+            </md-list-item>
+            <!-- / NO RESULTS -->
+
+        </div>
+        <!-- / MAIN -->
+
+    </div>
+    <!-- / CONTENT -->
+
+    <!-- ADD CONTACT BUTTON -->
+    <md-button class="md-fab md-accent md-icon-button" id="add-contact-button" ng-click=""
+               aria-label="add contact" >
+        <md-icon md-font-icon="icon-account-plus"></md-icon>
+    </md-button>
+    <!-- / ADD CONTACT BUTTON -->
+
+</div>

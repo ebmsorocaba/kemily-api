@@ -33,6 +33,9 @@
             'app.pagamento',
 
             // Relatório financeiro
-            'app.relatorio'
+            'app.relatorio',
+
+            'app.contacts'
+
         ]);
 })();
