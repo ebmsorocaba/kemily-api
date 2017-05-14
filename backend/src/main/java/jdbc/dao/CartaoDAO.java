@@ -26,7 +26,7 @@ public class CartaoDAO {
 		stmt.setLong(1, cartao.getNumero());
 		stmt.setString(2, cartao.getBandeira());
 		stmt.setBoolean(3, cartao.isAtual());
-		stmt.setLong(4, cartao.getAssociado().getCpf());
+		stmt.setString(4, cartao.getAssociado().getCpf());
 		// executa
 		stmt.execute();
 		stmt.close();
@@ -45,7 +45,7 @@ public class CartaoDAO {
 			cartao.setNumero(rs.getLong("numero"));
 			cartao.setBandeira(rs.getString("bandeira"));
 			cartao.setAtual(rs.getBoolean("atual"));
-			cartao.setAssociado(daoAssociado.getAssociado(rs.getLong("cpf_associado")));
+			cartao.setAssociado(daoAssociado.getAssociado(rs.getString("cpf_associado")));
 			// adicionando o objeto à lista
 			cartoes.add(cartao);
 		}
@@ -69,7 +69,7 @@ public class CartaoDAO {
 				cartao.setNumero(rs.getLong("numero"));
 				cartao.setBandeira(rs.getString("bandeira"));
 				cartao.setAtual(rs.getBoolean("atual"));
-				cartao.setAssociado(daoAssociado.getAssociado(rs.getLong("cpf_associado")));
+				cartao.setAssociado(daoAssociado.getAssociado(rs.getString("cpf_associado")));
 			}
 		}
 		
@@ -101,7 +101,7 @@ public class CartaoDAO {
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE cartao SET bandeira=?, atual=?, cpf_associado=? WHERE numero=?");
 			stmt.setString(2, cartao.getBandeira());
 			stmt.setBoolean(3, cartao.isAtual());
-			stmt.setLong(4, cartao.getAssociado().getCpf());
+			stmt.setString(4, cartao.getAssociado().getCpf());
 			stmt.setLong(4, cartao.getNumero());
 
 			stmt.execute();

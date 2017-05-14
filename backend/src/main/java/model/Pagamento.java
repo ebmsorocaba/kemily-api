@@ -6,61 +6,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Pagamento {
 
-	private Long id;
-	private String formaPgto;
-	private String codBoleto;
+	private Integer id;
 	private double valorPago;
 	private Date vencimento;
 	private Date dataPgto;
-
-	private Associado associado;
-	private Cartao cartao;
-
+	
+	private FormaPagamento formaPgto;
+	
 	public Pagamento() {};
 	
 	public Pagamento(
-			@JsonProperty("id")Long id,
-			@JsonProperty("formaPgto")String formaPgto,
-			@JsonProperty("codBoleto")String codBoleto,
+			@JsonProperty("id")Integer id,
 			@JsonProperty("valorPago")double valorPago,
 			@JsonProperty("vencimento")Date vencimento,
 			@JsonProperty("dataPgto")Date vencAtual,
-			@JsonProperty("associado")Associado associado,
-			@JsonProperty("cartao")Cartao cartao){
+			@JsonProperty("formaPgto")FormaPagamento formaPgto){
 
 		this.id = id;
+		this.valorPago = valorPago;
+		this.vencimento = vencimento;
+		this.dataPgto = vencAtual;
 		this.formaPgto = formaPgto;
-    this.codBoleto = codBoleto;
-    this.valorPago = valorPago;
-    this.vencimento = vencimento;
-    this.dataPgto = vencAtual;
-    this.associado = associado;
-    this.cartao = cartao;
+	}
 
-  }
-
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getFormaPgto() {
-		return formaPgto;
-	}
-
-	public void setFormaPgto(String formaPgto) {
-		this.formaPgto = formaPgto;
-	}
-
-	public String getCodBoleto() {
-		return codBoleto;
-	}
-
-	public void setCodBoleto(String codBoleto) {
-		this.codBoleto = codBoleto;
 	}
 
 	public double getValorPago() {
@@ -87,21 +61,12 @@ public class Pagamento {
 		this.dataPgto = dataPgto;
 	}
 
-	public Associado getAssociado() {
-		return associado;
+	public FormaPagamento getFormaPgto() {
+		return formaPgto;
 	}
 
-	public void setAssociado(Associado associado) {
-		this.associado = associado;
-	}
-
-	public Cartao getCartao() {
-		return cartao;
-	}
-
-	public void setCartao(Cartao cartao) {
-		this.cartao = cartao;
-	}
-
+	public void setFormaPgto(FormaPagamento formaPgto) {
+		this.formaPgto = formaPgto;
+	}	
 
 }

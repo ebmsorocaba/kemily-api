@@ -14,8 +14,7 @@ import model.Pagamento;
 public class PagamentoDAO {
 	// a conexão com o banco de dados
 	private Connection connection;
-	private CartaoDAO daoCartao = new CartaoDAO();
-	private AssociadoDAO daoAssociado = new AssociadoDAO();
+	private FormaPagamentoDAO daoFormaPgto = new FormaPagamentoDAO();
 
 	public PagamentoDAO() throws SQLException {
 		this.connection = ConnectionFactory.getConnection();
@@ -23,18 +22,15 @@ public class PagamentoDAO {
 
 	public void adiciona(Pagamento pagamento) throws SQLException {
 		// prepared statement para inserção
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO pagamento (id, cpf, forma_pgto, num_cartao, cod_boleto, valor_pago, vencimento, data_pgto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO pagamento (id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada) VALUES (?, ?, ?, ?, ?, ?)");
 		// seta os valores
-		stmt.setLong(1,pagamento.getId());
-		stmt.setLong(2,pagamento.getAssociado().getCpf());
-		stmt.setString(3,pagamento.getFormaPgto());
-		stmt.setLong(4,pagamento.getCartao().getNumero());
-		stmt.setString(5,pagamento.getCodBoleto());
-		stmt.setDouble(6,pagamento.getValorPago());
-		stmt.setDate(7,pagamento.getVencimento());
-		stmt.setDate(8,pagamento.getDataPgto());
-
-
+		stmt.setInt(1,pagamento.getId());
+		stmt.setDouble(2,pagamento.getValorPago());
+		stmt.setDate(3,pagamento.getVencimento());
+		stmt.setDate(4,pagamento.getDataPgto());
+		stmt.setString(5,pagamento.getFormaPgto().getAssociado().getCpf());
+		stmt.setString(6,pagamento.getFormaPgto().getFormaPagamento());
+		
 		// executa
 		stmt.execute();
 		stmt.close();
@@ -50,14 +46,11 @@ public class PagamentoDAO {
 			// criando o objeto Aluno
 			Pagamento pagamento = new Pagamento();
 
-			pagamento.setId(rs.getLong("id"));
-			pagamento.setAssociado(daoAssociado.getAssociado(rs.getLong("cpf")));
-			pagamento.setFormaPgto(rs.getString("forma_pgto"));
-			pagamento.setCartao(daoCartao.getCartao(rs.getLong("num_cartao")));
-			pagamento.setCodBoleto(rs.getString("cod_boleto"));
+			pagamento.setId(rs.getInt("id"));
 			pagamento.setValorPago(rs.getDouble("valor_pago"));
 			pagamento.setVencimento(rs.getDate("vencimento"));
 			pagamento.setDataPgto(rs.getDate("data_pgto"));
+			pagamento.setFormaPgto(daoFormaPgto.getFormaPgto(rs.getString("cpf_associado"), rs.getString("forma_pgto_efetuada")));
 
 			// adicionando o objeto à lista
 			pagamentos.add(pagamento);
@@ -80,14 +73,11 @@ public class PagamentoDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next() == true) {
-				pagamento.setId(rs.getLong("id"));
-				pagamento.setAssociado(daoAssociado.getAssociado(rs.getLong("cpf")));
-				pagamento.setFormaPgto(rs.getString("forma_pgto"));
-				pagamento.setCartao(daoCartao.getCartao(rs.getLong("num_cartao")));
-				pagamento.setCodBoleto(rs.getString("cod_boleto"));
+				pagamento.setId(rs.getInt("id"));
 				pagamento.setValorPago(rs.getDouble("valor_pago"));
 				pagamento.setVencimento(rs.getDate("vencimento"));
 				pagamento.setDataPgto(rs.getDate("data_pgto"));
+				pagamento.setFormaPgto(daoFormaPgto.getFormaPgto(rs.getString("cpf_associado"), rs.getString("forma_pgto_efetuada")));
 			}
 		}
 	    catch (SQLException ex) {
@@ -117,17 +107,16 @@ public class PagamentoDAO {
 
 	public void altera(Pagamento pagamento) throws SQLException {
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE pagamentos SET cpf=?, forma_pgto=?, num_cartao=?, cod_boleto=?, valor_pago=?, vencimento=?, data_pgto=? WHERE cpf=?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE pagamento SET valor_pago=?, vencimento=?, data_pgto=?, cpf_associado=?, forma_pgto=? WHERE id=?");
 
-		stmt.setLong(1,pagamento.getAssociado().getCpf());
-		stmt.setString(2,pagamento.getFormaPgto());
-		stmt.setLong(3,pagamento.getCartao().getNumero());
-		stmt.setString(4,pagamento.getCodBoleto());
-		stmt.setDouble(5,pagamento.getValorPago());
-		stmt.setDate(6,pagamento.getVencimento());
-		stmt.setDate(7,pagamento.getDataPgto());
-		stmt.setLong(8,pagamento.getId());
-
+		
+		stmt.setDouble(1,pagamento.getValorPago());
+		stmt.setDate(2,pagamento.getVencimento());
+		stmt.setDate(3,pagamento.getDataPgto());
+		stmt.setString(4,pagamento.getFormaPgto().getAssociado().getCpf());
+		stmt.setString(5,pagamento.getFormaPgto().getFormaPagamento());
+		stmt.setInt(6,pagamento.getId());
+		
 		stmt.execute();
 		stmt.close();
 	}

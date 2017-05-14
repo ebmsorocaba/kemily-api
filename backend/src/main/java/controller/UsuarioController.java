@@ -81,7 +81,7 @@ public class UsuarioController {
 	}
 
 
-	//@CrossOrigin
+	@CrossOrigin
 	@RequestMapping(value = "/usuario", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) throws JsonParseException, JsonMappingException, IOException, SQLException {
 

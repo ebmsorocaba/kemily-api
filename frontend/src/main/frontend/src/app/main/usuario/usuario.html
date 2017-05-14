@@ -2,6 +2,75 @@
   <md-card>
     <md-card-header>
       <md-card-header-text>
+
+      </md-card-header-text>
+    </md-card-header>
+
+    <md-card-content>
+
+      <!-- CONTENT -->
+      <div class="content">
+
+          <div class="md-title mb-32">Usuarios Cadastrados</div>
+          <div class="white-bg md-whiteframe-4dp">
+              <table class="dataTable row-border hover" datatable="ng" dt-options="vm.dtOptions">
+                  <thead>
+                      <tr>
+                          <th class="secondary-text">
+                              <div class="table-header">
+                                  <span class="column-title">Nome</span>
+                              </div>
+                          </th>
+                          <th class="secondary-text">
+                              <div class="table-header">
+                                  <span class="column-title">Senha</span>
+                              </div>
+                          </th>
+                          <th class="secondary-text">
+                              <div class="table-header">
+                                  <span class="column-title">Email</span>
+                              </div>
+                          </th>
+                          <th class="secondary-text">
+                              <div class="table-header">
+                                  <span class="column-title">Setor</span>
+                              </div>
+                          </th>
+                          <th class="secondary-text">
+                              <div class="table-header">
+                                  <span class="column-title">Ativo</span>
+                              </div>
+                          </th> <!--
+                          <th class="secondary-text">
+                              <div class="table-header">
+                                  <span class="column-title">Opções</span>
+                              </div>
+                          </th> -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="us in ::vm.usuarios">
+                        <td>{{us.nome}}</td>
+                        <td>{{us.senha}}</td>
+                        <td>{{us.email}}</td>
+                        <td>{{us.setor}}</td>
+                        <td>{{us.ativo}}</td>
+                        <!-- <td> <button class="button">Delete</button></td> -->
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+      </div>
+      <!-- / CONTENT -->
+
+
+    </md-card-content>
+  </md-card>
+
+  <md-card>
+    <md-card-header>
+      <md-card-header-text>
         <span class="md-title">Bem-vindo ao EBM Kemily</span>
         <span class="md-subhead">Insira os seus dados de usuário e autentique-se.</span>
       </md-card-header-text>
@@ -10,18 +79,33 @@
     <md-card-content>
       <md-input-container>
         <label>Nome de usuário</label>
-        <input type="text" ng-model="usuario" required>
+        <input type="text" ng-model="usuario.nome" required>
       </md-input-container>
 
       <md-input-container>
         <label>Senha</label>
-        <input type="password" ng-model="senha" required>
+        <input type="password" ng-model="usuario.senha" required>
       </md-input-container>
 
       <md-input-container>
-        <label>Grupo</label>
-        <input type="text" ng-model="grupo" required>
+        <label>E-mail</label>
+        <input type="text" ng-model="usuario.email" required>
       </md-input-container>
+
+      <md-input-container>
+        <md-select ng-model="usuario.setor" placeholder="Selecione um setor">
+          <md-option value="administracao"> Administração</md-option>
+          <md-option value="financeiro"> Financeiro</md-option>
+          <md-option value="social"> Social</md-option>
+        </md-select>
+      </md-input-container>
+
+      <h3><b>Usuario se encontra *</b></h3>
+      <md-radio-group ng-model="usuario.ativo" required>
+        <md-radio-button ng-value="true">Ativado</md-radio-button>
+        <md-radio-button ng-value="false">Desativado</md-radio-button>
+      </md-radio-group>
+
     </md-card-content>
   </md-card>
 
@@ -31,8 +115,9 @@
 
   <div layout="row" layout-align="center">
     <md-button class="md-accent md-raised">Iniciar sessão</md-button>
-    <md-button>Novo usuário</md-button>
+    <md-button ng-click="vm.addUsuario(usuario)">Novo usuário</md-button>
     <md-button ng-click="vm.limpaForm()">Limpar</md-button>
+    <md-button ng-click="vm.getUsuario(usuario)">Procurar</md-button>
 
   </div>
 </form>

@@ -1,45 +1,40 @@
 package model;
 
-import java.sql.Date;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Associado {
 
-	private Long cpf;
+	private String cpf;
 	private String nome;
 	private Long celular;
 	private String email;
-	private String formaPgto;
 	private double valorAtual;
-	private Date vencAtual;
+	private Integer vencAtual;
 
 	public Associado() {};
 	
 	public Associado(
-			@JsonProperty("cpf")Long cpf,
+			@JsonProperty("cpf")String cpf,
 			@JsonProperty("nome")String nome,
 			@JsonProperty("celular")Long celular,
 			@JsonProperty("email")String email,
-			@JsonProperty("formaPgto")String formaPgto,
 			@JsonProperty("valorAtual")double valorAtual,
-			@JsonProperty("vencAtual")Date vencAtual){
+			@JsonProperty("vencAtual")Integer vencAtual){
 
         this.cpf = cpf;
         this.nome = nome;
         this.celular = celular;
         this.email = email;
-        this.formaPgto = formaPgto;
         this.valorAtual = valorAtual;
         this.vencAtual = vencAtual;
 
   }
 
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -67,14 +62,6 @@ public class Associado {
 		this.email = email;
 	}
 
-	public String getFormaPgto() {
-		return formaPgto;
-	}
-
-	public void setFormaPgto(String formaPgto) {
-		this.formaPgto = formaPgto;
-	}
-
 	public double getValorAtual() {
 		return valorAtual;
 	}
@@ -83,11 +70,11 @@ public class Associado {
 		this.valorAtual = valorAtual;
 	}
 
-	public Date getVencAtual() {
+	public Integer getVencAtual() {
 		return vencAtual;
 	}
 
-	public void setVencAtual(Date vencAtual) {
+	public void setVencAtual(Integer vencAtual) {
 		this.vencAtual = vencAtual;
 	}
 
