@@ -91,9 +91,12 @@ public class AssociadoController {
 		//Associado associado = new ObjectMapper().readValue(associadoJSON, Associado.class); //Aqui o json é convertido em objeto Java Aluno
 		System.out.println("Associado que chegou no backend: " + associado.getCpf());
 		associadoDao.adiciona(associado);
+		
 		FormaPagamento formaPgto = new FormaPagamento();
+		
 		formaPgto.setAssociado(associado);
-		formaPgto.setFormaPagamento("cartao");
+		formaPgto.setFormaPagamento("dinheiro");
+		
 		formaPgtoDAO.adiciona(formaPgto);
 		return new ResponseEntity<Associado>(associado, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
