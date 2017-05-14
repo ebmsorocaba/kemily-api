@@ -21,15 +21,14 @@ public class AssociadoDAO {
 
 	public void adiciona(Associado associado) throws SQLException {
 		// prepared statement para inserção
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO associado (cpf, nome, celular, email, forma_pgto, valor_atual, venc_atual) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO associado (cpf, nome, celular, email, valor_atual, venc_atual) VALUES (?, ?, ?, ?, ?, ?)");
 		// seta os valores
-		stmt.setLong(1,associado.getCpf());
+		stmt.setString(1,associado.getCpf());
 		stmt.setString(2,associado.getNome());
 		stmt.setLong(3,associado.getCelular());
 		stmt.setString(4,associado.getEmail());
-		stmt.setString(5,associado.getFormaPgto());
-		stmt.setDouble(6,associado.getValorAtual());
-		stmt.setDate(7,associado.getVencAtual());
+		stmt.setDouble(5,associado.getValorAtual());
+		stmt.setInt(6,associado.getVencAtual());
 		// executa
 		stmt.execute();
 		stmt.close();
@@ -46,13 +45,12 @@ public class AssociadoDAO {
 			// criando o objeto Associado
 			Associado associado = new Associado();
 
-			associado.setCpf(rs.getLong("cpf"));
+			associado.setCpf(rs.getString("cpf"));
 			associado.setNome(rs.getString("nome"));
 			associado.setCelular(rs.getLong("celular"));
 			associado.setEmail(rs.getString("email"));
-			associado.setFormaPgto(rs.getString("forma_pgto"));
 			associado.setValorAtual(rs.getDouble("valor_atual"));
-			associado.setVencAtual(rs.getDate("venc_atual"));
+			associado.setVencAtual(rs.getInt("venc_atual"));
 
 			// adicionando o objeto à lista
 			associados.add(associado);
@@ -65,23 +63,22 @@ public class AssociadoDAO {
 
 	}
 
-	public Associado getAssociado(Long search) throws SQLException {
+	public Associado getAssociado(String search) throws SQLException {
 
 		Associado associado = new Associado();
 
 		try {
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM associado WHERE " + "cpf = ?");
-			stmt.setLong(1, search); //Note que essa variavel é passada da função principal
+			stmt.setString(1, search); //Note que essa variavel é passada da função principal
 			ResultSet rs = stmt.executeQuery();
 			
 			if (rs.next() == true) {
-				associado.setCpf(rs.getLong("cpf"));
+				associado.setCpf(rs.getString("cpf"));
 				associado.setNome(rs.getString("nome"));
 				associado.setCelular(rs.getLong("celular"));
 				associado.setEmail(rs.getString("email"));
-				associado.setFormaPgto(rs.getString("forma_pgto"));
 				associado.setValorAtual(rs.getDouble("valor_atual"));
-				associado.setVencAtual(rs.getDate("venc_atual"));
+				associado.setVencAtual(rs.getInt("venc_atual"));
 			}
 		}
 		
@@ -94,10 +91,10 @@ public class AssociadoDAO {
 	}
 
 
-	public void excluir(Long search) {
+	public void excluir(String search) {
     try {
     	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM associado WHERE cpf = ?");
-    	stmt.setLong(1, search);
+    	stmt.setString(1, search);
     	stmt.execute();
     }
     
@@ -109,15 +106,14 @@ public class AssociadoDAO {
 
 	public void altera(Associado associado) throws SQLException {
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE associado SET nome=?, celular=?, email=?, forma_pgto=?, valor_atual=?, venc_atual=? WHERE cpf=?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE associado SET nome=?, celular=?, email=?, valor_atual=?, venc_atual=? WHERE cpf=?");
 
 		stmt.setString(1, associado.getNome());
 		stmt.setLong(2, associado.getCelular());
 		stmt.setString(3, associado.getEmail());
-		stmt.setString(4, associado.getFormaPgto());
-		stmt.setDouble(5, associado.getValorAtual());
-		stmt.setDate(6, associado.getVencAtual());
-		stmt.setLong(7, associado.getCpf());
+		stmt.setDouble(4, associado.getValorAtual());
+		stmt.setInt(5, associado.getVencAtual());
+		stmt.setString(6, associado.getCpf());
 
 		stmt.execute();
 		stmt.close();
