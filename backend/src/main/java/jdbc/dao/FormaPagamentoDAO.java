@@ -22,37 +22,12 @@ public class FormaPagamentoDAO {
 	public void adiciona(FormaPagamento formaPgto) throws SQLException {
 		// prepared statement para inserção
 		
+		System.out.println( formaPgto.getAssociado().getCpf() + " " + formaPgto.getFormaPagamento() + " " + formaPgto.getAtual());
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO associado_forma_pagamento (cpf_associado, forma_pgto, atual) VALUES (?, ?, ?)");
 		// seta os valores
 		stmt.setString(1, formaPgto.getAssociado().getCpf());
-		stmt.setString(2, "a vista");
-		stmt.setBoolean(3, false);
-		
-		// executa
-		stmt.execute();
-		
-		stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO associado_forma_pagamento (cpf_associado, forma_pgto, atual) VALUES (?, ?, ?)");
-		// seta os valores
-		stmt.setString(1, formaPgto.getAssociado().getCpf());
-		stmt.setString(2, "boleto");
-		stmt.setBoolean(3, false);
-		
-		// executa
-		stmt.execute();
-		
-		stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO associado_forma_pagamento (cpf_associado, forma_pgto, atual) VALUES (?, ?, ?)");
-		// seta os valores
-		stmt.setString(1, formaPgto.getAssociado().getCpf());
-		stmt.setString(2, "cartao");
-		stmt.setBoolean(3, false);
-		
-		stmt.execute();
-		
-		stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE associado_forma_pagamento SET atual=? WHERE cpf_associado=? AND forma_pgto=?");
-		
-		stmt.setBoolean(1, true);
-		stmt.setString(2, formaPgto.getAssociado().getCpf());
-		stmt.setString(3, formaPgto.getFormaPagamento());
+		stmt.setString(2, formaPgto.getFormaPagamento());
+		stmt.setBoolean(3, formaPgto.getAtual());
 		
 		// executa
 		stmt.execute();

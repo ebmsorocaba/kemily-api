@@ -47,7 +47,14 @@ public class AssociadoDAO {
 
 			associado.setCpf(rs.getString("cpf"));
 			associado.setNome(rs.getString("nome"));
-			associado.setCelular(rs.getLong("celular"));
+			
+			if(rs.getLong("celular") == 0){ //Corrigir problema conversao do banco de dados de null pra 0
+				associado.setCelular(null);
+			}
+			else{
+				associado.setCelular(rs.getLong("celular"));
+			}
+			
 			associado.setEmail(rs.getString("email"));
 			associado.setValorAtual(rs.getDouble("valor_atual"));
 			associado.setVencAtual(rs.getInt("venc_atual"));
@@ -75,7 +82,14 @@ public class AssociadoDAO {
 			if (rs.next() == true) {
 				associado.setCpf(rs.getString("cpf"));
 				associado.setNome(rs.getString("nome"));
-				associado.setCelular(rs.getLong("celular"));
+				
+				if(rs.getLong("celular") == 0){ //Corrigir problema conversao do banco de dados de null pra 0
+					associado.setCelular(null);
+				}
+				else{
+					associado.setCelular(rs.getLong("celular"));
+				}
+				
 				associado.setEmail(rs.getString("email"));
 				associado.setValorAtual(rs.getDouble("valor_atual"));
 				associado.setVencAtual(rs.getInt("venc_atual"));
