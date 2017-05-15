@@ -81,7 +81,7 @@ CREATE TABLE pagamento (
   vencimento DATE NOT NULL,
   data_pgto DATE NOT NULL,
   cpf_associado VARCHAR(11) NOT NULL,
-  forma_pgto_efetuada VARCHAR(10) NOT NULL,
+  forma_pgto_efetuada VARCHAR(20) NOT NULL,
 
   CONSTRAINT fk_associado_forma FOREIGN KEY(cpf_associado, forma_pgto_efetuada)
   REFERENCES associado_forma_pagamento(cpf_associado,forma_pgto)

@@ -38,7 +38,7 @@ public class UsuarioController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/usuario", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/usuario", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> listar() throws SQLException {
 		int index=0;
 
@@ -56,7 +56,7 @@ public class UsuarioController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/usuario/{nome}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> buscar(@PathVariable("nome") String nome) throws SQLException {
 
 	  Usuario usuario = usuarioDao.getUsuario(nome);
@@ -68,7 +68,7 @@ public class UsuarioController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/usuario/{nome}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("nome") String nome) {
 		//Aluno aluno = alunos.remove(id);
 
@@ -82,12 +82,25 @@ public class UsuarioController {
 
 
 	@CrossOrigin
-	@RequestMapping(value = "/usuario", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
+	@RequestMapping(value = "/api/usuario", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
 		//Usuario usuario = new ObjectMapper().readValue(usuarioJSON, Usuario.class); //Aqui o json é convertido em objeto Java Aluno
 		System.out.println("Usuario que chegou no backend: " + usuario.getNome());
 		usuarioDao.adiciona(usuario);
+		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
+	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario, @PathVariable("nome") String nome) throws JsonParseException, JsonMappingException, IOException, SQLException {
+
+		//Usuario usuario = new ObjectMapper().readValue(usuarioJSON, Usuario.class); //Aqui o json é convertido em objeto Java Aluno
+		System.out.println("Alterar usuario de Nome: " + nome);
+		System.out.println("Usuario que chegou no backend para alteração: ");
+		System.out.println("Nome: " + usuario.getNome());
+		
+		usuarioDao.altera(usuario, nome);
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
 

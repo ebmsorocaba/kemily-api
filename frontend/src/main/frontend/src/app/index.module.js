@@ -17,9 +17,6 @@
             // Toolbar
             'app.toolbar',
 
-            // Quick Panel
-            // 'app.quick-panel',
-
             // Cadastro de Usuários
             'app.usuario',
 
@@ -32,8 +29,10 @@
             // Relatório financeiro
             'app.relatorio',
 
-            // Testes'
-            'app.contacts'
+            // Provisório para testes
+            'app.contacts',
 
+            // angular-mask (ver bower.json)
+            'ngMask'
         ]);
 })();

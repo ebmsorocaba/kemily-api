@@ -21,14 +21,20 @@ public class AssociadoDAO {
 
 	public void adiciona(Associado associado) throws SQLException {
 		// prepared statement para inserção
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO associado (cpf, nome, celular, email, valor_atual, venc_atual) VALUES (?, ?, ?, ?, ?, ?)");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(
+				"INSERT INTO associado (cpf, nome, celular, email, valor_atual, venc_atual) VALUES (?, ?, ?, ?, ?, ?)");
 		// seta os valores
-		stmt.setString(1,associado.getCpf());
-		stmt.setString(2,associado.getNome());
-		stmt.setLong(3,associado.getCelular());
-		stmt.setString(4,associado.getEmail());
-		stmt.setDouble(5,associado.getValorAtual());
-		stmt.setInt(6,associado.getVencAtual());
+		stmt.setString(1, associado.getCpf());
+		stmt.setString(2, associado.getNome());
+
+		if (associado.getCelular() == null)
+			stmt.setLong(3, 0);
+		else
+			stmt.setLong(3, associado.getCelular());
+
+		stmt.setString(4, associado.getEmail());
+		stmt.setDouble(5, associado.getValorAtual());
+		stmt.setInt(6, associado.getVencAtual());
 		// executa
 		stmt.execute();
 		stmt.close();
@@ -37,7 +43,7 @@ public class AssociadoDAO {
 	public List<Associado> getLista() throws SQLException {
 
 		List<Associado> associados = new ArrayList<Associado>();
-		
+
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM associado");
 		ResultSet rs = stmt.executeQuery();
 
@@ -47,14 +53,15 @@ public class AssociadoDAO {
 
 			associado.setCpf(rs.getString("cpf"));
 			associado.setNome(rs.getString("nome"));
-			
-			if(rs.getLong("celular") == 0){ //Corrigir problema conversao do banco de dados de null pra 0
+
+			// TODO melhorar esse tratamento null/0
+			if (rs.getLong("celular") == 0) { // Corrigir problema conversao do
+												// banco de dados de null pra 0
 				associado.setCelular(null);
-			}
-			else{
+			} else {
 				associado.setCelular(rs.getLong("celular"));
 			}
-			
+
 			associado.setEmail(rs.getString("email"));
 			associado.setValorAtual(rs.getDouble("valor_atual"));
 			associado.setVencAtual(rs.getInt("venc_atual"));
@@ -75,59 +82,70 @@ public class AssociadoDAO {
 		Associado associado = new Associado();
 
 		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM associado WHERE " + "cpf = ?");
-			stmt.setString(1, search); //Note que essa variavel é passada da função principal
+			PreparedStatement stmt = (PreparedStatement) this.connection
+					.prepareStatement("SELECT * FROM associado WHERE " + "cpf = ?");
+			stmt.setString(1, search); // Note que essa variavel é passada da
+										// função principal
 			ResultSet rs = stmt.executeQuery();
-			
+
 			if (rs.next() == true) {
 				associado.setCpf(rs.getString("cpf"));
 				associado.setNome(rs.getString("nome"));
-				
-				if(rs.getLong("celular") == 0){ //Corrigir problema conversao do banco de dados de null pra 0
+
+				if (rs.getLong("celular") == 0) { // Corrigir problema conversao
+													// do banco de dados de null
+													// pra 0
 					associado.setCelular(null);
-				}
-				else{
+				} else {
 					associado.setCelular(rs.getLong("celular"));
 				}
-				
+
 				associado.setEmail(rs.getString("email"));
 				associado.setValorAtual(rs.getDouble("valor_atual"));
 				associado.setVencAtual(rs.getInt("venc_atual"));
 			}
+		} catch (SQLException ex) {
+			System.out.println(ex.toString());
 		}
-		
-    catch (SQLException ex) {
-    	System.out.println(ex.toString());
-    }
 
-  	return (associado);
+		return (associado);
 
 	}
 
-
 	public void excluir(String search) {
-    try {
-    	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM associado WHERE cpf = ?");
-    	stmt.setString(1, search);
-    	stmt.execute();
-    }
-    
-	catch (SQLException ex) {
-		System.out.println(ex.toString());
-    }
-  }
+		try {
+			PreparedStatement stmt = (PreparedStatement) this.connection
+					.prepareStatement("DELETE FROM associado WHERE cpf = ?");
+			stmt.setString(1, search);
+			stmt.execute();
+		} catch (SQLException ex) {
+			System.out.println(ex.toString());
+		}
+	}
 
+	public void altera(Associado associado, String cpf) throws SQLException {
 
-	public void altera(Associado associado) throws SQLException {
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(
+				"UPDATE associado SET nome=?, celular=?, email=?, valor_atual=?, venc_atual=? WHERE cpf=?");
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE associado SET nome=?, celular=?, email=?, valor_atual=?, venc_atual=? WHERE cpf=?");
+		// TODO Perguntar para o Polis como deve fazer com a tabela de
+		// pagamento, se deve alterar o cpf do associado
 
+		// stmt.setString(1, associado.getCpf());
 		stmt.setString(1, associado.getNome());
-		stmt.setLong(2, associado.getCelular());
+
+		// TODO melhorar esse tratamento null/0
+
+		if (associado.getCelular() == null) {
+			stmt.setLong(2, 0);
+		} else {
+			stmt.setLong(2, associado.getCelular());
+		}
+
 		stmt.setString(3, associado.getEmail());
 		stmt.setDouble(4, associado.getValorAtual());
 		stmt.setInt(5, associado.getVencAtual());
-		stmt.setString(6, associado.getCpf());
+		stmt.setString(6, cpf);
 
 		stmt.execute();
 		stmt.close();

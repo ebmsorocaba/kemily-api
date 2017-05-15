@@ -38,7 +38,7 @@ public class AssociadoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/associado", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/associado", method = RequestMethod.GET)
 	public ResponseEntity<List<Associado>> listar() throws SQLException {
 		int index=0;
 
@@ -56,7 +56,7 @@ public class AssociadoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/associado/{cpf}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/associado/{cpf}", method = RequestMethod.GET)
 	public ResponseEntity<Associado> buscar(@PathVariable("cpf") String cpf) throws SQLException {
 
 	  Associado associado = associadoDao.getAssociado(cpf);
@@ -68,7 +68,7 @@ public class AssociadoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/associado/{cpf}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/associado/{cpf}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("cpf") String cpf) {
 		//Aluno aluno = alunos.remove(id);
 
@@ -82,7 +82,7 @@ public class AssociadoController {
 
 
 	@CrossOrigin
-	@RequestMapping(value = "/associado", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
+	@RequestMapping(value = "/api/associado", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Associado> addAssociado(@RequestBody Associado associado) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
 		//Associado associado = new ObjectMapper().readValue(associadoJSON, Associado.class); //Aqui o json é convertido em objeto Java Aluno
@@ -92,4 +92,32 @@ public class AssociadoController {
 		return new ResponseEntity<Associado>(associado, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
 
+	/**
+	 * Este método faz alguma coisa
+	 * @param associado
+	 * @param cpf
+	 * @return
+	 * @throws JsonParseException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 * @throws SQLException
+	 * @since 15/05/2017
+	 */
+	@CrossOrigin
+	@RequestMapping(value = "/api/associado/{cpf}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
+	public ResponseEntity<Associado> updateUsuario(@RequestBody Associado associado, @PathVariable("cpf") String cpf) throws JsonParseException, JsonMappingException, IOException, SQLException {
+
+		//TODO procurar outra forma de log
+		
+		//Usuario usuario = new ObjectMapper().readValue(usuarioJSON, Usuario.class); //Aqui o json é convertido em objeto Java Aluno
+		System.out.println("Alterar associado de CPF: " + cpf);
+		System.out.println("Associado que chegou no backend para alteração: ");
+		System.out.println("CPF: " + associado.getCpf());
+		System.out.println("Nome: " + associado.getNome());
+		
+		
+		
+		associadoDao.altera(associado, cpf);
+		return new ResponseEntity<Associado>(associado, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
+	}
 }
