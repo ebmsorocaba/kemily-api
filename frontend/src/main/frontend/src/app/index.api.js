@@ -180,15 +180,40 @@
         // Base Url
         // api.baseUrl = 'app/data/';
 
+        // api.sample = $resource(api.baseUrl + 'sample/sample.json');
+
+        // APIs do EBM Kemily
         api.usuario = {
-            getUsuarios     : $resource('http://localhost:8080/usuario'),
-            getByNome       : $resource('http://localhost:8080/usuario/:nome', {nome: '@nome'}),
-            addUsuario      : $resource('http://localhost:8080/usuario')
+            getUsuarios     : $resource('/usuario'),
+            getByNome       : $resource('/usuario/:nome', {nome: '@nome'}),
+            addUsuario      : $resource('/usuario')
 
         }
 
+        // API Associado
+        api.associado = {
+          list      : $resource('/associado'),
+          getByCpf  : $resource('/associado/:cpf', {cpf: '@cpf'})
+        }
 
-        // api.sample = $resource(api.baseUrl + 'sample/sample.json');
+        api.formaPgto = {
+          list      : $resource('/formaPgto'),
+          getByCpf  : $resource('/formaPgto/:cpf', {cpf: '@cpf'})
+        }
+
+        // Exemplo do FUSE
+        // api.blog = {
+        // *                   list     : $resource('http://api.example.com/blog'),
+        // *                   getById  : $resource('http://api.example.com/blog/:id', {id: '@id'}),
+        // *                   getByDate: $resource('http://api.example.com/blog/:date', {id: '@date'}, {
+        // *                       get: {
+        // *                            method: 'GET',
+        // *                            params: {
+        // *                                getByDate: true
+        // *                            }
+        // *                       }
+        // *                   })
+        // *       }
 
         return api;
     }

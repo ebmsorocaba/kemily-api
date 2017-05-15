@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.contatos',
+        .module('app.contacts',
             [
                 // 3rd Party Dependencies
                 // 'xeditable'
@@ -15,7 +15,7 @@
     function config($stateProvider, msApiProvider, msNavigationServiceProvider)
     {
 
-        $stateProvider.state('app.contatos', {
+        $stateProvider.state('app.contacts', {
             url    : '/contatos',
             views  : {
                 'content@app': {
@@ -32,6 +32,10 @@
                 {
                     return msApi.resolve('contacts.user@get');
                 }
+                // FormaPgto: function (msApi)
+                // {
+                //   return msApi.resolve('contacts.formaPgto@query')
+                // }
             }
         });
 
@@ -39,7 +43,8 @@
         // $translatePartialLoaderProvider.addPart('app/main/apps/contacts');
 
         // Api
-        msApiProvider.register('contacts.contacts', ['http://localhost:8080/associados']);
+        msApiProvider.register('contacts.contacts', ['/associado']);
+        //msApiProvider.register('contacts.formaPgto', ['/formaPgto']);
         msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
 
         // Navigation
@@ -52,7 +57,7 @@
         msNavigationServiceProvider.saveItem('testes.contatos', {
             title : 'Contatos',
             icon  : 'icon-account-box',
-            state : 'app.contatos',
+            state : 'app.contacts',
             weight: 10
         });
 

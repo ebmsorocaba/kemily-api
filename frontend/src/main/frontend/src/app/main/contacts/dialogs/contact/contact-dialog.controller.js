@@ -2,11 +2,11 @@
   'use strict';
 
   angular
-    .module('app.contatos')
+    .module('app.contacts')
     .controller('ContactDialogController', ContactDialogController);
 
   /** @ngInject */
-  function ContactDialogController($mdDialog, Contact, Contacts, User, msUtils, msApi) {
+  function ContactDialogController($mdDialog, Contact, Contacts, User, msUtils, api) {
     var vm = this;
 
     // Data
@@ -20,16 +20,17 @@
     // Formas de Pagamento
     vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
 
+    // TODO Ajustar objetos conforme o backend
     if (!vm.contact) {
       vm.contact = {
         'cpf': 111,
         'nome': 'Teste',
         'celular': 111,
         'email': 'a@a.a',
-        'formaPgto': 'Cartão',
-        'cartao': 1231231231231231,
+        // 'formaPgto': 'Cartão', // Tirar do objeto
+        // 'cartao': 1231231231231231, // Tirar do objeto
         'valorAtual': 1.3,
-        'melhorDia': 5,
+        'vencAtual': 5,
       };
 
       vm.title = 'Novo Associado';
@@ -54,9 +55,19 @@
       // Adiciona uma nova linha no topo da lista (temporariamente):
       vm.contacts.unshift(vm.contact);
 
-      // Cria o novo registro no BD:
-      // TODO Inserir novo associado no banco.
-      
+      // Cria o novo registro no BD
+      // TODO Tratar de como enviar a [formaPgto] ao BD
+      api.associado.list.save(vm.contact,
+        // Exibe o resultado no console do navegador:
+        // Sucesso
+        function(response) {
+          console.log(response);
+        },
+        // Erro
+        function(response) {
+          console.error(response);
+        }
+      );
 
       closeDialog();
     }
@@ -75,6 +86,17 @@
 
       // Grava as alterações no BD:
       // TODO UPDATE no BD
+      api.associado.getByCpf.save(vm.contact,
+        // Exibe o resultado no console do navegador:
+        // Sucesso
+        function(response) {
+          console.log(response);
+        },
+        // Erro
+        function(response) {
+          console.error(response);
+        }
+      );
 
       // Dummy save action
       // for ( var i = 0; i < vm.contacts.length; i++ )
@@ -103,8 +125,11 @@
 
       $mdDialog.show(confirm).then(function() {
 
-        vm.contacts.splice(vm.contacts.indexOf(Contact), 1);
+        // TODO Apagar o registro no BD
 
+        // Retorna um novo [array] sem o associado removido
+        
+        vm.contacts.splice(vm.contacts.indexOf(Contact), 1);
       });
     }
 

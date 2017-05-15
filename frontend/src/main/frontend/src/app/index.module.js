@@ -18,10 +18,7 @@
             'app.toolbar',
 
             // Quick Panel
-            'app.quick-panel',
-
-            // Sample
-            //'app.sample',
+            // 'app.quick-panel',
 
             // Cadastro de Usuários
             'app.usuario',
@@ -35,6 +32,7 @@
             // Relatório financeiro
             'app.relatorio',
 
+            // Testes'
             'app.contacts'
 
         ]);

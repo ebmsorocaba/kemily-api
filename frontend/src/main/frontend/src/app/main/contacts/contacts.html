@@ -167,12 +167,11 @@
                   </md-button>
                 </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'cartao.bandeira'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'cartao.bandeira' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>Cartão</span>
-                    <!-- <small>(Crescente)</small> -->
+                <!-- <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'formaPgto'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'formaPgto' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>Forma de Pagamento</span>
                   </md-button>
-                </md-menu-item>
+                </md-menu-item> -->
 
               </md-menu-content>
 
@@ -229,7 +228,7 @@
 
               <md-menu-content width="3">
                 <md-menu-item>
-                  <md-button ng-click="">
+                  <md-button ng-click="vm.openContactDialog($event, contact)">
                     Editar associado
                   </md-button>
                 </md-menu-item>

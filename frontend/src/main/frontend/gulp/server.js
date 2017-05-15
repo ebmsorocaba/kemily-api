@@ -13,7 +13,7 @@ var proxyMiddleware = require('http-proxy-middleware');
 
 function browserSyncInit(baseDir, browser)
 {
-    browser = browser === undefined ? 'default' : browser;
+    browser = browser === undefined ? 'firefox' : browser;
 
     var routes = null;
     if ( baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1) )
@@ -35,7 +35,9 @@ function browserSyncInit(baseDir, browser)
      *
      * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.9.0/README.md
      */
-    // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', changeOrigin: true});
+
+    // Para evitar erros de Cross Origin, essa configuração redireciona as chamadas do GULP para o backend:
+    server.middleware = proxyMiddleware('/api/**', {target: 'http://localhost:8080', changeOrigin: true});
 
     browserSync.instance = browserSync.init({
         startPath: '/',

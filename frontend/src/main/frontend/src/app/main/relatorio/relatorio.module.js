@@ -7,7 +7,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider)
+    function config($stateProvider, msApiProvider, msNavigationServiceProvider)
     {
         // State
         $stateProvider
@@ -28,7 +28,7 @@
             });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/relatorio');
+        // $translatePartialLoaderProvider.addPart('app/main/relatorio');
 
         // Api
         //msApiProvider.register('sample', ['app/data/sample/sample.json']);

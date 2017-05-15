@@ -11,7 +11,7 @@
     {
         $locationProvider.html5Mode(false);
 
-        $urlRouterProvider.otherwise('/associado');
+        $urlRouterProvider.otherwise('/#/contatos');
 
         /**
          * Layout Style Switcher
@@ -86,10 +86,10 @@
                         templateUrl: layouts[layoutStyle].navigation,
                         controller : 'NavigationController as vm'
                     },
-                    'quickPanel@app': {
-                        templateUrl: 'app/quick-panel/quick-panel.html',
-                        controller : 'QuickPanelController as vm'
-                    }
+                    // 'quickPanel@app': {
+                    //     templateUrl: 'app/quick-panel/quick-panel.html',
+                    //     controller : 'QuickPanelController as vm'
+                    // }
                 }
             });
     }
