@@ -38,7 +38,7 @@ public class FormaPagamentoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/formaPgto", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/formaPgto", method = RequestMethod.GET)
 	public ResponseEntity<List<FormaPagamento>> listar() throws SQLException {
 		int index=0;
 
@@ -56,7 +56,7 @@ public class FormaPagamentoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/formaPgto/{cpf}/{formaPgto}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/formaPgto/{cpf}/{formaPgto}", method = RequestMethod.GET)
 	public ResponseEntity<FormaPagamento> buscar(@PathVariable("cpf") String cpf, @PathVariable("formaPgto") String formaPgto) throws SQLException {
 
 	  FormaPagamento formaPgtoObj = formaPgtoDAO.getFormaPgto(cpf, formaPgto);
@@ -68,7 +68,7 @@ public class FormaPagamentoController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/formaPgto/{cpf}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/formaPgto/{cpf}", method = RequestMethod.GET)
 	public ResponseEntity<FormaPagamento> buscar(@PathVariable("cpf") String cpf) throws SQLException {
 
 	  FormaPagamento formaPgtoObj = formaPgtoDAO.getFormaPgtoAtual(cpf);
@@ -98,7 +98,7 @@ public class FormaPagamentoController {
 //TODO Verificar os deletes e melhorar o controller do pagamento
 	
 	@CrossOrigin
-	@RequestMapping(value = "/formaPgto", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
+	@RequestMapping(value = "/api/formaPgto", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<FormaPagamento> addFormaPagamento(@RequestBody FormaPagamento formaPgto) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
 		//Associado associado = new ObjectMapper().readValue(associadoJSON, Associado.class); //Aqui o json é convertido em objeto Java Aluno

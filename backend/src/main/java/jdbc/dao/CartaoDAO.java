@@ -95,17 +95,20 @@ public class CartaoDAO {
         }
     }
 
+/*
+	public void altera(Cartao cartao, Long numero) throws SQLException {
 
-	public void altera(Cartao cartao) throws SQLException {
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE cartao SET numero=?, bandeira=?, atual=?, cpf_associado=? WHERE numero=?");
+			
+		stmt.setLong(1, cartao.getNumero());
+		stmt.setString(2, cartao.getBandeira());
+		stmt.setBoolean(3, cartao.isAtual());
+		stmt.setString(4, cartao.getAssociado().getCpf());
+		stmt.setLong(5, numero);
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE cartao SET bandeira=?, atual=?, cpf_associado=? WHERE numero=?");
-			stmt.setString(2, cartao.getBandeira());
-			stmt.setBoolean(3, cartao.isAtual());
-			stmt.setString(4, cartao.getAssociado().getCpf());
-			stmt.setLong(4, cartao.getNumero());
-
-			stmt.execute();
-			stmt.close();
-		}
+		stmt.execute();
+		stmt.close();
+	}
+*/
 
 }

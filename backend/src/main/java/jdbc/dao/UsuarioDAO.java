@@ -110,16 +110,18 @@ public class UsuarioDAO {
   }
 
 
-	public void altera(Usuario usuario) throws SQLException {
+	public void altera(Usuario usuario, String nome) throws SQLException {
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE usuario SET senha=?, setor=?, email=?, ativo=? WHERE nome=?");
-			stmt.setString(1, usuario.getSenha());
-			stmt.setString(2, usuario.getSetor());
-			stmt.setString(3, usuario.getNome());
-			stmt.setBoolean(4, usuario.isAtivo());
-			stmt.setString(5, usuario.getNome());
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE usuario SET nome=?, senha=?, setor=?, email=?, ativo=? WHERE nome=?");
+			
+		stmt.setString(1, usuario.getNome());
+		stmt.setString(2, usuario.getSenha());
+		stmt.setString(3, usuario.getSetor());
+		stmt.setString(4, usuario.getNome());
+		stmt.setBoolean(5, usuario.isAtivo());
+		stmt.setString(6, nome);
 
-			stmt.execute();
-			stmt.close();
-		}
+		stmt.execute();
+		stmt.close();
+	}
 }

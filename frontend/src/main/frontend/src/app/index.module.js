@@ -35,7 +35,8 @@
             // Relatório financeiro
             'app.relatorio',
 
-            'app.contacts'
+            'app.contacts',
 
+            'ngMask'
         ]);
 })();

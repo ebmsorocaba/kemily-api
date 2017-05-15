@@ -28,7 +28,7 @@
 
       <md-input-container>
         <label>CPF</label>
-        <input type="text" ng-model="cpf" size="30px" required>
+        <input type="text" mask="999.999.999.99" clean="true" ng-model="cpf" size="30px" required>
       </md-input-container>
       <br>
 
@@ -39,7 +39,7 @@
 
       <md-input-container>
         <label>Celular</label>
-        <input type="text" ng-model="celular" size="30px">
+        <input type="text" mask="(99) 9?9999-9999" ng-model="celular" size="30px">
       </md-input-container>
     </md-card-content>
   </md-card>

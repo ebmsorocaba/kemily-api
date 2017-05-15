@@ -38,7 +38,7 @@ public class PagamentoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/pagamento", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/pagamento", method = RequestMethod.GET)
 	public ResponseEntity<List<Pagamento>> listar() throws SQLException {
 		int index=0;
 
@@ -56,7 +56,7 @@ public class PagamentoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/pagamento/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/pagamento/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Pagamento> buscar(@PathVariable("id") Long id) throws SQLException {
 
 	  Pagamento pagamento = pagamentoDao.getPagamento(id);
@@ -68,7 +68,7 @@ public class PagamentoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/pagamento/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/pagamento/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("id") Long id) {
 		//Aluno aluno = alunos.remove(id);
 
@@ -82,7 +82,7 @@ public class PagamentoController {
 
 
 	@CrossOrigin
-	@RequestMapping(value = "/pagamento", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
+	@RequestMapping(value = "/api/pagamento", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Pagamento> addPagamento(@RequestBody Pagamento pagamento) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
 		//Pagamento pagamento = new ObjectMapper().readValue(pagamentoJSON, Pagamento.class); //Aqui o json é convertido em objeto Java Aluno

@@ -38,7 +38,7 @@ public class CartaoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/cartao", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/cartao", method = RequestMethod.GET)
 	public ResponseEntity<List<Cartao>> listar() throws SQLException {
 		int index=0;
 
@@ -55,7 +55,7 @@ public class CartaoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/cartao/{numero}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/cartao/{numero}", method = RequestMethod.GET)
 	public ResponseEntity<Cartao> buscar(@PathVariable("numero") Long numero) throws SQLException {
 
 	  Cartao cartao = cartaoDao.getCartao(numero);
@@ -67,7 +67,7 @@ public class CartaoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/cartao/{numero}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/cartao/{numero}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("numero") Long numero) {
 		//Aluno aluno = alunos.remove(id);
 
@@ -81,7 +81,7 @@ public class CartaoController {
 
 
 	@CrossOrigin
-	@RequestMapping(value = "/cartao", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
+	@RequestMapping(value = "/api/cartao", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Cartao> addCartao(@RequestBody Cartao cartao) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
 		//Cartao cartao = new ObjectMapper().readValue(cartaoJSON, Cartao.class); //Aqui o json é convertido em objeto Java Aluno
