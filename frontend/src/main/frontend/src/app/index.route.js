@@ -11,7 +11,7 @@
     {
         $locationProvider.html5Mode(false);
 
-        $urlRouterProvider.otherwise('/#/contatos');
+        $urlRouterProvider.otherwise('/contatos');
 
         /**
          * Layout Style Switcher

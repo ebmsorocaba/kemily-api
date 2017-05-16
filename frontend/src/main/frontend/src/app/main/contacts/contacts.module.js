@@ -43,7 +43,7 @@
         // $translatePartialLoaderProvider.addPart('app/main/apps/contacts');
 
         // Api
-        msApiProvider.register('contacts.contacts', ['/associado']);
+        msApiProvider.register('contacts.contacts', ['/api/associado']);
         //msApiProvider.register('contacts.formaPgto', ['/formaPgto']);
         msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
 

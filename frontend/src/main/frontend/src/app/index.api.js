@@ -178,27 +178,33 @@
         var api = {};
 
         // Base Url
-        // api.baseUrl = 'app/data/';
+        /**
+          Indica aonde começa a URI da API do BackEnd na URL.
+          Não é necessário incluir o domínio se a API está no mesmo
+          domínio/endereço do FrontEnd.
+        */
+        api.baseUrl = 'api/';
 
+        // Exemplo do FUSE
         // api.sample = $resource(api.baseUrl + 'sample/sample.json');
 
         // APIs do EBM Kemily
         api.usuario = {
-            getUsuarios     : $resource('/usuario'),
-            getByNome       : $resource('/usuario/:nome', {nome: '@nome'}),
-            addUsuario      : $resource('/usuario')
+            getUsuarios     : $resource(api.baseUrl + 'usuario'),
+            getByNome       : $resource(api.baseUrl + 'usuario/:nome', {nome: '@nome'}),
+            addUsuario      : $resource(api.baseUrl + 'usuario')
 
         }
 
         // API Associado
         api.associado = {
-          list      : $resource('/associado'),
-          getByCpf  : $resource('/associado/:cpf', {cpf: '@cpf'})
+          list      : $resource(api.baseUrl + 'associado'),
+          getByCpf  : $resource(api.baseUrl + 'associado/:cpf', {cpf: '@cpf'})
         }
 
         api.formaPgto = {
-          list      : $resource('/formaPgto'),
-          getByCpf  : $resource('/formaPgto/:cpf', {cpf: '@cpf'})
+          list      : $resource(api.baseUrl + 'formaPgto'),
+          getByCpf  : $resource(api.baseUrl + 'formaPgto/:cpf', {cpf: '@cpf'})
         }
 
         // Exemplo do FUSE

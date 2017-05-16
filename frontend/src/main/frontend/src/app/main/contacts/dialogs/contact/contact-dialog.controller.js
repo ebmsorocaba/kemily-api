@@ -20,15 +20,15 @@
     // Formas de Pagamento
     vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
 
-    // TODO Ajustar objetos conforme o backend
+    // TODO Ajustar o Associado conforme o BackEnd
     if (!vm.contact) {
       vm.contact = {
         'cpf': 111,
         'nome': 'Teste',
         'celular': 111,
         'email': 'a@a.a',
-        // 'formaPgto': 'Cartão', // Tirar do objeto
-        // 'cartao': 1231231231231231, // Tirar do objeto
+        // 'formaPgto': 'Cartão', // TODO Tirar do objeto (ver [/api/formaPgto])
+        // 'cartao': 1231231231231231, // TODO Tirar do objeto (ver [/cartao])
         'valorAtual': 1.3,
         'vencAtual': 5,
       };
@@ -45,14 +45,13 @@
     vm.closeDialog = closeDialog;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
-
     //////////
 
     /**
      * Add new contact
      */
     function addNewContact() {
-      // Adiciona uma nova linha no topo da lista (temporariamente):
+      // Adiciona uma nova linha no topo da lista na tela
       vm.contacts.unshift(vm.contact);
 
       // Cria o novo registro no BD
@@ -125,10 +124,24 @@
 
       $mdDialog.show(confirm).then(function() {
 
-        // TODO Apagar o registro no BD
+        // TODO Remover também a [formaPgto] do Associado.
 
-        // Retorna um novo [array] sem o associado removido
-        
+        // Remove o Associado do BD
+        console.log('deleteContact @ contacts.controller.js');
+        api.associado.getByCpf.delete({
+            'cpf': contact.cpf
+          },
+          // Sucesso
+          function(response) {
+            console.log(response);
+          },
+          // Erro
+          function(response) {
+            console.error(response);
+          }
+        );
+
+        // Remove a da lista na tela a linha deste Associado
         vm.contacts.splice(vm.contacts.indexOf(Contact), 1);
       });
     }

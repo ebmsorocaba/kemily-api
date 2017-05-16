@@ -96,11 +96,11 @@
      */
     function deleteContactConfirm(contact, ev) {
       var confirm = $mdDialog.confirm()
-        .title('[ESTE] Você tem certeza que deseja apagar este associado?')
+        .title('Você tem certeza de que deseja apagar este associado?')
         .htmlContent('<b>' + contact.nome + ' (' + contact.cpf + ')</b>' + ' será apagado(a).')
         .ariaLabel('apagar contato')
         .targetEvent(ev)
-        .ok('OK')
+        .ok('Sim')
         .cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function() {
@@ -117,20 +117,24 @@
      */
     function deleteContact(contact) {
 
-      // TODO Remover o registro do BD
-      api.associado.getByCpf.delete({'cpf': contact.cpf},
-        // Success
-        function (response)
-        {
-            console.log(response);
+      // TODO Remover também a [formaPgto] do Associado.
+
+      // Remove o Associado do BD
+      console.log('deleteContact @ contacts.controller.js');
+      api.associado.getByCpf.delete({
+          'cpf': contact.cpf
         },
-        // Error
-        function (response)
-        {
-            console.error(response);
+        // Sucesso
+        function(response) {
+          console.log(response);
+        },
+        // Erro
+        function(response) {
+          console.error(response);
         }
       );
 
+      // Remove a da lista na tela a linha deste Associado
       vm.contacts.splice(vm.contacts.indexOf(contact), 1);
     }
 
@@ -139,11 +143,11 @@
      */
     function deleteSelectedContacts(ev) {
       var confirm = $mdDialog.confirm()
-        .title('Você tem certeza que deseja apagar os associados selecionados?')
+        .title('Você tem certeza de que deseja apagar os associados selecionados?')
         .htmlContent('<b>' + vm.selectedContacts.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
         .ariaLabel('apagar contatos')
         .targetEvent(ev)
-        .ok('OK')
+        .ok('Sim')
         .cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function() {

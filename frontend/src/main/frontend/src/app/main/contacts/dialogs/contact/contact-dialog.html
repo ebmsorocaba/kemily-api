@@ -76,13 +76,13 @@
       <md-input-container class="md-icon-float md-block">
         <label>CPF</label>
         <md-icon></md-icon>
-        <input ng-model="vm.contact.cpf" type="text" md-maxlength="11" ng-disabled="!vm.newContact" required>
+        <input ng-model="vm.contact.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newContact" required>
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
         <label>Celular</label>
         <md-icon md-font-icon="icon-phone"></md-icon>
-        <input ng-model="vm.contact.celular" type="text">
+        <input ng-model="vm.contact.celular" type="text" mask="(99) 9?9999-9999">
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
@@ -91,22 +91,23 @@
         <input ng-model="vm.contact.email" type="email">
       </md-input-container>
 
-      <md-input-container class="md-icon-float md-block">
+      <!-- Desativado temporariamente -->
+      <!-- <md-input-container class="md-icon-float md-block">
         <label>Forma de Pagamento</label>
         <md-icon md-font-icon="icon-format-list-bulleted"></md-icon>
-        <md-select ng-model="vm.contact.formaPgto" ng-model-options="{trackBy: '$value'}" ng-required>
+        <md-select ng-model="vm.contact.formaPgto" ng-model-options="{trackBy: '$value'}">
           <md-option ng-value="fp" ng-repeat="fp in vm.listaPgtos">
             {{fp}}
           </md-option>
         </md-select>
-      </md-input-container>
+      </md-input-container> -->
 
-        <!-- Este input só aparece se "Cartão" for selecionado no [md-select] acima: -->
-        <md-input-container class="md-icon-float md-block" ng-if="vm.contact.formaPgto == 'Cartão'">
-          <label>Número do Cartão (somente números)</label>
-          <md-icon md-font-icon="icon-credit-card"></md-icon>
-          <input ng-model="vm.contact.cartao.numero" type="number" pattern=".{16}">
-        </md-input-container>
+      <!-- Este input só aparece se "Cartão" for selecionado no [md-select] acima: -->
+      <md-input-container class="md-icon-float md-block" ng-if="vm.contact.formaPgto == 'Cartão'">
+        <label>Número do Cartão (somente números)</label>
+        <md-icon md-font-icon="icon-credit-card"></md-icon>
+        <input ng-model="vm.contact.cartao.numero" type="number" md-maxlength="16">
+      </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
         <label>Valor Mensal (em reais)</label>
@@ -115,9 +116,10 @@
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
-        <label>Vencimento (1 até 30)</label>
+        <label>Vencimento</label>
         <md-icon md-font-icon="icon-calendar-select"></md-icon>
-        <input ng-model="vm.contact.vencAtual" type="number" min="1" max="30" required>
+        <input ng-model="vm.contact.vencAtual" type="number" min="1" max="28" required>
+        <div class="hint" ng-if="showHints">Dia de vencimento, de 1 até 28.</div>
       </md-input-container>
 
       <!-- <div ng-if="!vm.allFields" layout="row" layout-align="center center">
