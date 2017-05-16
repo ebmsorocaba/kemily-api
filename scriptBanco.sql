@@ -165,12 +165,13 @@ INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, form
 INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
   VALUES(5, 15, '05/10/15', '15/10/15', '55555555555', 'cartao');
 
+/*
 INSERT INTO pagamento_boleto(id_pagamento, codigo_boleto)
   VALUES (1, '564654564546454645646');
 
 INSERT INTO pagamento_cartao(id_pagamento, numero_cartao)
   VALUES (5, '4396378924129673');
-
+*/
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
