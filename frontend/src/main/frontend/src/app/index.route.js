@@ -11,7 +11,7 @@
     {
         $locationProvider.html5Mode(false);
 
-        $urlRouterProvider.otherwise('/pagamento');
+        $urlRouterProvider.otherwise('/usuario');
 
         /**
          * Layout Style Switcher

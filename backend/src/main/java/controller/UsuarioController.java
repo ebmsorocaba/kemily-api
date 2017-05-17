@@ -90,7 +90,7 @@ public class UsuarioController {
 		usuarioDao.adiciona(usuario);
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario, @PathVariable("nome") String nome) throws JsonParseException, JsonMappingException, IOException, SQLException {
@@ -99,7 +99,12 @@ public class UsuarioController {
 		System.out.println("Alterar usuario de Nome: " + nome);
 		System.out.println("Usuario que chegou no backend para alteração: ");
 		System.out.println("Nome: " + usuario.getNome());
-		
+		System.out.println("Senha: " + usuario.getSenha());
+		System.out.println("Email: " + usuario.getEmail());
+		System.out.println("Setor: " + usuario.getSetor());
+		System.out.println("Ativo: " + usuario.isAtivo());
+
+
 		usuarioDao.altera(usuario, nome);
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
