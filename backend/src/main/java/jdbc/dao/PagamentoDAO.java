@@ -22,14 +22,14 @@ public class PagamentoDAO {
 
 	public void adiciona(Pagamento pagamento) throws SQLException {
 		// prepared statement para inserção
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO pagamento (id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada) VALUES (?, ?, ?, ?, ?, ?)");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO pagamento (valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada) VALUES (?, ?, ?, ?, ?)");
 		// seta os valores
-		stmt.setInt(1,pagamento.getId());
-		stmt.setDouble(2,pagamento.getValorPago());
-		stmt.setDate(3,pagamento.getVencimento());
-		stmt.setDate(4,pagamento.getDataPgto());
-		stmt.setString(5,pagamento.getFormaPgto().getAssociado().getCpf());
-		stmt.setString(6,pagamento.getFormaPgto().getFormaPagamento());
+		
+		stmt.setDouble(1,pagamento.getValorPago());
+		stmt.setDate(2,pagamento.getVencimento());
+		stmt.setDate(3,pagamento.getDataPgto());
+		stmt.setString(4,pagamento.getFormaPgto().getAssociado().getCpf());
+		stmt.setString(5,pagamento.getFormaPgto().getFormaPagamento());
 		
 		// executa
 		stmt.execute();

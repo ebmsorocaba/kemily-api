@@ -76,7 +76,7 @@ CREATE TABLE boleto (
 );
 
 CREATE TABLE pagamento (
-  id BIGINT NOT NULL PRIMARY KEY,
+  id SERIAL NOT NULL PRIMARY KEY,
   valor_pago NUMERIC(12,2) NOT NULL,
   vencimento DATE NOT NULL,
   data_pgto DATE NOT NULL,
@@ -154,22 +154,22 @@ INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
   VALUES('33333333333', 'dinheiro', TRUE);
 
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(1, 10, '05/10/15', '15/10/15', '44444444444', 'boleto');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(2, 10, '05/10/15', '15/10/15', '44444444444', 'dinheiro');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(3, 10000, '05/10/15', '15/10/15', '66666666666', 'dinheiro');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(4, 15, '05/10/15', '15/1/15', '33333333333', 'dinheiro');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(5, 15, '05/10/15', '15/2/15', '33333333333', 'dinheiro');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(6, 15, '05/10/15', '15/3/15', '33333333333', 'dinheiro');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(7, 15, '05/10/15', '15/4/15', '33333333333', 'dinheiro')
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(8, 15, '05/10/15', '15/10/15', '55555555555', 'cartao');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(10, '05/10/15', '15/10/15', '44444444444', 'boleto');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(10, '05/10/15', '15/10/15', '44444444444', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(10000, '05/10/15', '15/10/15', '66666666666', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(15, '05/10/15', '15/1/15', '33333333333', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(2000, '05/10/15', '15/2/15', '33333333333', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(555, '05/10/15', '15/3/15', '33333333333', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(11.95, '05/10/15', '15/4/15', '33333333333', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(15, '05/10/15', '15/10/15', '55555555555', 'cartao');
 
 /*
 INSERT INTO pagamento_boleto(id_pagamento, codigo_boleto)
