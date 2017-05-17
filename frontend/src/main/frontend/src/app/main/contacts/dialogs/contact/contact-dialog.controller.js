@@ -51,6 +51,12 @@
      * Add new contact
      */
     function addNewContact() {
+<<<<<<< HEAD
+=======
+      // Adiciona uma nova linha no topo da lista na tela
+      vm.contacts.unshift(vm.contact);
+
+>>>>>>> fdde622372f11a90f1bdd0598eef534624bf70d7
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
       api.associado.list.save(vm.contact,

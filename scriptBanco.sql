@@ -51,7 +51,7 @@ CREATE TABLE usuario (
 CREATE TABLE associado (
   cpf VARCHAR(11) NOT NULL PRIMARY KEY,
   nome VARCHAR(80) NOT NULL,
-  celular BIGINT,
+  celular TEXT,
   email VARCHAR(50) NOT NULL,
   valor_atual NUMERIC(12,2) NOT NULL,
   venc_atual INTEGER NOT NULL
@@ -76,7 +76,7 @@ CREATE TABLE boleto (
 );
 
 CREATE TABLE pagamento (
-  id BIGINT NOT NULL PRIMARY KEY,
+  id SERIAL NOT NULL PRIMARY KEY,
   valor_pago NUMERIC(12,2) NOT NULL,
   vencimento DATE NOT NULL,
   data_pgto DATE NOT NULL,
@@ -119,11 +119,11 @@ INSERT INTO usuario(nome, senha, setor, email, ativo)
 INSERT INTO associado(cpf, nome, email, valor_atual, venc_atual)
   VALUES('44444444444', 'Godoy Oliveira', 'godoy@gmail.com', 10.44, 12);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('55555555555', 'Solange Goes', 4145666666, 'solange@hotmail.com', 15.20, 05);
+  VALUES('55555555555', 'Solange Goes', '4145666666', 'solange@hotmail.com', 15.20, 05);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('66666666666', 'Jonathan Nunes', 1145666666, 'jojo@uol.com', 200.11, 12);
+  VALUES('66666666666', 'Jonathan Nunes', '1145666666', 'jojo@uol.com', 200.11, 12);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('33333333333', 'Brenda Silva Dias', 1545666666, 'brendadias@gmail.com', 500.99, 05);
+  VALUES('33333333333', 'Brenda Silva Dias', '1545666666', 'brendadias@gmail.com', 500.99, 05);
 
 INSERT INTO cartao(numero, bandeira, atual, cpf_associado)
   VALUES(4396378924129673, 'Visa', TRUE, '44444444444');
@@ -154,23 +154,30 @@ INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
   VALUES('33333333333', 'dinheiro', TRUE);
 
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(1, 10, '05/10/15', '15/10/15', '44444444444', 'boleto');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(2, 10, '05/10/15', '15/10/15', '44444444444', 'dinheiro');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(3, 10000, '05/10/15', '15/10/15', '66666666666', 'dinheiro');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(4, 15, '05/10/15', '15/10/15', '33333333333', 'dinheiro');
-INSERT INTO pagamento(id, valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(5, 15, '05/10/15', '15/10/15', '55555555555', 'cartao');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(10, '05/10/15', '15/10/15', '44444444444', 'boleto');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(10, '05/10/15', '15/10/15', '44444444444', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(10000, '05/10/15', '15/10/15', '66666666666', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(15, '05/10/15', '15/1/15', '33333333333', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(2000, '05/10/15', '15/2/15', '33333333333', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(555, '05/10/15', '15/3/15', '33333333333', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(11.95, '05/10/15', '15/4/15', '33333333333', 'dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(15, '05/10/15', '15/10/15', '55555555555', 'cartao');
 
+/*
 INSERT INTO pagamento_boleto(id_pagamento, codigo_boleto)
   VALUES (1, '564654564546454645646');
 
 INSERT INTO pagamento_cartao(id_pagamento, numero_cartao)
   VALUES (5, '4396378924129673');
-
+*/
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
