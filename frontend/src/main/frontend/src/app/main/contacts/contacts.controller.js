@@ -2,18 +2,18 @@
   'use strict';
 
   angular
-    .module('app.usuario')
-    .controller('UsuariosController', UsuariosController);
+    .module('app.contacts')
+    .controller('ContactsController', ContactsController);
 
   /** @ngInject */
-  function UsuariosController($scope, $mdSidenav, Usuarios, User, msUtils, $mdDialog, $document, api) {
+  function ContactsController($scope, $mdSidenav, Contacts, User, msUtils, $mdDialog, $document, api) {
 
     var vm = this;
 
     // Data
     // vm.formaPgto = FormaPgto;
 
-    vm.contacts = Usuarios;
+    vm.contacts = Contacts;
     vm.user = User.data;
     // vm.filterIds = null;
     vm.listType = 'all';
@@ -77,9 +77,9 @@
      */
     function openContactDialog(ev, contact) {
       $mdDialog.show({
-        controller: 'UsuarioDialogController',
+        controller: 'ContactDialogController',
         controllerAs: 'vm',
-        templateUrl: 'app/main/usuario/dialogs/contact/usuario-dialog.html',
+        templateUrl: 'app/main/contacts/dialogs/contact/contact-dialog.html',
         parent: angular.element($document.find('#content-container')),
         targetEvent: ev,
         clickOutsideToClose: true,
@@ -96,9 +96,9 @@
      */
     function deleteContactConfirm(contact, ev) {
       var confirm = $mdDialog.confirm()
-        .title('Você tem certeza de que deseja apagar este usuário?')
-        .htmlContent('<b>' + contact.nome + ' (' + contact.nome + ')</b>' + ' será apagado(a).')
-        .ariaLabel('apagar usuario')
+        .title('Você tem certeza de que deseja apagar este associado?')
+        .htmlContent('<b>' + contact.nome + ' (' + contact.cpf + ')</b>' + ' será apagado(a).')
+        .ariaLabel('apagar contato')
         .targetEvent(ev)
         .ok('Sim')
         .cancel('Cancelar');
@@ -121,8 +121,8 @@
 
       // Remove o Associado do BD
       console.log('deleteContact @ contacts.controller.js');
-        api.usuario.getByNome.delete({
-          'nome': contact.nome
+      api.associado.getByCpf.delete({
+          'cpf': contact.cpf
         },
         // Sucesso
         function(response) {
@@ -143,7 +143,7 @@
      */
     function deleteSelectedContacts(ev) {
       var confirm = $mdDialog.confirm()
-        .title('Você tem certeza de que deseja apagar os usuários selecionados?')
+        .title('Você tem certeza de que deseja apagar os associados selecionados?')
         .htmlContent('<b>' + vm.selectedContacts.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
         .ariaLabel('apagar contatos')
         .targetEvent(ev)
