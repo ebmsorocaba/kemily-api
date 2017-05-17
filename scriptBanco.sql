@@ -49,7 +49,7 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE associado (
-  cpf VARCHAR(11) NOT NULL PRIMARY KEY,
+  cpf VARCHAR(14) NOT NULL PRIMARY KEY,
   nome VARCHAR(80) NOT NULL,
   celular TEXT,
   email VARCHAR(50) NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE associado (
 );
 
 CREATE TABLE associado_forma_pagamento (
-  cpf_associado VARCHAR(11) NOT NULL REFERENCES associado(cpf),
+  cpf_associado VARCHAR(14) NOT NULL REFERENCES associado(cpf),
   forma_pgto VARCHAR(20) NOT NULL,
   atual BOOLEAN NOT NULL,
   PRIMARY KEY(cpf_associado, forma_pgto)
@@ -68,7 +68,7 @@ CREATE TABLE cartao (
   numero BIGINT NOT NULL PRIMARY KEY,
   bandeira VARCHAR(30) NOT NULL,
   atual BOOLEAN NOT NULL, /** Indica se este o cartão sendo utilizado atualmente pelo associado. */
-  cpf_associado VARCHAR(11) NOT NULL REFERENCES associado(cpf)
+  cpf_associado VARCHAR(14) NOT NULL REFERENCES associado(cpf)
 );
 
 CREATE TABLE boleto (
@@ -80,7 +80,7 @@ CREATE TABLE pagamento (
   valor_pago NUMERIC(12,2) NOT NULL,
   vencimento DATE NOT NULL,
   data_pgto DATE NOT NULL,
-  cpf_associado VARCHAR(11) NOT NULL,
+  cpf_associado VARCHAR(14) NOT NULL,
   forma_pgto_efetuada VARCHAR(20) NOT NULL,
 
   CONSTRAINT fk_associado_forma FOREIGN KEY(cpf_associado, forma_pgto_efetuada)
@@ -117,22 +117,22 @@ INSERT INTO usuario(nome, senha, setor, email, ativo)
   VALUES ('Elias Humberto', 'abcd', 'Social', 'elias@gmail.com', FALSE);
 
 INSERT INTO associado(cpf, nome, email, valor_atual, venc_atual)
-  VALUES('44444444444', 'Godoy Oliveira', 'godoy@gmail.com', 10.44, 12);
+  VALUES('444.444.444-44', 'Godoy Oliveira', 'godoy@gmail.com', 10.44, 12);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('55555555555', 'Solange Goes', '4145666666', 'solange@hotmail.com', 15.20, 05);
+  VALUES('555.555.555-55', 'Solange Goes', '4145666666', 'solange@hotmail.com', 15.20, 05);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('66666666666', 'Jonathan Nunes', '1145666666', 'jojo@uol.com', 200.11, 12);
+  VALUES('666.666.666-66', 'Jonathan Nunes', '1145666666', 'jojo@uol.com', 200.11, 12);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('33333333333', 'Brenda Silva Dias', '1545666666', 'brendadias@gmail.com', 500.99, 05);
+  VALUES('333.333.333-33', 'Brenda Silva Dias', '1545666666', 'brendadias@gmail.com', 500.99, 05);
 
 INSERT INTO cartao(numero, bandeira, atual, cpf_associado)
-  VALUES(4396378924129673, 'Visa', TRUE, '44444444444');
+  VALUES(4396378924129673, 'Visa', TRUE, '444.444.444-44');
 INSERT INTO cartao(numero, bandeira, atual, cpf_associado)
-  VALUES(5645646545646454, 'MasterCard', TRUE, '55555555555');
+  VALUES(5645646545646454, 'MasterCard', TRUE, '555.555.555-55');
 INSERT INTO cartao(numero, bandeira, atual, cpf_associado)
-  VALUES(3132132133213233, 'Discover', TRUE, '66666666666');
+  VALUES(3132132133213233, 'Discover', TRUE, '666.666.666-66');
 INSERT INTO cartao(numero, bandeira, atual, cpf_associado)
-  VALUES(4564645464611111, 'AmericanExpress', FALSE, '33333333333');
+  VALUES(4564645464611111, 'AmericanExpress', FALSE, '333.333.333-33');
 
 INSERT INTO boleto(codigo)
   VALUES ('564654564546454645646');
@@ -144,32 +144,32 @@ INSERT INTO boleto(codigo)
   VALUES ('222222222222222222222');
 
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
-  VALUES('44444444444', 'dinheiro', TRUE);
+  VALUES('444.444.444-44', 'dinheiro', TRUE);
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
-  VALUES('44444444444', 'boleto', FALSE);
+  VALUES('444.444.444-44', 'boleto', FALSE);
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
-  VALUES('55555555555', 'cartao', TRUE);
+  VALUES('555.555.555-55', 'cartao', TRUE);
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
-  VALUES('66666666666', 'dinheiro', TRUE);
+  VALUES('666.666.666-66', 'dinheiro', TRUE);
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
-  VALUES('33333333333', 'dinheiro', TRUE);
+  VALUES('333.333.333-33', 'dinheiro', TRUE);
 
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(10, '05/10/15', '15/10/15', '44444444444', 'boleto');
+  VALUES(10, '05/10/15', '15/10/15', '444.444.444-44', 'boleto');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(10, '05/10/15', '15/10/15', '44444444444', 'dinheiro');
+  VALUES(10, '05/10/15', '15/10/15', '444.444.444-44', 'dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(10000, '05/10/15', '15/10/15', '66666666666', 'dinheiro');
+  VALUES(10000, '05/10/15', '15/10/15', '666.666.666-66', 'dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(15, '05/10/15', '15/1/15', '33333333333', 'dinheiro');
+  VALUES(15, '05/10/15', '15/1/15', '333.333.333-33', 'dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(2000, '05/10/15', '15/2/15', '33333333333', 'dinheiro');
+  VALUES(2000, '05/10/15', '15/2/15', '333.333.333-33', 'dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(555, '05/10/15', '15/3/15', '33333333333', 'dinheiro');
+  VALUES(555, '05/10/15', '15/3/15', '333.333.333-33', 'dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(11.95, '05/10/15', '15/4/15', '33333333333', 'dinheiro');
+  VALUES(11.95, '05/10/15', '15/4/15', '333.333.333-33', 'dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(15, '05/10/15', '15/10/15', '55555555555', 'cartao');
+  VALUES(15, '05/10/15', '15/10/15', '555.555.555-55', 'cartao');
 
 /*
 INSERT INTO pagamento_boleto(id_pagamento, codigo_boleto)
@@ -181,3 +181,4 @@ INSERT INTO pagamento_cartao(id_pagamento, numero_cartao)
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
+
