@@ -191,7 +191,7 @@
         // APIs do EBM Kemily
         api.usuario = {
             getUsuarios     : $resource(api.baseUrl + 'usuario'),
-            getByNome       : $resource(api.baseUrl + 'usuario/:nome', {nome: '@nome'}),
+            getByNome       : $resource(api.baseUrl + 'usuario/:nome', {nome: '@nome'}, {'update': {method: 'PUT'}}),
             addUsuario      : $resource(api.baseUrl + 'usuario')
 
         }

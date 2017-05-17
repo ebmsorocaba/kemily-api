@@ -2,15 +2,15 @@
   'use strict';
 
   angular
-    .module('app.contacts')
-    .controller('ContactDialogController', ContactDialogController);
+    .module('app.usuario')
+    .controller('UsuarioDialogController', UsuarioDialogController);
 
   /** @ngInject */
-  function ContactDialogController($mdDialog, Contact, Contacts, User, msUtils, api) {
+  function UsuarioDialogController($mdDialog, Contact, Contacts, User, msUtils, api) {
     var vm = this;
 
     // Data
-    vm.title = 'Alterar Associado';
+    vm.title = 'Alterar Usuário';
     vm.contact = angular.copy(Contact);
     vm.contacts = Contacts;
     vm.user = User;
@@ -18,22 +18,19 @@
     vm.allFields = false;
 
     // Formas de Pagamento
-    vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
+    vm.listaSetores = ["Administração", "Financeiro", "Social"];
 
     // TODO Ajustar o Associado conforme o BackEnd
     if (!vm.contact) {
       vm.contact = {
-        'cpf': 111,
-        'nome': 'Teste',
-        'celular': 111,
-        'email': 'a@a.a',
-        // 'formaPgto': 'Cartão', // TODO Tirar do objeto (ver [/api/formaPgto])
-        // 'cartao': 1231231231231231, // TODO Tirar do objeto (ver [/cartao])
-        'valorAtual': 1.3,
-        'vencAtual': 5,
+        'nome': '',
+        'senha': '',
+        'email': '',
+        'setor': '',
+        'ativo': ''
       };
 
-      vm.title = 'Novo Associado';
+      vm.title = 'Novo Usuário';
       vm.newContact = true;
       // vm.contact.tags = [];
     }
@@ -56,7 +53,7 @@
 
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
-      api.associado.list.save(vm.contact,
+      api.usuario.addUsuario.save(vm.contact,
         // Exibe o resultado no console do navegador:
         // Sucesso
         function(response) {
@@ -77,7 +74,7 @@
     function saveContact() {
       // Atualiza a linha na tela:
       for (var i = 0; i < vm.contacts.length; i++) {
-        if (vm.contacts[i].cpf === vm.contact.cpf) {
+        if (vm.contacts[i].nome === vm.contact.nome) {
           vm.contacts[i] = angular.copy(vm.contact);
           break;
         }
@@ -85,7 +82,9 @@
 
       // Grava as alterações no BD:
       // TODO UPDATE no BD
-      api.associado.getByCpf.save(vm.contact,
+      api.usuario.getByNome.update({
+        'nome': vm.contact.nome
+      },vm.contact,
         // Exibe o resultado no console do navegador:
         // Sucesso
         function(response) {
@@ -115,9 +114,9 @@
      */
     function deleteContactConfirm(ev) {
       var confirm = $mdDialog.confirm()
-        .title('Você tem certeza de que deseja apagar este associado?')
-        .htmlContent('<b>' + vm.contact.nome + ' (' + vm.contact.cpf + '</b>' + ') será apagado(a).')
-        .ariaLabel('apagar associado')
+        .title('Você tem certeza de que deseja apagar este usuário?')
+        .htmlContent('<b>' + vm.contact.nome + ' (' + vm.contact.nome + '</b>' + ') será apagado(a).')
+        .ariaLabel('apagar usuário')
         .targetEvent(ev)
         .ok('OK')
         .cancel('Cancelar');
@@ -128,8 +127,8 @@
 
         // Remove o Associado do BD
         console.log('deleteContact @ contacts.controller.js');
-        api.associado.getByCpf.delete({
-            'cpf': contact.cpf
+          api.usuario.getByNome.delete({
+            'nome': vm.contact.nome
           },
           // Sucesso
           function(response) {

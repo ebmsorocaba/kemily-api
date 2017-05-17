@@ -30,7 +30,7 @@
             'app.relatorio',
 
             // Provisório para testes
-            'app.contacts',
+            //'app.contacts',
 
             // angular-mask (ver bower.json)
             'ngMask'

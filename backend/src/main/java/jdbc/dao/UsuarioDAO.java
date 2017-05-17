@@ -30,7 +30,7 @@ public class UsuarioDAO {
 		stmt.setString(3,usuario.getSetor());
 		stmt.setString(4,usuario.getEmail());
 		stmt.setBoolean(5,usuario.isAtivo());
-		
+
 		// executa
 		stmt.execute();
 		stmt.close();
@@ -46,13 +46,13 @@ public class UsuarioDAO {
 		while (rs.next()) {
 			// criando o objeto Aluno
 			Usuario usuario = new Usuario();
-			
+
 			usuario.setNome(rs.getString("nome"));
 			usuario.setSenha(rs.getString("senha"));
 			usuario.setSetor(rs.getString("setor"));
 			usuario.setEmail(rs.getString("email"));
 			usuario.setAtivo(rs.getBoolean("ativo"));
-			
+
 			// adicionando o objeto à lista
 			usuarios.add(usuario);
 
@@ -83,11 +83,11 @@ public class UsuarioDAO {
 				usuario.setAtivo(rs.getBoolean("ativo"));
 			}
 		}
-		
+
 	    catch (SQLException ex) {
 	    	System.out.println(ex.toString());
 	    }
-	
+
 		return (usuario);
 
 	}
@@ -96,13 +96,13 @@ public class UsuarioDAO {
 	public void excluir(String search) {
 
     try {
-    	
+
     	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM usuario WHERE nome = ?");
     	stmt.setString(1, search);
     	stmt.execute();
 
     }
-    
+
 	catch (SQLException ex) {
 		System.out.println(ex.toString());
     }
@@ -113,11 +113,11 @@ public class UsuarioDAO {
 	public void altera(Usuario usuario, String nome) throws SQLException {
 
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE usuario SET nome=?, senha=?, setor=?, email=?, ativo=? WHERE nome=?");
-			
+
 		stmt.setString(1, usuario.getNome());
 		stmt.setString(2, usuario.getSenha());
 		stmt.setString(3, usuario.getSetor());
-		stmt.setString(4, usuario.getNome());
+		stmt.setString(4, usuario.getEmail());
 		stmt.setBoolean(5, usuario.isAtivo());
 		stmt.setString(6, nome);
 
