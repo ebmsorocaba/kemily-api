@@ -100,7 +100,7 @@
             <md-input-container>
               <label>CPF do Associado</label>
               <md-icon md-font-icon="icon-account-box"></md-icon>
-              <input ng-model="vm.pagamento.formaPgto.associado.cpf" type="text" mask="999.999.999-99" required>
+              <input ng-blur="vm.buscaCpf()" ng-model="vm.pagamento.formaPgto.associado.cpf" type="text" mask="999.999.999-99" required>
             </md-input-container>
 
             <md-input-container>

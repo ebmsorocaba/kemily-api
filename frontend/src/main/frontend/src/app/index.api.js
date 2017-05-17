@@ -199,7 +199,7 @@
         // API Associado
         api.associado = {
           list      : $resource(api.baseUrl + 'associado'),
-          getByCpf  : $resource(api.baseUrl + 'associado/:cpf', {cpf: '@cpf'})
+          getByCpf  : $resource(api.baseUrl + 'associado/:cpf' + '/', {cpf: '@cpf'})
         }
 
         api.formaPgto = {
@@ -208,7 +208,7 @@
         }
 
         api.pagamento = {
-          lista     : $resource(api.baseUrl + 'pagamento')
+          list     : $resource(api.baseUrl + 'pagamento')
         }
 
         // Exemplo do FUSE

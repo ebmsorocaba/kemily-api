@@ -42,7 +42,7 @@
 
         msNavigationServiceProvider.saveItem('financeiro.relatorio', {
             title    : 'Relatório Financeiro',
-            icon     : 'icon-tile-four',
+            icon     : 'icon-document',
             state    : 'app.relatorio',
             weight   : 3
         });

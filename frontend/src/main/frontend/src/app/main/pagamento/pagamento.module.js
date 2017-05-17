@@ -24,10 +24,10 @@
                 }
             },
             resolve: {
-                Associados: function (msApi)
-                {
-                    return msApi.resolve('associados.associados@query'); // GET para Arrays
-                },
+                // Associados: function (msApi)
+                // {
+                //     return msApi.resolve('associados.associados@query'); // GET para Arrays
+                // },
                 User: function (msApi)
                 {
                     return msApi.resolve('contacts.user@get');
@@ -35,11 +35,8 @@
             }
         });
 
-        // Translation
-        // $translatePartialLoaderProvider.addPart('app/main/apps/contacts');
-
         // Api
-        msApiProvider.register('associados.associados', ['/api/associado']);
+        // msApiProvider.register('associados.associados', ['/api/associado']);
         msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
 
         // Navigation
@@ -51,7 +48,7 @@
 
         msNavigationServiceProvider.saveItem('financeiro.pagamento', {
             title : 'Informar Pagamento',
-            icon  : 'icon-account-box',
+            icon  : 'icon-credit-card',
             state : 'app.pagamento',
             weight: 2
         });
