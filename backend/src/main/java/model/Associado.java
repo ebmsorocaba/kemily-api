@@ -6,7 +6,7 @@ public class Associado {
 
 	private String cpf;
 	private String nome;
-	private Long celular;
+	private String celular;
 	private String email;
 	private double valorAtual;
 	private Integer vencAtual;
@@ -16,7 +16,7 @@ public class Associado {
 	public Associado(
 			@JsonProperty("cpf")String cpf,
 			@JsonProperty("nome")String nome,
-			@JsonProperty("celular")Long celular,
+			@JsonProperty("celular")String celular,
 			@JsonProperty("email")String email,
 			@JsonProperty("valorAtual")double valorAtual,
 			@JsonProperty("vencAtual")Integer vencAtual){
@@ -46,14 +46,6 @@ public class Associado {
 		this.nome = nome;
 	}
 
-	public Long getCelular() {
-		return celular;
-	}
-
-	public void setCelular(Long celular) {
-		this.celular = celular;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -76,6 +68,14 @@ public class Associado {
 
 	public void setVencAtual(Integer vencAtual) {
 		this.vencAtual = vencAtual;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 

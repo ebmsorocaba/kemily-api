@@ -52,6 +52,7 @@ public class RelatorioController {
 		java.util.Date parsedDI; //Aqui declara a DATA do tipo UTIL
     	java.util.Date parsedDF;
 		
+    	//TODO depois da estabilidade tirar isso aqui
     	//Blindagem temporaria
         try{
         	

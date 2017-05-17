@@ -51,7 +51,7 @@ CREATE TABLE usuario (
 CREATE TABLE associado (
   cpf VARCHAR(11) NOT NULL PRIMARY KEY,
   nome VARCHAR(80) NOT NULL,
-  celular BIGINT,
+  celular TEXT,
   email VARCHAR(50) NOT NULL,
   valor_atual NUMERIC(12,2) NOT NULL,
   venc_atual INTEGER NOT NULL
@@ -119,11 +119,11 @@ INSERT INTO usuario(nome, senha, setor, email, ativo)
 INSERT INTO associado(cpf, nome, email, valor_atual, venc_atual)
   VALUES('44444444444', 'Godoy Oliveira', 'godoy@gmail.com', 10.44, 12);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('55555555555', 'Solange Goes', 4145666666, 'solange@hotmail.com', 15.20, 05);
+  VALUES('55555555555', 'Solange Goes', '4145666666', 'solange@hotmail.com', 15.20, 05);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('66666666666', 'Jonathan Nunes', 1145666666, 'jojo@uol.com', 200.11, 12);
+  VALUES('66666666666', 'Jonathan Nunes', '1145666666', 'jojo@uol.com', 200.11, 12);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('33333333333', 'Brenda Silva Dias', 1545666666, 'brendadias@gmail.com', 500.99, 05);
+  VALUES('33333333333', 'Brenda Silva Dias', '1545666666', 'brendadias@gmail.com', 500.99, 05);
 
 INSERT INTO cartao(numero, bandeira, atual, cpf_associado)
   VALUES(4396378924129673, 'Visa', TRUE, '44444444444');

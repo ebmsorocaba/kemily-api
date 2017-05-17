@@ -26,12 +26,7 @@ public class AssociadoDAO {
 		// seta os valores
 		stmt.setString(1, associado.getCpf());
 		stmt.setString(2, associado.getNome());
-
-		if (associado.getCelular() == null)
-			stmt.setLong(3, 0);
-		else
-			stmt.setLong(3, associado.getCelular());
-
+		stmt.setString(3, associado.getCelular());
 		stmt.setString(4, associado.getEmail());
 		stmt.setDouble(5, associado.getValorAtual());
 		stmt.setInt(6, associado.getVencAtual());
@@ -53,15 +48,7 @@ public class AssociadoDAO {
 
 			associado.setCpf(rs.getString("cpf"));
 			associado.setNome(rs.getString("nome"));
-
-			// TODO melhorar esse tratamento null/0
-			if (rs.getLong("celular") == 0) { // Corrigir problema conversao do
-												// banco de dados de null pra 0
-				associado.setCelular(null);
-			} else {
-				associado.setCelular(rs.getLong("celular"));
-			}
-
+			associado.setCelular(rs.getString("celular"));
 			associado.setEmail(rs.getString("email"));
 			associado.setValorAtual(rs.getDouble("valor_atual"));
 			associado.setVencAtual(rs.getInt("venc_atual"));
@@ -91,15 +78,7 @@ public class AssociadoDAO {
 			if (rs.next() == true) {
 				associado.setCpf(rs.getString("cpf"));
 				associado.setNome(rs.getString("nome"));
-
-				if (rs.getLong("celular") == 0) { // Corrigir problema conversao
-													// do banco de dados de null
-													// pra 0
-					associado.setCelular(null);
-				} else {
-					associado.setCelular(rs.getLong("celular"));
-				}
-
+				associado.setCelular(rs.getString("celular"));
 				associado.setEmail(rs.getString("email"));
 				associado.setValorAtual(rs.getDouble("valor_atual"));
 				associado.setVencAtual(rs.getInt("venc_atual"));
@@ -114,6 +93,8 @@ public class AssociadoDAO {
 
 	public void excluir(String search) {
 		try {
+			
+			//TODO melhorar isso aqui
 			
 			//tenta apagar da tabela de pagamento
 			PreparedStatement stmt = (PreparedStatement) this.connection
@@ -165,14 +146,7 @@ public class AssociadoDAO {
 		// stmt.setString(1, associado.getCpf());
 		stmt.setString(1, associado.getNome());
 
-		// TODO melhorar esse tratamento null/0
-
-		if (associado.getCelular() == null) {
-			stmt.setLong(2, 0);
-		} else {
-			stmt.setLong(2, associado.getCelular());
-		}
-
+		stmt.setString(2, associado.getCelular());
 		stmt.setString(3, associado.getEmail());
 		stmt.setDouble(4, associado.getValorAtual());
 		stmt.setInt(5, associado.getVencAtual());
