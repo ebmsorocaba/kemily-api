@@ -3,52 +3,58 @@
     'use strict';
 
     angular
-        .module('app.pagamento', [])
+        .module('app.pagamento',
+            [
+                // 3rd Party Dependencies
+                // 'xeditable'
+            ]
+        )
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider)
+    function config($stateProvider, msApiProvider, msNavigationServiceProvider)
     {
-        // State
-        $stateProvider
-            .state('app.pagamento', {
-                url    : '/pagamento',
-                views  : {
-                    'content@app': {
-                        templateUrl: 'app/main/pagamento/pagamento.html',
-                        controller : 'PagamentoController as vm'
-                    }
+
+        $stateProvider.state('app.pagamento', {
+            url    : '/pagamento',
+            views  : {
+                'content@app': {
+                    templateUrl: 'app/main/pagamento/pagamento.html',
+                    controller : 'PagamentoController as vm'
+                }
+            },
+            resolve: {
+                Associados: function (msApi)
+                {
+                    return msApi.resolve('associados.associados@query'); // GET para Arrays
                 },
-                // resolve: {
-                //     SampleData: function (msApi)
-                //     {
-                //         return msApi.resolve('sample@get');
-                //     }
-                // }
-            });
+                User: function (msApi)
+                {
+                    return msApi.resolve('contacts.user@get');
+                }
+            }
+        });
 
         // Translation
-        // $translatePartialLoaderProvider.addPart('app/main/pagamento');
+        // $translatePartialLoaderProvider.addPart('app/main/apps/contacts');
 
         // Api
-        //msApiProvider.register('sample', ['app/data/sample/sample.json']);
+        msApiProvider.register('associados.associados', ['/api/associado']);
+        msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
 
         // Navigation
-        // msNavigationServiceProvider.saveItem('financeiro.operacao', {
-        //     title : 'Operação',
-        //     group : true,
-        //     weight: 8
+        // msNavigationServiceProvider.saveItem('financeiro', { // Adiciona um item no menu
+        //     title : 'Financeiro', // Nome do item/grupo no menu.
+        //     group : true, // Define se é um item [false] ou grupo de itens [true].
+        //     weight: 2 // Ordem no menu. Baseado em prioridade.
         // });
 
         msNavigationServiceProvider.saveItem('financeiro.pagamento', {
-            title    : 'Informar Pagamento',
-            icon     : 'icon-tile-four',
-            state    : 'app.pagamento',
-            /*stateParams: {
-                'param1': 'page'
-             },*/
-            //translate: 'Informar Pagamento',
-            weight   : 0
+            title : 'Informar Pagamento',
+            icon  : 'icon-account-box',
+            state : 'app.pagamento',
+            weight: 2
         });
+
     }
 })();

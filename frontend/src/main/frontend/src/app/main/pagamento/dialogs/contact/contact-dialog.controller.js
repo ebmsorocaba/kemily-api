@@ -23,14 +23,14 @@
     // TODO Ajustar o Associado conforme o BackEnd
     if (!vm.contact) {
       vm.contact = {
-        'cpf': '',
-        'nome': '',
-        'celular': null,
-        'email': '',
-        // 'formaPgto': 'Dinheiro', // TODO Tirar do objeto (ver [/api/formaPgto])
+        'cpf': 111,
+        'nome': 'Teste',
+        'celular': 111,
+        'email': 'a@a.a',
+        // 'formaPgto': 'Cartão', // TODO Tirar do objeto (ver [/api/formaPgto])
         // 'cartao': 1231231231231231, // TODO Tirar do objeto (ver [/cartao])
-        'valorAtual': null,
-        'vencAtual': null,
+        'valorAtual': 1.3,
+        'vencAtual': 5,
       };
 
       vm.title = 'Novo Associado';
@@ -51,6 +51,9 @@
      * Add new contact
      */
     function addNewContact() {
+      // Adiciona uma nova linha no topo da lista na tela
+      vm.contacts.unshift(vm.contact);
+
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
       api.associado.list.save(vm.contact,
@@ -64,9 +67,6 @@
           console.error(response);
         }
       );
-
-      // Adiciona uma nova linha no topo da lista na tela
-      vm.contacts.unshift(vm.contact);
 
       closeDialog();
     }
@@ -84,6 +84,7 @@
       }
 
       // Grava as alterações no BD:
+      // TODO UPDATE no BD
       api.associado.getByCpf.save(vm.contact,
         // Exibe o resultado no console do navegador:
         // Sucesso

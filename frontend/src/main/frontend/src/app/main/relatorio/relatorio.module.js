@@ -44,11 +44,7 @@
             title    : 'Relatório Financeiro',
             icon     : 'icon-tile-four',
             state    : 'app.relatorio',
-            /*stateParams: {
-                'param1': 'page'
-             },*/
-            //translate: 'Relatório Financeiro',
-            weight   : 0
+            weight   : 3
         });
     }
 })();

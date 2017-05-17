@@ -43,22 +43,22 @@
         // $translatePartialLoaderProvider.addPart('app/main/apps/contacts');
 
         // Api
-        msApiProvider.register('contacts.contacts', ['/associado']);
+        msApiProvider.register('contacts.contacts', ['/api/associado']);
         //msApiProvider.register('contacts.formaPgto', ['/formaPgto']);
         msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('testes', { // Adiciona um item no menu
-            title : 'Testes', // Nome do item/grupo no menu.
+        msNavigationServiceProvider.saveItem('financeiro', { // Adiciona um item no menu
+            title : 'Financeiro', // Nome do item/grupo no menu.
             group : true, // Define se é um item [false] ou grupo de itens [true].
-            weight: 10 // Ordem no menu. Baseado em prioridade.
+            weight: 2 // Ordem no menu. Baseado em prioridade.
         });
 
-        msNavigationServiceProvider.saveItem('testes.contatos', {
-            title : 'Contatos',
+        msNavigationServiceProvider.saveItem('financeiro.associado', {
+            title : 'Gerenciar Associados',
             icon  : 'icon-account-box',
             state : 'app.contacts',
-            weight: 10
+            weight: 1
         });
 
     }

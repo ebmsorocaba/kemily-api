@@ -50,7 +50,7 @@
                 'param1': 'page'
              },*/
             //translate: 'USUARIO.USUARIO_ITEM', // Usado no sistema de multiplos idiomas. Veja: [...]\usuario\i18n
-            weight   : 0 // Ordem no menu. Baseado em prioridade.
+            weight   : 1 // Ordem no menu. Baseado em prioridade.
         });
     }
 })();

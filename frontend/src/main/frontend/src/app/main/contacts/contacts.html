@@ -207,12 +207,14 @@
             {{contact.email}}
           </p>
 
+          <!-- Temporário -->
           <p class="hide show-gt-sm">
-            {{contact.formaPgto}}
+            Dinheiro
+            <!-- {{contact.formaPgto}} -->
           </p>
 
           <p class="hide show-gt-sm">
-            {{contact.valorAtual | currency}}
+            {{contact.valorAtual | currency : "R$ "}}
           </p>
 
           <div class="actions" layout="row" layout-align="start center">

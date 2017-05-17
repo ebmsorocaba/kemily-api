@@ -1,4 +1,4 @@
-#associado {
+#contacts {
     position: relative;
 
     > .header {
@@ -79,13 +79,13 @@
         right: 0;
         left: 0;
 
-        > md-sidenav {
-            box-shadow: $whiteframe-shadow-1dp;
-            padding: 0;
-        }
+        // > md-sidenav {
+        //     box-shadow: $whiteframe-shadow-1dp;
+        //     padding: 0;
+        // }
 
         .main {
-            padding: 16px 90px 0 4px;
+            padding: 16px 45px 0 4px;
             position: absolute;
             top: 0;
             left: 24px;
@@ -205,7 +205,7 @@
         > .content {
 
             .main {
-                left: 268px;
+                left: 45px;
             }
         }
     }

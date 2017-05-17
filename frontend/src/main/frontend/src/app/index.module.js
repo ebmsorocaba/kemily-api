@@ -21,16 +21,13 @@
             'app.usuario',
 
             // Cadastro de Associados
-            'app.associado',
+            'app.contacts',
 
             // Informar pagamento
             'app.pagamento',
 
             // Relatório financeiro
             'app.relatorio',
-
-            // Provisório para testes
-            'app.contacts',
 
             // angular-mask (ver bower.json)
             'ngMask'
