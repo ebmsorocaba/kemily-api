@@ -2,36 +2,36 @@
   'use strict';
 
   angular
-    .module('app.contacts')
-    .controller('ContactsController', ContactsController);
+    .module('app.associados')
+    .controller('AssociadosController', AssociadosController);
 
   /** @ngInject */
-  function ContactsController($scope, $mdSidenav, Contacts, User, msUtils, $mdDialog, $document, api) {
+  function AssociadosController($scope, $mdSidenav, Associados, User, msUtils, $mdDialog, $document, api) {
 
     var vm = this;
 
     // Data
     // vm.formaPgto = FormaPgto;
 
-    vm.contacts = Contacts;
+    vm.associados = Associados;
     vm.user = User.data;
     // vm.filterIds = null;
     vm.listType = 'all';
     vm.listOrder = 'nome';
     vm.listOrderAsc = false;
-    vm.selectedContacts = [];
+    vm.selectedAssociados = [];
     // vm.newGroupName = '';
 
     // Methods
     // vm.filterChange = filterChange;
-    vm.openContactDialog = openContactDialog;
-    vm.deleteContactConfirm = deleteContactConfirm;
-    vm.deleteContact = deleteContact;
-    vm.deleteSelectedContacts = deleteSelectedContacts;
-    vm.toggleSelectContact = toggleSelectContact;
-    vm.deselectContacts = deselectContacts;
-    vm.selectAllContacts = selectAllContacts;
-    vm.deleteContact = deleteContact;
+    vm.openAssociadoDialog = openAssociadoDialog;
+    vm.deleteAssociadoConfirm = deleteAssociadoConfirm;
+    vm.deleteAssociado = deleteAssociado;
+    vm.deleteSelectedAssociados = deleteSelectedAssociados;
+    vm.toggleSelectAssociado = toggleSelectAssociado;
+    vm.deselectAssociados = deselectAssociados;
+    vm.selectAllAssociados = selectAllAssociados;
+    vm.deleteAssociado = deleteAssociado;
     // vm.addNewGroup = addNewGroup;
     // vm.deleteGroup = deleteGroup;
     // vm.toggleSidenav = toggleSidenav;
@@ -75,18 +75,18 @@
      * @param ev
      * @param contact
      */
-    function openContactDialog(ev, contact) {
+    function openAssociadoDialog(ev, associado) {
       $mdDialog.show({
-        controller: 'ContactDialogController',
+        controller: 'AssociadoDialogController',
         controllerAs: 'vm',
-        templateUrl: 'app/main/contacts/dialogs/contact/contact-dialog.html',
+        templateUrl: 'app/main/associados/dialogs/associado/associado-dialog.html',
         parent: angular.element($document.find('#content-container')),
         targetEvent: ev,
         clickOutsideToClose: true,
         locals: {
-          Contact: contact,
+          Associado: associado,
           User: vm.user,
-          Contacts: vm.contacts
+          Associados: vm.associados
         }
       });
     }
@@ -94,18 +94,18 @@
     /**
      * Delete Contact Confirm Dialog
      */
-    function deleteContactConfirm(contact, ev) {
+    function deleteAssociadoConfirm(associado, ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar este associado?')
-        .htmlContent('<b>' + contact.nome + ' (' + contact.cpf + ')</b>' + ' será apagado(a).')
+        .htmlContent('<b>' + associado.nome + ' (' + associado.cpf + ')</b>' + ' será apagado(a).')
         .ariaLabel('apagar contato')
         .targetEvent(ev)
         .ok('Sim')
         .cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function() {
-        deleteContact(contact);
-        vm.selectedContacts = [];
+        deleteAssociado(associado);
+        vm.selectedAssociados = [];
 
       }, function() {
         console.log('Cancelou');
@@ -115,14 +115,14 @@
     /**
      * Delete Contact
      */
-    function deleteContact(contact) {
+    function deleteAssociado(associado) {
 
       // TODO Remover também a [formaPgto] do Associado.
 
       // Remove o Associado do BD
-      console.log('deleteContact @ contacts.controller.js');
+      console.log('deleteAssociado @ associados.controller.js');
       api.associado.getByCpf.delete({
-          'cpf': contact.cpf
+          'cpf': associado.cpf
         },
         // Sucesso
         function(response) {
@@ -135,16 +135,16 @@
       );
 
       // Remove a da lista na tela a linha deste Associado
-      vm.contacts.splice(vm.contacts.indexOf(contact), 1);
+      vm.associados.splice(vm.associados.indexOf(associado), 1);
     }
 
     /**
      * Delete Selected Contacts
      */
-    function deleteSelectedContacts(ev) {
+    function deleteSelectedAssociados(ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar os associados selecionados?')
-        .htmlContent('<b>' + vm.selectedContacts.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
+        .htmlContent('<b>' + vm.selectedAssociados.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
         .ariaLabel('apagar contatos')
         .targetEvent(ev)
         .ok('Sim')
@@ -152,11 +152,11 @@
 
       $mdDialog.show(confirm).then(function() {
 
-        vm.selectedContacts.forEach(function(contact) {
-          deleteContact(contact);
+        vm.selectedAssociados.forEach(function(associado) {
+          deleteAssociado(associado);
         });
 
-        vm.selectedContacts = [];
+        vm.selectedAssociados = [];
 
       });
 
@@ -168,30 +168,30 @@
      * @param contact
      * @param event
      */
-    function toggleSelectContact(contact, event) {
+    function toggleSelectAssociado(associado, event) {
       if (event) {
         event.stopPropagation();
       }
 
-      if (vm.selectedContacts.indexOf(contact) > -1) {
-        vm.selectedContacts.splice(vm.selectedContacts.indexOf(contact), 1);
+      if (vm.selectedAssociados.indexOf(associado) > -1) {
+        vm.selectedAssociados.splice(vm.selectedAssociados.indexOf(associado), 1);
       } else {
-        vm.selectedContacts.push(contact);
+        vm.selectedAssociados.push(associado);
       }
     }
 
     /**
      * Deselect contacts
      */
-    function deselectContacts() {
-      vm.selectedContacts = [];
+    function deselectAssociados() {
+      vm.selectedAssociados = [];
     }
 
     /**
      * Sselect all contacts
      */
-    function selectAllContacts() {
-      vm.selectedContacts = $scope.filteredContacts;
+    function selectAllAssociados() {
+      vm.selectedAssociados = $scope.filteredAssociados;
     }
 
     /**

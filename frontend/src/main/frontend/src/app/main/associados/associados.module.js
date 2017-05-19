@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.contacts',
+        .module('app.associados',
             [
                 // 3rd Party Dependencies
                 // 'xeditable'
@@ -15,22 +15,22 @@
     function config($stateProvider, msApiProvider, msNavigationServiceProvider)
     {
 
-        $stateProvider.state('app.contacts', {
+        $stateProvider.state('app.associados', {
             url    : '/contatos',
             views  : {
                 'content@app': {
-                    templateUrl: 'app/main/contacts/contacts.html',
-                    controller : 'ContactsController as vm'
+                    templateUrl: 'app/main/associados/associados.html',
+                    controller : 'AssociadosController as vm'
                 }
             },
             resolve: {
-                Contacts: function (msApi)
+                Associados: function (msApi)
                 {
-                    return msApi.resolve('contacts.contacts@query'); // GET para Arrays
+                    return msApi.resolve('associados.associados@query'); // GET para Arrays
                 },
                 User: function (msApi)
                 {
-                    return msApi.resolve('contacts.user@get');
+                    return msApi.resolve('associados.user@get');
                 }
                 // FormaPgto: function (msApi)
                 // {
@@ -43,9 +43,9 @@
         // $translatePartialLoaderProvider.addPart('app/main/apps/contacts');
 
         // Api
-        msApiProvider.register('contacts.contacts', ['/api/associado']);
+        msApiProvider.register('associados.associados', ['/api/associado']);
         //msApiProvider.register('contacts.formaPgto', ['/formaPgto']);
-        msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
+        msApiProvider.register('associados.user', ['app/data/contacts/user.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('financeiro', { // Adiciona um item no menu
@@ -57,7 +57,7 @@
         msNavigationServiceProvider.saveItem('financeiro.associado', {
             title : 'Gerenciar Associados',
             icon  : 'icon-account-box',
-            state : 'app.contacts',
+            state : 'app.associados',
             weight: 1
         });
 
