@@ -1,4 +1,4 @@
-<div id="contacts" class="page-layout simple left-sidenav inner-sidenav">
+<div id="associados" class="page-layout simple inner-sidenav">
 
   <!-- HEADER -->
   <div class="header md-accent-bg" layout="row" layout-align="space-between center">
@@ -33,9 +33,9 @@
   <!-- / HEADER -->
 
   <!-- SELECTED BAR -->
-  <div ng-show="vm.selectedContacts.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
+  <div ng-show="vm.selectedAssociados.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
 
-    <div class="close-button-wrapper" ng-click="vm.selectedContacts =[]">
+    <div class="close-button-wrapper" ng-click="vm.selectedAssociados =[]">
       <md-button layout="row" layout-align="start center">
         <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
         <span>Voltar</span>
@@ -45,8 +45,8 @@
     <div flex layout="row" layout-align="space-between center">
 
       <div>
-        <span class="selected-contacts-count">
-        <span>{{vm.selectedContacts.length}}</span>
+        <span class="selected-associados-count">
+        <span>{{vm.selectedAssociados.length}}</span>
         <span>selecionado(s)</span>
         </span>
 
@@ -56,12 +56,12 @@
           </md-button>
           <md-menu-content width="3">
             <md-menu-item>
-              <md-button ng-click="vm.selectAllContacts()">
+              <md-button ng-click="vm.selectAllAssociados()">
                 Selecionar todos
               </md-button>
             </md-menu-item>
             <md-menu-item>
-              <md-button ng-click="vm.deselectContacts()">
+              <md-button ng-click="vm.deselectAssociados()">
                 Selecionar nenhum
               </md-button>
             </md-menu-item>
@@ -70,7 +70,7 @@
       </div>
 
       <div class="multi-select-actions">
-        <md-button class="md-icon-button" ng-click="vm.deleteSelectedContacts($event)" aria-label="apagar selecionados">
+        <md-button class="md-icon-button" ng-click="vm.deleteSelectedAssociados($event)" aria-label="apagar selecionados">
           <md-icon md-font-icon="icon-delete"></md-icon>
         </md-button>
       </div>
@@ -87,7 +87,7 @@
     <div class="main scrollable" ms-scroll>
 
       <!-- CONTACT LIST -->
-      <md-list class="contacts-list">
+      <md-list class="associados-list">
 
         <!-- CONTACT LIST HEADER -->
         <md-subheader class="md-no-sticky md-white-bg">
@@ -102,8 +102,8 @@
                                 contacts</span>
                             <span ng-if="vm.listType.name">{{vm.listType.name}}</span> -->
 
-              <span ng-if="filteredContacts.length" class="secondary-text contacts-count">
-                                ({{filteredContacts.length}})
+              <span ng-if="filteredAssociados.length" class="secondary-text associados-count">
+                                ({{filteredAssociados.length}})
                             </span>
             </div>
 
@@ -183,28 +183,28 @@
         <!-- / CONTACT LIST HEADER -->
 
         <!-- CONTACT ITEM -->
-        <md-list-item class="contact-item md-white-bg" md-ink-ripple ng-repeat="contact in vm.contacts | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredContacts track by contact.nome "
-          ng-click="vm.openContactDialog($event, contact)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredContacts.length - $index}" ng-class="{'selected': vm.isSelected(contact)}">
+        <md-list-item class="associado-item md-white-bg" md-ink-ripple ng-repeat="associado in vm.associados | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredAssociados track by associado.nome"
+          ng-click="vm.openAssociadoDialog($event, associado)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredAssociados.length - $index}" ng-class="{'selected': vm.isSelected(associado)}">
 
-          <md-checkbox ng-checked="vm.exists(contact, vm.selectedContacts)" ng-click="vm.toggleSelectContact(contact, $event)" aria-label="{{vm.exists(contact, vm.selectedContacts) ? 'Deselect' : 'Select'}}">
+          <md-checkbox ng-checked="vm.exists(associado, vm.selectedAssociados)" ng-click="vm.toggleSelectAssociado(associado, $event)" aria-label="{{vm.exists(associado, vm.selectedAssociados) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
 
           <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
 
           <p class="text-truncate font-weight-600">
-            {{contact.nome}}
+            {{associado.nome}}
           </p>
 
           <p class="hide show-gt-xs">
-            {{contact.cpf}}
+            {{associado.cpf}}
           </p>
 
           <p class="hide show-gt-xs">
-            {{contact.celular}}
+            {{associado.celular}}
           </p>
 
           <p class="hide show-gt-sm">
-            {{contact.email}}
+            {{associado.email}}
           </p>
 
           <!-- Temporário -->
@@ -214,7 +214,7 @@
           </p>
 
           <p class="hide show-gt-sm">
-            {{contact.valorAtual | currency : "R$ "}}
+            {{associado.valorAtual | currency : "R$ "}}
           </p>
 
           <div class="actions" layout="row" layout-align="start center">
@@ -230,13 +230,13 @@
 
               <md-menu-content width="3">
                 <md-menu-item>
-                  <md-button ng-click="vm.openContactDialog($event, contact)">
+                  <md-button ng-click="vm.openAssociadoDialog($event, associado)">
                     Editar associado
                   </md-button>
                 </md-menu-item>
 
                 <md-menu-item>
-                  <md-button ng-click="vm.deleteContactConfirm(contact, ev)">
+                  <md-button ng-click="vm.deleteAssociadoConfirm(associado, ev)">
                     Apagar associado
                   </md-button>
                 </md-menu-item>
@@ -263,7 +263,7 @@
       <!-- / CONTACT LIST -->
 
       <!-- NO RESULTS -->
-      <md-list-item class="no-results md-white-bg" ng-show="filteredContacts.length === 0">
+      <md-list-item class="no-results md-white-bg" ng-show="filteredAssociados.length === 0">
         <p>Nenhum associado encontrado.</p>
       </md-list-item>
       <!-- / NO RESULTS -->
@@ -275,7 +275,7 @@
   <!-- / CONTENT -->
 
   <!-- ADD CONTACT BUTTON -->
-  <md-button class="md-fab md-accent md-icon-button" id="add-contact-button" ng-click="vm.openContactDialog($event)" aria-label="Adicionar associado">
+  <md-button class="md-fab md-accent md-icon-button" id="add-associado-button" ng-click="vm.openAssociadoDialog($event)" aria-label="Adicionar associado">
     <md-icon md-font-icon="icon-account-plus"></md-icon>
   </md-button>
   <!-- / ADD CONTACT BUTTON -->

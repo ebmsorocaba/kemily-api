@@ -3,26 +3,26 @@
 
   angular
     .module('app.contacts')
-    .controller('ContactDialogController', ContactDialogController);
+    .controller('AssociadoDialogController', AssociadoDialogController);
 
   /** @ngInject */
-  function ContactDialogController($mdDialog, Contact, Contacts, User, msUtils, api) {
+  function AssociadoDialogController($mdDialog, Associado, Associados, User, msUtils, api) {
     var vm = this;
 
     // Data
     vm.title = 'Alterar Associado';
-    vm.contact = angular.copy(Contact);
-    vm.contacts = Contacts;
+    vm.associado = angular.copy(Associado);
+    vm.contacts = Associados;
     vm.user = User;
-    vm.newContact = false;
+    vm.newAssociado = false;
     vm.allFields = false;
 
     // Formas de Pagamento
     vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
 
     // TODO Ajustar o Associado conforme o BackEnd
-    if (!vm.contact) {
-      vm.contact = {
+    if (!vm.associado) {
+      vm.associado = {
         'cpf': '',
         'nome': '',
         'celular': null,
@@ -34,14 +34,14 @@
       };
 
       vm.title = 'Novo Associado';
-      vm.newContact = true;
-      // vm.contact.tags = [];
+      vm.newAssociado = true;
+      // vm.associado.tags = [];
     }
 
     // Methods
-    vm.addNewContact = addNewContact;
-    vm.saveContact = saveContact;
-    vm.deleteContactConfirm = deleteContactConfirm;
+    vm.addNewAssociado = addNewAssociado;
+    vm.saveAssociado = saveAssociado;
+    vm.deleteAssociadoConfirm = deleteAssociadoConfirm;
     vm.closeDialog = closeDialog;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
@@ -50,10 +50,10 @@
     /**
      * Add new contact
      */
-    function addNewContact() {
+    function addNewAssociado() {
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
-      api.associado.list.save(vm.contact,
+      api.associado.list.save(vm.associado,
         // Exibe o resultado no console do navegador:
         // Sucesso
         function(response) {
@@ -66,7 +66,7 @@
       );
 
       // Adiciona uma nova linha no topo da lista na tela
-      vm.contacts.unshift(vm.contact);
+      vm.contacts.unshift(vm.associado);
 
       closeDialog();
     }
@@ -74,17 +74,17 @@
     /**
      * Save contact
      */
-    function saveContact() {
+    function saveAssociado() {
       // Atualiza a linha na tela:
       for (var i = 0; i < vm.contacts.length; i++) {
-        if (vm.contacts[i].cpf === vm.contact.cpf) {
-          vm.contacts[i] = angular.copy(vm.contact);
+        if (vm.contacts[i].cpf === vm.associado.cpf) {
+          vm.contacts[i] = angular.copy(vm.associado);
           break;
         }
       }
 
       // Grava as alterações no BD:
-      api.associado.getByCpf.save(vm.contact,
+      api.associado.getByCpf.save(vm.associado,
         // Exibe o resultado no console do navegador:
         // Sucesso
         function(response) {
@@ -112,10 +112,10 @@
     /**
      * Delete Contact Confirm Dialog
      */
-    function deleteContactConfirm(ev) {
+    function deleteAssociadoConfirm(ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar este associado?')
-        .htmlContent('<b>' + vm.contact.nome + ' (' + vm.contact.cpf + '</b>' + ') será apagado(a).')
+        .htmlContent('<b>' + vm.associado.nome + ' (' + vm.associado.cpf + '</b>' + ') será apagado(a).')
         .ariaLabel('apagar associado')
         .targetEvent(ev)
         .ok('OK')
@@ -126,9 +126,9 @@
         // TODO Remover também a [formaPgto] do Associado.
 
         // Remove o Associado do BD
-        console.log('deleteContact @ contacts.controller.js');
+        console.log('deleteAssociado @ contacts.controller.js');
         api.associado.getByCpf.delete({
-            'cpf': contact.cpf
+            'cpf': associado.cpf
           },
           // Sucesso
           function(response) {
@@ -141,7 +141,7 @@
         );
 
         // Remove a da lista na tela a linha deste Associado
-        vm.contacts.splice(vm.contacts.indexOf(Contact), 1);
+        vm.contacts.splice(vm.contacts.indexOf(Associado), 1);
       });
     }
 
