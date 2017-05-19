@@ -49,7 +49,7 @@
 
         msNavigationServiceProvider.saveItem('administrador.usuario', { // Adiciona um sub-item dentro de [administrador].
             title    : 'Gerenciar Usuários',
-            icon     : 'icon-account-circle', // Ícone deste item no menu.
+            icon     : 'icon-worker', // Ícone deste item no menu.
             state    : 'app.usuario', // Qual módulo o item aponta/abre.
             weight   : 1 // Ordem no menu. Baseado em prioridade.
         });

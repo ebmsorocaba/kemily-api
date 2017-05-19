@@ -8,6 +8,9 @@
     angular
         .module('fuse', [
 
+            // angular-mask (ver bower.json)
+            'ngMask',
+
             // Core
             'app.core',
 
@@ -29,7 +32,12 @@
             // Relatório financeiro
             'app.relatorio',
 
-            // angular-mask (ver bower.json)
-            'ngMask'
+            'app.aluno',
+
+            'app.educador',
+
+            'app.projeto',
+
+            'app.relatorioSocial'
         ]);
 })();
