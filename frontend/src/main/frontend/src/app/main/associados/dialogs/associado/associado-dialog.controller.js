@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.contacts')
+    .module('app.associados')
     .controller('AssociadoDialogController', AssociadoDialogController);
 
   /** @ngInject */
@@ -12,7 +12,7 @@
     // Data
     vm.title = 'Alterar Associado';
     vm.associado = angular.copy(Associado);
-    vm.contacts = Associados;
+    vm.associados = Associados;
     vm.user = User;
     vm.newAssociado = false;
     vm.allFields = false;
@@ -66,7 +66,7 @@
       );
 
       // Adiciona uma nova linha no topo da lista na tela
-      vm.contacts.unshift(vm.associado);
+      vm.associados.unshift(vm.associado);
 
       closeDialog();
     }
@@ -76,9 +76,9 @@
      */
     function saveAssociado() {
       // Atualiza a linha na tela:
-      for (var i = 0; i < vm.contacts.length; i++) {
-        if (vm.contacts[i].cpf === vm.associado.cpf) {
-          vm.contacts[i] = angular.copy(vm.associado);
+      for (var i = 0; i < vm.associados.length; i++) {
+        if (vm.associados[i].cpf === vm.associado.cpf) {
+          vm.associados[i] = angular.copy(vm.associado);
           break;
         }
       }
@@ -126,7 +126,7 @@
         // TODO Remover também a [formaPgto] do Associado.
 
         // Remove o Associado do BD
-        console.log('deleteAssociado @ contacts.controller.js');
+        console.log('deleteAssociado @ associados.controller.js');
         api.associado.getByCpf.delete({
             'cpf': associado.cpf
           },
@@ -141,7 +141,7 @@
         );
 
         // Remove a da lista na tela a linha deste Associado
-        vm.contacts.splice(vm.contacts.indexOf(Associado), 1);
+        vm.associados.splice(vm.associados.indexOf(Associado), 1);
       });
     }
 
