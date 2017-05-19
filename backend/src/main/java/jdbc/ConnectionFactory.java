@@ -34,15 +34,6 @@ public class ConnectionFactory {
 			//
 			// return conn;
 
-			/** Heroku Master */
-			// String url = "jdbc:postgresql://ec2-50-17-236-15.compute-1.amazonaws.com/d18n1ki8qe2orj?sslmode=require";
-			// Properties props = new Properties();
-			// props.setProperty("user","pjcvqvzaytfmmi");
-			// props.setProperty("password","9416bca22c6cf3392b8c9483de6c78cd52cf96b1d2f3504ea51de2eae260d9ba");
-			// Connection conn = DriverManager.getConnection(url, props);
-			//
-			// return conn;
-
 			/** Localhost */
 			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/ebm_admin", "postgres", "postgres");
 
