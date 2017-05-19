@@ -21,7 +21,7 @@
             'app.usuario',
 
             // Cadastro de Associados
-            'app.contacts',
+            'app.associados',
 
             // Informar pagamento
             'app.pagamento',
