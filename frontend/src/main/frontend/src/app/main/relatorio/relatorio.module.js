@@ -19,13 +19,19 @@
                         controller : 'RelatorioController as vm'
                     }
                 },
-                // resolve: {
-                //     SampleData: function (msApi)
-                //     {
-                //         return msApi.resolve('sample@get');
-                //     }
-                // }
+                resolve: {
+                    // Associados: function (msApi)
+                    // {
+                    //     return msApi.resolve('associados.associados@query'); // GET para Arrays
+                    // },
+                    User: function (msApi)
+                    {
+                        return msApi.resolve('contacts.user@get');
+                    }
+                }
             });
+
+            msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
 
         // Translation
         // $translatePartialLoaderProvider.addPart('app/main/relatorio');

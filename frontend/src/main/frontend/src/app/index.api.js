@@ -210,6 +210,10 @@
           list     : $resource(api.baseUrl + 'pagamento')
         }
 
+        api.relatPagAssociado = {
+          list     : $resource(api.baseUrl + 'relatPagAssociado/:cpf/?dataInicio=:dataInicio&dataFim=:dataFim', {cpf: '@cpf'}, {dataInicio: '@dataInicio'}, {dataFim: '@dataFim'})
+        }
+
         // Exemplo do FUSE
         // api.blog = {
         // *                   list     : $resource('http://api.example.com/blog'),
