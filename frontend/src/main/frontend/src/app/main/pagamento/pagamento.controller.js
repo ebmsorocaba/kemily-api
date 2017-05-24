@@ -3,7 +3,8 @@
 
   angular
     .module('app.pagamento')
-    .controller('PagamentoController', PagamentoController);
+    .controller('PagamentoController', PagamentoController)
+    
 
   /** @ngInject */
   function PagamentoController($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api) {
@@ -42,6 +43,10 @@
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
     //////////
+
+
+
+
 
     function limpaForm() {
       console.log('limpaForm @ pagamento.controller.js');

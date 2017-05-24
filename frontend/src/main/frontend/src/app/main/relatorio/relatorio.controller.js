@@ -16,12 +16,21 @@
       // Methods
       vm.limpaForm = limpaForm;
       vm.buscaCpf = buscaCpf;
-      vm.buscaPagamentos = buscaPagamentos;
-      vm.getTotal = getTotal;
+
+      
+      vm.openAssociadoDialog = openAssociadoDialog
 
       vm.toggleInArray = msUtils.toggleInArray;
       vm.exists = msUtils.exists;
       //////////
+
+
+      vm.cpf ='333.333.333-33';
+      vm.dataInicio = new Date(2015, 0, 1, 0, 0, 0, 0);
+      vm.dataFim = new Date(2015, 3, 1, 0, 0, 0, 0);
+      console.log(vm.dataInicio);
+      console.log(vm.dataFim);
+
 
       function limpaForm() {
         console.log('limpaForm @ pagamento.controller.js');
@@ -51,35 +60,27 @@
 
       }
 
-      function buscaPagamentos(cpf, dataInicio, dataFim) {
-        console.log('buscarPagamentos @ pagamento.controller.js');
-        // Temporário
-
-        api.relatPagAssociado.list.query({ //É realizado um filtro da data para atender o esperado no backend
-          'cpf': cpf,
-          'dataInicio': dataInicio = $filter('date')(dataInicio, 'dd-MM-yyyy'),
-          'dataFim': dataFim = $filter('date')(dataFim, 'dd-MM-yyyy')
-        },
-          // Exibe o resultado no console do navegador:
-          // Sucesso
-          function(response) {
-            console.log(response);
-            vm.pagamentos=response;
-            vm.getTotal(vm.pagamentos); //Pega o total (soma de todos os pagamentos)
-          },
-          // Erro
-          function(response) {
-            console.error(response);
-          });
-      };
 
 
-      function getTotal(pagamentos){
-        vm.total = 0;
-        for(var i = 0; i < pagamentos.length; i++){ //Faz um looping para somar todos os pagamentos
-          var valor = pagamentos[i].valor;
-          vm.total += valor;
-        }
+
+      function openAssociadoDialog(ev) {
+        $mdDialog.show({
+          controller: 'RelatorioDialogController',
+          controllerAs: 'vm',
+          templateUrl: 'app/main/relatorio/dialogs/relatorio/relatorio-dialog.html',
+          parent: angular.element($document.find('#content-container')),
+          targetEvent: ev,
+          clickOutsideToClose: true,
+          locals: {
+            Cpf: vm.cpf,
+            DataInicio: vm.dataInicio,
+            DataFim: vm.dataFim
+          }
+        });
       }
+
+
+
+
     }
 })();

@@ -96,7 +96,7 @@
             </md-card-header-text>
           </md-card-header>
 
-          <md-card-content>
+          <md-card-content layout="row">
             <md-input-container>
               <label>CPF do Associado</label>
               <md-icon md-font-icon="icon-account-box"></md-icon>
@@ -119,7 +119,7 @@
         </div>
 
         <div layout="row" layout-align="center">
-          <md-button ng-click="vm.buscaPagamentos(vm.cpf, vm.dataInicio, vm.dataFim)" class="md-accent md-raised">Consultar</md-button>
+          <md-button ng-click="vm.openAssociadoDialog($event)" class="md-accent md-raised">Consultar</md-button>
           <md-button ng-click="vm.limpaForm()">Limpar</md-button>
         </div>
       </form>

@@ -96,7 +96,7 @@
             </md-card-header-text>
           </md-card-header>
 
-          <md-card-content>
+          <md-card-content layout="row">
             <md-input-container>
               <label>CPF do Associado</label>
               <md-icon md-font-icon="icon-account-box"></md-icon>
@@ -113,15 +113,15 @@
               <md-datepicker ng-model="vm.pagamento.dataPgto" md-placeholder="Data de Pagamento" md-open-on-focus></md-datepicker>
             </md-input-container>
 
-            <md-input-container>
-              <label>Forma de Pagamento</label>
-              <md-icon md-font-icon="icon-credit-card"></md-icon>
-              <md-select ng-model="vm.pagamento.formaPgto.formaPagamento">
-                <md-option value="Boleto">Boleto</md-option>
-                <md-option value="Cartão">Cartão</md-option>
-                <md-option value="Dinheiro">Dinheiro</md-option>
-              </md-select>
-            </md-input-container>
+              <md-input-container>
+                <label>Forma de Pagamento</label>
+                <md-icon md-font-icon="icon-credit-card"></md-icon>
+                <md-select ng-model="vm.pagamento.formaPgto.formaPagamento">
+                  <md-option value="Boleto">Boleto</md-option>
+                  <md-option value="Cartão">Cartão</md-option>
+                  <md-option value="Dinheiro">Dinheiro</md-option>
+                </md-select>
+              </md-input-container>
 
           </md-card-content>
         </md-card>
