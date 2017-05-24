@@ -17,17 +17,18 @@
       vm.limpaForm = limpaForm;
       vm.buscaCpf = buscaCpf;
 
-      
+
       vm.openAssociadoDialog = openAssociadoDialog
 
       vm.toggleInArray = msUtils.toggleInArray;
       vm.exists = msUtils.exists;
       //////////
 
-
+      /*
       vm.cpf ='333.333.333-33';
       vm.dataInicio = new Date(2015, 0, 1, 0, 0, 0, 0);
       vm.dataFim = new Date(2015, 3, 1, 0, 0, 0, 0);
+      */
       console.log(vm.dataInicio);
       console.log(vm.dataFim);
 

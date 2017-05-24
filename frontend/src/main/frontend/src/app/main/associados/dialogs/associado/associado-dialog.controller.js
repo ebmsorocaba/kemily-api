@@ -84,7 +84,9 @@
       }
 
       // Grava as alterações no BD:
-      api.associado.getByCpf.save(vm.associado,
+      api.associado.getByCpf.update({
+        'cpf': vm.associado.cpf
+      },vm.associado,
         // Exibe o resultado no console do navegador:
         // Sucesso
         function(response) {

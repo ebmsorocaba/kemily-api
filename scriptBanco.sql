@@ -121,7 +121,7 @@ INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
   VALUES('666.666.666-66', 'Jonathan Nunes', '(11) 98881-5555', 'jojo@uol.com', 200.11, 12);
 INSERT INTO associado(cpf, nome, celular, email, valor_atual, venc_atual)
-  VALUES('333.333.333-33', 'Brenda Silva Dias', '(15) 90099-1122', 'brendadias@gmail.com', 500.99, 05);
+  VALUES('333.333.333-33', 'Cleiton Soares', '(15) 90099-1122', 'cletinho@gmail.com', 500.99, 05);
 
 INSERT INTO cartao(numero, bandeira, atual, cpf_associado)
   VALUES(4396378924129673, 'Visa', TRUE, '444.444.444-44');
@@ -153,21 +153,23 @@ INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
   VALUES('333.333.333-33', 'Dinheiro', TRUE);
 
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(10, '05/10/15', '15/10/15', '444.444.444-44', 'Boleto');
+  VALUES(10, '05/10/17', '15/10/17', '444.444.444-44', 'Boleto');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(10, '05/10/15', '15/10/15', '444.444.444-44', 'Dinheiro');
+  VALUES(10, '05/10/17', '15/10/17', '444.444.444-44', 'Dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(10000, '05/10/15', '15/10/15', '666.666.666-66', 'Dinheiro');
+  VALUES(10000, '05/10/17', '15/10/17', '666.666.666-66', 'Dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(15, '05/10/15', '15/1/15', '333.333.333-33', 'Dinheiro');
+  VALUES(15, '05/10/17', '15/1/17', '333.333.333-33', 'Dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(2000, '05/10/15', '15/2/15', '333.333.333-33', 'Dinheiro');
+  VALUES(2000, '05/10/17', '15/2/17', '333.333.333-33', 'Dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(555, '05/10/15', '15/3/15', '333.333.333-33', 'Dinheiro');
+  VALUES(555, '05/10/17', '15/3/17', '333.333.333-33', 'Dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(11.95, '05/10/15', '15/4/15', '333.333.333-33', 'Dinheiro');
+  VALUES(11.95, '05/10/17', '15/4/17', '333.333.333-33', 'Dinheiro');
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
-  VALUES(15, '05/10/15', '15/10/15', '555.555.555-55', 'Cartão');
+  VALUES(11.95, '05/10/17', '15/5/17', '333.333.333-33', 'Dinheiro');
+INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
+  VALUES(15, '05/10/17', '15/10/17', '555.555.555-55', 'Cartão');
 
 /*
 INSERT INTO pagamento_boleto(id_pagamento, codigo_boleto)

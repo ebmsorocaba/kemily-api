@@ -198,7 +198,7 @@
         // API Associado
         api.associado = {
           list      : $resource(api.baseUrl + 'associado'),
-          getByCpf  : $resource(api.baseUrl + 'associado/:cpf' + '/', {cpf: '@cpf'})
+          getByCpf  : $resource(api.baseUrl + 'associado/:cpf' + '/', {cpf: '@cpf'}, {'update': {method: 'PUT'}})
         }
 
         api.formaPgto = {
