@@ -4,10 +4,10 @@
   angular
     .module('app.pagamento')
     .controller('PagamentoController', PagamentoController)
-    
+
 
   /** @ngInject */
-  function PagamentoController($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api) {
+  function PagamentoController($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $state) {
 
     var vm = this;
 
@@ -44,8 +44,8 @@
     vm.exists = msUtils.exists;
     //////////
 
-
-
+    vm.sucess = sucess;
+    vm.fail = fail;
 
 
     function limpaForm() {
@@ -82,7 +82,7 @@
       };
     }
 
-    function cadastrarPagamento() {
+    function cadastrarPagamento(ev) {
       console.log('cadastrarPagamento @ pagamento.controller.js');
       // Temporário
 
@@ -93,12 +93,47 @@
         // Sucesso
         function(response) {
           console.log(response);
+          vm.sucess(ev);
         },
         // Erro
         function(response) {
           console.error(response);
+          vm.fail(ev);
         });
     };
+
+    function sucess(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+      var confirm = $mdDialog.alert()
+            .title('SUCESSO')
+            .textContent('O pagamento foi cadastrado com sucesso')
+            .ariaLabel('Tudo ok!')
+            .targetEvent(ev)
+            .ok('OK!')
+
+      $mdDialog.show(confirm).then(function() {
+        $scope.status = 'OK!';
+        $state.reload();
+      });
+  };
+
+  function fail(ev) {
+  // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.alert()
+          .title('FALHA')
+          .textContent('Houve algum problema e pagamento não foi registrado, verifique os campos ou contate um administrador')
+          .ariaLabel('Vou verificar!')
+          .targetEvent(ev)
+          .ok('Vou verificar!')
+
+    $mdDialog.show(confirm).then(function() {
+      $scope.status = 'falha!';
+
+    });
+};
+
+
+
 
     /**
      * Open new contact dialog
