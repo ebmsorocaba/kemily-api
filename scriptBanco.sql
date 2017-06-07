@@ -146,11 +146,25 @@ INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
   VALUES('444.444.444-44', 'Boleto', FALSE);
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
+  VALUES('444.444.444-44', 'Cartão', FALSE);
+INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
+  VALUES('555.555.555-55', 'Dinheiro', FALSE);
+INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
+  VALUES('555.555.555-55', 'Boleto', FALSE);
+INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
   VALUES('555.555.555-55', 'Cartão', TRUE);
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
   VALUES('666.666.666-66', 'Dinheiro', TRUE);
 INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
+  VALUES('666.666.666-66', 'Boleto', FALSE);
+INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
+  VALUES('666.666.666-66', 'Cartão', FALSE);
+INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
   VALUES('333.333.333-33', 'Dinheiro', TRUE);
+INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
+  VALUES('333.333.333-33', 'Boleto', FALSE);
+INSERT INTO associado_forma_pagamento(cpf_associado, forma_pgto, atual)
+  VALUES('333.333.333-33', 'Cartão', FALSE);
 
 INSERT INTO pagamento(valor_pago, vencimento, data_pgto, cpf_associado, forma_pgto_efetuada)
   VALUES(10, '05/10/17', '15/10/17', '444.444.444-44', 'Boleto');

@@ -1,7 +1,7 @@
 <!-- DIALOG -->
 <md-dialog class="associado-dialog">
 
-  <form name="ssociadoForm" class="md-inline-form" novalidate>
+  <form name="AssociadoForm" class="md-inline-form" novalidate>
 
     <!-- DIALOG TOOLBAR -->
     <!-- <md-toolbar class="md-accent" layout="column"> -->
@@ -74,9 +74,10 @@
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
+
         <label>CPF</label>
         <md-icon></md-icon>
-        <input ng-model="vm.associado.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newAssociado" required>
+        <input ng-blur="vm.calculaCPF(vm.associado.cpf)" ng-model="vm.associado.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newAssociado" required>
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">

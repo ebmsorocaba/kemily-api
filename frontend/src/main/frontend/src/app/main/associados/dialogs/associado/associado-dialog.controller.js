@@ -16,9 +16,12 @@
     vm.user = User;
     vm.newAssociado = false;
     vm.allFields = false;
+    vm.ok = false;
 
     // Formas de Pagamento
     vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
+    vm.calculaCPF = calculaCPF;
+
 
     // TODO Ajustar o Associado conforme o BackEnd
     if (!vm.associado) {
@@ -53,22 +56,24 @@
     function addNewAssociado() {
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
-      api.associado.list.save(vm.associado,
-        // Exibe o resultado no console do navegador:
-        // Sucesso
-        function(response) {
-          console.log(response);
-        },
-        // Erro
-        function(response) {
-          console.error(response);
-        }
-      );
+      if(vm.ok == true){
+        api.associado.list.save(vm.associado,
+          // Exibe o resultado no console do navegador:
+          // Sucesso
+          function(response) {
+            console.log(response);
+          },
+          // Erro
+          function(response) {
+            console.error(response);
+          }
+        );
 
       // Adiciona uma nova linha no topo da lista na tela
-      vm.associados.unshift(vm.associado);
+        vm.associados.unshift(vm.associado);
 
-      closeDialog();
+        closeDialog();
+      }
     }
 
     /**
@@ -146,6 +151,58 @@
         vm.associados.splice(vm.associados.indexOf(Associado), 1);
       });
     }
+
+
+    function calculaCPF(strCPF) {
+      var Soma;
+      var Resto;
+      Soma = 0;
+      var i;
+      var flag = 0;
+
+      //retirar mascara
+      if(strCPF != null){
+        strCPF = strCPF.replace(/\-/g,"");
+        strCPF = strCPF.replace(/\./g,"");
+      }
+      else{
+        return false;
+      }
+      //verificar se os numeros do cpf são todos iguais ex: 000.000.000-00
+      for(i=0; i<11; i++){
+          if(strCPF[i] == strCPF[i+1]){
+              flag++;
+          }
+      }
+
+      if(flag==10){
+          vm.ok = false;
+          return false;
+      }
+
+      for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+      Resto = (Soma * 10) % 11;
+
+      if ((Resto == 10) || (Resto == 11))  Resto = 0;
+      if (Resto != parseInt(strCPF.substring(9, 10)) ){
+        vm.ok = false;
+        return false;
+      }
+
+      Soma = 0;
+      for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+      Resto = (Soma * 10) % 11;
+
+      if ((Resto == 10) || (Resto == 11))  Resto = 0;
+      if (Resto != parseInt(strCPF.substring(10, 11) ) ){
+        vm.ok = false;
+        return false;
+      }
+
+      vm.ok = true;
+      return true;
+    }
+
 
     /**
      * Close dialog

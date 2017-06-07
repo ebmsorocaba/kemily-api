@@ -16,7 +16,7 @@
     {
 
         $stateProvider.state('app.associados', {
-            url    : '/contatos',
+            url    : '/associado',
             views  : {
                 'content@app': {
                     templateUrl: 'app/main/associados/associados.html',

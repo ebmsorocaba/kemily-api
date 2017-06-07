@@ -20,6 +20,7 @@
     vm.listOrder = 'nome';
     vm.listOrderAsc = false;
     vm.selectedAssociados = [];
+    
     // vm.newGroupName = '';
 
     // Methods
@@ -193,6 +194,10 @@
     function selectAllAssociados() {
       vm.selectedAssociados = $scope.filteredAssociados;
     }
+
+
+
+
 
     /**
      *
