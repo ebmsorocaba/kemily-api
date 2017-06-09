@@ -11,20 +11,16 @@
     var vm = this;
 
     // Data
-    // vm.formaPgto = FormaPgto;
 
     vm.associados = Associados;
     vm.user = User.data;
-    // vm.filterIds = null;
     vm.listType = 'all';
     vm.listOrder = 'nome';
     vm.listOrderAsc = false;
     vm.selectedAssociados = [];
-    
-    // vm.newGroupName = '';
+
 
     // Methods
-    // vm.filterChange = filterChange;
     vm.openAssociadoDialog = openAssociadoDialog;
     vm.deleteAssociadoConfirm = deleteAssociadoConfirm;
     vm.deleteAssociado = deleteAssociado;
@@ -33,45 +29,12 @@
     vm.deselectAssociados = deselectAssociados;
     vm.selectAllAssociados = selectAllAssociados;
     vm.deleteAssociado = deleteAssociado;
-    // vm.addNewGroup = addNewGroup;
-    // vm.deleteGroup = deleteGroup;
-    // vm.toggleSidenav = toggleSidenav;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
     //////////
 
     /**
-     * Change Contacts List Filter
-     * @param type
-     */
-    // function filterChange(type)
-    // {
-    //
-    //     vm.listType = type;
-    //
-    //     if ( type === 'all' )
-    //     {
-    //         vm.filterIds = null;
-    //     }
-    //     else if ( type === 'frequent' )
-    //     {
-    //         vm.filterIds = vm.user.frequentContacts;
-    //     }
-    //     else if ( type === 'starred' )
-    //     {
-    //         vm.filterIds = vm.user.starred;
-    //     }
-    //     else if ( angular.isObject(type) )
-    //     {
-    //         vm.filterIds = type.contactIds;
-    //     }
-    //
-    //     vm.selectedContacts = [];
-    //
-    // }
-
-    /**
-     * Open new contact dialog
+     * Open new Associado dialog
      *
      * @param ev
      * @param contact
@@ -93,7 +56,7 @@
     }
 
     /**
-     * Delete Contact Confirm Dialog
+     * Delete Associado Confirm Dialog
      */
     function deleteAssociadoConfirm(associado, ev) {
       var confirm = $mdDialog.confirm()
@@ -114,7 +77,7 @@
     }
 
     /**
-     * Delete Contact
+     * Delete Associado
      */
     function deleteAssociado(associado) {
 
@@ -140,7 +103,7 @@
     }
 
     /**
-     * Delete Selected Contacts
+     * Delete Selected Associados
      */
     function deleteSelectedAssociados(ev) {
       var confirm = $mdDialog.confirm()
@@ -164,9 +127,9 @@
     }
 
     /**
-     * Toggle selected status of the contact
+     * Toggle selected status of the associado
      *
-     * @param contact
+     * @param associado
      * @param event
      */
     function toggleSelectAssociado(associado, event) {
@@ -182,77 +145,18 @@
     }
 
     /**
-     * Deselect contacts
+     * Deselect associados
      */
     function deselectAssociados() {
       vm.selectedAssociados = [];
     }
 
     /**
-     * Sselect all contacts
+     * Sselect all associados
      */
     function selectAllAssociados() {
       vm.selectedAssociados = $scope.filteredAssociados;
     }
-
-
-
-
-
-    /**
-     *
-     */
-    // function addNewGroup()
-    // {
-    //     if ( vm.newGroupName === '' )
-    //     {
-    //         return;
-    //     }
-    //
-    //     var newGroup = {
-    //         'id'        : msUtils.guidGenerator(),
-    //         'name'      : vm.newGroupName,
-    //         'contactIds': []
-    //     };
-    //
-    //     vm.user.groups.push(newGroup);
-    //     vm.newGroupName = '';
-    // }
-
-    /**
-     * Delete Group
-     */
-    // function deleteGroup(ev)
-    // {
-    //     var group = vm.listType;
-    //
-    //     var confirm = $mdDialog.confirm()
-    //         .title('Are you sure want to delete the group?')
-    //         .htmlContent('<b>' + group.name + '</b>' + ' will be deleted.')
-    //         .ariaLabel('delete group')
-    //         .targetEvent(ev)
-    //         .ok('OK')
-    //         .cancel('CANCEL');
-    //
-    //     $mdDialog.show(confirm).then(function ()
-    //     {
-    //
-    //         vm.user.groups.splice(vm.user.groups.indexOf(group), 1);
-    //
-    //         filterChange('all');
-    //     });
-    //
-    // }
-
-    /**
-     * Toggle sidenav
-     *
-     * @param sidenavId
-     */
-    // function toggleSidenav(sidenavId)
-    // {
-    //     $mdSidenav(sidenavId).toggle();
-    // }
 
   }
 

@@ -39,9 +39,6 @@
             }
         });
 
-        // Translation
-        // $translatePartialLoaderProvider.addPart('app/main/apps/contacts');
-
         // Api
         msApiProvider.register('associados.associados', ['/api/associado']);
         //msApiProvider.register('contacts.formaPgto', ['/formaPgto']);

@@ -51,7 +51,7 @@
     //////////
 
     /**
-     * Add new contact
+     * Add new associado
      */
     function addNewAssociado() {
       // Cria o novo registro no BD
@@ -77,7 +77,7 @@
     }
 
     /**
-     * Save contact
+     * Save new associado
      */
     function saveAssociado() {
       // Atualiza a linha na tela:
@@ -103,21 +103,11 @@
         }
       );
 
-      // Dummy save action
-      // for ( var i = 0; i < vm.contacts.length; i++ )
-      // {
-      //     if ( vm.contacts[i].id === vm.contact.id )
-      //     {
-      //         vm.contacts[i] = angular.copy(vm.contact);
-      //         break;
-      //     }
-      // }
-
       closeDialog();
     }
 
     /**
-     * Delete Contact Confirm Dialog
+     * Delete Associado Confirm Dialog
      */
     function deleteAssociadoConfirm(ev) {
       var confirm = $mdDialog.confirm()

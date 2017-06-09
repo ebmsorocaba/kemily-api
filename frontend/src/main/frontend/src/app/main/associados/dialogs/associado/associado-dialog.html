@@ -15,55 +15,6 @@
     </div>
     <!-- / TOOLBAR TOP -->
 
-    <!-- TOOLBAR MIDDLE -->
-    <!-- <div class="md-toolbar-tools md-toolbar-tools-middle" flex layout="column" layout-align="center center">
-                <div layout="column" layout-align="center center">
-                    <img ng-src="{{vm.contact.avatar}}" class="md-avatar avatar contact-avatar huge"
-                         alt="{{vm.contact.name}}"/>
-                    <div class="contact-name">{{vm.contact.nome}}</div>
-                </div>
-            </div> -->
-    <!-- / TOOLBAR MIDDLE -->
-
-    <!--  TOOLBAR BOTTOM -->
-    <!-- <div class="md-toolbar-tools md-toolbar-tools-bottom" layout="row" layout-align="center center">
-
-                <div flex layout="row" layout-align="center center">
-
-                    <md-button class="md-icon-button"
-                               ng-click="vm.toggleInArray(vm.contact.id, vm.user.starred)"
-                               aria-label="Toggle starred" translate
-                               translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
-                        <md-icon ng-if="vm.exists(vm.contact.id,vm.user.starred)" md-font-icon="icon-star"
-                                 class="amber-fg"></md-icon>
-                        <md-icon ng-if="!vm.exists(vm.contact.id,vm.user.starred)"
-                                 md-font-icon="icon-star-outline"></md-icon>
-                    </md-button>
-
-                    <md-menu>
-                        <md-button class="md-icon-button" aria-label="More" translate
-                                   translate-attr-aria-label="TODO.MORE">
-                            <md-icon md-font-icon="icon-account-multiple-plus" ng-click="$mdOpenMenu($event)"></md-icon>
-                        </md-button>
-
-                        <md-menu-content width="3">
-                            <md-list-item ng-if="vm.user.groups" ng-repeat="group in vm.user.groups"
-                                          ng-click="vm.toggleInArray(vm.contact.id,group.contactIds)">
-                                <p class="pl-8"
-                                   ng-style="vm.exists(vm.contact.id,group.contactIds) && {'font-weight':'500'}">
-                                    {{group.name}}
-                                </p>
-                            </md-list-item>
-
-                        </md-menu-content>
-                    </md-menu>
-                </div>
-            </div> -->
-    <!-- / TOOLBAR BOTTOM -->
-
-    <!-- </md-toolbar> -->
-    <!-- / DIALOG TOOLBAR -->
-
     <!-- DIALOG CONTENT -->
     <md-dialog-content ms-scroll>
 
@@ -123,75 +74,17 @@
         <div class="hint" ng-if="showHints">Dia de vencimento, de 1 até 28.</div>
       </md-input-container>
 
-      <!-- <div ng-if="!vm.allFields" layout="row" layout-align="center center">
-                <md-button class="md-accent" ng-click="vm.allFields = true" translate="CONTACTS.SHOW_ALL_FIELDS">Show
-                    All Fields
-                </md-button>
-            </div> -->
-
-      <!-- <div ng-if="vm.allFields"> -->
-      <!-- <md-input-container class="md-block">
-                    <md-icon md-font-icon="icon-phone"></md-icon>
-                    <input ng-model="vm.contact.phone" type="text" placeholder="Phone number" translate
-                           translate-attr-placeholder="CONTACTS.PHONE_NUMBER">
-                </md-input-container>
-
-                <md-input-container class="md-block">
-                    <md-icon md-font-icon="icon-email" class="email"></md-icon>
-                    <input ng-model="vm.contact.email" type="email" placeholder="Email" translate
-                           translate-attr-placeholder="CONTACTS.EMAIL">
-                </md-input-container>
-
-
-                <md-input-container class="md-block">
-                    <md-icon md-font-icon="icon-domain"></md-icon>
-                    <input ng-model="vm.contact.company" type="text" placeholder="Company" translate
-                           translate-attr-placeholder="CONTACTS.COMPANY">
-                </md-input-container>
-
-                <md-input-container class="md-block">
-                    <md-icon md-font-icon="icon-worker"></md-icon>
-                    <input ng-model="vm.contact.jobTitle" type="text" placeholder="Job title" translate
-                           translate-attr-placeholder="CONTACTS.JOB_TITLE">
-                </md-input-container>
-
-                <md-datepicker class="birthday-input" ng-model="vm.contact.birthday" md-placeholder="Birthday"
-                               ng-required="false">
-                </md-datepicker>
-
-                <md-input-container class="md-block">
-                    <md-icon md-font-icon="icon-home"></md-icon>
-                    <input ng-model="vm.contact.address" type="text" placeholder="Address" translate
-                           translate-attr-placeholder="CONTACTS.ADDRESS">
-                </md-input-container>
-
-                <div layout="row" class="md-block textarea-wrapper" layout-align="start start">
-                    <md-icon md-font-icon="icon-note"></md-icon>
-                    <md-input-container flex>
-                        <label translate translate-attr-placeholder="CONTACTS.NOTES">Notes</label>
-                        <textarea ng-model="vm.contact.notes" type="text" max-rows="4"></textarea>
-                    </md-input-container>
-                </div>
-
-                <div layout="row" layout-align="center center">
-                    <md-button class="md-accent" ng-click="vm.allFields = false" translate="CONTACTS.FEWER_FIELDS">Fewer
-                        Fields
-                    </md-button>
-                </div> -->
-
-      <!-- </div> -->
-
     </md-dialog-content>
     <!-- / DIALOG CONTENT -->
 
     <!-- DIALOG ACTIONS -->
     <md-dialog-actions layout="row" layout-align="space-between center">
       <div layout="row" layout-align="start center">
-        <md-button type="submit" ng-if="!vm.newAssociado" ng-click="vm.saveAssociado()" class="send-button md-accent md-raised" ng-disabled="ssociadoForm.$invalid || ssociadoForm.$pristine" aria-label="Salvar">
+        <md-button type="submit" ng-if="!vm.newAssociado" ng-click="vm.saveAssociado()" class="send-button md-accent md-raised" ng-disabled="AssociadoForm.$invalid || AssociadoForm.$pristine" aria-label="Salvar">
           Salvar
         </md-button>
 
-        <md-button type="submit" ng-if="vm.newAssociado" ng-click="vm.addNewAssociado()" class="send-button md-accent md-raised" ng-disabled="ssociadoForm.$invalid || contactForm.$pristine" aria-label="Adicionar associado">
+        <md-button type="submit" ng-if="vm.newAssociado" ng-click="vm.addNewAssociado()" class="send-button md-accent md-raised" ng-disabled="AssociadoForm.$invalid || AssociadoForm.$pristine" aria-label="Adicionar associado">
           Adicionar Associado
         </md-button>
 
