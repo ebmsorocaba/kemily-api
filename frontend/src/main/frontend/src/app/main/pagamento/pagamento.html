@@ -1,4 +1,4 @@
-<div id="contacts" class="page-layout simple left-sidenav inner-sidenav">
+<div id="associados" class="page-layout simple inner-sidenav">
 
   <!-- HEADER -->
   <div class="header md-accent-bg" layout="row" layout-align="space-between center">
@@ -11,31 +11,31 @@
 
       <div class="logo" layout="row" layout-align="start center">
         <span class="logo-icon">
-          <md-icon md-font-icon="icon-account-box" class="s24"></md-icon>
+          <md-icon md-font-icon="icon-credit-card" class="s24"></md-icon>
         </span>
-        <span class="logo-text">Informar Pagamento</span>
+        <span class="logo-text">Pagamentos</span>
       </div>
     </div>
     <!-- / APP TITLE -->
 
     <!-- SEARCH -->
-    <!-- <div class="search-input-wrapper" layout="row" layout-align="start center">
+    <div class="search-input-wrapper" layout="row" layout-align="start center">
       <label for="search">
         <md-icon md-font-icon="icon-magnify"></md-icon>
       </label>
       <md-input-container md-no-float class="m-0">
-        <input id="search" placeholder="Pesquisar associados..." type="text" ng-model="vm.search">
+        <input id="search" placeholder="Pesquisar pagamentos..." type="text" ng-model="vm.search">
       </md-input-container>
-    </div> -->
+    </div>
     <!-- / SEARCH -->
 
   </div>
   <!-- / HEADER -->
 
   <!-- SELECTED BAR -->
-  <!-- <div ng-show="vm.selectedContacts.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
+  <div ng-show="vm.selectedAssociados.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
 
-    <div class="close-button-wrapper" ng-click="vm.selectedContacts =[]">
+    <div class="close-button-wrapper" ng-click="vm.selectedAssociados =[]">
       <md-button layout="row" layout-align="start center">
         <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
         <span>Voltar</span>
@@ -45,8 +45,8 @@
     <div flex layout="row" layout-align="space-between center">
 
       <div>
-        <span class="selected-contacts-count">
-        <span>{{vm.selectedContacts.length}}</span>
+        <span class="selected-associados-count">
+        <span>{{vm.selectedAssociados.length}}</span>
         <span>selecionado(s)</span>
         </span>
 
@@ -56,12 +56,12 @@
           </md-button>
           <md-menu-content width="3">
             <md-menu-item>
-              <md-button ng-click="vm.selectAllContacts()">
+              <md-button ng-click="vm.selectAllAssociados()">
                 Selecionar todos
               </md-button>
             </md-menu-item>
             <md-menu-item>
-              <md-button ng-click="vm.deselectContacts()">
+              <md-button ng-click="vm.deselectAssociados()">
                 Selecionar nenhum
               </md-button>
             </md-menu-item>
@@ -70,14 +70,14 @@
       </div>
 
       <div class="multi-select-actions">
-        <md-button class="md-icon-button" ng-click="vm.deleteSelectedContacts($event)" aria-label="apagar selecionados">
+        <md-button class="md-icon-button" ng-click="vm.deleteSelectedAssociados($event)" aria-label="apagar selecionados">
           <md-icon md-font-icon="icon-delete"></md-icon>
         </md-button>
       </div>
 
     </div>
 
-  </div> -->
+  </div>
   <!-- / SELECTED BAR -->
 
   <!-- CONTENT -->
@@ -86,56 +86,195 @@
     <!-- MAIN -->
     <div class="main scrollable" ms-scroll>
 
-      <!-- ENTRADA DE PAGAMENTO -->
-      <form name="informaPgto">
-        <md-card>
-          <md-card-header>
-            <md-card-header-text>
-              <span class="md-title">Cadastro de Pagamentos</span>
-              <span class="md-subhead">Por favor, informe os dados referentes ao pagamento.</span>
-            </md-card-header-text>
-          </md-card-header>
+      <!-- CONTACT LIST -->
+      <md-list class="associados-list">
 
-          <md-card-content layout="row">
-            <md-input-container>
-              <label>CPF do Associado</label>
-              <md-icon md-font-icon="icon-account-box"></md-icon>
-              <input ng-blur="vm.buscaCpf()" ng-model="vm.pagamento.formaPgto.associado.cpf" type="text" mask="999.999.999-99" required>
-            </md-input-container>
+        <!-- CONTACT LIST HEADER -->
+        <md-subheader class="md-no-sticky md-white-bg">
 
-            <md-input-container>
-              <label>Valor Pago</label>
-              <md-icon md-font-icon="icon-currency-usd"></md-icon>
-              <input ng-model="vm.pagamento.valorPago" type="number" min="0" step="0.01" pattern="[0-9]{1,10}[.]{0,1}[0-9]{0,2}" required>
-            </md-input-container>
+          <div layout="row" layout-align="space-between center">
 
-            <md-input-container>
-              <md-datepicker ng-model="vm.pagamento.dataPgto" md-placeholder="Data de Pagamento" md-open-on-focus></md-datepicker>
-            </md-input-container>
+            <div class="list-title" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
+              <span ng-if="vm.listType === 'all'">Pagamentos efetuados</span>
+              <!-- <span ng-if="vm.listType === 'frequent'" translate="CONTACTS.FREQUENTLY_CONTACTED">Frequnetly
+                                contacted</span>
+                            <span ng-if="vm.listType === 'starred'" translate="CONTACTS.STARRED_CONTACTS">Starred
+                                contacts</span>
+                            <span ng-if="vm.listType.name">{{vm.listType.name}}</span> -->
 
-              <md-input-container>
-                <label>Forma de Pagamento</label>
-                <md-icon md-font-icon="icon-credit-card"></md-icon>
-                <md-select ng-model="vm.pagamento.formaPgto.formaPagamento">
-                  <md-option value="Boleto">Boleto</md-option>
-                  <md-option value="Cartão">Cartão</md-option>
-                  <md-option value="Dinheiro">Dinheiro</md-option>
-                </md-select>
-              </md-input-container>
+              <span ng-if="filteredPagamentos.length" class="secondary-text associados-count">
+                ({{filteredPagamentos.length}})
+              </span>
+            </div>
 
-          </md-card-content>
-        </md-card>
+            <!-- <div class="edit-group-form" ng-show="vm.listType.name" layout="row"
+                             layout-align="start center">
+                            <span ng-show="editGroupForm.$visible"
+                                  editable-text="vm.listType.name"
+                                  e-form="editGroupForm"
+                                  onaftersave="vm.editGroup()">
+                            </span>
 
-        <div layout="row" layout-align="center">
-          <h4>Obs.: Todos os campos são obrigatórios.</h4>
-        </div>
+                            <md-button class="md-icon-button edit-group-button" ng-click="editGroupForm.$show()"
+                                       ng-hide="editGroupForm.$visible" aria-label="edit group name" translate
+                                       translate-attr-label="CONTACTS.EDIT_GROUP_NAME">
+                                <md-icon md-font-icon="icon-pencil s18"></md-icon>
+                            </md-button>
 
-        <div layout="row" layout-align="center">
-          <md-button ng-click="vm.cadastrarPagamento($event)" class="md-accent md-raised">Cadastrar</md-button>
-          <md-button ng-click="vm.limpaForm()">Limpar</md-button>
-        </div>
-      </form>
-      <!-- / ENTRADA DE PAGAMENTO -->
+                            <md-button class="md-icon-button edit-group-button" ng-click="vm.deleteGroup($event)"
+                                       ng-hide="editGroupForm.$visible" aria-label="delete group" translate
+                                       translate-attr-label="CONTACTS.DELETE_GROUP">
+                                <md-icon md-font-icon="icon-delete s18"></md-icon>
+                            </md-button>
+                        </div> -->
+
+            <div flex></div>
+
+            <span>Ordenar</span>
+            <md-menu>
+
+              <md-button class="md-icon-button" aria-label="Ordenar">
+                <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
+              </md-button>
+
+              <md-menu-content width="3">
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>Id</span>
+                    <small>(Crescente)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                    <span>Id</span>
+                    <small>(Decrescente)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'formaPgto.associado.nome'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'formaPgto.associado.nome' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>Nome</span>
+                    <small>(A até Z)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'formaPgto.associado.nome'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'formaPgto.associado.nome' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                    <span>Nome</span>
+                    <small>(Z até A)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'formaPgto.associado.cpf'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'formaPgto.associado.cpf' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>CPF</span>
+                    <small>(Crescente)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'formaPgto.associado.cpf'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'formaPgto.associado.cpf' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                    <span>CPF</span>
+                    <small>(Decrescente)</small>
+                  </md-button>
+                </md-menu-item>
+
+              </md-menu-content>
+
+            </md-menu>
+
+          </div>
+
+        </md-subheader>
+        <!-- / CONTACT LIST HEADER -->
+
+        <!-- CONTACT ITEM -->
+        <md-list-item class="associado-item md-white-bg" md-ink-ripple ng-repeat="associado in vm.pagamentos | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredPagamentos track by associado.id"
+          ng-click="vm.openAssociadoDialog($event, associado)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredPagamentos.length - $index}" ng-class="{'selected': vm.isSelected(associado)}">
+
+          <md-checkbox ng-checked="vm.exists(associado, vm.selectedAssociados)" ng-click="vm.toggleSelectAssociado(associado, $event)" aria-label="{{vm.exists(associado, vm.selectedAssociados) ? 'Deselect' : 'Select'}}">
+          </md-checkbox>
+
+          <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
+
+          <p class="text-truncate font-weight-600">
+            {{associado.id}}
+          </p>
+
+          <p class="hide show-gt-sm">
+            {{associado.formaPgto.associado.cpf}}
+          </p>
+
+          <p class="hide show-gt-sm">
+            {{associado.formaPgto.associado.nome}}
+          </p>
+
+          <p class="hide show-gt-xs">
+            {{associado.valorPago | currency : "R$ "}}
+          </p>
+
+          <p class="hide show-gt-xs">
+            {{associado.dataPgto | date : "dd/MM/yyyy"}}
+          </p>
+
+          <!-- Temporário -->
+          <p class="hide show-gt-sm">
+            {{associado.formaPgto.formaPagamento}}
+            <!-- {{contact.formaPgto}} -->
+          </p>
+
+          <div class="actions" layout="row" layout-align="start center">
+            <!-- <md-button class="md-icon-button  hide show-gt-xs" ng-click="$event.stopPropagation();vm.toggleInArray(contact.id, vm.user.starred)" aria-label="Toggle starred" translate translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
+              <md-icon ng-if="vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star" class="amber-fg"></md-icon>
+              <md-icon ng-if="!vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star-outline"></md-icon>
+            </md-button> -->
+
+            <md-menu>
+              <md-button class="md-icon-button" aria-label="Mais">
+                <md-icon md-font-icon="icon-dots-vertical" ng-click="$mdOpenMenu($event)"></md-icon>
+              </md-button>
+
+              <md-menu-content width="3">
+                <md-menu-item>
+                  <md-button ng-click="vm.openAssociadoDialog($event, associado)">
+                    Editar pagamento
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.deleteAssociadoConfirm(associado, ev)">
+                    Apagar pagamento
+                  </md-button>
+                </md-menu-item>
+
+                <!-- <md-divider ng-if="vm.user.groups"></md-divider>
+
+                <md-subheader class="md-no-sticky" ng-if="vm.user.groups">Groups</md-subheader>
+
+                <md-list-item ng-if="vm.user.groups" ng-repeat="group in vm.user.groups" ng-click="vm.toggleInArray(contact.id,group.contactIds)">
+                  <p class="pl-8" ng-style="vm.exists(contact.id,group.contactIds) && {'font-weight':'500'}">
+                    {{group.name}}
+                  </p>
+                </md-list-item> -->
+
+              </md-menu-content>
+            </md-menu>
+
+          </div>
+
+        </md-list-item>
+        <!-- CONTACT ITEM -->
+
+      </md-list>
+      <!-- / CONTACT LIST -->
+
+      <!-- NO RESULTS -->
+      <md-list-item class="no-results md-white-bg" ng-show="filteredPagamentos.length === 0">
+        <p>Nenhum pagamento encontrado.</p>
+      </md-list-item>
+      <!-- / NO RESULTS -->
 
     </div>
     <!-- / MAIN -->
@@ -144,8 +283,8 @@
   <!-- / CONTENT -->
 
   <!-- ADD CONTACT BUTTON -->
-  <!-- <md-button class="md-fab md-accent md-icon-button" id="add-contact-button" ng-click="vm.openContactDialog($event)" aria-label="Adicionar associado">
-    <md-icon md-font-icon="icon-account-plus"></md-icon>
-  </md-button> -->
+  <md-button class="md-fab md-accent md-icon-button" id="add-associado-button" ng-click="vm.openAssociadoDialog($event)" aria-label="Adicionar associado">
+    <md-icon md-font-icon="icon-square-inc-cash"></md-icon>
+  </md-button>
   <!-- / ADD CONTACT BUTTON -->
 </div>

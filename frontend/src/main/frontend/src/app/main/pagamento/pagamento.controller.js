@@ -3,317 +3,160 @@
 
   angular
     .module('app.pagamento')
-    .controller('PagamentoController', PagamentoController)
-
+    .controller('PagamentoController', PagamentoController);
 
   /** @ngInject */
-  function PagamentoController($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $state) {
+  function PagamentoController($scope, $mdSidenav, Pagamentos, User, msUtils, $mdDialog, $document, api, $filter) {
 
     var vm = this;
 
     // Data
-    // vm.associados = Associados;
-    vm.associado = null;
-    vm.user = User.data;
-    // vm.filterIds = null;
-    // vm.listType = 'all';
-    // vm.listOrder = 'nome';
-    // vm.listOrderAsc = false;
-    // vm.selectedContacts = [];
-    // vm.newGroupName = '';
 
-    // Pagamento
-    vm.pagamento = {
-      'valorPago': null,
-      'vencimento': new Date(),
-      'dataPgto': new Date(),
-      'formaPgto': {
-        'associado': {
-          'cpf': '',
-        },
-        'formaPagamento': "Dinheiro",
-      },
-    };
+    vm.pagamentos = Pagamentos;
+    vm.user = User.data;
+    vm.listType = 'all';
+    vm.listOrder = 'nome';
+    vm.listOrderAsc = true;
+    vm.selectedAssociados = [];
+
 
     // Methods
-    vm.limpaForm = limpaForm;
-    vm.buscaCpf = buscaCpf;
-    vm.cadastrarPagamento = cadastrarPagamento;
-
+    vm.openAssociadoDialog = openAssociadoDialog;
+    vm.deleteAssociadoConfirm = deleteAssociadoConfirm;
+    vm.deleteAssociado = deleteAssociado;
+    vm.deleteSelectedAssociados = deleteSelectedAssociados;
+    vm.toggleSelectAssociado = toggleSelectAssociado;
+    vm.deselectAssociados = deselectAssociados;
+    vm.selectAllAssociados = selectAllAssociados;
+    vm.deleteAssociado = deleteAssociado;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
     //////////
 
-    vm.sucess = sucess;
-    vm.fail = fail;
-
-
-    function limpaForm() {
-      console.log('limpaForm @ pagamento.controller.js');
-      vm.pagamento.formaPgto.associado.cpf = "";
-      vm.pagamento.valorPago = null;
-      vm.pagamento.dataPgto = new Date();
-      vm.associado = null;
-    }
-
-    function buscaCpf() {
-      console.log('buscaCpf @ pagamento.controller.js');
-      if (vm.pagamento.formaPgto.associado.cpf) {
-        // Busca o Associado no BD para recuperar a data de pagamento e valor esperados
-        api.associado.getByCpf.get({
-            'cpf': vm.pagamento.formaPgto.associado.cpf
-          },
-          // Sucesso
-          function(response) {
-            console.log(response);
-            vm.associado = response;
-
-            // Define o valor esperado
-            vm.pagamento.valorPago = vm.associado.valorAtual;
-
-            // Define a data de pagamento esperada
-            vm.pagamento.vencimento.setDate(vm.associado.vencAtual);
-          },
-          // Erro
-          function(response) {
-            console.error(response);
-          }
-        );
-      };
-    }
-
-    function cadastrarPagamento(ev) {
-      console.log('cadastrarPagamento @ pagamento.controller.js');
-      // Temporário
-
-
-      // Grava o pagamento no BD
-      api.pagamento.list.save(vm.pagamento,
-        // Exibe o resultado no console do navegador:
-        // Sucesso
-        function(response) {
-          console.log(response);
-          vm.sucess(ev);
-        },
-        // Erro
-        function(response) {
-          console.error(response);
-          vm.fail(ev);
-        });
-    };
-
-    function sucess(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-      var confirm = $mdDialog.alert()
-            .title('SUCESSO')
-            .textContent('O pagamento foi cadastrado com sucesso')
-            .ariaLabel('Tudo ok!')
-            .targetEvent(ev)
-            .ok('OK!')
-
-      $mdDialog.show(confirm).then(function() {
-        $scope.status = 'OK!';
-        $state.reload();
-      });
-  };
-
-  function fail(ev) {
-  // Appending dialog to document.body to cover sidenav in docs app
-    var confirm = $mdDialog.alert()
-          .title('FALHA')
-          .textContent('Houve algum problema e pagamento não foi registrado, verifique os campos ou contate um administrador')
-          .ariaLabel('Vou verificar!')
-          .targetEvent(ev)
-          .ok('Vou verificar!')
-
-    $mdDialog.show(confirm).then(function() {
-      $scope.status = 'falha!';
-
-    });
-};
-
-
-
-
     /**
-     * Open new contact dialog
+     * Open new Associado dialog
      *
      * @param ev
      * @param contact
      */
-    // function openContactDialog(ev, contact) {
-    //   $mdDialog.show({
-    //     controller: 'ContactDialogController',
-    //     controllerAs: 'vm',
-    //     templateUrl: 'app/main/contacts/dialogs/contact/contact-dialog.html',
-    //     parent: angular.element($document.find('#content-container')),
-    //     targetEvent: ev,
-    //     clickOutsideToClose: true,
-    //     locals: {
-    //       Contact: contact,
-    //       User: vm.user,
-    //       Contacts: vm.contacts
-    //     }
-    //   });
-    // }
+    function openAssociadoDialog(ev, associado) {
+      $mdDialog.show({
+        controller: 'PagamentoDialogController',
+        controllerAs: 'vm',
+        templateUrl: 'app/main/pagamento/dialogs/pagamento/pagamento-dialog.html',
+        parent: angular.element($document.find('#content-container')),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        locals: {
+          Associado: associado,
+          User: vm.user,
+          Pagamentos: vm.pagamentos
+        }
+      });
+    }
 
     /**
-     * Delete Contact Confirm Dialog
+     * Delete Associado Confirm Dialog
      */
-    // function deleteContactConfirm(contact, ev) {
-    //   var confirm = $mdDialog.confirm()
-    //     .title('Você tem certeza de que deseja apagar este associado?')
-    //     .htmlContent('<b>' + contact.nome + ' (' + contact.cpf + ')</b>' + ' será apagado(a).')
-    //     .ariaLabel('apagar contato')
-    //     .targetEvent(ev)
-    //     .ok('Sim')
-    //     .cancel('Cancelar');
-    //
-    //   $mdDialog.show(confirm).then(function() {
-    //     deleteContact(contact);
-    //     vm.selectedContacts = [];
-    //
-    //   }, function() {
-    //     console.log('Cancelou');
-    //   });
-    // }
+    function deleteAssociadoConfirm(associado, ev) {
+      var confirm = $mdDialog.confirm()
+        .title('Você tem certeza de que deseja apagar este pagamento?')
+        .htmlContent('<b>' + 'Nº pagamento: ' + '</b>' + associado.id + '</br>' + '<b>' + 'Valor: ' + '</b>' + ($filter('currency')(associado.valorPago, 'R$ '))+ '</br>' + ' será apagado.')
+        .ariaLabel('apagar contato')
+        .targetEvent(ev)
+        .ok('Sim')
+        .cancel('Cancelar');
+
+      $mdDialog.show(confirm).then(function() {
+        deleteAssociado(associado);
+        vm.selectedAssociados = [];
+
+      }, function() {
+        console.log('Cancelou');
+      });
+    }
 
     /**
-     * Delete Contact
+     * Delete Associado
      */
-    // function deleteContact(contact) {
-    //
-    //   // TODO Remover também a [formaPgto] do Associado.
-    //
-    //   // Remove o Associado do BD
-    //   console.log('deleteContact @ contacts.controller.js');
-    //   api.associado.getByCpf.delete({
-    //       'cpf': contact.cpf
-    //     },
-    //     // Sucesso
-    //     function(response) {
-    //       console.log(response);
-    //     },
-    //     // Erro
-    //     function(response) {
-    //       console.error(response);
-    //     }
-    //   );
-    //
-    //   // Remove a da lista na tela a linha deste Associado
-    //   vm.contacts.splice(vm.contacts.indexOf(contact), 1);
-    // }
+    function deleteAssociado(associado) {
+
+      // TODO Remover também a [formaPgto] do Associado.
+
+      // Remove o Associado do BD
+      console.log('deleteAssociado @ associados.controller.js');
+      api.pagamento.getById.delete({
+          'id': associado.id
+        },
+        // Sucesso
+        function(response) {
+          console.log(response);
+        },
+        // Erro
+        function(response) {
+          console.error(response);
+        }
+      );
+
+      // Remove a da lista na tela a linha deste Associado
+      vm.pagamentos.splice(vm.pagamentos.indexOf(associado), 1);
+    }
 
     /**
-     * Delete Selected Contacts
+     * Delete Selected Associados
      */
-    // function deleteSelectedContacts(ev) {
-    //   var confirm = $mdDialog.confirm()
-    //     .title('Você tem certeza de que deseja apagar os associados selecionados?')
-    //     .htmlContent('<b>' + vm.selectedContacts.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
-    //     .ariaLabel('apagar contatos')
-    //     .targetEvent(ev)
-    //     .ok('Sim')
-    //     .cancel('Cancelar');
-    //
-    //   $mdDialog.show(confirm).then(function() {
-    //
-    //     vm.selectedContacts.forEach(function(contact) {
-    //       deleteContact(contact);
-    //     });
-    //
-    //     vm.selectedContacts = [];
-    //
-    //   });
-    //
-    // }
+    function deleteSelectedAssociados(ev) {
+      var confirm = $mdDialog.confirm()
+        .title('Você tem certeza de que deseja apagar os pagamentos selecionados?')
+        .htmlContent('<b>' + vm.selectedAssociados.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
+        .ariaLabel('apagar contatos')
+        .targetEvent(ev)
+        .ok('Sim')
+        .cancel('Cancelar');
+
+      $mdDialog.show(confirm).then(function() {
+
+        vm.selectedAssociados.forEach(function(associado) {
+          deleteAssociado(associado);
+        });
+
+        vm.selectedAssociados = [];
+
+      });
+
+    }
 
     /**
-     * Toggle selected status of the contact
+     * Toggle selected status of the associado
      *
-     * @param contact
+     * @param associado
      * @param event
      */
-    // function toggleSelectContact(contact, event) {
-    //   if (event) {
-    //     event.stopPropagation();
-    //   }
-    //
-    //   if (vm.selectedContacts.indexOf(contact) > -1) {
-    //     vm.selectedContacts.splice(vm.selectedContacts.indexOf(contact), 1);
-    //   } else {
-    //     vm.selectedContacts.push(contact);
-    //   }
-    // }
+    function toggleSelectAssociado(associado, event) {
+      if (event) {
+        event.stopPropagation();
+      }
+
+      if (vm.selectedAssociados.indexOf(associado) > -1) {
+        vm.selectedAssociados.splice(vm.selectedAssociados.indexOf(associado), 1);
+      } else {
+        vm.selectedAssociados.push(associado);
+      }
+    }
 
     /**
-     * Deselect contacts
+     * Deselect associados
      */
-    // function deselectContacts() {
-    //   vm.selectedContacts = [];
-    // }
+    function deselectAssociados() {
+      vm.selectedAssociados = [];
+    }
 
     /**
-     * Sselect all contacts
+     * Sselect all associados
      */
-    // function selectAllContacts() {
-    //   vm.selectedContacts = $scope.filteredContacts;
-    // }
-
-    /**
-     *
-     */
-    // function addNewGroup()
-    // {
-    //     if ( vm.newGroupName === '' )
-    //     {
-    //         return;
-    //     }
-    //
-    //     var newGroup = {
-    //         'id'        : msUtils.guidGenerator(),
-    //         'name'      : vm.newGroupName,
-    //         'contactIds': []
-    //     };
-    //
-    //     vm.user.groups.push(newGroup);
-    //     vm.newGroupName = '';
-    // }
-
-    /**
-     * Delete Group
-     */
-    // function deleteGroup(ev)
-    // {
-    //     var group = vm.listType;
-    //
-    //     var confirm = $mdDialog.confirm()
-    //         .title('Are you sure want to delete the group?')
-    //         .htmlContent('<b>' + group.name + '</b>' + ' will be deleted.')
-    //         .ariaLabel('delete group')
-    //         .targetEvent(ev)
-    //         .ok('OK')
-    //         .cancel('CANCEL');
-    //
-    //     $mdDialog.show(confirm).then(function ()
-    //     {
-    //
-    //         vm.user.groups.splice(vm.user.groups.indexOf(group), 1);
-    //
-    //         filterChange('all');
-    //     });
-    //
-    // }
-
-    /**
-     * Toggle sidenav
-     *
-     * @param sidenavId
-     */
-    // function toggleSidenav(sidenavId)
-    // {
-    //     $mdSidenav(sidenavId).toggle();
-    // }
+    function selectAllAssociados() {
+      vm.selectedAssociados = $scope.filteredPagamentos;
+    }
 
   }
 

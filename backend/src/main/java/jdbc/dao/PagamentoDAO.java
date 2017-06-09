@@ -105,9 +105,9 @@ public class PagamentoDAO {
   }
 
 
-	public void altera(Pagamento pagamento) throws SQLException {
+	public void altera(Pagamento pagamento, int id) throws SQLException {
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE pagamento SET valor_pago=?, vencimento=?, data_pgto=?, cpf_associado=?, forma_pgto=? WHERE id=?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE pagamento SET valor_pago=?, vencimento=?, data_pgto=?, cpf_associado=?, forma_pgto_efetuada=? WHERE id=?");
 
 		
 		stmt.setDouble(1,pagamento.getValorPago());
@@ -115,7 +115,7 @@ public class PagamentoDAO {
 		stmt.setDate(3,pagamento.getDataPgto());
 		stmt.setString(4,pagamento.getFormaPgto().getAssociado().getCpf());
 		stmt.setString(5,pagamento.getFormaPgto().getFormaPagamento());
-		stmt.setInt(6,pagamento.getId());
+		stmt.setInt(6,id);
 		
 		stmt.execute();
 		stmt.close();

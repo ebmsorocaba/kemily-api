@@ -27,6 +27,8 @@
             'app.associados',
 
             // Informar pagamento
+            'app.oldPagamento',
+
             'app.pagamento',
 
             // Relatório financeiro

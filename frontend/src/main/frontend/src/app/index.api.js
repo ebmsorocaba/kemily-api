@@ -207,7 +207,8 @@
         }
 
         api.pagamento = {
-          list     : $resource(api.baseUrl + 'pagamento')
+          list     : $resource(api.baseUrl + 'pagamento'),
+          getById  : $resource(api.baseUrl + 'pagamento/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
         api.relatPagAssociado = {

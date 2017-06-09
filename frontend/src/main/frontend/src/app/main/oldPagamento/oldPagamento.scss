@@ -1,4 +1,4 @@
-#associados {
+#contacts {
     position: relative;
 
     > .header {
@@ -92,7 +92,7 @@
             right: 0;
             bottom: 0;
 
-            .associados-list {
+            .contacts-list {
                 position: relative;
                 padding-bottom: 0;
 
@@ -104,7 +104,7 @@
                         padding: 16px;
                     }
 
-                    .associados-count {
+                    .contacts-count {
                         padding-left: 4px;
                     }
 
@@ -148,7 +148,7 @@
                     }
                 }
 
-                .associado-item {
+                .contact-item {
                     position: absolute;
                     right: 0;
                     left: 0;
@@ -189,7 +189,7 @@
         }
     }
 
-    #add-associado-button {
+    #add-contact-button {
         position: fixed;
         bottom: 8px;
         right: 8px;
@@ -200,7 +200,7 @@
 // RESPONSIVE
 @media screen and (min-width: $layout-breakpoint-md) {
 
-    #associados {
+    #contacts {
 
         > .content {
 
@@ -209,4 +209,8 @@
             }
         }
     }
+}
+
+mdDialog.alert .title {
+    color: green;
 }

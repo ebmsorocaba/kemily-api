@@ -1,0 +1,75 @@
+<!-- DIALOG -->
+<md-dialog class="associado-dialog">
+
+  <form name="AssociadoForm" class="md-inline-form" novalidate>
+
+    <!-- DIALOG TOOLBAR -->
+    <!-- <md-toolbar class="md-accent" layout="column"> -->
+
+    <!-- TOOLBAR TOP -->
+    <div class=" md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+      <span class="title">{{vm.title}}</span>
+      <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Fechar diálogo">
+        <md-icon md-font-icon="icon-close"></md-icon>
+      </md-button>
+    </div>
+    <!-- / TOOLBAR TOP -->
+
+    <!-- DIALOG CONTENT -->
+    <md-dialog-content ms-scroll>
+
+      <md-input-container>
+        <label>CPF do Associado</label>
+        <md-icon md-font-icon="icon-account-box"></md-icon>
+        <input ng-blur="vm.buscaCpf()" ng-model="vm.associado.formaPgto.associado.cpf" type="text" mask="999.999.999-99" required>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Valor Pago</label>
+        <md-icon md-font-icon="icon-currency-usd"></md-icon>
+        <input ng-model="vm.associado.valorPago" type="number" min="0" step="0.01" pattern="[0-9]{1,10}[.]{0,1}[0-9]{0,2}" required>
+      </md-input-container>
+
+      <md-input-container>
+        <md-datepicker ng-model="vm.associado.dataPgto" md-placeholder="Data de Pagamento" md-open-on-focus></md-datepicker>
+      </md-input-container>
+      </br>
+      <md-input-container>
+        <label>Forma de Pagamento</label>
+        <md-icon md-font-icon="icon-credit-card"></md-icon>
+        <md-select ng-model="vm.associado.formaPgto.formaPagamento">
+          <md-option value="Boleto">Boleto</md-option>
+          <md-option value="Cartão">Cartão</md-option>
+          <md-option value="Dinheiro">Dinheiro</md-option>
+        </md-select>
+      </md-input-container>
+
+    </md-dialog-content>
+    <!-- / DIALOG CONTENT -->
+
+    <!-- DIALOG ACTIONS -->
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button type="submit" ng-if="!vm.newAssociado" ng-click="vm.saveAssociado()" class="send-button md-accent md-raised" ng-disabled="AssociadoForm.$invalid || AssociadoForm.$pristine" aria-label="Salvar">
+          Salvar
+        </md-button>
+
+        <md-button type="submit" ng-if="vm.newAssociado" ng-click="vm.addNewPagamento(ev)" class="send-button md-accent md-raised" ng-disabled="AssociadoForm.$invalid || AssociadoForm.$pristine" aria-label="Informar pagamento">
+          Informar Pagamento
+        </md-button>
+
+      </div>
+
+      <div ng-if="!vm.newAssociado" layout="row">
+        <md-button class="md-icon-button" ng-click="vm.deleteAssociadoConfirm($event)" aria-label="Apagar">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip><span>Apagar</span></md-tooltip>
+        </md-button>
+      </div>
+    </md-dialog-actions>
+    <!-- / DIALOG ACTIONS -->
+
+  </form>
+
+</md-dialog>
+<!-- / DIALOG -->

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import jdbc.dao.PagamentoDAO;
+import model.Associado;
 import model.Pagamento;
 
 import java.sql.SQLException;
@@ -47,7 +48,7 @@ public class PagamentoController {
 
 		pagamentosGetted = pagamentoDao.getLista();
 
-		for (Pagamento pag : pagamentosGetted) { //Coloca todos alunos vindos do SELECT da DAO em um hashmap
+		for (Pagamento pag : pagamentosGetted) { //Coloca todos pagamentos vindos do SELECT da DAO em um hashmap
 			pagamentos.put(index, pag);
 			index++;
 		}
@@ -88,6 +89,24 @@ public class PagamentoController {
 		//Pagamento pagamento = new ObjectMapper().readValue(pagamentoJSON, Pagamento.class); //Aqui o json é convertido em objeto Java Aluno
 		System.out.println("Valor do pagamento que chegou no backend: " + pagamento.getValorPago());
 		pagamentoDao.adiciona(pagamento);
+		return new ResponseEntity<Pagamento>(pagamento, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/api/pagamento/{id}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
+	public ResponseEntity<Pagamento> updateUsuario(@RequestBody Pagamento pagamento, @PathVariable("id") String id) throws JsonParseException, JsonMappingException, IOException, SQLException {
+
+		//TODO procurar outra forma de log
+		
+		//Usuario usuario = new ObjectMapper().readValue(usuarioJSON, Usuario.class); //Aqui o json é convertido em objeto Java Aluno
+		//System.out.println("Alterar associado de CPF: " + cpf);
+		//System.out.println("Associado que chegou no backend para alteração: ");
+		//System.out.println("CPF: " + associado.getCpf());
+		//System.out.println("Nome: " + associado.getNome());
+		
+		
+		
+		pagamentoDao.altera(pagamento, Integer.parseInt(id));
 		return new ResponseEntity<Pagamento>(pagamento, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
 

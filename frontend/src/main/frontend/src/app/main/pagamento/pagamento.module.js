@@ -24,33 +24,38 @@
                 }
             },
             resolve: {
-                // Associados: function (msApi)
-                // {
-                //     return msApi.resolve('associados.associados@query'); // GET para Arrays
-                // },
+                Pagamentos: function (msApi)
+                {
+                    return msApi.resolve('pagamento.pagamentos@query'); // GET para Arrays
+                },
                 User: function (msApi)
                 {
-                    return msApi.resolve('contacts.user@get');
+                    return msApi.resolve('pagamento.user@get');
                 }
+                // FormaPgto: function (msApi)
+                // {
+                //   return msApi.resolve('contacts.formaPgto@query')
+                // }
             }
         });
 
         // Api
-        // msApiProvider.register('associados.associados', ['/api/associado']);
-        msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
+        msApiProvider.register('pagamento.pagamentos', ['/api/pagamento']);
+        //msApiProvider.register('contacts.formaPgto', ['/formaPgto']);
+        msApiProvider.register('pagamento.user', ['app/data/contacts/user.json']);
 
         // Navigation
-        // msNavigationServiceProvider.saveItem('financeiro', { // Adiciona um item no menu
-        //     title : 'Financeiro', // Nome do item/grupo no menu.
-        //     group : true, // Define se é um item [false] ou grupo de itens [true].
-        //     weight: 2 // Ordem no menu. Baseado em prioridade.
-        // });
+        msNavigationServiceProvider.saveItem('financeiro', { // Adiciona um item no menu
+            title : 'Financeiro', // Nome do item/grupo no menu.
+            group : true, // Define se é um item [false] ou grupo de itens [true].
+            weight: 2 // Ordem no menu. Baseado em prioridade.
+        });
 
         msNavigationServiceProvider.saveItem('financeiro.pagamento', {
-            title : 'Informar Pagamento',
+            title : 'Gerenciar Pagamentos',
             icon  : 'icon-credit-card',
             state : 'app.pagamento',
-            weight: 2
+            weight: 1
         });
 
     }

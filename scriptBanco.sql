@@ -195,3 +195,4 @@ INSERT INTO pagamento_cartao(id_pagamento, numero_cartao)
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
+;
