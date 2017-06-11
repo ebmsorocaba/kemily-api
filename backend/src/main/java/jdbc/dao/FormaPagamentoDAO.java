@@ -22,6 +22,8 @@ public class FormaPagamentoDAO {
 	public void adiciona(FormaPagamento formaPgto) throws SQLException {
 		// prepared statement para inserção
 		
+		formaPgto.setFormaPagamento("Dinheiro");
+		formaPgto.setAtual(true);
 		System.out.println( formaPgto.getAssociado().getCpf() + " " + formaPgto.getFormaPagamento() + " " + formaPgto.getAtual());
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO associado_forma_pagamento (cpf_associado, forma_pgto, atual) VALUES (?, ?, ?)");
 		// seta os valores
@@ -31,6 +33,29 @@ public class FormaPagamentoDAO {
 		
 		// executa
 		stmt.execute();
+		
+		formaPgto.setFormaPagamento("Boleto");
+		formaPgto.setAtual(false);
+		stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO associado_forma_pagamento (cpf_associado, forma_pgto, atual) VALUES (?, ?, ?)");
+		// seta os valores
+		stmt.setString(1, formaPgto.getAssociado().getCpf());
+		stmt.setString(2, formaPgto.getFormaPagamento());
+		stmt.setBoolean(3, formaPgto.getAtual());
+		
+		// executa
+		stmt.execute();
+		
+		formaPgto.setFormaPagamento("Cartão");
+		stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO associado_forma_pagamento (cpf_associado, forma_pgto, atual) VALUES (?, ?, ?)");
+		// seta os valores
+		stmt.setString(1, formaPgto.getAssociado().getCpf());
+		stmt.setString(2, formaPgto.getFormaPagamento());
+		stmt.setBoolean(3, formaPgto.getAtual());
+		
+		// executa
+		stmt.execute();
+		
+		
 		
 		stmt.close();
 	}

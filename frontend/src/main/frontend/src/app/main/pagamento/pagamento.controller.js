@@ -6,13 +6,14 @@
     .controller('PagamentoController', PagamentoController);
 
   /** @ngInject */
-  function PagamentoController($scope, $mdSidenav, Pagamentos, User, msUtils, $mdDialog, $document, api, $filter) {
+  function PagamentoController($scope, $mdSidenav, Associados, Pagamentos, User, msUtils, $mdDialog, $document, api, $filter) {
 
     var vm = this;
 
     // Data
 
     vm.pagamentos = Pagamentos;
+    vm.associados = Associados;
     vm.user = User.data;
     vm.listType = 'all';
     vm.listOrder = 'nome';
@@ -50,7 +51,8 @@
         locals: {
           Associado: associado,
           User: vm.user,
-          Pagamentos: vm.pagamentos
+          Pagamentos: vm.pagamentos,
+          Associados: vm.associados
         }
       });
     }

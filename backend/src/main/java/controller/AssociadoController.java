@@ -21,7 +21,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import jdbc.dao.AssociadoDAO;
+import jdbc.dao.FormaPagamentoDAO;
 import model.Associado;
+import model.FormaPagamento;
 
 import java.sql.SQLException;
 
@@ -32,6 +34,7 @@ public class AssociadoController {
 
 	private Map<Integer, Associado> associados;
 	private AssociadoDAO associadoDao = new AssociadoDAO();
+	private FormaPagamentoDAO formPagDao = new FormaPagamentoDAO();
 
 	public AssociadoController() throws SQLException {
 		associados = new HashMap<Integer, Associado>();
@@ -88,6 +91,10 @@ public class AssociadoController {
 		//Associado associado = new ObjectMapper().readValue(associadoJSON, Associado.class); //Aqui o json é convertido em objeto Java Aluno
 		System.out.println("Associado que chegou no backend: " + associado.getCpf());
 		associadoDao.adiciona(associado);
+		
+		FormaPagamento formaPag = new FormaPagamento();
+		formaPag.setAssociado(associado);
+		formPagDao.adiciona(formaPag);
 		
 		return new ResponseEntity<Associado>(associado, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}

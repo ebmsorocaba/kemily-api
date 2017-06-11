@@ -31,6 +31,10 @@
                 User: function (msApi)
                 {
                     return msApi.resolve('pagamento.user@get');
+                },
+                Associados: function (msApi)
+                {
+                    return msApi.resolve('pagamento.associados@query');
                 }
                 // FormaPgto: function (msApi)
                 // {
@@ -41,6 +45,7 @@
 
         // Api
         msApiProvider.register('pagamento.pagamentos', ['/api/pagamento']);
+        msApiProvider.register('pagamento.associados', ['/api/associado']);
         //msApiProvider.register('contacts.formaPgto', ['/formaPgto']);
         msApiProvider.register('pagamento.user', ['app/data/contacts/user.json']);
 

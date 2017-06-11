@@ -6,25 +6,29 @@
     .controller('PagamentoDialogController', PagamentoDialogController);
 
   /** @ngInject */
-  function PagamentoDialogController($filter, $mdDialog, Associado, Pagamentos, User, msUtils, api, $scope, $state) {
+  function PagamentoDialogController($filter, $mdDialog, Associado, Pagamentos, Associados, User, msUtils, api, $scope, $state, $q, $timeout) {
     var vm = this;
 
     // Data
     vm.title = 'Alterar Pagamento';
     vm.associado = angular.copy(Associado);
     vm.pagamentos = Pagamentos;
+    vm.associados = Associados;
     vm.user = User;
     vm.newAssociado = false;
     vm.allFields = false;
-    vm.ok = false;
+    //vm.ok = false;
     vm.associado2 = null;
 
+    vm.states        = loadAll();
+    vm.selectedItem  = null;
+    vm.searchText    = null;
+    vm.querySearch   = querySearch;
 
+    console.log(vm.associados);
 
     // Formas de Pagamento
     vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
-    vm.calculaCPF = calculaCPF;
-
 
     // TODO Ajustar o Associado conforme o BackEnd
     if (!vm.associado) {
@@ -60,6 +64,11 @@
     vm.cadastrarPagamento = cadastrarPagamento;
     vm.sucess = sucess;
     vm.fail = fail;
+
+
+    vm.querySearch = querySearch;
+    vm.createFilterFor = createFilterFor;
+    vm.loadAll = loadAll;
     //////////
 
     /**
@@ -208,9 +217,32 @@
 
     function buscaCpf() {
       console.log('buscaCpf @ pagamento.controller.js');
-      if (vm.associado.formaPgto.associado.cpf) {
+      //console.log('AQUUUUUUUUI: ' + JSON.stringify(vm.selectedItem));
+      if(vm.selectedItem.display == null){
+        return false;
+      }
+
+      if (vm.selectedItem.display) {
+        vm.associado.formaPgto.associado.cpf = vm.selectedItem.display.replace(/\-/g,"").replace(/\./g,"");
+        console.log(vm.associado.formaPgto.associado.cpf);
+
+        if(isNaN(vm.associado.formaPgto.associado.cpf)){
+          var i = 0;
+
+          console.log("NÃOOOO É UM NÚMEROOOOOOOOO");
+          for(i=0; i<vm.associados.length; i++){
+            if(vm.associados[i].nome == vm.selectedItem.display){
+              vm.associado.formaPgto.associado.cpf = vm.associados[i].cpf;
+              console.log('AQUUUUUUUUUUUUUUUI O CPF: ' + vm.associado.formaPgto.associado.cpf)
+            }
+          }
+        }
+
+        else{
+          vm.associado.formaPgto.associado.cpf = vm.selectedItem.display;
+        }
         // Busca o Associado no BD para recuperar a data de pagamento e valor esperados
-        api.associado.getByCpf.get({
+          api.associado.getByCpf.get({
             'cpf': vm.associado.formaPgto.associado.cpf
           },
           // Sucesso
@@ -232,57 +264,62 @@
       };
     }
 
-    function calculaCPF(strCPF) {
-      var Soma;
-      var Resto;
-      Soma = 0;
-      var i;
-      var flag = 0;
 
-      //retirar mascara
-      if(strCPF != null){
-        strCPF = strCPF.replace(/\-/g,"");
-        strCPF = strCPF.replace(/\./g,"");
-      }
-      else{
-        return false;
-      }
 
-      //verificar se os numeros do cpf são todos iguais ex: 000.000.000-00
-      for(i=0; i<11; i++){
-        if(strCPF[i] == strCPF[i+1]){
-          flag++;
-        }
-      }
 
-      if(flag==10){
-        vm.ok = false;
-        return false;
-      }
 
-      for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
-      Resto = (Soma * 10) % 11;
 
-      if ((Resto == 10) || (Resto == 11))  Resto = 0;
-      if (Resto != parseInt(strCPF.substring(9, 10)) ){
-        vm.ok = false;
-        return false;
-      }
 
-      Soma = 0;
-      for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
-      Resto = (Soma * 10) % 11;
 
-      if ((Resto == 10) || (Resto == 11))  Resto = 0;
-      if (Resto != parseInt(strCPF.substring(10, 11) ) ){
-        vm.ok = false;
-        return false;
-      }
 
-      vm.ok = true;
-      return true;
+
+
+
+
+    /**
+     * Search for states... use $timeout to simulate
+     * remote dataservice call.
+     */
+    function querySearch (query) {
+      var results = query ? vm.states.filter( createFilterFor(query) ) : vm.states;
+      var deferred = $q.defer();
+      deferred.resolve( results );
+      return deferred.promise;
     }
 
+    /**
+     * Build `states` list of key/value pairs
+     */
+    function loadAll() {
+
+     var i = 0;
+      var allStates = null;
+
+      for(i=0; i<vm.associados.length; i++){
+        allStates += ', ' + vm.associados[i].nome + ', ' + vm.associados[i].cpf;
+        console.log(vm.associados[i].nome);
+      }
+
+
+      return allStates.split(/, +/g).map(
+        function (state) {
+          return {
+            value: state.toLowerCase(),
+            display: state
+          };
+        });
+    }
+
+    /**
+     * Create filter function for a query string
+     */
+    function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
+
+      return function filterFn(state) {
+        return (state.value.indexOf(lowercaseQuery) === 0);
+      };
+    }
 
     /**
      * Close dialog
