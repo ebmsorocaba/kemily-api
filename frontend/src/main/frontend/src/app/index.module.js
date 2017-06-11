@@ -9,7 +9,7 @@
         .module('fuse', [
 
             // angular-mask (ver bower.json)
-            'ngMask',
+            'ngMask', 'ui.utils.masks',
 
             // Core
             'app.core',
@@ -41,5 +41,5 @@
             'app.projeto',
 
             'app.relatorioSocial'
-        ]);
+        ])
 })();

@@ -16,11 +16,11 @@
     vm.user = User;
     vm.newAssociado = false;
     vm.allFields = false;
-    vm.ok = false;
+    //vm.ok = false;
 
     // Formas de Pagamento
     vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
-    vm.calculaCPF = calculaCPF;
+    //vm.calculaCPF = calculaCPF;
 
 
     // TODO Ajustar o Associado conforme o BackEnd
@@ -56,7 +56,7 @@
     function addNewAssociado() {
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
-      if(vm.ok == true){
+      //if(vm.ok == true){
         api.associado.list.save(vm.associado,
           // Exibe o resultado no console do navegador:
           // Sucesso
@@ -73,7 +73,7 @@
         vm.associados.unshift(vm.associado);
 
         closeDialog();
-      }
+      //}
     }
 
     /**
@@ -142,7 +142,7 @@
       });
     }
 
-
+    /*
     function calculaCPF(strCPF) {
       var Soma;
       var Resto;
@@ -192,7 +192,7 @@
       vm.ok = true;
       return true;
     }
-
+    */
 
     /**
      * Close dialog
@@ -203,3 +203,22 @@
 
   }
 })();
+
+/*
+app.directive('myDirective', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, element, attr, mCtrl) {
+      function myValidation(value) {
+        if (value.indexOf("e") > -1) {
+          mCtrl.$setValidity('charE', true);
+        } else {
+          mCtrl.$setValidity('charE', false);
+        }
+        return value;
+      }
+      mCtrl.$parsers.push(myValidation);
+    }
+  };
+});
+*/

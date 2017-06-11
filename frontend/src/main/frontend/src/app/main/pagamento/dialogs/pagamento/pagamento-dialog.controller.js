@@ -187,7 +187,7 @@
 
         $mdDialog.show(confirm).then(function() {
           $scope.status = 'OK!';
-          //$state.reload();
+          $state.reload();
         });
     };
 

@@ -27,7 +27,7 @@
       <md-input-container>
         <label>Valor Pago</label>
         <md-icon md-font-icon="icon-currency-usd"></md-icon>
-        <input ng-model="vm.associado.valorPago" type="number" min="0" step="0.01" pattern="[0-9]{1,10}[.]{0,1}[0-9]{0,2}" required>
+        <input ng-model="vm.associado.valorPago" type="text" ui-money-mask required>
       </md-input-container>
 
       <md-input-container>
