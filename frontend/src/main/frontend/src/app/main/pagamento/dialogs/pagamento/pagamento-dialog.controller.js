@@ -6,33 +6,28 @@
     .controller('PagamentoDialogController', PagamentoDialogController);
 
   /** @ngInject */
-  function PagamentoDialogController($filter, $mdDialog, Associado, Pagamentos, Associados, User, msUtils, api, $scope, $state, $q, $timeout) {
+  function PagamentoDialogController($filter, $mdDialog, Pagamento, Pagamentos, Associados, User, msUtils, api, $scope, $state, $q) {
     var vm = this;
 
     // Data
     vm.title = 'Alterar Pagamento';
-    vm.associado = angular.copy(Associado);
+    vm.pagamento = angular.copy(Pagamento);
     vm.pagamentos = Pagamentos;
     vm.associados = Associados;
     vm.user = User;
-    vm.newAssociado = false;
+    vm.newPagamento = false;
     vm.allFields = false;
-    //vm.ok = false;
-    vm.associado2 = null;
-
-    vm.states        = loadAll();
+    vm.dadosLista        = loadAll();
     vm.selectedItem  = null;
     vm.searchText    = null;
     vm.querySearch   = querySearch;
 
-    console.log(vm.associados);
-
     // Formas de Pagamento
     vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
 
-    // TODO Ajustar o Associado conforme o BackEnd
-    if (!vm.associado) {
-      vm.associado = {
+    // TODO Ajustar o Pagamento conforme o BackEnd
+    if (!vm.pagamento) {
+      vm.pagamento = {
         'valorPago': null,
         'vencimento': new Date(),
         'dataPgto': new Date(),
@@ -45,40 +40,38 @@
       };
 
       vm.title = 'Informar Pagamento';
-      vm.newAssociado = true;
+      vm.newPagamento = true;
       // vm.associado.tags = [];
     }
     else {
-      vm.associado.dataPgto = new Date(vm.associado.dataPgto);
+      vm.selectedItem = vm.pagamento.formaPgto.associado.cpf;
+      vm.pagamento.dataPgto = new Date(vm.pagamento.dataPgto);
     }
 
     // Methods
     vm.addNewPagamento = addNewPagamento;
-    vm.saveAssociado = saveAssociado;
-    vm.deleteAssociadoConfirm = deleteAssociadoConfirm;
+    vm.savePagamento = savePagamento;
+    vm.deletePagamentoConfirm = deletePagamentoConfirm;
     vm.closeDialog = closeDialog;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
-
     vm.buscaCpf = buscaCpf;
     vm.cadastrarPagamento = cadastrarPagamento;
     vm.sucess = sucess;
     vm.fail = fail;
-
-
     vm.querySearch = querySearch;
     vm.createFilterFor = createFilterFor;
     vm.loadAll = loadAll;
     //////////
 
     /**
-     * Add new associado
+     * Add new pagamento
      */
     function addNewPagamento(ev) {
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
       //if(vm.ok == true){
-        api.pagamento.list.save(vm.associado,
+        api.pagamento.list.save(vm.pagamento,
           // Exibe o resultado no console do navegador:
           // Sucesso
           function(response) {
@@ -93,28 +86,28 @@
         );
 
       // Adiciona uma nova linha no topo da lista na tela
-        vm.pagamentos.unshift(vm.associado);
+        vm.pagamentos.unshift(vm.pagamento);
 
         closeDialog();
       //}
     }
 
     /**
-     * Save new associado
+     * Save new pagamento
      */
-    function saveAssociado() {
+    function savePagamento() {
       // Atualiza a linha na tela:
       for (var i = 0; i < vm.pagamentos.length; i++) {
-        if (vm.pagamentos[i].id === vm.associado.id) {
-          vm.pagamentos[i] = angular.copy(vm.associado);
+        if (vm.pagamentos[i].id === vm.pagamento.id) {
+          vm.pagamentos[i] = angular.copy(vm.pagamento);
           break;
         }
       }
 
       // Grava as alterações no BD:
       api.pagamento.getById.update({
-        'id': vm.associado.id
-      },vm.associado,
+        'id': vm.pagamento.id
+      },vm.pagamento,
         // Exibe o resultado no console do navegador:
         // Sucesso
         function(response) {
@@ -130,25 +123,25 @@
     }
 
     /**
-     * Delete Associado Confirm Dialog
+     * Delete Pagamento Confirm Dialog
      */
-    function deleteAssociadoConfirm(ev) {
+    function deletePagamentoConfirm(ev) {
       var confirm = $mdDialog.confirm()
-        .title('Você tem certeza de que deseja apagar este associado?')
-        .htmlContent('<b>' + 'Nº pagamento: ' + '</b>' + vm.associado.id + '</br>' + '<b>' + 'Valor: ' + '</b>' + ($filter('currency')(vm.associado.valorPago, 'R$ '))+ '</br>' + ' será apagado.')
-        .ariaLabel('apagar associado')
+        .title('Você tem certeza de que deseja apagar este pagamento?')
+        .htmlContent('<b>' + 'Nº pagamento: ' + '</b>' + vm.pagamento.id + '</br>' + '<b>' + 'Valor: ' + '</b>' + ($filter('currency')(vm.pagamento.valorPago, 'R$ '))+ '</br>' + ' será apagado.')
+        .ariaLabel('apagar pagamento')
         .targetEvent(ev)
         .ok('OK')
         .cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function() {
 
-        // TODO Remover também a [formaPgto] do Associado.
+        // TODO Remover também a [formaPgto] do Pagamento.
 
-        // Remove o Associado do BD
-        console.log('deleteAssociado @ associados.controller.js');
+        // Remove o Pagamento do BD
+        console.log('deletePagamento @ pagamentos.controller.js');
         api.pagamento.getById.delete({
-            'id': vm.associado.id
+            'id': vm.pagamento.id
           },
           // Sucesso
           function(response) {
@@ -160,8 +153,8 @@
           }
         );
 
-        // Remove a da lista na tela a linha deste Associado
-        vm.pagamentos.splice(vm.pagamentos.indexOf(Associado), 1);
+        // Remove a da lista na tela a linha deste Pagamento
+        vm.pagamentos.splice(vm.pagamentos.indexOf(Pagamento), 1);
       });
     }
 
@@ -218,43 +211,46 @@
     function buscaCpf() {
       console.log('buscaCpf @ pagamento.controller.js');
       //console.log('AQUUUUUUUUI: ' + JSON.stringify(vm.selectedItem));
-      if(vm.selectedItem.display == null){
+      if(vm.selectedItem == null){
         return false;
       }
 
       if (vm.selectedItem.display) {
-        vm.associado.formaPgto.associado.cpf = vm.selectedItem.display.replace(/\-/g,"").replace(/\./g,"");
-        console.log(vm.associado.formaPgto.associado.cpf);
 
-        if(isNaN(vm.associado.formaPgto.associado.cpf)){
+        //transforma o item, caso seja um cpf ele tira os traços e pontos
+        vm.pagamento.formaPgto.associado.cpf = vm.selectedItem.display.replace(/\-/g,"").replace(/\./g,"");
+
+        //Testa pra ver se a pessoa digitou um nome (algo que não é numero)
+        if(isNaN(vm.pagamento.formaPgto.associado.cpf)){
           var i = 0;
 
-          console.log("NÃOOOO É UM NÚMEROOOOOOOOO");
+          //Varre o vetor procurando o nome
           for(i=0; i<vm.associados.length; i++){
             if(vm.associados[i].nome == vm.selectedItem.display){
-              vm.associado.formaPgto.associado.cpf = vm.associados[i].cpf;
-              console.log('AQUUUUUUUUUUUUUUUI O CPF: ' + vm.associado.formaPgto.associado.cpf)
+              //Quando achar o nome atribui o cpf do associado
+              vm.pagamento.formaPgto.associado.cpf = vm.associados[i].cpf;
             }
           }
         }
 
+        //Caso já seja um cpf só é atribuido o valor
         else{
-          vm.associado.formaPgto.associado.cpf = vm.selectedItem.display;
+          vm.pagamento.formaPgto.associado.cpf = vm.selectedItem.display;
         }
-        // Busca o Associado no BD para recuperar a data de pagamento e valor esperados
+        // Busca o Pagamento no BD para recuperar a data de pagamento e valor esperados
           api.associado.getByCpf.get({
-            'cpf': vm.associado.formaPgto.associado.cpf
+            'cpf': vm.pagamento.formaPgto.associado.cpf
           },
           // Sucesso
           function(response) {
             console.log(response);
-            vm.associado2 = response;
+            vm.associado = response;
 
             // Define o valor esperado
-            vm.associado.valorPago = vm.associado2.valorAtual;
+            vm.pagamento.valorPago = vm.associado.valorAtual;
 
             // Define a data de pagamento esperada
-            vm.associado.vencimento.setDate(vm.associado2.vencAtual);
+            vm.pagamento.vencimento.setDate(vm.associado.vencAtual);
           },
           // Erro
           function(response) {
@@ -264,37 +260,25 @@
       };
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Search for states... use $timeout to simulate
-     * remote dataservice call.
-     */
+    //procura o associado na lista
     function querySearch (query) {
-      var results = query ? vm.states.filter( createFilterFor(query) ) : vm.states;
+      var results = query ? vm.dadosLista.filter( createFilterFor(query) ) : vm.dadosLista;
       var deferred = $q.defer();
       deferred.resolve( results );
       return deferred.promise;
     }
 
     /**
-     * Build `states` list of key/value pairs
+     * Build `dadosLista` list of key/value pairs
      */
+
+    // carrega todos os associados
     function loadAll() {
 
      var i = 0;
       var allStates = null;
 
+      //Adiciona todos os nomes e cpf dos associados
       for(i=0; i<vm.associados.length; i++){
         allStates += ', ' + vm.associados[i].nome + ', ' + vm.associados[i].cpf;
         console.log(vm.associados[i].nome);
@@ -304,15 +288,15 @@
       return allStates.split(/, +/g).map(
         function (state) {
           return {
+
+          //Cria um objeto com duas propriedades, o que deve ser exibido(display) e o valor verdadeiro (value)
             value: state.toLowerCase(),
             display: state
           };
         });
     }
 
-    /**
-     * Create filter function for a query string
-     */
+    //Cria uma função de filtro
     function createFilterFor(query) {
       var lowercaseQuery = angular.lowercase(query);
 

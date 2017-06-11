@@ -18,29 +18,29 @@
     vm.listType = 'all';
     vm.listOrder = 'nome';
     vm.listOrderAsc = true;
-    vm.selectedAssociados = [];
+    vm.selectedPagamentos = [];
 
 
     // Methods
-    vm.openAssociadoDialog = openAssociadoDialog;
-    vm.deleteAssociadoConfirm = deleteAssociadoConfirm;
-    vm.deleteAssociado = deleteAssociado;
-    vm.deleteSelectedAssociados = deleteSelectedAssociados;
-    vm.toggleSelectAssociado = toggleSelectAssociado;
-    vm.deselectAssociados = deselectAssociados;
-    vm.selectAllAssociados = selectAllAssociados;
-    vm.deleteAssociado = deleteAssociado;
+    vm.openPagamentoDialog = openPagamentoDialog;
+    vm.deletePagamentoConfirm = deletePagamentoConfirm;
+    vm.deletePagamento = deletePagamento;
+    vm.deleteSelectedPagamentos = deleteSelectedPagamentos;
+    vm.toggleSelectPagamento = toggleSelectPagamento;
+    vm.deselectPagamentos = deselectPagamentos;
+    vm.selectAllPagamentos = selectAllPagamentos;
+    vm.deletePagamento = deletePagamento;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
     //////////
 
     /**
-     * Open new Associado dialog
+     * Open new Pagamento dialog
      *
      * @param ev
      * @param contact
      */
-    function openAssociadoDialog(ev, associado) {
+    function openPagamentoDialog(ev, pagamento) {
       $mdDialog.show({
         controller: 'PagamentoDialogController',
         controllerAs: 'vm',
@@ -49,7 +49,7 @@
         targetEvent: ev,
         clickOutsideToClose: true,
         locals: {
-          Associado: associado,
+          Pagamento: pagamento,
           User: vm.user,
           Pagamentos: vm.pagamentos,
           Associados: vm.associados
@@ -58,20 +58,20 @@
     }
 
     /**
-     * Delete Associado Confirm Dialog
+     * Delete Pagamento Confirm Dialog
      */
-    function deleteAssociadoConfirm(associado, ev) {
+    function deletePagamentoConfirm(pagamento, ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar este pagamento?')
-        .htmlContent('<b>' + 'Nº pagamento: ' + '</b>' + associado.id + '</br>' + '<b>' + 'Valor: ' + '</b>' + ($filter('currency')(associado.valorPago, 'R$ '))+ '</br>' + ' será apagado.')
+        .htmlContent('<b>' + 'Nº pagamento: ' + '</b>' + pagamento.id + '</br>' + '<b>' + 'Valor: ' + '</b>' + ($filter('currency')(pagamento.valorPago, 'R$ '))+ '</br>' + ' será apagado.')
         .ariaLabel('apagar contato')
         .targetEvent(ev)
         .ok('Sim')
         .cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function() {
-        deleteAssociado(associado);
-        vm.selectedAssociados = [];
+        deletePagamento(pagamento);
+        vm.selectedPagamentos = [];
 
       }, function() {
         console.log('Cancelou');
@@ -79,16 +79,16 @@
     }
 
     /**
-     * Delete Associado
+     * Delete Pagamento
      */
-    function deleteAssociado(associado) {
+    function deletePagamento(pagamento) {
 
-      // TODO Remover também a [formaPgto] do Associado.
+      // TODO Remover também a [formaPgto] do Pagamento.
 
-      // Remove o Associado do BD
-      console.log('deleteAssociado @ associados.controller.js');
+      // Remove o Pagamento do BD
+      console.log('deletePagamento @ pagamentos.controller.js');
       api.pagamento.getById.delete({
-          'id': associado.id
+          'id': pagamento.id
         },
         // Sucesso
         function(response) {
@@ -100,17 +100,17 @@
         }
       );
 
-      // Remove a da lista na tela a linha deste Associado
-      vm.pagamentos.splice(vm.pagamentos.indexOf(associado), 1);
+      // Remove a da lista na tela a linha deste Pagamento
+      vm.pagamentos.splice(vm.pagamentos.indexOf(pagamento), 1);
     }
 
     /**
-     * Delete Selected Associados
+     * Delete Selected Pagamentos
      */
-    function deleteSelectedAssociados(ev) {
+    function deleteSelectedPagamentos(ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar os pagamentos selecionados?')
-        .htmlContent('<b>' + vm.selectedAssociados.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
+        .htmlContent('<b>' + vm.selectedPagamentos.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
         .ariaLabel('apagar contatos')
         .targetEvent(ev)
         .ok('Sim')
@@ -118,46 +118,46 @@
 
       $mdDialog.show(confirm).then(function() {
 
-        vm.selectedAssociados.forEach(function(associado) {
-          deleteAssociado(associado);
+        vm.selectedPagamentos.forEach(function(pagamento) {
+          deletePagamento(pagamento);
         });
 
-        vm.selectedAssociados = [];
+        vm.selectedPagamentos = [];
 
       });
 
     }
 
     /**
-     * Toggle selected status of the associado
+     * Toggle selected status of the pagamento
      *
-     * @param associado
+     * @param pagamento
      * @param event
      */
-    function toggleSelectAssociado(associado, event) {
+    function toggleSelectPagamento(pagamento, event) {
       if (event) {
         event.stopPropagation();
       }
 
-      if (vm.selectedAssociados.indexOf(associado) > -1) {
-        vm.selectedAssociados.splice(vm.selectedAssociados.indexOf(associado), 1);
+      if (vm.selectedPagamentos.indexOf(pagamento) > -1) {
+        vm.selectedPagamentos.splice(vm.selectedPagamentos.indexOf(pagamento), 1);
       } else {
-        vm.selectedAssociados.push(associado);
+        vm.selectedPagamentos.push(pagamento);
       }
     }
 
     /**
-     * Deselect associados
+     * Deselect pagamentos
      */
-    function deselectAssociados() {
-      vm.selectedAssociados = [];
+    function deselectPagamentos() {
+      vm.selectedPagamentos = [];
     }
 
     /**
-     * Sselect all associados
+     * Sselect all pagamentos
      */
-    function selectAllAssociados() {
-      vm.selectedAssociados = $scope.filteredPagamentos;
+    function selectAllPagamentos() {
+      vm.selectedPagamentos = $scope.filteredPagamentos;
     }
 
   }

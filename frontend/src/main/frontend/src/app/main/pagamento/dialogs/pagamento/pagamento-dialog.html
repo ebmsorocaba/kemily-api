@@ -1,7 +1,7 @@
 <!-- DIALOG -->
-<md-dialog class="associado-dialog">
+<md-dialog class="pagamento-dialog">
 
-  <form name="AssociadoForm" class="md-inline-form" novalidate>
+  <form name="PagamentoForm" class="md-inline-form" novalidate>
 
     <!-- DIALOG TOOLBAR -->
     <!-- <md-toolbar class="md-accent" layout="column"> -->
@@ -18,7 +18,7 @@
     <!-- DIALOG CONTENT -->
     <md-dialog-content ms-scroll>
 
-      <md-autocomplete flex required
+      <md-autocomplete  flex required
         md-input-name="autocompleteField"
         md-input-minlength="2"
         md-input-maxlength="18"
@@ -29,7 +29,7 @@
         md-item-text="item.display"
         md-require-match
         md-floating-label="Digite o CPF ou nome de um associado."
-
+        
         ng-blur="vm.buscaCpf()">
         <md-item-template>
           <span md-highlight-text="vm.searchText">{{item.display}}</span>
@@ -46,24 +46,24 @@
       <md-input-container>
         <label>CPF do Associado</label>
         <md-icon md-font-icon="icon-account-box"></md-icon>
-        <input ng-blur="vm.buscaCpf()" ng-model="vm.associado.formaPgto.associado.cpf" type="text" mask="999.999.999-99" required>
+        <input ng-blur="vm.buscaCpf()" ng-model="vm.pagamento.formaPgto.pagamento.cpf" type="text" mask="999.999.999-99" required>
       </md-input-container>
       -->
 
       <md-input-container>
         <label>Valor Pago</label>
         <md-icon md-font-icon="icon-currency-usd"></md-icon>
-        <input ng-model="vm.associado.valorPago" type="text" ui-money-mask required>
+        <input ng-model="vm.pagamento.valorPago" type="text" ui-money-mask required>
       </md-input-container>
 
       <md-input-container>
-        <md-datepicker ng-model="vm.associado.dataPgto" md-placeholder="Data de Pagamento" md-open-on-focus></md-datepicker>
+        <md-datepicker ng-model="vm.pagamento.dataPgto" md-placeholder="Data de Pagamento" md-open-on-focus></md-datepicker>
       </md-input-container>
       </br>
       <md-input-container>
         <label>Forma de Pagamento</label>
         <md-icon md-font-icon="icon-credit-card"></md-icon>
-        <md-select ng-model="vm.associado.formaPgto.formaPagamento">
+        <md-select ng-model="vm.pagamento.formaPgto.formaPagamento">
           <md-option value="Boleto">Boleto</md-option>
           <md-option value="Cartão">Cartão</md-option>
           <md-option value="Dinheiro">Dinheiro</md-option>
@@ -76,18 +76,18 @@
     <!-- DIALOG ACTIONS -->
     <md-dialog-actions layout="row" layout-align="space-between center">
       <div layout="row" layout-align="start center">
-        <md-button type="submit" ng-if="!vm.newAssociado" ng-click="vm.saveAssociado()" class="send-button md-accent md-raised" ng-disabled="AssociadoForm.$invalid || AssociadoForm.$pristine" aria-label="Salvar">
+        <md-button type="submit" ng-if="!vm.newPagamento" ng-click="vm.savePagamento()" class="send-button md-accent md-raised" ng-disabled="PagamentoForm.$invalid || PagamentoForm.$pristine" aria-label="Salvar">
           Salvar
         </md-button>
 
-        <md-button type="submit" ng-if="vm.newAssociado" ng-click="vm.addNewPagamento(ev)" class="send-button md-accent md-raised" ng-disabled="AssociadoForm.$invalid || AssociadoForm.$pristine" aria-label="Informar pagamento">
+        <md-button type="submit" ng-if="vm.newPagamento" ng-click="vm.addNewPagamento(ev)" class="send-button md-accent md-raised" ng-disabled="PagamentoForm.$invalid || PagamentoForm.$pristine" aria-label="Informar pagamento">
           Informar Pagamento
         </md-button>
 
       </div>
 
-      <div ng-if="!vm.newAssociado" layout="row">
-        <md-button class="md-icon-button" ng-click="vm.deleteAssociadoConfirm($event)" aria-label="Apagar">
+      <div ng-if="!vm.newPagamento" layout="row">
+        <md-button class="md-icon-button" ng-click="vm.deletePagamentoConfirm($event)" aria-label="Apagar">
           <md-icon md-font-icon="icon-delete"></md-icon>
           <md-tooltip><span>Apagar</span></md-tooltip>
         </md-button>

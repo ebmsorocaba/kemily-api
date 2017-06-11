@@ -1,6 +1,6 @@
 md-dialog {
 
-    &.associado-dialog {
+    &.pagamento-dialog {
         max-width: 400px;
         width: 400px;
 
@@ -18,11 +18,11 @@ md-dialog {
                 min-height: 144px;
                 max-height: 144px;
 
-                .associado-avatar {
+                .pagamento-avatar {
                     margin: 0;
                 }
 
-                .associado-name {
+                .pagamento-name {
                     font-size: 24px;
                     margin: 8px 0;
                 }

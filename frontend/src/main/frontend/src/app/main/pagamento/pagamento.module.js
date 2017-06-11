@@ -36,10 +36,6 @@
                 {
                     return msApi.resolve('pagamento.associados@query');
                 }
-                // FormaPgto: function (msApi)
-                // {
-                //   return msApi.resolve('contacts.formaPgto@query')
-                // }
             }
         });
 
