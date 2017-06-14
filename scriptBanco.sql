@@ -113,6 +113,12 @@ INSERT INTO usuario(nome, senha, setor, email, ativo)
   VALUES ('Carlos Alberto', '654321', 'Financeiro', 'carlos@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
   VALUES ('Elias Humberto', 'abcd', 'Social', 'elias@gmail.com', TRUE);
+INSERT INTO usuario(nome, senha, setor, email, ativo)
+  VALUES ('Financeiro', '123', 'Financeiro', 'fi@gmail.com', TRUE);
+INSERT INTO usuario(nome, senha, setor, email, ativo)
+  VALUES ('Administração', '123', 'Adminitração', 'admin@gmail.com', TRUE);
+INSERT INTO usuario(nome, senha, setor, email, ativo)
+  VALUES ('Social', '123', 'Social', 'social@gmail.com', TRUE);
 
 INSERT INTO associado(cpf, nome, email, valor_atual, venc_atual)
   VALUES('444.444.444-44', 'Godoy Oliveira', 'godoy@gmail.com', 10.44, 12);

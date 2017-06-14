@@ -21,7 +21,7 @@
       <md-autocomplete  flex required
         md-input-name="autocompleteField"
         md-input-minlength="2"
-        md-input-maxlength="18"
+        md-input-maxlength="200"
         md-no-cache="vm.noCache"
         md-selected-item="vm.selectedItem"
         md-search-text="vm.searchText"
@@ -29,7 +29,8 @@
         md-item-text="item.display"
         md-require-match
         md-floating-label="Digite o CPF ou nome de um associado."
-        
+
+
         ng-blur="vm.buscaCpf()">
         <md-item-template>
           <span md-highlight-text="vm.searchText">{{item.display}}</span>

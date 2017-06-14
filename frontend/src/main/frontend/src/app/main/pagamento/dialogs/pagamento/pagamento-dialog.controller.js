@@ -256,8 +256,8 @@
           function(response) {
             console.error(response);
           }
-        );
-      };
+        )
+      }
     }
 
     //procura o associado na lista
