@@ -85,6 +85,9 @@ public class RelatorioController {
 	}
 
 
+	
+	
+	
 	@RequestMapping(value = "/api/relatPag", method = RequestMethod.GET, params={"dataInicio", "dataFim"})
 	public ResponseEntity<List<RelatPag>> listarAll(@RequestParam("dataInicio") String dataInicio, @RequestParam("dataFim") String dataFim) throws SQLException, ParseException {
 		int index=0;

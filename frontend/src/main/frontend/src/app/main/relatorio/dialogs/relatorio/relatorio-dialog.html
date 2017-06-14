@@ -113,9 +113,10 @@
 
             <table class="simple" ms-responsive-table>
               <thead>
-                <tr ng-repeat="pagamento in vm.pagamentos">
+                <tr ng-repeat="pagamento in vm.pagamentos | limitTo:1">
                   <th ng-if="$index == 0">Cliente</th>
-                  <th ng-show="$index.lenght/$index.lenght" ng-repeat="pag in pagamento.pagamentos"> {{vm.dataHeader}} </th>
+                  <th ng-repeat="pag in pagamento.pagamentos | limitTo:$index.length"> {{pag.dataPgto | date : "_/MM/yyyy"}} </th>
+                  <th>Total</th>
                 </tr><!--
                 <tr ng-repeat="pagamento in vm.pagamentos">
 
@@ -128,8 +129,8 @@
 
                 <tr ng-repeat="pagamento in vm.pagamentos">
                   <td>{{pagamento.nome}}</td>
-                  <td ng-repeat="pag in pagamento.pagamentos"> {{pag.valorPago}} </td>
-
+                  <td ng-repeat="pag in pagamento.pagamentos"> {{pag.valorPago | currency : "R$ "}} </td>
+                  <td>{{pagamento.total | currency : "R$ "}}</td>
 
                 </tr>
 

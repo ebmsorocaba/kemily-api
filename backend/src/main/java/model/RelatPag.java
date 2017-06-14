@@ -10,17 +10,20 @@ public class RelatPag {
 	private String cpf;
 	private String nome;
 	private List<Pagamento> pagamentos = new ArrayList<Pagamento>();
+	private Double total;
 
 	public RelatPag() {};
 	
 	public RelatPag(
 			@JsonProperty("cpf")String cpf,
 			@JsonProperty("nome")String nome,
-			@JsonProperty("pagamentos") List<Pagamento> pagamentos){
+			@JsonProperty("pagamentos") List<Pagamento> pagamentos,
+			@JsonProperty("total")Double total){
 
         this.cpf = cpf;
         this.nome = nome;
         this.pagamentos = pagamentos;
+        this.total = total;
 
 	}
 
@@ -46,6 +49,14 @@ public class RelatPag {
 
 	public void setPagamentos(List<Pagamento> pagamentos) {
 		this.pagamentos = pagamentos;
+	}
+	
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 
 }

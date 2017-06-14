@@ -16,7 +16,7 @@
     //vm.user = User;
     vm.newAssociado = false;
     vm.allFields = false;
-    vm.getTotal = getTotal;
+  //  vm.getTotal = getTotal;
 
     // Formas de Pagamento
     vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
@@ -157,13 +157,13 @@
     }
 
 
-    function getTotal(pagamentos){
-      vm.total = 0;
-      for(var i = 0; i < pagamentos.length; i++){ //Faz um looping para somar todos os pagamentos
-        var valor = pagamentos[i].valor;
-        vm.total += valor;
-      }
-    }
+    // function getTotal(pagamentos){
+    //   vm.total = 0;
+    //   for(var i = 0; i < pagamentos.length; i++){ //Faz um looping para somar todos os pagamentos
+    //     var valor = pagamentos[i].valor;
+    //     vm.total += valor;
+    //   }
+    // }
 
 
     function buscaPagamentos(DataInicio, DataFim) {
@@ -181,8 +181,8 @@
         function(response) {
           console.log(response);
           vm.pagamentos=response;
-          vm.getTotal(vm.pagamentos); //Pega o total (soma de todos os pagamentos)
-          vm.dataHeader = DataInicio;
+          // vm.getTotal(vm.pagamentos); //Pega o total (soma de todos os pagamentos)
+          // vm.dataHeader = DataInicio;
         },
         // Erro
         function(response) {
