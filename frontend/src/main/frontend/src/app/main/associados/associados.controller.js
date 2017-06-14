@@ -6,14 +6,14 @@
     .controller('AssociadosController', AssociadosController);
 
   /** @ngInject */
-  function AssociadosController($scope, $mdSidenav, Associados, User, msUtils, $mdDialog, $document, api) {
+  function AssociadosController($scope, $mdSidenav, User, Associados, msUtils, $mdDialog, $document, api, $window) {
 
     var vm = this;
 
     // Data
 
     vm.associados = Associados;
-    vm.user = User.data;
+    //vm.user = User.data;
     vm.listType = 'all';
     vm.listOrder = 'nome';
     vm.listOrderAsc = false;
@@ -33,7 +33,12 @@
     vm.exists = msUtils.exists;
     //////////
 
-    /**
+    //vm.currentUser = $window.sessionStorage.getItem("currentUser");
+
+    console.log("Logado:" + User.nome);
+    //console.log("Logado: " + vm.currentUser.nome);
+
+    /**.
      * Open new Associado dialog
      *
      * @param ev

@@ -106,21 +106,56 @@
                 {
                     return msApi.resolve('associados.associados@query'); // GET para Arrays
                 },
-                User: function (msApi)
+                User: function ($window)
                 {
-                    return msApi.resolve('associados.user@get');
-                }
+                    return JSON.parse($window.localStorage.getItem("currentUser"));
+                },
+                authenticate: authenticate
                 // FormaPgto: function (msApi)
                 // {
                 //   return msApi.resolve('contacts.formaPgto@query')
                 // }
             }
+
         });
+
+        function authenticate($q, User, $state, $timeout, $mdDialog) {
+
+          if (User != null) {
+            // Resolve the promise successfully
+            if(User.setor == 'Financeiro' || User.setor == "Administração"){
+              return $q.when();
+            }
+            else{
+              var confirm = $mdDialog.alert()
+                    .title('Não permitido!')
+                    .textContent('Apenas adminitradores e o setor financeiro pode acessar esse módulo.')
+                    .ariaLabel('Vou verificar!')
+                    .ok('Vou verificar!')
+
+              $mdDialog.show(confirm).then(function() {
+
+              });
+              return $q.reject();
+            }
+          } else {
+            // The next bit of code is asynchronously tricky.
+
+            $timeout(function() {
+              // This code runs after the authentication promise has been rejected.
+              // Go to the log-in page
+              $window.location.href = '/#/login';
+            })
+
+            // Reject the authentication promise to prevent the state from loading
+            return $q.reject()
+          }
+        }
 
         // Api
         msApiProvider.register('associados.associados', ['/api/associado']);
         //msApiProvider.register('contacts.formaPgto', ['/formaPgto']);
-        msApiProvider.register('associados.user', ['app/data/contacts/user.json']);
+        //msApiProvider.register('associados.user', vm.currentUser = JSON.parse($window.localStorage.getItem("currentUser")););
 
         // Navigation
         msNavigationServiceProvider.saveItem('financeiro', { // Adiciona um item no menu

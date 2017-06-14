@@ -7,7 +7,7 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService)
+    function ToolbarController($window, $rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService)
     {
         var vm = this;
 
@@ -68,7 +68,7 @@
         vm.toggleMsNavigationFolded = toggleMsNavigationFolded;
         vm.search = search;
         vm.searchResultClick = searchResultClick;
-
+        vm.currentUser = JSON.parse($window.localStorage.getItem("currentUser"));
         //////////
 
         // init();
@@ -110,7 +110,8 @@
          */
         function logout()
         {
-            // Do logout here..
+            $window.localStorage.setItem("currentUser", null);
+            $window.location.href = '/#/login';
         }
 
         /**

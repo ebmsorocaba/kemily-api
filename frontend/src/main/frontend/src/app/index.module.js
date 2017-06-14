@@ -27,8 +27,6 @@
             'app.associados',
 
             // Informar pagamento
-            'app.oldPagamento',
-
             'app.pagamento',
 
             // Relatório financeiro
@@ -40,6 +38,8 @@
 
             'app.projeto',
 
-            'app.relatorioSocial'
+            'app.relatorioSocial',
+
+            'app.login'
         ])
 })();

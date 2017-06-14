@@ -6,7 +6,7 @@
     .controller('RelatorioDialogController', RelatorioDialogController);
 
   /** @ngInject */
-  function RelatorioDialogController($mdDialog, Cpf, DataInicio, DataFim, msUtils, api, $filter) {
+  function RelatorioDialogController($mdDialog, DataInicio, DataFim, msUtils, api, $filter) {
     var vm = this;
 
     // Data
@@ -49,7 +49,7 @@
     vm.buscaPagamentos = buscaPagamentos;
     //////////
 
-    vm.buscaPagamentos(Cpf, DataInicio, DataFim);
+    vm.buscaPagamentos(DataInicio, DataFim);
 
     /**
      * Add new contact
@@ -166,12 +166,13 @@
     }
 
 
-    function buscaPagamentos(Cpf, DataInicio, DataFim) {
+    function buscaPagamentos(DataInicio, DataFim) {
       console.log('buscarPagamentos @ pagamento.controller.js');
       // Temporário
 
-      api.relatPagAssociado.list.query({ //É realizado um filtro da data para atender o esperado no backend
-        'cpf': Cpf,
+
+
+      api.relatPag.list.query({ //É realizado um filtro da data para atender o esperado no backend
         'dataInicio': DataInicio = $filter('date')(DataInicio, 'dd-MM-yyyy'),
         'dataFim': DataFim = $filter('date')(DataFim, 'dd-MM-yyyy')
       },
@@ -181,6 +182,7 @@
           console.log(response);
           vm.pagamentos=response;
           vm.getTotal(vm.pagamentos); //Pega o total (soma de todos os pagamentos)
+          vm.dataHeader = DataInicio;
         },
         // Erro
         function(response) {

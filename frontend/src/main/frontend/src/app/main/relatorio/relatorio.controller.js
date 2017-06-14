@@ -73,10 +73,11 @@
           targetEvent: ev,
           clickOutsideToClose: true,
           locals: {
-            Cpf: vm.cpf,
+            //Cpf: vm.cpf,
             DataInicio: vm.dataInicio,
             DataFim: vm.dataFim
           }
+
         });
       }
 

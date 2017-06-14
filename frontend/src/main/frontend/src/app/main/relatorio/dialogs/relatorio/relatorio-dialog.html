@@ -69,13 +69,13 @@
     <!-- DIALOG CONTENT -->
     <md-dialog-content ms-scroll>
 
-          <h1>Associado</h1></br>
+          <!-- <h1>Associado</h1></br> -->
 
-          <label>CPF: </label> <span class="md-subhead">{{vm.pagamentos[0].cpf}}</span> </br>
-          <label>Nome: </label><span class="md-subhead">{{vm.pagamentos[0].nome}}</span> </br> </br>
+          <!-- <label>CPF: </label> <span class="md-subhead">{{vm.pagamentos[0].cpf}}</span> </br> -->
+          <!-- <label>Nome: </label><span class="md-subhead">{{vm.pagamentos[0].nome}}</span> </br> </br> -->
 
 
-
+          <!--
           <div class="simple-table-container md-whiteframe-4dp">
             <div class="table-title">
               Pagamentos:
@@ -91,12 +91,12 @@
               </thead>
 
               <tbody>
-                <!--
+
                 <tr>
                   <td>Data</td>
                   <td ng-repeat="pagamento in vm.pagamentos">{{pagamento.dataPag | date: 'dd/MM/yyyy'}}</td>
                 </tr>
-                -->
+
                 <tr>
                   <td>Valor</td>
                   <td ng-repeat="pagamento in vm.pagamentos">{{pagamento.valor | currency:"R$":2}}</td>
@@ -104,6 +104,39 @@
                 </tr>
               </tbody>
             </table>
+          -->
+
+          <div class="simple-table-container md-whiteframe-4dp">
+            <div class="table-title">
+              Pagamentos:
+            </div>
+
+            <table class="simple" ms-responsive-table>
+              <thead>
+                <tr ng-repeat="pagamento in vm.pagamentos">
+                  <th ng-if="$index == 0">Cliente</th>
+                  <th ng-show="$index.lenght/$index.lenght" ng-repeat="pag in pagamento.pagamentos"> {{vm.dataHeader}} </th>
+                </tr><!--
+                <tr ng-repeat="pagamento in vm.pagamentos">
+
+                  <th ng-repeat-start="pag in pagamento.pagamentos"> {{pag.dataPgto}} </th>
+                  <th ng-repeat-end></th>
+                </tr> -->
+              </thead>
+
+              <tbody>
+
+                <tr ng-repeat="pagamento in vm.pagamentos">
+                  <td>{{pagamento.nome}}</td>
+                  <td ng-repeat="pag in pagamento.pagamentos"> {{pag.valorPago}} </td>
+
+
+                </tr>
+
+              </tbody>
+            </table>
+
+
         </div>
 
 

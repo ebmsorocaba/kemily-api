@@ -22,13 +22,15 @@
                            translate translate-attr-aria-label="TOOLBAR.USER_SETTINGS">
                     <div layout="row" layout-align="space-between center">
                         <div class="avatar-wrapper">
-                            <img md-menu-align-target class="avatar" src="assets/images/avatars/profile.jpg">
+                            <img ng-show="vm.currentUser.setor == 'Administração'" md-menu-align-target class="avatar" src="assets/images/avatars/admin.png">
+                            <img ng-show="vm.currentUser.setor == 'Financeiro'" md-menu-align-target class="avatar" src="assets/images/avatars/finances.png">
+                            <img ng-show="vm.currentUser.setor == 'Social'" md-menu-align-target class="avatar" src="assets/images/avatars/social.png">
                             <md-icon md-font-icon ng-class="vm.userStatus.icon"
                                      ng-style="{'color': vm.userStatus.color }"
                                      class="icon status s16">
                             </md-icon>
                         </div>
-                        <span class="username" hide show-gt-sm>Usuário de Tal</span>
+                        <span class="username" hide show-gt-sm ng-model="vm.currentUser.nome">{{vm.currentUser.nome}}</span>
                         <md-icon md-font-icon="icon-chevron-down"
                                  class="icon s16" hide-xs></md-icon>
                     </div>

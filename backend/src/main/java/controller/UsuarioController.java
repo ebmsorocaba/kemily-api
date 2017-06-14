@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -21,9 +22,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import jdbc.dao.UsuarioDAO;
+import model.RelatPagAssociado;
 import model.Usuario;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 
 @RestController
@@ -108,5 +111,29 @@ public class UsuarioController {
 		usuarioDao.altera(usuario, nome);
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
-
+	
+	
+	@CrossOrigin
+	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.GET, params={"senha"})
+	public ResponseEntity<Usuario> login(@PathVariable("nome") String nome, @RequestParam("senha") String senha) throws SQLException, ParseException {
+	
+		Usuario usuario = new Usuario();
+		
+		try{
+			usuario = usuarioDao.getUsuario(nome);
+		} catch (SQLException ex){
+			System.out.println(ex.toString());
+			usuario = null;
+			return new ResponseEntity<Usuario>(usuario, HttpStatus.NOT_FOUND);
+		}
+		
+		if(usuario.getSenha().equals(senha)){
+			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+		}
+		else{
+			usuario = null;
+			return new ResponseEntity<Usuario>(usuario, HttpStatus.NOT_FOUND);
+		}
+	}
+	
 }

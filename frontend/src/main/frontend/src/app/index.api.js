@@ -192,7 +192,8 @@
         api.usuario = {
             getUsuarios     : $resource(api.baseUrl + 'usuario'),
             getByNome       : $resource(api.baseUrl + 'usuario/:nome', {nome: '@nome'}, {'update': {method: 'PUT'}}),
-            addUsuario      : $resource(api.baseUrl + 'usuario')
+            addUsuario      : $resource(api.baseUrl + 'usuario'),
+            login           : $resource(api.baseUrl + 'usuario/:nome?senha=:senha', {nome: '@nome'}, {senha: '@senha'})
         }
 
         // API Associado
@@ -213,6 +214,10 @@
 
         api.relatPagAssociado = {
           list     : $resource(api.baseUrl + 'relatPagAssociado/:cpf/?dataInicio=:dataInicio&dataFim=:dataFim', {cpf: '@cpf'}, {dataInicio: '@dataInicio'}, {dataFim: '@dataFim'})
+        }
+
+        api.relatPag = {
+          list     : $resource(api.baseUrl + 'relatPag?dataInicio=:dataInicio&dataFim=:dataFim', {dataInicio: '@dataInicio'}, {dataFim: '@dataFim'})
         }
 
         // Exemplo do FUSE

@@ -24,14 +24,49 @@
                     // {
                     //     return msApi.resolve('associados.associados@query'); // GET para Arrays
                     // },
-                    User: function (msApi)
+                    User: function ($window)
                     {
-                        return msApi.resolve('contacts.user@get');
-                    }
+                        return JSON.parse($window.localStorage.getItem("currentUser"));
+                    },
+                    authenticate: authenticate
                 }
+
+
             });
 
-            msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
+            function authenticate($q, User, $state, $timeout, $mdDialog) {
+              if (User != null) {
+                // Resolve the promise successfully
+                if(User.setor == 'Financeiro' || User.setor == "Administração"){
+                  return $q.when();
+                }
+                else{
+                  var confirm = $mdDialog.alert()
+                        .title('Não permitido!')
+                        .textContent('Apenas adminitradores e o setor financeiro pode acessar esse módulo.')
+                        .ariaLabel('Vou verificar!')
+                        .ok('Vou verificar!')
+
+                  $mdDialog.show(confirm).then(function() {
+                    
+                  });
+                  return $q.reject();
+                }
+              } else {
+                // The next bit of code is asynchronously tricky.
+
+                $timeout(function() {
+                  // This code runs after the authentication promise has been rejected.
+                  // Go to the log-in page
+                  $window.location.href = '/#/login';
+                })
+
+                // Reject the authentication promise to prevent the state from loading
+                return $q.reject()
+              }
+            }
+
+            //msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
 
         // Translation
         // $translatePartialLoaderProvider.addPart('app/main/relatorio');
