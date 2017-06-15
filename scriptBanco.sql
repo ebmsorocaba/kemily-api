@@ -106,11 +106,11 @@ CREATE TABLE pagamento_cartao (
 /*                                */
 
 INSERT INTO usuario(nome, senha, setor, email, ativo)
-  VALUES('dev', 'pass', 'Administração', 'dev@gmail.com', TRUE);
+  VALUES('Admin', 'pass', 'Administração', 'dev@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
   VALUES ('Ronaldo Pereira', '123456', 'Financeiro', 'ronaldo@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
-  VALUES ('Carlos Alberto', '654321', 'Financeiro', 'carlos@gmail.com', TRUE);
+  VALUES ('Carlos Eduardo', '654321', 'Financeiro', 'carlos@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
   VALUES ('Elias Humberto', 'abcd', 'Social', 'elias@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)

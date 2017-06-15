@@ -80,7 +80,7 @@
         controller: 'UsuarioDialogController',
         controllerAs: 'vm',
         templateUrl: 'app/main/usuario/dialogs/contact/usuario-dialog.html',
-        parent: angular.element($document.find('#content-container')),
+        parent: (angular.element(document.body)),
         targetEvent: ev,
         clickOutsideToClose: true,
         locals: {

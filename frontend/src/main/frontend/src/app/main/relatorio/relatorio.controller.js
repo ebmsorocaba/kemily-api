@@ -69,7 +69,8 @@
           controller: 'RelatorioDialogController',
           controllerAs: 'vm',
           templateUrl: 'app/main/relatorio/dialogs/relatorio/relatorio-dialog.html',
-          parent: angular.element($document.find('#content-container')),
+          parent: (angular.element(document.body)),
+          //parent: angular.element($document.find('#content-container')),
           targetEvent: ev,
           clickOutsideToClose: true,
           locals: {

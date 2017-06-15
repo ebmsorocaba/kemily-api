@@ -45,7 +45,7 @@
         controller: 'PagamentoDialogController',
         controllerAs: 'vm',
         templateUrl: 'app/main/pagamento/dialogs/pagamento/pagamento-dialog.html',
-        parent: angular.element($document.find('#content-container')),
+        parent: (angular.element(document.body)),
         targetEvent: ev,
         clickOutsideToClose: true,
         locals: {

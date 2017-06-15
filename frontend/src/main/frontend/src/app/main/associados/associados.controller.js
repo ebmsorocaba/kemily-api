@@ -49,7 +49,7 @@
         controller: 'AssociadoDialogController',
         controllerAs: 'vm',
         templateUrl: 'app/main/associados/dialogs/associado/associado-dialog.html',
-        parent: angular.element($document.find('#content-container')),
+        parent: (angular.element(document.body)),
         targetEvent: ev,
         clickOutsideToClose: true,
         locals: {
