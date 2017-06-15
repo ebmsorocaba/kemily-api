@@ -52,7 +52,6 @@
 
               console.error(response);
               vm.fail(ev);
-              console.log("errooooooooooooooooooooooooooooo");
             }
           );
 

@@ -42,6 +42,8 @@
 
             'app.login',
 
-            'app.minhaConta'
+            'app.minhaConta',
+
+            'app.esqueciSenha'
         ])
 })();
