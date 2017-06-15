@@ -62,6 +62,7 @@
         // Methods
         // vm.toggleSidenav = toggleSidenav;
         vm.logout = logout;
+        vm.minhaConta = minhaConta;
         // vm.changeLanguage = changeLanguage;
         // vm.setUserStatus = setUserStatus;
         vm.toggleHorizontalMobileMenu = toggleHorizontalMobileMenu;
@@ -112,6 +113,11 @@
         {
             $window.localStorage.setItem("currentUser", null);
             $window.location.href = '/#/login';
+        }
+
+        function minhaConta()
+        {
+            $window.location.href = '/#/minhaConta';
         }
 
         /**

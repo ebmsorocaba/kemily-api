@@ -106,19 +106,19 @@ CREATE TABLE pagamento_cartao (
 /*                                */
 
 INSERT INTO usuario(nome, senha, setor, email, ativo)
-  VALUES('Admin', 'pass', 'Administração', 'dev@gmail.com', TRUE);
+  VALUES('Admin', 'pass', 'Administração', 'diegoluizdb@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
-  VALUES ('Ronaldo Pereira', '123456', 'Financeiro', 'ronaldo@gmail.com', TRUE);
+  VALUES ('Ronaldo Pereira', '123456', 'Financeiro', 'diegoluizdb@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
-  VALUES ('Carlos Eduardo', '654321', 'Financeiro', 'carlos@gmail.com', TRUE);
+  VALUES ('Carlos Eduardo', '654321', 'Financeiro', 'diegoluizdb@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
-  VALUES ('Elias Humberto', 'abcd', 'Social', 'elias@gmail.com', TRUE);
+  VALUES ('Elias Humberto', 'abcd', 'Social', 'diegoluizdb@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
-  VALUES ('Financeiro', '123', 'Financeiro', 'fi@gmail.com', TRUE);
+  VALUES ('Financeiro', '123', 'Financeiro', 'diegoluizdb@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
-  VALUES ('Administração', '123', 'Adminitração', 'admin@gmail.com', TRUE);
+  VALUES ('Administração', '123', 'Adminitração', 'diegoluizdb@gmail.com', TRUE);
 INSERT INTO usuario(nome, senha, setor, email, ativo)
-  VALUES ('Social', '123', 'Social', 'social@gmail.com', TRUE);
+  VALUES ('Social', '123', 'Social', 'diegoluizdb@gmail.com', TRUE);
 
 INSERT INTO associado(cpf, nome, email, valor_atual, venc_atual)
   VALUES('444.444.444-44', 'Godoy Oliveira', 'godoy@gmail.com', 10.44, 12);

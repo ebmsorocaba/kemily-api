@@ -40,6 +40,8 @@
 
             'app.relatorioSocial',
 
-            'app.login'
+            'app.login',
+
+            'app.minhaConta'
         ])
 })();

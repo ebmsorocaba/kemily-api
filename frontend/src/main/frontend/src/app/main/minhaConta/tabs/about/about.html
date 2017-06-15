@@ -1,0 +1,179 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="50">
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Informações Gerais</div>
+            </header>
+
+            <div class="content">
+                <div class="info-line">
+                    <div class="title">Nome de usuario</div>
+                    <div class="info">{{vm.currentUser.nome}}</div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Email</div>
+                    <div class="info">{{vm.currentUser.email}}</div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Setor</div>
+                    <div class="info">{{vm.currentUser.setor}}</div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Ativo</div>
+                    <div ng-if="vm.currentUser.ativo == true" class="info">Sim</div>
+                    <div ng-if="vm.currentUser.ativo == false" class="info">Não</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="profile-box info-box contact md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Contact</div>
+            </header>
+            <div class="content">
+                <div class="info-line">
+                    <div class="title">Address</div>
+                    <div class="info">{{vm.about.contact.address}}</div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Tel.</div>
+                    <div class="info" ng-repeat="tel in vm.about.contact.tel">
+                        <span>{{tel}}</span>
+                    </div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Website</div>
+                    <div class="info" ng-repeat="website in vm.about.contact.websites">
+                        <span>{{website}}</span>
+                    </div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Emails</div>
+                    <div class="info" ng-repeat="email in vm.about.contact.emails">
+                        <span>{{email}}</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="about" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="50">
+
+        <div class="profile-box info-box work md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Alterar Senha</div>
+            </header>
+
+            <div class="content" layout="column">
+                <md-input-container>
+                  <label>Senha antiga</label>
+                  <md-icon md-font-icon="icon-account-key"></md-icon>
+                  <input ng-model="vm.senhaAntiga" type="password" required>
+                </md-input-container>
+
+                <md-input-container>
+                  <label>Nova Senha</label>
+                  <md-icon md-font-icon="icon-key"></md-icon>
+                  <input ng-model="vm.novaSenha" type="password" required>
+                </md-input-container>
+
+                <md-input-container>
+                  <label>Confirmação de senha</label>
+                  <md-icon md-font-icon="icon-account-check"></md-icon>
+                  <input ng-model="vm.senhaConfirmar" type="password" required>
+                </md-input-container>
+                <div class="">
+                  <md-button type="submit" ng-click="vm.alterarSenha(ev)" class="send-button md-accent md-raised" ng-disabled="PagamentoForm.$invalid || PagamentoForm.$pristine" aria-label="Informar pagamento">
+                    Confirmar
+                  </md-button>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- <div class="profile-box info-box contact md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Contact</div>
+            </header>
+            <div class="content">
+                <div class="info-line">
+                    <div class="title">Address</div>
+                    <div class="info">{{vm.about.contact.address}}</div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Tel.</div>
+                    <div class="info" ng-repeat="tel in vm.about.contact.tel">
+                        <span>{{tel}}</span>
+                    </div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Website</div>
+                    <div class="info" ng-repeat="website in vm.about.contact.websites">
+                        <span>{{website}}</span>
+                    </div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Emails</div>
+                    <div class="info" ng-repeat="email in vm.about.contact.emails">
+                        <span>{{email}}</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+
+    <!-- <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="35">
+        <div class="profile-box friends md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg" layout="row" layout-align="space-between center">
+                <div class="title">Friends</div>
+                <div class="more secondary-text">
+                    <span>See</span>
+                    <span>454</span>
+                    <span>More</span>
+                </div>
+            </header>
+            <div class="content" layout="row" layout-wrap>
+                <div class="friend" flex="20" ng-repeat="friend in vm.about.friends">
+                    <img ng-src="{{friend.avatar}}">
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-box groups md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg" layout="row" layout-align="space-between center">
+                <div class="title">Joined Groups</div>
+                <div class="more secondary-text">
+                    <span>See</span>
+                    <span>6</span>
+                    <span>More</span>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="group" ng-repeat="group in vm.about.groups" layout="row"
+                     layout-align="space-between center">
+                    <div layout="row" layout-align="start center">
+                        <img ng-src="{{group.logo}}" class="logo" alt="{{group.name}}"/>
+
+                        <div>
+                            <div class="name">{{group.name}}</div>
+                            <div class="category">{{group.category}}</div>
+                            <div class="members">{{group.members}} people</div>
+                        </div>
+                    </div>
+                    <md-button class="md-icon-button" aria-label="more">
+                        <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+</div>

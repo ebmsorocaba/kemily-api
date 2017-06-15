@@ -193,9 +193,11 @@
             getUsuarios     : $resource(api.baseUrl + 'usuario'),
             getByNome       : $resource(api.baseUrl + 'usuario/:nome', {nome: '@nome'}, {'update': {method: 'PUT'}}),
             addUsuario      : $resource(api.baseUrl + 'usuario'),
-            login           : $resource(api.baseUrl + 'usuario/:nome?senha=:senha', {nome: '@nome'}, {senha: '@senha'})
+            login           : $resource(api.baseUrl + 'usuario/:nome?senha=:senha', {nome: '@nome'}, {senha: '@senha'}),
+            resetarSenha    : $resource(api.baseUrl + 'recuperarSenha/:nome', {nome: '@nome'})
         }
 
+        ///api/recuperarSenha/{nome}
         // API Associado
         api.associado = {
           list      : $resource(api.baseUrl + 'associado'),
