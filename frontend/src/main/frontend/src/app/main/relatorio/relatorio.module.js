@@ -48,7 +48,7 @@
                         .ok('Vou verificar!')
 
                   $mdDialog.show(confirm).then(function() {
-                    
+
                   });
                   return $q.reject();
                 }

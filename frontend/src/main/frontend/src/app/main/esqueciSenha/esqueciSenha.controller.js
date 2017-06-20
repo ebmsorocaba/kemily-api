@@ -34,6 +34,7 @@
               vm.loading = false;
               console.log(response);
               vm.sucess(ev);
+              $window.location.href = '/#/login';
             },
             // Erro
             function(response) {
