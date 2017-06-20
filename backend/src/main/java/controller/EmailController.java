@@ -47,40 +47,39 @@ public class EmailController {
 
 	private Map<Integer, Usuario> usuarios;
 	private UsuarioDAO usuarioDao = new UsuarioDAO();
-	
-	
+
+
 	private JavaMailSender javaMailSender;
 
     @Autowired
     void MailSubmissionController(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
-	
+
 	public EmailController() throws SQLException {
-		
-	  
+
+
 	}
-	
+
 	@CrossOrigin
 	@RequestMapping(value = "/api/recuperarSenha/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<SimpleMailMessage> recuperarSenha(@PathVariable("nome") String nome) throws SQLException, ParseException {
-	
+
 		Usuario usuario = new Usuario();
 		usuario = usuarioDao.getUsuario(nome);
 		usuario.setSenha("SENHA@123");
 		usuarioDao.altera(usuario, nome);
-		
+
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(usuario.getEmail());
         //mailMessage.setReplyTo("diegoluizbaptista@gmail.com");
         mailMessage.setFrom("testingx99999@gmail.com");
         mailMessage.setSubject("Mudança de senha");
-        mailMessage.setText("Saudações, senhor " + usuario.getNome() + " sua senha foi resetada para a senha padrão SENHA@123, pedimos para que assim que acessar sua conta já a altere.");
+        mailMessage.setText("Saudações, senhor(a) " + usuario.getNome() + " sua senha foi resetada para a senha padrão SENHA@123, pedimos para que assim que acessar sua conta já a altere.");
         javaMailSender.send(mailMessage);
         //return mailMessage;
-		
+
 		return new ResponseEntity<SimpleMailMessage>(mailMessage, HttpStatus.CREATED);
 	}
-	
-}
 
+}
