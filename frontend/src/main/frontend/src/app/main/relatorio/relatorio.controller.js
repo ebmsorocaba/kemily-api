@@ -33,9 +33,6 @@
       vm.dataInicio = new Date(2015, 0, 1, 0, 0, 0, 0);
       vm.dataFim = new Date(2015, 3, 1, 0, 0, 0, 0);
       */
-      console.log(vm.dataInicio);
-      console.log(vm.dataFim);
-
 
       function limpaForm() {
         console.log('limpaForm @ pagamento.controller.js');
@@ -74,8 +71,8 @@
 
 
         api.relatPag.list.query({ //É realizado um filtro da data para atender o esperado no backend
-          'dataInicio': vm.dataInicio = $filter('date')(vm.dataInicio, 'dd-MM-yyyy'),
-          'dataFim': vm.dataFim = $filter('date')(vm.dataFim, 'dd-MM-yyyy')
+          'dataInicio': $filter('date')(vm.dataInicio, 'dd-MM-yyyy'),
+          'dataFim': $filter('date')(vm.dataFim, 'dd-MM-yyyy')
         },
           // Exibe o resultado no console do navegador:
           // Sucesso
@@ -104,11 +101,11 @@
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
         });
 
-        saveAs(blob, vm.dataInicio + "-" + vm.dataFim +".xls");
+        saveAs(blob,  $filter('date')(vm.dataInicio, 'MM-yyyy') + "_" + $filter('date')(vm.dataFim, 'MM-yyyy') +".xls");
       };
 
       function exportarPdf(){
-        console.log('exportar');
+        //console.log('exportar');
         // var blob = new Blob([document.getElementById('pagamentosTable').innerHTML], {
         // type: "application/pdf;charset=utf-8"
         // });
@@ -138,7 +135,7 @@
         //
         // pdf.save('myfilename' + '.pdf');
 
-        var pdfName = vm.dataInicio + "-" + vm.dataFim;
+        var pdfName = $filter('date')(vm.dataInicio, 'MM-yyyy') + "_" + $filter('date')(vm.dataFim, 'MM-yyyy');
         var pdf = new jsPDF('l', 'pt', 'a4'),
         specialElementHandlers = {
           'table': function(element, renderer) {

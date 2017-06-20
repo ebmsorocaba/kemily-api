@@ -6,8 +6,7 @@
              ng-if="MsShortcuts.shortcuts.length > 0"
              ng-sortable="MsShortcuts.sortableOptions">
             <div ng-repeat="shortcut in MsShortcuts.shortcuts" layout="row" layout-align="center center">
-                <md-button class="md-icon-button shortcut" aria-label="{{shortcut.title}}"
-                           ui-sref="{{shortcut.uisref}}">
+                <md-button class="md-icon-button shortcut" aria-label="{{shortcut.title}}">
                     <md-icon ng-if="shortcut.icon" md-font-icon="{{shortcut.icon}}" class="icon s24"></md-icon>
                     <div ng-if="!shortcut.icon" class="first-letter">{{shortcut.title.charAt(0)}}</div>
                     <md-tooltip md-direction="bottom">{{shortcut.title}}</md-tooltip>

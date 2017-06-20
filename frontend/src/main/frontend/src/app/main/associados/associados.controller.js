@@ -35,7 +35,7 @@
 
     //vm.currentUser = $window.sessionStorage.getItem("currentUser");
 
-    console.log("Logado:" + User.nome);
+    //console.log("Logado:" + User.nome);
     //console.log("Logado: " + vm.currentUser.nome);
 
     /**.
@@ -77,7 +77,7 @@
         vm.selectedAssociados = [];
 
       }, function() {
-        console.log('Cancelou');
+        //console.log('Cancelou');
       });
     }
 

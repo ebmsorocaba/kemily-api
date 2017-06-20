@@ -74,7 +74,7 @@
         vm.selectedPagamentos = [];
 
       }, function() {
-        console.log('Cancelou');
+        //console.log('Cancelou');
       });
     }
 

@@ -108,7 +108,7 @@
         vm.selectedContacts = [];
 
       }, function() {
-        console.log('Cancelou');
+        //console.log('Cancelou');
       });
     }
 

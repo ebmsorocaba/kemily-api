@@ -38,7 +38,7 @@
                 else{
 
                   mCtrl.$setValidity('cpf', false);
-                  console.log("1");
+                  //console.log("1");
                   return strCPF;
                 }
                 //verificar se os numeros do cpf são todos iguais ex: 000.000.000-00
@@ -51,7 +51,7 @@
                 if(flag==10){
 
                     mCtrl.$setValidity('cpf', false);
-                    console.log("2");
+                    //console.log("2");
                     return strCPF;
                 }
 
@@ -62,7 +62,7 @@
                 if (Resto != parseInt(strCPF.substring(9, 10)) ){
 
                   mCtrl.$setValidity('cpf', false);
-                  console.log("3");
+                  //console.log("3");
                   return strCPF;
                 }
 
@@ -74,13 +74,13 @@
                 if (Resto != parseInt(strCPF.substring(10, 11) ) ){
 
                   mCtrl.$setValidity('cpf', false);
-                  console.log("4");
+                  //console.log("4");
                   return strCPF;
                 }
 
 
                 mCtrl.$setValidity('cpf', true);
-                console.log("5");
+                //console.log("5");
                 return strCPF;
 
               }

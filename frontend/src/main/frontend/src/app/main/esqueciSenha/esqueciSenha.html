@@ -28,8 +28,8 @@
                 </md-button>
             </form>
 
-            <div ng-show="vm.loading == true" layout="row" layout-sm="column" layout-align="center center">
-              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            <div layout="row" layout-sm="column" layout-align="center center">
+              <md-progress-circular ng-show="vm.loading == true" md-mode="indeterminate"></md-progress-circular>
             </div>
 
             <div class="login" layout="row" layout-align="center center">

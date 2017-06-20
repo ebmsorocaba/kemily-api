@@ -281,7 +281,7 @@
       //Adiciona todos os nomes e cpf dos associados
       for(i=0; i<vm.associados.length; i++){
         allStates += ', ' + vm.associados[i].nome + ', ' + vm.associados[i].cpf;
-        console.log(vm.associados[i].nome);
+        //console.log(vm.associados[i].nome);
       }
 
 
