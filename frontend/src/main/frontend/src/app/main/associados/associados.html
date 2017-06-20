@@ -188,36 +188,36 @@
 
           <md-checkbox ng-checked="vm.exists(associado, vm.selectedAssociados)" ng-click="vm.toggleSelectAssociado(associado, $event)" aria-label="{{vm.exists(associado, vm.selectedAssociados) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
-
+          <div class="item" layout="row">
           <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
 
-          <p class="text-truncate font-weight-600">
+          <p class="text-truncate font-weight-600 texto nomeAssociado">
             {{associado.nome}}
           </p>
 
-          <p class="hide show-gt-xs">
+          <p class="hide show-gt-xs numero cpfAssociado">
             {{associado.cpf}}
           </p>
 
-          <p class="hide show-gt-xs">
+          <p class="hide show-gt-xs numero telefone">
             {{associado.celular}}
           </p>
 
-          <p class="hide show-gt-sm">
+          <p class="hide show-gt-sm texto emailAssociado">
             {{associado.email}}
           </p>
 
           <!-- Temporário -->
-          <p class="hide show-gt-sm">
+          <p class="hide show texto pagamentoAssociado">
             Dinheiro
-            <!-- {{contact.formaPgto}} -->
+            <!-- {{associado.formaPgto}} -->
           </p>
 
-          <p class="hide show-gt-sm">
+          <p class="hide show numero valorAssociado">
             {{associado.valorAtual | currency : "R$ "}}
           </p>
-
-          <div class="actions" layout="row" layout-align="start center">
+        </div>
+          <div class="md-secondary actions" layout="row" layout-align="start center">
             <!-- <md-button class="md-icon-button  hide show-gt-xs" ng-click="$event.stopPropagation();vm.toggleInArray(contact.id, vm.user.starred)" aria-label="Toggle starred" translate translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
               <md-icon ng-if="vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star" class="amber-fg"></md-icon>
               <md-icon ng-if="!vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star-outline"></md-icon>

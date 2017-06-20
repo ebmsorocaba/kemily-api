@@ -88,7 +88,7 @@
       <md-input-container class="md-icon-float md-block">
        <label>Setor</label>
        <md-icon md-font-icon="icon-format-list-bulleted"></md-icon>
-       <md-select ng-model="vm.contact.setor" ng-model-options="{trackBy: '$value'}">
+       <md-select ng-model="vm.contact.setor">
          <md-option ng-value="fp" ng-repeat="fp in vm.listaSetores">
            {{fp}}
          </md-option>
@@ -99,8 +99,8 @@
       <label>Ativo?</label>
       <md-input-container class="md-icon-float md-block">
         <md-radio-group ng-model="vm.contact.ativo" required>
-          <md-radio-button value=true>Sim</md-radio-button></br>
-          <md-radio-button value=false>Não</md-radio-button>
+          <md-radio-button ng-value="true">Sim</md-radio-button></br>
+          <md-radio-button ng-value="false">Não</md-radio-button>
         </md-radio-group>
       </md-input-container>
       <!-- Desativado temporariamente -->

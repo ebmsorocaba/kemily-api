@@ -11,3 +11,23 @@
  */
 // injector
 // endinjector
+
+md-list-item, md-list-item .md-list-item-inner {
+    min-height: 48px;
+    height: 48px;
+}
+
+div.item p.data{
+    width: 100px;
+    text-align: center;
+}
+
+div.item p.texto{
+    width: 100px;
+    text-align: left;
+}
+
+div.item p.numero{
+    width: 100px;
+    text-align: right;
+}

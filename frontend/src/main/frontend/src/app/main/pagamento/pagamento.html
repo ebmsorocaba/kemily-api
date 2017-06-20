@@ -167,31 +167,34 @@
           <md-checkbox ng-checked="vm.exists(pagamento, vm.selectedPagamentos)" ng-click="vm.toggleSelectPagamento(pagamento, $event)" aria-label="{{vm.exists(pagamento, vm.selectedPagamentos) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
 
-          <p class="text-truncate font-weight-600">
-            {{pagamento.id}}
-          </p>
+          <div class="item" layout="row">
 
-          <p class="hide show-gt-sm">
-            {{pagamento.formaPgto.associado.cpf}}
-          </p>
+            <p class="text-truncate font-weight-600 id">
+              {{pagamento.id}}
+            </p>
 
-          <p class="hide show-gt-sm">
-            {{pagamento.formaPgto.associado.nome}}
-          </p>
+            <p class="hide show-gt-sm numero cpf">
+              {{pagamento.formaPgto.associado.cpf}}
+            </p>
 
-          <p class="hide show-gt-xs">
-            {{pagamento.valorPago | currency : "R$ "}}
-          </p>
+            <p class="hide show-gt-sm texto nome">
+              {{pagamento.formaPgto.associado.nome}}
+            </p>
 
-          <p class="hide show-gt-sm">
-            {{pagamento.formaPgto.formaPagamento}}
-            <!-- {{contact.formaPgto}} -->
-          </p>
+            <p class="hide show-gt-xs numero valorPago">
+              {{pagamento.valorPago | currency : "R$ "}}
+            </p>
 
-          <p class="hide show-gt-xs">
-            {{pagamento.dataPgto | date : "dd/MM/yyyy"}}
-          </p>
+            <p class="hide show-gt-sm texto formaPagamento">
+              {{pagamento.formaPgto.formaPagamento}}
+              <!-- {{contact.formaPgto}} -->
+            </p>
 
+            <p class="hide show-gt-xs data dataPagamento">
+              {{pagamento.dataPgto | date : "dd/MM/yyyy"}}
+            </p>
+
+          </div>
           <!-- Temporário -->
 
           <div class="actions" layout="row" layout-align="start center">
