@@ -82,7 +82,7 @@
         templateUrl: 'app/main/usuario/dialogs/contact/usuario-dialog.html',
         parent: (angular.element(document.body)),
         targetEvent: ev,
-        clickOutsideToClose: true,
+        clickOutsideToClose: false,
         locals: {
           Contact: contact,
           User: vm.user,

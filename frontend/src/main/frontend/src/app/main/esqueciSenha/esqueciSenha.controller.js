@@ -56,9 +56,9 @@
           var confirm = $mdDialog.alert()
                 .title('SUCESSO')
                 .textContent('Sua senha foi resetada, verifique seu e-mail.')
-                .ariaLabel('Vou verificar!')
+                .ariaLabel('OK')
                 .targetEvent(ev)
-                .ok('Vou verificar!')
+                .ok('OK')
 
           $mdDialog.show(confirm).then(function() {
             $scope.status = 'ok!';
@@ -72,9 +72,9 @@
           var confirm = $mdDialog.alert()
                 .title('FALHA')
                 .textContent('Houve algum problema ao resetar a senha. Contate um adminitrador.')
-                .ariaLabel('Vou verificar!')
+                .ariaLabel('OK')
                 .targetEvent(ev)
-                .ok('Vou verificar!')
+                .ok('OK')
 
           $mdDialog.show(confirm).then(function() {
             $scope.status = 'falha!';

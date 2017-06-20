@@ -55,9 +55,9 @@
                   var confirm = $mdDialog.alert()
                         .title('FALHA')
                         .textContent('Problema com o servidor contate um administrador.')
-                        .ariaLabel('Vou verificar!')
+                        .ariaLabel('OK')
                         .targetEvent(ev)
-                        .ok('Vou verificar!')
+                        .ok('OK')
 
                   $mdDialog.show(confirm).then(function() {
                     $scope.status = 'falha!';
@@ -71,9 +71,9 @@
               var confirm = $mdDialog.alert()
                     .title('FALHA')
                     .textContent('Nova senha com a senha de confirmação não batem!')
-                    .ariaLabel('Vou verificar!')
+                    .ariaLabel('OK')
                     .targetEvent(ev)
-                    .ok('Vou verificar!')
+                    .ok('OK')
 
               $mdDialog.show(confirm).then(function() {
                 $scope.status = 'falha!';
@@ -86,9 +86,9 @@
             var confirm = $mdDialog.alert()
                   .title('FALHA')
                   .textContent('Não é essa a senha antiga!')
-                  .ariaLabel('Vou verificar!')
+                  .ariaLabel('OK')
                   .targetEvent(ev)
-                  .ok('Vou verificar!')
+                  .ok('OK')
 
             $mdDialog.show(confirm).then(function() {
               $scope.status = 'falha!';

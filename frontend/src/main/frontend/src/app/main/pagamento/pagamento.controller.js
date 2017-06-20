@@ -47,7 +47,7 @@
         templateUrl: 'app/main/pagamento/dialogs/pagamento/pagamento-dialog.html',
         parent: (angular.element(document.body)),
         targetEvent: ev,
-        clickOutsideToClose: true,
+        clickOutsideToClose: false,
         locals: {
           Pagamento: pagamento,
           User: vm.user,

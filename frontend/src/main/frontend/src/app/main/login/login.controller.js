@@ -65,9 +65,9 @@
           var confirm = $mdDialog.alert()
                 .title('FALHA')
                 .textContent('Usuario não cadastrado ou senha invalida! Verifique os dados informador ou contate um administrador.')
-                .ariaLabel('Vou verificar!')
+                .ariaLabel('OK')
                 .targetEvent(ev)
-                .ok('Vou verificar!')
+                .ok('OK')
 
           $mdDialog.show(confirm).then(function() {
             $scope.status = 'falha!';

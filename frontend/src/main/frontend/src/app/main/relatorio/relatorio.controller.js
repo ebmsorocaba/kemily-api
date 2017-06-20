@@ -20,9 +20,6 @@
       vm.limpaForm = limpaForm;
       vm.buscaCpf = buscaCpf;
 
-
-      vm.openAssociadoDialog = openAssociadoDialog
-
       vm.toggleInArray = msUtils.toggleInArray;
       vm.exists = msUtils.exists;
       vm.buscaPagamentos = buscaPagamentos;
@@ -68,26 +65,6 @@
 
       }
 
-
-
-
-      function openAssociadoDialog(ev) {
-        $mdDialog.show({
-          controller: 'RelatorioDialogController',
-          controllerAs: 'vm',
-          templateUrl: 'app/main/relatorio/dialogs/relatorio/relatorio-dialog.html',
-          parent: (angular.element(document.body)),
-          //parent: angular.element($document.find('#content-container')),
-          targetEvent: ev,
-          clickOutsideToClose: true,
-          locals: {
-            //Cpf: vm.cpf,
-            DataInicio: vm.dataInicio,
-            DataFim: vm.dataFim
-          }
-
-        });
-      }
 
 
       function buscaPagamentos() {

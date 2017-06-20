@@ -51,7 +51,7 @@
         templateUrl: 'app/main/associados/dialogs/associado/associado-dialog.html',
         parent: (angular.element(document.body)),
         targetEvent: ev,
-        clickOutsideToClose: true,
+        clickOutsideToClose: false,
         locals: {
           Associado: associado,
           User: vm.user,

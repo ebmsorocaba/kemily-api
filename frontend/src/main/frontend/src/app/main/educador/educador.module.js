@@ -38,11 +38,11 @@
                   var confirm = $mdDialog.alert()
                         .title('Não permitido!')
                         .textContent('Apenas adminitradores e o setor social pode acessar esse módulo.')
-                        .ariaLabel('Vou verificar!')
-                        .ok('Vou verificar!')
+                        .ariaLabel('OK')
+                        .ok('OK')
 
                   $mdDialog.show(confirm).then(function() {
-                    
+
                   });
                   return $q.reject();
                 }
