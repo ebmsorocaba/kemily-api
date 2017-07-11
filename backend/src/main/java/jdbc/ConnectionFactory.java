@@ -35,8 +35,10 @@ public class ConnectionFactory {
 			// return conn;
 
 			/** Localhost */
-
 			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/ebm_admin", "postgres", "postgres");
+
+			/** Produção */
+			//return DriverManager.getConnection("jdbc:postgresql://localhost:5432/kemily", "postgres", "k3m1l1");
 
 		} catch (ClassNotFoundException e) {
 			throw new SQLException(e.getMessage());
