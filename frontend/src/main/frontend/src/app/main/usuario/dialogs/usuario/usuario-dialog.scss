@@ -1,6 +1,6 @@
 md-dialog {
 
-    &.contact-dialog {
+    &.usuario-dialog {
         max-width: 400px;
         width: 400px;
 
@@ -18,11 +18,11 @@ md-dialog {
                 min-height: 144px;
                 max-height: 144px;
 
-                .contact-avatar {
+                .usuario-avatar {
                     margin: 0;
                 }
 
-                .contact-name {
+                .usuario-name {
                     font-size: 24px;
                     margin: 8px 0;
                 }

@@ -13,25 +13,25 @@
     // Data
     // vm.formaPgto = FormaPgto;
 
-    vm.contacts = Usuarios;
+    vm.usuarios = Usuarios;
     vm.user = User.data;
     // vm.filterIds = null;
     vm.listType = 'all';
     vm.listOrder = 'nome';
     vm.listOrderAsc = false;
-    vm.selectedContacts = [];
+    vm.selectedUsuarios = [];
     // vm.newGroupName = '';
 
     // Methods
     // vm.filterChange = filterChange;
-    vm.openContactDialog = openContactDialog;
-    vm.deleteContactConfirm = deleteContactConfirm;
-    vm.deleteContact = deleteContact;
-    vm.deleteSelectedContacts = deleteSelectedContacts;
-    vm.toggleSelectContact = toggleSelectContact;
-    vm.deselectContacts = deselectContacts;
-    vm.selectAllContacts = selectAllContacts;
-    vm.deleteContact = deleteContact;
+    vm.openUsuarioDialog = openUsuarioDialog;
+    vm.deleteUsuarioConfirm = deleteUsuarioConfirm;
+    vm.deleteUsuario = deleteUsuario;
+    vm.deleteSelectedUsuarios = deleteSelectedUsuarios;
+    vm.toggleSelectUsuario = toggleSelectUsuario;
+    vm.deselectUsuarios = deselectUsuarios;
+    vm.selectAllUsuarios = selectAllUsuarios;
+    vm.deleteUsuario = deleteUsuario;
     // vm.addNewGroup = addNewGroup;
     // vm.deleteGroup = deleteGroup;
     // vm.toggleSidenav = toggleSidenav;
@@ -40,7 +40,7 @@
     //////////
 
     /**
-     * Change Contacts List Filter
+     * Change Usuarios List Filter
      * @param type
      */
     // function filterChange(type)
@@ -54,7 +54,7 @@
     //     }
     //     else if ( type === 'frequent' )
     //     {
-    //         vm.filterIds = vm.user.frequentContacts;
+    //         vm.filterIds = vm.user.frequentUsuarios;
     //     }
     //     else if ( type === 'starred' )
     //     {
@@ -62,50 +62,50 @@
     //     }
     //     else if ( angular.isObject(type) )
     //     {
-    //         vm.filterIds = type.contactIds;
+    //         vm.filterIds = type.usuarioIds;
     //     }
     //
-    //     vm.selectedContacts = [];
+    //     vm.selectedUsuarios = [];
     //
     // }
 
     /**
-     * Open new contact dialog
+     * Open new usuario dialog
      *
      * @param ev
-     * @param contact
+     * @param usuario
      */
-    function openContactDialog(ev, contact) {
+    function openUsuarioDialog(ev, usuario) {
       $mdDialog.show({
         controller: 'UsuarioDialogController',
         controllerAs: 'vm',
-        templateUrl: 'app/main/usuario/dialogs/contact/usuario-dialog.html',
+        templateUrl: 'app/main/usuario/dialogs/usuario/usuario-dialog.html',
         parent: (angular.element(document.body)),
         targetEvent: ev,
         clickOutsideToClose: false,
         locals: {
-          Contact: contact,
+          Usuario: usuario,
           User: vm.user,
-          Contacts: vm.contacts
+          Usuarios: vm.usuarios
         }
       });
     }
 
     /**
-     * Delete Contact Confirm Dialog
+     * Delete Usuario Confirm Dialog
      */
-    function deleteContactConfirm(contact, ev) {
+    function deleteUsuarioConfirm(usuario, ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar este usuário?')
-        .htmlContent('<b>' + contact.nome + ' (' + contact.nome + ')</b>' + ' será apagado(a).')
+        .htmlContent('<b>' + usuario.nome + ' (' + usuario.nome + ')</b>' + ' será apagado(a).')
         .ariaLabel('apagar usuario')
         .targetEvent(ev)
         .ok('Sim')
         .cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function() {
-        deleteContact(contact);
-        vm.selectedContacts = [];
+        deleteUsuario(usuario);
+        vm.selectedUsuarios = [];
 
       }, function() {
         //console.log('Cancelou');
@@ -113,16 +113,16 @@
     }
 
     /**
-     * Delete Contact
+     * Delete Usuario
      */
-    function deleteContact(contact) {
+    function deleteUsuario(usuario) {
 
       // TODO Remover também a [formaPgto] do Associado.
 
       // Remove o Associado do BD
-      console.log('deleteContact @ contacts.controller.js');
+      console.log('deleteUsuario @ usuarios.controller.js');
         api.usuario.getByNome.delete({
-          'nome': contact.nome
+          'nome': usuario.nome
         },
         // Sucesso
         function(response) {
@@ -135,16 +135,16 @@
       );
 
       // Remove a da lista na tela a linha deste Associado
-      vm.contacts.splice(vm.contacts.indexOf(contact), 1);
+      vm.usuarios.splice(vm.usuarios.indexOf(usuario), 1);
     }
 
     /**
-     * Delete Selected Contacts
+     * Delete Selected Usuarios
      */
-    function deleteSelectedContacts(ev) {
+    function deleteSelectedUsuarios(ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar os usuários selecionados?')
-        .htmlContent('<b>' + vm.selectedContacts.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
+        .htmlContent('<b>' + vm.selectedUsuarios.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
         .ariaLabel('apagar contatos')
         .targetEvent(ev)
         .ok('Sim')
@@ -152,46 +152,46 @@
 
       $mdDialog.show(confirm).then(function() {
 
-        vm.selectedContacts.forEach(function(contact) {
-          deleteContact(contact);
+        vm.selectedUsuarios.forEach(function(usuario) {
+          deleteUsuario(usuario);
         });
 
-        vm.selectedContacts = [];
+        vm.selectedUsuarios = [];
 
       });
 
     }
 
     /**
-     * Toggle selected status of the contact
+     * Toggle selected status of the usuario
      *
-     * @param contact
+     * @param usuario
      * @param event
      */
-    function toggleSelectContact(contact, event) {
+    function toggleSelectUsuario(usuario, event) {
       if (event) {
         event.stopPropagation();
       }
 
-      if (vm.selectedContacts.indexOf(contact) > -1) {
-        vm.selectedContacts.splice(vm.selectedContacts.indexOf(contact), 1);
+      if (vm.selectedUsuarios.indexOf(usuario) > -1) {
+        vm.selectedUsuarios.splice(vm.selectedUsuarios.indexOf(usuario), 1);
       } else {
-        vm.selectedContacts.push(contact);
+        vm.selectedUsuarios.push(usuario);
       }
     }
 
     /**
-     * Deselect contacts
+     * Deselect usuarios
      */
-    function deselectContacts() {
-      vm.selectedContacts = [];
+    function deselectUsuarios() {
+      vm.selectedUsuarios = [];
     }
 
     /**
-     * Sselect all contacts
+     * Sselect all usuarios
      */
-    function selectAllContacts() {
-      vm.selectedContacts = $scope.filteredContacts;
+    function selectAllUsuarios() {
+      vm.selectedUsuarios = $scope.filteredUsuarios;
     }
 
     /**
@@ -207,7 +207,7 @@
     //     var newGroup = {
     //         'id'        : msUtils.guidGenerator(),
     //         'name'      : vm.newGroupName,
-    //         'contactIds': []
+    //         'usuarioIds': []
     //     };
     //
     //     vm.user.groups.push(newGroup);
