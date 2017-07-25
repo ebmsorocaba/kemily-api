@@ -1,3 +1,16 @@
+<div layout="row" layout-align="start center">
+  <!-- <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click="vm.toggleSidenav('sidenav')">
+            <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+        </md-button> -->
+
+  <div class="logo" layout="row" layout-align="start center">
+    <span class="logo-icon">
+      <md-icon md-font-icon="icon-document" class="s24"></md-icon>
+    </span>
+    <span class="logo-text">Relatório Financeiro</span>
+  </div>
+</div>
+
 <div layout="row">
 
             <!-- FORM WIZARD -->
@@ -11,7 +24,7 @@
                                 <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$valid">
                                     <i class="icon-check s16"></i>
                                 </span>
-                                <span class="ms-form-wizard-step-text">Personal Information</span>
+                                <span class="ms-form-wizard-step-text">Dados gerais</span>
                             </span>
                         </md-tab-label>
 
@@ -19,13 +32,13 @@
                             <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
                                 <div layout="column" layout-gt-xs="row" flex>
                                     <md-input-container flex="100" flex-gt-xs="50">
-                                        <input type="text" name="firstname" ng-model="vm.formWizard.firstname"
-                                               placeholder="Firstname"
+                                        <input type="text" name="name" ng-model="vm.formWizard.name"
+                                               placeholder="Nome"
                                                required>
                                         <div ng-messages="wizardStep1.firstname.$error"
                                              role="alert">
                                             <div ng-message="required">
-                                                <span>Firstname field is required.</span>
+                                                <span>O nome é requerido.</span>
                                             </div>
                                         </div>
                                     </md-input-container>
