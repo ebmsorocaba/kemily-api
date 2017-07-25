@@ -35,7 +35,7 @@ public class ConnectionFactory {
 			// return conn;
 
 			/** Localhost */
-			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/ebm_admin", "postgres", "postgres");
+			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/ebm_admin", "feliperichter", "552178");
 
 			/** Produção */
 			//return DriverManager.getConnection("jdbc:postgresql://localhost:5432/kemily", "postgres", "k3m1l1");
