@@ -71,8 +71,8 @@
 
         // Api
         msApiProvider.register('usuarios.usuarios', ['/api/usuario']);
-        //msApiProvider.register('contacts.formaPgto', ['/formaPgto']);
-        //msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
+        //msApiProvider.register('usuarios.formaPgto', ['/formaPgto']);
+        //msApiProvider.register('usuarios.user', ['app/data/usuarios/user.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('administrador', { // Adiciona um item no menu

@@ -1,4 +1,4 @@
-#contacts {
+#usuarios {
     position: relative;
 
     > .header {
@@ -92,7 +92,7 @@
             right: 0;
             bottom: 0;
 
-            .contacts-list {
+            .usuarios-list {
                 position: relative;
                 padding-bottom: 0;
 
@@ -104,7 +104,7 @@
                         padding: 16px;
                     }
 
-                    .contacts-count {
+                    .usuarios-count {
                         padding-left: 4px;
                     }
 
@@ -148,7 +148,7 @@
                     }
                 }
 
-                .contact-item {
+                .usuario-item {
                     position: absolute;
                     right: 0;
                     left: 0;
@@ -189,7 +189,7 @@
         }
     }
 
-    #add-contact-button {
+    #add-usuario-button {
         position: fixed;
         bottom: 8px;
         right: 8px;
@@ -200,7 +200,7 @@
 // RESPONSIVE
 @media screen and (min-width: $layout-breakpoint-md) {
 
-    #contacts {
+    #usuarios {
 
         > .content {
 

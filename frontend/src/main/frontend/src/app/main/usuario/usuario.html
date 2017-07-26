@@ -1,4 +1,4 @@
-<div id="contacts" class="page-layout simple left-sidenav inner-sidenav">
+<div id="usuarios" class="page-layout simple left-sidenav inner-sidenav">
 
   <!-- HEADER -->
   <div class="header md-accent-bg" layout="row" layout-align="space-between center">
@@ -33,9 +33,9 @@
   <!-- / HEADER -->
 
   <!-- SELECTED BAR -->
-  <div ng-show="vm.selectedContacts.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
+  <div ng-show="vm.selectedUsuarios.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
 
-    <div class="close-button-wrapper" ng-click="vm.selectedContacts =[]">
+    <div class="close-button-wrapper" ng-click="vm.selectedUsuarios =[]">
       <md-button layout="row" layout-align="start center">
         <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
         <span>Voltar</span>
@@ -45,8 +45,8 @@
     <div flex layout="row" layout-align="space-between center">
 
       <div>
-        <span class="selected-contacts-count">
-        <span>{{vm.selectedContacts.length}}</span>
+        <span class="selected-usuarios-count">
+        <span>{{vm.selectedUsuarios.length}}</span>
         <span>selecionado(s)</span>
         </span>
 
@@ -56,12 +56,12 @@
           </md-button>
           <md-menu-content width="3">
             <md-menu-item>
-              <md-button ng-click="vm.selectAllContacts()">
+              <md-button ng-click="vm.selectAllUsuarios()">
                 Selecionar todos
               </md-button>
             </md-menu-item>
             <md-menu-item>
-              <md-button ng-click="vm.deselectContacts()">
+              <md-button ng-click="vm.deselectUsuarios()">
                 Selecionar nenhum
               </md-button>
             </md-menu-item>
@@ -70,7 +70,7 @@
       </div>
 
       <div class="multi-select-actions">
-        <md-button class="md-icon-button" ng-click="vm.deleteSelectedContacts($event)" aria-label="apagar selecionados">
+        <md-button class="md-icon-button" ng-click="vm.deleteSelectedUsuarios($event)" aria-label="apagar selecionados">
           <md-icon md-font-icon="icon-delete"></md-icon>
         </md-button>
       </div>
@@ -87,7 +87,7 @@
     <div class="main scrollable" ms-scroll>
 
       <!-- CONTACT LIST -->
-      <md-list class="contacts-list">
+      <md-list class="usuarios-list">
 
         <!-- CONTACT LIST HEADER -->
         <md-subheader class="md-no-sticky md-white-bg">
@@ -97,13 +97,13 @@
             <div class="list-title" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
               <span ng-if="vm.listType === 'all'">Usuários Cadastrados</span>
               <!-- <span ng-if="vm.listType === 'frequent'" translate="CONTACTS.FREQUENTLY_CONTACTED">Frequnetly
-                                contacted</span>
+                                usuarioed</span>
                             <span ng-if="vm.listType === 'starred'" translate="CONTACTS.STARRED_CONTACTS">Starred
-                                contacts</span>
+                                usuarios</span>
                             <span ng-if="vm.listType.name">{{vm.listType.name}}</span> -->
 
-              <span ng-if="filteredContacts.length" class="secondary-text contacts-count">
-                                ({{filteredContacts.length}})
+              <span ng-if="filteredUsuarios.length" class="secondary-text usuarios-count">
+                                ({{filteredUsuarios.length}})
                             </span>
             </div>
 
@@ -183,38 +183,38 @@
         <!-- / CONTACT LIST HEADER -->
 
         <!-- CONTACT ITEM -->
-        <md-list-item class="contact-item md-white-bg" md-ink-ripple ng-repeat="contact in vm.contacts | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredContacts track by contact.nome "
-          ng-click="vm.openContactDialog($event, contact)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredContacts.length - $index}" ng-class="{'selected': vm.isSelected(contact)}">
+        <md-list-item class="usuario-item md-white-bg" md-ink-ripple ng-repeat="usuario in vm.usuarios | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredUsuarios track by usuario.nome "
+          ng-click="vm.openUsuarioDialog($event, usuario)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredUsuarios.length - $index}" ng-class="{'selected': vm.isSelected(usuario)}">
 
-          <md-checkbox ng-checked="vm.exists(contact, vm.selectedContacts)" ng-click="vm.toggleSelectContact(contact, $event)" aria-label="{{vm.exists(contact, vm.selectedContacts) ? 'Deselect' : 'Select'}}">
+          <md-checkbox ng-checked="vm.exists(usuario, vm.selectedUsuarios)" ng-click="vm.toggleSelectUsuario(usuario, $event)" aria-label="{{vm.exists(usuario, vm.selectedUsuarios) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
           <div class="item" layout="row">
-          <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
+          <!-- <img class="md-avatar" ng-if="usuario.avatar" alt="{{usuario.name}}" ng-src="{{usuario.avatar}}" /> -->
 
             <p class="text-truncate font-weight-600 texto usuario">
-              {{contact.nome}}
+              {{usuario.nome}}
             </p>
 
             <p class="hide show-gt-sm texto email">
-              {{contact.email}}
+              {{usuario.email}}
             </p>
 
             <p class="hide show-gt-sm texto setor">
-              {{contact.setor}}
+              {{usuario.setor}}
             </p>
 
-            <p ng-show="contact.ativo == true" class="hide show-gt-xs texto ativo">
+            <p ng-show="usuario.ativo == true" class="hide show-gt-xs texto ativo">
               Ativado
             </p>
 
-            <p ng-show="contact.ativo == false" class="hide show-gt-xs texto usuario ativo">
+            <p ng-show="usuario.ativo == false" class="hide show-gt-xs texto usuario ativo">
               Desativado
             </p>
           </div>
           <div class="actions" layout="row" layout-align="start center">
-            <!-- <md-button class="md-icon-button  hide show-gt-xs" ng-click="$event.stopPropagation();vm.toggleInArray(contact.id, vm.user.starred)" aria-label="Toggle starred" translate translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
-              <md-icon ng-if="vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star" class="amber-fg"></md-icon>
-              <md-icon ng-if="!vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star-outline"></md-icon>
+            <!-- <md-button class="md-icon-button  hide show-gt-xs" ng-click="$event.stopPropagation();vm.toggleInArray(usuario.id, vm.user.starred)" aria-label="Toggle starred" translate translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
+              <md-icon ng-if="vm.exists(usuario.id,vm.user.starred)" md-font-icon="icon-star" class="amber-fg"></md-icon>
+              <md-icon ng-if="!vm.exists(usuario.id,vm.user.starred)" md-font-icon="icon-star-outline"></md-icon>
             </md-button> -->
 
             <md-menu>
@@ -224,13 +224,13 @@
 
               <md-menu-content width="3">
                 <md-menu-item>
-                  <md-button ng-click="vm.openContactDialog($event, contact)">
+                  <md-button ng-click="vm.openUsuarioDialog($event, usuario)">
                     Editar usuário
                   </md-button>
                 </md-menu-item>
 
                 <md-menu-item>
-                  <md-button ng-click="vm.deleteContactConfirm(contact, ev)">
+                  <md-button ng-click="vm.deleteUsuarioConfirm(usuario, ev)">
                     Apagar usuário
                   </md-button>
                 </md-menu-item>
@@ -239,8 +239,8 @@
 
                 <md-subheader class="md-no-sticky" ng-if="vm.user.groups">Groups</md-subheader>
 
-                <md-list-item ng-if="vm.user.groups" ng-repeat="group in vm.user.groups" ng-click="vm.toggleInArray(contact.id,group.contactIds)">
-                  <p class="pl-8" ng-style="vm.exists(contact.id,group.contactIds) && {'font-weight':'500'}">
+                <md-list-item ng-if="vm.user.groups" ng-repeat="group in vm.user.groups" ng-click="vm.toggleInArray(usuario.id,group.usuarioIds)">
+                  <p class="pl-8" ng-style="vm.exists(usuario.id,group.usuarioIds) && {'font-weight':'500'}">
                     {{group.name}}
                   </p>
                 </md-list-item> -->
@@ -257,7 +257,7 @@
       <!-- / CONTACT LIST -->
 
       <!-- NO RESULTS -->
-      <md-list-item class="no-results md-white-bg" ng-show="filteredContacts.length === 0">
+      <md-list-item class="no-results md-white-bg" ng-show="filteredUsuarios.length === 0">
         <p>Nenhum usuário encontrado.</p>
       </md-list-item>
       <!-- / NO RESULTS -->
@@ -269,7 +269,7 @@
   <!-- / CONTENT -->
 
   <!-- ADD CONTACT BUTTON -->
-  <md-button class="md-fab md-accent md-icon-button" id="add-contact-button" ng-click="vm.openContactDialog($event)" aria-label="Adicionar usuário">
+  <md-button class="md-fab md-accent md-icon-button" id="add-usuario-button" ng-click="vm.openUsuarioDialog($event)" aria-label="Adicionar usuário">
     <md-icon md-font-icon="icon-account-plus"></md-icon>
   </md-button>
   <!-- / ADD CONTACT BUTTON -->
