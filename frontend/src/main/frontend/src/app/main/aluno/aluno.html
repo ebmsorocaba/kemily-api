@@ -1,8 +1,10 @@
 <div layout="row">
 
     <!-- FORM WIZARD -->
+
     <ms-form-wizard flex>
         <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true">
+          <!-- PASSO 1 / STEP 1-->
             <md-tab>
                 <md-tab-label>
                     <span class="ms-form-wizard-step-label">
@@ -18,7 +20,7 @@
                 <md-tab-body>
                     <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
                         <div layout="column" layout-gt-xs="row" flex>
-                            <md-input-container flex="100" flex-gt-xs="40">
+                            <md-input-container flex="100" flex-gt-xs="60">
                                 <input type="text" name="nome" ng-model="vm.formWizard.nome"
                                        placeholder="Nome"
                                        required>
@@ -44,24 +46,10 @@
                                 <input type="text" name="rg" ng-model="vm.formWizard.rg" md-maxlength=12>
                             </md-input-container>
 
-                            <md-input-container flex="100" flex-gt-xs="15">
-                                <label>Camiseta</label>
-                                <md-select ng-model="vm.formWizard.estado">
-                                    <md-option ng-repeat="estado in vm.estado" value="{{estado}}">
-                                        {{estado}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-
                             <md-input-container flex="100" flex-gt-xs="10">
-                                <label>Calça</label>
-                                <md-select ng-model="vm.formWizard.estado">
-                                    <md-option ng-repeat="estado in vm.estado" value="{{estado}}">
-                                        {{estado}}
-                                    </md-option>
-                                </md-select>
+                                <label>Idade</label>
+                                <input type="text" name="idade"ng-model="vm.formWizard.idade">
                             </md-input-container>
-
                         </div>
 
                         <div layout="column" layout-gt-xs="row">
@@ -70,12 +58,8 @@
                                 <input type="text" name="nasc" ng-model="vm.formWizard.nasc">
                             </md-input-container>
 
-                            <md-input-container flex="100" flex-gt-xs="10">
-                                <label>Idade</label>
-                                <input type="text" name="idade"ng-model="vm.formWizard.idade">
-                            </md-input-container>
 
-                            <md-input-container flex="100" flex-gt-xs="30">
+                            <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Naturalidade</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.nat">
                             </md-input-container>
@@ -99,10 +83,31 @@
                             </md-input-container>
 
                         </div>
+
+                        <div layout="column" layout-gt-xs="row" layout-align="center center">
+                          <md-input-container flex="100" flex-gt-xs="15">
+                            <label>Camiseta</label>
+                            <md-select ng-model="vm.formWizard.estado">
+                                <md-option ng-repeat="estado in vm.estado" value="{{estado}}">
+                                    {{estado}}
+                                </md-option>
+                            </md-select>
+                          </md-input-container>
+
+                          <md-input-container flex="100" flex-gt-xs="15">
+                              <label>Calça</label>
+                              <md-select ng-model="vm.formWizard.estado">
+                                  <md-option ng-repeat="estado in vm.estado" value="{{estado}}">
+                                      {{estado}}
+                                  </md-option>
+                              </md-select>
+                          </md-input-container>
+                        </div>
                     </form>
                 </md-tab-body>
             </md-tab>
 
+            <!-- PASSO 2 / STEP 2-->
             <md-tab ng-disabled="wizardStep1.$invalid">
                 <md-tab-label>
                     <span class="ms-form-wizard-step-label">
@@ -111,7 +116,7 @@
                         <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$valid">
                             <i class="icon-check s16"></i>
                         </span>
-                        <span class="ms-form-wizard-step-text">Dados Familiares</span>
+                        <span class="ms-form-wizard-step-text">Responsáveis Legais</span>
                     </span>
                 </md-tab-label>
 
@@ -120,10 +125,10 @@
                         <div layout="column" layout-gt-xs="row">
                           <div layout="column" layout-gt-xs="row" flex>
                               <md-input-container flex  >
-                                  <input type="text" name="nome" ng-model="vm.formWizard.nome"
+                                  <input type="text" name="nomepai" ng-model="vm.formWizard.nomepai"
                                          placeholder="Nome do Pai"
                                          required>
-                                  <div ng-messages="wizardStep1.firstname.$error"
+                                  <div ng-messages="wizardStep1.nomepai.$error"
                                        role="alert">
                                       <div ng-message="required">
                                           <span>O nome é requerido.</span>
@@ -134,9 +139,9 @@
 
                           <md-input-container flex="100" flex-gt-xs="15">
                               <label>Presente?</label>
-                              <md-select ng-model="vm.formWizard.presente">
-                                  <md-option ng-repeat="estado in vm.presente" value="{{presente}}">
-                                      {{estado}}
+                              <md-select ng-model="vm.formWizard.paipresente">
+                                  <md-option ng-repeat="estado in vm.paipresente" value="{{paipresente}}">
+                                      {{maepresente}}
                                   </md-option>
                               </md-select>
                           </md-input-container>
@@ -145,10 +150,10 @@
                         <div layout="column" layout-gt-xs="row">
                           <div layout="column" layout-gt-xs="row" flex>
                               <md-input-container flex  >
-                                  <input type="text" name="nome" ng-model="vm.formWizard.nome"
+                                  <input type="text" name="nomemae" ng-model="vm.formWizard.nomemae"
                                          placeholder="Nome da Mãe"
                                          required>
-                                  <div ng-messages="wizardStep1.firstname.$error"
+                                  <div ng-messages="wizardStep1.nomemae.$error"
                                        role="alert">
                                       <div ng-message="required">
                                           <span>O nome é requerido.</span>
@@ -158,31 +163,43 @@
                           </div>
 
                           <md-input-container flex="100" flex-gt-xs="15">
-                              <label>Assistido?</label>
-                              <md-select ng-model="vm.formWizard.presente">
-                                  <md-option ng-repeat="estado in vm.presente" value="{{assistido}}">
-                                      {{estado}}
+                              <label>Presente?</label>
+                              <md-select ng-model="vm.formWizard.maepresente">
+                                  <md-option ng-repeat="estado in vm.maepresente" value="{{maepresente}}">
+                                      {{maepresente}}
                                   </md-option>
                               </md-select>
                           </md-input-container>
                         </div>
 
-                        <md-input-container class="md-block">
-                            <label>Address</label>
-                            <textarea ng-model="vm.formWizard.address" md-maxlength="150" max-rows="5"
-                                      required></textarea>
-                            <div ng-messages="wizardStep2.address.$error"
-                                 role="alert" multiple>
-                                <div ng-message="required"><span>Address field is required.</span></div>
-                                <div ng-message="md-maxlength">
-                                    <span>Address can't be longer than 150 characters.</span>
-                                </div>
-                            </div>
-                        </md-input-container>
+                        <div layout="column" layout-gt-xs="row">
+                          <div layout="column" layout-gt-xs="row" flex>
+                              <md-input-container flex  >
+                                  <input type="text" name="nomeoutro" ng-model="vm.formWizard.nomeoutro"
+                                         placeholder="Outro">
+                              </md-input-container>
+                          </div>
+
+                          <md-input-container flex="100" flex-gt-xs="20">
+                              <label>Telefone</label>
+                              <input type="text" name="teloutro"ng-model="vm.formWizard.teloutro">
+                          </md-input-container>
+
+                          <md-input-container flex="100" flex-gt-xs="15">
+                              <label>Presente?</label>
+                              <md-select ng-model="vm.formWizard.outropresente">
+                                  <md-option ng-repeat="estado in vm.outropresente" value="{{outropresente}}">
+                                      {{outropresente}}
+                                  </md-option>
+                              </md-select>
+                          </md-input-container>
+
+                        </div>
                     </form>
                 </md-tab-body>
             </md-tab>
 
+            <!-- PASSO 3 / STEP 3-->
             <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid">
                 <md-tab-label>
                     <span class="ms-form-wizard-step-label">
@@ -191,16 +208,87 @@
                         <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$valid">
                             <i class="icon-check s16"></i>
                         </span>
-                        <span class="ms-form-wizard-step-text">Situação Financeira</span>
+                        <span class="ms-form-wizard-step-text">Endereço</span>
+                    </span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <form name="wizardStep3" ms-form-wizard-form novalidate>
+                        <div layout="column" layout-gt-xs="row">
+                          <div layout="column" layout-gt-xs="row" flex>
+                              <md-input-container flex  >
+                                  <input type="text" name="rua" ng-model="vm.formWizard.rua"
+                                         placeholder="Rua" required>
+                              </md-input-container>
+
+
+                          </div>
+
+                              <md-input-container flex="100" flex-gt-xs="20" >
+                                <input type="text" name="numero" ng-model="vm.formWizard.numero"
+                                placeholder="Numero">
+                              </md-input-container>
+
+
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                          <div layout="column" layout-gt-xs="row" flex>
+                              <md-input-container flex  >
+                                <input type="text" name="complemento" ng-model="vm.formWizard.complemento"
+                                placeholder="Complemento">
+                              </md-input-container>
+                          </div>
+
+                              <md-input-container flex="100" flex-gt-xs="30" >
+                                <input type="text" name="bairro" ng-model="vm.formWizard.bairro"
+                                placeholder="Bairro">
+                              </md-input-container>
+                          </md-input-container>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                          <div layout="column" layout-gt-xs="row" flex>
+                              <md-input-container flex >
+                                <input type="text" name="cep" ng-model="vm.formWizard.cep"
+                                placeholder="CEP">
+                              </md-input-container>
+                          </div>
+
+                              <md-input-container flex="100" flex-gt-xs="50" >
+                                <input type="text" name="referencia" ng-model="vm.formWizard.referencia"
+                                placeholder="Ponto de Referencia">
+                              </md-input-container>
+
+                              <md-input-container flex="100" flex-gt-xs="20" >
+                                <input type="text" name="cidade" ng-model="vm.formWizard.cidade"
+                                placeholder="Cidade">
+                              </md-input-container>
+                          </md-input-container>
+                        </div>
+                    </form>
+                </md-tab-body>
+            </md-tab>
+
+            <!-- PASSO 4 / STEP 4-->
+            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid">
+                <md-tab-label>
+                    <span class="ms-form-wizard-step-label">
+                        <span class="ms-form-wizard-step-number md-accent-bg"
+                              ng-if="wizardStep4.$invalid">4</span>
+                        <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$valid">
+                            <i class="icon-check s16"></i>
+                        </span>
+                        <span class="ms-form-wizard-step-text">Aguardando Normalização</span>
                     </span>
                 </md-tab-label>
                 <md-tab-body>
-                    <form name="wizardStep3" ms-form-wizard-form novalidate>
+                    <form name="wizardStep4" ms-form-wizard-form novalidate>
                         <md-input-container class="md-block">
                             <input type="text" name="cardholder" ng-model="vm.formWizard.cardholder"
                                    placeholder="Card Holder"
                                    required>
-                            <div ng-messages="wizardStep3.cardholder.$error"
+                            <div ng-messages="wizardStep4.cardholder.$error"
                                  role="alert">
                                 <div ng-message="required">
                                     <span>Card holder field is required.</span>
@@ -213,7 +301,7 @@
                                 <input type="text" name="cardnumber" ng-model="vm.formWizard.cardnumber"
                                        placeholder="Card Number"
                                        required>
-                                <div ng-messages="wizardStep3.cardnumber.$error"
+                                <div ng-messages="wizardStep4.cardnumber.$error"
                                      role="alert">
                                     <div ng-message="required">
                                         <span>Card number field is required.</span>
@@ -225,7 +313,7 @@
                                 <input type="text" name="CC2" ng-model="vm.formWizard.cc2"
                                        placeholder="CC2" md-maxlength="3"
                                        required>
-                                <div ng-messages="wizardStep3.cc2.$error"
+                                <div ng-messages="wizardStep4.cc2.$error"
                                      role="alert" multipl>
                                     <div ng-message="required">
                                         <span>CC2 field is required.</span>
@@ -240,7 +328,7 @@
                                 <input type="text" name="expirationDate" ng-model="vm.formWizard.expirationDate"
                                        placeholder="Expiration Date"
                                        required>
-                                <div ng-messages="wizardStep3.expirationDate.$error"
+                                <div ng-messages="wizardStep4.expirationDate.$error"
                                      role="alert">
                                     <div ng-message="required">
                                         <span>Expiration date field is required.</span>
@@ -256,7 +344,7 @@
         <div class="navigation" flex layout="row" layout-align="center center">
             <md-button class="md-raised md-accent" ng-click="msWizard.previousStep()"
                        ng-disabled="msWizard.isFirstStep()">
-                Previous
+                Voltar
             </md-button>
             <div class="steps">
                 <span ng-repeat="form in msWizard.forms"
@@ -265,12 +353,12 @@
             <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()"
                        ng-hide="msWizard.isLastStep()"
                        ng-disabled="msWizard.currentStepInvalid()">
-                Next
+                Proximo
             </md-button>
             <md-button class="md-raised md-warn" ng-click="vm.sendForm(); msWizard.resetForm();"
                        ng-show="msWizard.isLastStep()"
                        ng-disabled="msWizard.formsIncomplete()">
-                Send
+                Enviar
             </md-button>
         </div>
 
