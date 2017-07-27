@@ -38,6 +38,13 @@ DROP TABLE boleto;
 /*************************/
 /*                       */
 
+/***************************/
+/*                         */
+/** Modulo Administrativo **/
+/*                         */
+/***************************/
+/*                         */
+
 CREATE TABLE usuario (
   nome VARCHAR(50) NOT NULL PRIMARY KEY,
   senha VARCHAR(20) NOT NULL,
@@ -45,6 +52,14 @@ CREATE TABLE usuario (
   email VARCHAR(50) NOT NULL,
   ativo BOOLEAN NOT NULL -- Indica para o sistema de login se o usuário pode logar.
 );
+
+/***********************/
+/*                     */
+/** Modulo Financeiro **/
+/*                     */
+/***********************/
+/*                     */
+
 
 CREATE TABLE associado (
   cpf VARCHAR(14) NOT NULL PRIMARY KEY,
@@ -93,6 +108,77 @@ CREATE TABLE pagamento_boleto (
 CREATE TABLE pagamento_cartao (
   id_pagamento BIGINT NOT NULL PRIMARY KEY REFERENCES pagamento(id),
   numero_cartao BIGINT NOT NULL REFERENCES cartao(numero)
+);
+
+/***************************/
+/*                         */
+/**     Modulo Social     **/
+/*                         */
+/***************************/
+/*                         */
+
+CREATE TABLE turma (
+  educadora TEXT PRIMARY KEY
+);
+
+CREATE TABLE aluno (
+  ra SERIAL PRIMARY KEY,
+  nome VARCHAR(80) NOT NULL,
+  turma_educadora TEXT NOT NULL REFERENCES turma(educadora),
+  data_nascimento DATE NOT NULL,
+  rg VARCHAR(10) NOT NULL,
+  naturalidade VARCHAR(50) NOT NULL,
+  estado VARCHAR(2) NOT NULL,
+  data_cadastro DATE NOT NULL,
+  meio_transporte VARCHAR(20) NOT NULL,
+  observacoes TEXT NOT NULL
+);
+
+CREATE TABLE endereco (
+  cep VARCHAR(15),
+  numero VARCHAR(6),
+  rua VARCHAR(60),
+  bairro VARCHAR(30),
+  cidade VARCHAR(50),
+  ponto_referencia VARCHAR(50),
+  completemento VARCHAR(10),
+  ra_aluno BIGINT NOT NULL REFERENCES aluno(ra),
+  PRIMARY KEY(cep, numero)
+);
+
+CREATE TABLE aparelhos_eletronicos (
+  id SERIAL PRIMARY KEY,
+  televisao BOOLEAN NOT NULL,
+  tv_assinatura BOOLEAN NOT NULL,
+  computador BOOLEAN NOT NULL,
+  notebook BOOLEAN NOT NULL,
+  fogao BOOLEAN NOT NULL,
+  geladeira BOOLEAN NOT NULL,
+  microondas BOOLEAN NOT NULL,
+  tablet BOOLEAN NOT NULL,
+  maquina_de_lavar BOOLEAN NOT NULL,
+  maquina_de_secar BOOLEAN NOT NULL,
+  telefone_fixo BOOLEAN NOT NULL,
+  celular BOOLEAN NOT NULL
+);
+
+CREATE TABLE despesa (
+  id_estrutura_familiar BIGINT PRIMARY KEY REFERENCES estrutura_familiar(id),
+  agua NUMERIC(12,2) NOT NULL,
+  energia_eletrica NUMERIC(12,2) NOT NULL,
+  telefone NUMERIC(12,2) NOT NULL,
+  aluguel NUMERIC(12,2) NOT NULL,
+  financiamento_casa NUMERIC(12,2) NOT NULL,
+  financiamento_carro NUMERIC(12,2) NOT NULL,
+  transporte NUMERIC(12,2) NOT NULL,
+  alimentacao NUMERIC(12,2) NOT NULL,
+  gas NUMERIC(12,2) NOT NULL,
+  cartao_credito NUMERIC(12,2) NOT NULL,
+  emprestimo NUMERIC(12,2) NOT NULL,
+  tv_cabo NUMERIC(12,2) NOT NULL,
+  educacao NUMERIC(12,2) NOT NULL,
+  pensao NUMERIC(12,2) NOT NULL,
+  convenio_medico NUMERIC(12,2) NOT NULL
 );
 
 /*---Fim da criação das tabelas---*/
