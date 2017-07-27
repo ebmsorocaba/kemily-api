@@ -134,6 +134,17 @@ CREATE TABLE aluno (
   observacoes TEXT NOT NULL
 );
 
+CREATE TABLE ESTRUTURA_FAMILIAR (
+  id: SERIAL PRIMARY KEY,
+  estado_civil_pais: VARCHAR(15) NOT NULL,
+  crianca_reside_com: VARCHAR(15) NOT NULL,
+  problemas_financeiros: BOOLEAN NOT NULL,
+  uso_de_alcool_drogas: BOOLEAN NOT NULL,
+  alguem_agressivo: BOOLEAN NOT NULL,
+  problemas_sociais: BOOLEAN NOT NULL,
+  ra_aluno: BIGINT FOREIGN KEY REFERENCES ALUNO(ra)
+);
+
 CREATE TABLE endereco (
   cep VARCHAR(15),
   numero VARCHAR(6),
@@ -179,6 +190,59 @@ CREATE TABLE despesa (
   educacao NUMERIC(12,2) NOT NULL,
   pensao NUMERIC(12,2) NOT NULL,
   convenio_medico NUMERIC(12,2) NOT NULL
+);
+
+CREATE TABLE CONTATO (
+  id: SERIAL,
+  nome: VARCHAR(80) NOT NULL,
+  telefone: VARCHAR(20) NOT NULL,
+  ra_aluno: VARCHAR(15) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (ra_aluno) REFERENCES ALUNO(ra)
+);
+
+CREATE TABLE ROUPA (
+  ra_aluno: BIGINT PRIMARY KEY REFERENCES ALUNO(ra),
+  tamanho_camiseta: VARCHAR(5) NOT NULL,
+  tamanho_calca: VARCHAR(5) NOT NULL
+);
+
+CREATE TABLE CONTATO_RESPONSAVEL (
+  id_contato: BIGINT PRIMARY KEY REFERENCES CONTATO(id),
+  grau_parentesco: VARCHAR(15) NOT NULL,
+  presente: BOOLEAN NOT NULL
+);
+
+CREATE TABLE CONTATO_PROFISSIONAL (
+  id_contato: BIGINT PRIMARY KEY REFERENCES CONTATO(id),
+  cargo: TEXT NOT NULL
+);
+
+CREATE TABLE AUTOMOVEL (
+  id: SERIAL PRIMARY KEY,
+  modelo: VARCHAR(30) NOT NULL,
+  ano: VARCHAR(5) NOT NULL,
+  financiado: BOOLEAN NOT NULL,
+  id_estrutura_familiar: BIGINT FOREIGN KEY REFERENCES ESTRUTURA_FAMILIAR(id)
+);
+
+CREATE TABLE IMOVEL (
+  id: SERIAL PRIMARY KEY,
+  quantidade: INTEGER NOT NULL,
+  financiado: BOOLEAN NOT NULL,
+  id_estrutura_familiar: BIGINT FOREIGN KEY REFERENCES ESTRUTURA_FAMILIAR(id)
+);
+
+CREATE TABLE SITUACAO_HABITACIONAL (
+  ra_aluno: BIGINT PRIMARY KEY REFERENCES ALUNO(ra),
+  situacao: VARCHAR(20),
+  esgoto: BOOLEAN,
+  asfalto: BOOLEAN,
+  numero_comodos: INTEGER,
+  alvenaria: BOOLEAN,
+  madeira: BOOLEAN,
+  area_irregular: BOOLEAN,
+  id_aparelhos_eletronicos: BIGINT FOREIGN KEY REFERENCES APARELHOS_ELETRONICOS(id)
 );
 
 /*---Fim da criação das tabelas---*/
