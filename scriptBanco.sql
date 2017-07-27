@@ -134,7 +134,7 @@ CREATE TABLE aluno (
   observacoes TEXT NOT NULL
 );
 
-CREATE TABLE ESTRUTURA_FAMILIAR (
+CREATE TABLE estrutura_familiar (
   id: SERIAL PRIMARY KEY,
   estado_civil_pais: VARCHAR(15) NOT NULL,
   crianca_reside_com: VARCHAR(15) NOT NULL,
@@ -142,7 +142,7 @@ CREATE TABLE ESTRUTURA_FAMILIAR (
   uso_de_alcool_drogas: BOOLEAN NOT NULL,
   alguem_agressivo: BOOLEAN NOT NULL,
   problemas_sociais: BOOLEAN NOT NULL,
-  ra_aluno: BIGINT FOREIGN KEY REFERENCES ALUNO(ra)
+  ra_aluno: BIGINT FOREIGN KEY REFERENCES aluno(ra)
 );
 
 CREATE TABLE endereco (
@@ -173,6 +173,59 @@ CREATE TABLE aparelhos_eletronicos (
   celular BOOLEAN NOT NULL
 );
 
+CREATE TABLE contato (
+  id: SERIAL,
+  nome: VARCHAR(80) NOT NULL,
+  telefone: VARCHAR(20) NOT NULL,
+  ra_aluno: VARCHAR(15) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (ra_aluno) REFERENCES aluno(ra)
+);
+
+CREATE TABLE roupa (
+  ra_aluno: BIGINT PRIMARY KEY REFERENCES aluno(ra),
+  tamanho_camiseta: VARCHAR(5) NOT NULL,
+  tamanho_calca: VARCHAR(5) NOT NULL
+);
+
+CREATE TABLE contato_responsavel (
+  id_contato: BIGINT PRIMARY KEY REFERENCES contato(id),
+  grau_parentesco: VARCHAR(15) NOT NULL,
+  presente: BOOLEAN NOT NULL
+);
+
+CREATE TABLE contato_profissional (
+  id_contato: BIGINT PRIMARY KEY REFERENCES contato(id),
+  cargo: TEXT NOT NULL
+);
+
+CREATE TABLE automovel (
+  id: SERIAL PRIMARY KEY,
+  modelo: VARCHAR(30) NOT NULL,
+  ano: VARCHAR(5) NOT NULL,
+  financiado: BOOLEAN NOT NULL,
+  id_estrutura_familiar: BIGINT FOREIGN KEY REFERENCES estrutura_familiar(id)
+);
+
+CREATE TABLE imovel (
+  id: SERIAL PRIMARY KEY,
+  quantidade: INTEGER NOT NULL,
+  financiado: BOOLEAN NOT NULL,
+  id_estrutura_familiar: BIGINT FOREIGN KEY REFERENCES estrutura_familiar(id)
+);
+
+CREATE TABLE situacao_habitacional (
+  ra_aluno: BIGINT PRIMARY KEY REFERENCES aluno(ra),
+  situacao: VARCHAR(20),
+  esgoto: BOOLEAN,
+  asfalto: BOOLEAN,
+  numero_comodos: INTEGER,
+  alvenaria: BOOLEAN,
+  madeira: BOOLEAN,
+  area_irregular: BOOLEAN,
+  id_aparelhos_eletronicos: BIGINT FOREIGN KEY REFERENCES aparelhos_eletronicos(id)
+);
+
 CREATE TABLE despesa (
   id_estrutura_familiar BIGINT PRIMARY KEY REFERENCES estrutura_familiar(id),
   agua NUMERIC(12,2) NOT NULL,
@@ -190,59 +243,6 @@ CREATE TABLE despesa (
   educacao NUMERIC(12,2) NOT NULL,
   pensao NUMERIC(12,2) NOT NULL,
   convenio_medico NUMERIC(12,2) NOT NULL
-);
-
-CREATE TABLE CONTATO (
-  id: SERIAL,
-  nome: VARCHAR(80) NOT NULL,
-  telefone: VARCHAR(20) NOT NULL,
-  ra_aluno: VARCHAR(15) NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (ra_aluno) REFERENCES ALUNO(ra)
-);
-
-CREATE TABLE ROUPA (
-  ra_aluno: BIGINT PRIMARY KEY REFERENCES ALUNO(ra),
-  tamanho_camiseta: VARCHAR(5) NOT NULL,
-  tamanho_calca: VARCHAR(5) NOT NULL
-);
-
-CREATE TABLE CONTATO_RESPONSAVEL (
-  id_contato: BIGINT PRIMARY KEY REFERENCES CONTATO(id),
-  grau_parentesco: VARCHAR(15) NOT NULL,
-  presente: BOOLEAN NOT NULL
-);
-
-CREATE TABLE CONTATO_PROFISSIONAL (
-  id_contato: BIGINT PRIMARY KEY REFERENCES CONTATO(id),
-  cargo: TEXT NOT NULL
-);
-
-CREATE TABLE AUTOMOVEL (
-  id: SERIAL PRIMARY KEY,
-  modelo: VARCHAR(30) NOT NULL,
-  ano: VARCHAR(5) NOT NULL,
-  financiado: BOOLEAN NOT NULL,
-  id_estrutura_familiar: BIGINT FOREIGN KEY REFERENCES ESTRUTURA_FAMILIAR(id)
-);
-
-CREATE TABLE IMOVEL (
-  id: SERIAL PRIMARY KEY,
-  quantidade: INTEGER NOT NULL,
-  financiado: BOOLEAN NOT NULL,
-  id_estrutura_familiar: BIGINT FOREIGN KEY REFERENCES ESTRUTURA_FAMILIAR(id)
-);
-
-CREATE TABLE SITUACAO_HABITACIONAL (
-  ra_aluno: BIGINT PRIMARY KEY REFERENCES ALUNO(ra),
-  situacao: VARCHAR(20),
-  esgoto: BOOLEAN,
-  asfalto: BOOLEAN,
-  numero_comodos: INTEGER,
-  alvenaria: BOOLEAN,
-  madeira: BOOLEAN,
-  area_irregular: BOOLEAN,
-  id_aparelhos_eletronicos: BIGINT FOREIGN KEY REFERENCES APARELHOS_ELETRONICOS(id)
 );
 
 /*---Fim da criação das tabelas---*/
