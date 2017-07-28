@@ -370,6 +370,15 @@ INSERT INTO pagamento_cartao(id_pagamento, numero_cartao)
   VALUES (5, '4396378924129673');
 */
 
+INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
+  VALUES('Divorciado', 'Pai', TRUE, TRUE, TRUE, TRUE, 1);
+INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
+  VALUES('Casado', 'Pais', TRUE, FALSE, TRUE, FALSE, 2);
+INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
+  VALUES('Solteiro', 'Mãe', FALSE, TRUE, TRUE, FALSE, 3);
+
+
+
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
 ;
