@@ -245,7 +245,6 @@ CREATE TABLE automovel (
 
 CREATE TABLE imovel (
   id SERIAL PRIMARY KEY,
-  quantidade INTEGER NOT NULL,
   financiado BOOLEAN NOT NULL,
   id_estrutura_familiar BIGINT REFERENCES estrutura_familiar(id)
 );
@@ -468,12 +467,12 @@ INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, alu
 INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimentacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
   VALUES(3 , 0, 100, 0, 100, 0, 100, 0, 100, 0, 100, 0, 100, 0, 100, 0);
 
-INSERT INTO imovel(quantidade, financiado, id_estrutura_familiar)
-  VALUES(0, FALSE, 1);
-INSERT INTO imovel(quantidade, financiado, id_estrutura_familiar)
-  VALUES(5, TRUE, 2);
-INSERT INTO imovel(quantidade, financiado, id_estrutura_familiar)
-  VALUES(1, TRUE, 3);
+INSERT INTO imovel(financiado, id_estrutura_familiar)
+  VALUES(FALSE, 1);
+INSERT INTO imovel(financiado, id_estrutura_familiar)
+  VALUES(TRUE, 2);
+INSERT INTO imovel(financiado, id_estrutura_familiar)
+  VALUES(TRUE, 3);
 
 INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
   VALUES('Gol', '2000', FALSE, 2);
