@@ -27,6 +27,22 @@ DROP TABLE associado_forma_pagamento;
 DROP TABLE associado;
 DROP TABLE usuario;
 DROP TABLE boleto;
+DROP TABLE saude;
+DROP TABLE parente;
+DROP TABLE automovel;
+DROP TABLE imovel;
+DROP TABLE despesa;
+DROP TABLE estrutura_familiar;
+DROP TABLE endereco;
+DROP TABLE aparelhos_eletronicos;
+DROP TABLE contato_responsavel;
+DROP TABLE contato_profissional;
+DROP TABLE contato;
+DROP TABLE roupa;
+DROP TABLE aluno;
+DROP TABLE turma;
+
+
 
 /*---Fim da limpeza---*/
 /*                    */
@@ -118,15 +134,15 @@ CREATE TABLE pagamento_cartao (
 /*                         */
 
 CREATE TABLE turma (
-  educadora TEXT PRIMARY KEY
+  educador TEXT PRIMARY KEY
 );
 
 CREATE TABLE aluno (
   ra SERIAL PRIMARY KEY,
   nome VARCHAR(80) NOT NULL,
-  turma_educadora TEXT NOT NULL REFERENCES turma(educadora),
+  turma_educador TEXT NOT NULL REFERENCES turma(educador),
   data_nascimento DATE NOT NULL,
-  rg VARCHAR(10) NOT NULL,
+  rg VARCHAR(10),
   naturalidade VARCHAR(50) NOT NULL,
   estado VARCHAR(2) NOT NULL,
   data_cadastro DATE NOT NULL,
@@ -196,7 +212,7 @@ CREATE TABLE contato (
   id SERIAL,
   nome VARCHAR(80) NOT NULL,
   telefone VARCHAR(20) NOT NULL,
-  ra_aluno VARCHAR(15) NOT NULL,
+  ra_aluno BIGINT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (ra_aluno) REFERENCES aluno(ra)
 );
@@ -275,6 +291,71 @@ CREATE TABLE saude (
 /*                                */
 /**********************************/
 /*                                */
+
+INSERT INTO turma(educador)
+  VALUES('Vanessa');
+INSERT INTO turma(educador)
+  VALUES('Marina');
+INSERT INTO turma(educador)
+  VALUES('Manuela');
+
+INSERT INTO aluno(nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
+  VALUES('Kemily', 'Vanessa', '12/12/2010', '758471231', 'Brasileira', 'SP', GETDATE(), 'Carro', '');
+INSERT INTO aluno(nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
+  VALUES('Miriam', 'Marina', '07/10/2010', '758471232', 'Brasileira', 'SP', GETDATE(), 'Onibus', '');
+INSERT INTO aluno(nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
+  VALUES('Douglas', 'Manuela', '14/07/2010', '758471233', 'Brasileira', 'SP', GETDATE(), 'A pé', '');
+
+INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, completemento, ra_aluno)
+  VALUES('1234-234', '312', 'Domingues', 'Centro', 'Sorocaba', '', '', 1);
+INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, completemento, ra_aluno)
+  VALUES('1234-234', '316', 'Figueredo', 'Centro', 'Sorocaba', '', '', 2);
+INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, completemento, ra_aluno)
+  VALUES('1234-234', '311', 'Assis', 'Centro', 'Sorocaba', '', '', 3);
+
+INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
+  VALUES(TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE);
+INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
+  VALUES(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE);
+INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
+  VALUES(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE);
+
+INSERT INTO contato(nome, telefone, ra_aluno)
+  VALUES('Patricia', '1236-1415', 1);
+INSERT INTO contato(nome, telefone, ra_aluno)
+  VALUES('Victoria', '5494-4391', 2);
+INSERT INTO contato(nome, telefone, ra_aluno)
+  VALUES('Marcio', '1237-0984', 3);
+
+INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca)
+  VALUES(1, 'G', 'G');
+INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca)
+  VALUES(2, 'P', 'M');
+INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca)
+  VALUES(3, 'M', 'G');
+
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
+  VALUES(1, 'Vó', TRUE);
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
+  VALUES(2, 'Tia', TRUE);
+
+INSERT INTO contato_profissional(id_contato, cargo)
+  VALUES(3, 'Psiquiatra');
+
+INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
+  VALUES(1, 'Casa alugada', TRUE, TRUE, 3, TRUE, FALSE, TRUE, 1);
+INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
+  VALUES(2, 'Casa propria', TRUE, FALSE, 4, TRUE, FALSE, FALSE, 2);
+INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
+  VALUES(3, 'Apartamento proprio', TRUE, FALSE, 1, FALSE, TRUE, TRUE, 3);
+
+INSERT INTO parente(nome, parentesco, escolaridade, idade, ocupacao, salario, local_de_trabalho, ra_aluno)
+  VALUES('Marcia', 'Tia', 'Superior completo', 35, 'Advogada', 2500.00, 'Advocacia', 1);
+INSERT INTO parente(nome, parentesco, escolaridade, idade, ocupacao, salario, local_de_trabalho, ra_aluno)
+  VALUES('Paulo', 'Primo', 'Ensino Medio Completo', 25, 'Estagiario', 900.00, 'MotoresCia', 2);
+INSERT INTO parente(nome, parentesco, escolaridade, idade, ocupacao, salario, local_de_trabalho, ra_aluno)
+  VALUES('Ricardo', 'Tio', 'Ensino Medio Completo', 30, 'Motorista', 1800.00, 'Transportadora', 3);
+
 
 INSERT INTO usuario(nome, senha, setor, email, ativo)
   VALUES('Admin', 'pass', 'Administração', 'diegoluizdb@gmail.com', TRUE);
