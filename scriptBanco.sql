@@ -377,7 +377,40 @@ INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_
 INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
   VALUES('Solteiro', 'Mãe', FALSE, TRUE, TRUE, FALSE, 3);
 
+INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
+  VALUES(1 , FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE);
+INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
+  VALUES(2 , TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
+INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
+  VALUES(3 , FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE);
 
+INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
+  VALUES(1 , FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE);
+INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
+  VALUES(2 , TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
+INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
+  VALUES(3 , FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE);
+
+INSERT INTO imovel(quantidade, id_estrutura_familiar)
+  VALUES(0, 1);
+INSERT INTO imovel(quantidade, id_estrutura_familiar)
+  VALUES(5, 2);
+INSERT INTO imovel(quantidade, id_estrutura_familiar)
+  VALUES(1, 3);
+
+INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
+  VALUES('Gol', '2000', FALSE, 2);
+INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
+  VALUES('Golf', '2002', TRUE, 2);
+INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
+  VALUES('Uno Mille', '1997', FALSE, 3);
+
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos)
+  VALUES(1, TRUE, TRUE, TRUE, TRUE, TRUE);
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos)
+  VALUES(2, FALSE, FALSE, FALSE, FALSE, FALSE);
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos)
+  VALUES(3, FALSE, TRUE, FALSE, TRUE, FALSE);
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
