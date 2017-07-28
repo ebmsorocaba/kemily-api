@@ -158,8 +158,8 @@ CREATE TABLE estrutura_familiar (
   problemas_financeiros BOOLEAN NOT NULL,
   uso_de_alcool_drogas BOOLEAN NOT NULL,
   alguem_agressivo BOOLEAN NOT NULL,
-  problemas_sociais BOOLEAN NOT NULL,
-  ra_aluno BIGINT FOREIGN KEY REFERENCES aluno(ra)
+  programas_sociais BOOLEAN NOT NULL,
+  ra_aluno BIGINT REFERENCES aluno(ra)
 );
 
 CREATE TABLE endereco (
@@ -240,14 +240,14 @@ CREATE TABLE automovel (
   modelo VARCHAR(30) NOT NULL,
   ano VARCHAR(5) NOT NULL,
   financiado BOOLEAN NOT NULL,
-  id_estrutura_familiar BIGINT FOREIGN KEY REFERENCES estrutura_familiar(id)
+  id_estrutura_familiar BIGINT REFERENCES estrutura_familiar(id)
 );
 
 CREATE TABLE imovel (
   id SERIAL PRIMARY KEY,
   quantidade INTEGER NOT NULL,
   financiado BOOLEAN NOT NULL,
-  id_estrutura_familiar BIGINT FOREIGN KEY REFERENCES estrutura_familiar(id)
+  id_estrutura_familiar BIGINT REFERENCES estrutura_familiar(id)
 );
 
 CREATE TABLE situacao_habitacional (
@@ -259,7 +259,7 @@ CREATE TABLE situacao_habitacional (
   alvenaria BOOLEAN NOT NULL,
   madeira BOOLEAN NOT NULL,
   area_irregular BOOLEAN NOT NULL,
-  id_aparelhos_eletronicos BIGINT FOREIGN KEY REFERENCES aparelhos_eletronicos(id)
+  id_aparelhos_eletronicos BIGINT REFERENCES aparelhos_eletronicos(id)
 );
 
 CREATE TABLE parente (
@@ -271,7 +271,7 @@ CREATE TABLE parente (
   ocupacao TEXT NOT NULL,
   salario NUMERIC(12,2) NOT NULL,
   local_de_trabalho VARCHAR(50) NOT NULL,
-  ra_aluno BIGINT FOREIGN KEY REFERENCES aluno(ra)
+  ra_aluno BIGINT REFERENCES aluno(ra)
 );
 
 CREATE TABLE saude (
@@ -461,26 +461,19 @@ INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_
 INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
   VALUES('Solteiro', 'Mãe', FALSE, TRUE, TRUE, FALSE, 3);
 
-INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
-  VALUES(1 , FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE);
-INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
-  VALUES(2 , TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
-INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
-  VALUES(3 , FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE);
+INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimentacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
+  VALUES(1 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimentacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
+  VALUES(2 , 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100);
+INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimentacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
+  VALUES(3 , 0, 100, 0, 100, 0, 100, 0, 100, 0, 100, 0, 100, 0, 100, 0);
 
-INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
-  VALUES(1 , FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE);
-INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
-  VALUES(2 , TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
-INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimetacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
-  VALUES(3 , FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE);
-
-INSERT INTO imovel(quantidade, id_estrutura_familiar)
-  VALUES(0, 1);
-INSERT INTO imovel(quantidade, id_estrutura_familiar)
-  VALUES(5, 2);
-INSERT INTO imovel(quantidade, id_estrutura_familiar)
-  VALUES(1, 3);
+INSERT INTO imovel(quantidade, financiado, id_estrutura_familiar)
+  VALUES(0, FALSE, 1);
+INSERT INTO imovel(quantidade, financiado, id_estrutura_familiar)
+  VALUES(5, TRUE, 2);
+INSERT INTO imovel(quantidade, financiado, id_estrutura_familiar)
+  VALUES(1, TRUE, 3);
 
 INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
   VALUES('Gol', '2000', FALSE, 2);
