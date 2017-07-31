@@ -4,22 +4,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Turma {
 	
-	private String eucador;
+	private String educador;
 	
 	public Turma() {};
 	
 	public Turma(
 			@JsonProperty("educador")String educador) {
 		
-		this.eucador = educador;
+		this.educador = educador;
 	}
 
-	public String getEucador() {
-		return eucador;
+	public String getEducador() {
+		return educador;
 	}
 
-	public void setEucador(String eucador) {
-		this.eucador = eucador;
+	public void setEducador(String educador) {
+		this.educador = educador;
 	}
 	
 }

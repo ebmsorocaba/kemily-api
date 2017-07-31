@@ -2,7 +2,6 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import model.aluno.Estrutura_Familiar;
 import model.aluno.Turma;
 
 import java.sql.Date;
@@ -18,23 +17,22 @@ public class Aluno {
     private Date data_cadastro;
     private String meio_transporte;
     private String observacoes;
-    private Estrutura_Familiar estrutura_familiar;
 
-    public Aluno() {};
+
+    public Aluno () {}
 
     public Aluno(
-            @JsonProperty("ra")int ra,
-            @JsonProperty("nome")String nome,
-            @JsonProperty("turma")Turma turma,
-            @JsonProperty("data_nascimento")Date data_nascimento,
-            @JsonProperty("rg")String rg,
-            @JsonProperty("naturalidade")String naturalidade,
-            @JsonProperty("estado")String estado,
-            @JsonProperty("data_cadastro")Date data_cadastro,
-            @JsonProperty("meio_transporte")String meio_transporte,
-            @JsonProperty("observacoes")String observacoes,
-            @JsonProperty("estrutura_familiar")Estrutura_Familiar estrutura_familiar) {
-        
+            @JsonProperty("ra") int ra,
+            @JsonProperty("nome") String nome,
+            @JsonProperty("turma") Turma turma,
+            @JsonProperty("data_nascimento") Date data_nascimento,
+            @JsonProperty("rg") String rg,
+            @JsonProperty("naturalidade") String naturalidade,
+            @JsonProperty("estado") String estado,
+            @JsonProperty("data_cadastro") Date data_cadastro,
+            @JsonProperty("meio_transporte") String meio_transporte,
+            @JsonProperty("observacoes") String observacoes) {
+
         this.ra = ra;
         this.nome = nome;
         this.turma = turma;
@@ -45,8 +43,7 @@ public class Aluno {
         this.data_cadastro = data_cadastro;
         this.meio_transporte = meio_transporte;
         this.observacoes = observacoes;
-        this.estrutura_familiar = estrutura_familiar;
-    } //JsonProperty no constructor serve para dar apoio ao Jackson Object Mapper
+    }
 
     public int getRa() {
         return ra;
@@ -95,7 +92,7 @@ public class Aluno {
     public void setNaturalidade(String naturalidade) {
         this.naturalidade = naturalidade;
     }
-    
+
     public String getEstado() {
         return estado;
     }
@@ -119,7 +116,7 @@ public class Aluno {
     public void setMeio_transporte(String meio_transporte) {
         this.meio_transporte = meio_transporte;
     }
-    
+
     public String getObservacoes() {
         return observacoes;
     }
@@ -128,12 +125,5 @@ public class Aluno {
         this.observacoes = observacoes;
     }
 
-    public Estrutura_Familiar getEstrutura_familiar() {
-        return estrutura_familiar;
-    }
-
-    public void setEstrutura_familiar(Estrutura_Familiar estrutura_familiar) {
-        this.estrutura_familiar = estrutura_familiar;
-    }
 }
 
