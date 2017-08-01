@@ -253,6 +253,7 @@ CREATE TABLE situacao_habitacional (
   ra_aluno BIGINT PRIMARY KEY REFERENCES ALUNO(ra),
   situacao VARCHAR(20) NOT NULL,
   esgoto BOOLEAN NOT NULL,
+  rede_eletrica BOOLEAN NOT NULL,
   asfalto BOOLEAN NOT NULL,
   numero_comodos INTEGER NOT NULL,
   alvenaria BOOLEAN NOT NULL,
@@ -439,12 +440,12 @@ INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
 INSERT INTO contato_profissional(id_contato, cargo)
   VALUES(3, 'Psiquiatra');
 
-INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
-  VALUES(1, 'Casa alugada', TRUE, TRUE, 3, TRUE, FALSE, TRUE, 1);
-INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
-  VALUES(2, 'Casa propria', TRUE, FALSE, 4, TRUE, FALSE, FALSE, 2);
-INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
-  VALUES(3, 'Apartamento proprio', TRUE, FALSE, 1, FALSE, TRUE, TRUE, 3);
+INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
+  VALUES(1, 'Casa alugada', TRUE, FALSE, TRUE, 3, TRUE, FALSE, TRUE, 1);
+INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
+  VALUES(2, 'Casa propria', TRUE, TRUE, FALSE, 4, TRUE, FALSE, FALSE, 2);
+INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
+  VALUES(3, 'Apartamento proprio', TRUE, TRUE, FALSE, 1, FALSE, TRUE, TRUE, 3);
 
 INSERT INTO parente(nome, parentesco, escolaridade, idade, ocupacao, salario, local_de_trabalho, ra_aluno)
   VALUES('Marcia', 'Tia', 'Superior completo', 35, 'Advogada', 2500.00, 'Advocacia', 1);
