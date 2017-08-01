@@ -71,7 +71,7 @@ public class Estrutura_FamiliarDAO {
         Estrutura_Familiar estrutura_Familiar = new Estrutura_Familiar();
 
         try {
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM estrutura_Familiar WHERE " + "ra = ?");
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM estrutura_Familiar WHERE " + "id = ?");
 
             stmt.setInt(1, search);
             ResultSet rs = stmt.executeQuery();
