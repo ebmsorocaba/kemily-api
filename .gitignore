@@ -34,7 +34,5 @@ frontend/src/main/frontend/.tmp
 ### ConnectionFactory ###
 backend/src/main/java/jdbc/ConnectionFactory.java
 
-
-
 ## Bower ##
 frontend/src/main/frontend/bower_components
