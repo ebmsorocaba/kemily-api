@@ -163,11 +163,11 @@ CREATE TABLE estrutura_familiar (
 );
 
 CREATE TABLE endereco (
-  cep VARCHAR(15),
-  numero VARCHAR(6),
-  rua VARCHAR(60),
-  bairro VARCHAR(30),
-  cidade VARCHAR(50),
+  cep VARCHAR(15) NOT NULL,
+  numero VARCHAR(6) NOT NULL,
+  rua VARCHAR(60) NOT NULL,
+  bairro VARCHAR(30) NOT NULL,
+  cidade VARCHAR(50) NOT NULL,
   ponto_referencia VARCHAR(50),
   completemento VARCHAR(10),
   ra_aluno BIGINT NOT NULL REFERENCES aluno(ra),
