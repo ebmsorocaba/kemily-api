@@ -15,7 +15,7 @@ public class Estrutura_Familiar {
 	private boolean programas_sociais;
 	private Aluno aluno;
 	
-	public Estrutura_Familiar() {};
+	public Estrutura_Familiar() {}
 	
 	public Estrutura_Familiar(
 			@JsonProperty("id")int id,
