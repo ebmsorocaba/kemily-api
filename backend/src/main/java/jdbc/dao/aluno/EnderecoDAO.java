@@ -70,7 +70,7 @@ public class EnderecoDAO {
         Endereco endereco = new Endereco();
 
         try {
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM endereco WHERE " + "numero = ?" + "AND" + "cep = ?");
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM endereco WHERE " + "cep = ?" + "AND " + "numero = ?");
 
             stmt.setString(1, cep);
             stmt.setString(2, numero);
@@ -97,7 +97,7 @@ public class EnderecoDAO {
     }
 
 
-    public void excluir(String numero, String cep) {
+    public void excluir(String cep, String numero) {
 
         try {
 
@@ -115,7 +115,7 @@ public class EnderecoDAO {
     }
 
 
-    public void altera(Endereco endereco, String numero, String cep) throws SQLException {
+    public void altera(Endereco endereco, String cep, String numero) throws SQLException {
 
         PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE endereco SET rua=?, bairro=?, cidade=?, ponto_referencia=?, complemento=?, ra_aluno=? WHERE cep=? AND numero=?");
 
@@ -130,5 +130,35 @@ public class EnderecoDAO {
 
         stmt.execute();
         stmt.close();
+    }
+    
+    public Endereco getEnderecoAluno(int raAluno) throws SQLException {
+
+        Endereco endereco = new Endereco();
+
+        try {
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM endereco WHERE " + "ra_aluno = ?");
+
+            stmt.setInt(1, raAluno);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next() == true) {
+                endereco.setNumero(rs.getString("numero"));
+                endereco.setCep(rs.getString("cep"));
+                endereco.setRua(rs.getString("rua"));
+                endereco.setBairro(rs.getString("bairro"));
+                endereco.setCidade(rs.getString("cidade"));
+                endereco.setPonto_referencia(rs.getString("ponto_referencia"));
+                endereco.setComplemento(rs.getString("complemento"));
+                endereco.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
+            }
+        }
+
+        catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+
+        return (endereco);
+
     }
 }
