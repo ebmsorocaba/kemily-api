@@ -134,4 +134,35 @@ public class ParenteDAO {
         stmt.execute();
         stmt.close();
     }
+    
+    public Parente getParenteAluno(int ra) throws SQLException {
+
+        Parente parente = new Parente();
+
+        try {
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM parente WHERE " + "ra_aluno = ?");
+
+            stmt.setInt(1, ra);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next() == true) {
+                parente.setId(rs.getInt("id"));
+                parente.setNome(rs.getString("nome"));
+                parente.setParentesco(rs.getString("parentesco"));
+                parente.setEscolaridade(rs.getString("escolaridade"));
+                parente.setIdade(rs.getInt("idade"));
+                parente.setOcupacao(rs.getString("ocupacao"));
+                parente.setSalario(rs.getDouble("salario"));
+                parente.setLocal_trabalho(rs.getString("local_de_trabalho"));
+                parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
+            }
+        }
+
+        catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+
+        return (parente);
+
+    }
 }
