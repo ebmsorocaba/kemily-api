@@ -94,11 +94,13 @@ public class AutomovelDAO {
 
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM automovel WHERE id=?");
             stmt.setInt(1, id);
+            stmt.execute();
         }
 
         catch (SQLException ex) {
             System.out.println(ex.toString());
         }
+
 
     }
 
