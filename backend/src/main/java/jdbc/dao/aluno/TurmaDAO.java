@@ -75,7 +75,6 @@ public class TurmaDAO {
 
 
     public void excluir(String search) {
-
         try {
 
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM turma WHERE educador = ?");
