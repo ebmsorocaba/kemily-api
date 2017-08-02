@@ -20,7 +20,7 @@ public class AlunoDAO {
     }
 
     public void adiciona(Aluno aluno) throws SQLException {
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, turma, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         stmt.setString(1,aluno.getNome());
         stmt.setString(2,aluno.getTurma().getEducador());
@@ -49,7 +49,7 @@ public class AlunoDAO {
 
             aluno.setRa(rs.getInt("ra"));
             aluno.setNome(rs.getString("nome"));
-            aluno.setTurma(turmaDAO.getTurma(rs.getString("turma")));
+            aluno.setTurma(turmaDAO.getTurma(rs.getString("turma_educador")));
             aluno.setRg(rs.getString("rg"));
             aluno.setData_cadastro(rs.getDate("data_cadastro"));
             aluno.setData_nascimento(rs.getDate("data_nascimento"));
@@ -82,7 +82,7 @@ public class AlunoDAO {
             if (rs.next() == true) {
                 aluno.setRa(rs.getInt("ra"));
                 aluno.setNome(rs.getString("nome"));
-                aluno.setTurma(turmaDAO.getTurma(rs.getString("turma")));
+                aluno.setTurma(turmaDAO.getTurma(rs.getString("turma_educador")));
                 aluno.setRg(rs.getString("rg"));
                 aluno.setData_cadastro(rs.getDate("data_cadastro"));
                 aluno.setData_nascimento(rs.getDate("data_nascimento"));
