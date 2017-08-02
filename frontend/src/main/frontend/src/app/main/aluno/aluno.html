@@ -364,9 +364,9 @@
                                     </md-option>
                                 </md-select>
                             </md-input-container>
-                                 
+
                         <div layout="column" layout-gt-xs="row">
-                         
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>A criança reside com:</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.criancareside">
@@ -428,7 +428,7 @@
 
 
 		<div layout="column" layout-gt-xs="row">
-                         
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Programas sociais:</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.programassociais">
@@ -443,7 +443,7 @@
         </md-tabs>
 
 <!-- PASSO 6 / STEP 6-->
-            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid" 
+            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid">
                 <md-tab-label>
                     <span class="ms-form-wizard-step-label">
                         <span class="ms-form-wizard-step-number md-accent-bg"
@@ -457,31 +457,31 @@
                 <md-tab-body>
                     <form name="wizardStep6" ms-form-wizard-form novalidate>
                      <div layout="column" layout-gt-xs="row">
-                         
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Nome</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.nomeparente">
                             </md-input-container>
 				</div>
-                                 
+
                         <div layout="column" layout-gt-xs="row">
-                         
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Parentesco</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.parentesco">
                             </md-input-container>
 				</div>
-	
+
  			<div layout="column" layout-gt-xs="row">
-            
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Escolaridade</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.escolaridade">
                             </md-input-container>
 				</div>
-                         
+
 				<div layout="column" layout-gt-xs="row">
-            
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Data de Nascimento</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.datanascimentoparente">
@@ -489,15 +489,15 @@
 				</div>
 
 				<div layout="column" layout-gt-xs="row">
-            
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Ocupação</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.ocupacaoparente">
                             </md-input-container>
 				</div>
-             
+
 				<div layout="column" layout-gt-xs="row">
-            
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Salário</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.salarioparente">
@@ -509,7 +509,7 @@
                                 <input type="text" name="nat"ng-model="vm.formWizard.salarioparente">
                             </md-input-container>
 				</div>
-                                      
+
 
                         </div>
                     </form>
@@ -518,7 +518,7 @@
         </md-tabs>
 
 	<!-- PASSO 7 / STEP 7-->
-            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid" 
+            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid">
                 <md-tab-label>
                     <span class="ms-form-wizard-step-label">
                         <span class="ms-form-wizard-step-number md-accent-bg"
@@ -532,15 +532,15 @@
                 <md-tab-body>
                     <form name="wizardStep7" ms-form-wizard-form novalidate>
                      <div layout="column" layout-gt-xs="row">
-                         
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Nome</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.nomecontato">
                             </md-input-container>
 				</div>
-                                 
+
                         <div layout="column" layout-gt-xs="row">
-                         
+
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Telefone</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.telefonecontato">
@@ -557,8 +557,8 @@
                                 </md-select>
                             </md-input-container>
 
-             
-                                      
+
+
 
                         </div>
                     </form>
@@ -600,7 +600,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Rede elétrica?</label>
                                 <md-select ng-model="vm.formWizard.redeeletrica">
@@ -610,7 +610,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Asfalto?</label>
                                 <md-select ng-model="vm.formWizard.asfalto">
@@ -621,13 +621,13 @@
 	                            </md-input-container>
 				</div>
 
-				<div layout="column" layout-gt-xs="row">                         
+				<div layout="column" layout-gt-xs="row">
 				 <md-input-container flex="100" flex-gt-xs="50">
                                 <label>Numero de cômodos</label>
                                 <input type="text" name="nat"ng-model="vm.formWizard.telefonecontato">
                             </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Alvenaria?</label>
                                 <md-select ng-model="vm.formWizard.alvenaria">
@@ -637,7 +637,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Casa de madeira?</label>
                                 <md-select ng-model="vm.formWizard.madeira">
@@ -647,7 +647,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Imóvel em área irregular?</label>
                                 <md-select ng-model="vm.formWizard.areairregular">
@@ -666,7 +666,7 @@
         </md-tabs>
 
 <!-- PASSO 9 / STEP 9-->
-            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid || wizardStep8.$invalid" 
+            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid || wizardStep8.$invalid">
                 <md-tab-label>
                     <span class="ms-form-wizard-step-label">
                         <span class="ms-form-wizard-step-number md-accent-bg"
@@ -696,10 +696,10 @@
                                     <md-option ng-repeat="estado in vm.tvassinatura" value="{{tvassinatura}}">
                                         {{tvassinatura}}
                                     </md-option>
-                                </md-select>	
+                                </md-select>
 	                            </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Computador</label>
                                 <md-select ng-model="vm.formWizard.computador">
@@ -709,7 +709,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Notebook</label>
                                 <md-select ng-model="vm.formWizard.notebook">
@@ -720,7 +720,7 @@
 	                            </md-input-container>
 				</div>
 
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Fogão</label>
                                 <md-select ng-model="vm.formWizard.fogao">
@@ -730,7 +730,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Geladeira</label>
                                 <md-select ng-model="vm.formWizard.geladeira">
@@ -740,7 +740,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Microondas</label>
                                 <md-select ng-model="vm.formWizard.microondas">
@@ -750,7 +750,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-				
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Tablets</label>
                                 <md-select ng-model="vm.formWizard.tablets">
@@ -760,7 +760,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-	
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Máquina de lavar</label>
                                 <md-select ng-model="vm.formWizard.maquinadelavar">
@@ -770,7 +770,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-	
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Máquina de Secar</label>
                                 <md-select ng-model="vm.formWizard.maquinadesecar">
@@ -790,7 +790,7 @@
                                 </md-select>
 	                            </md-input-container>
 				</div>
-					
+
 				<md-input-container flex="100" flex-gt-xs="15">
                                 <label>Celular</label>
                                 <md-select ng-model="vm.formWizard.celular">
