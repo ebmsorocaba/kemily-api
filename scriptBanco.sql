@@ -169,7 +169,7 @@ CREATE TABLE endereco (
   bairro VARCHAR(30) NOT NULL,
   cidade VARCHAR(50) NOT NULL,
   ponto_referencia VARCHAR(50),
-  completemento VARCHAR(10),
+  complemento VARCHAR(10),
   ra_aluno BIGINT NOT NULL REFERENCES aluno(ra),
   PRIMARY KEY(cep, numero)
 );
@@ -404,11 +404,11 @@ INSERT INTO aluno(nome, turma_educador, data_nascimento, rg, naturalidade, estad
 INSERT INTO aluno(nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
   VALUES('Douglas', 'Manuela', '14/07/2010', '758471233', 'Brasileira', 'SP', '10/07/2017', 'A pe', '');
 
-INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, completemento, ra_aluno)
+INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complemento, ra_aluno)
   VALUES('1234-234', '312', 'Domingues', 'Centro', 'Sorocaba', '', '', 1);
-INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, completemento, ra_aluno)
+INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complemento, ra_aluno)
   VALUES('1234-234', '316', 'Figueredo', 'Centro', 'Sorocaba', '', '', 2);
-INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, completemento, ra_aluno)
+INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complemento, ra_aluno)
   VALUES('1234-234', '311', 'Assis', 'Centro', 'Sorocaba', '', '', 3);
 
 INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
