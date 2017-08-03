@@ -40,7 +40,7 @@ public class Situacao_HabitacionalDAO {
 		stmt.close();
 	}
 	
-	public List<Situacao_Habitacional> getSituacao_Habitacional() throws SQLException {
+	public List<Situacao_Habitacional> getLista() throws SQLException {
 		List<Situacao_Habitacional> listaSituacaoHabitacional = new ArrayList<Situacao_Habitacional>();
 		
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM situacao_habitacional");
@@ -97,13 +97,14 @@ public class Situacao_HabitacionalDAO {
 		return sh;
 	}
 	
-	public void excluir(Situacao_Habitacional sh) {
+	public void excluir(int ra) {
 		try {
-			
-			aparelhosEletronicosDao.excluir(sh.getAparelhos_eletronicos().getId());
+
+			Situacao_Habitacional sit = getSituacao_Habitacional(ra);
+			aparelhosEletronicosDao.excluir(sit.getAparelhos_eletronicos().getId());
 			
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM situacao_habitacional WHERE ra_aluno = ?");
-			stmt.setInt(1, sh.getAluno().getRa());
+			stmt.setInt(1, ra);
 			
 			stmt.execute();
 			
