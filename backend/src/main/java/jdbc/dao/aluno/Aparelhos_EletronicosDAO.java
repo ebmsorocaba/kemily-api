@@ -37,7 +37,7 @@ public class Aparelhos_EletronicosDAO {
 		stmt.close();
 	}
 	
-	public List<Aparelhos_Eletronicos> getAparelhos_Eletronicos() throws SQLException {
+	public List<Aparelhos_Eletronicos> getLista() throws SQLException {
 		List<Aparelhos_Eletronicos> listaAparelhosEletronicos = new ArrayList<Aparelhos_Eletronicos>();
 		
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM aparelhos_eletronicos");

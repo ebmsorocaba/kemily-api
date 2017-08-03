@@ -54,7 +54,7 @@ public class ContatoDAO {
 		return contato;
 	}
 
-	public List<Contato> getContato() throws SQLException {
+	public List<Contato> getLista() throws SQLException {
 		List<Contato> contatos = new ArrayList<Contato>();
 		
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM contato");

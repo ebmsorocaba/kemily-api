@@ -32,7 +32,7 @@ public class AparelhosEletronicosController {
         List<Aparelhos_Eletronicos> aparelhosGetted = new ArrayList<Aparelhos_Eletronicos>();
         aparelhosEletronicos = new HashMap<Integer, Aparelhos_Eletronicos>();
 
-        aparelhosGetted = aparelhosEletronicosDao.getAparelhos_Eletronicos();
+        aparelhosGetted = aparelhosEletronicosDao.getLista();
 
         for (Aparelhos_Eletronicos apa : aparelhosGetted) {
             aparelhosEletronicos.put(index, apa);

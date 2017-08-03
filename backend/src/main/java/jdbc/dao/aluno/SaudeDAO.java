@@ -33,7 +33,7 @@ public class SaudeDAO {
 		stmt.close();
 	}
 	
-	public List<Saude> getSaude() throws SQLException {
+	public List<Saude> getLista() throws SQLException {
 		List<Saude> saudes = new ArrayList<Saude>();
 		
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM saude");
