@@ -86,6 +86,10 @@ public class ImovelDAO {
 
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM imovel WHERE id=?");
             stmt.setInt(1, id);
+
+            stmt.execute();
+            stmt.close();
+
         }
 
         catch (SQLException ex) {
