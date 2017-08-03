@@ -2,9 +2,7 @@ package controller.aluno;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import jdbc.dao.aluno.AlunoDAO;
 import jdbc.dao.aluno.Estrutura_FamiliarDAO;
-import model.Aluno;
 import model.aluno.Estrutura_Familiar;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
