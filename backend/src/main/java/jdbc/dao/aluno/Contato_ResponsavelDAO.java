@@ -20,7 +20,7 @@ public class Contato_ResponsavelDAO {
 	}
 	
 	public void adicionar(Contato_Responsavel contato_Responsavel) throws SQLException {
-		contato_Responsavel = (Contato_Responsavel) contatoDao.adicionar(contato_Responsavel);
+		contato_Responsavel = (Contato_Responsavel) contatoDao.adicionarEspecializado(contato_Responsavel);
 		
 		if(contato_Responsavel.getId() == -1 ) {
 			
@@ -40,7 +40,7 @@ public class Contato_ResponsavelDAO {
 		}
 	}
 	
-	public List<Contato_Responsavel> getContato_Responsavel() throws SQLException {
+	public List<Contato_Responsavel> getLista() throws SQLException {
 		List<Contato_Responsavel> responsaveis = new ArrayList<Contato_Responsavel>();
 		
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM contato_responsavel");

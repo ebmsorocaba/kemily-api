@@ -213,6 +213,7 @@ CREATE TABLE contato (
   id SERIAL,
   nome VARCHAR(80) NOT NULL,
   telefone VARCHAR(20) NOT NULL,
+  tipo VARCHAR(15) NOT NULL,
   ra_aluno BIGINT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (ra_aluno) REFERENCES aluno(ra)
@@ -418,12 +419,12 @@ INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook
 INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
   VALUES(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE);
 
-INSERT INTO contato(nome, telefone, ra_aluno)
-  VALUES('Patricia', '1236-1415', 1);
-INSERT INTO contato(nome, telefone, ra_aluno)
-  VALUES('Victoria', '5494-4391', 2);
-INSERT INTO contato(nome, telefone, ra_aluno)
-  VALUES('Marcio', '1237-0984', 3);
+INSERT INTO contato(nome, telefone, tipo, ra_aluno)
+  VALUES('Patricia', '1236-1415', 'responsavel', 1);
+INSERT INTO contato(nome, telefone, tipo, ra_aluno)
+  VALUES('Victoria', '5494-4391', 'responsavel', 2);
+INSERT INTO contato(nome, telefone, tipo, ra_aluno)
+  VALUES('Marcio', '1237-0984', 'profissional', 3);
 
 INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca)
   VALUES(1, 'G', 'G');

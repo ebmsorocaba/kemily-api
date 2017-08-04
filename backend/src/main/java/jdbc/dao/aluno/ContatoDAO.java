@@ -20,14 +20,32 @@ public class ContatoDAO {
 		this.alunoDao = new AlunoDAO();
 	}
 	
-	public Contato adicionar(Contato contato) throws SQLException {
+	public void adicionar(Contato contato) throws SQLException {
+		try {
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO contato(nome, telefone, tipo, ra_aluno) VALUES (?, ?, ?, ?)");
+			
+			stmt.setString(1, contato.getNome());
+			stmt.setString(2, contato.getTelefone());
+			stmt.setString(3, contato.getTipo());
+			stmt.setInt(4, contato.getAluno().getRa());
+			
+			stmt.execute();
+			stmt.close();
+			
+		} catch (SQLException ex) {
+			System.out.println(ex.toString());
+		}
+	}
+	
+	public Contato adicionarEspecializado(Contato contato) throws SQLException {
 		try (
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO contato(nome, telefone, ra_aluno) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO contato(nome, telefone, tipo, ra_aluno) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 		) {
 		
 			stmt.setString(1, contato.getNome());
 			stmt.setString(2, contato.getTelefone());
-			stmt.setInt(3, contato.getAluno().getRa());
+			stmt.setString(3, contato.getTipo());
+			stmt.setInt(4, contato.getAluno().getRa());
 			
 			int id = stmt.executeUpdate(); 
 			
@@ -66,6 +84,7 @@ public class ContatoDAO {
 			contato.setId(rs.getInt("id"));
 			contato.setNome(rs.getString("nome"));
 			contato.setTelefone(rs.getString("telefone"));
+			contato.setTipo(rs.getString("tipo"));
 			contato.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
 			
 			contatos.add(contato);
@@ -89,6 +108,7 @@ public class ContatoDAO {
 				contato.setId(rs.getInt("id"));
 				contato.setNome(rs.getString("nome"));
 				contato.setTelefone(rs.getString("telefone"));
+				contato.setTipo(rs.getString("tipo"));
 				contato.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
 			}
 		} catch (SQLException ex) {
@@ -112,12 +132,13 @@ public class ContatoDAO {
 	}
 	
 	public void altera(Contato contato, int id) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE contato SET nome = ?, telefone = ?, ra_aluno = ? WHERE id = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE contato SET nome = ?, telefone = ?, tipo = ?, ra_aluno = ? WHERE id = ?");
 		
 		stmt.setString(1, contato.getNome());
 		stmt.setString(2, contato.getTelefone());
-		stmt.setInt(3, contato.getAluno().getRa());
-		stmt.setInt(4, id);
+		stmt.setString(3, contato.getTipo());
+		stmt.setInt(4, contato.getAluno().getRa());
+		stmt.setInt(5, id);
 		
 		stmt.execute();
 		stmt.close();

@@ -9,6 +9,7 @@ public class Contato {
 	private int id;
 	private String nome;
 	private String telefone;
+	private String tipo;
 	private Aluno aluno;
 	
 	public Contato() {};
@@ -17,11 +18,13 @@ public class Contato {
 			@JsonProperty("id")int id,
 			@JsonProperty("nome")String nome,
 			@JsonProperty("telefone")String telefone,
+			@JsonProperty("tipo")String tipo,
 			@JsonProperty("aluno")Aluno aluno) {
 		
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
+		this.tipo = tipo;
 		this.aluno = aluno;
 	}
 
@@ -47,6 +50,14 @@ public class Contato {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public Aluno getAluno() {
