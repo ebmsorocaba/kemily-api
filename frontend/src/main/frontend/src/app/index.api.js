@@ -282,6 +282,15 @@
           getByEducador : $resource(api.baseUrl + 'despesa/:educador' + '/', {educador: '@educador'}, {'update': {method: 'PUT'}})
         }
 
+        api.contato = {
+          list  : $resource(api.baseUrl + 'contato'),
+          profissional  : $resource(api.baseUrl + 'contato/profissional'),
+          responsavel : $resource(api.baseUrl + 'contato/responsavel'),
+          getById : $resource(api.baseUrl + 'contato/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}}),
+          getProfissionalById : $resource(api.baseUrl + 'contato/profissional/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}}),
+          getResponsavelById  : $resource(api.baseUrl + 'contato/responsavel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
 
         // Exemplo do FUSE
         // api.blog = {
