@@ -46,7 +46,7 @@ public class SaudeDAO {
 			saude.setFaz_tratamentos_medicos(rs.getBoolean("faz_tratamentos_medicos"));
 			saude.setProblemas_saude_familia(rs.getBoolean("problemas_de_saude_na_familia"));
 			saude.setPlano_saude(rs.getBoolean("plano_de_saude"));
-			saude.setPessoas_idosas(rs.getBoolean("pessoas_idosa"));
+			saude.setPessoas_idosas(rs.getBoolean("pessoas_idosas"));
 			saude.setProblemas_psiquiatricos(rs.getBoolean("problemas_psiquiatricos"));
 			
 			saudes.add(saude);
@@ -71,7 +71,7 @@ public class SaudeDAO {
 				saude.setFaz_tratamentos_medicos(rs.getBoolean("faz_tratamentos_medicos"));
 				saude.setProblemas_saude_familia(rs.getBoolean("problemas_de_saude_na_familia"));
 				saude.setPlano_saude(rs.getBoolean("plano_de_saude"));
-				saude.setPessoas_idosas(rs.getBoolean("pessoas_idosa"));
+				saude.setPessoas_idosas(rs.getBoolean("pessoas_idosas"));
 				saude.setProblemas_psiquiatricos(rs.getBoolean("problemas_psiquiatricos"));
 			}
 		} catch (SQLException ex) {
