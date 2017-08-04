@@ -98,11 +98,11 @@ public class ContatoController {
 		Contato contato = contatoDao.getContato(id);
 		Contato_Profissional contato_prof = null;
 		Contato_Responsavel contato_resp = null;
-		
-		if(contato == null) {
+
+		if (contato == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
+
 		if(contato.getTipo().equals("profissional")) {
 			
 			contato_prof = contato_ProfissionalDAO.getContato_Profissional(contato.getId());
@@ -125,7 +125,7 @@ public class ContatoController {
 			
 			return new ResponseEntity<Contato>(contato_resp, HttpStatus.OK);
 			
-		} else {
+		} else  {
 			
 			return new ResponseEntity<Contato>(contato, HttpStatus.OK);
 			
@@ -135,45 +135,64 @@ public class ContatoController {
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato", method = RequestMethod.POST)
 	public ResponseEntity<Contato> addContato(@RequestBody Contato contato) throws JsonParseException, JsonMappingException, IOException, SQLException {
-		contatoDao.adicionar(contato);
-		return new ResponseEntity<Contato>(contato, HttpStatus.CREATED);
+
+		if (contato.getTipo().equals("generico")) {
+			contatoDao.adicionar(contato);
+			return new ResponseEntity<Contato>(contato, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<Contato>(contato, HttpStatus.BAD_REQUEST );
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/profissional", method = RequestMethod.POST)
 	public ResponseEntity<Contato> addContato(@RequestBody Contato_Profissional contatoProfissional) throws JsonParseException, JsonMappingException, IOException, SQLException {
-		contato_ProfissionalDAO.adicionar(contatoProfissional);
-		return new ResponseEntity<Contato>(contatoProfissional, HttpStatus.CREATED);
+		if (contatoProfissional.getTipo().equals("profissional") ){
+			contato_ProfissionalDAO.adicionar(contatoProfissional);
+			return new ResponseEntity<Contato>(contatoProfissional, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<Contato>(contatoProfissional, HttpStatus.BAD_REQUEST );
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/responsavel", method = RequestMethod.POST)
 	public ResponseEntity<Contato> addContato(@RequestBody Contato_Responsavel contatoResponsavel) throws JsonParseException, JsonMappingException, IOException, SQLException {
-		contato_ResponsavelDAO.adicionar(contatoResponsavel);
-		return new ResponseEntity<Contato>(contatoResponsavel, HttpStatus.CREATED);
+		if (contatoResponsavel.getTipo().equals("responsavel")) {
+			contato_ResponsavelDAO.adicionar(contatoResponsavel);
+			return new ResponseEntity<Contato>(contatoResponsavel, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<Contato>(contatoResponsavel, HttpStatus.BAD_REQUEST );
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Contato> updateContato(@RequestBody Contato contato, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
-		contatoDao.altera(contato, id);
-		return new ResponseEntity<Contato>(contato, HttpStatus.CREATED);
+		if (contato.getTipo().equals("generico")) {
+			contatoDao.altera(contato, id);
+			return new ResponseEntity<Contato>(contato, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<Contato>(contato, HttpStatus.BAD_REQUEST );
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/responsavel/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Contato_Responsavel> updateContatoResponsavel(@RequestBody Contato_Responsavel contatoResponsavel, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
-		contatoDao.altera(contatoResponsavel, id);
-		contato_ResponsavelDAO.altera(contatoResponsavel, id);
-		return new ResponseEntity<Contato_Responsavel>(contatoResponsavel, HttpStatus.CREATED);
+		if (contatoResponsavel.getTipo().equals("responsavel")) {
+			contatoDao.altera(contatoResponsavel, id);
+			contato_ResponsavelDAO.altera(contatoResponsavel, id);
+			return new ResponseEntity<Contato_Responsavel>(contatoResponsavel, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<Contato_Responsavel>(contatoResponsavel, HttpStatus.BAD_REQUEST );
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/profissional/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Contato_Profissional> updateContatoProfissional(@RequestBody Contato_Profissional contatoProfissional, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
-		contatoDao.altera(contatoProfissional, id);
-		contato_ProfissionalDAO.altera(contatoProfissional, id);
-		return new ResponseEntity<Contato_Profissional>(contatoProfissional, HttpStatus.CREATED);
+		if (contatoProfissional.getTipo().equals("profissional")) {
+			contatoDao.altera(contatoProfissional, id);
+			contato_ProfissionalDAO.altera(contatoProfissional, id);
+			return new ResponseEntity<Contato_Profissional>(contatoProfissional, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<Contato_Profissional>(contatoProfissional, HttpStatus.BAD_REQUEST );
 	}
 	
 	@CrossOrigin
