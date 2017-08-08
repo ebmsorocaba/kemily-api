@@ -20,8 +20,8 @@
                 <md-tab-body>
                     <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
                         <div layout="column" layout-gt-xs="row" flex>
-                            <md-input-container flex="100" flex-gt-xs="55">
-                                <input type="text" name="nome" ng-model="vm.formWizard.nome"
+                            <md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="nome" ng-model="vm.aluno.nome"
                                        placeholder="Nome"
                                        required>
                                 <div ng-messages="wizardStep1.firstname.$error"
@@ -34,90 +34,75 @@
 
                             <md-input-container flex="100" flex-gt-xs="20">
                                 <label>Turma</label>
-                                <md-select ng-model="vm.formWizard.turma">
+                                <md-select ng-model="vm.aluno.turma.educador">
                                     <md-option ng-repeat="turma in vm.turmas" value="{{turma}}">
-                                        {{turma}}
+                                      {{turma}}
                                     </md-option>
                                 </md-select>
                             </md-input-container>
-
-                            <md-input-container flex>
-                                <label>RG</label>
-                                <input type="text" name="rg" ng-model="vm.formWizard.rg" md-maxlength=12>
-                            </md-input-container>
-
-
-                        <div layout="column" layout-gt-xs="row">
-                            <md-input-container flex>
-                                <label>Data de Nascimento</label>
-                                <input type="text" name="nasc" ng-model="vm.formWizard.nasc">
-                            </md-input-container>
-
-
-                            <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Naturalidade</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.nat">
-                            </md-input-container>
-
-                       <div class="form-group">
-                        <label for="">Estado</label>
-                        <select ng-model="vm.formWizard.estado">
-                            <option></option>
-			    <option>AC</option>	
-                            <option>AL</option>
-		 	    <option>AP</option>
-			    <option>AM</option>	
-		       	    <option>BA</option>
-			    <option>CE</option>
-			    <option>DF</option>
-                            <option>ES</option>
-                            <option>GO</option>
-                            <option>MA</option>
-			    <option>MT</option>
-                            <option>MS</option>
-                            <option>MG</option>
-                            <option>PA</option>
-                            <option>PB</option>
-                            <option>PR</option>
-                            <option>PE</option>
-                            <option>PI</option>
-                            <option>RJ</option>
-                            <option>RN</option>
-                            <option>RS</option>
-                            <option>RO</option>
-                            <option>RR</option>
-                            <option>SC</option>
-                            <option>SP</option>
-                            <option>SE</option>
-                            <option>TO</option>				
-                        </select>
-                    </div>
 
                             <md-input-container flex="100" flex-gt-xs="15">
-                                <label>Assistido?</label>
-                                <md-select ng-model="vm.formWizard.assistido">
-                                    <md-option ng-repeat="estado in vm.assistido" value="{{assistido}}">
-                                        {{assistido}}
+                                <label>RG</label>
+                                <input type="text" name="rg" ng-model="vm.aluno.rg" md-maxlength=12>
+                            </md-input-container>
+
+                            </div>
+
+
+                          <div layout="column" layout-gt-xs="row">
+                            <md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="naturalidade"ng-model="vm.aluno.naturalidade" placeholder="Naturalidade"
+                                required>
+                                <div ng-messages="wizardStep1.nat.$error"
+                                     role="alert">
+                                    <div ng-message="required">
+                                        <span>A naturalidade é requerida.</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container flex="100" flex-gt-xs="15">
+                                <label>Estado</label>
+                                <md-select ng-model="vm.aluno.estado">
+                                    <md-option ng-repeat="estado in vm.estado" value="{{estado}}">
+                                        {{estado}}
                                     </md-option>
                                 </md-select>
                             </md-input-container>
 
-                        </div>
+                            <md-input-container>
+                              <md-datepicker ng-model="vm.aluno.data_nascimento" md-placeholder="Nascimento" md-open-on-focus></md-datepicker>
+                            </md-input-container>
+                            </div>
 
-                        <div layout="column" layout-gt-xs="row" layout-align="center center">
-                          <md-input-container flex="100" flex-gt-xs="15">
-                            <label>Camiseta</label>
-                            <md-select ng-model="vm.formWizard.camiseta">
-                                <md-option ng-repeat="estado in vm.camiseta" value="{{camiseta}}">
+                            <div layout="column" layout-gt-xs="row">
+                            <md-input-container flex="100">
+                                <input type="text" name="meio_trasnporte" ng-model="vm.aluno.meio_trasnporte" placeholder="Meio de transporte"
+                                required>
+                                <div ng-messages="wizardStep1.meiotransporte.$error"
+                                     role="alert">
+                                    <div ng-message="required">
+                                        <span>O meio de transporte é requerido.</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                          </div>
+
+                            <div layout="column" layout-gt-xs="row" layout-align="center center">
+                          <md-input-container flex="100" flex-gt-xs="20">
+                            <label>Tamanho da camiseta</label>
+                            <md-select ng-model="vm.roupa.tamanho_camiseta">
+                                <md-option ng-repeat="camiseta in vm.camiseta" value="{{camiseta}}">
                                     {{camiseta}}
                                 </md-option>
                             </md-select>
                           </md-input-container>
 
-                          <md-input-container flex="100" flex-gt-xs="15">
-                              <label>Calça</label>
-                              <md-select ng-model="vm.formWizard.calca">
-                                  <md-option ng-repeat="estado in vm.calca" value="{{calca}}">
+                          <md-input-container flex="100" flex-gt-xs="20">
+                              <label>Tamanho da calça</label>
+                              <md-select ng-model="vm.roupa.tamanho_calca">
+                                  <md-option ng-repeat="calca in vm.calca" value="{{calca}}">
                                       {{calca}}
                                   </md-option>
                               </md-select>
@@ -142,79 +127,71 @@
 
                 <md-tab-body>
                     <form name="wizardStep2" ms-form-wizard-form novalidate>
-                        <div layout="column" layout-gt-xs="row">
+
                           <div layout="column" layout-gt-xs="row" flex>
-                              <md-input-container flex  >
-                                  <input type="text" name="nomepai" ng-model="vm.formWizard.nomepai"
-                                         placeholder="Nome do Pai"
-                                         required>
-                                  <div ng-messages="wizardStep1.nomepai.$error"
-                                       role="alert">
-                                      <div ng-message="required">
-                                          <span>O nome é requerido.</span>
-                                      </div>
-                                  </div>
+                              <md-input-container flex="100"  flex-gt-xs="70">
+                                  <input type="text" name="nomepai" ng-model="vm.paiContato.nome"
+                                         placeholder="Nome do Pai">
                               </md-input-container>
-                          </div>
 
-                          <md-input-container flex="100" flex-gt-xs="15">
-                              <label>Presente?</label>
-                              <md-select ng-model="vm.formWizard.paipresente">
-                                  <md-option ng-repeat="estado in vm.paipresente" value="{{paipresente}}">
-                                      {{maepresente}}
-                                  </md-option>
-                              </md-select>
-                          </md-input-container>
-                        </div>
-
-                        <div layout="column" layout-gt-xs="row">
-                          <div layout="column" layout-gt-xs="row" flex>
-                              <md-input-container flex  >
-                                  <input type="text" name="nomemae" ng-model="vm.formWizard.nomemae"
-                                         placeholder="Nome da Mãe"
-                                         required>
-                                  <div ng-messages="wizardStep1.nomemae.$error"
-                                       role="alert">
-                                      <div ng-message="required">
-                                          <span>O nome é requerido.</span>
-                                      </div>
-                                  </div>
+                              <md-input-container flex="100" flex-gt-xs="10">
+                                  <label>Telefone</label>
+                                  <input type="text" name="telpai"ng-model="vm.paiContato.telefone" placeholder="Telefone">
                               </md-input-container>
-                          </div>
 
-                          <md-input-container flex="100" flex-gt-xs="15">
-                              <label>Presente?</label>
-                              <md-select ng-model="vm.formWizard.maepresente">
-                                  <md-option ng-repeat="estado in vm.maepresente" value="{{maepresente}}">
-                                      {{maepresente}}
-                                  </md-option>
-                              </md-select>
-                          </md-input-container>
-                        </div>
+                              <div flex="100" flex-gt-sm="50">
+                                Presente?
+                                <md-checkbox ng-model="vm.paiContato.presente" aria-label="Presente">
+                                </md-checkbox>
+                              </div>
 
-                        <div layout="column" layout-gt-xs="row">
+                            </div>
+
+
                           <div layout="column" layout-gt-xs="row" flex>
-                              <md-input-container flex  >
-                                  <input type="text" name="nomeoutro" ng-model="vm.formWizard.nomeoutro"
+                              <md-input-container flex="100"  flex-gt-xs="70" >
+                                  <input type="text" name="nomemae" ng-model="vm.maeContato.nome"
+                                         placeholder="Nome da Mãe">
+                              </md-input-container>
+
+                              <md-input-container flex="100" flex-gt-xs="10">
+                                  <label>Telefone</label>
+                                  <input type="text" name="telmae"ng-model="vm.maeContato.telefone" placeholder="Telefone">
+                              </md-input-container>
+
+
+                              <div flex="100" flex-gt-sm="50">
+                                  Presente?
+                                  <md-checkbox ng-model="vm.maeContato.presente" aria-label="Presente">
+                                  </md-checkbox>
+                                </div>
+</div>
+
+
+<!--
+                          <div layout="column" layout-gt-xs="row" flex>
+                              <md-input-container flex="100"  flex-gt-xs="70">
+                                  <input type="text" name="nomeoutro" ng-model="vm.aluno.contato.nome"
                                          placeholder="Outro">
                               </md-input-container>
-                          </div>
 
-                          <md-input-container flex="100" flex-gt-xs="20">
+
+                          <md-input-container flex="100" flex-gt-xs="10">
                               <label>Telefone</label>
-                              <input type="text" name="teloutro"ng-model="vm.formWizard.teloutro">
+                              <input type="text" name="teloutro"ng-model="vm.aluno.contato.telefone">
                           </md-input-container>
 
-                          <md-input-container flex="100" flex-gt-xs="15">
-                              <label>Presente?</label>
-                              <md-select ng-model="vm.formWizard.outropresente">
-                                  <md-option ng-repeat="estado in vm.outropresente" value="{{outropresente}}">
-                                      {{outropresente}}
-                                  </md-option>
-                              </md-select>
-                          </md-input-container>
+                        <md-input-container flex="100" flex-gt-xs="15">
+                          <label>Tipo do contato</label>
+                          <md-select ng-model="vm.formWizard.tipocontato">
+                              <md-option ng-repeat="contato in vm.tipocontato" value="{{tipocontato}}">
+                                  {{tipocontato}}
+                              </md-option>
+                          </md-select>
+                        </md-input-container>
 
                         </div>
+-->
                     </form>
                 </md-tab-body>
             </md-tab>
@@ -234,57 +211,52 @@
 
                 <md-tab-body>
                     <form name="wizardStep3" ms-form-wizard-form novalidate>
-                        <div layout="column" layout-gt-xs="row">
-                          <div layout="column" layout-gt-xs="row" flex>
-                              <md-input-container flex  >
-                                  <input type="text" name="rua" ng-model="vm.formWizard.rua"
+
+                          <div layout="column" layout-gt-xs="row" >
+                              <md-input-container flex="100" flex-gt-xs="50" >
+                                  <input type="text" name="rua" ng-model="vm.endereco.rua"
                                          placeholder="Rua" required>
                               </md-input-container>
 
 
-                          </div>
-
-                              <md-input-container flex="100" flex-gt-xs="20" >
-                                <input type="text" name="numero" ng-model="vm.formWizard.numero"
-                                placeholder="Numero">
+                              <md-input-container flex="100" flex-gt-xs="5">
+                                <input type="text" name="numero" ng-model="vm.endereco.numero"
+                                placeholder="Nº" required>
                               </md-input-container>
 
-
-                        </div>
-
-                        <div layout="column" layout-gt-xs="row">
-                          <div layout="column" layout-gt-xs="row" flex>
-                              <md-input-container flex  >
-                                <input type="text" name="complemento" ng-model="vm.formWizard.complemento"
+                              <md-input-container flex ="100" flex-gt-xs="15">
+                                <input type="text" name="complemento" ng-model="vm.endereco.complemento"
                                 placeholder="Complemento">
                               </md-input-container>
-                          </div>
+                              </div>
 
+                          <div layout="column" layout-gt-xs="row">
                               <md-input-container flex="100" flex-gt-xs="30" >
-                                <input type="text" name="bairro" ng-model="vm.formWizard.bairro"
-                                placeholder="Bairro">
+                                <input type="text" name="bairro" ng-model="vm.endereco.bairro"
+                                placeholder="Bairro" required>
                               </md-input-container>
                           </md-input-container>
-                        </div>
 
-                        <div layout="column" layout-gt-xs="row">
-                          <div layout="column" layout-gt-xs="row" flex>
-                              <md-input-container flex >
-                                <input type="text" name="cep" ng-model="vm.formWizard.cep"
-                                placeholder="CEP">
+
+                              <md-input-container flex="100" flex-gt-xs="10" >
+                                <input type="text" name="cep" ng-model="vm.endereco.cep"
+                                placeholder="CEP" required>
                               </md-input-container>
-                          </div>
 
-                              <md-input-container flex="100" flex-gt-xs="50" >
-                                <input type="text" name="referencia" ng-model="vm.formWizard.referencia"
+                              <md-input-container flex="100" flex-gt-xs="25" >
+                                <input type="text" name="ponto_referencia" ng-model="vm.endereco.ponto_referencia"
                                 placeholder="Ponto de Referencia">
                               </md-input-container>
 
+                            </div>
+
+                            <div layout="column" layout-gt-xs="row">
                               <md-input-container flex="100" flex-gt-xs="20" >
-                                <input type="text" name="cidade" ng-model="vm.formWizard.cidade"
-                                placeholder="Cidade">
+                                <input type="text" name="cidade" ng-model="vm.endereco.cidade"
+                                placeholder="Cidade" required>
                               </md-input-container>
                           </md-input-container>
+
                         </div>
                     </form>
                 </md-tab-body>
@@ -304,60 +276,47 @@
                 </md-tab-label>
                 <md-tab-body>
                     <form name="wizardStep4" ms-form-wizard-form novalidate>
-                      <md-input-container flex="100" flex-gt-xs="15">
-                              <label>Faz tratamentos médicos?</label>
-                              <md-select ng-model="vm.formWizard.tratamentosmedicos">
-                                  <md-option ng-repeat="estado in vm.tratamentosmedicos" value="{{tratamentosmedicos}}">
-                                      {{tratamentosmedicos}}
-                                  </md-option>
-                              </md-select>
-                          </md-input-container>
+
+                      <div layout="column" layout-gt-xs="row">
+                          <div flex="100" flex-gt-sm="50">
+                              Faz Tratamentos médicos?
+                              <md-checkbox ng-model="vm.saude.faz_tratamentos_medicos" aria-label="Faz tratamentos médicos">
+                              </md-checkbox>
+                            </div>
                         </div>
+
                         <div layout="column" layout-gt-xs="row">
-                          <md-input-container flex="100" flex-gt-xs="15">
-                              <label>Problemas de saúde na família?</label>
-                              <md-select ng-model="vm.formWizard.problemasdesaudenafamilia">
-                                  <md-option ng-repeat="estado in vm.problemasdesaudenafamilia" value="{{problemasdesaudenafamilia}}">
-                                      {{problemasdesaudenafamilia}}
-                                  </md-option>
-                              </md-select>
-                          </md-input-container>
+                          <div flex="100" flex-gt-sm="50">
+                              Problemas de saúde na família?
+                              <md-checkbox ng-model="vm.saude.problemas_de_saude_na_familia" aria-label="Problemas de saúde na família?">
+                              </md-checkbox>
+                            </div>
                         </div>
 
                           <div layout="column" layout-gt-xs="row">
-                            <md-input-container flex="100" flex-gt-xs="15">
-                                <label>Possui plano de saúde?</label>
-                                <md-select ng-model="vm.formWizard.planodesaude">
-                                    <md-option ng-repeat="estado in vm.planodesaude" value="{{planodesaude}}">
-                                        {{planodesaude}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-				</div>
+                            <div flex="100" flex-gt-sm="50">
+                                Possui plano de saúde?
+                                <md-checkbox ng-model="vm.saude.plano_de_saude" aria-label="Possui plano de saúde">
+                                </md-checkbox>
+                            </div>
+                          </div>
 
                             <div layout="column" layout-gt-xs="row">
-                              <md-input-container flex="100" flex-gt-xs="15">
-                                  <label>Pessoas idosas no lar?</label>
-                                  <md-select ng-model="vm.formWizard.pessoasidosas">
-                                      <md-option ng-repeat="estado in vm.pessoasidosas" value="{{pessoasidosas}}">
-                                          {{pessoasidosas}}
-                                      </md-option>
-                                  </md-select>
-                              </md-input-container>
-				</div>
+                              <div flex="100" flex-gt-sm="50">
+                                Pessoas idosas no lar?
+                                <md-checkbox ng-model="vm.saude.pessoas_idosas" aria-label="Pessoas idosas no lar">
+                                </md-checkbox>
+                              </div>
+                          </div>
 
                               <div layout="column" layout-gt-xs="row">
-                                <md-input-container flex="100" flex-gt-xs="15">
-                                    <label>Pessoas com problemas psiquiáticos no lar?</label>
-                                    <md-select ng-model="vm.formWizard.problemaspsiquiatricos">
-                                        <md-option ng-repeat="estado in vm.problemaspsiquiatricos" value="{{problemaspsiquiatricos}}">
-                                            {{problemaspsiquiatricos}}
-                                        </md-option>
-                                    </md-select>
-                                </md-input-container>
+                                <div flex="100" flex-gt-sm="50">
+                                  Pessoas idosas no lar?
+                                  <md-checkbox ng-model="vm.saude.problemas_psiquiatricos" aria-label="Pessoas com problemas psiquiátricos na família">
+                                  </md-checkbox>
+                                </div>
+                            </div>
 
-
-                        </div>
                     </form>
                 </md-tab-body>
             </md-tab>
@@ -377,96 +336,74 @@
                 </md-tab-label>
                 <md-tab-body>
                     <form name="wizardStep5" ms-form-wizard-form novalidate>
-                      
-			<div class="form-group">
-                        <label for="">Estado civil dos pais</label>
-                        <select ng-model="periodo">
-                            <option>Casados</option>
-			    <option>União Estável</option>	
-                            <option>Divorciados</option>
-		 	    <option>Mãe viuva</option>
-			    <option>Pai viuvo</option>		
-				
-                        </select>
-                    </div>
 
-                        <div layout="column" layout-gt-xs="row">
+                      <div layout="column" layout-gt-xs="row">
+                				 <md-input-container flex="100" flex-gt-xs="50" placeholder="Criança reside com:"
+                         required>
+                            <input type="text" name="crianca_reside_com"ng-model="vm.estrutura_familiar.crianca_reside_com" placeholder="Criança reside com:"
+  required>
+                          </md-input-container>
 
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>A criança reside com:</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.criancareside">
-                            </md-input-container>
-				</div>
-
-                          <div layout="column" layout-gt-xs="row">
-                            <md-input-container flex="100" flex-gt-xs="15">
-                                <label>Possui problemas financeiros?</label>
-                                <md-select ng-model="vm.formWizard.problemasfinanceiros">
-                                    <md-option ng-repeat="estado in vm.problemasfinanceiros" value="{{problemasfinanceiros}}">
-                                        {{problemasfinaceiros}}
+                            <md-input-container flex="100" flex-gt-xs="25">
+                                <label>Estado civil do pais</label>
+                                <md-select ng-model="vm.formWizard.estadocivil">
+                                    <md-option ng-repeat="estado in vm.estrutura_familiar.estado_civil_pais" value="{{estado_civil_pais}}">
+                                        {{estadocivil}}
                                     </md-option>
                                 </md-select>
                             </md-input-container>
 
-                            <div layout="column" layout-gt-xs="row">
-                              <md-input-container flex="100" flex-gt-xs="15">
-                                  <label>Familiares com problemas com uso de alcool/drogas?</label>
-                                  <md-select ng-model="vm.formWizard.usodealcooldrogas">
-                                      <md-option ng-repeat="estado in vm.usodealcooldrogas" value="{{usodealcooldrogas}}">
-                                          {{usodealcooldrogas}}
-                                      </md-option>
-                                  </md-select>
-                              </md-input-container>
-
-                              <div layout="column" layout-gt-xs="row">
-                                <md-input-container flex="100" flex-gt-xs="15">
-                                    <label>Alguém agressivo na família?</label>
-                                    <md-select ng-model="vm.formWizard.alguemagressivo">
-                                        <md-option ng-repeat="estado in vm.alguemagressivo" value="{{alguemagressivo}}">
-                                            {{alguemagressivo}}
-                                        </md-option>
-                                    </md-select>
-                                </md-input-container>
-					</div>
-
-				<div layout="column" layout-gt-xs="row">
-                                <md-input-container flex="100" flex-gt-xs="15">
-                                    <label>Possui automóveis?</label>
-                                    <md-select ng-model="vm.formWizard.possuiautomoveis">
-                                        <md-option ng-repeat="estado in vm.possuiautomoveis" value="{{possuiautomoveis}}">
-                                            {{possuiautomoveis}}
-                                        </md-option>
-                                    </md-select>
-                                </md-input-container>
-					</div>
-
-					<div layout="column" layout-gt-xs="row">
-                                <md-input-container flex="100" flex-gt-xs="15">
-                                    <label>Possui imóveis?</label>
-                                    <md-select ng-model="vm.formWizard.possuiimoveis">
-                                        <md-option ng-repeat="estado in vm.possuiimoveis" value="{{possuiimoveis}}">
-                                            {{possuiimoveis}}
-                                        </md-option>
-                                    </md-select>
-                                </md-input-container>
-					</div>
-
-
-					<div layout="column" layout-gt-xs="row">
-                                <md-input-container flex="100" flex-gt-xs="15">
-                                    <label>Programas sociais</label>
-                                    <md-select ng-model="vm.formWizard.programassociais">
-                                        <md-option ng-repeat="estado in vm.programassociais" value="{{programassociais}}">
-                                            {{programassociais}}
-                                        </md-option>
-                                    </md-select>
-                                </md-input-container>
-					</div>
-
-
-		
-
                         </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                          <div flex="100" flex-gt-sm="50">
+                            Possui problemas finaceiros?
+                            <md-checkbox ng-model="vm.estrutura_familiar.problemas_financeiros" aria-label="Possui problemas financeiros">
+                            </md-checkbox>
+                          </div>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                          <div flex="100" flex-gt-sm="50">
+                            Familiares com problemas com uso de alcool/drogas?
+                            <md-checkbox ng-model="vm.estrutura_familiar.uso_de_alcool_drogas" aria-label="Familiares com problemas com uso de alcool/drogas">
+                            </md-checkbox>
+                          </div>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                          <div flex="100" flex-gt-sm="50">
+                            Alguém agressivo na família?
+                            <md-checkbox ng-model="vm.estrutura_familiar.alguem_agressivo" aria-label="Alguém agressivo na família">
+                            </md-checkbox>
+                          </div>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                          <div flex="100" flex-gt-sm="50">
+                            Participa de programas sociais?
+                            <md-checkbox ng-model="vm.estrutura_familiar.programas_sociais" aria-label="Participa de programas sociais">
+                            </md-checkbox>
+                          </div>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                          <div flex="100" flex-gt-sm="50">
+                            Possui automóveis?
+                            <md-checkbox ng-model="vm.automovel" aria-label="Possui automóveis">
+                            </md-checkbox>
+                          </div>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                          <div flex="100" flex-gt-sm="50">
+                            Possui imóveis?
+                            <md-checkbox ng-model="vm.imovel" aria-label="Possui imóveis">
+                            </md-checkbox>
+                          </div>
+                        </div>
+
+
                     </form>
                 </md-tab-body>
             </md-tab>
@@ -485,68 +422,67 @@
                 </md-tab-label>
                 <md-tab-body>
                     <form name="wizardStep6" ms-form-wizard-form novalidate>
+
                      <div layout="column" layout-gt-xs="row">
+                       <md-input-container flex="100"  flex-gt-xs="70">
+                           <input type="text" name="nome_parente" ng-model="vm.parente.nome"
+                                  placeholder="Nome do parente" required
+                                  >
+                           <div ng-messages="wizardStep6.nome.$error"
+                                role="alert">
+                               <div ng-message="required">
+                                   <span>O nome é requerido.</span>
+                               </div>
+                           </div>
+                       </md-input-container>
 
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Nome</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.nomeparente">
+
+				                   <md-input-container flex="100" flex-gt-xs="15">
+                                <input type="text" name="parentesco"ng-model="vm.parente.parentesco" placeholder="Parentesco" required
+                                 >
                             </md-input-container>
-				</div>
 
-                        <div layout="column" layout-gt-xs="row">
+</div>
 
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Parentesco</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.parentesco">
+                            <div layout="column" layout-gt-xs="row">
+				                          <md-input-container flex="100" flex-gt-xs="20">
+                                <input type="text" name="escolaridade"ng-model="vm.parente.escolaridade" placeholder="Escolaridade" required
+                                 >
                             </md-input-container>
-				</div>
 
- 			<div layout="column" layout-gt-xs="row">
 
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Escolaridade</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.escolaridade">
+                            <md-input-container>
+                              <md-datepicker ng-model="vm.aluno.parente.data_nascimento" md-placeholder="Nascimento" md-open-on-focus></md-datepicker>
                             </md-input-container>
-				</div>
 
-				<div layout="column" layout-gt-xs="row">
+</div>
 
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Data de Nascimento</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.datanascimentoparente">
-                            </md-input-container>
-				</div>
+                            <div layout="column" layout-gt-xs="row">
+                                 <md-input-container flex="100" flex-gt-xs="50">
+                                   <input type="text" name="ocupacao"ng-model="vm.parente.ocupacao" placeholder="Ocupação" required
+                                   >
+                               </md-input-container>
 
-				<div layout="column" layout-gt-xs="row">
-
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Ocupação</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.ocupacaoparente">
-                            </md-input-container>
-				</div>
-
-				<div layout="column" layout-gt-xs="row">
-
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Salário</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.salarioparente">
-                            </md-input-container>
-				</div>
-
-				<md-input-container flex="100" flex-gt-xs="50">
-                                <label>Local de trabalho</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.salarioparente">
-                            </md-input-container>
-				</div>
+                                <md-input-container flex="100" flex-gt-xs="10">
+                               <input type="text" name="salario"ng-model="vm.parente.salario" placeholder="Salário" required
+                                >
+                              </md-input-container>
+				                    </div>
 
 
-                        </div>
+                          <md-input-container flex="100" flex-gt-xs="50">
+                            <input type="text" name="local_de_trabalho"ng-model="vm.parente.local_de_trabalho" placeholder="Local de trabalho" required
+                            >
+                          </md-input-container>
+
+
                     </form>
                 </md-tab-body>
             </md-tab>
 
-	<!-- PASSO 7 / STEP 7-->
-            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid">
+
+<!-- PASSO 7 / STEP 7-->
+            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid" >
                 <md-tab-label>
                     <span class="ms-form-wizard-step-label">
                         <span class="ms-form-wizard-step-number md-accent-bg"
@@ -554,47 +490,84 @@
                         <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep7.$valid">
                             <i class="icon-check s16"></i>
                         </span>
-                        <span class="ms-form-wizard-step-text">Contato</span>
+                        <span class="ms-form-wizard-step-text">Situação Habitacional</span>
                     </span>
                 </md-tab-label>
                 <md-tab-body>
                     <form name="wizardStep7" ms-form-wizard-form novalidate>
+
                      <div layout="column" layout-gt-xs="row">
-
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Nome</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.nomecontato">
-                            </md-input-container>
-				</div>
-
-                        <div layout="column" layout-gt-xs="row">
-
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Telefone</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.telefonecontato">
-                            </md-input-container>
-				</div>
-
-                          <div layout="column" layout-gt-xs="row">
-                            <md-input-container flex="100" flex-gt-xs="15">
-                                <label>Tipo do contato</label>
-                                <md-select ng-model="vm.formWizard.tipocontato ">
-                                    <md-option ng-repeat="estado in vm.tipocontato" value="{{tipocontato}}">
-                                        {{tipocontato}}
+                            <md-input-container flex="100" flex-gt-xs="20">
+                                <label>Situação do imóvel</label>
+                                <md-select ng-model="vm.situacao_habitacional.situacao">
+                                    <md-option ng-repeat="situacao in vm.aluno.situacao_habitacional.situacao" value="{{situacao}}">
+                                        {{situacao}}
                                     </md-option>
                                 </md-select>
                             </md-input-container>
 
+        <md-input-container flex="100" flex-gt-xs="15">
+          <input type="text" name="numero_comodos"ng-model="vm.situacao_habitacional.numero_comodos" placeholder="Nº de cômodos"
+          required>
+        </md-input-container>
+          </div>
+
+                  <div layout="column" layout-gt-xs="row">
+                    <div flex="100" flex-gt-sm="50">
+                      Esgoto?
+                      <md-checkbox ng-model="vm.situacao_habitacional.esgoto" aria-label="Esgoto">
+                      </md-checkbox>
+                    </div>
+                  </div>
+
+                  <div layout="column" layout-gt-xs="row">
+                    <div flex="100" flex-gt-sm="50">
+                      Rede elétrica?
+                      <md-checkbox ng-model="vm.situacao_habitacional.rede_eletrica" aria-label="Rede elétrica">
+                      </md-checkbox>
+                    </div>
+                  </div>
+
+                  <div layout="column" layout-gt-xs="row">
+                    <div flex="100" flex-gt-sm="50">
+                      Asfalto?
+                      <md-checkbox ng-model="vm.situacao_habitacional.asfalto" aria-label="Asfalto">
+                      </md-checkbox>
+                    </div>
+                  </div>
 
 
+        <div layout="column" layout-gt-xs="row">
+          <div flex="100" flex-gt-sm="50">
+            Alvenaria?
+            <md-checkbox ng-model="vm.situacao_habitacional.alvenaria" aria-label="Alvenaria">
+            </md-checkbox>
+          </div>
+        </div>
 
-                        </div>
+        <div layout="column" layout-gt-xs="row">
+          <div flex="100" flex-gt-sm="50">
+            Casa de madeira?
+            <md-checkbox ng-model="vm.situacao_habitacional.madeira" aria-label="Casa de madeira">
+            </md-checkbox>
+          </div>
+        </div>
+
+        <div layout="column" layout-gt-xs="row">
+          <div flex="100" flex-gt-sm="50">
+            Imóvel construído em área irregular?
+            <md-checkbox ng-model="vm.situacao_habitacional.area_irregular" aria-label="Imóvel construído em área irregular">
+            </md-checkbox>
+          </div>
+        </div>
+
+
                     </form>
                 </md-tab-body>
             </md-tab>
 
 <!-- PASSO 8 / STEP 8-->
-            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid" >
+            <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid">
                 <md-tab-label>
                     <span class="ms-form-wizard-step-label">
                         <span class="ms-form-wizard-step-number md-accent-bg"
@@ -602,91 +575,103 @@
                         <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep8.$valid">
                             <i class="icon-check s16"></i>
                         </span>
-                        <span class="ms-form-wizard-step-text">Situação Habitacional</span>
+                        <span class="ms-form-wizard-step-text">Aparelhos eletrônicos</span>
                     </span>
                 </md-tab-label>
                 <md-tab-body>
                     <form name="wizardStep8" ms-form-wizard-form novalidate>
-                     <div layout="column" layout-gt-xs="row">
-                            <md-input-container flex="100" flex-gt-xs="15">
-                                <label>Situação do imóvel</label>
-                                <md-select ng-model="vm.formWizard.situacaoimovel">
-                                    <md-option ng-repeat="estado in vm.situacaoimovel" value="{{situacaoimovel}}">
-                                        {{situacaoimovel}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-				</div>
 
- 				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Esgoto?</label>
-                                <md-select ng-model="vm.formWizard.esgoto">
-                                    <md-option ng-repeat="estado in vm.esgoto" value="{{esgoto}}">
-                                        {{esgoto}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+                      <div layout="column" layout-gt-xs="row">
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Rede elétrica?</label>
-                                <md-select ng-model="vm.formWizard.redeeletrica">
-                                    <md-option ng-repeat="estado in vm.redeletrica" value="{{redeeletrica}}">
-                                        {{redeeletrica}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+                      Quais são os aparelhos que o aluno possui em casa?
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Asfalto?</label>
-                                <md-select ng-model="vm.formWizard.asfalto">
-                                    <md-option ng-repeat="estado in vm.asfalto" value="{{asfalto}}">
-                                        {{asfalto}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+                      </div>
 
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                <label>Numero de cômodos</label>
-                                <input type="text" name="nat"ng-model="vm.formWizard.telefonecontato">
-                            </md-input-container>
-				</div>
-
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Alvenaria?</label>
-                                <md-select ng-model="vm.formWizard.alvenaria">
-                                    <md-option ng-repeat="estado in vm.alvenaria" value="{{alvenaria}}">
-                                        {{alvenaria}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
-
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Casa de madeira?</label>
-                                <md-select ng-model="vm.formWizard.madeira">
-                                    <md-option ng-repeat="estado in vm.madeira" value="{{madeira}}">
-                                        {{madeira}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
-
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Imóvel em área irregular?</label>
-                                <md-select ng-model="vm.formWizard.areairregular">
-                                    <md-option ng-repeat="estado in vm.areairregular" value="{{areairregular}}">
-                                        {{areairregular}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+                      <br>
+                    </br>
 
 
+                      <div layout="column" layout-gt-xs="row">
+                        <div flex="100" flex-gt-sm="50">
+                          Televisão
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.televisao" aria-label="Televisão">
+                          </md-checkbox>
                         </div>
+
+                        <div flex="100" flex-gt-sm="50">
+                          TV por assinatura
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.tv_assinatura" aria-label="TV por assinatura">
+                          </md-checkbox>
+                        </div>
+
+                        <div flex="100" flex-gt-sm="50">
+                          Computador
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.computador" aria-label="Computador">
+                          </md-checkbox>
+                        </div>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                        <div flex="100" flex-gt-sm="50">
+                          Notebook
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.notebook" aria-label="Notebook">
+                          </md-checkbox>
+                        </div>
+
+                        <div flex="100" flex-gt-sm="50">
+                          Fogão
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.fogao" aria-label="Fogão">
+                          </md-checkbox>
+                        </div>
+
+                        <div flex="100" flex-gt-sm="50">
+                          Geladeira
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.geladeira" aria-label="Geladeira">
+                          </md-checkbox>
+                        </div>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row">
+                        <div flex="100" flex-gt-sm="50">
+                          Microondas
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.microondas" aria-label="Microondas">
+                          </md-checkbox>
+                        </div>
+
+                        <div flex="100" flex-gt-sm="50">
+                          Tablets
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.tablets" aria-label="Tablets">
+                          </md-checkbox>
+                        </div>
+
+                        <div flex="100" flex-gt-sm="50">
+                          Máquina de lavar
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.maquina_de_lavar" aria-label="Máquina de lavar">
+                          </md-checkbox>
+                        </div>
+
+              </div>
+
+              <div layout="column" layout-gt-xs="row">
+                        <div flex="100" flex-gt-sm="50">
+                          Máquina de secar
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.maquina_de_secar" aria-label="Máquina de secar">
+                          </md-checkbox>
+                        </div>
+
+                        <div flex="100" flex-gt-sm="50">
+                          Telefone fixo
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.telefone_fixo" aria-label="Telefone fixo">
+                          </md-checkbox>
+                        </div>
+
+                        <div flex="100" flex-gt-sm="50">
+                          Celular
+                          <md-checkbox ng-model="vm.situacao_habitacional.aparelhos_eletronicos.celular" aria-label="Celular">
+                          </md-checkbox>
+                        </div>
+                      </div>
+
                     </form>
                 </md-tab-body>
             </md-tab>
@@ -700,139 +685,102 @@
                         <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep9.$valid">
                             <i class="icon-check s16"></i>
                         </span>
-                        <span class="ms-form-wizard-step-text">Aparelhos eletrônicos</span>
+                        <span class="ms-form-wizard-step-text">Despesas</span>
                     </span>
                 </md-tab-label>
                 <md-tab-body>
                     <form name="wizardStep9" ms-form-wizard-form novalidate>
-                     <div layout="column" layout-gt-xs="row">
-                           <md-input-container flex="100" flex-gt-xs="15">
-                                <label>Televisão</label>
-                                <md-select ng-model="vm.formWizard.televisao">
-                                    <md-option ng-repeat="estado in vm.televisao" value="{{televisao}}">
-                                        {{televisao}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-				</div>
 
- 				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>TV por assinatura</label>
-                                <md-select ng-model="vm.formWizard.tvassinatura">
-                                    <md-option ng-repeat="estado in vm.tvassinatura" value="{{tvassinatura}}">
-                                        {{tvassinatura}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+                      <div layout="column" layout-gt-xs="row">
+                      <md-input-container flex="100" flex-gt-xs="20">
+                     <input type="text" name="agua"ng-model="vm.despesa.agua" placeholder="Água"
+                      required>
+                    </md-input-container>
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Computador</label>
-                                <md-select ng-model="vm.formWizard.computador">
-                                    <md-option ng-repeat="estado in vm.computador" value="{{computador}}">
-                                        {{computador}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+             <md-input-container flex="100" flex-gt-xs="20">
+            <input type="text" name="energia_eletrica"ng-model="vm.energia_eletrica" placeholder="Energia elétrica"
+             required>
+           </md-input-container>
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Notebook</label>
-                                <md-select ng-model="vm.formWizard.notebook">
-                                    <md-option ng-repeat="estado in vm.notebook" value="{{notebook}}">
-                                        {{notebook}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+     <md-input-container flex="100" flex-gt-xs="20">
+    <input type="text" name="telefone"ng-model="vm.despesa.telefone" placeholder="Telefone"
+     required>
+   </md-input-container>
 
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Fogão</label>
-                                <md-select ng-model="vm.formWizard.fogao">
-                                    <md-option ng-repeat="estado in vm.fogao" value="{{fogao}}">
-                                        {{fogao}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="aluguel"ng-model="vm.despesa.aluguel" placeholder="Aluguel"
+        required>
+      </md-input-container>
+    </div>
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Geladeira</label>
-                                <md-select ng-model="vm.formWizard.geladeira">
-                                    <md-option ng-repeat="estado in vm.geladeira" value="{{geladeira}}">
-                                        {{geladeira}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+    <div layout="column" layout-gt-xs="row">
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="financiamento_casa"ng-model="vm.despesa.financiamento_casa" placeholder="Financiamento da casa"
+        required>
+      </md-input-container>
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Microondas</label>
-                                <md-select ng-model="vm.formWizard.microondas">
-                                    <md-option ng-repeat="estado in vm.microondas" value="{{microondas}}">
-                                        {{microondas}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="financiamento_carro"ng-model="vm.despesa.financiamento_carro" placeholder="Financiamento do carro"
+        required>
+      </md-input-container>
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Tablets</label>
-                                <md-select ng-model="vm.formWizard.tablets">
-                                    <md-option ng-repeat="estado in vm.tablets" value="{{tablets}}">
-                                        {{tablets}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="transporte"ng-model="vm.despesa.transporte" placeholder="Transporte"
+        required>
+      </md-input-container>
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Máquina de lavar</label>
-                                <md-select ng-model="vm.formWizard.maquinadelavar">
-                                    <md-option ng-repeat="estado in vm.maquinadelavar" value="{{maquinadelavar}}">
-                                        {{maquinadelavar}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="alimentacao"ng-model="vm.despesa.alimentacao" placeholder="Alimentação"
+        required>
+      </md-input-container>
+    </div>
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Máquina de Secar</label>
-                                <md-select ng-model="vm.formWizard.maquinadesecar">
-                                    <md-option ng-repeat="estado in vm.maquinadescar" value="{{maquinadesecar}}">
-                                        {{maquinadesecar}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+    <div layout="column" layout-gt-xs="row">
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="gas"ng-model="vm.despesa.gas" placeholder="Gás"
+        required>
+      </md-input-container>
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Telefone fixo</label>
-                                <md-select ng-model="vm.formWizard.telefonefixo">
-                                    <md-option ng-repeat="estado in vm.telefonefixo" value="{{telefonefixo}}">
-                                        {{telefonefixo}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="cartao_credito"ng-model="vm.cartao_credito" placeholder="Cartão de crédito"
+        required>
+      </md-input-container>
 
-				<md-input-container flex="100" flex-gt-xs="15">
-                                <label>Celular</label>
-                                <md-select ng-model="vm.formWizard.celular">
-                                    <md-option ng-repeat="estado in vm.celular" value="{{celular}}">
-                                        {{celular}}
-                                    </md-option>
-                                </md-select>
-	                            </md-input-container>
-				</div>
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="emprestimo"ng-model="vm.despesa.emprestimo" placeholder="Empréstimo"
+        required>
+      </md-input-container>
 
-                        </div>
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="tv_cabo"ng-model="vm.despesa.tv_cabo" placeholder="TV a cabo"
+        required>
+      </md-input-container>
+    </div>
+
+    <div layout="column" layout-gt-xs="row">
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="educacao"ng-model="vm.despesa.educacao" placeholder="Educação"
+        required>
+      </md-input-container>
+
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="pensao"ng-model="vm.despesa.pensao" placeholder="Pensão"
+        required>
+      </md-input-container>
+
+      <md-input-container flex="100" flex-gt-xs="20">
+        <input type="text" name="convenio_medico"ng-model="vm.convenio_medico" placeholder="Convenio médico"
+        required>
+      </md-input-container>
+    </div>
+
                     </form>
                 </md-tab-body>
             </md-tab>
 
-<!-- PASSO 10 / STEP 10-->
+
+            <!-- PASSO 10 / STEP 10-->
             <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid || wizardStep8.$invalid || wizardStep9.$invalid">
                 <md-tab-label>
                     <span class="ms-form-wizard-step-label">
@@ -841,110 +789,19 @@
                         <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep10.$valid">
                             <i class="icon-check s16"></i>
                         </span>
-                        <span class="ms-form-wizard-step-text">Despesas</span>
+                        <span class="ms-form-wizard-step-text">Observações</span>
                     </span>
                 </md-tab-label>
+
                 <md-tab-body>
                     <form name="wizardStep10" ms-form-wizard-form novalidate>
-                     
-				 <div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                               		 <label>Água</label>
-                               		 <input type="text" name="nat"ng-model="vm.formWizard.agua">
-                            	</md-input-container>
-				</div>
-			
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Energia elétrica</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.energia">
-                            	</md-input-container>
-				</div>
-			
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Telefone</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.telefone">
-                            	</md-input-container>
-				</div>
 
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Aluguel</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.aluguel">
-                            	</md-input-container>
-				</div>
+                      <div layout="column" layout-gt-xs="row">
+                        <md-input-container flex="100">
+                          <input type="text" name="observacoes"ng-model="vm.aluno.observacoes" placeholder="Observações">
+                        </md-input-container>
+                      </div>
 
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Financiamento da casa</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.financiamentocasa">
-                            	</md-input-container>
-				</div>
-
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Financiamento do carro</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.financiamentocarro">
-                            	</md-input-container>
-				</div>
-
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Transporte</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.transporte">
-                            	</md-input-container>
-				</div>
-
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Alimentação</label>
-                               		 <input type="text" name="nat"ng-model="vm.formWizard.alimentacao">
-                            	</md-input-container>
-				</div>
-
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Gás</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.gas">
-                            	</md-input-container>
-				</div>
-
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Cartão de crédito</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.cartao">
-                            	</md-input-container>
-				</div>
-
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Empréstimo</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.emprestimo">
-                            	</md-input-container>
-				</div>
-				
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                            	   	<label>TV a cabo</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.tvcabo">
-                            	</md-input-container>
-				</div>
-
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Educação</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.educacao">
-                            	</md-input-container>
-				</div>
-
-				<div layout="column" layout-gt-xs="row">
-				 <md-input-container flex="100" flex-gt-xs="50">
-                                	<label>Pensão</label>
-                                	<input type="text" name="nat"ng-model="vm.formWizard.pensao">
-                            	</md-input-container>
-				</div>
-                        </div>
                     </form>
                 </md-tab-body>
             </md-tab>
