@@ -249,7 +249,7 @@
 
         api.estruturaFamiliar = {
           list  : $resource(api.baseUrl + 'estrutura_familiar'),
-          getById : $resource(api.baseUrl + 'estrutura_familiar/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+          getById : $resource(api.baseUrl + 'estrutura_familiar/:id' + '/', {id: '@id'}, {'update': {method: 'PtomUT'}})
         }
 
         api.imovel = {
