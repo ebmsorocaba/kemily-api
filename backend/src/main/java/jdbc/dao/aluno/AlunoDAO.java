@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,11 @@ public class AlunoDAO {
         this.turmaDAO = new TurmaDAO();
     }
 
-    public void adiciona(Aluno aluno) throws SQLException {
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
+    public Aluno adiciona(Aluno aluno) throws SQLException {
+    	try (
+    			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+    	){
+	
         stmt.setString(1,aluno.getNome());
         stmt.setString(2,aluno.getTurma().getEducador());
         stmt.setDate(3,aluno.getData_nascimento());
@@ -33,8 +36,29 @@ public class AlunoDAO {
         stmt.setString(9,aluno.getObservacoes());
 
         // executa
-        stmt.execute();
+        int ra = stmt.executeUpdate();
+        
+        if(ra == 0) {
+        	aluno.setRa(-1);
+        	throw new SQLException("Falha na craição do aluno, linha nao alterada");
+        }
+        
+        try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+        	if(generatedKeys.next()) {
+        		aluno.setRa(generatedKeys.getInt(1));
+        	} else {
+        		aluno.setRa(-1);
+				throw new SQLException("Falha na criação do contato, ID nao retornado"); 	
+        	}
+        }
+        
         stmt.close();
+        
+	    } catch(SQLException ex) {
+	    	System.out.println(ex.toString());
+	    }
+    	
+    	return aluno;
     }
 
     public List<Aluno> getLista() throws SQLException {
