@@ -244,7 +244,7 @@
 
         api.endereco = {
           list  : $resource(api.baseUrl + 'endereco'),
-          getByCepNumero : $resource(api.baseUrl + 'endereco/:cep?numero=:numero' + '/', {cep: '@cep'}, {numero: '@numero'} {'update': {method: 'PUT'}})
+          getByCepNumero : $resource(api.baseUrl + 'endereco/:cep?numero=:numero' + '/', {cep: '@cep'}, {numero: '@numero'}, {'update': {method: 'PUT'}})
         }
 
         api.estruturaFamiliar = {
