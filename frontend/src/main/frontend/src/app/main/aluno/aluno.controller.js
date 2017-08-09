@@ -68,7 +68,7 @@
       function deleteAlunoConfirm(aluno, ev) {
         var confirm = $mdDialog.confirm()
           .title('Você tem certeza de que deseja apagar este aluno?')
-          .htmlContent('<b>' + aluno.nome + ' (' + aluno.cpf + ')</b>' + ' será apagado(a).')
+          .htmlContent('<b>' + aluno.nome + ' (' + aluno.ra + ')</b>' + ' será apagado(a).')
           .ariaLabel('apagar contato')
           .targetEvent(ev)
           .ok('Sim')
@@ -92,8 +92,8 @@
 
         // Remove o Aluno do BD
         console.log('deleteAluno @ alunos.controller.js');
-        api.aluno.getByCpf.delete({
-            'cpf': aluno.cpf
+        api.aluno.getByRa.delete({
+            'ra': aluno.ra
           },
           // Sucesso
           function(response) {
