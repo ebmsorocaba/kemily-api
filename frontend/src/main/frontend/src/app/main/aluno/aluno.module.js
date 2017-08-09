@@ -20,6 +20,14 @@
                     }
                 },
                 resolve: {
+                  Turmas: function (msApi)
+                  {
+                      return msApi.resolve('turmas.turmas@query'); // GET para Arrays
+                  },
+                  Alunos: function (msApi)
+                  {
+                      return msApi.resolve('alunos.alunos@query'); // GET para Arrays
+                  },
                   User: function ($window)
                   {
                       return JSON.parse($window.localStorage.getItem("currentUser"));
@@ -64,6 +72,8 @@
         // $translatePartialLoaderProvider.addPart('app/main/relatorio');
 
         // Api
+        msApiProvider.register('alunos.alunos', ['/api/aluno']);
+        msApiProvider.register('turmas.turmas', ['/api/turma']);
         //msApiProvider.register('sample', ['app/data/sample/sample.json']);
 
         //Navigation

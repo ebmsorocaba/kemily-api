@@ -7,220 +7,164 @@
         .controller('AlunoController', AlunoController);
 
     /** @ngInject */
-    function AlunoController()
+    function AlunoController($scope, $mdSidenav, User, Alunos, Turmas, msUtils, $mdDialog, $document, api, $window)
     {
-        var vm = this;
+      var vm = this;
 
-        // Data
-        //vm.helloText = SampleData.data.helloText;
+      // Data
+      vm.turmas = Turmas;
+      vm.alunos = Alunos;
+      //vm.user = User.data;
+      vm.listType = 'all';
+      vm.listOrder = 'nome';
+      vm.listOrderAsc = false;
+      vm.selectedAlunos = [];
 
-        // Methods
 
-        //////////
+      // Methods
+      vm.openAlunoDialog = openAlunoDialog;
+      vm.deleteAlunoConfirm = deleteAlunoConfirm;
+      vm.deleteAluno = deleteAluno;
+      vm.deleteSelectedAlunos = deleteSelectedAlunos;
+      vm.toggleSelectAluno = toggleSelectAluno;
+      vm.deselectAlunos = deselectAlunos;
+      vm.selectAllAlunos = selectAllAlunos;
+      vm.deleteAluno = deleteAluno;
+      vm.toggleInArray = msUtils.toggleInArray;
+      vm.exists = msUtils.exists;
+      //////////
+
+      //vm.currentUser = $window.sessionStorage.getItem("currentUser");
+
+      //console.log("Logado:" + User.nome);
+      //console.log("Logado: " + vm.currentUser.nome);
+
+      /**.
+       * Open new Aluno dialog
+       *
+       * @param ev
+       * @param contact
+       */
+      function openAlunoDialog(ev, aluno) {
+        $mdDialog.show({
+          controller: 'AlunoDialogController',
+          controllerAs: 'vm',
+          templateUrl: 'app/main/aluno/dialogs/aluno/aluno-dialog.html',
+          parent: (angular.element(document.body)),
+          targetEvent: ev,
+          clickOutsideToClose: false,
+          locals: {
+            Aluno: aluno,
+            User: vm.user,
+            Alunos: vm.alunos,
+            Turmas: vm.turmas
+          }
+        });
+      }
+
+      /**
+       * Delete Aluno Confirm Dialog
+       */
+      function deleteAlunoConfirm(aluno, ev) {
+        var confirm = $mdDialog.confirm()
+          .title('Você tem certeza de que deseja apagar este aluno?')
+          .htmlContent('<b>' + aluno.nome + ' (' + aluno.cpf + ')</b>' + ' será apagado(a).')
+          .ariaLabel('apagar contato')
+          .targetEvent(ev)
+          .ok('Sim')
+          .cancel('Cancelar');
+
+        $mdDialog.show(confirm).then(function() {
+          deleteAluno(aluno);
+          vm.selectedAlunos = [];
+
+        }, function() {
+          //console.log('Cancelou');
+        });
+      }
+
+      /**
+       * Delete Aluno
+       */
+      function deleteAluno(aluno) {
+
+        // TODO Remover também a [formaPgto] do Aluno.
+
+        // Remove o Aluno do BD
+        console.log('deleteAluno @ alunos.controller.js');
+        api.aluno.getByCpf.delete({
+            'cpf': aluno.cpf
+          },
+          // Sucesso
+          function(response) {
+            console.log(response);
+          },
+          // Erro
+          function(response) {
+            console.error(response);
+          }
+        );
+
+        // Remove a da lista na tela a linha deste Aluno
+        vm.alunos.splice(vm.alunos.indexOf(aluno), 1);
+      }
+
+      /**
+       * Delete Selected Alunos
+       */
+      function deleteSelectedAlunos(ev) {
+        var confirm = $mdDialog.confirm()
+          .title('Você tem certeza de que deseja apagar os alunos selecionados?')
+          .htmlContent('<b>' + vm.selectedAlunos.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
+          .ariaLabel('apagar contatos')
+          .targetEvent(ev)
+          .ok('Sim')
+          .cancel('Cancelar');
+
+        $mdDialog.show(confirm).then(function() {
+
+          vm.selectedAlunos.forEach(function(aluno) {
+            deleteAluno(aluno);
+          });
+
+          vm.selectedAlunos = [];
+
+        });
+
+      }
+
+      /**
+       * Toggle selected status of the aluno
+       *
+       * @param aluno
+       * @param event
+       */
+      function toggleSelectAluno(aluno, event) {
+        if (event) {
+          event.stopPropagation();
+        }
+
+        if (vm.selectedAlunos.indexOf(aluno) > -1) {
+          vm.selectedAlunos.splice(vm.selectedAlunos.indexOf(aluno), 1);
+        } else {
+          vm.selectedAlunos.push(aluno);
+        }
+      }
+
+      /**
+       * Deselect alunos
+       */
+      function deselectAlunos() {
+        vm.selectedAlunos = [];
+      }
+
+      /**
+       * Sselect all alunos
+       */
+      function selectAllAlunos() {
+        vm.selectedAlunos = $scope.filteredAlunos;
+      }
     }
 
-    /** @ngInject */
-    function MsFormWizardController()
-    {
-        var vm = this;
 
-        // Data
-        vm.forms = [];
-        vm.selectedIndex = 0;
-
-        // Methods
-        vm.registerForm = registerForm;
-
-        vm.previousStep = previousStep;
-        vm.nextStep = nextStep;
-        vm.firstStep = firstStep;
-        vm.lastStep = lastStep;
-
-        vm.totalSteps = totalSteps;
-        vm.isFirstStep = isFirstStep;
-        vm.isLastStep = isLastStep;
-
-        vm.currentStepInvalid = currentStepInvalid;
-        vm.previousStepInvalid = previousStepInvalid;
-        vm.formsIncomplete = formsIncomplete;
-        vm.resetForm = resetForm;
-
-        //////////
-
-        /**
-         * Register form
-         *
-         * @param form
-         */
-        function registerForm(form)
-        {
-            vm.forms.push(form);
-        }
-
-        /**
-         * Go to previous step
-         */
-        function previousStep()
-        {
-            if ( isFirstStep() )
-            {
-                return;
-            }
-
-            vm.selectedIndex--;
-        }
-
-        /**
-         * Go to next step
-         */
-        function nextStep()
-        {
-            if ( isLastStep() )
-            {
-                return;
-            }
-
-            vm.selectedIndex++;
-        }
-
-        /**
-         * Go to first step
-         */
-        function firstStep()
-        {
-            vm.selectedIndex = 0;
-        }
-
-        /**
-         * Go to last step
-         */
-        function lastStep()
-        {
-            vm.selectedIndex = totalSteps() - 1;
-        }
-
-        /**
-         * Return total steps
-         *
-         * @returns {int}
-         */
-        function totalSteps()
-        {
-            return vm.forms.length;
-        }
-
-        /**
-         * Is first step?
-         *
-         * @returns {boolean}
-         */
-        function isFirstStep()
-        {
-            return vm.selectedIndex === 0;
-        }
-
-        /**
-         * Is last step?
-         *
-         * @returns {boolean}
-         */
-        function isLastStep()
-        {
-            return vm.selectedIndex === totalSteps() - 1;
-        }
-
-        /**
-         * Is current step invalid?
-         *
-         * @returns {boolean}
-         */
-        function currentStepInvalid()
-        {
-            return angular.isDefined(vm.forms[vm.selectedIndex]) && vm.forms[vm.selectedIndex].$invalid;
-        }
-
-        /**
-         * Is previous step invalid?
-         *
-         * @returns {boolean}
-         */
-        function previousStepInvalid()
-        {
-            return vm.selectedIndex > 0 && angular.isDefined(vm.forms[vm.selectedIndex - 1]) && vm.forms[vm.selectedIndex - 1].$invalid;
-        }
-
-        /**
-         * Check if there is any incomplete forms
-         *
-         * @returns {boolean}
-         */
-        function formsIncomplete()
-        {
-            for ( var x = 0; x < vm.forms.length; x++ )
-            {
-                if ( vm.forms[x].$invalid )
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        /**
-         * Reset form
-         */
-        function resetForm()
-        {
-            // Go back to the first step
-            vm.selectedIndex = 0;
-
-            // Make sure all the forms are back in the $pristine & $untouched status
-            for ( var x = 0; x < vm.forms.length; x++ )
-            {
-                vm.forms[x].$setPristine();
-                vm.forms[x].$setUntouched();
-            }
-        }
-    }
-
-    /** @ngInject */
-    function msFormWizardDirective()
-    {
-        return {
-            restrict  : 'E',
-            scope     : true,
-            controller: 'MsFormWizardController as msWizard',
-            compile   : function (tElement)
-            {
-                tElement.addClass('ms-form-wizard');
-
-                return function postLink()
-                {
-
-                };
-            }
-        };
-    }
-
-    /** @ngInject */
-    function msFormWizardFormDirective()
-    {
-        return {
-            restrict: 'A',
-            require : ['form', '^msFormWizard'],
-            compile : function (tElement)
-            {
-                tElement.addClass('ms-form-wizard-form');
-
-                return function postLink(scope, iElement, iAttrs, ctrls)
-                {
-                    var formCtrl = ctrls[0],
-                        MsFormWizardCtrl = ctrls[1];
-
-                    MsFormWizardCtrl.registerForm(formCtrl);
-                };
-            }
-        };
-    }
 })();
