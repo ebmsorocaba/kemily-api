@@ -264,7 +264,24 @@
         // Sucesso
         function(response) {
           console.log(response);
+
           vm.aluno = response;
+          vm.roupa.aluno.ra = vm.aluno.ra;
+          console.log('RAAAAAA' + vm.aluno.ra);
+          console.log('RAAAAAA' + vm.roupa.aluno.ra);
+          api.roupa.list.save(vm.roupa,
+            // Exibe o resultado no console do navegador:
+            // Sucesso
+            function(response) {
+              console.log(response);
+            },
+            // Erro
+            function(response) {
+              console.error(response);
+            }
+          );
+
+
         },
         // Erro
         function(response) {
@@ -272,20 +289,7 @@
         }
       );
 
-      // vm.roupa.aluno.ra = ra;
-      // console.log('RAAAAAA' + vm.aluno.ra);
-      // console.log('RAAAAAA' + vm.roupa.aluno.ra);
-      // api.roupa.list.save(vm.roupa,
-      //   // Exibe o resultado no console do navegador:
-      //   // Sucesso
-      //   function(response) {
-      //     console.log(response);
-      //   },
-      //   // Erro
-      //   function(response) {
-      //     console.error(response);
-      //   }
-      // );
+
 
     // Adiciona uma nova linha no topo da lista na tela
       vm.alunos.unshift(vm.aluno);
