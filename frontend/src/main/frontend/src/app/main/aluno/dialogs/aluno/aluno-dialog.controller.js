@@ -46,24 +46,7 @@
       //   'meio_transporte': "",
       //   'observacoes': ""
       // };
-      vm.aluno = {
-        'ra': '',
-        'nome': '',
-        'data_nascimento': '',
-        'rg': '',
-        'estado': '',
-        'data_cadastro': new Date(),
-        'meio_transporte': '',
-        'observacoes': '',
-        'naturalidade': '',
-        'turma': {
-          'educador': '',
-        }
-      };
-
-
-      vm.roupa = {
-        'aluno': {
+        vm.aluno = {
           'ra': '',
           'nome': '',
           'data_nascimento': '',
@@ -76,10 +59,99 @@
           'turma': {
             'educador': '',
           }
-        },
-        'tamanho_camiseta': '',
-        'tamanho_calca': ''
-      };
+        };
+
+
+        vm.roupa = {
+          'aluno': {
+            'ra': '',
+            'nome': '',
+            'data_nascimento': '',
+            'rg': '',
+            'estado': '',
+            'data_cadastro': new Date(),
+            'meio_transporte': '',
+            'observacoes': '',
+            'naturalidade': '',
+            'turma': {
+              'educador': '',
+            }
+          },
+          'tamanho_camiseta': '',
+          'tamanho_calca': ''
+        };
+
+        vm.endereco = {
+          'cep': '',
+          'numero': '',
+          'rua': '',
+          'bairro': '',
+          'cidade': '',
+          'ponto_referencia': '',
+          'complemento': '',
+          'aluno': {
+              'ra': '',
+              'nome': '',
+              'turma': {
+                  'educador': ''
+              },
+              'data_nascimento': '',
+              'rg': '',
+              'naturalidade': '',
+              'estado': '',
+              'data_cadastro': '',
+              'meio_transporte': 'Carro',
+              'observacoes': ''
+          }
+        }
+
+        vm.saude = {
+          'aluno': {
+              'ra': '',
+              'nome': '',
+              'turma': {
+                  'educador': ''
+              },
+              'data_nascimento': '',
+              'rg': '',
+              'naturalidade': '',
+              'estado': '',
+              'data_cadastro': '',
+              'meio_transporte': '',
+              'observacoes': ''
+          },
+          'faz_tratamentos_medicos': '',
+          'problemas_saude_familia': '',
+          'plano_saude': '',
+          'pessoas_idosas': '',
+          'problemas_psiquiatricos': ''
+      }
+
+      vm.estrutura_familiar = {
+        'id': '',
+        'estado_civil_pais': '',
+        'crianca_reside_com': '',
+        'problemas_financeiros': '',
+        'uso_alcool_drogas': '',
+        'alguem_agressivo': '',
+        'programas_sociais': '',
+        'aluno': {
+            'ra': '',
+            'nome': '',
+            'turma': {
+                'educador': ''
+            },
+            'data_nascimento': '',
+            'rg': '',
+            'naturalidade': '',
+            'estado': '',
+            'data_cadastro': '',
+            'meio_transporte': '',
+            'observacoes': ''
+        }
+    },
+
+
 
 
       vm.title = 'Novo Aluno';
@@ -142,8 +214,8 @@
       }
 
       // Grava as alterações no BD:
-      api.aluno.getByCpf.update({
-        'cpf': vm.aluno.cpf
+      api.aluno.getByRa.update({
+        'ra': vm.aluno.ra
       },vm.aluno,
         // Exibe o resultado no console do navegador:
         // Sucesso
@@ -165,7 +237,7 @@
     function deleteAlunoConfirm(ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar este aluno?')
-        .htmlContent('<b>' + vm.aluno.nome + ' (' + vm.aluno.cpf + '</b>' + ') será apagado(a).')
+        .htmlContent('<b>' + vm.aluno.nome + ' (' + vm.aluno.ra + '</b>' + ') será apagado(a).')
         .ariaLabel('apagar aluno')
         .targetEvent(ev)
         .ok('OK')
@@ -177,8 +249,8 @@
 
         // Remove o Aluno do BD
         console.log('deleteAluno @ alunos.controller.js');
-        api.aluno.getByCpf.delete({
-            'cpf': aluno.cpf
+        api.aluno.getByRa.delete({
+            'ra': aluno.ra
           },
           // Sucesso
           function(response) {
@@ -267,8 +339,6 @@
 
           vm.aluno = response;
           vm.roupa.aluno.ra = vm.aluno.ra;
-          console.log('RAAAAAA' + vm.aluno.ra);
-          console.log('RAAAAAA' + vm.roupa.aluno.ra);
           api.roupa.list.save(vm.roupa,
             // Exibe o resultado no console do navegador:
             // Sucesso
@@ -281,6 +351,42 @@
             }
           );
 
+          vm.endereco.aluno.ra = vm.aluno.ra;
+          api.endereco.list.save(vm.endereco,
+            // Exibe o resultado no console do navegador:
+            // Sucesso
+            function(response) {
+              console.log(response);
+            },
+            // Erro
+            function(response) {
+              console.error(response);
+            }
+          );
+
+          vm.saude.aluno.ra = vm.aluno.ra;
+          api.saude.list.save(vm.saude,
+            // Exibe o resultado no console do navegador:
+            // Sucesso
+            function(response) {
+              console.log(response);
+            },
+            // Erro
+            function(response) {
+              console.error(response);
+            }
+          );
+
+          vm.estrutura_familiar.aluno.ra = vm.aluno.ra;
+          api.estruturaFamiliar.list.save(vm.estrutura_familiar,
+            function(response) {
+              console.log(response);
+            },
+            // Erro
+            function(response) {
+              console.error(response);
+            }
+          );
 
         },
         // Erro
