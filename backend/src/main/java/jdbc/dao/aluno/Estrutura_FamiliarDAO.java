@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +20,40 @@ public class Estrutura_FamiliarDAO {
         this.alunoDao = new AlunoDAO();
     }
 
-    public void adiciona(Estrutura_Familiar estrutura_Familiar) throws SQLException {
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO estrutura_Familiar (estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    public Estrutura_Familiar adiciona(Estrutura_Familiar estrutura_Familiar) throws SQLException {
+    	try (
+    			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO estrutura_Familiar (estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+    	) {
+	        stmt.setString(1,estrutura_Familiar.getEstado_civil_pais());
+	        stmt.setString(2,estrutura_Familiar.getCrianca_reside_com());
+	        stmt.setBoolean(3,estrutura_Familiar.isProblemas_financeiros());
+	        stmt.setBoolean(4,estrutura_Familiar.isUso_alcool_drogas());
+	        stmt.setBoolean(5,estrutura_Familiar.isAlguem_agressivo());
+	        stmt.setBoolean(6,estrutura_Familiar.isProgramas_sociais());
+	        stmt.setInt(7, estrutura_Familiar.getAluno().getRa());
 
-        stmt.setString(1,estrutura_Familiar.getEstado_civil_pais());
-        stmt.setString(2,estrutura_Familiar.getCrianca_reside_com());
-        stmt.setBoolean(3,estrutura_Familiar.isProblemas_financeiros());
-        stmt.setBoolean(4,estrutura_Familiar.isUso_alcool_drogas());
-        stmt.setBoolean(5,estrutura_Familiar.isAlguem_agressivo());
-        stmt.setBoolean(6,estrutura_Familiar.isProgramas_sociais());
-        stmt.setInt(7, estrutura_Familiar.getAluno().getRa());
-
-        // executa
-        stmt.execute();
-        stmt.close();
+	        // executa
+	        int key = stmt.executeUpdate();
+	        
+	        if(key == 0) {
+	        	estrutura_Familiar.setId(-1);
+	        	throw new SQLException("Falha na criação do EstruturaFamiliar, linha nao alterada");
+	        }
+	        
+	        try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+	        	if(generatedKeys.next()) {
+	        		estrutura_Familiar.setId(generatedKeys.getInt(1));
+	        	} else {
+	        		estrutura_Familiar.setId(-1);
+	        		throw new SQLException("Falha na criação do EstruturaFamiliar, ID nao retornado"); 
+	        	}
+	        }
+	        
+	     stmt.close();
+	        
+    	}
+	        
+        return estrutura_Familiar;
     }
 
     public List<Estrutura_Familiar> getLista() throws SQLException {

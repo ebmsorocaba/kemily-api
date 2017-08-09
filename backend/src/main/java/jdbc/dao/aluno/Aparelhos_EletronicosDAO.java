@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,24 +18,45 @@ public class Aparelhos_EletronicosDAO {
 		connection = ConnectionFactory.getConnection();
 	}
 	
-	public void adiciona(Aparelhos_Eletronicos aparelhosEletronicos) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	public Aparelhos_Eletronicos adiciona(Aparelhos_Eletronicos aparelhosEletronicos) throws SQLException {
+		try(
+				PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+		){
+			stmt.setBoolean(1, aparelhosEletronicos.getTelevisao());
+			stmt.setBoolean(2, aparelhosEletronicos.getTv_assinatura());
+			stmt.setBoolean(3, aparelhosEletronicos.getComputador());
+			stmt.setBoolean(4, aparelhosEletronicos.getNotebook()); 
+			stmt.setBoolean(5, aparelhosEletronicos.getFogao());
+			stmt.setBoolean(6, aparelhosEletronicos.getGeladeira());
+			stmt.setBoolean(7, aparelhosEletronicos.getMicroondas());
+			stmt.setBoolean(8, aparelhosEletronicos.getTablet());
+			stmt.setBoolean(9, aparelhosEletronicos.getMaquina_lavar());
+			stmt.setBoolean(10, aparelhosEletronicos.getMaquina_secar());
+			stmt.setBoolean(11, aparelhosEletronicos.getTelefone_fixo());
+			stmt.setBoolean(12, aparelhosEletronicos.getCelular());
+			
+			int key = stmt.executeUpdate();
+			
+			if(key == 0) {
+				aparelhosEletronicos.setId(-1);
+				throw new SQLException("Falha na criação do AparelhosEletronicos, linha nao alterada");
+			}
+			
+			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+				if(generatedKeys.next()) {
+					aparelhosEletronicos.setId(generatedKeys.getInt(1));
+				} else {
+					aparelhosEletronicos.setId(-1);
+					throw new SQLException("Falha na criação do AparelhosEletronicos, ID nao retornado");
+				}
+			} catch (SQLException ex) {
+				System.out.println(ex.toString());
+			}
+			
+			stmt.close();
+		}
 		
-		stmt.setBoolean(1, aparelhosEletronicos.getTelevisao());
-		stmt.setBoolean(2, aparelhosEletronicos.getTv_assinatura());
-		stmt.setBoolean(3, aparelhosEletronicos.getComputador());
-		stmt.setBoolean(4, aparelhosEletronicos.getNotebook()); 
-		stmt.setBoolean(5, aparelhosEletronicos.getFogao());
-		stmt.setBoolean(6, aparelhosEletronicos.getGeladeira());
-		stmt.setBoolean(7, aparelhosEletronicos.getMicroondas());
-		stmt.setBoolean(8, aparelhosEletronicos.getTablet());
-		stmt.setBoolean(9, aparelhosEletronicos.getMaquina_lavar());
-		stmt.setBoolean(10, aparelhosEletronicos.getMaquina_secar());
-		stmt.setBoolean(11, aparelhosEletronicos.getTelefone_fixo());
-		stmt.setBoolean(12, aparelhosEletronicos.getCelular());
-		
-		stmt.execute();
-		stmt.close();
+		return aparelhosEletronicos;
 	}
 	
 	public List<Aparelhos_Eletronicos> getLista() throws SQLException {
@@ -88,7 +110,7 @@ public class Aparelhos_EletronicosDAO {
 				ae.setTablet(rs.getBoolean("tablet"));
 				ae.setMaquina_lavar(rs.getBoolean("maquina_de_lavar"));
 				ae.setMaquina_secar(rs.getBoolean("maquina_de_secar"));
-				ae.setTelefone_fixo(rs.getBoolean("telefone_fixo"));
+				ae.setTelefone_fixo(rs.getBoolean("telefone_f)ixo"));
 				ae.setCelular(rs.getBoolean("celular"));
 			}
 			
