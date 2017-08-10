@@ -24,6 +24,14 @@
     vm.calcas = ['2', '4', '6', '8', '10', '12', '14', '16', 'P', 'M', 'G', 'GG', 'GGG'];
     vm.estados_civis = ['Solteiros', 'Casados', 'Separados', 'Divorciados', 'Mãe Viúva', 'Pai Viúvo', 'União Estável'];
     vm.situacoes = ['Casa Própria', 'Casa Alugada', 'Casa Cedida', 'Cada Financiada'];
+    vm.contatos = [{'nome': '', 'telefone': '', 'tipo': '', 'ra': '', 'grau_parentesco': '', 'presente': '', cargo: ''}];
+    vm.tiposContato = ['Generico', 'Responsavel', 'Profissional'];
+
+    vm.addContato = function(c) {
+      var contato = {'nome': '', 'telefone': '', 'tipo': '', 'ra': '', 'grau_parentesco': '', 'presente': '', cargo: ''};
+      vm.contatos.push(contato);
+      console.log(vm.contatos);
+    }
     //vm.ok = false;
 
     // Formas de Pagamento
