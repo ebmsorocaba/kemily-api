@@ -189,6 +189,45 @@
                                     </md-input-container>
                                   </div>
 
+                                  <div layout="column" layout-gt-xs="row" flex ng-repeat="c in vm.contatos track by $index">
+                                      <md-input-container flex="150"  flex-gt-xs="50" >
+                                          <input type="text" ng-model="c.nome"
+                                                 placeholder="Nome" value={{c.nome}}>
+                                      </md-input-container>
+
+                                      <md-input-container flex="100" flex-gt-xs="10">
+                                          <label>Telefone</label>
+                                          <input type="text" ng-model="c.telefone" mask="(99) 99999-9999" placeholder="Telefone">
+                                      </md-input-container>
+
+                                      <md-input-container flex="100" flex-gt-xs="15">
+                                          <label>Tipo</label>
+                                          <md-select ng-model="c.tipo">
+                                              <md-option ng-repeat="tipo in vm.tiposContato" value="{{tipo}}">
+                                                  {{tipo}}
+                                              </md-option>
+                                          </md-select>
+                                      </md-input-container>
+
+                                      <md-input-container flex="150" flex-gt-xs="10" ng-if="c.tipo == 'Responsavel'">
+                                        Presente?
+                                        <md-checkbox ng-model="c.presente" aria-label="Presente">
+                                        </md-checkbox>
+                                      </md-input-container>
+
+                                      <md-input-container flex="150" flex-gt-xs="10" ng-if="c.tipo == 'Responsavel'">
+                                        <input type="text" ng-model="c.grau_parentesco" placeholder="Grau Parentesco">
+                                      </md-input-container>
+
+                                      <md-input-container flex="150" flex-gt-xs="10" ng-if="c.tipo == 'Profissional'">
+                                        <input type="text" ng-model="c.cargo" placeholder="Cargo">
+                                      </md-input-container>
+
+                                      <md-button class="md-raised md-accent" ng-click="vm.addContato(c)">
+                                          Adicionar
+                                      </md-button>
+                                  </div>
+
 
       <!--
                                 <div layout="column" layout-gt-xs="row" flex>
