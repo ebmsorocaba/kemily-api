@@ -19,6 +19,8 @@
     console.log(vm.roupa);
     vm.aluno = angular.copy(Aluno);
     vm.alunos = Alunos;
+    vm.automoveis = [{'modelo': '', 'ano': '', 'financiado': ''}];
+    vm.imoveis = [{'financiado': ''}];
     vm.user = User;
     vm.turmas = Turmas;
     vm.newAluno = false;
@@ -28,6 +30,81 @@
     vm.calcas = ['2', '4', '6', '8', '10', '12', '14', '16', 'P', 'M', 'G', 'GG', 'GGG'];
     vm.estados_civis = ['Solteiros', 'Casados', 'Separados', 'Divorciados', 'Mãe Viúva', 'Pai Viúvo', 'União Estável'];
     vm.situacoes = ['Casa Própria', 'Casa Alugada', 'Casa Cedida', 'Cada Financiada'];
+    vm.contatos = [{'nome': '', 'telefone': '', 'tipo': '', 'ra': '', 'grau_parentesco': '', 'presente': '', cargo: ''}];
+    vm.tiposContato = ['Generico', 'Responsavel', 'Profissional'];
+
+    vm.isLastContato = function(c) {
+      var index = vm.contatos.indexOf(c);
+      if (index == (vm.contatos.length - 1)) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+    vm.isLastImovel = function(i) {
+      var index = vm.imoveis.indexOf(i);
+      if (index == (vm.imoveis.length - 1)) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+    vm.isLastAutomovel = function(a) {
+      var index = vm.automoveis.indexOf(a);
+      if (index == (vm.automoveis.length - 1)) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+    vm.addContato = function(c) {
+      var contato = {'nome': '', 'telefone': '', 'tipo': '', 'ra': '', 'grau_parentesco': '', 'presente': '', cargo: ''};
+      vm.contatos.push(contato);
+      console.log(vm.contatos);
+    }
+
+    vm.removeContato = function(c) {
+      if (vm.contatos.length > 1) {
+        vm.contatos.splice(vm.contatos.indexOf(c), 1);
+      }
+      else {
+        vm.contatos = [{'nome': '', 'telefone': '', 'tipo': '', 'ra': '', 'grau_parentesco': '', 'presente': '', cargo: ''}];
+      }
+    }
+
+    vm.addAutomovel = function(a) {
+      var automovel = {'modelo': '', 'ano': '', 'financiado': ''};
+      vm.automoveis.push(automovel);
+    }
+
+    vm.removeAutomovel = function(a) {
+      if (vm.automoveis.length > 1) {
+        vm.automoveis.splice(vm.automoveis.indexOf(a), 1);
+      }
+      else {
+        vm.automoveis = [{'modelo': '', 'ano': '', 'financiado': ''}];
+      }
+    }
+
+    vm.addImovel = function(i) {
+      var imovel = {'financiado': ''};
+      vm.imoveis.push(imovel);
+    }
+
+    vm.removeImovel = function(i) {
+      if (vm.imoveis.length > 1) {
+        vm.imoveis.splice(vm.imoveis.indexOf(i), 1);
+      }
+      else {
+        vm.imoveis = [{'financiado': ''}];
+      }
+    }
     //vm.ok = false;
 
     // Formas de Pagamento
