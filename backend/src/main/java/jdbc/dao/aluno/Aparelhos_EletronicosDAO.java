@@ -110,7 +110,7 @@ public class Aparelhos_EletronicosDAO {
 				ae.setTablet(rs.getBoolean("tablet"));
 				ae.setMaquina_lavar(rs.getBoolean("maquina_de_lavar"));
 				ae.setMaquina_secar(rs.getBoolean("maquina_de_secar"));
-				ae.setTelefone_fixo(rs.getBoolean("telefone_f)ixo"));
+				ae.setTelefone_fixo(rs.getBoolean("telefone_fixo"));
 				ae.setCelular(rs.getBoolean("celular"));
 			}
 			
