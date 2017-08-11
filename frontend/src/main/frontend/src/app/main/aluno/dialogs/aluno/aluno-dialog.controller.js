@@ -6,13 +6,17 @@
     .controller('AlunoDialogController', AlunoDialogController);
 
   /** @ngInject */
-  function AlunoDialogController($mdDialog, Aluno, Alunos, Turmas, User, msUtils, api) {
+  function AlunoDialogController($mdDialog, Aluno, Roupa, Endereco, Alunos, Turmas, User, msUtils, api) {
     var vm = this;
 
     console.log('AlunoDialogController EAEEEEEEEE CACHE');
 
     // Data
     vm.title = 'Alterar Aluno';
+    vm.roupa = Roupa;
+    vm.endereco = Endereco;
+
+    console.log(vm.roupa);
     vm.aluno = angular.copy(Aluno);
     vm.alunos = Alunos;
     vm.user = User;
@@ -103,7 +107,7 @@
               'meio_transporte': 'Carro',
               'observacoes': ''
           }
-        }
+        };
 
         vm.saude = {
           'aluno': {
@@ -125,7 +129,7 @@
           'plano_saude': '',
           'pessoas_idosas': '',
           'problemas_psiquiatricos': ''
-      }
+      };
 
       vm.estrutura_familiar = {
         'id': '',
@@ -149,9 +153,104 @@
             'meio_transporte': '',
             'observacoes': ''
         }
-    },
+    };
 
+    vm.despesa = {
+      'estrutura_familiar': {
+          'id': '',
+          'estado_civil_pais': '',
+          'crianca_reside_com': '',
+          'problemas_financeiros': null,
+          'uso_alcool_drogas': null,
+          'alguem_agressivo': null,
+          'programas_sociais': null,
+          'aluno': {
+              'ra': null,
+              'nome': '',
+              'turma': {
+                  'educador': ''
+              },
+              'data_nascimento': '',
+              'rg': '',
+              'naturalidade': '',
+              'estado': '',
+              'data_cadastro': '',
+              'meio_transporte': '',
+              'observacoes': ''
+          }
+      },
+      'agua': null,
+      'energia_eletrica': null,
+      'telefone': null,
+      'aluguel': null,
+      'financiamento_casa': null,
+      'financiamento_carro': null,
+      'transporte': null,
+      'alimentacao': null,
+      'gas': null,
+      'cartao_credito': null,
+      'emprestimo': null,
+      'tv_cabo': null,
+      'educacao': null,
+      'pensao': null,
+      'convenio_medico': null
+    };
 
+    vm.aparelhos_eletronicos = {
+        'id': null,
+        'televisao': null,
+        'tv_assinatura': null,
+        'computador': null,
+        'notebook': null,
+        'fogao': null,
+        'geladeira': null,
+        'microondas': null,
+        'tablet': null,
+        'maquina_lavar': null,
+        'maquina_secar': null,
+        'telefone_fixo': null,
+        'celular': null
+    };
+
+    vm.situacao_habitacional = {
+      'aluno': {
+          'ra': null,
+          'nome': '',
+          'turma': {
+              'educador': ''
+          },
+          'data_nascimento': '',
+          'rg': '',
+          'naturalidade': '',
+          'estado': '',
+          'data_cadastro': '',
+          'meio_transporte': '',
+          'observacoes': ''
+      },
+      'situacao': false,
+      'esgoto': false,
+      'rede_eletrica': false,
+      'asfalto': false,
+      'numero_comodos': '',
+      'alvenaria': false,
+      'madeira': false,
+      'area_irregular': false,
+      'aparelhos_eletronicos': {
+          'id': null,
+          'televisao': null,
+          'tv_assinatura': null,
+          'computador': null,
+          'notebook': null,
+          'fogao': null,
+          'geladeira': null,
+          'microondas': null,
+          'tablet': null,
+          'maquina_lavar': null,
+          'maquina_secar': null,
+          'telefone_fixo': null,
+          'celular': null
+      }
+    };
 
 
       vm.title = 'Novo Aluno';
@@ -331,14 +430,18 @@
       vm.aluno.rg = vm.aluno.rg.replace(/\-/g,"");
       vm.aluno.rg = vm.aluno.rg.replace(/\./g,"");
 
+      //ADD ALUNO
       api.aluno.list.save(vm.aluno,
         // Exibe o resultado no console do navegador:
         // Sucesso
-        function(response) {
+        function(response) { //Até descobrirmos uma forma melhor de mexer com promise
+                             // Nós esperamos o promise do aluno para fazer posteriores requisições
           console.log(response);
 
           vm.aluno = response;
           vm.roupa.aluno.ra = vm.aluno.ra;
+
+          //ADD ROUPA
           api.roupa.list.save(vm.roupa,
             // Exibe o resultado no console do navegador:
             // Sucesso
@@ -352,6 +455,8 @@
           );
 
           vm.endereco.aluno.ra = vm.aluno.ra;
+
+          //ADD ENDEREÇO
           api.endereco.list.save(vm.endereco,
             // Exibe o resultado no console do navegador:
             // Sucesso
@@ -365,6 +470,8 @@
           );
 
           vm.saude.aluno.ra = vm.aluno.ra;
+
+          //ADD SAUDE
           api.saude.list.save(vm.saude,
             // Exibe o resultado no console do navegador:
             // Sucesso
@@ -378,9 +485,66 @@
           );
 
           vm.estrutura_familiar.aluno.ra = vm.aluno.ra;
+
+          //ADD ESTRUTURA FAMILIAR
           api.estruturaFamiliar.list.save(vm.estrutura_familiar,
             function(response) {
               console.log(response);
+
+              vm.estrutura_familiar = response;
+              vm.despesa.estrutura_familiar.id = vm.estrutura_familiar.id;
+
+              console.log('AQUUUUUUUUUUUUUUUUUUUUUUI ' + vm.despesa.estrutura_familiar.id);
+
+              //ADD DESPESA
+              api.despesa.list.save(vm.despesa,
+                // Exibe o resultado no console do navegador:
+                // Sucesso
+                function(response) {
+                  console.log(response);
+                },
+                // Erro
+                function(response) {
+                  console.error(response);
+                }
+              );
+
+              //ADD APARALHOS ELETRÔNICOS
+              api.aparelhosEletronicos.list.save(vm.aparelhos_eletronicos,
+                // Exibe o resultado no console do navegador:
+                // Sucesso
+                function(response) {
+                  console.log(response);
+
+                  vm.aparelhos_eletronicos = response;
+                  vm.situacao_habitacional.aparelhos_eletronicos.id = vm.aparelhos_eletronicos.id;
+                  vm.situacao_habitacional.aluno.ra = vm.aluno.ra;
+                  console.log(vm.situacao_habitacional);
+
+                  //ADD SITUAÇÃO HABITACIONAL
+                  api.situacaoHabitacional.list.save(vm.situacao_habitacional,
+                    // Exibe o resultado no console do navegador:
+                    // Sucesso
+                    function(response) {
+                      console.log(response);
+
+                    },
+                    // Erro
+                    function(response) {
+                      console.error(response);
+                    }
+                  );
+
+
+                },
+                // Erro
+                function(response) {
+                  console.error(response);
+                }
+              );
+
+
+
             },
             // Erro
             function(response) {

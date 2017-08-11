@@ -7,13 +7,19 @@
         .controller('AlunoController', AlunoController);
 
     /** @ngInject */
-    function AlunoController($scope, $mdSidenav, User, Alunos, Turmas, msUtils, $mdDialog, $document, api, $window)
+    function AlunoController($scope, $mdSidenav, User, Alunos, Turmas, Enderecos, Roupas, Despesas, EstruturasFamiliares, SituacoesHabitacionais, Saudes, msUtils, $mdDialog, $document, api, $window)
     {
       var vm = this;
 
       // Data
       vm.turmas = Turmas;
       vm.alunos = Alunos;
+      vm.saudes = Saudes;
+      vm.enderecos = Enderecos;
+      vm.despesas = Despesas;
+      vm.roupas = Roupas;
+      vm.estruturasFamiliares = EstruturasFamiliares;
+      vm.SituacoesHabitacionais = SituacoesHabitacionais;
       //vm.user = User.data;
       vm.listType = 'all';
       vm.listOrder = 'nome';
@@ -32,6 +38,9 @@
       vm.deleteAluno = deleteAluno;
       vm.toggleInArray = msUtils.toggleInArray;
       vm.exists = msUtils.exists;
+
+      vm.selectRoupa = selectRoupa;
+      vm.selectEndereco = selectEndereco;
       //////////
 
       //vm.currentUser = $window.sessionStorage.getItem("currentUser");
@@ -57,9 +66,41 @@
             Aluno: aluno,
             User: vm.user,
             Alunos: vm.alunos,
-            Turmas: vm.turmas
+            Turmas: vm.turmas,
+            Roupa: vm.selectRoupa(aluno),
+            Endereco: vm.selectEndereco(aluno)
           }
         });
+      }
+
+      function selectRoupa(aluno){
+        var i;
+        if(!aluno) //Logica caso o aluno seja vazio
+          return 0;
+
+        console.log(vm.roupas);
+        console.log('Entrou');
+        for(i=0; i<=vm.roupas.length; i++){
+          if(vm.roupas[i].aluno.ra = aluno.ra){
+            console.log('retornou' + vm.roupas[i]);
+            return vm.roupas[i];
+          }
+        }
+      }
+
+      function selectEndereco(aluno){
+        var i;
+        if(!aluno)
+          return 0;
+
+        console.log(vm.enderecos);
+        console.log('Entrou');
+        for(i=0; i<=vm.enderecos.length; i++){
+          if(vm.enderecos[i].aluno.ra = aluno.ra){
+            console.log('retornou' + vm.enderecos[i]);
+            return vm.enderecos[i];
+          }
+        }
       }
 
       /**

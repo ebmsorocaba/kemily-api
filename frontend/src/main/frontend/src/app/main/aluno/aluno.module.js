@@ -20,6 +20,30 @@
                     }
                 },
                 resolve: {
+                  Enderecos: function (msApi)
+                  {
+                      return msApi.resolve('enderecos.enderecos@query'); // GET para Arrays
+                  },
+                  Roupas: function (msApi)
+                  {
+                      return msApi.resolve('roupas.roupas@query'); // GET para Arrays
+                  },
+                  Despesas: function (msApi)
+                  {
+                      return msApi.resolve('despesas.despesas@query'); // GET para Arrays
+                  },
+                  EstruturasFamiliares: function (msApi)
+                  {
+                      return msApi.resolve('estruturasFamiliares.estruturasFamiliares@query'); // GET para Arrays
+                  },
+                  SituacoesHabitacionais: function (msApi)
+                  {
+                      return msApi.resolve('situacoesHabitacionais.situacoesHabitacionais@query'); // GET para Arrays
+                  },
+                  Saudes: function (msApi)
+                  {
+                      return msApi.resolve('saudes.saudes@query'); // GET para Arrays
+                  },
                   Turmas: function (msApi)
                   {
                       return msApi.resolve('turmas.turmas@query'); // GET para Arrays
@@ -72,8 +96,14 @@
         // $translatePartialLoaderProvider.addPart('app/main/relatorio');
 
         // Api
-        msApiProvider.register('alunos.alunos', ['/api/aluno']);
+        msApiProvider.register('alunos.alunos', ['/api/aluno'])
+        msApiProvider.register('roupas.roupas', ['/api/roupa'])
+        msApiProvider.register('despesas.despesas', ['/api/despesa'])
+        msApiProvider.register('enderecos.enderecos', ['/api/endereco']);
         msApiProvider.register('turmas.turmas', ['/api/turma']);
+        msApiProvider.register('saudes.saudes', ['/api/saude']);
+        msApiProvider.register('situacoesHabitacionais.situacoesHabitacionais', ['/api/situacao_habitacional']);
+        msApiProvider.register('estruturasFamiliares.estruturasFamiliares', ['/api/estrutura_familiar']);
         //msApiProvider.register('sample', ['app/data/sample/sample.json']);
 
         //Navigation
