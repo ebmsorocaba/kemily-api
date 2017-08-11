@@ -1,5 +1,7 @@
 package model.aluno;
 
+import java.sql.Date;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import model.Aluno;
@@ -10,7 +12,7 @@ public class Parente {
 	private String nome;
 	private String parentesco;
 	private String escolaridade;
-	private int idade;
+	private Date data_nascimento;
 	private String ocupacao;
 	private double salario;
 	private String local_trabalho;
@@ -23,7 +25,7 @@ public class Parente {
 			@JsonProperty("nome")String nome,
 			@JsonProperty("parentesco")String parentesco,
 			@JsonProperty("escolaridade")String escolaridade,
-			@JsonProperty("idade")int idade,
+			@JsonProperty("data_nascimento")Date data_nascimento,
 			@JsonProperty("ocupacao")String ocupacao,
 			@JsonProperty("salario")double salario,
 			@JsonProperty("local_trabalho")String local_trabalho,
@@ -33,7 +35,7 @@ public class Parente {
 		this.nome = nome;
 		this.parentesco = parentesco;
 		this.escolaridade = escolaridade;
-		this.idade = idade;
+		this.data_nascimento = data_nascimento;
 		this.ocupacao = ocupacao;
 		this.salario = salario;
 		this.local_trabalho = local_trabalho;
@@ -72,12 +74,12 @@ public class Parente {
 		this.escolaridade = escolaridade;
 	}
 
-	public int getIdade() {
-		return idade;
+	public Date getData_nascimento() {
+		return data_nascimento;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setData_nascimento(Date data_nascimento) {
+		this.data_nascimento = data_nascimento;
 	}
 
 	public String getOcupacao() {

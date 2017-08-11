@@ -268,7 +268,7 @@ CREATE TABLE parente (
   nome TEXT NOT NULL,
   parentesco VARCHAR(20) NOT NULL,
   escolaridade VARCHAR(40) NOT NULL,
-  idade INTEGER NOT NULL,
+  data_nascimento DATE NOT NULL,
   ocupacao TEXT NOT NULL,
   salario NUMERIC(12,2) NOT NULL,
   local_de_trabalho VARCHAR(50) NOT NULL,
@@ -448,12 +448,12 @@ INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asf
 INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
   VALUES(3, 'Apartamento proprio', TRUE, TRUE, FALSE, 1, FALSE, TRUE, TRUE, 3);
 
-INSERT INTO parente(nome, parentesco, escolaridade, idade, ocupacao, salario, local_de_trabalho, ra_aluno)
-  VALUES('Marcia', 'Tia', 'Superior completo', 35, 'Advogada', 2500.00, 'Advocacia', 1);
-INSERT INTO parente(nome, parentesco, escolaridade, idade, ocupacao, salario, local_de_trabalho, ra_aluno)
-  VALUES('Paulo', 'Primo', 'Ensino Medio Completo', 25, 'Estagiario', 900.00, 'MotoresCia', 2);
-INSERT INTO parente(nome, parentesco, escolaridade, idade, ocupacao, salario, local_de_trabalho, ra_aluno)
-  VALUES('Ricardo', 'Tio', 'Ensino Medio Completo', 30, 'Motorista', 1800.00, 'Transportadora', 3);
+INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno)
+  VALUES('Marcia', 'Tia', 'Superior completo', '16/09/1982', 'Advogada', 2500.00, 'Advocacia', 1);
+INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno)
+  VALUES('Paulo', 'Primo', 'Ensino Medio Completo', '20/02/1992', 'Estagiario', 900.00, 'MotoresCia', 2);
+INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno)
+  VALUES('Ricardo', 'Tio', 'Ensino Medio Completo', '15/01/1987', 'Motorista', 1800.00, 'Transportadora', 3);
 
 INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
   VALUES('Divorciado', 'Pai', TRUE, TRUE, TRUE, TRUE, 1);
