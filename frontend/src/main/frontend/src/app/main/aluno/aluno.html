@@ -154,15 +154,15 @@
                 </md-menu-item>
 
                 <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'cpf'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'cpf' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>CPF</span>
+                  <md-button ng-click="vm.listOrder = 'ra'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'ra' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>RA</span>
                     <small>(Crescente)</small>
                   </md-button>
                 </md-menu-item>
 
                 <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'cpf'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'cpf' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>CPF</span>
+                  <md-button ng-click="vm.listOrder = 'ra'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'ra' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                    <span>RA</span>
                     <small>(Decrescente)</small>
                   </md-button>
                 </md-menu-item>
@@ -195,16 +195,8 @@
             {{aluno.nome}}
           </p>
 
-          <p class="hide show-gt-xs numero cpfAluno">
-            {{aluno.cpf}}
-          </p>
-
-          <p class="hide show-gt-xs numero telefone">
-            {{aluno.celular}}
-          </p>
-
-          <p class="hide show-gt-sm texto emailAluno">
-            {{aluno.email}}
+          <p class="hide show-gt-xs numero raAluno">
+            {{aluno.ra}}
           </p>
 
           <!-- Temporário -->
@@ -213,9 +205,6 @@
             {{aluno.formaPgto}}
           </p> -->
 
-          <p class="hide show numero valorAluno">
-            {{aluno.valorAtual | currency : "R$ "}}
-          </p>
         </div>
           <div class="md-secondary actions" layout="row" layout-align="start center">
             <!-- <md-button class="md-icon-button  hide show-gt-xs" ng-click="$event.stopPropagation();vm.toggleInArray(contact.id, vm.user.starred)" aria-label="Toggle starred" translate translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
