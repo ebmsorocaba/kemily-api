@@ -89,6 +89,7 @@ public class ParenteDAO {
                 parente.setLocal_trabalho(rs.getString("local_de_trabalho"));
                 parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
             }
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -107,13 +108,27 @@ public class ParenteDAO {
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM parente WHERE id = ?");
             stmt.setInt(1, search);
             stmt.execute();
-
+            stmt.close();
         }
 
         catch (SQLException ex) {
             System.out.println(ex.toString());
         }
 
+    }
+    
+    public void excluirByAluno(int ra) {
+    	try {
+
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM parente WHERE ra_aluno = ?");
+            stmt.setInt(1, ra);
+            stmt.execute();
+            stmt.close();
+        }
+
+        catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
     }
 
 
@@ -156,6 +171,7 @@ public class ParenteDAO {
                 parente.setLocal_trabalho(rs.getString("local_de_trabalho"));
                 parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
             }
+            stmt.close();
         }
 
         catch (SQLException ex) {

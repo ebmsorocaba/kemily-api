@@ -110,6 +110,8 @@ public class DespesaDAO {
                 despesa.setPensao(rs.getDouble("pensao"));
                 despesa.setConvenio_medico(rs.getDouble("convenio_medico"));
             }
+            
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -128,7 +130,7 @@ public class DespesaDAO {
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM despesa WHERE id_estrutura_familiar = ?");
             stmt.setInt(1, search);
             stmt.execute();
-
+            stmt.close();
         }
 
         catch (SQLException ex) {

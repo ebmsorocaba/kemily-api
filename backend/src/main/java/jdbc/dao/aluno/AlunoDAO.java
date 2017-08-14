@@ -115,6 +115,8 @@ public class AlunoDAO {
                 aluno.setObservacoes(rs.getString("observacoes"));
                 aluno.setNaturalidade(rs.getString("naturalidade"));
             }
+            
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -133,7 +135,7 @@ public class AlunoDAO {
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM aluno WHERE ra = ?");
             stmt.setInt(1, search);
             stmt.execute();
-
+            stmt.close();
         }
 
         catch (SQLException ex) {

@@ -197,7 +197,7 @@ public class ContatoController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deletar(@PathVariable("id") int id) {
+	public ResponseEntity<?> deletar(@PathVariable("id") int id) throws SQLException {
 		contato_ProfissionalDAO.excluir(id);
 		contato_ResponsavelDAO.excluir(id);
 		contatoDao.excluir(id);

@@ -74,6 +74,7 @@ public class SaudeDAO {
 				saude.setPessoas_idosas(rs.getBoolean("pessoas_idosas"));
 				saude.setProblemas_psiquiatricos(rs.getBoolean("problemas_psiquiatricos"));
 			}
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
 		}
@@ -87,6 +88,7 @@ public class SaudeDAO {
 			
 			stmt.setInt(1, ra);
 			stmt.execute();
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
 		}

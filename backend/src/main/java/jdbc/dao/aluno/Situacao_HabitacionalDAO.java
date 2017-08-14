@@ -89,6 +89,7 @@ public class Situacao_HabitacionalDAO {
 				sh.setArea_irregular(rs.getBoolean("area_irregular"));
 				sh.setAparelhos_eletronicos(aparelhosEletronicosDao.getAparelhos_Eletronicos(rs.getInt("id_aparelhos_eletronicos")));
 			}
+			stmt.close();
 			
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
@@ -101,12 +102,14 @@ public class Situacao_HabitacionalDAO {
 		try {
 
 			Situacao_Habitacional sit = getSituacao_Habitacional(ra);
-			aparelhosEletronicosDao.excluir(sit.getAparelhos_eletronicos().getId());
+			int idAparelhosEletronicos = sit.getAparelhos_eletronicos().getId();
 			
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM situacao_habitacional WHERE ra_aluno = ?");
 			stmt.setInt(1, ra);
 			
 			stmt.execute();
+			stmt.close();
+			aparelhosEletronicosDao.excluir(idAparelhosEletronicos);
 			
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
