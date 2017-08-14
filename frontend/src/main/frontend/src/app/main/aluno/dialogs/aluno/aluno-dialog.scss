@@ -1,5 +1,9 @@
 md-dialog {
 
+    .adicionarButton{
+     height: 40px;
+     width: 12px;
+    }
     &.aluno-dialog {
         max-width: 1400px;
         width: 1400px;
@@ -57,6 +61,7 @@ md-dialog {
                         color: rgba(0, 0, 0, 0.87);
                     }
                 }
+
 
                 .md-datepicker-input-container {
                     display: flex;
@@ -144,5 +149,6 @@ md-dialog {
             }
         }
     }
+
 
 }
