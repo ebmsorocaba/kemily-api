@@ -438,11 +438,11 @@
                                       <input type="text" ng-model="c.ano" placeholder="Ano">
                                   </md-input-container>
 
-                                  <div flex="50" flex-gt-xs="10">
+                                  <p>
                                     Financiado?
                                     <md-checkbox ng-model="c.financiado" aria-label="Possui automóveis" value={{c.financiado}}>
                                     </md-checkbox>
-                                  </div>
+                                  </p>
 
                                   <md-button class="md-raised md-accent adicionarButton" ng-click="vm.addAutomovel(c)" ng-if="vm.isLastAutomovel(c)">
                                       Adicionar
@@ -500,55 +500,45 @@
                       </md-tab-label>
                       <md-tab-body>
                           <form name="wizardStep6" ms-form-wizard-form novalidate>
-
-                           <div layout="column" layout-gt-xs="row">
-                             <md-input-container flex="100"  flex-gt-xs="70">
-                                 <input type="text" name="nome_parente" ng-model="vm.parente.nome"
+                            <div layout="column" layout-gt-xs="row">
+                                <md-input-container flex="100"  flex-gt-xs="50">
+                                    <input type="text" name="nome_parente" ng-model="vm.parente.nome"
                                         placeholder="Nome do parente"
                                         >
-                                 <div ng-messages="wizardStep6.nome.$error"
+                                    <div ng-messages="wizardStep6.nome.$error"
                                       role="alert">
-                                     <div ng-message=" ">
-                                         <span>O nome é requerido.</span>
-                                     </div>
-                                 </div>
-                             </md-input-container>
-      				                   <md-input-container flex="100" flex-gt-xs="15">
-                                      <input type="text" name="parentesco"ng-model="vm.parente.parentesco" placeholder="Parentesco"
-                                       >
-                                  </md-input-container>
-                          </div>
-
-                                  <div layout="column" layout-gt-xs="row">
-      				                          <md-input-container flex="100" flex-gt-xs="20">
-                                          <input type="text" name="escolaridade"ng-model="vm.parente.escolaridade" placeholder="Escolaridade"
-                                          >
-                                        </md-input-container>
-
-
-                                        <md-input-container>
-                                          <md-datepicker ng-model="vm.aluno.parente.data_nascimento" md-placeholder="Nascimento" md-open-on-focus></md-datepicker>
-                                        </md-input-container>
-
-                                </div>
-
-                                  <div layout="column" layout-gt-xs="row">
-                                       <md-input-container flex="100" flex-gt-xs="30">
-                                         <input type="text" name="ocupacao"ng-model="vm.parente.ocupacao" placeholder="Ocupação"
-                                         >
-                                     </md-input-container>
-
-                                      <md-input-container flex="100" flex-gt-xs="10">
-                                     <input type="text" name="salario"ng-model="vm.parente.salario" ui-money-mask placeholder="Salário"
-                                      >
-                                    </md-input-container>
-
-                                    <md-input-container flex="100" flex-gt-xs="50">
-                                      <input type="text" name="local_de_trabalho"ng-model="vm.parente.local_de_trabalho" placeholder="Local de trabalho">
-                                    </md-input-container>
-
-      				                    </div>
-
+                                        <div ng-message=" ">
+                                            <span>O nome é requerido.</span>
+                                        </div>
+                                    </div>
+                                </md-input-container>
+      				            <md-input-container flex="100" flex-gt-xs="50">
+                                    <input type="text" name="parentesco"ng-model="vm.parente.parentesco" placeholder="Parentesco"
+                                    >
+                                </md-input-container>
+                            </div>
+                            <div layout="column" layout-gt-xs="row">
+      				            <md-input-container flex="100" flex-gt-xs="50">
+                                    <input type="text" name="escolaridade"ng-model="vm.parente.escolaridade" placeholder="Escolaridade"
+                                    >
+                                </md-input-container>
+                                <md-input-container flex="100" flex-gt-xs="50">
+                                    <md-datepicker ng-model="vm.aluno.parente.data_nascimento" md-placeholder="Nascimento" md-open-on-focus></md-datepicker>
+                                </md-input-container>
+                            </div>
+                            <div layout="column" layout-gt-xs="row">
+                                <md-input-container flex="100" flex-gt-xs="33">
+                                    <input type="text" name="ocupacao"ng-model="vm.parente.ocupacao" placeholder="Ocupação"
+                                    >
+                                </md-input-container>
+                                <md-input-container flex="100" flex-gt-xs="33">
+                                    <input type="text" name="salario"ng-model="vm.parente.salario" ui-money-mask placeholder="Salário"
+                                    >
+                                </md-input-container>
+                                <md-input-container flex="100" flex-gt-xs="33">
+                                    <input type="text" name="local_de_trabalho"ng-model="vm.parente.local_de_trabalho" placeholder="Local de trabalho">
+                                </md-input-container>
+		                    </div>
                           </form>
                       </md-tab-body>
                   </md-tab>
