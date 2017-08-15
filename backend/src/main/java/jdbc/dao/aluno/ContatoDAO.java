@@ -122,10 +122,10 @@ public class ContatoDAO {
 	public void excluir(int id) throws SQLException {
 		
 		try {
-			System.out.println("[ContatoDAO] Excluindo Contato/Contato Genérico");
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM contato WHERE id = ?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM contato WHERE c.id = ?");
 			stmt.setInt(1, id);
-			
+
+
 			stmt.execute();
 			stmt.close();
 		} catch(SQLException ex) {
@@ -134,60 +134,15 @@ public class ContatoDAO {
 	}
 	
 	public void excluirByAluno(int ra) throws SQLException {
-		System.out.println("[ContatoDAO] Criando variaveis, Instanciando DAOs");
-		
-		System.out.println("[ContatoDAO] Criando Lista de IDs");
-		List<Integer> ids = new ArrayList<Integer>();
-		
-		System.out.println("[ContatoDAO] Criando Lista de Tipos");
-		List<String> tipos = new ArrayList<String>();
-		
-		System.out.println("[ContatoDAO] Instanciando Responsavel DAO");
-		Contato_ProfissionalDAO cpDAO;
-		
-		System.out.println("[ContatoDAO] Instanciando Profissional DAO");
-		Contato_ResponsavelDAO crDAO;
-		
+
+
 		try {
-			System.out.println("[ContatoDAO] Selecionando TODOS os contatos pelo RA");
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT id, tipo FROM contato WHERE ra_aluno = ?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM contato WHERE contato.ra_aluno = ?");
 			stmt.setInt(1, ra);
-			ResultSet rs = stmt.executeQuery();
-			
-			System.out.println("[ContatoDAO] Adicionando ID e Tipo dos Contatos");
-			while(rs.next()) {
-				ids.add(rs.getInt("id"));
-				tipos.add(rs.getString("tipo"));
-			}
-			
-			System.out.println("[ContatoDAO] Fechando ResultSet e PreparedStatement");
-			rs.close();
+			stmt.execute();
 			stmt.close();
-			
-			if(!ids.isEmpty() && !tipos.isEmpty()) {
-				
-				for(int i = 0; i < ids.size(); i++) {
-					System.out.println("[ContatoDAO] Verificando o tipo do contato");
-					
-					if(tipos.get(i).equals("profissional")) {
-						System.out.println("[ContatoDAO] Instanciando Responsavel DAO");
-						cpDAO = new Contato_ProfissionalDAO();
-						System.out.println("[ContatoDAO] Excluindo Contato Profissional");
-						cpDAO.excluir(ids.get(i));
-					}
-					
-					if(tipos.get(i).equals("responsavel")) {
-						System.out.println("[ContatoDAO] Instanciando Profissional DAO");
-						crDAO = new Contato_ResponsavelDAO();
-						System.out.println("[ContatoDAO] Excluindo Contato Responsavel");
-						crDAO.excluir(ids.get(i));
-					}
-					
-					this.excluir(ids.get(i));
-				}
-				
-			}
-			
+
+
 		} catch(SQLException ex) {
 			System.out.println(ex.toString());
 		}
