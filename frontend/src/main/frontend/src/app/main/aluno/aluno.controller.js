@@ -10,6 +10,285 @@
     var situacaoHabitacional = null;
     var paiContato = null;
     var maeContato = null;
+    var alunoVazio = {
+      'ra': '',
+      'nome': '',
+      'data_nascimento': '',
+      'rg': '',
+      'estado': '',
+      'data_cadastro': new Date(),
+      'meio_transporte': '',
+      'observacoes': '',
+      'naturalidade': '',
+      'turma': {
+        'educador': ''
+      }
+    };
+
+    var roupaVazio = {
+      'aluno': {
+        'ra': '',
+        'nome': '',
+        'data_nascimento': '',
+        'rg': '',
+        'estado': '',
+        'data_cadastro': new Date(),
+        'meio_transporte': '',
+        'observacoes': '',
+        'naturalidade': '',
+        'turma': {
+          'educador': ''
+        }
+      },
+      'tamanho_camiseta': '',
+      'tamanho_calca': ''
+    };
+
+    var enderecoVazio = {
+      'cep': '',
+      'numero': '',
+      'rua': '',
+      'bairro': '',
+      'cidade': '',
+      'ponto_referencia': '',
+      'complemento': '',
+      'aluno': {
+        'ra': '',
+        'nome': '',
+        'turma': {
+          'educador': ''
+        },
+        'data_nascimento': '',
+        'rg': '',
+        'naturalidade': '',
+        'estado': '',
+        'data_cadastro': '',
+        'meio_transporte': 'Carro',
+        'observacoes': ''
+      }
+    };
+
+    var saudeVazio = {
+      'aluno': {
+        'ra': '',
+        'nome': '',
+        'turma': {
+          'educador': ''
+        },
+        'data_nascimento': '',
+        'rg': '',
+        'naturalidade': '',
+        'estado': '',
+        'data_cadastro': '',
+        'meio_transporte': '',
+        'observacoes': ''
+      },
+      'faz_tratamentos_medicos': '',
+      'problemas_saude_familia': '',
+      'plano_saude': '',
+      'pessoas_idosas': '',
+      'problemas_psiquiatricos': ''
+    };
+
+    var estrutura_familiarVazio = {
+      'id': '',
+      'estado_civil_pais': '',
+      'crianca_reside_com': '',
+      'problemas_financeiros': '',
+      'uso_alcool_drogas': '',
+      'alguem_agressivo': '',
+      'programas_sociais': '',
+      'aluno': {
+        'ra': '',
+        'nome': '',
+        'turma': {
+          'educador': ''
+        },
+        'data_nascimento': '',
+        'rg': '',
+        'naturalidade': '',
+        'estado': '',
+        'data_cadastro': '',
+        'meio_transporte': '',
+        'observacoes': ''
+      }
+    };
+
+    var despesaVazio = {
+      'estrutura_familiar': {
+        'id': '',
+        'estado_civil_pais': '',
+        'crianca_reside_com': '',
+        'problemas_financeiros': '',
+        'uso_alcool_drogas': '',
+        'alguem_agressivo': '',
+        'programas_sociais': '',
+        'aluno': {
+          'ra': '',
+          'nome': '',
+          'turma': {
+            'educador': ''
+          },
+          'data_nascimento': '',
+          'rg': '',
+          'naturalidade': '',
+          'estado': '',
+          'data_cadastro': '',
+          'meio_transporte': '',
+          'observacoes': ''
+        }
+      },
+      'agua': '',
+      'energia_eletrica': '',
+      'telefone': '',
+      'aluguel': '',
+      'financiamento_casa': '',
+      'financiamento_carro': '',
+      'transporte': '',
+      'alimentacao': '',
+      'gas': '',
+      'cartao_credito': '',
+      'emprestimo': '',
+      'tv_cabo': '',
+      'educacao': '',
+      'pensao': '',
+      'convenio_medico': ''
+    };
+
+    var aparelhos_eletronicosVazio = {
+      'id': '',
+      'televisao': '',
+      'tv_assinatura': '',
+      'computador': '',
+      'notebook': '',
+      'fogao': '',
+      'geladeira': '',
+      'microondas': '',
+      'tablet': '',
+      'maquina_lavar': '',
+      'maquina_secar': '',
+      'telefone_fixo': '',
+      'celular': ''
+    };
+
+    var situacao_habitacionalVazio = {
+      'aluno': {
+        'ra': '',
+        'nome': '',
+        'turma': {
+          'educador': ''
+        },
+        'data_nascimento': '',
+        'rg': '',
+        'naturalidade': '',
+        'estado': '',
+        'data_cadastro': '',
+        'meio_transporte': '',
+        'observacoes': ''
+      },
+      'situacao': '',
+      'esgoto': '',
+      'rede_eletrica': '',
+      'asfalto': '',
+      'numero_comodos': '',
+      'alvenaria': '',
+      'madeira': '',
+      'area_irregular': '',
+      "aparelhos_eletronicos": {
+        "id": '',
+        "televisao": '',
+        "tv_assinatura": '',
+        "computador": '',
+        "notebook": '',
+        "fogao": '',
+        "geladeira": '',
+        "microondas": '',
+        "tablet": '',
+        "maquina_lavar": '',
+        "maquina_secar": '',
+        "telefone_fixo": '',
+        "celular": ''
+      }
+    };
+
+    var parentesVazio = [
+      {
+        'nome': '',
+        'parentesco': '',
+        'escolaridade': '',
+        'data_nascimento': '',
+        'ocupacao': '',
+        'salario': '',
+        'local_trabalho': '',
+        'aluno': {
+          'ra': '',
+          'nome': '',
+          'turma': {
+            'educador': ''
+          },
+          'data_nascimento': '',
+          'rg': '',
+          'naturalidade': '',
+          'estado': '',
+          'data_cadastro': '',
+          'meio_transporte': '',
+          'observacoes': ''
+        }
+      }
+    ];
+    var automoveisVazio = [
+      {
+        'modelo': '',
+        'ano': '',
+        'financiado': '',
+        'estrutura_familiar': {
+          'id': ''
+        }
+      }
+    ];
+    var imoveisVazio = [
+      {
+        'financiado': '',
+        'estrutura_familiar': {
+          'id': ''
+        }
+      }
+    ];
+    var contatosVazio = [
+      {
+        'nome': '',
+        'telefone': '',
+        'tipo': '',
+        'aluno': {
+          'ra': ''
+        },
+        'grau_parentesco': '',
+        'presente': '',
+        cargo: ''
+      }
+    ];
+    var paiContato = {
+      'nome': '',
+      'telefone': '',
+      'tipo': 'Responsavel',
+      'aluno': {
+        'ra': ''
+      },
+      'grau_parentesco': 'Pai',
+      'presente': '',
+      cargo: ''
+    };
+    var maeContato = {
+      'nome': '',
+      'telefone': '',
+      'tipo': 'Responsavel',
+      'aluno': {
+        'ra': ''
+      },
+      'grau_parentesco': 'Mae',
+      'presente': '',
+      cargo: ''
+    };
     // Data
     vm.turmas = Turmas;
     vm.alunos = Alunos;
@@ -101,10 +380,8 @@
     function selectRoupa(aluno) {
       var i;
       if (!aluno) //Logica caso o aluno seja vazio
-        return 0;
+        return roupaVazio;
 
-      console.log(vm.roupas);
-      console.log('Entrou');
       for (i = 0; i <= vm.roupas.length; i++) {
         if (vm.roupas[i].aluno.ra === aluno.ra) {
           return vm.roupas[i];
@@ -115,7 +392,7 @@
     function selectEndereco(aluno) {
       var i;
       if (!aluno)
-        return 0;
+        return enderecoVazio;
 
       console.log(vm.enderecos);
       for (i = 0; i <= vm.enderecos.length; i++) {
@@ -127,7 +404,7 @@
 
     function selectContato(aluno) {
       if (!aluno) {
-        return null;
+        return contatosVazio;
       }
       var result = [];
       vm.contatos.forEach(function(contato) {
@@ -146,9 +423,9 @@
 
     function selectEstruturaFamiliar(aluno) {
       if (!aluno) {
-        return null;
+        return estrutura_familiarVazio;
       }
-      var result = null;
+      var result = estrutura_familiarVazio;
       vm.estruturasFamiliares.forEach(function(estrutura) {
         if (estrutura.aluno.ra === aluno.ra) {
           estruturaFamiliar = estrutura;
@@ -160,9 +437,9 @@
 
     function selectSaude(aluno) {
       if (!aluno) {
-        return null;
+        return saudeVazio;
       }
-      var result = null;
+      var result = saudeVazio;
       vm.saudes.forEach(function(saude) {
         if (saude.aluno.ra === aluno.ra) {
           result = saude;
@@ -173,7 +450,7 @@
 
     function selectParente(aluno) {
       if (!aluno) {
-        return null;
+        return parentesVazio;
       }
       var result = [];
       vm.parentes.forEach(function(parente) {
@@ -186,9 +463,9 @@
 
     function selectSituacaoHabitacional(aluno) {
       if (!aluno) {
-        return null;
+        return situacao_habitacionalVazio;
       }
-      var result = null;
+      var result = situacao_habitacionalVazio;
       vm.situacoesHabitacionais.forEach(function(situacao) {
         if (situacao.aluno.ra === aluno.ra) {
           situacaoHabitacional = situacao;
@@ -201,7 +478,7 @@
 
     function selectAutomovel(estrutura) {
       if (!estrutura) {
-        return null;
+        return automoveisVazio;
       }
       var result = [];
       vm.automoveis.forEach(function(automovel) {
@@ -214,7 +491,7 @@
 
     function selectImovel(estrutura) {
       if (!estrutura) {
-        return null;
+        return imoveisVazio;
       }
       var result = [];
       vm.imoveis.forEach(function(imovel) {
@@ -227,9 +504,9 @@
 
     function selectDespesa(estrutura) {
       if (!estrutura) {
-        return null;
+        return despesaVazio;
       }
-      var result = null;
+      var result = despesaVazio;
       vm.despesas.forEach(function(despesa) {
         if (despesa.estrutura_familiar.id === estrutura.id) {
           result = despesa;
@@ -240,9 +517,9 @@
 
     function selectAparelhosEletronicos(situacao) {
       if (!situacao) {
-        return null;
+        return aparelhos_eletronicosVazio;
       }
-      var result = null;
+      var result = aparelhos_eletronicosVazio;
       vm.aparelhosEletronicos.forEach(function(aparelhos) {
         if (aparelhos.id === situacao.aparelhos_eletronicos.id) {
           result = aparelhos;
