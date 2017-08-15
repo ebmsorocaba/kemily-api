@@ -304,7 +304,6 @@
        */
     function deleteSelectedAlunos(ev) {
       var confirm = $mdDialog.confirm().title('Você tem certeza de que deseja apagar os alunos selecionados?').htmlContent('<b>' + vm.selectedAlunos.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).').ariaLabel('apagar contatos').targetEvent(ev).ok('Sim').cancel('Cancelar');
-      es = Parentes;
       $mdDialog.show(confirm).then(function() {
 
         vm.selectedAlunos.forEach(function(aluno) {
