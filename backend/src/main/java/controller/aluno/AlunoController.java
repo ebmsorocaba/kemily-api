@@ -64,58 +64,7 @@ public class AlunoController {
     @CrossOrigin
     @RequestMapping(value = "/api/aluno/{ra}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deletar(@PathVariable("ra") int ra) throws SQLException {
-    	Situacao_HabitacionalDAO situacaoHabitacionalDAO;
-    	Estrutura_FamiliarDAO estruturaFamiliarDAO;
-    	ParenteDAO parenteDAO;
-    	RoupaDAO roupaDAO;
-    	SaudeDAO saudeDAO;
-    	ContatoDAO contatoDAO;
-    	EnderecoDAO enderecoDAO;
-    	
-    	try {
-    		System.out.println("[AlunoController] Excluindo Situacao Habitacional + Aparelhos Eletronicos");
-    		situacaoHabitacionalDAO = new Situacao_HabitacionalDAO();
-    		situacaoHabitacionalDAO.excluir(ra);
-    		situacaoHabitacionalDAO = null;
-	    	
-	    	System.out.println("[AlunoController] Excluindo Estrutura Familiar + Automovel + Imovel + Despesa");
-	    	estruturaFamiliarDAO = new Estrutura_FamiliarDAO();
-	    	estruturaFamiliarDAO.excluirByAluno(ra);
-	    	estruturaFamiliarDAO = null;
-	    	
-	    	System.out.println("[AlunoController] Excluindo Parente");
-	    	parenteDAO = new ParenteDAO();
-	    	parenteDAO.excluirByAluno(ra);
-	    	parenteDAO = null;
-	    	
-	    	System.out.println("[AlunoController] Excluindo Roupa");
-	    	roupaDAO = new RoupaDAO();
-	    	roupaDAO.excluir(ra);
-	    	roupaDAO = null;
-	    	
-	    	System.out.println("[AlunoController] Excluindo Saude");
-	    	saudeDAO = new SaudeDAO();
-	    	saudeDAO.excluir(ra);
-	    	saudeDAO = null;
-	    	
-	    	System.out.println("[AlunoController] Excluindo Contato/Generico + Responsavel + Profissional");
-	    	contatoDAO = new ContatoDAO();
-	    	contatoDAO.excluirByAluno(ra);
-	    	contatoDAO = null;
-	    	
-	    	System.out.println("[AlunoController] Excluindo Endereço");
-	    	enderecoDAO = new EnderecoDAO();
-	    	enderecoDAO.excluirByAluno(ra);
-	    	enderecoDAO = null;
-	    	
-	    	System.out.println("[AlunoController] Excluindo Aluno");
-	        alunoDao.excluir(ra);
-	        
-    	} catch (SQLException ex) {
-    		System.out.println(ex.toString());
-    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    	}
-        
+        alunoDao.excluir(ra);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
