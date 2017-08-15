@@ -120,22 +120,9 @@ public class Estrutura_FamiliarDAO {
 
 
     public void excluir(int search) throws SQLException {
-    	AutomovelDAO autoDAO = new AutomovelDAO();
-    	ImovelDAO imovelDAO = new ImovelDAO();
-    	DespesaDAO despDAO = new DespesaDAO();
     	
         try {
 
-        	System.out.println("[EstruturaFamiliarDAO] Deletando Automovel");
-        	autoDAO.excluirByIdEstruturaFamiliar(search);
-        	
-        	System.out.println("[EstruturaFamiliarDAO] Deletando Imovel");
-        	imovelDAO.excluirByIdEstruturaFamiliar(search);
-        	
-        	System.out.println("[EstruturaFamiliarDAO] Deletando Despesa");
-        	despDAO.excluir(search);
-        	
-        	System.out.println("[EstruturaFamiliarDAO] Deletando Estrutura Familiar");
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM estrutura_Familiar WHERE id = ?");
             stmt.setInt(1, search);
             stmt.execute();
