@@ -102,14 +102,12 @@ public class Situacao_HabitacionalDAO {
 		try {
 
 			Situacao_Habitacional sit = getSituacao_Habitacional(ra);
-			int idAparelhosEletronicos = sit.getAparelhos_eletronicos().getId();
 			
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM situacao_habitacional WHERE ra_aluno = ?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM SITUACAO_HABITACIONAL USING APARELHOS_ELETRONICOS WHERE SITUACAO_HABITACIONAL.ID_APARELHOS_ELETRONICOS = APARELHOS_ELETRONICOS.ID AND SITUACAO_HABITACIONAL.RA_ALUNO = ?");
 			stmt.setInt(1, ra);
 			
 			stmt.execute();
 			stmt.close();
-			aparelhosEletronicosDao.excluir(idAparelhosEletronicos);
 			
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
