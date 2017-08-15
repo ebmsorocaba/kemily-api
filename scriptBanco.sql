@@ -159,7 +159,7 @@ CREATE TABLE estrutura_familiar (
   uso_de_alcool_drogas BOOLEAN NOT NULL,
   alguem_agressivo BOOLEAN NOT NULL,
   programas_sociais BOOLEAN NOT NULL,
-  ra_aluno BIGINT REFERENCES aluno(ra)
+  ra_aluno BIGINT REFERENCES aluno(ra) on delete cascade
 );
 
 CREATE TABLE endereco (
@@ -170,7 +170,7 @@ CREATE TABLE endereco (
   cidade VARCHAR(50) NOT NULL,
   ponto_referencia VARCHAR(50),
   complemento VARCHAR(10),
-  ra_aluno BIGINT NOT NULL REFERENCES aluno(ra),
+  ra_aluno BIGINT NOT NULL REFERENCES aluno(ra)  on delete cascade,
   PRIMARY KEY(cep, numero)
 );
 
@@ -191,7 +191,7 @@ CREATE TABLE aparelhos_eletronicos (
 );
 
 CREATE TABLE despesa (
-  id_estrutura_familiar BIGINT PRIMARY KEY REFERENCES estrutura_familiar(id),
+  id_estrutura_familiar BIGINT PRIMARY KEY REFERENCES estrutura_familiar(id)  on delete cascade,
   agua NUMERIC(12,2) NOT NULL,
   energia_eletrica NUMERIC(12,2) NOT NULL,
   telefone NUMERIC(12,2) NOT NULL,
@@ -216,23 +216,23 @@ CREATE TABLE contato (
   tipo VARCHAR(15) NOT NULL,
   ra_aluno BIGINT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (ra_aluno) REFERENCES aluno(ra)
+  FOREIGN KEY (ra_aluno) REFERENCES aluno(ra) on delete cascade
 );
 
 CREATE TABLE roupa (
-  ra_aluno BIGINT PRIMARY KEY REFERENCES aluno(ra),
+  ra_aluno BIGINT PRIMARY KEY REFERENCES aluno(ra) on delete cascade,
   tamanho_camiseta VARCHAR(5) NOT NULL,
   tamanho_calca VARCHAR(5) NOT NULL
 );
 
 CREATE TABLE contato_responsavel (
-  id_contato BIGINT PRIMARY KEY REFERENCES contato(id),
+  id_contato BIGINT PRIMARY KEY REFERENCES contato(id) on delete cascade,
   grau_parentesco VARCHAR(15) NOT NULL,
   presente BOOLEAN NOT NULL
 );
 
 CREATE TABLE contato_profissional (
-  id_contato BIGINT PRIMARY KEY REFERENCES contato(id),
+  id_contato BIGINT PRIMARY KEY REFERENCES contato(id) on delete cascade,
   cargo TEXT NOT NULL
 );
 
@@ -241,17 +241,17 @@ CREATE TABLE automovel (
   modelo VARCHAR(30) NOT NULL,
   ano VARCHAR(5) NOT NULL,
   financiado BOOLEAN NOT NULL,
-  id_estrutura_familiar BIGINT REFERENCES estrutura_familiar(id)
+  id_estrutura_familiar BIGINT REFERENCES estrutura_familiar(id) on delete cascade
 );
 
 CREATE TABLE imovel (
   id SERIAL PRIMARY KEY,
   financiado BOOLEAN NOT NULL,
-  id_estrutura_familiar BIGINT REFERENCES estrutura_familiar(id)
+  id_estrutura_familiar BIGINT REFERENCES estrutura_familiar(id) on delete cascade
 );
 
 CREATE TABLE situacao_habitacional (
-  ra_aluno BIGINT PRIMARY KEY REFERENCES ALUNO(ra),
+  ra_aluno BIGINT PRIMARY KEY REFERENCES ALUNO(ra) on delete cascade,
   situacao VARCHAR(20) NOT NULL,
   esgoto BOOLEAN NOT NULL,
   rede_eletrica BOOLEAN NOT NULL,
@@ -272,11 +272,11 @@ CREATE TABLE parente (
   ocupacao TEXT NOT NULL,
   salario NUMERIC(12,2) NOT NULL,
   local_de_trabalho VARCHAR(50) NOT NULL,
-  ra_aluno BIGINT REFERENCES aluno(ra)
+  ra_aluno BIGINT REFERENCES aluno(ra) on delete cascade
 );
 
 CREATE TABLE saude (
-  ra_aluno BIGINT PRIMARY KEY REFERENCES aluno(ra),
+  ra_aluno BIGINT PRIMARY KEY REFERENCES aluno(ra) on delete cascade,
   faz_tratamentos_medicos BOOLEAN NOT NULL,
   problemas_de_saude_na_familia BOOLEAN NOT NULL,
   plano_de_saude BOOLEAN NOT NULL,
