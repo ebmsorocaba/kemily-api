@@ -1,34 +1,173 @@
 (function() {
   'use strict';
 
-  angular
-  .module('app.aluno')
-  .controller('AlunoDialogController', AlunoDialogController);
+  angular.module('app.aluno').controller('AlunoDialogController', AlunoDialogController);
 
   /** @ngInject */
-  function AlunoDialogController($mdDialog, Aluno, Roupa, Endereco, Alunos, Turmas, User, msUtils, api) {
+  function AlunoDialogController($mdDialog, Aluno, Roupa, Endereco, Saude, Contatos, PaiContato, MaeContato, Parentes, EstruturaFamiliar, SituacaoHabitacional, AparelhosEletronicos, Imoveis, Automoveis, Despesa, Alunos, Turmas, User, msUtils, api) {
     var vm = this;
-
 
     // Data
     vm.title = 'Alterar Aluno';
     vm.roupa = Roupa;
     vm.endereco = Endereco;
+    vm.saude = Saude;
+    console.log('Resultado de Contatos = ' + Contatos);
+    if (Contatos != '') {
+      vm.contatos = Contatos;
+    } else {
+      vm.contatos = [
+        {
+          'nome': '',
+          'telefone': '',
+          'tipo': '',
+          'aluno': {
+            'ra': ''
+          },
+          'grau_parentesco': '',
+          'presente': '',
+          cargo: ''
+        }
+      ];
+    }
+    if(Parentes != '') {
+      vm.parentes = Parentes;
+    } else {
+      vm.parentes = [
+        {
+          'nome': '',
+          'parentesco': '',
+          'escolaridade': '',
+          'data_nascimento': '',
+          'ocupacao': '',
+          'salario': '',
+          'local_trabalho': '',
+          'aluno': {
+            'ra': '',
+            'nome': '',
+            'turma': {
+              'educador': ''
+            },
+            'data_nascimento': '',
+            'rg': '',
+            'naturalidade': '',
+            'estado': '',
+            'data_cadastro': '',
+            'meio_transporte': '',
+            'observacoes': ''
+          }
+        }
+      ];
+    }
+    vm.estrutura_familiar = EstruturaFamiliar;
+    vm.situacao_habitacional = SituacaoHabitacional;
+    vm.despesa = Despesa;
+    vm.aparelhos_eletronicos = AparelhosEletronicos;
+    if (Automoveis != '') {
+      vm.automoveis = Automoveis;
+    } else {
+      vm.automoveis = [
+        {
+          'modelo': '',
+          'ano': '',
+          'financiado': '',
+          'estrutura_familiar': {
+            'id': ''
+          }
+        }
+      ];
+    }
+    if (Imoveis != '') {
+      vm.imoveis = Imoveis;
+    } else {
+      vm.imoveis = [
+        {
+          'financiado': '',
+          'estrutura_familiar': {
+            'id': ''
+          }
+        }
+      ];
+    }
+    vm.paiContato = PaiContato;
+    vm.maeContato = MaeContato;
 
-    console.log(vm.roupa);
     vm.aluno = angular.copy(Aluno);
     vm.alunos = Alunos;
     vm.user = User;
     vm.turmas = Turmas;
     vm.newAluno = false;
     vm.allFields = false;
-    vm.estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
-    vm.camisetas = ['2', '4', '6', '8', '10', '12', '14', '16', 'P', 'M', 'G', 'GG', 'GGG'];
-    vm.calcas = ['2', '4', '6', '8', '10', '12', '14', '16', 'P', 'M', 'G', 'GG', 'GGG'];
-    vm.estados_civis = ['Solteiros', 'Casados', 'Separados', 'Divorciados', 'Mãe Viúva', 'Pai Viúvo', 'União Estável'];
+    vm.estados = [
+      'AC',
+      'AL',
+      'AP',
+      'AM',
+      'BA',
+      'CE',
+      'DF',
+      'ES',
+      'GO',
+      'MA',
+      'MT',
+      'MS',
+      'MG',
+      'PA',
+      'PB',
+      'PR',
+      'PE',
+      'PI',
+      'RJ',
+      'RN',
+      'RS',
+      'RO',
+      'RR',
+      'SC',
+      'SP',
+      'SE',
+      'TO'
+    ];
+    vm.camisetas = [
+      '2',
+      '4',
+      '6',
+      '8',
+      '10',
+      '12',
+      '14',
+      '16',
+      'P',
+      'M',
+      'G',
+      'GG',
+      'GGG'
+    ];
+    vm.calcas = [
+      '2',
+      '4',
+      '6',
+      '8',
+      '10',
+      '12',
+      '14',
+      '16',
+      'P',
+      'M',
+      'G',
+      'GG',
+      'GGG'
+    ];
+    vm.estados_civis = [
+      'Solteiros',
+      'Casados',
+      'Separados',
+      'Divorciados',
+      'Mãe Viúva',
+      'Pai Viúvo',
+      'União Estável'
+    ];
     vm.situacoes = ['Casa Própria', 'Casa Alugada', 'Casa Cedida', 'Cada Financiada'];
     vm.tiposContato = ['Generico', 'Responsavel', 'Profissional'];
-
 
     //vm.ok = false;
 
@@ -36,22 +175,8 @@
     vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
     //vm.calculaCPF = calculaCPF;
 
-
     // TODO Ajustar o Aluno conforme o BackEnd
     if (!vm.aluno) {
-      // vm.aluno = {
-      //   'nome': "",
-      //   'turma': {
-      //       'educador': "Marina"
-      //   },
-      //   'data_nascimento': "",
-      //   'rg': "",
-      //   'naturalidade': "",
-      //   'estado': "",
-      //   'data_cadastro': "",
-      //   'meio_transporte': "",
-      //   'observacoes': ""
-      // };
       vm.aluno = {
         'ra': '',
         'nome': '',
@@ -63,10 +188,9 @@
         'observacoes': '',
         'naturalidade': '',
         'turma': {
-          'educador': '',
+          'educador': ''
         }
       };
-
 
       vm.roupa = {
         'aluno': {
@@ -80,7 +204,7 @@
           'observacoes': '',
           'naturalidade': '',
           'turma': {
-            'educador': '',
+            'educador': ''
           }
         },
         'tamanho_camiseta': '',
@@ -229,61 +353,109 @@
           'meio_transporte': '',
           'observacoes': ''
         },
-        'situacao': false,
-        'esgoto': false,
-        'rede_eletrica': false,
-        'asfalto': false,
+        'situacao': '',
+        'esgoto': '',
+        'rede_eletrica': '',
+        'asfalto': '',
         'numero_comodos': '',
-        'alvenaria': false,
-        'madeira': false,
-        'area_irregular': false,
-        'aparelhos_eletronicos': {
-          'id': null,
-          'televisao': null,
-          'tv_assinatura': null,
-          'computador': null,
-          'notebook': null,
-          'fogao': null,
-          'geladeira': null,
-          'microondas': null,
-          'tablet': null,
-          'maquina_lavar': null,
-          'maquina_secar': null,
-          'telefone_fixo': null,
-          'celular': null
+        'alvenaria': '',
+        'madeira': '',
+        'area_irregular': '',
+        "aparelhos_eletronicos": {
+          "id": '',
+          "televisao": '',
+          "tv_assinatura": '',
+          "computador": '',
+          "notebook": '',
+          "fogao": '',
+          "geladeira": '',
+          "microondas": '',
+          "tablet": '',
+          "maquina_lavar": '',
+          "maquina_secar": '',
+          "telefone_fixo": '',
+          "celular": ''
         }
       };
 
-      vm.parentes = [{
-        'nome': '',
-        'parentesco': '',
-        'escolaridade': '',
-        'data_nascimento': '',
-        'ocupacao': '',
-        'salario': '',
-        'local_trabalho': '',
-        'aluno': {
-          'ra': '',
+      vm.parentes = [
+        {
           'nome': '',
-          'turma': {
-            'educador': ''
-          },
+          'parentesco': '',
+          'escolaridade': '',
           'data_nascimento': '',
-          'rg': '',
-          'naturalidade': '',
-          'estado': '',
-          'data_cadastro': '',
-          'meio_transporte': '',
-          'observacoes': ''
+          'ocupacao': '',
+          'salario': '',
+          'local_trabalho': '',
+          'aluno': {
+            'ra': '',
+            'nome': '',
+            'turma': {
+              'educador': ''
+            },
+            'data_nascimento': '',
+            'rg': '',
+            'naturalidade': '',
+            'estado': '',
+            'data_cadastro': '',
+            'meio_transporte': '',
+            'observacoes': ''
+          }
         }
-      }];
-      vm.automoveis = [{'modelo': '', 'ano': '', 'financiado': '', 'estrutura_familiar': {'id': ''}}];
-      vm.imoveis = [{'financiado': '', 'estrutura_familiar': {'id': ''}}];
-      vm.contatos = [{'nome': '', 'telefone': '', 'tipo': '', 'aluno': {'ra': ''}, 'grau_parentesco': '', 'presente': '', cargo: ''}];
-      vm.paiContato = {'nome': '', 'telefone': '', 'tipo': 'Responsavel', 'aluno': {'ra': ''}, 'grau_parentesco': '', 'presente': '', cargo: ''};
-      vm.maeContato = {'nome': '', 'telefone': '', 'tipo': 'Responsavel', 'aluno': {'ra': ''}, 'grau_parentesco': '', 'presente': '', cargo: ''};
-
-
+      ];
+      vm.automoveis = [
+        {
+          'modelo': '',
+          'ano': '',
+          'financiado': '',
+          'estrutura_familiar': {
+            'id': ''
+          }
+        }
+      ];
+      vm.imoveis = [
+        {
+          'financiado': '',
+          'estrutura_familiar': {
+            'id': ''
+          }
+        }
+      ];
+      vm.contatos = [
+        {
+          'nome': '',
+          'telefone': '',
+          'tipo': '',
+          'aluno': {
+            'ra': ''
+          },
+          'grau_parentesco': '',
+          'presente': '',
+          cargo: ''
+        }
+      ];
+      vm.paiContato = {
+        'nome': '',
+        'telefone': '',
+        'tipo': 'Responsavel',
+        'aluno': {
+          'ra': ''
+        },
+        'grau_parentesco': 'Pai',
+        'presente': '',
+        cargo: ''
+      };
+      vm.maeContato = {
+        'nome': '',
+        'telefone': '',
+        'tipo': 'Responsavel',
+        'aluno': {
+          'ra': ''
+        },
+        'grau_parentesco': 'Mae',
+        'presente': '',
+        cargo: ''
+      };
 
       vm.title = 'Novo Aluno';
       vm.newAluno = true;
@@ -295,8 +467,7 @@
       var index = vm.contatos.indexOf(c);
       if (index == (vm.contatos.length - 1)) {
         return true;
-      }
-      else {
+      } else {
         return false;
       }
     }
@@ -305,8 +476,7 @@
       var index = vm.imoveis.indexOf(i);
       if (index == (vm.imoveis.length - 1)) {
         return true;
-      }
-      else {
+      } else {
         return false;
       }
     }
@@ -315,24 +485,49 @@
       var index = vm.automoveis.indexOf(a);
       if (index == (vm.automoveis.length - 1)) {
         return true;
-      }
-      else {
+      } else {
         return false;
       }
     }
 
     vm.addContato = function(c) {
-      var contato = {'nome': '', 'telefone': '', 'tipo': '', 'aluno': {'ra': ''}, 'grau_parentesco': '', 'presente': '', cargo: ''};
+      var contato = {
+        'nome': '',
+        'telefone': '',
+        'tipo': '',
+        'aluno': {
+          'ra': ''
+        },
+        'grau_parentesco': '',
+        'presente': '',
+        cargo: ''
+      };
       vm.contatos.push(contato);
-      console.log(vm.contatos);
     }
 
     vm.removeContato = function(c) {
       if (vm.contatos.length > 1) {
         vm.contatos.splice(vm.contatos.indexOf(c), 1);
-      }
-      else {
-        vm.contatos = [{'nome': '', 'telefone': '', 'tipo': '', 'aluno': {'ra': ''}, 'grau_parentesco': '', 'presente': '', cargo: ''}];
+        if(vm.aluno.ra != '') {
+          api.contato.getById.delete(c, function(response) {}, function(response) {});
+        }
+      } else {
+        if(vm.aluno.ra != '') {
+          api.contato.getById.delete(c, function(response) {}, function(response) {});
+        }
+        vm.contatos = [
+          {
+            'nome': '',
+            'telefone': '',
+            'tipo': '',
+            'aluno': {
+              'ra': ''
+            },
+            'grau_parentesco': '',
+            'presente': '',
+            cargo: ''
+          }
+        ];
       }
     }
 
@@ -361,37 +556,43 @@
         }
       };
       vm.parentes.push(parente);
-      console.log(vm.parentes);
     }
 
     vm.removeParente = function(c) {
       if (vm.parentes.length > 1) {
         vm.parentes.splice(vm.parentes.indexOf(c), 1);
-      }
-      else {
-        vm.parentes = [{
-          'nome': '',
-          'parentesco': '',
-          'escolaridade': '',
-          'data_nascimento': '',
-          'ocupacao': '',
-          'salario': '',
-          'local_trabalho': '',
-          'aluno': {
-            'ra': '',
+        if(vm.aluno.ra != '') {
+          api.parente.getById.delete(c, function(response) {}, function(response) {});
+        }
+      } else {
+        if(vm.aluno.ra != '') {
+          api.parente.getById.delete(c, function(response) {}, function(response) {});
+        }
+        vm.parentes = [
+          {
             'nome': '',
-            'turma': {
-              'educador': ''
-            },
+            'parentesco': '',
+            'escolaridade': '',
             'data_nascimento': '',
-            'rg': '',
-            'naturalidade': '',
-            'estado': '',
-            'data_cadastro': '',
-            'meio_transporte': '',
-            'observacoes': ''
+            'ocupacao': '',
+            'salario': '',
+            'local_trabalho': '',
+            'aluno': {
+              'ra': '',
+              'nome': '',
+              'turma': {
+                'educador': ''
+              },
+              'data_nascimento': '',
+              'rg': '',
+              'naturalidade': '',
+              'estado': '',
+              'data_cadastro': '',
+              'meio_transporte': '',
+              'observacoes': ''
+            }
           }
-        }];
+        ];
       }
     }
 
@@ -399,37 +600,74 @@
       var index = vm.parentes.indexOf(p);
       if (index == (vm.parentes.length - 1)) {
         return true;
-      }
-      else {
+      } else {
         return false;
       }
     }
 
     vm.addAutomovel = function(a) {
-      var automovel = {'modelo': '', 'ano': '', 'financiado': '', 'estrutura_familiar': {'id': ''} };
+      var automovel = {
+        'modelo': '',
+        'ano': '',
+        'financiado': '',
+        'estrutura_familiar': {
+          'id': ''
+        }
+      };
       vm.automoveis.push(automovel);
     }
 
     vm.removeAutomovel = function(a) {
       if (vm.automoveis.length > 1) {
         vm.automoveis.splice(vm.automoveis.indexOf(a), 1);
-      }
-      else {
-        vm.automoveis = [{'modelo': '', 'ano': '', 'financiado': '', 'estrutura_familiar': {'id': ''} }];
+        if(vm.aluno.ra != '') {
+          api.automovel.getById.delete(a, function(response) {}, function(response) {});
+        }
+      } else {
+        if(vm.aluno.ra != '') {
+          api.automovel.getById.delete(a, function(response) {}, function(response) {});
+        }
+        vm.automoveis = [
+          {
+            'modelo': '',
+            'ano': '',
+            'financiado': '',
+            'estrutura_familiar': {
+              'id': ''
+            }
+          }
+        ];
       }
     }
 
     vm.addImovel = function(i) {
-      var imovel = {'financiado': '', 'estrutura_familiar': {'id': ''}};
+      var imovel = {
+        'financiado': '',
+        'estrutura_familiar': {
+          'id': ''
+        }
+      };
       vm.imoveis.push(imovel);
     }
 
     vm.removeImovel = function(i) {
       if (vm.imoveis.length > 1) {
         vm.imoveis.splice(vm.imoveis.indexOf(i), 1);
-      }
-      else {
-        vm.imoveis = [{'financiado': '', 'estrutura_familiar': {'id': ''} }];
+        if(vm.aluno.ra != '') {
+          api.imovel.getById.delete(i, function(response) {}, function(response) {});
+        }
+      } else {
+        if(vm.aluno.ra != '') {
+          api.imovel.getById.delete(i, function(response) {}, function(response) {});
+        }
+        vm.imoveis = [
+          {
+            'financiado': '',
+            'estrutura_familiar': {
+              'id': ''
+            }
+          }
+        ];
       }
     }
     vm.addNewAluno = addNewAluno;
@@ -438,8 +676,6 @@
     vm.closeDialog = closeDialog;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
-
-
 
     vm.sendForm = sendForm;
     //////////
@@ -451,20 +687,16 @@
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
 
-
       api.aluno.list.save(vm.aluno,
-        // Exibe o resultado no console do navegador:
-        // Sucesso
-        function(response) {
-          aluno = response;
-          console.log("Oi" + aluno.ra);
-          console.log(response);
-        },
-        // Erro
-        function(response) {
-          console.error(response);
-        }
-      );
+      // Exibe o resultado no console do navegador:
+      // Sucesso
+      function(response) {
+        aluno = response;
+      },
+      // Erro
+      function(response) {
+        console.error(response);
+      });
 
       // Adiciona uma nova linha no topo da lista na tela
       vm.alunos.unshift(vm.aluno);
@@ -488,348 +720,302 @@
       // Grava as alterações no BD:
       api.aluno.getByRa.update({
         'ra': vm.aluno.ra
-      },vm.aluno,
+      }, vm.aluno,
       // Exibe o resultado no console do navegador:
       // Sucesso
-      function(response) {
-        console.log(response);
-      },
+      function(response) {},
       // Erro
-      function(response) {
-        console.error(response);
-      }
-    );
+      function(response) {});
 
-    closeDialog();
-  }
+      closeDialog();
+    }
 
-  /**
+    /**
   * Delete Aluno Confirm Dialog
   */
-  function deleteAlunoConfirm(ev) {
-      var confirm = $mdDialog.confirm()
-      .title('Você tem certeza de que deseja apagar este aluno?')
-      .htmlContent('<b>' + vm.aluno.nome + ' (' + vm.aluno.ra + '</b>' + ') será apagado(a).')
-      .ariaLabel('apagar aluno')
-      .targetEvent(ev)
-      .ok('OK')
-      .cancel('Cancelar');
+    function deleteAlunoConfirm(ev) {
+      var confirm = $mdDialog.confirm().title('Você tem certeza de que deseja apagar este aluno?').htmlContent('<b>' + vm.aluno.nome + ' (' + vm.aluno.ra + '</b>' + ') será apagado(a).').ariaLabel('apagar aluno').targetEvent(ev).ok('OK').cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function() {
 
         // TODO Remover também a [formaPgto] do Aluno.
 
         // Remove o Aluno do BD
-        console.log('deleteAluno @ alunos.controller.js');
         api.aluno.getByRa.delete({
           'ra': aluno.ra
         },
         // Sucesso
+        function(response) {},
+        // Erro
         function(response) {
-          console.log(response);
+          console.error(response);
+        });
+
+        // Remove a da lista na tela a linha deste Aluno
+        vm.alunos.splice(vm.alunos.indexOf(Aluno), 1);
+      });
+    }
+
+    function closeDialog() {
+      $mdDialog.hide();
+    }
+
+    function sendForm() {
+
+      vm.aluno.rg = vm.aluno.rg.replace(/\-/g, "");
+      vm.aluno.rg = vm.aluno.rg.replace(/\./g, "");
+
+      if (vm.aluno.ra != '') {
+        //Atualiza ALUNO
+        api.aluno.getByRa.update(vm.aluno, function(response) {
+
+          vm.aluno = response;
+          vm.roupa.aluno.ra = vm.aluno.ra;
+
+          vm.contatos.push(vm.paiContato);
+          vm.contatos.push(vm.maeContato);
+
+          vm.contatos.forEach(function(contato) {
+            contato.aluno.ra = vm.aluno.ra;
+            contato.tipo = contato.tipo.toLowerCase();
+            if (contato.tipo == 'generico') {
+              api.contato.getById.update(contato, function(response) {}, function(response) {});
+            }
+            if (contato.tipo == 'responsavel') {
+              api.contato.getResponsavelById.update(contato, function(response) {}, function(response) {});
+            }
+            if (contato.tipo == 'profissional') {
+              api.contato.getProfissionalById.update(contato, function(response) {}, function(response) {});
+            }
+          });
+
+          //ADD ROUPA
+          api.roupa.getByRa.update(vm.roupa,
+          // Exibe o resultado no console do navegador:
+          // Sucesso
+          function(response) {},
+          // Erro
+          function(response) {
+            console.error(response);
+          });
+
+          vm.endereco.aluno.ra = vm.aluno.ra;
+
+          //ADD ENDEREÇO
+          api.endereco.getByCepNumero.update(vm.endereco,
+          // Exibe o resultado no console do navegador:
+          // Sucesso
+          function(response) {},
+          // Erro
+          function(response) {
+            console.error(response);
+          });
+
+          vm.saude.aluno.ra = vm.aluno.ra;
+
+          //ADD SAUDE
+          api.saude.getById.update(vm.saude,
+          // Exibe o resultado no console do navegador:
+          // Sucesso
+          function(response) {},
+          // Erro
+          function(response) {
+            console.error(response);
+          });
+
+          vm.estrutura_familiar.aluno.ra = vm.aluno.ra;
+
+          //ADD ESTRUTURA FAMILIAR
+          api.estruturaFamiliar.getById.update(vm.estrutura_familiar, function(response) {
+
+            vm.estrutura_familiar = response;
+
+            vm.automoveis.forEach(function(automovel) {
+              automovel.estrutura_familiar.id = vm.estrutura_familiar.id;
+              api.automovel.getById.update(automovel, function(response) {}, function(response) {});
+            });
+
+            vm.imoveis.forEach(function(imovel) {
+              imovel.estrutura_familiar.id = vm.estrutura_familiar.id;
+              api.imovel.getById.update(imovel, function(response) {}, function(response) {});
+            });
+
+            vm.despesa.estrutura_familiar.id = vm.estrutura_familiar.id;
+
+            //ADD DESPESA
+            api.despesa.getById.update(vm.despesa,
+            // Exibe o resultado no console do navegador:
+            // Sucesso
+            function(response) {},
+            // Erro
+            function(response) {
+              console.error(response);
+            });
+
+            //ADD APARALHOS ELETRÔNICOS
+            api.aparelhosEletronicos.getById.update(vm.aparelhos_eletronicos, function(response) {
+
+              vm.aparelhos_eletronicos = response;
+              vm.situacao_habitacional.aparelhos_eletronicos.id = vm.aparelhos_eletronicos.id;
+              vm.situacao_habitacional.aluno.ra = vm.aluno.ra;
+
+              //ADD SITUAÇÃO HABITACIONAL
+              api.situacaoHabitacional.getById.update(vm.situacao_habitacional,
+              // Exibe o resultado no console do navegador:
+              // Sucesso
+              function(response) {},
+              // Erro
+              function(response) {
+                console.error(response);
+              });
+            },
+            // Erro
+            function(response) {
+              console.error(response);
+            });
+
+          },
+          // Erro
+          function(response) {
+            console.error(response);
+          });
+
+          vm.parentes.forEach(function(parente) {
+            parente.aluno.ra = vm.aluno.ra;
+            api.parente.getById.update(parente, function(response) {}, function(response) {});
+          });
+
         },
         // Erro
         function(response) {
           console.error(response);
-        }
-      );
+        });
 
-      // Remove a da lista na tela a linha deste Aluno
-      vm.alunos.splice(vm.alunos.indexOf(Aluno), 1);
-    });
-  }
+      } else {
+        //ADD ALUNO
+        api.aluno.list.save(vm.aluno,
+        // Exibe o resultado no console do navegador:
+        // Sucesso
+        function(response) { //Até descobrirmos uma forma melhor de mexer com promise
+          // Nós esperamos o promise do aluno para fazer posteriores requisições
 
-/*
-function calculaCPF(strCPF) {
-var Soma;
-var Resto;
-Soma = 0;
-var i;
-var flag = 0;
+          vm.aluno = response;
+          vm.roupa.aluno.ra = vm.aluno.ra;
 
-//retirar mascara
-if(strCPF != null){
-strCPF = strCPF.replace(/\-/g,"");
-strCPF = strCPF.replace(/\./g,"");
-}
-else{
-return false;
-}
-//verificar se os numeros do cpf são todos iguais ex: 000.000.000-00
-for(i=0; i<11; i++){
-if(strCPF[i] == strCPF[i+1]){
-flag++;
-}
-}
+          vm.contatos.push(vm.paiContato);
+          vm.contatos.push(vm.maeContato);
 
-if(flag==10){
-vm.ok = false;
-return false;
-}
-
-for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
-Resto = (Soma * 10) % 11;
-
-if ((Resto == 10) || (Resto == 11))  Resto = 0;
-if (Resto != parseInt(strCPF.substring(9, 10)) ){
-vm.ok = false;
-return false;
-}
-
-Soma = 0;
-for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
-Resto = (Soma * 10) % 11;
-
-if ((Resto == 10) || (Resto == 11))  Resto = 0;
-if (Resto != parseInt(strCPF.substring(10, 11) ) ){
-vm.ok = false;
-return false;
-}
-
-vm.ok = true;
-return true;
-}
-*/
-
-/**
-* Close dialog
-*/
-function closeDialog() {
-  $mdDialog.hide();
-}
-
-function sendForm() {
-
-  vm.aluno.rg = vm.aluno.rg.replace(/\-/g,"");
-  vm.aluno.rg = vm.aluno.rg.replace(/\./g,"");
-
-  //ADD ALUNO
-  api.aluno.list.save(vm.aluno,
-    // Exibe o resultado no console do navegador:
-    // Sucesso
-    function(response) { //Até descobrirmos uma forma melhor de mexer com promise
-      // Nós esperamos o promise do aluno para fazer posteriores requisições
-      console.log(response);
-
-      vm.aluno = response;
-      vm.roupa.aluno.ra = vm.aluno.ra;
-
-      vm.contatos.push(vm.paiContato);
-      vm.contatos.push(vm.maeContato);
-
-      vm.contatos.forEach(function(contato) {
-        contato.aluno.ra = vm.aluno.ra;
-        contato.tipo = contato.tipo.toLowerCase();
-        if (contato.tipo == 'generico') {
-          api.contato.list.save(contato,
-            function(response) {
-              console.log(response);
-            },
-            function(response) {
-              console.log(response);
-            });
-          }
-          if (contato.tipo == 'responsavel') {
-            api.contato.responsavel.save(contato,
-              function(response) {
-                console.log(response);
-              },
-              function(response) {
-                console.log(response);
-              });
+          vm.contatos.forEach(function(contato) {
+            contato.aluno.ra = vm.aluno.ra;
+            contato.tipo = contato.tipo.toLowerCase();
+            if (contato.tipo == 'generico') {
+              api.contato.list.save(contato, function(response) {}, function(response) {});
+            }
+            if (contato.tipo == 'responsavel') {
+              api.contato.responsavel.save(contato, function(response) {}, function(response) {});
             }
             if (contato.tipo == 'profissional') {
-              api.contato.profissional.save(contato,
-                function(response) {
-                  console.log(response);
-                },
-                function(response) {
-                  console.log(response);
-                });
-              }
+              api.contato.profissional.save(contato, function(response) {}, function(response) {});
+            }
+          });
+
+          //ADD ROUPA
+          api.roupa.list.save(vm.roupa,
+          // Exibe o resultado no console do navegador:
+          // Sucesso
+          function(response) {},
+          // Erro
+          function(response) {});
+
+          vm.endereco.aluno.ra = vm.aluno.ra;
+
+          //ADD ENDEREÇO
+          api.endereco.list.save(vm.endereco,
+          // Exibe o resultado no console do navegador:
+          // Sucesso
+          function(response) {},
+          // Erro
+          function(response) {});
+
+          vm.saude.aluno.ra = vm.aluno.ra;
+
+          //ADD SAUDE
+          api.saude.list.save(vm.saude,
+          // Exibe o resultado no console do navegador:
+          // Sucesso
+          function(response) {},
+          // Erro
+          function(response) {});
+
+          vm.estrutura_familiar.aluno.ra = vm.aluno.ra;
+
+          //ADD ESTRUTURA FAMILIAR
+          api.estruturaFamiliar.list.save(vm.estrutura_familiar, function(response) {
+
+            vm.estrutura_familiar = response;
+
+            vm.automoveis.forEach(function(automovel) {
+              automovel.estrutura_familiar.id = vm.estrutura_familiar.id;
+              api.automovel.list.save(automovel, function(response) {}, function(response) {});
             });
 
-            //ADD ROUPA
-            api.roupa.list.save(vm.roupa,
+            vm.imoveis.forEach(function(imovel) {
+              imovel.estrutura_familiar.id = vm.estrutura_familiar.id;
+              api.imovel.list.save(imovel, function(response) {}, function(response) {});
+            });
+
+            vm.despesa.estrutura_familiar.id = vm.estrutura_familiar.id;
+
+            //ADD DESPESA
+            api.despesa.list.save(vm.despesa,
+            // Exibe o resultado no console do navegador:
+            // Sucesso
+            function(response) {},
+            // Erro
+            function(response) {});
+
+            //ADD APARALHOS ELETRÔNICOS
+            api.aparelhosEletronicos.list.save(vm.aparelhos_eletronicos, function(response) {
+
+              vm.aparelhos_eletronicos = response;
+              vm.situacao_habitacional.aparelhos_eletronicos.id = vm.aparelhos_eletronicos.id;
+              vm.situacao_habitacional.aluno.ra = vm.aluno.ra;
+
+              //ADD SITUAÇÃO HABITACIONAL
+              api.situacaoHabitacional.list.save(vm.situacao_habitacional,
               // Exibe o resultado no console do navegador:
               // Sucesso
-              function(response) {
-                console.log(response);
-              },
+              function(response) {},
               // Erro
-              function(response) {
-                console.error(response);
-              }
-            );
+              function(response) {});
+            },
+            // Erro
+            function(response) {});
 
-            vm.endereco.aluno.ra = vm.aluno.ra;
+          },
+          // Erro
+          function(response) {
+            console.error(response);
+          });
 
-            //ADD ENDEREÇO
-            api.endereco.list.save(vm.endereco,
-              // Exibe o resultado no console do navegador:
-              // Sucesso
-              function(response) {
-                console.log(response);
-              },
-              // Erro
-              function(response) {
-                console.error(response);
-              }
-            );
+          vm.parentes.forEach(function(parente) {
+            parente.aluno.ra = vm.aluno.ra;
+            api.parente.list.save(parente, function(response) {}, function(response) {});
+          });
 
-            vm.saude.aluno.ra = vm.aluno.ra;
+        },
+        // Erro
+        function(response) {
+          console.error(response);
+        });
+      }
 
-            //ADD SAUDE
-            api.saude.list.save(vm.saude,
-              // Exibe o resultado no console do navegador:
-              // Sucesso
-              function(response) {
-                console.log(response);
-              },
-              // Erro
-              function(response) {
-                console.error(response);
-              }
-            );
+      // Adiciona uma nova linha no topo da lista na tela
+      vm.alunos.unshift(vm.aluno);
 
-            vm.estrutura_familiar.aluno.ra = vm.aluno.ra;
+      closeDialog();
 
-            //ADD ESTRUTURA FAMILIAR
-            api.estruturaFamiliar.list.save(vm.estrutura_familiar,
-              function(response) {
-                console.log(response);
-
-                vm.estrutura_familiar = response;
-
-                vm.automoveis.forEach(function(automovel) {
-                  automovel.estrutura_familiar.id = vm.estrutura_familiar.id;
-                  api.automovel.list.save(automovel,
-                    function(response) {
-                      console.log(response);
-                    },
-                    function(response) {
-                      console.log(response);
-                    });
-                  });
-
-                  vm.imoveis.forEach(function(imovel) {
-                    imovel.estrutura_familiar.id = vm.estrutura_familiar.id;
-                    api.imovel.list.save(imovel,
-                      function(response) {
-                        console.log(response);
-                      },
-                      function(response) {
-                        console.log(response);
-                      });
-                    });
-
-                    vm.despesa.estrutura_familiar.id = vm.estrutura_familiar.id;
-
-                    console.log('AQUUUUUUUUUUUUUUUUUUUUUUI ' + vm.despesa.estrutura_familiar.id);
-
-                    //ADD DESPESA
-                    api.despesa.list.save(vm.despesa,
-                      // Exibe o resultado no console do navegador:
-                      // Sucesso
-                      function(response) {
-                        console.log(response);
-                      },
-                      // Erro
-                      function(response) {
-                        console.error(response);
-                      }
-                    );
-
-                    //ADD APARALHOS ELETRÔNICOS
-                    api.aparelhosEletronicos.list.save(vm.aparelhos_eletronicos,
-                      // Exibe o resultado no console do navegador:
-                      // Sucesso
-                      function(response) {
-                        console.log(response);
-
-                        vm.aparelhos_eletronicos = response;
-                        vm.situacao_habitacional.aparelhos_eletronicos.id = vm.aparelhos_eletronicos.id;
-                        vm.situacao_habitacional.aluno.ra = vm.aluno.ra;
-                        console.log(vm.situacao_habitacional);
-
-                        //ADD SITUAÇÃO HABITACIONAL
-                        api.situacaoHabitacional.list.save(vm.situacao_habitacional,
-                          // Exibe o resultado no console do navegador:
-                          // Sucesso
-                          function(response) {
-                            console.log(response);
-
-                          },
-                          // Erro
-                          function(response) {
-                            console.error(response);
-                          }
-                        );
-
-
-                      },
-                      // Erro
-                      function(response) {
-                        console.error(response);
-                      }
-                    );
-
-
-
-                  },
-                  // Erro
-                  function(response) {
-                    console.error(response);
-                  }
-                );
-
-                vm.parentes.forEach(function(parente) {
-                  parente.aluno.ra = vm.aluno.ra;
-                  api.parente.list.save(parente,
-                    function(response) {
-                      console.log(response);
-                    },
-                    function(response) {
-                      console.log(response);
-                    });
-                  });
-
-                },
-                // Erro
-                function(response) {
-                  console.error(response);
-                }
-              );
-
-
-
-              // Adiciona uma nova linha no topo da lista na tela
-              vm.alunos.unshift(vm.aluno);
-
-              closeDialog();
-
-              console.log('Olá sendForm');
-
-            }
-          }
-
-        })();
-
-        /*
-        app.directive('myDirective', function() {
-        return {
-        require: 'ngModel',
-        link: function(scope, element, attr, mCtrl) {
-        function myValidation(value) {
-        if (value.indexOf("e") > -1) {
-        mCtrl.$setValidity('charE', true);
-      } else {
-      mCtrl.$setValidity('charE', false);
     }
-    return value;
   }
-  mCtrl.$parsers.push(myValidation);
-}
-};
-});
-*/
+
+})();
