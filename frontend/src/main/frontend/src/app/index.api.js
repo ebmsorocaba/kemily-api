@@ -244,12 +244,12 @@
 
         api.endereco = {
           list  : $resource(api.baseUrl + 'endereco'),
-          getByCepNumero : $resource(api.baseUrl + 'endereco/:cep?numero=:numero' + '/', {cep: '@cep', numero: '@numero'}, {'update': {method: 'PUT'}})
+          getByCepNumero : $resource(api.baseUrl + 'endereco/:cep?numero=:numero', {cep: '@cep', numero: '@numero'}, {'update': {method: 'PUT'}})
         }
 
         api.estruturaFamiliar = {
           list  : $resource(api.baseUrl + 'estrutura_familiar'),
-          getById : $resource(api.baseUrl + 'estrutura_familiar/:id' + '/', {id: '@id'}, {'update': {method: 'PtomUT'}})
+          getById : $resource(api.baseUrl + 'estrutura_familiar/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
         api.imovel = {
@@ -290,21 +290,6 @@
           getProfissionalById : $resource(api.baseUrl + 'contato/profissional/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}}),
           getResponsavelById  : $resource(api.baseUrl + 'contato/responsavel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
-
-
-        // Exemplo do FUSE
-        // api.blog = {
-        // *                   list     : $resource('http://api.example.com/blog'),
-        // *                   getById  : $resource('http://api.example.com/blog/:id', {id: '@id'}),
-        // *                   getByDate: $resource('http://api.example.com/blog/:date', {id: '@date'}, {
-        // *                       get: {
-        // *                            method: 'GET',
-        // *                            params: {
-        // *                                getByDate: true
-        // *                            }
-        // *                       }
-        // *                   })
-        // *       }
 
         return api;
     }
