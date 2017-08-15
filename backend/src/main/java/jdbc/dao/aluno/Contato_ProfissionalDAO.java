@@ -72,6 +72,7 @@ public class Contato_ProfissionalDAO {
 				contato_Profissional.setId(rs.getInt("id_contato"));
 				contato_Profissional.setCargo(rs.getString("cargo"));
 			}
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
 		}
@@ -84,6 +85,7 @@ public class Contato_ProfissionalDAO {
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM contato_profissional WHERE id_contato = ?");
 			stmt.setInt(1, id);
 			stmt.execute();
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
 		}

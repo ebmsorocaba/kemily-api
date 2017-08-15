@@ -77,6 +77,7 @@ public class AutomovelDAO {
                 automovel.setFinanciado(rs.getBoolean("financiado"));
                 automovel.setEstrutura_familiar(estrutura_familiarDAO.getEstrutura_Familiar(rs.getInt("id_estrutura_familiar")));
             }
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -95,15 +96,26 @@ public class AutomovelDAO {
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM automovel WHERE id=?");
             stmt.setInt(1, id);
             stmt.execute();
+            stmt.close();
         }
 
         catch (SQLException ex) {
             System.out.println(ex.toString());
         }
 
-
     }
 
+    public void excluirByIdEstruturaFamiliar(int idEstruturaFamiliar) {
+    	try {
+    		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM automovel WHERE id_estrutura_familiar=?");
+    		stmt.setInt(1, idEstruturaFamiliar);
+    		stmt.execute();
+    		stmt.close();
+    	} catch (SQLException ex) {
+    		System.out.println(ex.toString());
+    	}
+    }
+    
 
     public void altera(Automovel automovel, int id) throws SQLException {
 

@@ -56,7 +56,7 @@ public class Estrutura_FamiliarController {
 
     @CrossOrigin
     @RequestMapping(value = "/api/estrutura_familiar/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deletar(@PathVariable("id") int id) {
+    public ResponseEntity<?> deletar(@PathVariable("id") int id) throws SQLException {
         estrutura_FamiliarDao.excluir(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

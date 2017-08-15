@@ -69,6 +69,7 @@ public class ImovelDAO {
                 imovel.setFinanciado(rs.getBoolean("financiado"));
                 imovel.setEstrutura_familiar(estrutura_familiarDAO.getEstrutura_Familiar(rs.getInt("id_estrutura_familiar")));
             }
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -96,6 +97,22 @@ public class ImovelDAO {
             System.out.println(ex.toString());
         }
 
+    }
+    
+    public void excluirByIdEstruturaFamiliar(int idEstruturaFamiliar) {
+    	try {
+
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM imovel WHERE id_estrutura_familiar=?");
+            stmt.setInt(1, idEstruturaFamiliar);
+
+            stmt.execute();
+            stmt.close();
+
+        }
+
+        catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
     }
 
 

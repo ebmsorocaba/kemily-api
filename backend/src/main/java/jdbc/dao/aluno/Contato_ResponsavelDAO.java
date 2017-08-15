@@ -75,6 +75,7 @@ public class Contato_ResponsavelDAO {
 				contato_Responsavel.setGrau_parentesco(rs.getString("grau_parentesco"));
 				contato_Responsavel.setPresente(rs.getBoolean("presente"));
 			}
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
 		}
@@ -87,6 +88,7 @@ public class Contato_ResponsavelDAO {
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM contato_responsavel WHERE id_contato = ?");
 			stmt.setInt(1, id);
 			stmt.execute();
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
 		}

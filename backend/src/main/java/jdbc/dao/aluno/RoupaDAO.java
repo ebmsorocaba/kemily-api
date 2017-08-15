@@ -70,6 +70,7 @@ public class RoupaDAO {
                 roupa.setTamanho_camiseta(rs.getString("tamanho_camiseta"));
                 roupa.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
             }
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -88,6 +89,7 @@ public class RoupaDAO {
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM roupa WHERE ra_aluno = ?");
             stmt.setInt(1, ra);
             stmt.execute();
+            stmt.close();
 
         }
 

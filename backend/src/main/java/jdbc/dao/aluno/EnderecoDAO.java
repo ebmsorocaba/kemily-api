@@ -86,6 +86,8 @@ public class EnderecoDAO {
                 endereco.setComplemento(rs.getString("complemento"));
                 endereco.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
             }
+            
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -105,7 +107,7 @@ public class EnderecoDAO {
             stmt.setString(1, cep);
             stmt.setString(2, numero);
             stmt.execute();
-
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -114,6 +116,19 @@ public class EnderecoDAO {
 
     }
 
+    public void excluirByAluno(int ra) {
+    	try {
+
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM endereco WHERE ra_aluno = ?");
+            stmt.setInt(1, ra);
+            stmt.execute();
+            stmt.close();
+        }
+
+        catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+    }
 
     public void altera(Endereco endereco, String cep, String numero) throws SQLException {
 
@@ -152,6 +167,7 @@ public class EnderecoDAO {
                 endereco.setComplemento(rs.getString("complemento"));
                 endereco.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
             }
+            stmt.close();
         }
 
         catch (SQLException ex) {

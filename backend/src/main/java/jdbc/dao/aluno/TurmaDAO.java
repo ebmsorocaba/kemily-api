@@ -63,6 +63,7 @@ public class TurmaDAO {
             if (rs.next() == true) {
                 turma.setEducador(rs.getString("educador"));
             }
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -80,7 +81,7 @@ public class TurmaDAO {
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM turma WHERE educador = ?");
             stmt.setString(1, search);
             stmt.execute();
-
+            stmt.close();
         }
 
         catch (SQLException ex) {

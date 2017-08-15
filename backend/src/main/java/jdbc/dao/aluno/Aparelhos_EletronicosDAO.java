@@ -113,6 +113,7 @@ public class Aparelhos_EletronicosDAO {
 				ae.setTelefone_fixo(rs.getBoolean("telefone_fixo"));
 				ae.setCelular(rs.getBoolean("celular"));
 			}
+			stmt.close();
 			
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
@@ -126,6 +127,7 @@ public class Aparelhos_EletronicosDAO {
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM aparelhos_eletronicos where id = ?");
 			stmt.setInt(1, id);
 			stmt.execute();
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
 		}

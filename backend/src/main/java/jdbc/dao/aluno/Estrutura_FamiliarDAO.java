@@ -107,6 +107,7 @@ public class Estrutura_FamiliarDAO {
                 estrutura_Familiar.setProgramas_sociais(rs.getBoolean("programas_sociais"));
                 estrutura_Familiar.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
             }
+            stmt.close();
         }
 
         catch (SQLException ex) {
@@ -118,14 +119,57 @@ public class Estrutura_FamiliarDAO {
     }
 
 
-    public void excluir(int search) {
-
+    public void excluir(int search) throws SQLException {
+    	AutomovelDAO autoDAO = new AutomovelDAO();
+    	ImovelDAO imovelDAO = new ImovelDAO();
+    	DespesaDAO despDAO = new DespesaDAO();
+    	
         try {
 
+        	System.out.println("[EstruturaFamiliarDAO] Deletando Automovel");
+        	autoDAO.excluirByIdEstruturaFamiliar(search);
+        	
+        	System.out.println("[EstruturaFamiliarDAO] Deletando Imovel");
+        	imovelDAO.excluirByIdEstruturaFamiliar(search);
+        	
+        	System.out.println("[EstruturaFamiliarDAO] Deletando Despesa");
+        	despDAO.excluir(search);
+        	
+        	System.out.println("[EstruturaFamiliarDAO] Deletando Estrutura Familiar");
             PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM estrutura_Familiar WHERE id = ?");
             stmt.setInt(1, search);
             stmt.execute();
+            stmt.close();
+        }
 
+        catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+
+    }
+    
+    public void excluirByAluno(int ra) throws SQLException {
+    	int idEstruturaFamiliar = -1;
+    	
+        try {
+        	System.out.println("[EstruturaFamiliarDAO] Buscando ID Estrutura Familiar pelo RA");
+        	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT id FROM estrutura_familiar WHERE ra_aluno = ?");
+        	stmt.setInt(1, ra);
+        	ResultSet rs = stmt.executeQuery();
+        	
+        	if(rs.next() == true) {
+        		System.out.println("[EstruturaFamiliarDAO] Adicionando ID Estrutura Familiar na variável");
+        		idEstruturaFamiliar = rs.getInt("id");
+        	}
+
+        	System.out.println("[EstruturaFamiliarDAO] ID Estrutura Familiar: " + idEstruturaFamiliar);
+        	
+        	if(idEstruturaFamiliar > -1) {
+        		System.out.println("[EstruturaFamiliarDAO] Deletanto Automovel, Imovel, Despesa e EstruturaFamiliar");
+        		
+	        	this.excluir(idEstruturaFamiliar);
+        	}
+        	stmt.close();
         }
 
         catch (SQLException ex) {
