@@ -855,17 +855,6 @@
 
   <!-- DIALOG ACTIONS -->
   <md-dialog-actions layout="row" layout-align="space-between center">
-    <!-- <div layout="row" layout-align="start center">
-        <md-button type="submit" ng-if="!vm.newAluno" ng-click="vm.saveAluno()" class="send-button md-accent md-raised" ng-disabled="AlunoForm.$invalid || AlunoForm.$pristine" aria-label="Salvar">
-          Salvar
-        </md-button>
-
-        <md-button type="submit" ng-if="vm.newAluno" ng-click="vm.addNewAluno()" class="send-button md-accent md-raised" ng-disabled="AlunoForm.$invalid || AlunoForm.$pristine" aria-label="Adicionar aluno">
-          Adicionar Aluno
-        </md-button>
-
-      </div> -->
-
     <div ng-if="!vm.newAluno" layout="row">
       <md-button class="md-icon-button" ng-click="vm.deleteAlunoConfirm($event)" aria-label="Apagar">
         <md-icon md-font-icon="icon-delete"></md-icon>
