@@ -479,54 +479,57 @@
             </md-tab-label>
             <md-tab-body>
               <form name="wizardStep6" ms-form-wizard-form novalidate>
-
                 <div layout="column" layout-gt-xs="row" ng-repeat="p in vm.parentes track by $index">
-                  <md-input-container flex="100" flex-gt-xs="70">
-                    <input type="text" name="nome_parente" ng-model="p.nome" placeholder="Nome do parente">
-                    <div ng-messages="wizardStep6.nome.$error" role="alert">
-                      <div ng-message=" ">
-                        <span>O nome é requerido.</span>
-                      </div>
-                    </div>
-                  </md-input-container>
-                  <md-input-container flex="100" flex-gt-xs="15">
-                    <input type="text" name="parentesco" ng-model="p.parentesco" placeholder="Parentesco">
-                  </md-input-container>
 
                   <div layout="column" layout-gt-xs="row">
+
+                    <md-input-container flex="100" flex-gt-xs="20">
+                      <input type="text" name="nome_parente" ng-model="p.nome" placeholder="Nome do parente">
+                      <div ng-messages="wizardStep6.nome.$error" role="alert">
+                        <div ng-message=" ">
+                          <span>O nome é requerido.</span>
+                        </div>
+                      </div>
+                    </md-input-container>
+
+                    <md-input-container flex="100" flex-gt-xs="20">
+                      <input type="text" name="parentesco" ng-model="p.parentesco" placeholder="Parentesco">
+                    </md-input-container>
+
                     <md-input-container flex="100" flex-gt-xs="20">
                       <input type="text" name="escolaridade" ng-model="p.escolaridade" placeholder="Escolaridade">
                     </md-input-container>
 
-
-                    <md-input-container>
+                    <md-input-container flex="100" flex-gt-xs="40">
                       <md-datepicker ng-model="p.data_nascimento" md-placeholder="Nascimento" md-open-on-focus></md-datepicker>
                     </md-input-container>
-
-                  </div>
-
-                  <div layout="column" layout-gt-xs="row">
-                    <md-input-container flex="100" flex-gt-xs="50">
+                  
+                    <md-input-container flex="100" flex-gt-xs="20">
                       <input type="text" name="ocupacao" ng-model="p.ocupacao" placeholder="Ocupação">
                     </md-input-container>
 
-                    <md-input-container flex="100" flex-gt-xs="10">
+                    <md-input-container flex="100" flex-gt-xs="20">
                       <input type="text" name="salario" ng-model="p.salario" ui-money-mask placeholder="Salário">
                     </md-input-container>
+
+                    <md-input-container flex="100" flex-gt-xs="20">
+                      <input type="text" name="local_trabalho" ng-model="p.local_trabalho" placeholder="Local de trabalho">
+                    </md-input-container>
+
+                    <div flex="100" flex-gt-xs="15">
+                      <md-button class="md-raised md-accent" ng-click="vm.addParente(p)" ng-if="vm.isLastParente(p)">
+                        Adicionar
+                      </md-button>
+                    </div>
+
+                    <div flex="100" flex-gt-xs="15">
+                      <md-button class="md-raised md-warn" ng-click="vm.removeParente(p)">
+                        Remover
+                      </md-button>
+                    </div>
+
                   </div>
 
-
-                  <md-input-container flex="100" flex-gt-xs="50">
-                    <input type="text" name="local_trabalho" ng-model="p.local_trabalho" placeholder="Local de trabalho">
-                  </md-input-container>
-
-                  <md-button class="md-raised md-accent" ng-click="vm.addParente(p)" ng-if="vm.isLastParente(p)">
-                    Adicionar
-                  </md-button>
-
-                  <md-button class="md-raised md-warn" ng-click="vm.removeParente(p)">
-                    Remover
-                  </md-button>
                 </div>
               </form>
             </md-tab-body>
