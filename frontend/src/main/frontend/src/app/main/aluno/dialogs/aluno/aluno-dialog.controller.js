@@ -286,12 +286,12 @@
           'id': '',
           'estado_civil_pais': '',
           'crianca_reside_com': '',
-          'problemas_financeiros': null,
-          'uso_alcool_drogas': null,
-          'alguem_agressivo': null,
-          'programas_sociais': null,
+          'problemas_financeiros': '',
+          'uso_alcool_drogas': '',
+          'alguem_agressivo': '',
+          'programas_sociais': '',
           'aluno': {
-            'ra': null,
+            'ra': '',
             'nome': '',
             'turma': {
               'educador': ''
@@ -305,42 +305,42 @@
             'observacoes': ''
           }
         },
-        'agua': null,
-        'energia_eletrica': null,
-        'telefone': null,
-        'aluguel': null,
-        'financiamento_casa': null,
-        'financiamento_carro': null,
-        'transporte': null,
-        'alimentacao': null,
-        'gas': null,
-        'cartao_credito': null,
-        'emprestimo': null,
-        'tv_cabo': null,
-        'educacao': null,
-        'pensao': null,
-        'convenio_medico': null
+        'agua': '',
+        'energia_eletrica': '',
+        'telefone': '',
+        'aluguel': '',
+        'financiamento_casa': '',
+        'financiamento_carro': '',
+        'transporte': '',
+        'alimentacao': '',
+        'gas': '',
+        'cartao_credito': '',
+        'emprestimo': '',
+        'tv_cabo': '',
+        'educacao': '',
+        'pensao': '',
+        'convenio_medico': ''
       };
 
       vm.aparelhos_eletronicos = {
-        'id': null,
-        'televisao': null,
-        'tv_assinatura': null,
-        'computador': null,
-        'notebook': null,
-        'fogao': null,
-        'geladeira': null,
-        'microondas': null,
-        'tablet': null,
-        'maquina_lavar': null,
-        'maquina_secar': null,
-        'telefone_fixo': null,
-        'celular': null
+        'id': '',
+        'televisao': '',
+        'tv_assinatura': '',
+        'computador': '',
+        'notebook': '',
+        'fogao': '',
+        'geladeira': '',
+        'microondas': '',
+        'tablet': '',
+        'maquina_lavar': '',
+        'maquina_secar': '',
+        'telefone_fixo': '',
+        'celular': ''
       };
 
       vm.situacao_habitacional = {
         'aluno': {
-          'ra': null,
+          'ra': '',
           'nome': '',
           'turma': {
             'educador': ''
