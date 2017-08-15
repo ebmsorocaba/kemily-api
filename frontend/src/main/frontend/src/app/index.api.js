@@ -244,7 +244,7 @@
 
         api.endereco = {
           list  : $resource(api.baseUrl + 'endereco'),
-          getByCepNumero : $resource(api.baseUrl + 'endereco/:cep?numero=:numero' + '/', {cep: '@cep'}, {numero: '@numero'}, {'update': {method: 'PUT'}})
+          getByCepNumero : $resource(api.baseUrl + 'endereco/:cep?numero=:numero' + '/', {cep: '@cep', numero: '@numero'}, {'update': {method: 'PUT'}})
         }
 
         api.estruturaFamiliar = {
@@ -264,12 +264,12 @@
 
         api.roupa = {
           list  : $resource(api.baseUrl + 'roupa'),
-          getByRa : $resource(api.baseUrl + 'roupa/:raAluno' + '/', {raAluno: '@raAluno'}, {'update': {method: 'PUT'}})
+          getByRa : $resource(api.baseUrl + 'roupa/:ra_aluno' + '/', {ra_aluno: '@ra_aluno'}, {'update': {method: 'PUT'}})
         }
 
         api.saude = {
           list  : $resource(api.baseUrl + 'saude'),
-          getById : $resource(api.baseUrl + 'saude/:raAluno' + '/', {raAluno: '@raAluno'}, {'update': {method: 'PUT'}})
+          getById : $resource(api.baseUrl + 'saude/:ra_aluno' + '/', {ra_aluno: '@ra_aluno'}, {'update': {method: 'PUT'}})
         }
 
         api.situacaoHabitacional = {
@@ -279,7 +279,7 @@
 
         api.turma = {
           list  : $resource(api.baseUrl + 'turma'),
-          getByEducador : $resource(api.baseUrl + 'despesa/:educador' + '/', {educador: '@educador'}, {'update': {method: 'PUT'}})
+          getByEducador : $resource(api.baseUrl + 'turma/:educador' + '/', {educador: '@educador'}, {'update': {method: 'PUT'}})
         }
 
         api.contato = {
