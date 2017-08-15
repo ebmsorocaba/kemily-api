@@ -264,7 +264,7 @@
 
         api.roupa = {
           list  : $resource(api.baseUrl + 'roupa'),
-          getByRa : $resource(api.baseUrl + 'roupa/:ra_aluno' + '/', {ra_aluno: '@ra_aluno'}, {'update': {method: 'PUT'}})
+          getById : $resource(api.baseUrl + 'roupa/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
         api.saude = {
