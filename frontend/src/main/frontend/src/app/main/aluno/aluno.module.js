@@ -20,6 +20,12 @@
                     }
                 },
                 resolve: {
+                  AparelhosEletronicos: function(msApi) {
+                    return msApi.resolve('aparelhosEletronicos.aparelhosEletronicos@query');
+                  },
+                  Contatos: function(msApi) {
+                    return msApi.resolve('contatos.contatos@query');
+                  },
                   Enderecos: function (msApi)
                   {
                       return msApi.resolve('enderecos.enderecos@query'); // GET para Arrays
@@ -51,6 +57,17 @@
                   Alunos: function (msApi)
                   {
                       return msApi.resolve('alunos.alunos@query'); // GET para Arrays
+                  },
+                  Automoveis: function (msApi)
+                  {
+                    return msApi.resolve('automoveis.automoveis@query');
+                  },
+                  Imoveis: function (msApi) {
+                    return msApi.resolve('imoveis.imoveis@query');
+                  },
+                  Parentes: function (msApi)
+                  {
+                      return msApi.resolve('parentes.parentes@query');
                   },
                   User: function ($window)
                   {
@@ -99,11 +116,18 @@
         msApiProvider.register('alunos.alunos', ['/api/aluno'])
         msApiProvider.register('roupas.roupas', ['/api/roupa'])
         msApiProvider.register('despesas.despesas', ['/api/despesa'])
-        msApiProvider.register('enderecos.enderecos', ['/api/endereco']);
-        msApiProvider.register('turmas.turmas', ['/api/turma']);
-        msApiProvider.register('saudes.saudes', ['/api/saude']);
-        msApiProvider.register('situacoesHabitacionais.situacoesHabitacionais', ['/api/situacao_habitacional']);
-        msApiProvider.register('estruturasFamiliares.estruturasFamiliares', ['/api/estrutura_familiar']);
+        msApiProvider.register('enderecos.enderecos', ['/api/endereco'])
+        msApiProvider.register('turmas.turmas', ['/api/turma'])
+        msApiProvider.register('saudes.saudes', ['/api/saude'])
+        msApiProvider.register('situacoesHabitacionais.situacoesHabitacionais', ['/api/situacao_habitacional'])
+        msApiProvider.register('estruturasFamiliares.estruturasFamiliares', ['/api/estrutura_familiar'])
+        msApiProvider.register('contatos.contatos', ['/api/contato'])
+        msApiProvider.register('imoveis.imoveis', ['/api/imovel'])
+        msApiProvider.register('automoveis.automoveis', ['/api/automovel'])
+        msApiProvider.register('aparelhosEletronicos.aparelhosEletronicos', ['/api/aparelhosEletronicos'])
+        msApiProvider.register('parentes.parentes', ['/api/parente'])
+
+
         //msApiProvider.register('sample', ['app/data/sample/sample.json']);
 
         //Navigation

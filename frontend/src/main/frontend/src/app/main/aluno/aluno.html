@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div id="alunos" class="page-layout simple inner-sidenav">
 
   <!-- HEADER -->
@@ -189,23 +190,23 @@
           <md-checkbox ng-checked="vm.exists(aluno, vm.selectedAlunos)" ng-click="vm.toggleSelectAluno(aluno, $event)" aria-label="{{vm.exists(aluno, vm.selectedAlunos) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
           <div class="item" layout="row">
-          <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
+            <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
 
-          <p class="text-truncate font-weight-600 texto nomeAluno">
-            {{aluno.nome}}
-          </p>
+            <p class="text-truncate font-weight-600 texto nomeAluno">
+              {{aluno.nome}}
+            </p>
 
-          <p class="hide show-gt-xs numero raAluno">
-            {{aluno.ra}}
-          </p>
+            <p class="hide show-gt-xs numero raAluno">
+              {{aluno.ra}}
+            </p>
 
-          <!-- Temporário -->
-          <!-- <p class="hide show texto pagamentoAluno">
+            <!-- Temporário -->
+            <!-- <p class="hide show texto pagamentoAluno">
             Dinheiro
             {{aluno.formaPgto}}
           </p> -->
 
-        </div>
+          </div>
           <div class="md-secondary actions" layout="row" layout-align="start center">
             <!-- <md-button class="md-icon-button  hide show-gt-xs" ng-click="$event.stopPropagation();vm.toggleInArray(contact.id, vm.user.starred)" aria-label="Toggle starred" translate translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
               <md-icon ng-if="vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star" class="amber-fg"></md-icon>
