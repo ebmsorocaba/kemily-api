@@ -105,7 +105,6 @@
       console.log('Entrou');
       for (i = 0; i <= vm.roupas.length; i++) {
         if (vm.roupas[i].aluno.ra === aluno.ra) {
-          console.log('retornou' + vm.roupas[i]);
           return vm.roupas[i];
         }
       }
@@ -117,10 +116,8 @@
         return 0;
 
       console.log(vm.enderecos);
-      console.log('Entrou');
       for (i = 0; i <= vm.enderecos.length; i++) {
         if (vm.enderecos[i].aluno.ra === aluno.ra) {
-          console.log('retornou' + vm.enderecos[i]);
           return vm.enderecos[i];
         }
       }
@@ -132,9 +129,9 @@
       }
       var result = [];
       vm.contatos.forEach(function(contato) {
-         if(contato.aluno.ra === aluno.ra) {
-           result.push(contato);
-         }
+        if (contato.aluno.ra === aluno.ra) {
+          result.push(contato);
+        }
       });
       return result;
     }
@@ -185,6 +182,7 @@
       }
       var result = null;
       vm.situacoesHabitacionais.forEach(function(situacao) {
+        console.log('LOOOOPPPPP' + situacao);
         if (situacao.aluno.ra === aluno.ra) {
           situacaoHabitacional = situacao;
           result = situacao;
@@ -226,7 +224,7 @@
       }
       var result = null;
       vm.despesas.forEach(function(despesa) {
-        if(despesa.estrutura_familiar.id === estrutura.id) {
+        if (despesa.estrutura_familiar.id === estrutura.id) {
           result = despesa;
         }
       });
@@ -239,7 +237,7 @@
       }
       var result = null;
       vm.aparelhosEletronicos.forEach(function(aparelhos) {
-        if(aparelhos.id === situacao.aparelhos_eletronicos.id) {
+        if (aparelhos.id === situacao.aparelhos_eletronicos.id) {
           result = aparelhos;
         }
       })
@@ -247,13 +245,13 @@
     }
 
     function selectMaeContato(aluno) {
-      if(!aluno) {
+      if (!aluno) {
         return null;
       }
       var result = null;
       var index = 0;
       vm.contatos.forEach(function(contato) {
-        if(contato.aluno.ra === aluno.ra && contato.grau_parentesco == 'Mae') {
+        if (contato.aluno.ra === aluno.ra && contato.grau_parentesco === 'Mae') {
           result = contato;
           index = vm.contatos.indexOf(contato);
         }
@@ -263,13 +261,13 @@
     }
 
     function selectPaiContato(aluno) {
-      if(!aluno) {
+      if (!aluno) {
         return null;
       }
       var result = null;
       var index = 0;
       vm.contatos.forEach(function(contato) {
-        if(contato.aluno.ra === aluno.ra && contato.grau_parentesco == 'Pai') {
+        if (contato.aluno.ra === aluno.ra && contato.grau_parentesco === 'Pai') {
           result = contato;
           index = vm.contatos.indexOf(contato);
         }
@@ -323,7 +321,7 @@
        */
     function deleteSelectedAlunos(ev) {
       var confirm = $mdDialog.confirm().title('Você tem certeza de que deseja apagar os alunos selecionados?').htmlContent('<b>' + vm.selectedAlunos.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).').ariaLabel('apagar contatos').targetEvent(ev).ok('Sim').cancel('Cancelar');
-es = Parentes;
+      es = Parentes;
       $mdDialog.show(confirm).then(function() {
 
         vm.selectedAlunos.forEach(function(aluno) {
