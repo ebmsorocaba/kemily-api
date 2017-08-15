@@ -467,6 +467,9 @@
       vm.newAluno = true;
       // vm.aluno.tags = [];
     }
+    else {
+      vm.aluno.data_nascimento = new Date(vm.aluno.data_nascimento);
+    }
 
     // Methods
     vm.isLastContato = function(c) {
