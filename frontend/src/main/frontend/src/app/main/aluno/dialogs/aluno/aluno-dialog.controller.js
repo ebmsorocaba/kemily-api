@@ -9,12 +9,11 @@
 
     // Data
     vm.title = 'Alterar Aluno';
-    vm.roupa = Roupa;
-    vm.endereco = Endereco;
-    vm.saude = Saude;
-    console.log('Resultado de Contatos = ' + Contatos);
+    vm.roupa = angular.copy(Roupa);
+    vm.endereco = angular.copy(Endereco);
+    vm.saude = angular.copy(Saude);
     if (Contatos != '') {
-      vm.contatos = Contatos;
+      vm.contatos = angular.copy(Contatos);
     } else {
       vm.contatos = [
         {
@@ -30,8 +29,8 @@
         }
       ];
     }
-    if(Parentes != '') {
-      vm.parentes = Parentes;
+    if (Parentes != '') {
+      vm.parentes = angular.copy(Parentes);
     } else {
       vm.parentes = [
         {
@@ -59,12 +58,12 @@
         }
       ];
     }
-    vm.estrutura_familiar = EstruturaFamiliar;
-    vm.situacao_habitacional = SituacaoHabitacional;
-    vm.despesa = Despesa;
+    vm.estrutura_familiar = angular.copy(EstruturaFamiliar);
+    vm.situacao_habitacional = angular.copy(SituacaoHabitacional);
+    vm.despesa = angular.copy(Despesa);
     vm.aparelhos_eletronicos = AparelhosEletronicos;
     if (Automoveis != '') {
-      vm.automoveis = Automoveis;
+      vm.automoveis = angular.copy(Automoveis);
     } else {
       vm.automoveis = [
         {
@@ -78,7 +77,7 @@
       ];
     }
     if (Imoveis != '') {
-      vm.imoveis = Imoveis;
+      vm.imoveis = angular.copy(Imoveis);
     } else {
       vm.imoveis = [
         {
@@ -89,8 +88,8 @@
         }
       ];
     }
-    vm.paiContato = PaiContato;
-    vm.maeContato = MaeContato;
+    vm.paiContato = angular.copy(PaiContato);
+    vm.maeContato = angular.copy(MaeContato);
 
     vm.aluno = angular.copy(Aluno);
     vm.alunos = Alunos;
@@ -508,11 +507,11 @@
     vm.removeContato = function(c) {
       if (vm.contatos.length > 1) {
         vm.contatos.splice(vm.contatos.indexOf(c), 1);
-        if(vm.aluno.ra != '') {
+        if (vm.aluno.ra != '') {
           api.contato.getById.delete(c, function(response) {}, function(response) {});
         }
       } else {
-        if(vm.aluno.ra != '') {
+        if (vm.aluno.ra != '') {
           api.contato.getById.delete(c, function(response) {}, function(response) {});
         }
         vm.contatos = [
@@ -561,11 +560,11 @@
     vm.removeParente = function(c) {
       if (vm.parentes.length > 1) {
         vm.parentes.splice(vm.parentes.indexOf(c), 1);
-        if(vm.aluno.ra != '') {
+        if (vm.aluno.ra != '') {
           api.parente.getById.delete(c, function(response) {}, function(response) {});
         }
       } else {
-        if(vm.aluno.ra != '') {
+        if (vm.aluno.ra != '') {
           api.parente.getById.delete(c, function(response) {}, function(response) {});
         }
         vm.parentes = [
@@ -620,11 +619,11 @@
     vm.removeAutomovel = function(a) {
       if (vm.automoveis.length > 1) {
         vm.automoveis.splice(vm.automoveis.indexOf(a), 1);
-        if(vm.aluno.ra != '') {
+        if (vm.aluno.ra != '') {
           api.automovel.getById.delete(a, function(response) {}, function(response) {});
         }
       } else {
-        if(vm.aluno.ra != '') {
+        if (vm.aluno.ra != '') {
           api.automovel.getById.delete(a, function(response) {}, function(response) {});
         }
         vm.automoveis = [
@@ -653,11 +652,11 @@
     vm.removeImovel = function(i) {
       if (vm.imoveis.length > 1) {
         vm.imoveis.splice(vm.imoveis.indexOf(i), 1);
-        if(vm.aluno.ra != '') {
+        if (vm.aluno.ra != '') {
           api.imovel.getById.delete(i, function(response) {}, function(response) {});
         }
       } else {
-        if(vm.aluno.ra != '') {
+        if (vm.aluno.ra != '') {
           api.imovel.getById.delete(i, function(response) {}, function(response) {});
         }
         vm.imoveis = [
@@ -767,125 +766,109 @@
 
       if (vm.aluno.ra != '') {
         //Atualiza ALUNO
-        api.aluno.getByRa.update(vm.aluno, function(response) {
 
-          vm.aluno = response;
-          vm.roupa.aluno.ra = vm.aluno.ra;
+        api.aluno.getByRa.update({
+          'ra': vm.aluno.ra
+        }, vm.aluno, function(response) {}, function(response) {});
 
-          vm.contatos.push(vm.paiContato);
-          vm.contatos.push(vm.maeContato);
+        api.roupa.getById.update({
+          'id': vm.roupa.aluno.ra
+        }, vm.roupa, function(response) {}, function(response) {});
 
-          vm.contatos.forEach(function(contato) {
-            contato.aluno.ra = vm.aluno.ra;
-            contato.tipo = contato.tipo.toLowerCase();
-            if (contato.tipo == 'generico') {
-              api.contato.getById.update(contato, function(response) {}, function(response) {});
-            }
-            if (contato.tipo == 'responsavel') {
-              api.contato.getResponsavelById.update(contato, function(response) {}, function(response) {});
-            }
-            if (contato.tipo == 'profissional') {
-              api.contato.getProfissionalById.update(contato, function(response) {}, function(response) {});
-            }
-          });
+        vm.contatos.push(vm.paiContato);
+        vm.contatos.push(vm.maeContato);
 
-          //ADD ROUPA
-          api.roupa.getByRa.update(vm.roupa,
-          // Exibe o resultado no console do navegador:
-          // Sucesso
-          function(response) {},
-          // Erro
+        console.log('Contatos = ' + vm.contatos);
+        vm.contatos.forEach(function(contato) {
+          if (contato.tipo == 'Generico') {
+            api.contato.getById.update({'id': contato.id}, contato, function(response) {}, function(response) {});
+          }
+          if (contato.tipo == 'Responsavel') {
+            api.contato.getResponsavelById.update({'id': contato.id}, contato, function(response) {}, function(response) {});
+          }
+          if (contato.tipo == 'Profissional') {
+            api.contato.getProfissionalById.update({'id': contato.id}, contato, function(response) {}, function(response) {});
+          }
+        });
+
+        console.log('Endereco = ' + vm.endereco);
+        api.endereco.getByCepNumero.update({
+          'cep': vm.endereco.cep,
+          'numero': vm.endereco.numero
+        }, vm.endereco, function(response) {},
+        // Erro
+        function(response) {
+          console.error(response);
+        });
+
+        console.log('Saude = ' + vm.saude);
+        api.saude.getById.update({
+          'ra_aluno': vm.saude.aluno.ra
+        }, vm.saude, function(response) {},
+        // Erro
+        function(response) {
+          console.error(response);
+        });
+
+        console.log('Estrutura Familiar = ' + vm.estrutura_familiar);
+        api.estruturaFamiliar.getById.update({
+          'id': vm.estrutura_familiar.id
+        }, vm.estrutura_familiar, function(response) {},
+        function(response) {
+          console.error(response);
+        });
+
+        console.log('Automoveis' + vm.automoveis);
+        vm.automoveis.forEach(function(automovel) {
+          api.automovel.getById.update({
+            'id': automovel.id
+          }, automovel, function(response) {},
           function(response) {
             console.error(response);
           });
+        });
 
-          vm.endereco.aluno.ra = vm.aluno.ra;
-
-          //ADD ENDEREÇO
-          api.endereco.getByCepNumero.update(vm.endereco,
-          // Exibe o resultado no console do navegador:
-          // Sucesso
-          function(response) {},
-          // Erro
+        console.log('Imoveis = ' + vm.imoveis);
+        vm.imoveis.forEach(function(imovel) {
+          api.imovel.getById.update({
+            'id': imovel.id
+          }, imovel, function(response) {},
           function(response) {
             console.error(response);
           });
+        });
 
-          vm.saude.aluno.ra = vm.aluno.ra;
+        console.log('Despesa = ' + vm.despesa);
+        api.despesa.getById.update({
+          'id': vm.despesa.estrutura_familiar.id
+        }, vm.despesa, function(response) {},
+        // Erro
+        function(response) {
+          console.error(response);
+        });
 
-          //ADD SAUDE
-          api.saude.getById.update(vm.saude,
-          // Exibe o resultado no console do navegador:
-          // Sucesso
-          function(response) {},
-          // Erro
+        console.log('Parente = ' + vm.parentes);
+        vm.parentes.forEach(function(parente) {
+          api.parente.getById.update({
+            'id': parente.id
+          }, parente, function(response) {},
           function(response) {
             console.error(response);
           });
+        });
 
-          vm.estrutura_familiar.aluno.ra = vm.aluno.ra;
+        console.log('Aparelhos Eletronicos = ' + vm.aparelhos_eletronicos);
+        api.aparelhosEletronicos.getById.update({
+          'id': vm.aparelhos_eletronicos.id
+        }, vm.aparelhos_eletronicos, function(response) {},
+        function(response) {
+          console.error(response);
+        });
 
-          //ADD ESTRUTURA FAMILIAR
-          api.estruturaFamiliar.getById.update(vm.estrutura_familiar, function(response) {
-
-            vm.estrutura_familiar = response;
-
-            vm.automoveis.forEach(function(automovel) {
-              automovel.estrutura_familiar.id = vm.estrutura_familiar.id;
-              api.automovel.getById.update(automovel, function(response) {}, function(response) {});
-            });
-
-            vm.imoveis.forEach(function(imovel) {
-              imovel.estrutura_familiar.id = vm.estrutura_familiar.id;
-              api.imovel.getById.update(imovel, function(response) {}, function(response) {});
-            });
-
-            vm.despesa.estrutura_familiar.id = vm.estrutura_familiar.id;
-
-            //ADD DESPESA
-            api.despesa.getById.update(vm.despesa,
-            // Exibe o resultado no console do navegador:
-            // Sucesso
-            function(response) {},
-            // Erro
-            function(response) {
-              console.error(response);
-            });
-
-            //ADD APARALHOS ELETRÔNICOS
-            api.aparelhosEletronicos.getById.update(vm.aparelhos_eletronicos, function(response) {
-
-              vm.aparelhos_eletronicos = response;
-              vm.situacao_habitacional.aparelhos_eletronicos.id = vm.aparelhos_eletronicos.id;
-              vm.situacao_habitacional.aluno.ra = vm.aluno.ra;
-
-              //ADD SITUAÇÃO HABITACIONAL
-              api.situacaoHabitacional.getById.update(vm.situacao_habitacional,
-              // Exibe o resultado no console do navegador:
-              // Sucesso
-              function(response) {},
-              // Erro
-              function(response) {
-                console.error(response);
-              });
-            },
-            // Erro
-            function(response) {
-              console.error(response);
-            });
-
-          },
-          // Erro
-          function(response) {
-            console.error(response);
-          });
-
-          vm.parentes.forEach(function(parente) {
-            parente.aluno.ra = vm.aluno.ra;
-            api.parente.getById.update(parente, function(response) {}, function(response) {});
-          });
-
-        },
+        console.log('Situacao Habitacional = ' + vm.situacao_habitacional);
+        api.situacaoHabitacional.getById.update({
+          'ra': vm.situacao_habitacional.aluno.ra
+        }, vm.situacao_habitacional, function(response) {},
         // Erro
         function(response) {
           console.error(response);
@@ -907,14 +890,13 @@
 
           vm.contatos.forEach(function(contato) {
             contato.aluno.ra = vm.aluno.ra;
-            contato.tipo = contato.tipo.toLowerCase();
-            if (contato.tipo == 'generico') {
+            if (contato.tipo == 'Generico') {
               api.contato.list.save(contato, function(response) {}, function(response) {});
             }
-            if (contato.tipo == 'responsavel') {
+            if (contato.tipo == 'Responsavel') {
               api.contato.responsavel.save(contato, function(response) {}, function(response) {});
             }
-            if (contato.tipo == 'profissional') {
+            if (contato.tipo == 'Profissional') {
               api.contato.profissional.save(contato, function(response) {}, function(response) {});
             }
           });
@@ -1008,11 +990,9 @@
         function(response) {
           console.error(response);
         });
+        vm.alunos.unshift(vm.aluno);
       }
-
-      // Adiciona uma nova linha no topo da lista na tela
-      vm.alunos.unshift(vm.aluno);
-
+      //
       closeDialog();
 
     }
