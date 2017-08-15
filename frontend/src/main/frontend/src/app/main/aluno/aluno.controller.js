@@ -8,6 +8,8 @@
     var vm = this;
     var estruturaFamiliar = null;
     var situacaoHabitacional = null;
+    var paiContato = null;
+    var maeContato = null;
     // Data
     vm.turmas = Turmas;
     vm.alunos = Alunos;
@@ -90,8 +92,8 @@
           Automoveis: vm.selectAutomovel(estruturaFamiliar),
           Despesa: vm.selectDespesa(estruturaFamiliar),
           AparelhosEletronicos: vm.selectAparelhosEletronicos(situacaoHabitacional),
-          PaiContato: vm.selectPaiContato(aluno),
-          MaeContato: vm.selectMaeContato(aluno)
+          PaiContato: vm.selectPaiContato(),
+          MaeContato: vm.selectMaeContato()
         }
       });
     }
@@ -130,7 +132,13 @@
       var result = [];
       vm.contatos.forEach(function(contato) {
         if (contato.aluno.ra === aluno.ra) {
-          result.push(contato);
+          if(contato.tipo == 'Responsavel'  && contato.grau_parentesco == 'Pai') {
+            paiContato = contato;
+          } else if(contato.tipo == 'Responsavel'  && contato.grau_parentesco == 'Mae') {
+            maeContato = contato;
+          } else {
+            result.push(contato);
+          }
         }
       });
       return result;
@@ -182,7 +190,6 @@
       }
       var result = null;
       vm.situacoesHabitacionais.forEach(function(situacao) {
-        console.log('LOOOOPPPPP' + situacao);
         if (situacao.aluno.ra === aluno.ra) {
           situacaoHabitacional = situacao;
           result = situacao;
@@ -244,36 +251,12 @@
       return result;
     }
 
-    function selectMaeContato(aluno) {
-      if (!aluno) {
-        return null;
-      }
-      var result = null;
-      var index = 0;
-      vm.contatos.forEach(function(contato) {
-        if (contato.aluno.ra === aluno.ra && contato.grau_parentesco === 'Mae') {
-          result = contato;
-          index = vm.contatos.indexOf(contato);
-        }
-      });
-      vm.contatos.splice(index, 1);
-      return result;
+    function selectMaeContato() {
+      return maeContato;
     }
 
-    function selectPaiContato(aluno) {
-      if (!aluno) {
-        return null;
-      }
-      var result = null;
-      var index = 0;
-      vm.contatos.forEach(function(contato) {
-        if (contato.aluno.ra === aluno.ra && contato.grau_parentesco === 'Pai') {
-          result = contato;
-          index = vm.contatos.indexOf(contato);
-        }
-      });
-      vm.contatos.splice(index, 1);
-      return result;
+    function selectPaiContato() {
+      return paiContato;
     }
 
     /**
