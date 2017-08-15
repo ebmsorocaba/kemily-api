@@ -1,4 +1,4 @@
-<!-- DIALOG -->
+<!DOCTYPE html>
 <md-dialog class="aluno-dialog">
 
 
@@ -63,7 +63,7 @@
 
                                   <md-input-container flex="100" flex-gt-xs="15">
                                       <label>RG</label>
-                                      <input type="text" name="rg" ng-model="vm.aluno.rg" md-maxlength=12 mask="99.999.999-9">
+                                      <input type="text" name="rg" ng-model="vm.aluno.rg" md-maxlength="12" mask="99.999.999-w">
                                   </md-input-container>
 
                                   </div>
@@ -71,7 +71,7 @@
 
                                 <div layout="column" layout-gt-xs="row">
                                   <md-input-container flex="100" flex-gt-xs="50">
-                                      <input type="text" name="naturalidade"ng-model="vm.aluno.naturalidade" placeholder="Naturalidade"
+                                      <input type="text" name="naturalidade" ng-model="vm.aluno.naturalidade" placeholder="Naturalidade"
                                        >
                                       <div ng-messages="wizardStep1.nat.$error"
                                            role="alert">
@@ -156,7 +156,7 @@
 
                                     <md-input-container flex="150" flex-gt-xs="10">
                                         <label>Telefone</label>
-                                        <input type="text" name="telpai"ng-model="vm.paiContato.telefone" mask="(99) 9?9999-9999" placeholder="Telefone">
+                                        <input type="text" name="telpai" ng-model="vm.paiContato.telefone" mask="(99) 9?9999-9999" placeholder="Telefone">
                                     </md-input-container>
 
 
@@ -177,7 +177,7 @@
 
                                     <md-input-container flex="100" flex-gt-xs="10">
                                         <label>Telefone</label>
-                                        <input type="text" name="telmae"ng-model="vm.maeContato.telefone" mask="(99) 99999-9999" placeholder="Telefone">
+                                        <input type="text" name="telmae" ng-model="vm.maeContato.telefone" mask="(99) 99999-9999" placeholder="Telefone">
                                     </md-input-container>
 
 
@@ -192,7 +192,7 @@
                                   <div layout="column" layout-gt-xs="row" flex ng-repeat="c in vm.contatos track by $index">
                                       <md-input-container flex="150"  flex-gt-xs="50" >
                                           <input type="text" ng-model="c.nome"
-                                                 placeholder="Nome" value={{c.nome}}>
+                                                 placeholder="Nome" value="{{c.nome}}">
                                       </md-input-container>
 
                                       <md-input-container flex="100" flex-gt-xs="10">
@@ -300,8 +300,6 @@
                                       <input type="text" name="bairro" ng-model="vm.endereco.bairro"
                                       placeholder="Bairro"  >
                                     </md-input-container>
-                                </md-input-container>
-
 
                                     <md-input-container flex="100" flex-gt-xs="10" >
                                       <input type="text" name="cep" mask="99999-999" ng-model="vm.endereco.cep"
@@ -320,9 +318,7 @@
                                       <input type="text" name="cidade" ng-model="vm.endereco.cidade"
                                       placeholder="Cidade"  >
                                     </md-input-container>
-                                </md-input-container>
-
-                              </div>
+                                </div>
                           </form>
                       </md-tab-body>
                   </md-tab>
@@ -405,7 +401,7 @@
                             <div layout="column" layout-gt-xs="row">
                       				 <md-input-container flex="100" flex-gt-xs="50" placeholder="Criança reside com:"
                                 >
-                                  <input type="text" name="crianca_reside_com"ng-model="vm.estrutura_familiar.crianca_reside_com" placeholder="Criança reside com:"
+                                  <input type="text" name="crianca_reside_com" ng-model="vm.estrutura_familiar.crianca_reside_com" placeholder="Criança reside com:"
                                   >
                                 </md-input-container>
 
@@ -463,7 +459,7 @@
                               <div layout="column" layout-gt-xs="row" flex ng-repeat="c in vm.automoveis track by $index" ng-if="vm.automovel == true">
                                   <md-input-container flex="150"  flex-gt-xs="50" >
                                       <input type="text" ng-model="c.modelo"
-                                             placeholder="Modelo" value={{c.modelo}}>
+                                             placeholder="Modelo" value="{{c.modelo}}">
                                   </md-input-container>
 
                                   <md-input-container flex="100" flex-gt-xs="10">
@@ -472,7 +468,7 @@
 
                                   <div flex="150" flex-gt-xs="10">
                                     Financiado ?
-                                    <md-checkbox ng-model="c.financiado" aria-label="Possui automóveis" value={{c.financiado}}>
+                                    <md-checkbox ng-model="c.financiado" aria-label="Possui automóveis" value="{{c.financiado}}">
                                     </md-checkbox>
                                   </div>
 
@@ -500,7 +496,7 @@
 
                                   <div flex="150" flex-gt-xs="10">
                                     Financiado ?
-                                    <md-checkbox ng-model="i.financiado" aria-label="Possui imoveis" value={{i.financiado}}>
+                                    <md-checkbox ng-model="i.financiado" aria-label="Possui imoveis" value="{{i.financiado}}">
                                     </md-checkbox>
                                   </div>
 
@@ -620,7 +616,7 @@
                                   </md-input-container>
 
                                 <md-input-container flex="100" flex-gt-xs="15">
-                                  <input type="text" name="numero_comodos"ng-model="vm.situacao_habitacional.numero_comodos" placeholder="Nº de cômodos"
+                                  <input type="text" name="numero_comodos" ng-model="vm.situacao_habitacional.numero_comodos" placeholder="Nº de cômodos"
                                    >
                                 </md-input-container>
                           </div>
@@ -699,7 +695,7 @@
                             </div>
 
                             <br>
-                          </br>
+                            <br>
 
 
                             <div layout="column" layout-gt-xs="row">
@@ -757,7 +753,7 @@
 
                                 <div flex="100" flex-gt-sm="50">
                                   Máquina de lavar
-                                  <md-checkbox ng-model="vm.aparelhos_eletronicos.maquina_de_lavar" aria-label="Máquina de lavar">
+                                  <md-checkbox ng-model="vm.aparelhos_eletronicos.maquina_lavar" aria-label="Máquina de lavar">
                                   </md-checkbox>
                                 </div>
                               </div>
@@ -765,7 +761,7 @@
                             <div layout="column" layout-gt-xs="row">
                               <div flex="100" flex-gt-sm="50">
                                 Máquina de secar
-                                <md-checkbox ng-model="vm.aparelhos_eletronicos.maquina_de_secar" aria-label="Máquina de secar">
+                                <md-checkbox ng-model="vm.aparelhos_eletronicos.maquina_secar" aria-label="Máquina de secar">
                                 </md-checkbox>
                               </div>
 
@@ -803,84 +799,84 @@
 
                             <div layout="column" layout-gt-xs="row">
                             <md-input-container flex="100" flex-gt-xs="20">
-                           <input type="text" name="agua"ng-model="vm.despesa.agua" ui-money-mask placeholder="Água"
+                           <input type="text" name="agua" ng-model="vm.despesa.agua" ui-money-mask placeholder="Água"
                              >
                           </md-input-container>
 
                    <md-input-container flex="100" flex-gt-xs="20">
-                  <input type="text" name="energia_eletrica"ng-model="vm.despesa.energia_eletrica" ui-money-mask placeholder="Energia elétrica"
+                  <input type="text" name="energia_eletrica" ng-model="vm.despesa.energia_eletrica" ui-money-mask placeholder="Energia elétrica"
                     >
                  </md-input-container>
 
            <md-input-container flex="100" flex-gt-xs="20">
-          <input type="text" name="telefone"ng-model="vm.despesa.telefone" ui-money-mask placeholder="Telefone"
+          <input type="text" name="telefone" ng-model="vm.despesa.telefone" ui-money-mask placeholder="Telefone"
             >
          </md-input-container>
 
 
             <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="aluguel"ng-model="vm.despesa.aluguel" ui-money-mask placeholder="Aluguel"
+              <input type="text" name="aluguel" ng-model="vm.despesa.aluguel" ui-money-mask placeholder="Aluguel"
                >
             </md-input-container>
           </div>
 
           <div layout="column" layout-gt-xs="row">
             <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="financiamento_casa"ng-model="vm.despesa.financiamento_casa" ui-money-mask placeholder="Financiamento da casa"
+              <input type="text" name="financiamento_casa" ng-model="vm.despesa.financiamento_casa" ui-money-mask placeholder="Financiamento da casa"
                >
             </md-input-container>
 
             <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="financiamento_carro"ng-model="vm.despesa.financiamento_carro" ui-money-mask placeholder="Financiamento do carro"
+              <input type="text" name="financiamento_carro" ng-model="vm.despesa.financiamento_carro" ui-money-mask placeholder="Financiamento do carro"
                >
             </md-input-container>
 
             <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="transporte"ng-model="vm.despesa.transporte" ui-money-mask placeholder="Transporte"
+              <input type="text" name="transporte" ng-model="vm.despesa.transporte" ui-money-mask placeholder="Transporte"
                >
             </md-input-container>
 
             <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="alimentacao"ng-model="vm.despesa.alimentacao" ui-money-mask placeholder="Alimentação"
-               >
-            </md-input-container>
-          </div>
-
-          <div layout="column" layout-gt-xs="row">
-            <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="gas"ng-model="vm.despesa.gas" ui-money-mask placeholder="Gás"
-               >
-            </md-input-container>
-
-            <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="cartao_credito"ng-model="vm.despesa.cartao_credito" ui-money-mask placeholder="Cartão de crédito"
-               >
-            </md-input-container>
-
-            <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="emprestimo"ng-model="vm.despesa.emprestimo" ui-money-mask placeholder="Empréstimo"
-               >
-            </md-input-container>
-
-            <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="tv_cabo"ng-model="vm.despesa.tv_cabo" ui-money-mask placeholder="TV a cabo"
+              <input type="text" name="alimentacao" ng-model="vm.despesa.alimentacao" ui-money-mask placeholder="Alimentação"
                >
             </md-input-container>
           </div>
 
           <div layout="column" layout-gt-xs="row">
             <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="educacao"ng-model="vm.despesa.educacao" ui-money-mask placeholder="Educação"
+              <input type="text" name="gas" ng-model="vm.despesa.gas" ui-money-mask placeholder="Gás"
                >
             </md-input-container>
 
             <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="pensao"ng-model="vm.despesa.pensao" ui-money-mask placeholder="Pensão"
+              <input type="text" name="cartao_credito" ng-model="vm.despesa.cartao_credito" ui-money-mask placeholder="Cartão de crédito"
                >
             </md-input-container>
 
             <md-input-container flex="100" flex-gt-xs="20">
-              <input type="text" name="convenio_medico"ng-model="vm.despesa.convenio_medico" ui-money-mask placeholder="Convenio médico"
+              <input type="text" name="emprestimo" ng-model="vm.despesa.emprestimo" ui-money-mask placeholder="Empréstimo"
+               >
+            </md-input-container>
+
+            <md-input-container flex="100" flex-gt-xs="20">
+              <input type="text" name="tv_cabo" ng-model="vm.despesa.tv_cabo" ui-money-mask placeholder="TV a cabo"
+               >
+            </md-input-container>
+          </div>
+
+          <div layout="column" layout-gt-xs="row">
+            <md-input-container flex="100" flex-gt-xs="20">
+              <input type="text" name="educacao" ng-model="vm.despesa.educacao" ui-money-mask placeholder="Educação"
+               >
+            </md-input-container>
+
+            <md-input-container flex="100" flex-gt-xs="20">
+              <input type="text" name="pensao" ng-model="vm.despesa.pensao" ui-money-mask placeholder="Pensão"
+               >
+            </md-input-container>
+
+            <md-input-container flex="100" flex-gt-xs="20">
+              <input type="text" name="convenio_medico" ng-model="vm.despesa.convenio_medico" ui-money-mask placeholder="Convenio médico"
                >
             </md-input-container>
           </div>
@@ -908,7 +904,7 @@
 
                             <div layout="column" layout-gt-xs="row">
                               <md-input-container flex="100">
-                                <input type="text" name="observacoes"ng-model="vm.aluno.observacoes" placeholder="Observações">
+                                <input type="text" name="observacoes" ng-model="vm.aluno.observacoes" placeholder="Observações">
                               </md-input-container>
                             </div>
 
