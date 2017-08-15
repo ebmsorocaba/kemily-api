@@ -751,7 +751,7 @@
 
         // Remove o Aluno do BD
         api.aluno.getByRa.delete({
-          'ra': aluno.ra
+          'ra': vm.aluno.ra
         },
         // Sucesso
         function(response) {},
