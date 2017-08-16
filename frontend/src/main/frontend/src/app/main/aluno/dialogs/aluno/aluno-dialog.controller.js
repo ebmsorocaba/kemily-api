@@ -4,7 +4,7 @@
   angular.module('app.aluno').controller('AlunoDialogController', AlunoDialogController);
 
   /** @ngInject */
-  function AlunoDialogController($mdDialog, Aluno, Roupa, Endereco, Saude, Contatos, PaiContato, MaeContato, Parentes, EstruturaFamiliar, SituacaoHabitacional, AparelhosEletronicos, Imoveis, Automoveis, Despesa, Alunos, Turmas, User, msUtils, api) {
+  function AlunoDialogController($state, $mdDialog, Aluno, Roupa, Endereco, Saude, Contatos, PaiContato, MaeContato, Parentes, EstruturaFamiliar, SituacaoHabitacional, AparelhosEletronicos, Imoveis, Automoveis, Despesa, Alunos, Turmas, User, msUtils, api) {
     var vm = this;
 
     // Data
@@ -47,7 +47,7 @@
             'turma': {
               'educador': ''
             },
-            'data_nascimento': '',
+            'data_nascimento': null,
             'rg': '',
             'naturalidade': '',
             'estado': '',
@@ -399,7 +399,7 @@
             'turma': {
               'educador': ''
             },
-            'data_nascimento': '',
+            'data_nascimento': null,
             'rg': '',
             'naturalidade': '',
             'estado': '',
@@ -469,9 +469,16 @@
     }
     else {
       vm.aluno.data_nascimento = new Date(vm.aluno.data_nascimento);
+      vm.parentes.forEach(function(parente) {
+        parente.data_nascimento = new Date(parente.data_nascimento);
+      });
     }
 
     // Methods
+    vm.routeReload = function() {
+      $state.reload();
+    }
+
     vm.isLastContato = function(c) {
       var index = vm.contatos.indexOf(c);
       if (index == (vm.contatos.length - 1)) {
