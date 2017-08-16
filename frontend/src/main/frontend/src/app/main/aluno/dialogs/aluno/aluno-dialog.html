@@ -477,8 +477,9 @@
             <md-tab-body>
               <form name="wizardStep6" ms-form-wizard-form novalidate>
 
-                <div layout="column" layout-gt-xs="row" ng-repeat="p in vm.parentes track by $index">
-                  <md-input-container flex="100" flex-gt-xs="20">
+                <div layout="column" layout-gt-xs="column" ng-repeat="p in vm.parentes track by $index">
+                  <div layout="row" layout-gt-xs="row">
+                  <md-input-container flex="100" flex-gt-xs="40">
                     <input type="text" name="nome_parente" ng-model="p.nome" placeholder="Nome do parente">
                   </md-input-container>
 
@@ -486,26 +487,31 @@
                     <input type="text" name="parentesco" ng-model="p.parentesco" placeholder="Parentesco">
                   </md-input-container>
 
-
-                    <md-input-container flex="100" flex-gt-xs="10">
-                      <input type="text" name="escolaridade" ng-model="p.escolaridade" placeholder="Escolaridade">
-                    </md-input-container>
-
+                  <md-input-container flex="100" flex-gt-xs="15">
+                    <label>Escolaridade</label>
+                    <md-select ng-model="p.escolaridade">
+                      <md-option ng-repeat="escolaridade in vm.escolaridades" value="{{escolaridade}}">
+                        {{escolaridade}}
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
 
                     <md-input-container>
                       <md-datepicker ng-model="p.data_nascimento" md-placeholder="Nascimento" md-open-on-focus></md-datepicker>
                     </md-input-container>
 
+                    </div>
 
-                    <md-input-container flex="100" flex-gt-xs="10">
+                    <div layout="row" layout-gt-xs="row">
+                    <md-input-container flex="100" flex-gt-xs="40">
                       <input type="text" name="ocupacao" ng-model="p.ocupacao" placeholder="Ocupação">
                     </md-input-container>
 
-                    <md-input-container flex="100" flex-gt-xs="5">
+                    <md-input-container flex="100" flex-gt-xs="10">
                       <input type="text" name="salario" ng-model="p.salario" ui-money-mask placeholder="Salário">
                     </md-input-container>
 
-                  <md-input-container flex="100" flex-gt-xs="10">
+                  <md-input-container flex="100" flex-gt-xs="20">
                     <input type="text" name="local_trabalho" ng-model="p.local_trabalho" placeholder="Local de trabalho">
                   </md-input-container>
 
@@ -516,6 +522,8 @@
                   <md-button class="md-raised md-warn adicionarButton" ng-click="vm.removeParente(p)">
                     Remover
                   </md-button>
+
+                  </div>
                 </div>
               </form>
             </md-tab-body>
