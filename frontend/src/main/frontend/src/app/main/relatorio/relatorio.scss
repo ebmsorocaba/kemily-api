@@ -184,6 +184,24 @@
                 }
             }
 
+            th {
+                &.dataPagamento {
+                    text-align: center;
+                }
+            }
+
+            td {
+
+                &.valorPago {
+                    text-align: right;
+                }
+
+                &.valorTotal {
+                    text-align: right;
+                }
+
+            }
+
             .no-results {
                 box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
             }
@@ -312,6 +330,7 @@
                             &.description {
                                 min-width: 200px;
                             }
+
                         }
                     }
                 }

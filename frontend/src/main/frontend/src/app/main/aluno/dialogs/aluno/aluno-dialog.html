@@ -52,7 +52,7 @@
                   <md-input-container flex="100" flex-gt-xs="20">
                     <label>Turma</label>
                     <md-select ng-model="vm.aluno.turma.educador" required>
-                      <md-option ng-repeat="turma in vm.turmas" value="{{turma.educador}}" >
+                      <md-option ng-repeat="turma in vm.turmas" value="{{turma.educador}}">
                         {{turma.educador}}
                       </md-option>
                     </md-select>
@@ -79,7 +79,7 @@
                   <md-input-container flex="100" flex-gt-xs="15">
                     <label>Estado</label>
                     <md-select ng-model="vm.aluno.estado" required>
-                      <md-option ng-repeat="estado in vm.estados" value="{{estado}}" >
+                      <md-option ng-repeat="estado in vm.estados" value="{{estado}}">
                         {{estado}}
                       </md-option>
                     </md-select>
@@ -103,7 +103,7 @@
                   <md-input-container flex="100" flex-gt-xs="20">
                     <label>Tamanho da camiseta</label>
                     <md-select ng-model="vm.roupa.tamanho_camiseta" required>
-                      <md-option ng-repeat="camiseta in vm.camisetas" value="{{camiseta}}" >
+                      <md-option ng-repeat="camiseta in vm.camisetas" value="{{camiseta}}">
                         {{camiseta}}
                       </md-option>
                     </md-select>
@@ -112,7 +112,7 @@
                   <md-input-container flex="100" flex-gt-xs="20">
                     <label>Tamanho da calça</label>
                     <md-select ng-model="vm.roupa.tamanho_calca" required>
-                      <md-option ng-repeat="calca in vm.calcas" value="{{calca}}" >
+                      <md-option ng-repeat="calca in vm.calcas" value="{{calca}}">
                         {{calca}}
                       </md-option>
                     </md-select>
@@ -150,7 +150,7 @@
 
                   <md-input-container flex="150" flex-gt-xs="10">
                     Presente?
-                    <md-checkbox ng-model="vm.paiContato.presente" aria-label="Presente" >
+                    <md-checkbox ng-model="vm.paiContato.presente" aria-label="Presente">
                     </md-checkbox>
                   </md-input-container>
 
@@ -170,7 +170,7 @@
 
                   <md-input-container flex="150" flex-gt-xs="10">
                     Presente?
-                    <md-checkbox ng-model="vm.maeContato.presente" aria-label="Presente" >
+                    <md-checkbox ng-model="vm.maeContato.presente" aria-label="Presente">
                     </md-checkbox>
                   </md-input-container>
                 </div>
@@ -475,45 +475,53 @@
             <md-tab-body>
               <form name="wizardStep6" ms-form-wizard-form>
 
-                <div layout="column" layout-gt-xs="row" ng-repeat="p in vm.parentes track by $index">
-                  <md-input-container flex="100" flex-gt-xs="20">
-                    <input type="text" name="nome_parente" ng-model="p.nome" placeholder="Nome do parente">
-                  </md-input-container>
-
-                  <md-input-container flex="100" flex-gt-xs="10">
-                    <input type="text" name="parentesco" ng-model="p.parentesco" placeholder="Parentesco">
-                  </md-input-container>
-
-
-                    <md-input-container flex="100" flex-gt-xs="10">
-                      <input type="text" name="escolaridade" ng-model="p.escolaridade" placeholder="Escolaridade">
+                <div layout="column" layout-gt-xs="column" ng-repeat="p in vm.parentes track by $index">
+                  <div layout="row" layout-gt-xs="row">
+                    <md-input-container flex="100" flex-gt-xs="40">
+                      <input type="text" name="nome_parente" ng-model="p.nome" placeholder="Nome do parente">
                     </md-input-container>
 
+                    <md-input-container flex="100" flex-gt-xs="10">
+                      <input type="text" name="parentesco" ng-model="p.parentesco" placeholder="Parentesco">
+                    </md-input-container>
+
+                    <md-input-container flex="100" flex-gt-xs="15">
+                      <label>Escolaridade</label>
+                      <md-select ng-model="p.escolaridade">
+                        <md-option ng-repeat="escolaridade in vm.escolaridades" value="{{escolaridade}}">
+                          {{escolaridade}}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
 
                     <md-input-container flex="100" flex-gt-xs="10" validate="false" mask-validate="false" required="false" ng-required="false" novalidate>
                       <md-datepicker ng-model="p.data_nascimento" md-placeholder="Nascimento" md-open-on-focus validate="false" mask-validate="false" required="false" ng-required="false" novalidate aria-invalid="false"></md-datepicker>
                     </md-input-container>
 
+                  </div>
 
-                    <md-input-container flex="100" flex-gt-xs="10">
+                  <div layout="row" layout-gt-xs="row">
+                    <md-input-container flex="100" flex-gt-xs="40">
                       <input type="text" name="ocupacao" ng-model="p.ocupacao" placeholder="Ocupação">
                     </md-input-container>
 
-                    <md-input-container flex="100" flex-gt-xs="5">
+                    <md-input-container flex="100" flex-gt-xs="10">
                       <input type="text" name="salario" ng-model="p.salario" ui-money-mask placeholder="Salário">
                     </md-input-container>
 
-                  <md-input-container flex="100" flex-gt-xs="10">
-                    <input type="text" name="local_trabalho" ng-model="p.local_trabalho" placeholder="Local de trabalho">
-                  </md-input-container>
+                    <md-input-container flex="100" flex-gt-xs="20">
+                      <input type="text" name="local_trabalho" ng-model="p.local_trabalho" placeholder="Local de trabalho">
+                    </md-input-container>
 
-                  <md-button class="md-raised md-accent adicionarButton" ng-click="vm.addParente(p)" ng-if="vm.isLastParente(p)">
-                    Adicionar
-                  </md-button>
+                    <md-button class="md-raised md-accent adicionarButton" ng-click="vm.addParente(p)" ng-if="vm.isLastParente(p)">
+                      Adicionar
+                    </md-button>
 
-                  <md-button class="md-raised md-warn adicionarButton" ng-click="vm.removeParente(p)">
-                    Remover
-                  </md-button>
+                    <md-button class="md-raised md-warn adicionarButton" ng-click="vm.removeParente(p)">
+                      Remover
+                    </md-button>
+
+                  </div>
                 </div>
               </form>
             </md-tab-body>
