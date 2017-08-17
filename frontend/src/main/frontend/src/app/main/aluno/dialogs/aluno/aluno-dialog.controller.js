@@ -548,7 +548,7 @@
             },
             'grau_parentesco': '',
             'presente': '',
-            cargo: ''
+            'cargo': ''
           }
         ];
       }
@@ -858,7 +858,7 @@
         });
 
         vm.automoveis.forEach(function(automovel) {
-          if (automovel.id !== undefined) {
+          if (automovel.id !== '') {
             api.automovel.getById.update({
               'id': automovel.id
             }, automovel, function(response) {}, function(response) {

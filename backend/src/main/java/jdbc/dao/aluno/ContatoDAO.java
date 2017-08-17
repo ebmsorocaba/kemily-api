@@ -122,7 +122,7 @@ public class ContatoDAO {
 	public void excluir(int id) throws SQLException {
 		
 		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM contato WHERE c.id = ?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM contato WHERE contato.id = ?");
 			stmt.setInt(1, id);
 
 
