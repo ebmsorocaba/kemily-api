@@ -64,6 +64,7 @@
     vm.aparelhos_eletronicos = AparelhosEletronicos;
     if (Automoveis != '') {
       vm.automoveis = angular.copy(Automoveis);
+      vm.automovel = true
     } else {
       vm.automoveis = [
         {
@@ -78,6 +79,7 @@
     }
     if (Imoveis != '') {
       vm.imoveis = angular.copy(Imoveis);
+      vm.imovel = true
     } else {
       vm.imoveis = [
         {
