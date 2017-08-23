@@ -143,7 +143,7 @@
                     <input type="text" name="nomepai" ng-model="vm.paiContato.nome" placeholder="Nome do Pai" required>
                   </md-input-container>
 
-                  <md-input-container flex="150" flex-gt-xs="10">
+                  <md-input-container flex="150" flex-gt-xs="15">
                     <input type="text" name="telpai" ng-model="vm.paiContato.telefone" mask="(99) 9?9999-9999" placeholder="Telefone" required>
                   </md-input-container>
 
@@ -162,7 +162,7 @@
                     <input type="text" name="nomemae" ng-model="vm.maeContato.nome" placeholder="Nome da Mãe" required>
                   </md-input-container>
 
-                  <md-input-container flex="100" flex-gt-xs="10">
+                  <md-input-container flex="100" flex-gt-xs="15">
                     <input type="text" name="telmae" ng-model="vm.maeContato.telefone" mask="(99) 9?9999-9999" placeholder="Telefone" required>
                   </md-input-container>
 
@@ -180,7 +180,7 @@
                     <input type="text" ng-model="c.nome" placeholder="Nome" value="{{c.nome}}">
                   </md-input-container>
 
-                  <md-input-container flex="100" flex-gt-xs="10">
+                  <md-input-container flex="100" flex-gt-xs="15">
                     <input type="text" ng-model="c.telefone" mask="(99) 9?9999-9999" placeholder="Telefone">
                   </md-input-container>
 
@@ -846,7 +846,7 @@
             Proximo
           </md-button>
           <md-button class="md-raised md-warn" ng-click="vm.sendForm(); msWizard.resetForm(); vm.routeReload();" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
-            Enviar
+            Salvar
           </md-button>
         </div>
 
