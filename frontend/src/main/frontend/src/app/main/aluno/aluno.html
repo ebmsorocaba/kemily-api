@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<link href="aluno.scss" rel="stylesheet" />
 <div id="alunos" class="page-layout simple inner-sidenav">
 
   <!-- HEADER -->
@@ -191,18 +192,16 @@
           </md-checkbox>
           <div class="item" layout="row">
             <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
-
-            <p class="text-truncate font-weight-600 texto nomeAluno">
-              {{aluno.nome}}
-            </p>
-            <p class="hide show-gt-xs numero raAluno">
+            <p class="numero raAluno">
               {{aluno.ra}}
             </p>
-            <p class="texto"></p>
-            <p class="hide show-gt-sm texto turmaAluno">
+            <p class="texto nomeAluno">
+              {{aluno.nome}}
+            </p>
+            <p class="texto turmaAluno">
               {{aluno.turma.educador}}
             </p>
-            <p class="hide show-gt-sm data dataNascAluno">
+            <p class="data dataNascAluno">
               {{aluno.data_nascimento | date : "dd/MM/yyyy"}}
             </p>
 
