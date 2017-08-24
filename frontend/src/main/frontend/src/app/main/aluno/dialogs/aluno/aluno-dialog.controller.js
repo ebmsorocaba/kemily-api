@@ -64,6 +64,7 @@
     vm.aparelhos_eletronicos = AparelhosEletronicos;
     if (Automoveis != '') {
       vm.automoveis = angular.copy(Automoveis);
+      vm.automovel = true
     } else {
       vm.automoveis = [
         {
@@ -78,6 +79,7 @@
     }
     if (Imoveis != '') {
       vm.imoveis = angular.copy(Imoveis);
+      vm.imovel = true
     } else {
       vm.imoveis = [
         {
@@ -150,6 +152,7 @@
       '12',
       '14',
       '16',
+      'PP',
       'P',
       'M',
       'G',
@@ -165,6 +168,14 @@
       '12',
       '14',
       '16',
+      '38',
+      '40',
+      '42',
+      '44',
+      '46',
+      '48',
+      '50',
+      'PP',
       'P',
       'M',
       'G',

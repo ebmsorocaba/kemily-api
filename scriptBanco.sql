@@ -406,11 +406,11 @@ INSERT INTO aluno(nome, turma_educador, data_nascimento, rg, naturalidade, estad
   VALUES('Douglas', 'Manuela', '14/07/2010', '758471233', 'Brasileira', 'SP', '10/07/2017', 'A pe', '');
 
 INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complemento, ra_aluno)
-  VALUES('1234-234', '312', 'Domingues', 'Centro', 'Sorocaba', '', '', 1);
+  VALUES('12345234', '312', 'Domingues', 'Centro', 'Sorocaba', '', '', 1);
 INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complemento, ra_aluno)
-  VALUES('1234-234', '316', 'Figueredo', 'Centro', 'Sorocaba', '', '', 2);
+  VALUES('12345234', '316', 'Figueredo', 'Centro', 'Sorocaba', '', '', 2);
 INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complemento, ra_aluno)
-  VALUES('1234-234', '311', 'Assis', 'Centro', 'Sorocaba', '', '', 3);
+  VALUES('12345234', '311', 'Assis', 'Centro', 'Sorocaba', '', '', 3);
 
 INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
   VALUES(TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE);
@@ -420,11 +420,23 @@ INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook
   VALUES(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE);
 
 INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Patricia', '1236-1415', 'responsavel', 1);
+  VALUES('Patricia', '12361415908', 'Responsavel', 1);
 INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Victoria', '5494-4391', 'responsavel', 2);
+  VALUES('Patrick', '12361415908', 'Responsavel', 1);
 INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Marcio', '1237-0984', 'profissional', 3);
+  VALUES('Victoria', '54944391908', 'Responsavel', 2);
+INSERT INTO contato(nome, telefone, tipo, ra_aluno)
+  VALUES('Marcio', '12370984763', 'Responsavel', 2);
+INSERT INTO contato(nome, telefone, tipo, ra_aluno)
+  VALUES('Maria', '54944391908', 'Responsavel', 3);
+INSERT INTO contato(nome, telefone, tipo, ra_aluno)
+  VALUES('Mario', '54944391908', 'Responsavel', 3);
+INSERT INTO contato(nome, telefone, tipo, ra_aluno)
+  VALUES('Michelle', '28491237348', 'Responsavel', 1);
+INSERT INTO contato(nome, telefone, tipo, ra_aluno)
+  VALUES('Michelle', '28491237348', 'Responsavel', 2);
+INSERT INTO contato(nome, telefone, tipo, ra_aluno)
+  VALUES('Michelle', '28491237348', 'Responsavel', 3);
 
 INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca)
   VALUES(1, 'G', 'G');
@@ -434,33 +446,45 @@ INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca)
   VALUES(3, 'M', 'G');
 
 INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
-  VALUES(1, 'Vó', TRUE);
+  VALUES(1, 'Mae', TRUE);
 INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
-  VALUES(2, 'Tia', TRUE);
+  VALUES(2, 'Pai', TRUE);
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
+  VALUES(3, 'Mae', TRUE);
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
+  VALUES(4, 'Pai', TRUE);
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
+  VALUES(5, 'Mae', TRUE);
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
+  VALUES(6, 'Pai', TRUE);
 
 INSERT INTO contato_profissional(id_contato, cargo)
-  VALUES(3, 'Psiquiatra');
+  VALUES(7, 'Psiquiatra');
+INSERT INTO contato_profissional(id_contato, cargo)
+  VALUES(8, 'Psiquiatra');
+INSERT INTO contato_profissional(id_contato, cargo)
+  VALUES(9, 'Psiquiatra');
 
 INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
-  VALUES(1, 'Casa alugada', TRUE, FALSE, TRUE, 3, TRUE, FALSE, TRUE, 1);
+  VALUES(1, 'Casa Alugada', TRUE, FALSE, TRUE, 3, TRUE, FALSE, TRUE, 1);
 INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
-  VALUES(2, 'Casa propria', TRUE, TRUE, FALSE, 4, TRUE, FALSE, FALSE, 2);
+  VALUES(2, 'Casa Própria', TRUE, TRUE, FALSE, 4, TRUE, FALSE, FALSE, 2);
 INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
-  VALUES(3, 'Apartamento proprio', TRUE, TRUE, FALSE, 1, FALSE, TRUE, TRUE, 3);
+  VALUES(3, 'Casa Própria', TRUE, TRUE, FALSE, 1, FALSE, TRUE, TRUE, 3);
 
 INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno)
-  VALUES('Marcia', 'Tia', 'Superior completo', '16/09/1982', 'Advogada', 2500.00, 'Advocacia', 1);
+  VALUES('Marcia', 'Tia', 'Superior - Completo', '16/09/1982', 'Advogada', 2500.00, 'Advocacia', 1);
 INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno)
-  VALUES('Paulo', 'Primo', 'Ensino Medio Completo', '20/02/1992', 'Estagiario', 900.00, 'MotoresCia', 2);
+  VALUES('Paulo', 'Primo', 'Medio - Completo', '20/02/1992', 'Estagiario', 900.00, 'MotoresCia', 2);
 INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno)
-  VALUES('Ricardo', 'Tio', 'Ensino Medio Completo', '15/01/1987', 'Motorista', 1800.00, 'Transportadora', 3);
+  VALUES('Ricardo', 'Tio', 'Medio - Completo', '15/01/1987', 'Motorista', 1800.00, 'Transportadora', 3);
 
 INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
-  VALUES('Divorciado', 'Pai', TRUE, TRUE, TRUE, TRUE, 1);
+  VALUES('Divorciados', 'Pai', TRUE, TRUE, TRUE, TRUE, 1);
 INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
-  VALUES('Casado', 'Pais', TRUE, FALSE, TRUE, FALSE, 2);
+  VALUES('Casados', 'Pais', TRUE, FALSE, TRUE, FALSE, 2);
 INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
-  VALUES('Solteiro', 'Mãe', FALSE, TRUE, TRUE, FALSE, 3);
+  VALUES('Solteiros', 'Mãe', FALSE, TRUE, TRUE, FALSE, 3);
 
 INSERT INTO despesa(id_estrutura_familiar, agua, energia_eletrica, telefone, aluguel, financiamento_casa, financiamento_carro, transporte, alimentacao, gas, cartao_credito, emprestimo, tv_cabo, educacao, pensao, convenio_medico)
   VALUES(1 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

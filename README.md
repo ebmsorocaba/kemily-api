@@ -23,9 +23,11 @@
 1. Configure o arquivo de conexão com os dados do seu servidor PostgreSQL  
 `backend/src/main/java/jdbc/ConnectionFactory.java`
 
-2. Edite a linha 38, seguindo o formato (substitua de acordo):  
+2. Edite as linhas 31, 32 e 33. Seguindo o formato (substitua de acordo):  
 ```javascript
-[...]getConnection("jdbc:postgresql://endereco_servidor:porta_psql/base_dados", "usuario", "senha");
+pool.setUrl("jdbc:postgresql://endereco_servidor:porta_psql/base_dados");
+pool.setUser("nome_de_usuario_no_banco_de_dados");
+pool.setPassword("senha_do_usuario_no_banco_de_dados");
 ```
 
 3. Execute o script SQL no banco de dados em seu servidor. O arquivo está na raiz do projeto, chamado:  
