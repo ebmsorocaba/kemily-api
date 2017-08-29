@@ -1,8 +1,13 @@
 md-dialog {
 
-    &.pagamento-dialog {
-        max-width: 400px;
-        width: 400px;
+    .adicionarButton{
+     height: 40px;
+     width: 12px;
+    }
+    &.aluno-dialog {
+        max-width: 1400px;
+        width: 1400px;
+        height: 1000px;
 
         md-toolbar {
             height: 240px;
@@ -18,11 +23,11 @@ md-dialog {
                 min-height: 144px;
                 max-height: 144px;
 
-                .pagamento-avatar {
+                .aluno-avatar {
                     margin: 0;
                 }
 
-                .pagamento-name {
+                .aluno-name {
                     font-size: 24px;
                     margin: 8px 0;
                 }
@@ -57,6 +62,7 @@ md-dialog {
                     }
                 }
 
+
                 .md-datepicker-input-container {
                     display: flex;
                     flex: 1;
@@ -84,11 +90,65 @@ md-dialog {
             background-color: rgba(0, 0, 0, 0.03);
             border-top: 1px solid rgba(0, 0, 0, 0.12);
         }
+    }
+}
 
-        md-select {
-            &.formaPagamento {
-                width: 180px;
+
+#aluno {
+    height: 100%;
+    background: url('/assets/images/backgrounds/march.jpg') no-repeat;
+    background-size: cover;
+
+    #aluno-form-wrapper {
+        flex: 1 0 auto;
+        padding: 32px;
+
+        #aluno-form {
+            max-width: 384px;
+            padding: 32px;
+            background: #FFFFFF;
+            text-align: center;
+
+            .logo {
+                width: 128px;
+                height: 128px;
+                line-height: 128px;
+                font-size: 86px;
+                font-weight: 500;
+                margin: 32px auto;
+                color: rgba(255, 255, 255, 1);
+                border-radius: 2px;
+            }
+
+            .title {
+                font-size: 17px;
+                margin-top: 16px;
+            }
+
+            .subtitle {
+                margin: 16px 0;
+                max-width: 300px;
+                color: rgba(0, 0, 0, 0.54);
+                font-size: 15px;
             }
         }
     }
+}
+
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-xs) {
+
+    #aluno {
+
+        #aluno-form-wrapper {
+            padding: 16px;
+
+            #aluno-form {
+                padding: 24px;
+                width: 100%;
+            }
+        }
+    }
+
+
 }

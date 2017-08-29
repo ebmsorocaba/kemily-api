@@ -72,7 +72,7 @@
               <thead>
                 <tr ng-repeat="pagamento in vm.pagamentos | limitTo:1">
                   <th ng-if="$index == 0">Cliente</th>
-                  <th ng-repeat="pag in pagamento.pagamentos | limitTo:$index.length"> {{pag.dataPgto | date : "_/MM/yyyy"}} </th>
+                  <th class="dataPagamento" ng-repeat="pag in pagamento.pagamentos | limitTo:$index.length"> {{pag.dataPgto | date : "_/MM/yyyy"}} </th>
                   <th>Total</th>
                 </tr><!--
                 <tr ng-repeat="pagamento in vm.pagamentos">
@@ -86,8 +86,8 @@
 
                 <tr ng-repeat="pagamento in vm.pagamentos">
                   <td>{{pagamento.nome}}</td>
-                  <td ng-repeat="pag in pagamento.pagamentos"> {{pag.valorPago | currency : "R$ "}} </td>
-                  <td>{{pagamento.total | currency : "R$ "}}</td>
+                  <td class="valorPago" ng-repeat="pag in pagamento.pagamentos"> {{pag.valorPago | currency : "R$ "}} </td>
+                  <td class="valorTotal">{{pagamento.total | currency : "R$ "}}</td>
 
                 </tr>
 

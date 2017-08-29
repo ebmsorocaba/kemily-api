@@ -222,19 +222,74 @@
           list     : $resource(api.baseUrl + 'relatPag?dataInicio=:dataInicio&dataFim=:dataFim', {dataInicio: '@dataInicio'}, {dataFim: '@dataFim'})
         }
 
-        // Exemplo do FUSE
-        // api.blog = {
-        // *                   list     : $resource('http://api.example.com/blog'),
-        // *                   getById  : $resource('http://api.example.com/blog/:id', {id: '@id'}),
-        // *                   getByDate: $resource('http://api.example.com/blog/:date', {id: '@date'}, {
-        // *                       get: {
-        // *                            method: 'GET',
-        // *                            params: {
-        // *                                getByDate: true
-        // *                            }
-        // *                       }
-        // *                   })
-        // *       }
+        api.aluno = {
+          list  : $resource(api.baseUrl + 'aluno'),
+          getByRa : $resource(api.baseUrl + 'aluno/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
+        }
+
+        api.aparelhosEletronicos = {
+          list  : $resource(api.baseUrl + 'aparelhosEletronicos'),
+          getById : $resource(api.baseUrl + 'aparelhosEletronicos/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
+        api.automovel = {
+          list  : $resource(api.baseUrl + 'automovel'),
+          getById : $resource(api.baseUrl + 'automovel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
+        api.despesa = {
+          list  : $resource(api.baseUrl + 'despesa'),
+          getById : $resource(api.baseUrl + 'despesa/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
+        api.endereco = {
+          list  : $resource(api.baseUrl + 'endereco'),
+          getByCepNumero : $resource(api.baseUrl + 'endereco/:cep?numero=:numero', {cep: '@cep', numero: '@numero'}, {'update': {method: 'PUT'}})
+        }
+
+        api.estruturaFamiliar = {
+          list  : $resource(api.baseUrl + 'estrutura_familiar'),
+          getById : $resource(api.baseUrl + 'estrutura_familiar/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
+        api.imovel = {
+          list  : $resource(api.baseUrl + 'imovel'),
+          getById : $resource(api.baseUrl + 'imovel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
+        api.parente = {
+          list  : $resource(api.baseUrl + 'parente'),
+          getById : $resource(api.baseUrl + 'parente/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
+        api.roupa = {
+          list  : $resource(api.baseUrl + 'roupa'),
+          getById : $resource(api.baseUrl + 'roupa/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
+        api.saude = {
+          list  : $resource(api.baseUrl + 'saude'),
+          getById : $resource(api.baseUrl + 'saude/:ra_aluno' + '/', {ra_aluno: '@ra_aluno'}, {'update': {method: 'PUT'}})
+        }
+
+        api.situacaoHabitacional = {
+          list  : $resource(api.baseUrl + 'situacao_habitacional'),
+          getById : $resource(api.baseUrl + 'situacao_habitacional/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
+        }
+
+        api.turma = {
+          list  : $resource(api.baseUrl + 'turma'),
+          getByEducador : $resource(api.baseUrl + 'turma/:educador' + '/', {educador: '@educador'}, {'update': {method: 'PUT'}})
+        }
+
+        api.contato = {
+          list  : $resource(api.baseUrl + 'contato'),
+          profissional  : $resource(api.baseUrl + 'contato/profissional'),
+          responsavel : $resource(api.baseUrl + 'contato/responsavel'),
+          getById : $resource(api.baseUrl + 'contato/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}}),
+          getProfissionalById : $resource(api.baseUrl + 'contato/profissional/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}}),
+          getResponsavelById  : $resource(api.baseUrl + 'contato/responsavel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
 
         return api;
     }
