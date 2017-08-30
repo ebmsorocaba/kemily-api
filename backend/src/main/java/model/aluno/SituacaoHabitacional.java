@@ -1,44 +1,43 @@
 package model.aluno;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import model.Aluno;
 
-public class Situacao_Habitacional {
+public class SituacaoHabitacional {
 
     private Aluno aluno;
     private String situacao;
     private boolean esgoto;
-    private boolean rede_eletrica;
+    private boolean redeEletrica;
     private boolean asfalto;
-    private int numero_comodos;
+    private int numeroComodos;
     private boolean alvenaria;
     private boolean madeira;
-    private boolean area_irregular;
-    private Aparelhos_Eletronicos aparelhos_eletronicos;
+    private boolean areaIrregular;
+    private AparelhosEletronicos aparelhosEletronicos;
 
-    public Situacao_Habitacional() {};
+    public SituacaoHabitacional() {};
 
-    public Situacao_Habitacional(
+    public SituacaoHabitacional(
             @JsonProperty("aluno")Aluno aluno,
             @JsonProperty("situacao")String situacao,
             @JsonProperty("esgoto")Boolean esgoto,
-            @JsonProperty("rede_eletrica")Boolean rede_eletrica,
+            @JsonProperty("redeEletrica")Boolean redeEletrica,
             @JsonProperty("asfalto")Boolean asfalto,
-            @JsonProperty("numero_comodos")int numero_comodos,
+            @JsonProperty("numeroComodos")int numeroComodos,
             @JsonProperty("alvenaria")Boolean alvenaria,
             @JsonProperty("madeira")Boolean madeira,
-            @JsonProperty("area_irregular")Boolean area_irregular,
-            @JsonProperty("aparelhos_eletronicos")Aparelhos_Eletronicos aparelhos_eletronicos){
+            @JsonProperty("areaIrregular")Boolean areaIrregular,
+            @JsonProperty("aparelhosEletronicos")AparelhosEletronicos aparelhosEletronicos){
         this.aluno = aluno;
         this.situacao = situacao;
         this.esgoto = esgoto;
-        this.rede_eletrica = rede_eletrica;
+        this.redeEletrica = redeEletrica;
         this.asfalto = asfalto;
-        this.numero_comodos = numero_comodos;
+        this.numeroComodos = numeroComodos;
         this.alvenaria = alvenaria;
         this.madeira = madeira;
-        this.area_irregular = area_irregular;
-        this.aparelhos_eletronicos = aparelhos_eletronicos;
+        this.areaIrregular = areaIrregular;
+        this.aparelhosEletronicos = aparelhosEletronicos;
     }
 
     public Aluno getAluno() {
@@ -62,11 +61,11 @@ public class Situacao_Habitacional {
         this.esgoto = esgoto;
     }
 
-    public Boolean getRede_eletrica() {
-        return rede_eletrica;
+    public Boolean getRedeEletrica() {
+        return redeEletrica;
     }
-    public void setRede_eletrica(Boolean rede_eletrica) {
-        this.rede_eletrica = rede_eletrica;
+    public void setRedeEletrica(Boolean redeEletrica) {
+        this.redeEletrica = redeEletrica;
     }
 
     public Boolean getAsfalto() {
@@ -76,11 +75,11 @@ public class Situacao_Habitacional {
         this.asfalto = asfalto;
     }
 
-    public int getNumero_comodos() {
-        return numero_comodos;
+    public int getNumeroComodos() {
+        return numeroComodos;
     }
-    public void setNumero_comodos(int numero_comodos) {
-        this.numero_comodos = numero_comodos;
+    public void setNumeroComodos(int numeroComodos) {
+        this.numeroComodos = numeroComodos;
     }
 
     public Boolean getAlvenaria() {
@@ -97,17 +96,17 @@ public class Situacao_Habitacional {
         this.madeira = madeira;
     }
 
-    public Boolean getArea_irregular() {
-        return area_irregular;
+    public Boolean getAreaIrregular() {
+        return areaIrregular;
     }
-    public void setArea_irregular(Boolean area_irregular) {
-        this.area_irregular = area_irregular;
+    public void setAreaIrregular(Boolean areaIrregular) {
+        this.areaIrregular = areaIrregular;
     }
 
-    public Aparelhos_Eletronicos getAparelhos_eletronicos() {
-        return aparelhos_eletronicos;
+    public AparelhosEletronicos getAparelhosEletronicos() {
+        return aparelhosEletronicos;
     }
-    public void setAparelhos_eletronicos(Aparelhos_Eletronicos aparelhos_eletronicos) {
-        this.aparelhos_eletronicos = aparelhos_eletronicos;
+    public void setAparelhosEletronicos(AparelhosEletronicos aparelhosEletronicos) {
+        this.aparelhosEletronicos = aparelhosEletronicos;
     }
 }

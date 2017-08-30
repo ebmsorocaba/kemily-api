@@ -25,10 +25,10 @@ public class ParenteDAO {
         stmt.setString(1,parente.getNome());
         stmt.setString(2,parente.getParentesco());
         stmt.setString(3,parente.getEscolaridade());
-        stmt.setDate(4,parente.getData_nascimento());
+        stmt.setDate(4,parente.getDataNascimento());
         stmt.setString(5,parente.getOcupacao());
         stmt.setDouble(6,parente.getSalario());
-        stmt.setString(7, parente.getLocal_trabalho());
+        stmt.setString(7, parente.getLocalTrabalho());
         stmt.setInt(8, parente.getAluno().getRa());
 
         // executa
@@ -50,10 +50,10 @@ public class ParenteDAO {
             parente.setNome(rs.getString("nome"));
             parente.setParentesco(rs.getString("parentesco"));
             parente.setEscolaridade(rs.getString("escolaridade"));
-            parente.setData_nascimento(rs.getDate("data_nascimento"));
+            parente.setDataNascimento(rs.getDate("data_nascimento"));
             parente.setOcupacao(rs.getString("ocupacao"));
             parente.setSalario(rs.getDouble("salario"));
-            parente.setLocal_trabalho(rs.getString("local_de_trabalho"));
+            parente.setLocalTrabalho(rs.getString("local_de_trabalho"));
             parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
 
 
@@ -83,10 +83,10 @@ public class ParenteDAO {
                 parente.setNome(rs.getString("nome"));
                 parente.setParentesco(rs.getString("parentesco"));
                 parente.setEscolaridade(rs.getString("escolaridade"));
-                parente.setData_nascimento(rs.getDate("data_nascimento"));
+                parente.setDataNascimento(rs.getDate("data_nascimento"));
                 parente.setOcupacao(rs.getString("ocupacao"));
                 parente.setSalario(rs.getDouble("salario"));
-                parente.setLocal_trabalho(rs.getString("local_de_trabalho"));
+                parente.setLocalTrabalho(rs.getString("local_de_trabalho"));
                 parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
             }
             stmt.close();
@@ -139,10 +139,10 @@ public class ParenteDAO {
         stmt.setString(1,parente.getNome());
         stmt.setString(2,parente.getParentesco());
         stmt.setString(3,parente.getEscolaridade());
-        stmt.setDate(4,parente.getData_nascimento());
+        stmt.setDate(4,parente.getDataNascimento());
         stmt.setString(5,parente.getOcupacao());
         stmt.setDouble(6,parente.getSalario());
-        stmt.setString(7, parente.getLocal_trabalho());
+        stmt.setString(7, parente.getLocalTrabalho());
         stmt.setInt(8, parente.getAluno().getRa());
         stmt.setInt(9, id);
 
@@ -165,10 +165,10 @@ public class ParenteDAO {
                 parente.setNome(rs.getString("nome"));
                 parente.setParentesco(rs.getString("parentesco"));
                 parente.setEscolaridade(rs.getString("escolaridade"));
-                parente.setData_nascimento(rs.getDate("data_nascimento"));
+                parente.setDataNascimento(rs.getDate("data_nascimento"));
                 parente.setOcupacao(rs.getString("ocupacao"));
                 parente.setSalario(rs.getDouble("salario"));
-                parente.setLocal_trabalho(rs.getString("local_de_trabalho"));
+                parente.setLocalTrabalho(rs.getString("local_de_trabalho"));
                 parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
             }
             stmt.close();

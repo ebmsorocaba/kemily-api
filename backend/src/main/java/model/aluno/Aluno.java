@@ -1,8 +1,6 @@
-package model;
+package model.aluno;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import model.aluno.Turma;
 
 import java.sql.Date;
 
@@ -10,12 +8,12 @@ public class Aluno {
     private int ra;
     private String nome;
     private Turma turma;
-    private Date data_nascimento;
+    private Date dataNascimento;
     private String rg;
     private String naturalidade;
     private String estado;
-    private Date data_cadastro;
-    private String meio_transporte;
+    private Date dataCadastro;
+    private String meioTransporte;
     private String observacoes;
 
 
@@ -25,23 +23,23 @@ public class Aluno {
             @JsonProperty("ra") int ra,
             @JsonProperty("nome") String nome,
             @JsonProperty("turma") Turma turma,
-            @JsonProperty("data_nascimento") Date data_nascimento,
+            @JsonProperty("dataNascimento") Date dataNascimento,
             @JsonProperty("rg") String rg,
             @JsonProperty("naturalidade") String naturalidade,
             @JsonProperty("estado") String estado,
-            @JsonProperty("data_cadastro") Date data_cadastro,
-            @JsonProperty("meio_transporte") String meio_transporte,
+            @JsonProperty("dataCadastro") Date dataCadastro,
+            @JsonProperty("meioTransporte") String meioTransporte,
             @JsonProperty("observacoes") String observacoes) {
 
         this.ra = ra;
         this.nome = nome;
         this.turma = turma;
-        this.data_nascimento = data_nascimento;
+        this.dataNascimento = dataNascimento;
         this.rg = rg;
         this.naturalidade = naturalidade;
         this.estado = estado;
-        this.data_cadastro = data_cadastro;
-        this.meio_transporte = meio_transporte;
+        this.dataCadastro = dataCadastro;
+        this.meioTransporte = meioTransporte;
         this.observacoes = observacoes;
     }
 
@@ -69,12 +67,12 @@ public class Aluno {
         this.turma = turma;
     }
 
-    public Date getData_nascimento() {
-        return data_nascimento;
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setData_nascimento(Date data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public String getRg() {
@@ -101,20 +99,20 @@ public class Aluno {
         this.estado = estado;
     }
 
-    public Date getData_cadastro() {
-        return data_cadastro;
+    public Date getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setData_cadastro(Date data_cadastro) {
-        this.data_cadastro = data_cadastro;
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
-    public String getMeio_transporte() {
-        return meio_transporte;
+    public String getMeioTransporte() {
+        return meioTransporte;
     }
 
-    public void setMeio_transporte(String meio_transporte) {
-        this.meio_transporte = meio_transporte;
+    public void setMeioTransporte(String meioTransporte) {
+        this.meioTransporte = meioTransporte;
     }
 
     public String getObservacoes() {

@@ -1,24 +1,23 @@
 package model.aluno;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import model.Aluno;
 
 public class Roupa {
     
     private Aluno aluno;
-    private String tamanho_camiseta;
-    private String tamanho_calca;
+    private String tamanhoCamiseta;
+    private String tamanhoCalca;
 
     public Roupa() {};
 
     public Roupa(
             @JsonProperty("aluno")Aluno aluno,
-            @JsonProperty("tamanho_camiseta")String tamanho_camiseta,
-            @JsonProperty("tamanho_calca")String tamanho_calca) {
+            @JsonProperty("tamanhoCamiseta")String tamanhoCamiseta,
+            @JsonProperty("tamanhoCalca")String tamanhoCalca) {
 
         this.aluno = aluno;
-        this.tamanho_camiseta = tamanho_camiseta;
-        this.tamanho_calca = tamanho_calca;
+        this.tamanhoCamiseta = tamanhoCamiseta;
+        this.tamanhoCalca = tamanhoCalca;
     }
 
     public Aluno getAluno() {
@@ -28,17 +27,17 @@ public class Roupa {
         this.aluno = aluno;
     }
 
-    public String getTamanho_camiseta() {
-        return tamanho_camiseta;
+    public String getTamanhoCamiseta() {
+        return tamanhoCamiseta;
     }
-    public void setTamanho_camiseta(String tamanho_camiseta) {
-        this.tamanho_camiseta = tamanho_camiseta;
+    public void setTamanhoCamiseta(String tamanhoCamiseta) {
+        this.tamanhoCamiseta = tamanhoCamiseta;
     }
 
-    public String getTamanho_calca() {
-        return tamanho_calca;
+    public String getTamanhoCalca() {
+        return tamanhoCalca;
     }
-    public void setTamanho_calca(String tamanho_calca) {
-        this.tamanho_calca = tamanho_calca;
+    public void setTamanhoCalca(String tamanhoCalca) {
+        this.tamanhoCalca = tamanhoCalca;
     }
 }

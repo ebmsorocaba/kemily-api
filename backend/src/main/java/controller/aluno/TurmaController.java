@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import jdbc.dao.aluno.AlunoDAO;
 import jdbc.dao.aluno.TurmaDAO;
-import model.Aluno;
+import model.aluno.Aluno;
 import model.aluno.Turma;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
