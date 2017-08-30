@@ -27,7 +27,7 @@ public class EnderecoDAO {
         stmt.setString(3,endereco.getRua());
         stmt.setString(4,endereco.getBairro());
         stmt.setString(5,endereco.getCidade());
-        stmt.setString(6,endereco.getPonto_referencia());
+        stmt.setString(6,endereco.getPontoReferencia());
         stmt.setString(7,endereco.getComplemento());
         stmt.setInt(8, endereco.getAluno().getRa());
 
@@ -50,7 +50,7 @@ public class EnderecoDAO {
             endereco.setRua(rs.getString("rua"));
             endereco.setBairro(rs.getString("bairro"));
             endereco.setCidade(rs.getString("cidade"));
-            endereco.setPonto_referencia(rs.getString("ponto_referencia"));
+            endereco.setPontoReferencia(rs.getString("ponto_referencia"));
             endereco.setComplemento(rs.getString("complemento"));
             endereco.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
 
@@ -82,7 +82,7 @@ public class EnderecoDAO {
                 endereco.setRua(rs.getString("rua"));
                 endereco.setBairro(rs.getString("bairro"));
                 endereco.setCidade(rs.getString("cidade"));
-                endereco.setPonto_referencia(rs.getString("ponto_referencia"));
+                endereco.setPontoReferencia(rs.getString("ponto_referencia"));
                 endereco.setComplemento(rs.getString("complemento"));
                 endereco.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
             }
@@ -137,7 +137,7 @@ public class EnderecoDAO {
         stmt.setString(1,endereco.getRua());
         stmt.setString(2,endereco.getBairro());
         stmt.setString(3,endereco.getCidade());
-        stmt.setString(4,endereco.getPonto_referencia());
+        stmt.setString(4,endereco.getPontoReferencia());
         stmt.setString(5,endereco.getComplemento());
         stmt.setInt(6, endereco.getAluno().getRa());
         stmt.setString(7, cep);
@@ -163,7 +163,7 @@ public class EnderecoDAO {
                 endereco.setRua(rs.getString("rua"));
                 endereco.setBairro(rs.getString("bairro"));
                 endereco.setCidade(rs.getString("cidade"));
-                endereco.setPonto_referencia(rs.getString("ponto_referencia"));
+                endereco.setPontoReferencia(rs.getString("ponto_referencia"));
                 endereco.setComplemento(rs.getString("complemento"));
                 endereco.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
             }

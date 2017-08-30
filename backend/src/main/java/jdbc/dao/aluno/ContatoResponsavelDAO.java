@@ -8,21 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jdbc.ConnectionFactory;
-import model.aluno.Contato_Responsavel;
+import model.aluno.ContatoResponsavel;
 
-public class Contato_ResponsavelDAO {
+public class ContatoResponsavelDAO {
 	private Connection connection;
 	private ContatoDAO contatoDao;
 	
-	public Contato_ResponsavelDAO() throws SQLException {
+	public ContatoResponsavelDAO() throws SQLException {
 		this.connection = ConnectionFactory.getConnection();
 		this.contatoDao = new ContatoDAO();
 	}
 	
-	public void adicionar(Contato_Responsavel contato_Responsavel) throws SQLException {
-		contato_Responsavel = (Contato_Responsavel) contatoDao.adicionarEspecializado(contato_Responsavel);
+	public void adicionar(ContatoResponsavel contatoResponsavel) throws SQLException {
+		contatoResponsavel = (ContatoResponsavel) contatoDao.adicionarEspecializado(contatoResponsavel);
 		
-		if(contato_Responsavel.getId() == -1 ) {
+		if(contatoResponsavel.getId() == -1 ) {
 			
 			throw new SQLException("ID -1, Contato nao criado");
 			
@@ -30,9 +30,9 @@ public class Contato_ResponsavelDAO {
 		
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente) VALUES(?, ?, ?);");
 		
-			stmt.setInt(1, contato_Responsavel.getId());
-			stmt.setString(2, contato_Responsavel.getGrau_parentesco());
-			stmt.setBoolean(3, contato_Responsavel.isPresente());
+			stmt.setInt(1, contatoResponsavel.getId());
+			stmt.setString(2, contatoResponsavel.getGrauParentesco());
+			stmt.setBoolean(3, contatoResponsavel.isPresente());
 			
 			stmt.execute();
 			stmt.close();
@@ -40,17 +40,17 @@ public class Contato_ResponsavelDAO {
 		}
 	}
 	
-	public List<Contato_Responsavel> getLista() throws SQLException {
-		List<Contato_Responsavel> responsaveis = new ArrayList<Contato_Responsavel>();
+	public List<ContatoResponsavel> getLista() throws SQLException {
+		List<ContatoResponsavel> responsaveis = new ArrayList<ContatoResponsavel>();
 		
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM contato_responsavel");
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
-			Contato_Responsavel resp = new Contato_Responsavel();
+			ContatoResponsavel resp = new ContatoResponsavel();
 			
 			resp.setId(rs.getInt("id_contato"));
-			resp.setGrau_parentesco(rs.getString("grau_parentesco"));
+			resp.setGrauParentesco(rs.getString("grau_parentesco"));
 			resp.setPresente(rs.getBoolean("presente"));
 			
 			responsaveis.add(resp);
@@ -62,8 +62,8 @@ public class Contato_ResponsavelDAO {
 		return responsaveis;
 	}
 	
-	public Contato_Responsavel getContato_Responsavel(int id) throws SQLException {
-		Contato_Responsavel contato_Responsavel = new Contato_Responsavel();
+	public ContatoResponsavel getContatoResponsavel(int id) throws SQLException {
+		ContatoResponsavel contatoResponsavel = new ContatoResponsavel();
 		
 		try {
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM contato_responsavel WHERE id_contato = ?");
@@ -71,16 +71,16 @@ public class Contato_ResponsavelDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next() == true) {
-				contato_Responsavel.setId(rs.getInt("id_contato"));
-				contato_Responsavel.setGrau_parentesco(rs.getString("grau_parentesco"));
-				contato_Responsavel.setPresente(rs.getBoolean("presente"));
+				contatoResponsavel.setId(rs.getInt("id_contato"));
+				contatoResponsavel.setGrauParentesco(rs.getString("grau_parentesco"));
+				contatoResponsavel.setPresente(rs.getBoolean("presente"));
 			}
 			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
 		}
 		
-		return contato_Responsavel;
+		return contatoResponsavel;
 	}
 	
 	public void excluir(int id) {
@@ -94,11 +94,11 @@ public class Contato_ResponsavelDAO {
 		}
 	}
 	
-	public void altera(Contato_Responsavel contato_Responsavel, int id) throws SQLException {
+	public void altera(ContatoResponsavel contatoResponsavel, int id) throws SQLException {
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE contato_responsavel SET grau_parentesco = ?, presente = ? WHERE id_contato = ?");
 		
-		stmt.setString(1, contato_Responsavel.getGrau_parentesco());
-		stmt.setBoolean(2, contato_Responsavel.isPresente());
+		stmt.setString(1, contatoResponsavel.getGrauParentesco());
+		stmt.setBoolean(2, contatoResponsavel.isPresente());
 		stmt.setInt(3, id);
 		
 		stmt.execute();

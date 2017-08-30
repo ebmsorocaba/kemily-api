@@ -1,7 +1,7 @@
 package jdbc.dao.aluno;
 
 import jdbc.ConnectionFactory;
-import model.Aluno;
+import model.aluno.Aluno;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,12 +27,12 @@ public class AlunoDAO {
 	
         stmt.setString(1,aluno.getNome());
         stmt.setString(2,aluno.getTurma().getEducador());
-        stmt.setDate(3,aluno.getData_nascimento());
+        stmt.setDate(3,aluno.getDataNascimento());
         stmt.setString(4,aluno.getRg());
         stmt.setString(5,aluno.getNaturalidade());
         stmt.setString(6,aluno.getEstado());
-        stmt.setDate(7,aluno.getData_cadastro());
-        stmt.setString(8,aluno.getMeio_transporte());
+        stmt.setDate(7,aluno.getDataCadastro());
+        stmt.setString(8,aluno.getMeioTransporte());
         stmt.setString(9,aluno.getObservacoes());
 
         // executa
@@ -75,10 +75,10 @@ public class AlunoDAO {
             aluno.setNome(rs.getString("nome"));
             aluno.setTurma(turmaDAO.getTurma(rs.getString("turma_educador")));
             aluno.setRg(rs.getString("rg"));
-            aluno.setData_cadastro(rs.getDate("data_cadastro"));
-            aluno.setData_nascimento(rs.getDate("data_nascimento"));
+            aluno.setDataCadastro(rs.getDate("data_cadastro"));
+            aluno.setDataNascimento(rs.getDate("data_nascimento"));
             aluno.setEstado(rs.getString("estado"));
-            aluno.setMeio_transporte(rs.getString("meio_transporte"));
+            aluno.setMeioTransporte(rs.getString("meio_transporte"));
             aluno.setObservacoes(rs.getString("observacoes"));
             aluno.setNaturalidade(rs.getString("naturalidade"));
 
@@ -108,10 +108,10 @@ public class AlunoDAO {
                 aluno.setNome(rs.getString("nome"));
                 aluno.setTurma(turmaDAO.getTurma(rs.getString("turma_educador")));
                 aluno.setRg(rs.getString("rg"));
-                aluno.setData_cadastro(rs.getDate("data_cadastro"));
-                aluno.setData_nascimento(rs.getDate("data_nascimento"));
+                aluno.setDataCadastro(rs.getDate("data_cadastro"));
+                aluno.setDataNascimento(rs.getDate("data_nascimento"));
                 aluno.setEstado(rs.getString("estado"));
-                aluno.setMeio_transporte(rs.getString("meio_transporte"));
+                aluno.setMeioTransporte(rs.getString("meio_transporte"));
                 aluno.setObservacoes(rs.getString("observacoes"));
                 aluno.setNaturalidade(rs.getString("naturalidade"));
             }
@@ -151,12 +151,12 @@ public class AlunoDAO {
 
         stmt.setString(1,aluno.getNome());
         stmt.setString(2,aluno.getTurma().getEducador());
-        stmt.setDate(3,aluno.getData_nascimento());
+        stmt.setDate(3,aluno.getDataNascimento());
         stmt.setString(4,aluno.getRg());
         stmt.setString(5,aluno.getNaturalidade());
         stmt.setString(6,aluno.getEstado());
-        stmt.setDate(7,aluno.getData_cadastro());
-        stmt.setString(8,aluno.getMeio_transporte());
+        stmt.setDate(7,aluno.getDataCadastro());
+        stmt.setString(8,aluno.getMeioTransporte());
         stmt.setString(9,aluno.getObservacoes());
         stmt.setInt(10, ra);
 

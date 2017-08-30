@@ -1,7 +1,6 @@
 package model.aluno;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import model.Aluno;
 
 public class Endereco {
 
@@ -10,7 +9,7 @@ public class Endereco {
     private String rua;
     private String bairro;
     private String cidade;
-    private String ponto_referencia;
+    private String pontoReferencia;
     private String complemento;
     private Aluno aluno;
 
@@ -22,7 +21,7 @@ public class Endereco {
             @JsonProperty("rua")String rua,
             @JsonProperty("bairro")String bairro,
             @JsonProperty("cidade")String cidade,
-            @JsonProperty("ponto_referencia")String ponto_referencia,
+            @JsonProperty("pontoReferencia")String pontoReferencia,
             @JsonProperty("complemento")String complemento,
             @JsonProperty("aluno")Aluno aluno) {
         
@@ -31,7 +30,7 @@ public class Endereco {
         this.rua = rua;
         this.bairro = bairro;
         this.cidade = cidade;
-        this.ponto_referencia = ponto_referencia;
+        this.pontoReferencia = pontoReferencia;
         this.complemento = complemento;
         this.aluno = aluno;
     }
@@ -71,11 +70,11 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    public String getPonto_referencia() {
-        return ponto_referencia;
+    public String getPontoReferencia() {
+        return pontoReferencia;
     }
-    public void setPonto_referencia(String ponto_referencia) {
-        this.ponto_referencia = ponto_referencia;
+    public void setPontoReferencia(String pontoReferencia) {
+        this.pontoReferencia = pontoReferencia;
     }
 
     public String getComplemento() {

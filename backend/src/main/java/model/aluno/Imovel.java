@@ -6,18 +6,18 @@ public class Imovel {
 	
 	private int id;
 	private boolean financiado;
-	private Estrutura_Familiar estrutura_familiar;
+	private EstruturaFamiliar estruturaFamiliar;
 	
 	public Imovel() {};
 	
 	public Imovel(
 			@JsonProperty("id")int id,
             @JsonProperty("financiado") boolean financiado,
-			@JsonProperty("estrutura_familiar")Estrutura_Familiar estrutura_familiar) {
+			@JsonProperty("estruturaFamiliar")EstruturaFamiliar estruturaFamiliar) {
 		
 		this.id = id;
 		this.financiado = financiado;
-		this.estrutura_familiar = estrutura_familiar;
+		this.estruturaFamiliar = estruturaFamiliar;
 	}
 
 	public int getId() {
@@ -36,12 +36,12 @@ public class Imovel {
         this.financiado = financiado;
     }
 
-    public Estrutura_Familiar getEstrutura_familiar() {
-		return estrutura_familiar;
+    public EstruturaFamiliar getEstruturaFamiliar() {
+		return estruturaFamiliar;
 	}
 
-	public void setEstrutura_familiar(Estrutura_Familiar estrutura_familiar) {
-		this.estrutura_familiar = estrutura_familiar;
+	public void setEstruturaFamiliar(EstruturaFamiliar estruturaFamiliar) {
+		this.estruturaFamiliar = estruturaFamiliar;
 	}
 	
 	

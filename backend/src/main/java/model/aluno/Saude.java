@@ -2,33 +2,31 @@ package model.aluno;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import model.Aluno;
-
 public class Saude {
 
 	private Aluno aluno;
-	private boolean faz_tratamentos_medicos;
-	private boolean problemas_saude_familia;
-	private boolean plano_saude;
-	private boolean pessoas_idosas;
-	private boolean problemas_psiquiatricos;
+	private boolean fazTratamentosMedicos;
+	private boolean problemasSaudeFamilia;
+	private boolean planoSaude;
+	private boolean pessoasIdosas;
+	private boolean problemasPsiquiatricos;
 	
 	public Saude() {};
 	
 	public Saude(
 			@JsonProperty("aluno")Aluno aluno,
-			@JsonProperty("faz_tratamentos_medicos")boolean faz_tratamentos_medicos,
-			@JsonProperty("problemas_saude_familia")boolean problemas_saude_familia,
-			@JsonProperty("plano_saude")boolean plano_saude,
-			@JsonProperty("pessoas_idosas")boolean pessoas_idosas,
-			@JsonProperty("problemas_psiquiatricos")boolean problemas_psiquiatricos) {
+			@JsonProperty("fazTratamentosMedicos")boolean fazTratamentosMedicos,
+			@JsonProperty("problemasSaudeFamilia")boolean problemasSaudeFamilia,
+			@JsonProperty("planoSaude")boolean planoSaude,
+			@JsonProperty("pessoasIdosas")boolean pessoasIdosas,
+			@JsonProperty("problemasPsiquiatricos")boolean problemasPsiquiatricos) {
 		
 		this.aluno = aluno;
-		this.faz_tratamentos_medicos = faz_tratamentos_medicos;
-		this.problemas_saude_familia = problemas_saude_familia;
-		this.plano_saude = plano_saude;
-		this.pessoas_idosas = pessoas_idosas;
-		this.problemas_psiquiatricos = problemas_psiquiatricos;
+		this.fazTratamentosMedicos = fazTratamentosMedicos;
+		this.problemasSaudeFamilia = problemasSaudeFamilia;
+		this.planoSaude = planoSaude;
+		this.pessoasIdosas = pessoasIdosas;
+		this.problemasPsiquiatricos = problemasPsiquiatricos;
 	}
 
 	public Aluno getAluno() {
@@ -39,44 +37,44 @@ public class Saude {
 		this.aluno = aluno;
 	}
 
-	public boolean isFaz_tratamentos_medicos() {
-		return faz_tratamentos_medicos;
+	public boolean isFazTratamentosMedicos() {
+		return fazTratamentosMedicos;
 	}
 
-	public void setFaz_tratamentos_medicos(boolean faz_tratamentos_medicos) {
-		this.faz_tratamentos_medicos = faz_tratamentos_medicos;
+	public void setFazTratamentosMedicos(boolean fazTratamentosMedicos) {
+		this.fazTratamentosMedicos = fazTratamentosMedicos;
 	}
 
-	public boolean isProblemas_saude_familia() {
-		return problemas_saude_familia;
+	public boolean isProblemasSaudeFamilia() {
+		return problemasSaudeFamilia;
 	}
 
-	public void setProblemas_saude_familia(boolean problemas_saude_familia) {
-		this.problemas_saude_familia = problemas_saude_familia;
+	public void setProblemasSaudeFamilia(boolean problemasSaudeFamilia) {
+		this.problemasSaudeFamilia = problemasSaudeFamilia;
 	}
 
-	public boolean isPlano_saude() {
-		return plano_saude;
+	public boolean isPlanoSaude() {
+		return planoSaude;
 	}
 
-	public void setPlano_saude(boolean plano_saude) {
-		this.plano_saude = plano_saude;
+	public void setPlanoSaude(boolean planoSaude) {
+		this.planoSaude = planoSaude;
 	}
 
-	public boolean isPessoas_idosas() {
-		return pessoas_idosas;
+	public boolean isPessoasIdosas() {
+		return pessoasIdosas;
 	}
 
-	public void setPessoas_idosas(boolean pessoas_idosas) {
-		this.pessoas_idosas = pessoas_idosas;
+	public void setPessoasIdosas(boolean pessoasIdosas) {
+		this.pessoasIdosas = pessoasIdosas;
 	}
 
-	public boolean isProblemas_psiquiatricos() {
-		return problemas_psiquiatricos;
+	public boolean isProblemasPsiquiatricos() {
+		return problemasPsiquiatricos;
 	}
 
-	public void setProblemas_psiquiatricos(boolean problemas_psiquiatricos) {
-		this.problemas_psiquiatricos = problemas_psiquiatricos;
+	public void setProblemasPsiquiatricos(boolean problemasPsiquiatricos) {
+		this.problemasPsiquiatricos = problemasPsiquiatricos;
 	}
 	
 	

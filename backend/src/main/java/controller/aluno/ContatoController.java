@@ -20,37 +20,37 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import jdbc.dao.aluno.ContatoDAO;
-import jdbc.dao.aluno.Contato_ProfissionalDAO;
-import jdbc.dao.aluno.Contato_ResponsavelDAO;
+import jdbc.dao.aluno.ContatoProfissionalDAO;
+import jdbc.dao.aluno.ContatoResponsavelDAO;
 import model.aluno.Contato;
-import model.aluno.Contato_Profissional;
-import model.aluno.Contato_Responsavel;
+import model.aluno.ContatoProfissional;
+import model.aluno.ContatoResponsavel;
 
 @RestController
 public class ContatoController {
-	private Map<Integer, Contato_Responsavel> responsaveis;
-	private Map<Integer, Contato_Profissional> profissionais;
+	private Map<Integer, ContatoResponsavel> responsaveis;
+	private Map<Integer, ContatoProfissional> profissionais;
 	private Map<Integer, Contato> genericos;
 	private ContatoDAO contatoDao = new ContatoDAO();
-	private Contato_ResponsavelDAO contato_ResponsavelDAO = new Contato_ResponsavelDAO();
-	private Contato_ProfissionalDAO contato_ProfissionalDAO = new Contato_ProfissionalDAO();
+	private ContatoResponsavelDAO contatoResponsavelDAO = new ContatoResponsavelDAO();
+	private ContatoProfissionalDAO contatoProfissionalDAO = new ContatoProfissionalDAO();
 	
 	public ContatoController() throws SQLException {
-		responsaveis = new HashMap<Integer, Contato_Responsavel>();
-		profissionais = new HashMap<Integer, Contato_Profissional>();
+		responsaveis = new HashMap<Integer, ContatoResponsavel>();
+		profissionais = new HashMap<Integer, ContatoProfissional>();
 		genericos = new HashMap<Integer, Contato>();
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato", method = RequestMethod.GET)
 	public ResponseEntity<List<Contato>> listar() throws SQLException {
-		int index_resp = 0;
-		int index_prof = 0;
-		int index_gen = 0;
+		int indexResp = 0;
+		int indexProf = 0;
+		int indexGen = 0;
 		
 		List<Contato> contatosGetted = new ArrayList<Contato>();
-		responsaveis = new HashMap<Integer, Contato_Responsavel>();
-		profissionais = new HashMap<Integer, Contato_Profissional>();
+		responsaveis = new HashMap<Integer, ContatoResponsavel>();
+		profissionais = new HashMap<Integer, ContatoProfissional>();
 		genericos = new HashMap<Integer, Contato>();
 		
 		contatosGetted = contatoDao.getLista();
@@ -58,29 +58,29 @@ public class ContatoController {
 		for(Contato contato : contatosGetted) {
 			
 			if(contato.getTipo().equals("Responsavel")) {
-				Contato_Responsavel contato_resp = contato_ResponsavelDAO.getContato_Responsavel(contato.getId()); 
-				contato_resp.setNome(contato.getNome());
-				contato_resp.setTelefone(contato.getTelefone());
-				contato_resp.setTipo(contato.getTipo());
-				contato_resp.setAluno(contato.getAluno());
+				ContatoResponsavel contatoResp = contatoResponsavelDAO.getContatoResponsavel(contato.getId()); 
+				contatoResp.setNome(contato.getNome());
+				contatoResp.setTelefone(contato.getTelefone());
+				contatoResp.setTipo(contato.getTipo());
+				contatoResp.setAluno(contato.getAluno());
 				
-				responsaveis.put(index_resp, contato_resp);
-				index_resp++;
+				responsaveis.put(indexResp, contatoResp);
+				indexResp++;
 				
 			} else if(contato.getTipo().equals("Profissional")) {
-				Contato_Profissional contato_prof = contato_ProfissionalDAO.getContato_Profissional(contato.getId());
+				ContatoProfissional contatoProf = contatoProfissionalDAO.getContatoProfissional(contato.getId());
 				
-				contato_prof.setNome(contato.getNome());
-				contato_prof.setTelefone(contato.getTelefone());
-				contato_prof.setTipo(contato.getTipo());
-				contato_prof.setAluno(contato.getAluno());
+				contatoProf.setNome(contato.getNome());
+				contatoProf.setTelefone(contato.getTelefone());
+				contatoProf.setTipo(contato.getTipo());
+				contatoProf.setAluno(contato.getAluno());
 				
-				profissionais.put(index_prof, contato_prof);
-				index_prof++;
+				profissionais.put(indexProf, contatoProf);
+				indexProf++;
 				
 			} else {
-				genericos.put(index_gen, contato);
-				index_gen++;
+				genericos.put(indexGen, contato);
+				indexGen++;
 			}
 		}
 		
@@ -96,8 +96,8 @@ public class ContatoController {
 	@RequestMapping(value = "/api/contato/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Contato> buscar(@PathVariable("id") int id) throws SQLException {
 		Contato contato = contatoDao.getContato(id);
-		Contato_Profissional contato_prof = null;
-		Contato_Responsavel contato_resp = null;
+		ContatoProfissional contatoProf = null;
+		ContatoResponsavel contatoResp = null;
 
 		if (contato == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -105,25 +105,25 @@ public class ContatoController {
 
 		if(contato.getTipo().equals("Profissional")) {
 			
-			contato_prof = contato_ProfissionalDAO.getContato_Profissional(contato.getId());
+			contatoProf = contatoProfissionalDAO.getContatoProfissional(contato.getId());
 			
-			contato_prof.setNome(contato.getNome());
-			contato_prof.setTelefone(contato.getTelefone());
-			contato_prof.setTipo(contato.getTipo());
-			contato_prof.setAluno(contato.getAluno());
+			contatoProf.setNome(contato.getNome());
+			contatoProf.setTelefone(contato.getTelefone());
+			contatoProf.setTipo(contato.getTipo());
+			contatoProf.setAluno(contato.getAluno());
 			
-			return new ResponseEntity<Contato>(contato_prof, HttpStatus.OK);
+			return new ResponseEntity<Contato>(contatoProf, HttpStatus.OK);
 			
 		} else if (contato.getTipo().equals("Responsavel")){
 			
-			contato_resp = contato_ResponsavelDAO.getContato_Responsavel(contato.getId());
+			contatoResp = contatoResponsavelDAO.getContatoResponsavel(contato.getId());
 			
-			contato_resp.setNome(contato.getNome());
-			contato_resp.setTelefone(contato.getTelefone());
-			contato_resp.setTipo(contato.getTipo());
-			contato_resp.setAluno(contato.getAluno());
+			contatoResp.setNome(contato.getNome());
+			contatoResp.setTelefone(contato.getTelefone());
+			contatoResp.setTipo(contato.getTipo());
+			contatoResp.setAluno(contato.getAluno());
 			
-			return new ResponseEntity<Contato>(contato_resp, HttpStatus.OK);
+			return new ResponseEntity<Contato>(contatoResp, HttpStatus.OK);
 			
 		} else  {
 			
@@ -145,9 +145,9 @@ public class ContatoController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/profissional", method = RequestMethod.POST)
-	public ResponseEntity<Contato> addContato(@RequestBody Contato_Profissional contatoProfissional) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	public ResponseEntity<Contato> addContato(@RequestBody ContatoProfissional contatoProfissional) throws JsonParseException, JsonMappingException, IOException, SQLException {
 		if (contatoProfissional.getTipo().equals("Profissional") ){
-			contato_ProfissionalDAO.adicionar(contatoProfissional);
+			contatoProfissionalDAO.adicionar(contatoProfissional);
 			return new ResponseEntity<Contato>(contatoProfissional, HttpStatus.CREATED);
 		}
 		return new ResponseEntity<Contato>(contatoProfissional, HttpStatus.BAD_REQUEST );
@@ -155,9 +155,9 @@ public class ContatoController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/responsavel", method = RequestMethod.POST)
-	public ResponseEntity<Contato> addContato(@RequestBody Contato_Responsavel contatoResponsavel) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	public ResponseEntity<Contato> addContato(@RequestBody ContatoResponsavel contatoResponsavel) throws JsonParseException, JsonMappingException, IOException, SQLException {
 		if (contatoResponsavel.getTipo().equals("Responsavel")) {
-			contato_ResponsavelDAO.adicionar(contatoResponsavel);
+			contatoResponsavelDAO.adicionar(contatoResponsavel);
 			return new ResponseEntity<Contato>(contatoResponsavel, HttpStatus.CREATED);
 		}
 		return new ResponseEntity<Contato>(contatoResponsavel, HttpStatus.BAD_REQUEST );
@@ -175,31 +175,31 @@ public class ContatoController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/responsavel/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Contato_Responsavel> updateContatoResponsavel(@RequestBody Contato_Responsavel contatoResponsavel, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	public ResponseEntity<ContatoResponsavel> updateContatoResponsavel(@RequestBody ContatoResponsavel contatoResponsavel, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
 		if (contatoResponsavel.getTipo().equals("Responsavel")) {
 			contatoDao.altera(contatoResponsavel, id);
-			contato_ResponsavelDAO.altera(contatoResponsavel, id);
-			return new ResponseEntity<Contato_Responsavel>(contatoResponsavel, HttpStatus.CREATED);
+			contatoResponsavelDAO.altera(contatoResponsavel, id);
+			return new ResponseEntity<ContatoResponsavel>(contatoResponsavel, HttpStatus.CREATED);
 		}
-		return new ResponseEntity<Contato_Responsavel>(contatoResponsavel, HttpStatus.BAD_REQUEST );
+		return new ResponseEntity<ContatoResponsavel>(contatoResponsavel, HttpStatus.BAD_REQUEST );
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/profissional/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Contato_Profissional> updateContatoProfissional(@RequestBody Contato_Profissional contatoProfissional, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	public ResponseEntity<ContatoProfissional> updateContatoProfissional(@RequestBody ContatoProfissional contatoProfissional, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
 		if (contatoProfissional.getTipo().equals("Profissional")) {
 			contatoDao.altera(contatoProfissional, id);
-			contato_ProfissionalDAO.altera(contatoProfissional, id);
-			return new ResponseEntity<Contato_Profissional>(contatoProfissional, HttpStatus.CREATED);
+			contatoProfissionalDAO.altera(contatoProfissional, id);
+			return new ResponseEntity<ContatoProfissional>(contatoProfissional, HttpStatus.CREATED);
 		}
-		return new ResponseEntity<Contato_Profissional>(contatoProfissional, HttpStatus.BAD_REQUEST );
+		return new ResponseEntity<ContatoProfissional>(contatoProfissional, HttpStatus.BAD_REQUEST );
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/contato/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("id") int id) throws SQLException {
-		contato_ProfissionalDAO.excluir(id);
-		contato_ResponsavelDAO.excluir(id);
+		contatoProfissionalDAO.excluir(id);
+		contatoResponsavelDAO.excluir(id);
 		contatoDao.excluir(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

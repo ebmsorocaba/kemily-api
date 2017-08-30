@@ -2,13 +2,13 @@ package model.aluno;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Contato_Profissional extends Contato { 
+public class ContatoProfissional extends Contato { 
 	
 	private String cargo;
 	
-	public Contato_Profissional() {};
+	public ContatoProfissional() {};
 	
-	public Contato_Profissional(
+	public ContatoProfissional(
 			@JsonProperty("cargo")String cargo) {
 		
 		this.cargo = cargo;
