@@ -248,8 +248,8 @@
         }
 
         api.estruturaFamiliar = {
-          list  : $resource(api.baseUrl + 'estrutura_familiar'),
-          getById : $resource(api.baseUrl + 'estrutura_familiar/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+          list  : $resource(api.baseUrl + 'estruturaFamiliar'),
+          getById : $resource(api.baseUrl + 'estruturaFamiliar/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
         api.imovel = {
@@ -269,12 +269,12 @@
 
         api.saude = {
           list  : $resource(api.baseUrl + 'saude'),
-          getById : $resource(api.baseUrl + 'saude/:ra_aluno' + '/', {ra_aluno: '@ra_aluno'}, {'update': {method: 'PUT'}})
+          getById : $resource(api.baseUrl + 'saude/:raAluno' + '/', {raAluno: '@raAluno'}, {'update': {method: 'PUT'}})
         }
 
         api.situacaoHabitacional = {
-          list  : $resource(api.baseUrl + 'situacao_habitacional'),
-          getById : $resource(api.baseUrl + 'situacao_habitacional/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
+          list  : $resource(api.baseUrl + 'situacaoHabitacional'),
+          getById : $resource(api.baseUrl + 'situacaoHabitacional/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
         }
 
         api.turma = {
