@@ -13,11 +13,11 @@
     var alunoVazio = {
       'ra': '',
       'nome': '',
-      'data_nascimento': '',
+      'dataNascimento': '',
       'rg': '',
       'estado': '',
-      'data_cadastro': new Date(),
-      'meio_transporte': '',
+      'dataCadastro': new Date(),
+      'meioTransporte': '',
       'observacoes': '',
       'naturalidade': '',
       'turma': {
@@ -29,19 +29,19 @@
       'aluno': {
         'ra': '',
         'nome': '',
-        'data_nascimento': '',
+        'dataNascimento': '',
         'rg': '',
         'estado': '',
-        'data_cadastro': new Date(),
-        'meio_transporte': '',
+        'dataCadastro': new Date(),
+        'meioTransporte': '',
         'observacoes': '',
         'naturalidade': '',
         'turma': {
           'educador': ''
         }
       },
-      'tamanho_camiseta': '',
-      'tamanho_calca': ''
+      'tamanhoCamiseta': '',
+      'tamanhoCalca': ''
     };
 
     var enderecoVazio = {
@@ -50,7 +50,7 @@
       'rua': '',
       'bairro': '',
       'cidade': '',
-      'ponto_referencia': '',
+      'pontoReferencia': '',
       'complemento': '',
       'aluno': {
         'ra': '',
@@ -58,12 +58,12 @@
         'turma': {
           'educador': ''
         },
-        'data_nascimento': '',
+        'dataNascimento': '',
         'rg': '',
         'naturalidade': '',
         'estado': '',
-        'data_cadastro': '',
-        'meio_transporte': 'Carro',
+        'dataCadastro': '',
+        'meioTransporte': '',
         'observacoes': ''
       }
     };
@@ -75,139 +75,139 @@
         'turma': {
           'educador': ''
         },
-        'data_nascimento': '',
+        'dataNascimento': '',
         'rg': '',
         'naturalidade': '',
         'estado': '',
-        'data_cadastro': '',
-        'meio_transporte': '',
+        'dataCadastro': '',
+        'meioTransporte': '',
         'observacoes': ''
       },
-      'faz_tratamentos_medicos': '',
-      'problemas_saude_familia': '',
-      'plano_saude': '',
-      'pessoas_idosas': '',
-      'problemas_psiquiatricos': ''
+      'fazTratamentosMedicos': '',
+      'problemasSaudeFamilia': '',
+      'planoSaude': '',
+      'pessoasIdosas': '',
+      'problemasPsiquiatricos': ''
     };
 
-    var estrutura_familiarVazio = {
+    var estruturaFamiliarVazio = {
       'id': '',
-      'estado_civil_pais': '',
-      'crianca_reside_com': '',
-      'problemas_financeiros': '',
-      'uso_alcool_drogas': '',
-      'alguem_agressivo': '',
-      'programas_sociais': '',
+      'estadoCivilPais': '',
+      'criancaResideCom': '',
+      'problemasFinanceiros': '',
+      'usoAlcoolDrogas': '',
+      'alguemAgressivo': '',
+      'programasSociais': '',
       'aluno': {
         'ra': '',
         'nome': '',
         'turma': {
           'educador': ''
         },
-        'data_nascimento': '',
+        'dataNascimento': '',
         'rg': '',
         'naturalidade': '',
         'estado': '',
-        'data_cadastro': '',
-        'meio_transporte': '',
+        'dataCadastro': '',
+        'meioTransporte': '',
         'observacoes': ''
       }
     };
 
     var despesaVazio = {
-      'estrutura_familiar': {
+      'estruturaFamiliar': {
         'id': '',
-        'estado_civil_pais': '',
-        'crianca_reside_com': '',
-        'problemas_financeiros': '',
-        'uso_alcool_drogas': '',
-        'alguem_agressivo': '',
-        'programas_sociais': '',
+        'estadoCivilPais': '',
+        'criancaResideCom': '',
+        'problemasFinanceiros': '',
+        'usoAlcoolDrogas': '',
+        'alguemAgressivo': '',
+        'programasSociais': '',
         'aluno': {
           'ra': '',
           'nome': '',
           'turma': {
             'educador': ''
           },
-          'data_nascimento': '',
+          'dataNascimento': '',
           'rg': '',
           'naturalidade': '',
           'estado': '',
-          'data_cadastro': '',
-          'meio_transporte': '',
+          'dataCadastro': '',
+          'meioTransporte': '',
           'observacoes': ''
         }
       },
       'agua': '',
-      'energia_eletrica': '',
+      'energiaEletrica': '',
       'telefone': '',
       'aluguel': '',
-      'financiamento_casa': '',
-      'financiamento_carro': '',
+      'financiamentoCasa': '',
+      'financiamentoCarro': '',
       'transporte': '',
       'alimentacao': '',
       'gas': '',
-      'cartao_credito': '',
+      'cartaoCredito': '',
       'emprestimo': '',
-      'tv_cabo': '',
+      'tvCabo': '',
       'educacao': '',
       'pensao': '',
-      'convenio_medico': ''
+      'convenioMedico': ''
     };
 
-    var aparelhos_eletronicosVazio = {
+    var aparelhosEletronicosVazio = {
       'id': '',
       'televisao': '',
-      'tv_assinatura': '',
+      'tvAssinatura': '',
       'computador': '',
       'notebook': '',
       'fogao': '',
       'geladeira': '',
       'microondas': '',
       'tablet': '',
-      'maquina_lavar': '',
-      'maquina_secar': '',
-      'telefone_fixo': '',
+      'maquinaLavar': '',
+      'maquinaSecar': '',
+      'telefoneFixo': '',
       'celular': ''
     };
 
-    var situacao_habitacionalVazio = {
+    var situacaoHabitacionalVazio = {
       'aluno': {
         'ra': '',
         'nome': '',
         'turma': {
           'educador': ''
         },
-        'data_nascimento': '',
+        'dataNascimento': '',
         'rg': '',
         'naturalidade': '',
         'estado': '',
-        'data_cadastro': '',
-        'meio_transporte': '',
+        'dataCadastro': '',
+        'meioTransporte': '',
         'observacoes': ''
       },
       'situacao': '',
       'esgoto': '',
-      'rede_eletrica': '',
+      'redeEletrica': '',
       'asfalto': '',
-      'numero_comodos': '',
+      'numeroComodos': '',
       'alvenaria': '',
       'madeira': '',
-      'area_irregular': '',
-      "aparelhos_eletronicos": {
-        "id": '',
-        "televisao": '',
-        "tv_assinatura": '',
-        "computador": '',
-        "notebook": '',
-        "fogao": '',
-        "geladeira": '',
-        "microondas": '',
-        "tablet": '',
-        "maquina_lavar": '',
-        "maquina_secar": '',
-        "telefone_fixo": '',
-        "celular": ''
+      'areaIrregular': '',
+      'aparelhosEletronicos': {
+        'id': '',
+        'televisao': '',
+        'tvAssinatura': '',
+        'computador': '',
+        'notebook': '',
+        'fogao': '',
+        'geladeira': '',
+        'microondas': '',
+        'tablet': '',
+        'maquinaLavar': '',
+        'maquinaSecar': '',
+        'telefoneFixo': '',
+        'celular': ''
       }
     };
 
@@ -216,22 +216,22 @@
         'nome': '',
         'parentesco': '',
         'escolaridade': '',
-        'data_nascimento': '',
+        'dataNascimento': new Date(),
         'ocupacao': '',
         'salario': '',
-        'local_trabalho': '',
+        'localTrabalho': '',
         'aluno': {
           'ra': '',
           'nome': '',
           'turma': {
             'educador': ''
           },
-          'data_nascimento': '',
+          'dataNascimento': '',
           'rg': '',
           'naturalidade': '',
           'estado': '',
-          'data_cadastro': '',
-          'meio_transporte': '',
+          'dataCadastro': '',
+          'meioTransporte': '',
           'observacoes': ''
         }
       }
@@ -241,15 +241,16 @@
         'modelo': '',
         'ano': '',
         'financiado': '',
-        'estrutura_familiar': {
+        'estruturaFamiliar': {
           'id': ''
         }
       }
     ];
-    var imoveisVazio = [
+    var imoveisVazio = [        // Translation
+        // $translatePartialLoaderProvider.addPart('app/main/relatorio');
       {
         'financiado': '',
-        'estrutura_familiar': {
+        'estruturaFamiliar': {
           'id': ''
         }
       }
@@ -262,9 +263,9 @@
         'aluno': {
           'ra': ''
         },
-        'grau_parentesco': '',
+        'grauParentesco': '',
         'presente': '',
-        cargo: ''
+        'cargo': ''
       }
     ];
     var paiContato = {
@@ -274,9 +275,9 @@
       'aluno': {
         'ra': ''
       },
-      'grau_parentesco': 'Pai',
+      'grauParentesco': 'Pai',
       'presente': '',
-      cargo: ''
+      'cargo': ''
     };
     var maeContato = {
       'nome': '',
@@ -285,9 +286,9 @@
       'aluno': {
         'ra': ''
       },
-      'grau_parentesco': 'Mae',
+      'grauParentesco': 'Mae',
       'presente': '',
-      cargo: ''
+      'cargo': ''
     };
     // Data
     vm.turmas = Turmas;
@@ -334,20 +335,13 @@
     vm.selectAparelhosEletronicos = selectAparelhosEletronicos;
     vm.selectMaeContato = selectMaeContato;
     vm.selectPaiContato = selectPaiContato;
-    //////////
 
-    //vm.currentUser = $window.sessionStorage.getItem("currentUser");
+    function solveAluno() {
+      $window.location.reload()
+    }
 
-    //console.log("Logado:" + User.nome);
-    //console.log("Logado: " + vm.currentUser.nome);
-
-    /**.
-       * Open new Aluno dialog
-       *
-       * @param ev
-       * @param contact
-       */
-    function openAlunoDialog(ev, aluno) {
+    function openAlunoDialog (ev, aluno) {
+      ev.preventDefault()
       $mdDialog.show({
         controller: 'AlunoDialogController',
         controllerAs: 'vm',
@@ -356,7 +350,6 @@
         targetEvent: ev,
         clickOutsideToClose: false,
         locals: {
-          Aluno: aluno,
           User: vm.user,
           Alunos: vm.alunos,
           Turmas: vm.turmas,
@@ -372,34 +365,36 @@
           Despesa: vm.selectDespesa(estruturaFamiliar),
           AparelhosEletronicos: vm.selectAparelhosEletronicos(situacaoHabitacional),
           PaiContato: vm.selectPaiContato(),
-          MaeContato: vm.selectMaeContato()
+          MaeContato: vm.selectMaeContato(),
+          Aluno: aluno
         }
       });
     }
 
     function selectRoupa(aluno) {
-      var i;
-      if (!aluno) //Logica caso o aluno seja vazio
+      if (!aluno) {
         return roupaVazio;
-
-      for (i = 0; i <= vm.roupas.length; i++) {
-        if (vm.roupas[i].aluno.ra === aluno.ra) {
-          return vm.roupas[i];
-        }
       }
+      var result = roupaVazio;
+      vm.roupas.forEach(function(roupa) {
+        if (roupa.aluno.ra === aluno.ra) {
+          result = roupa;
+        }
+      });
+      return result;
     }
 
     function selectEndereco(aluno) {
-      var i;
-      if (!aluno)
+      if (!aluno) {
         return enderecoVazio;
-
-      console.log(vm.enderecos);
-      for (i = 0; i <= vm.enderecos.length; i++) {
-        if (vm.enderecos[i].aluno.ra === aluno.ra) {
-          return vm.enderecos[i];
-        }
       }
+      var result = enderecoVazio;
+      vm.enderecos.forEach(function(endereco) {
+        if (endereco.aluno.ra === aluno.ra) {
+          result = endereco;
+        }
+      });
+      return result;
     }
 
     function selectContato(aluno) {
@@ -409,9 +404,9 @@
       var result = [];
       vm.contatos.forEach(function(contato) {
         if (contato.aluno.ra === aluno.ra) {
-          if(contato.tipo == 'Responsavel'  && contato.grau_parentesco == 'Pai') {
+          if(contato.tipo == 'Responsavel'  && contato.grauParentesco == 'Pai') {
             paiContato = contato;
-          } else if(contato.tipo == 'Responsavel'  && contato.grau_parentesco == 'Mae') {
+          } else if(contato.tipo == 'Responsavel'  && contato.grauParentesco == 'Mae') {
             maeContato = contato;
           } else {
             result.push(contato);
@@ -423,9 +418,9 @@
 
     function selectEstruturaFamiliar(aluno) {
       if (!aluno) {
-        return estrutura_familiarVazio;
+        return estruturaFamiliarVazio;
       }
-      var result = estrutura_familiarVazio;
+      var result = estruturaFamiliarVazio;
       vm.estruturasFamiliares.forEach(function(estrutura) {
         if (estrutura.aluno.ra === aluno.ra) {
           estruturaFamiliar = estrutura;
@@ -463,16 +458,15 @@
 
     function selectSituacaoHabitacional(aluno) {
       if (!aluno) {
-        return situacao_habitacionalVazio;
+        return situacaoHabitacionalVazio;
       }
-      var result = situacao_habitacionalVazio;
+      var result = situacaoHabitacionalVazio;
       vm.situacoesHabitacionais.forEach(function(situacao) {
         if (situacao.aluno.ra === aluno.ra) {
           situacaoHabitacional = situacao;
           result = situacao;
         }
       });
-      console.log(result);
       return result;
     }
 
@@ -482,7 +476,7 @@
       }
       var result = [];
       vm.automoveis.forEach(function(automovel) {
-        if (automovel.estrutura_familiar.id === estrutura.id) {
+        if (automovel.estruturaFamiliar.id === estrutura.id) {
           result.push(automovel);
         }
       });
@@ -495,7 +489,7 @@
       }
       var result = [];
       vm.imoveis.forEach(function(imovel) {
-        if (imovel.estrutura_familiar.id === estrutura.id) {
+        if (imovel.estruturaFamiliar.id === estrutura.id) {
           result.push(imovel);
         }
       });
@@ -508,7 +502,7 @@
       }
       var result = despesaVazio;
       vm.despesas.forEach(function(despesa) {
-        if (despesa.estrutura_familiar.id === estrutura.id) {
+        if (despesa.estruturaFamiliar.id === estrutura.id) {
           result = despesa;
         }
       });
@@ -517,11 +511,11 @@
 
     function selectAparelhosEletronicos(situacao) {
       if (!situacao) {
-        return aparelhos_eletronicosVazio;
+        return aparelhosEletronicosVazio;
       }
-      var result = aparelhos_eletronicosVazio;
+      var result = aparelhosEletronicosVazio;
       vm.aparelhosEletronicos.forEach(function(aparelhos) {
-        if (aparelhos.id === situacao.aparelhos_eletronicos.id) {
+        if (aparelhos.id === situacao.aparelhosEletronicos.id) {
           result = aparelhos;
         }
       })
@@ -593,12 +587,6 @@
 
     }
 
-    /**
-       * Toggle selected status of the aluno
-       *
-       * @param aluno
-       * @param event
-       */
     function toggleSelectAluno(aluno, event) {
       if (event) {
         event.stopPropagation();
@@ -614,14 +602,14 @@
     /**
        * Deselect alunos
        */
-    function deselectAlunos() {
+    function deselectAlunos () {
       vm.selectedAlunos = [];
     }
 
     /**
        * Sselect all alunos
        */
-    function selectAllAlunos() {
+    function selectAllAlunos () {
       vm.selectedAlunos = $scope.filteredAlunos;
     }
   }

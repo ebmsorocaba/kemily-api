@@ -4,7 +4,7 @@
   angular.module('app.aluno').controller('AlunoDialogController', AlunoDialogController);
 
   /** @ngInject */
-  function AlunoDialogController($state, $mdDialog, Aluno, Roupa, Endereco, Saude, Contatos, PaiContato, MaeContato, Parentes, EstruturaFamiliar, SituacaoHabitacional, AparelhosEletronicos, Imoveis, Automoveis, Despesa, Alunos, Turmas, User, msUtils, api) {
+  function AlunoDialogController($window, $state, $mdDialog, Aluno, Roupa, Endereco, Saude, Contatos, PaiContato, MaeContato, Parentes, EstruturaFamiliar, SituacaoHabitacional, AparelhosEletronicos, Imoveis, Automoveis, Despesa, Alunos, Turmas, User, msUtils, api) {
     var vm = this;
 
     // Data
@@ -12,7 +12,7 @@
     vm.roupa = angular.copy(Roupa);
     vm.endereco = angular.copy(Endereco);
     vm.saude = angular.copy(Saude);
-    if (Contatos != '') {
+    if (Contatos !== '') {
       vm.contatos = angular.copy(Contatos);
     } else {
       vm.contatos = [
@@ -23,7 +23,7 @@
           'aluno': {
             'ra': ''
           },
-          'grau_parentesco': '',
+          'grauParentesco': '',
           'presente': '',
           cargo: ''
         }
@@ -37,31 +37,31 @@
           'nome': '',
           'parentesco': '',
           'escolaridade': '',
-          'data_nascimento': null,
+          'dataNascimento': new Date(),
           'ocupacao': '',
           'salario': '',
-          'local_trabalho': '',
+          'localTrabalho': '',
           'aluno': {
             'ra': '',
             'nome': '',
             'turma': {
               'educador': ''
             },
-            'data_nascimento': null,
+            'dataNascimento': null,
             'rg': '',
             'naturalidade': '',
             'estado': '',
-            'data_cadastro': '',
-            'meio_transporte': '',
+            'dataCadastro': '',
+            'meioTransporte': '',
             'observacoes': ''
           }
         }
       ];
     }
-    vm.estrutura_familiar = angular.copy(EstruturaFamiliar);
-    vm.situacao_habitacional = angular.copy(SituacaoHabitacional);
+    vm.estruturaFamiliar = angular.copy(EstruturaFamiliar);
+    vm.situacaoHabitacional = angular.copy(SituacaoHabitacional);
     vm.despesa = angular.copy(Despesa);
-    vm.aparelhos_eletronicos = AparelhosEletronicos;
+    vm.aparelhosEletronicos = AparelhosEletronicos;
     if (Automoveis != '') {
       vm.automoveis = angular.copy(Automoveis);
       vm.automovel = true
@@ -71,7 +71,7 @@
           'modelo': '',
           'ano': '',
           'financiado': '',
-          'estrutura_familiar': {
+          'estruturaFamiliar': {
             'id': ''
           }
         }
@@ -84,7 +84,7 @@
       vm.imoveis = [
         {
           'financiado': '',
-          'estrutura_familiar': {
+          'estruturaFamiliar': {
             'id': ''
           }
         }
@@ -92,14 +92,6 @@
     }
     vm.paiContato = angular.copy(PaiContato);
     vm.maeContato = angular.copy(MaeContato);
-    // function fixContatoArray(pai, mae) {
-    //   var indexPai = vm.contatos.indexOf(pai);
-    //   var indexMae = vm.contatos.indexOf(mae);
-    //
-    //   vm.contatos.splice(indexPai, 1);
-    //   vm.contatos.splice(indexMae, 1);
-    // }
-    // fixContatoArray(vm.paiContato, vm.maeContato);
     vm.aluno = angular.copy(Aluno);
     vm.alunos = Alunos;
     vm.user = User;
@@ -182,7 +174,7 @@
       'GG',
       'GGG'
     ];
-    vm.estados_civis = [
+    vm.estadosCivis = [
       'Solteiros',
       'Casados',
       'Separados',
@@ -194,22 +186,15 @@
     vm.situacoes = ['Casa Própria', 'Casa Alugada', 'Casa Cedida', 'Cada Financiada'];
     vm.tiposContato = ['Generico', 'Responsavel', 'Profissional'];
 
-    //vm.ok = false;
-
-    // Formas de Pagamento
-    vm.listaPgtos = ["Boleto", "Dinheiro", "Cartão"];
-    //vm.calculaCPF = calculaCPF;
-
-    // TODO Ajustar o Aluno conforme o BackEnd
     if (!vm.aluno) {
       vm.aluno = {
         'ra': '',
         'nome': '',
-        'data_nascimento': null,
+        'dataNascimento': null,
         'rg': '',
         'estado': '',
-        'data_cadastro': new Date(),
-        'meio_transporte': '',
+        'dataCadastro': new Date(),
+        'meioTransporte': '',
         'observacoes': '',
         'naturalidade': '',
         'turma': {
@@ -221,19 +206,19 @@
         'aluno': {
           'ra': '',
           'nome': '',
-          'data_nascimento': null,
+          'dataNascimento': null,
           'rg': '',
           'estado': '',
-          'data_cadastro': new Date(),
-          'meio_transporte': '',
+          'dataCadastro': new Date(),
+          'meioTransporte': '',
           'observacoes': '',
           'naturalidade': '',
           'turma': {
             'educador': ''
           }
         },
-        'tamanho_camiseta': '',
-        'tamanho_calca': ''
+        'tamanhoCamiseta': '',
+        'tamanhoCalca': ''
       };
 
       vm.endereco = {
@@ -242,7 +227,7 @@
         'rua': '',
         'bairro': '',
         'cidade': '',
-        'ponto_referencia': '',
+        'pontoReferencia': '',
         'complemento': '',
         'aluno': {
           'ra': '',
@@ -250,12 +235,12 @@
           'turma': {
             'educador': ''
           },
-          'data_nascimento': null,
+          'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
           'estado': '',
-          'data_cadastro': '',
-          'meio_transporte': 'Carro',
+          'dataCadastro': '',
+          'meioTransporte': '',
           'observacoes': ''
         }
       };
@@ -267,163 +252,163 @@
           'turma': {
             'educador': ''
           },
-          'data_nascimento': null,
+          'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
           'estado': '',
-          'data_cadastro': '',
-          'meio_transporte': '',
+          'dataCadastro': '',
+          'meioTransporte': '',
           'observacoes': ''
         },
-        'faz_tratamentos_medicos': '',
-        'problemas_saude_familia': '',
-        'plano_saude': '',
-        'pessoas_idosas': '',
-        'problemas_psiquiatricos': ''
+        'fazTratamentosMedicos': '',
+        'problemasSaudeFamilia': '',
+        'planoSaude': '',
+        'pessoasIdosas': '',
+        'problemasPsiquiatricos': ''
       };
 
-      vm.estrutura_familiar = {
+      vm.estruturaFamiliar = {
         'id': '',
-        'estado_civil_pais': '',
-        'crianca_reside_com': '',
-        'problemas_financeiros': '',
-        'uso_alcool_drogas': '',
-        'alguem_agressivo': '',
-        'programas_sociais': '',
+        'estadoCivilPais': '',
+        'criancaResideCom': '',
+        'problemasFinanceiros': '',
+        'usoAlcoolDrogas': '',
+        'alguemAgressivo': '',
+        'programasSociais': '',
         'aluno': {
           'ra': '',
           'nome': '',
           'turma': {
             'educador': ''
           },
-          'data_nascimento': null,
+          'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
           'estado': '',
-          'data_cadastro': '',
-          'meio_transporte': '',
+          'dataCadastro': '',
+          'meioTransporte': '',
           'observacoes': ''
         }
       };
 
       vm.despesa = {
-        'estrutura_familiar': {
+        'estruturaFamiliar': {
           'id': '',
-          'estado_civil_pais': '',
-          'crianca_reside_com': '',
-          'problemas_financeiros': '',
-          'uso_alcool_drogas': '',
-          'alguem_agressivo': '',
-          'programas_sociais': '',
+          'estadoCivilPais': '',
+          'criancaResideCom': '',
+          'problemasFinanceiros': '',
+          'usoAlcoolDrogas': '',
+          'alguemAgressivo': '',
+          'programasSociais': '',
           'aluno': {
             'ra': '',
             'nome': '',
             'turma': {
               'educador': ''
             },
-            'data_nascimento': null,
+            'dataNascimento': null,
             'rg': '',
             'naturalidade': '',
             'estado': '',
-            'data_cadastro': '',
-            'meio_transporte': '',
+            'dataCadastro': '',
+            'meioTransporte': '',
             'observacoes': ''
           }
         },
         'agua': '',
-        'energia_eletrica': '',
+        'energiaEletrica': '',
         'telefone': '',
         'aluguel': '',
-        'financiamento_casa': '',
-        'financiamento_carro': '',
+        'financiamentoCasa': '',
+        'financiamentoCarro': '',
         'transporte': '',
         'alimentacao': '',
         'gas': '',
-        'cartao_credito': '',
+        'cartaoCredito': '',
         'emprestimo': '',
-        'tv_cabo': '',
+        'tvCabo': '',
         'educacao': '',
         'pensao': '',
-        'convenio_medico': ''
+        'convenioMedico': ''
       };
 
-      vm.aparelhos_eletronicos = {
+      vm.aparelhosEletronicos = {
         'id': '',
         'televisao': '',
-        'tv_assinatura': '',
+        'tvAssinatura': '',
         'computador': '',
         'notebook': '',
         'fogao': '',
         'geladeira': '',
         'microondas': '',
         'tablet': '',
-        'maquina_lavar': '',
-        'maquina_secar': '',
-        'telefone_fixo': '',
+        'maquinaLavar': '',
+        'maquinaSecar': '',
+        'telefoneFixo': '',
         'celular': ''
       };
 
-      vm.situacao_habitacional = {
+      vm.situacaoHabitacional = {
         'aluno': {
           'ra': '',
           'nome': '',
           'turma': {
             'educador': ''
           },
-          'data_nascimento': null,
+          'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
           'estado': '',
-          'data_cadastro': '',
-          'meio_transporte': '',
+          'dataCadastro': '',
+          'meioTransporte': '',
           'observacoes': ''
         },
-        'situacao': '',
+        'situacao': null,
+        'numeroComodos': null,
         'esgoto': false,
-        'rede_eletrica': false,
+        'redeEletrica': false,
         'asfalto': false,
-        'numero_comodos': '',
         'alvenaria': false,
         'madeira': false,
-        'area_irregular': false,
-        "aparelhos_eletronicos": {
-          "id": '',
-          "televisao": '',
-          "tv_assinatura": '',
-          "computador": '',
-          "notebook": '',
-          "fogao": '',
-          "geladeira": '',
-          "microondas": '',
-          "tablet": '',
-          "maquina_lavar": '',
-          "maquina_secar": '',
-          "telefone_fixo": '',
-          "celular": ''
+        'areaIrregular': false,
+        'aparelhosEletronicos': {
+          'id': '',
+          'televisao': '',
+          'tvAssinatura': '',
+          'computador': '',
+          'notebook': '',
+          'fogao': '',
+          'geladeira': '',
+          'microondas': '',
+          'tablet': '',
+          'maquinaLavar': '',
+          'maquinaSecar': '',
+          'telefoneFixo': '',
+          'celular': ''
         }
-      };
+      }
 
       vm.parentes = [
         {
           'nome': '',
           'parentesco': '',
           'escolaridade': '',
-          'data_nascimento': null,
+          'dataNascimento': null,
           'ocupacao': '',
           'salario': '',
-          'local_trabalho': '',
+          'localTrabalho': '',
           'aluno': {
             'ra': '',
             'nome': '',
             'turma': {
               'educador': ''
             },
-            'data_nascimento': null,
+            'dataNascimento': null,
             'rg': '',
             'naturalidade': '',
             'estado': '',
-            'data_cadastro': '',
-            'meio_transporte': '',
+            'dataCadastro': '',
+            'meioTransporte': '',
             'observacoes': ''
           }
         }
@@ -433,7 +418,7 @@
           'modelo': '',
           'ano': '',
           'financiado': '',
-          'estrutura_familiar': {
+          'estruturaFamiliar': {
             'id': ''
           }
         }
@@ -441,7 +426,7 @@
       vm.imoveis = [
         {
           'financiado': '',
-          'estrutura_familiar': {
+          'estruturaFamiliar': {
             'id': ''
           }
         }
@@ -454,7 +439,7 @@
           'aluno': {
             'ra': ''
           },
-          'grau_parentesco': '',
+          'grauParentesco': '',
           'presente': '',
           cargo: ''
         }
@@ -466,7 +451,7 @@
         'aluno': {
           'ra': ''
         },
-        'grau_parentesco': 'Pai',
+        'grauParentesco': 'Pai',
         'presente': '',
         cargo: ''
       };
@@ -477,7 +462,7 @@
         'aluno': {
           'ra': ''
         },
-        'grau_parentesco': 'Mae',
+        'grauParentesco': 'Mae',
         'presente': '',
         cargo: ''
       };
@@ -486,15 +471,16 @@
       vm.newAluno = true;
       // vm.aluno.tags = [];
     } else {
-      vm.aluno.data_nascimento = new Date(vm.aluno.data_nascimento);
+      vm.aluno.dataNascimento = new Date(vm.aluno.dataNascimento);
       vm.parentes.forEach(function(parente) {
-        parente.data_nascimento = new Date(parente.data_nascimento);
+        parente.dataNascimento = new Date(parente.dataNascimento);
       });
     }
 
     // Methods
     vm.routeReload = function() {
-      $state.reload();
+      $state.reload()
+      // $window.location.reload()
     }
 
     vm.isLastContato = function(c) {
@@ -532,7 +518,7 @@
         'aluno': {
           'ra': ''
         },
-        'grau_parentesco': '',
+        'grauParentesco': '',
         'presente': '',
         cargo: ''
       };
@@ -557,7 +543,7 @@
             'aluno': {
               'ra': ''
             },
-            'grau_parentesco': '',
+            'grauParentesco': '',
             'presente': '',
             'cargo': ''
           }
@@ -570,22 +556,22 @@
         'nome': '',
         'parentesco': '',
         'escolaridade': '',
-        'data_nascimento': null,
+        'dataNascimento': null,
         'ocupacao': '',
         'salario': '',
-        'local_trabalho': '',
+        'localTrabalho': '',
         'aluno': {
           'ra': '',
           'nome': '',
           'turma': {
             'educador': ''
           },
-          'data_nascimento': null,
+          'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
           'estado': '',
-          'data_cadastro': '',
-          'meio_transporte': '',
+          'dataCadastro': '',
+          'meioTransporte': '',
           'observacoes': ''
         }
       };
@@ -607,22 +593,22 @@
             'nome': '',
             'parentesco': '',
             'escolaridade': '',
-            'data_nascimento': '',
+            'dataNascimento': '',
             'ocupacao': '',
             'salario': '',
-            'local_trabalho': '',
+            'localTrabalho': '',
             'aluno': {
               'ra': '',
               'nome': '',
               'turma': {
                 'educador': ''
               },
-              'data_nascimento': '',
+              'dataNascimento': '',
               'rg': '',
               'naturalidade': '',
               'estado': '',
-              'data_cadastro': '',
-              'meio_transporte': '',
+              'dataCadastro': '',
+              'meioTransporte': '',
               'observacoes': ''
             }
           }
@@ -645,7 +631,7 @@
         'modelo': '',
         'ano': '',
         'financiado': '',
-        'estrutura_familiar': {
+        'estruturaFamiliar': {
           'id': ''
         }
       };
@@ -667,7 +653,7 @@
             'modelo': '',
             'ano': '',
             'financiado': '',
-            'estrutura_familiar': {
+            'estruturaFamiliar': {
               'id': ''
             }
           }
@@ -678,27 +664,27 @@
     vm.addImovel = function(i) {
       var imovel = {
         'financiado': '',
-        'estrutura_familiar': {
+        'estruturaFamiliar': {
           'id': ''
         }
       };
       vm.imoveis.push(imovel);
     }
 
-    vm.removeImovel = function(i) {
+    vm.removeImovel = function (i) {
       if (vm.imoveis.length > 1) {
         vm.imoveis.splice(vm.imoveis.indexOf(i), 1);
-        if (vm.aluno.ra != '') {
+        if (vm.aluno.ra !== '') {
           api.imovel.getById.delete(i, function(response) {}, function(response) {});
         }
       } else {
-        if (vm.aluno.ra != '') {
+        if (vm.aluno.ra !== '') {
           api.imovel.getById.delete(i, function(response) {}, function(response) {});
         }
         vm.imoveis = [
           {
             'financiado': '',
-            'estrutura_familiar': {
+            'estruturaFamiliar': {
               'id': ''
             }
           }
@@ -706,64 +692,12 @@
       }
     }
     vm.addNewAluno = addNewAluno;
-    vm.saveAluno = saveAluno;
     vm.deleteAlunoConfirm = deleteAlunoConfirm;
     vm.closeDialog = closeDialog;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
 
     vm.sendForm = sendForm;
-    //////////
-
-    /**
-    * Add new aluno
-    */
-    function addNewAluno() {
-      // Cria o novo registro no BD
-      // TODO Tratar de como enviar a [formaPgto] ao BD
-
-      api.aluno.list.save(vm.aluno,
-      // Exibe o resultado no console do navegador:
-      // Sucesso
-      function(response) {
-        aluno = response;
-      },
-      // Erro
-      function(response) {
-        console.error(response);
-      });
-
-      // Adiciona uma nova linha no topo da lista na tela
-      vm.alunos.unshift(vm.aluno);
-
-      closeDialog();
-      //}
-    }
-
-    /**
-    * Save new aluno
-    */
-    function saveAluno() {
-      // Atualiza a linha na tela:
-      for (var i = 0; i < vm.alunos.length; i++) {
-        if (vm.alunos[i].cpf === vm.aluno.cpf) {
-          vm.alunos[i] = angular.copy(vm.aluno);
-          break;
-        }
-      }
-
-      // Grava as alterações no BD:
-      api.aluno.getByRa.update({
-        'ra': vm.aluno.ra
-      }, vm.aluno,
-      // Exibe o resultado no console do navegador:
-      // Sucesso
-      function(response) {},
-      // Erro
-      function(response) {});
-
-      closeDialog();
-    }
 
     /**
   * Delete Aluno Confirm Dialog
@@ -855,7 +789,7 @@
         });
 
         api.saude.getById.update({
-          'ra_aluno': vm.saude.aluno.ra
+          'raAluno': vm.saude.aluno.ra
         }, vm.saude, function(response) {},
         // Erro
         function(response) {
@@ -863,8 +797,8 @@
         });
 
         api.estruturaFamiliar.getById.update({
-          'id': vm.estrutura_familiar.id
-        }, vm.estrutura_familiar, function(response) {}, function(response) {
+          'id': vm.estruturaFamiliar.id
+        }, vm.estruturaFamiliar, function(response) {}, function(response) {
           console.error(response);
         });
 
@@ -876,7 +810,7 @@
               console.error(response);
             });
           } else {
-            automovel.estrutura_familiar.id = vm.estrutura_familiar.id;
+            automovel.estruturaFamiliar.id = vm.estruturaFamiliar.id;
             api.automovel.list.save(automovel, function(response) {}, function(response) {});
           }
 
@@ -890,15 +824,15 @@
               console.error(response);
             });
           } else {
-            imovel.estrutura_familiar.id = vm.estrutura_familiar.id;
+            imovel.estruturaFamiliar.id = vm.estruturaFamiliar.id;
             api.imovel.list.save(imovel, function(response) {}, function(response) {});
           }
 
         });
 
-        if (vm.despesa.estrutura_familiar.id != '') {
+        if (vm.despesa.estruturaFamiliar.id != '') {
           api.despesa.getById.update({
-            'id': vm.despesa.estrutura_familiar.id
+            'id': vm.despesa.estruturaFamiliar.id
           }, vm.despesa, function(response) {},
           // Erro
           function(response) {
@@ -923,26 +857,26 @@
           }
         });
 
-        if (vm.aparelhos_eletronicos.id != '') {
+        if (vm.aparelhosEletronicos.id != '') {
           api.aparelhosEletronicos.getById.update({
-            'id': vm.aparelhos_eletronicos.id
-          }, vm.aparelhos_eletronicos, function(response) {}, function(response) {
+            'id': vm.aparelhosEletronicos.id
+          }, vm.aparelhosEletronicos, function(response) {}, function(response) {
             console.error(response);
           });
         } else {
-          api.aparelhosEletronicos.list.save(vm.aparelhos_eletronicos, function(response) {}, function(response) {});
+          api.aparelhosEletronicos.list.save(vm.aparelhosEletronicos, function(response) {}, function(response) {});
         }
 
-        if (vm.situacao_habitacional.aluno.ra != '') {
+        if (vm.situacaoHabitacional.aluno.ra != '') {
           api.situacaoHabitacional.getById.update({
-            'ra': vm.situacao_habitacional.aluno.ra
-          }, vm.situacao_habitacional, function(response) {},
+            'ra': vm.situacaoHabitacional.aluno.ra
+          }, vm.situacaoHabitacional, function(response) {},
           // Erro
           function(response) {
             console.error(response);
           });
         } else {
-          api.situacaoHabitacional.list.save(vm.situacao_habitacional,
+          api.situacaoHabitacional.list.save(vm.situacaoHabitacional,
           // Exibe o resultado no console do navegador:
           // Sucesso
           function(response) {},
@@ -1005,24 +939,24 @@
           // Erro
           function(response) {});
 
-          vm.estrutura_familiar.aluno.ra = vm.aluno.ra;
+          vm.estruturaFamiliar.aluno.ra = vm.aluno.ra;
 
           //ADD ESTRUTURA FAMILIAR
-          api.estruturaFamiliar.list.save(vm.estrutura_familiar, function(response) {
+          api.estruturaFamiliar.list.save(vm.estruturaFamiliar, function(response) {
 
-            vm.estrutura_familiar = response;
+            vm.estruturaFamiliar = response;
 
             vm.automoveis.forEach(function(automovel) {
-              automovel.estrutura_familiar.id = vm.estrutura_familiar.id;
+              automovel.estruturaFamiliar.id = vm.estruturaFamiliar.id;
               api.automovel.list.save(automovel, function(response) {}, function(response) {});
             });
 
             vm.imoveis.forEach(function(imovel) {
-              imovel.estrutura_familiar.id = vm.estrutura_familiar.id;
+              imovel.estruturaFamiliar.id = vm.estruturaFamiliar.id;
               api.imovel.list.save(imovel, function(response) {}, function(response) {});
             });
 
-            vm.despesa.estrutura_familiar.id = vm.estrutura_familiar.id;
+            vm.despesa.estruturaFamiliar.id = vm.estruturaFamiliar.id;
 
             //ADD DESPESA
             api.despesa.list.save(vm.despesa,
@@ -1033,14 +967,14 @@
             function(response) {});
 
             //ADD APARALHOS ELETRÔNICOS
-            api.aparelhosEletronicos.list.save(vm.aparelhos_eletronicos, function(response) {
+            api.aparelhosEletronicos.list.save(vm.aparelhosEletronicos, function(response) {
 
-              vm.aparelhos_eletronicos = response;
-              vm.situacao_habitacional.aparelhos_eletronicos.id = vm.aparelhos_eletronicos.id;
-              vm.situacao_habitacional.aluno.ra = vm.aluno.ra;
+              vm.aparelhosEletronicos = response;
+              vm.situacaoHabitacional.aparelhosEletronicos.id = vm.aparelhosEletronicos.id;
+              vm.situacaoHabitacional.aluno.ra = vm.aluno.ra;
 
               //ADD SITUAÇÃO HABITACIONAL
-              api.situacaoHabitacional.list.save(vm.situacao_habitacional,
+              api.situacaoHabitacional.list.save(vm.situacaoHabitacional,
               // Exibe o resultado no console do navegador:
               // Sucesso
               function(response) {},
@@ -1066,11 +1000,9 @@
         function(response) {
           console.error(response);
         });
-        vm.alunos.unshift(vm.aluno);
       }
       //
-      closeDialog();
-
+      closeDialog()
     }
   }
 
