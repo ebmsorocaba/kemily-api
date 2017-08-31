@@ -698,6 +698,32 @@
     vm.exists = msUtils.exists;
 
     vm.sendForm = sendForm;
+    //////////
+
+    /**
+    * Add new aluno
+    */
+    function addNewAluno() {
+      // Cria o novo registro no BD
+      // TODO Tratar de como enviar a [formaPgto] ao BD
+
+      api.aluno.list.save(vm.aluno,
+      // Exibe o resultado no console do navegador:
+      // Sucesso
+      function(response) {
+        aluno = response;
+      },
+      // Erro
+      function(response) {
+        console.error(response);
+      });
+
+      // Adiciona uma nova linha no topo da lista na tela
+      vm.alunos.unshift(vm.aluno);
+
+      closeDialog();
+      //}
+    }
 
     /**
   * Delete Aluno Confirm Dialog
@@ -1000,6 +1026,7 @@
         function(response) {
           console.error(response);
         });
+        vm.alunos.unshift(vm.aluno);
       }
       //
       closeDialog()
