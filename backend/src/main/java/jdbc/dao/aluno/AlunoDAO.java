@@ -13,27 +13,24 @@ import java.util.List;
 
 public class AlunoDAO {
     private Connection connection;
-    private TurmaDAO turmaDAO;
 
     public AlunoDAO() throws SQLException {
         this.connection = ConnectionFactory.getConnection();
-        this.turmaDAO = new TurmaDAO();
     }
 
     public Aluno adiciona(Aluno aluno) throws SQLException {
     	try (
-    			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+    			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
     	){
 	
         stmt.setString(1,aluno.getNome());
-        stmt.setString(2,aluno.getTurma().getEducador());
-        stmt.setDate(3,aluno.getDataNascimento());
-        stmt.setString(4,aluno.getRg());
-        stmt.setString(5,aluno.getNaturalidade());
-        stmt.setString(6,aluno.getEstado());
-        stmt.setDate(7,aluno.getDataCadastro());
-        stmt.setString(8,aluno.getMeioTransporte());
-        stmt.setString(9,aluno.getObservacoes());
+        stmt.setDate(2,aluno.getDataNascimento());
+        stmt.setString(3,aluno.getRg());
+        stmt.setString(4,aluno.getNaturalidade());
+        stmt.setString(5,aluno.getEstado());
+        stmt.setDate(6,aluno.getDataCadastro());
+        stmt.setString(7,aluno.getMeioTransporte());
+        stmt.setString(8,aluno.getObservacoes());
 
         // executa
         int ra = stmt.executeUpdate();
@@ -73,7 +70,6 @@ public class AlunoDAO {
 
             aluno.setRa(rs.getInt("ra"));
             aluno.setNome(rs.getString("nome"));
-            aluno.setTurma(turmaDAO.getTurma(rs.getString("turma_educador")));
             aluno.setRg(rs.getString("rg"));
             aluno.setDataCadastro(rs.getDate("data_cadastro"));
             aluno.setDataNascimento(rs.getDate("data_nascimento"));
@@ -106,7 +102,6 @@ public class AlunoDAO {
             if (rs.next() == true) {
                 aluno.setRa(rs.getInt("ra"));
                 aluno.setNome(rs.getString("nome"));
-                aluno.setTurma(turmaDAO.getTurma(rs.getString("turma_educador")));
                 aluno.setRg(rs.getString("rg"));
                 aluno.setDataCadastro(rs.getDate("data_cadastro"));
                 aluno.setDataNascimento(rs.getDate("data_nascimento"));
@@ -147,18 +142,17 @@ public class AlunoDAO {
 
     public void altera(Aluno aluno, int ra) throws SQLException {
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aluno SET nome=?, turma_educador=?, data_nascimento=?, rg=?, naturalidade=?, estado=?, data_cadastro=?, meio_transporte=?, observacoes=? WHERE ra=?");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aluno SET nome=?, data_nascimento=?, rg=?, naturalidade=?, estado=?, data_cadastro=?, meio_transporte=?, observacoes=? WHERE ra=?");
 
         stmt.setString(1,aluno.getNome());
-        stmt.setString(2,aluno.getTurma().getEducador());
-        stmt.setDate(3,aluno.getDataNascimento());
-        stmt.setString(4,aluno.getRg());
-        stmt.setString(5,aluno.getNaturalidade());
-        stmt.setString(6,aluno.getEstado());
-        stmt.setDate(7,aluno.getDataCadastro());
-        stmt.setString(8,aluno.getMeioTransporte());
-        stmt.setString(9,aluno.getObservacoes());
-        stmt.setInt(10, ra);
+        stmt.setDate(2,aluno.getDataNascimento());
+        stmt.setString(3,aluno.getRg());
+        stmt.setString(4,aluno.getNaturalidade());
+        stmt.setString(5,aluno.getEstado());
+        stmt.setDate(6,aluno.getDataCadastro());
+        stmt.setString(7,aluno.getMeioTransporte());
+        stmt.setString(8,aluno.getObservacoes());
+        stmt.setInt(9, ra);
 
         stmt.execute();
         stmt.close();

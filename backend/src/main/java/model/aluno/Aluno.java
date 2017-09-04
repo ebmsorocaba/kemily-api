@@ -7,7 +7,6 @@ import java.sql.Date;
 public class Aluno {
     private int ra;
     private String nome;
-    private Turma turma;
     private Date dataNascimento;
     private String rg;
     private String naturalidade;
@@ -22,7 +21,6 @@ public class Aluno {
     public Aluno(
             @JsonProperty("ra") int ra,
             @JsonProperty("nome") String nome,
-            @JsonProperty("turma") Turma turma,
             @JsonProperty("dataNascimento") Date dataNascimento,
             @JsonProperty("rg") String rg,
             @JsonProperty("naturalidade") String naturalidade,
@@ -33,7 +31,6 @@ public class Aluno {
 
         this.ra = ra;
         this.nome = nome;
-        this.turma = turma;
         this.dataNascimento = dataNascimento;
         this.rg = rg;
         this.naturalidade = naturalidade;
@@ -57,14 +54,6 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Turma getTurma() {
-        return turma;
-    }
-
-    public void setTurma(Turma turma) {
-        this.turma = turma;
     }
 
     public Date getDataNascimento() {

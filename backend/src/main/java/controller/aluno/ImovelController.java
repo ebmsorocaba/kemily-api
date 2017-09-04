@@ -2,9 +2,7 @@ package controller.aluno;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import jdbc.dao.aluno.DespesaDAO;
 import jdbc.dao.aluno.ImovelDAO;
-import model.aluno.Despesa;
 import model.aluno.Imovel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

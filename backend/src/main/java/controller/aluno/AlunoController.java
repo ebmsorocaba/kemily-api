@@ -3,13 +3,6 @@ package controller.aluno;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import jdbc.dao.aluno.AlunoDAO;
-import jdbc.dao.aluno.ContatoDAO;
-import jdbc.dao.aluno.EnderecoDAO;
-import jdbc.dao.aluno.EstruturaFamiliarDAO;
-import jdbc.dao.aluno.ParenteDAO;
-import jdbc.dao.aluno.RoupaDAO;
-import jdbc.dao.aluno.SaudeDAO;
-import jdbc.dao.aluno.SituacaoHabitacionalDAO;
 import model.aluno.Aluno;
 
 import org.springframework.http.HttpStatus;
