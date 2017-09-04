@@ -50,10 +50,6 @@
                   {
                       return msApi.resolve('saudes.saudes@query'); // GET para Arrays
                   },
-                  Turmas: function (msApi)
-                  {
-                      return msApi.resolve('turmas.turmas@query'); // GET para Arrays
-                  },
                   Alunos: function (msApi)
                   {
                       return msApi.resolve('alunos.alunos@query'); // GET para Arrays
@@ -117,7 +113,6 @@
         msApiProvider.register('roupas.roupas', ['/api/roupa'])
         msApiProvider.register('despesas.despesas', ['/api/despesa'])
         msApiProvider.register('enderecos.enderecos', ['/api/endereco'])
-        msApiProvider.register('turmas.turmas', ['/api/turma'])
         msApiProvider.register('saudes.saudes', ['/api/saude'])
         msApiProvider.register('situacoesHabitacionais.situacoesHabitacionais', ['/api/situacaoHabitacional'])
         msApiProvider.register('estruturasFamiliares.estruturasFamiliares', ['/api/estruturaFamiliar'])

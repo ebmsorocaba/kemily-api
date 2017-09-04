@@ -4,7 +4,7 @@
   angular.module('app.aluno').controller('AlunoController', AlunoController);
 
   /** @ngInject */
-  function AlunoController($scope, $mdSidenav, User, Alunos, Turmas, Enderecos, Roupas, Despesas, EstruturasFamiliares, SituacoesHabitacionais, AparelhosEletronicos, Contatos, Imoveis, Automoveis, Saudes, Parentes, msUtils, $mdDialog, $document, api, $window) {
+  function AlunoController($scope, $mdSidenav, User, Alunos, Enderecos, Roupas, Despesas, EstruturasFamiliares, SituacoesHabitacionais, AparelhosEletronicos, Contatos, Imoveis, Automoveis, Saudes, Parentes, msUtils, $mdDialog, $document, api, $window) {
     var vm = this;
     var estruturaFamiliar = null;
     var situacaoHabitacional = null;
@@ -19,10 +19,7 @@
       'dataCadastro': new Date(),
       'meioTransporte': '',
       'observacoes': '',
-      'naturalidade': '',
-      'turma': {
-        'educador': ''
-      }
+      'naturalidade': ''
     };
 
     var roupaVazio = {
@@ -35,10 +32,7 @@
         'dataCadastro': new Date(),
         'meioTransporte': '',
         'observacoes': '',
-        'naturalidade': '',
-        'turma': {
-          'educador': ''
-        }
+        'naturalidade': ''
       },
       'tamanhoCamiseta': '',
       'tamanhoCalca': ''
@@ -55,9 +49,6 @@
       'aluno': {
         'ra': '',
         'nome': '',
-        'turma': {
-          'educador': ''
-        },
         'dataNascimento': '',
         'rg': '',
         'naturalidade': '',
@@ -72,9 +63,6 @@
       'aluno': {
         'ra': '',
         'nome': '',
-        'turma': {
-          'educador': ''
-        },
         'dataNascimento': '',
         'rg': '',
         'naturalidade': '',
@@ -101,9 +89,6 @@
       'aluno': {
         'ra': '',
         'nome': '',
-        'turma': {
-          'educador': ''
-        },
         'dataNascimento': '',
         'rg': '',
         'naturalidade': '',
@@ -126,9 +111,6 @@
         'aluno': {
           'ra': '',
           'nome': '',
-          'turma': {
-            'educador': ''
-          },
           'dataNascimento': '',
           'rg': '',
           'naturalidade': '',
@@ -175,9 +157,6 @@
       'aluno': {
         'ra': '',
         'nome': '',
-        'turma': {
-          'educador': ''
-        },
         'dataNascimento': '',
         'rg': '',
         'naturalidade': '',
@@ -223,9 +202,6 @@
         'aluno': {
           'ra': '',
           'nome': '',
-          'turma': {
-            'educador': ''
-          },
           'dataNascimento': '',
           'rg': '',
           'naturalidade': '',
@@ -291,7 +267,6 @@
       'cargo': ''
     };
     // Data
-    vm.turmas = Turmas;
     vm.alunos = Alunos;
     vm.saudes = Saudes;
     vm.parentes = Parentes;
@@ -352,7 +327,6 @@
         locals: {
           User: vm.user,
           Alunos: vm.alunos,
-          Turmas: vm.turmas,
           Roupa: vm.selectRoupa(aluno),
           Endereco: vm.selectEndereco(aluno),
           Saude: vm.selectSaude(aluno),

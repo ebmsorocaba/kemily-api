@@ -277,11 +277,6 @@
           getById : $resource(api.baseUrl + 'situacaoHabitacional/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
         }
 
-        api.turma = {
-          list  : $resource(api.baseUrl + 'turma'),
-          getByEducador : $resource(api.baseUrl + 'turma/:educador' + '/', {educador: '@educador'}, {'update': {method: 'PUT'}})
-        }
-
         api.contato = {
           list  : $resource(api.baseUrl + 'contato'),
           profissional  : $resource(api.baseUrl + 'contato/profissional'),

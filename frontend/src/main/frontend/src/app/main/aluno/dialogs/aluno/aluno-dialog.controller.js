@@ -4,7 +4,7 @@
   angular.module('app.aluno').controller('AlunoDialogController', AlunoDialogController);
 
   /** @ngInject */
-  function AlunoDialogController($window, $state, $mdDialog, Aluno, Roupa, Endereco, Saude, Contatos, PaiContato, MaeContato, Parentes, EstruturaFamiliar, SituacaoHabitacional, AparelhosEletronicos, Imoveis, Automoveis, Despesa, Alunos, Turmas, User, msUtils, api) {
+  function AlunoDialogController($window, $state, $mdDialog, Aluno, Roupa, Endereco, Saude, Contatos, PaiContato, MaeContato, Parentes, EstruturaFamiliar, SituacaoHabitacional, AparelhosEletronicos, Imoveis, Automoveis, Despesa, Alunos, User, msUtils, api) {
     var vm = this;
 
     // Data
@@ -44,9 +44,6 @@
           'aluno': {
             'ra': '',
             'nome': '',
-            'turma': {
-              'educador': ''
-            },
             'dataNascimento': null,
             'rg': '',
             'naturalidade': '',
@@ -95,7 +92,6 @@
     vm.aluno = angular.copy(Aluno);
     vm.alunos = Alunos;
     vm.user = User;
-    vm.turmas = Turmas;
     vm.newAluno = false;
     vm.allFields = false;
     vm.escolaridades = [
@@ -196,10 +192,7 @@
         'dataCadastro': new Date(),
         'meioTransporte': '',
         'observacoes': '',
-        'naturalidade': '',
-        'turma': {
-          'educador': ''
-        }
+        'naturalidade': ''
       };
 
       vm.roupa = {
@@ -212,10 +205,7 @@
           'dataCadastro': new Date(),
           'meioTransporte': '',
           'observacoes': '',
-          'naturalidade': '',
-          'turma': {
-            'educador': ''
-          }
+          'naturalidade': ''
         },
         'tamanhoCamiseta': '',
         'tamanhoCalca': ''
@@ -232,9 +222,6 @@
         'aluno': {
           'ra': '',
           'nome': '',
-          'turma': {
-            'educador': ''
-          },
           'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
@@ -249,9 +236,6 @@
         'aluno': {
           'ra': '',
           'nome': '',
-          'turma': {
-            'educador': ''
-          },
           'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
@@ -278,9 +262,6 @@
         'aluno': {
           'ra': '',
           'nome': '',
-          'turma': {
-            'educador': ''
-          },
           'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
@@ -303,9 +284,6 @@
           'aluno': {
             'ra': '',
             'nome': '',
-            'turma': {
-              'educador': ''
-            },
             'dataNascimento': null,
             'rg': '',
             'naturalidade': '',
@@ -352,9 +330,6 @@
         'aluno': {
           'ra': '',
           'nome': '',
-          'turma': {
-            'educador': ''
-          },
           'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
@@ -400,9 +375,6 @@
           'aluno': {
             'ra': '',
             'nome': '',
-            'turma': {
-              'educador': ''
-            },
             'dataNascimento': null,
             'rg': '',
             'naturalidade': '',
@@ -563,9 +535,6 @@
         'aluno': {
           'ra': '',
           'nome': '',
-          'turma': {
-            'educador': ''
-          },
           'dataNascimento': null,
           'rg': '',
           'naturalidade': '',
@@ -600,9 +569,6 @@
             'aluno': {
               'ra': '',
               'nome': '',
-              'turma': {
-                'educador': ''
-              },
               'dataNascimento': '',
               'rg': '',
               'naturalidade': '',

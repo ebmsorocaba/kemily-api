@@ -49,15 +49,6 @@
                     </div>
                   </md-input-container>
 
-                  <md-input-container flex="100" flex-gt-xs="20">
-                    <label>Turma</label>
-                    <md-select ng-model="vm.aluno.turma.educador" required>
-                      <md-option ng-repeat="turma in vm.turmas" value="{{turma.educador}}">
-                        {{turma.educador}}
-                      </md-option>
-                    </md-select>
-                  </md-input-container>
-
                   <md-input-container flex="100" flex-gt-xs="15">
                     <label>RG</label>
                     <input type="text" name="rg" ng-model="vm.aluno.rg" md-maxlength="12" mask="99.999.999-w" required>
