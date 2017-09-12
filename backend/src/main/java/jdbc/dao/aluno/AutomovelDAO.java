@@ -12,11 +12,11 @@ import java.util.List;
 
 public class AutomovelDAO {
     private Connection connection;
-    private Estrutura_FamiliarDAO estrutura_familiarDAO;
+    private EstruturaFamiliarDAO estruturaFamiliarDAO;
 
     public AutomovelDAO() throws SQLException {
         this.connection = ConnectionFactory.getConnection();
-        this.estrutura_familiarDAO = new Estrutura_FamiliarDAO();
+        this.estruturaFamiliarDAO = new EstruturaFamiliarDAO();
     }
 
     public void adiciona(Automovel automovel) throws SQLException {
@@ -25,7 +25,7 @@ public class AutomovelDAO {
         stmt.setString(1,automovel.getModelo());
         stmt.setString(2,automovel.getAno());
         stmt.setBoolean(3,automovel.isFinanciado());
-        stmt.setInt(4, automovel.getEstrutura_familiar().getId());
+        stmt.setInt(4, automovel.getEstruturaFamiliar().getId());
 
         stmt.execute();
         stmt.close();
@@ -45,7 +45,7 @@ public class AutomovelDAO {
             automovel.setModelo(rs.getString("modelo"));
             automovel.setAno(rs.getString("ano"));
             automovel.setFinanciado(rs.getBoolean("financiado"));
-            automovel.setEstrutura_familiar(estrutura_familiarDAO.getEstrutura_Familiar(rs.getInt("id_estrutura_familiar")));
+            automovel.setEstruturaFamiliar(estruturaFamiliarDAO.getEstruturaFamiliar(rs.getInt("id_estrutura_familiar")));
 
 
 
@@ -75,7 +75,7 @@ public class AutomovelDAO {
                 automovel.setModelo(rs.getString("modelo"));
                 automovel.setAno(rs.getString("ano"));
                 automovel.setFinanciado(rs.getBoolean("financiado"));
-                automovel.setEstrutura_familiar(estrutura_familiarDAO.getEstrutura_Familiar(rs.getInt("id_estrutura_familiar")));
+                automovel.setEstruturaFamiliar(estruturaFamiliarDAO.getEstruturaFamiliar(rs.getInt("id_estrutura_familiar")));
             }
             stmt.close();
         }
@@ -124,7 +124,7 @@ public class AutomovelDAO {
         stmt.setString(1,automovel.getModelo());
         stmt.setString(2,automovel.getAno());
         stmt.setBoolean(3,automovel.isFinanciado());
-        stmt.setInt(4, automovel.getEstrutura_familiar().getId());
+        stmt.setInt(4, automovel.getEstruturaFamiliar().getId());
         stmt.setInt(5, id);
 
         stmt.execute();

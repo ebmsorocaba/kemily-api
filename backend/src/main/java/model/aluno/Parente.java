@@ -4,18 +4,16 @@ import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import model.Aluno;
-
 public class Parente {
 
 	private int id;
 	private String nome;
 	private String parentesco;
 	private String escolaridade;
-	private Date data_nascimento;
+	private Date dataNascimento;
 	private String ocupacao;
 	private double salario;
-	private String local_trabalho;
+	private String localTrabalho;
 	private Aluno aluno;
 	
 	public Parente() {};
@@ -25,20 +23,20 @@ public class Parente {
 			@JsonProperty("nome")String nome,
 			@JsonProperty("parentesco")String parentesco,
 			@JsonProperty("escolaridade")String escolaridade,
-			@JsonProperty("data_nascimento")Date data_nascimento,
+			@JsonProperty("dataNascimento")Date dataNascimento,
 			@JsonProperty("ocupacao")String ocupacao,
 			@JsonProperty("salario")double salario,
-			@JsonProperty("local_trabalho")String local_trabalho,
+			@JsonProperty("localTrabalho")String localTrabalho,
 			@JsonProperty("aluno")Aluno aluno) {
 		
 		this.id = id;
 		this.nome = nome;
 		this.parentesco = parentesco;
 		this.escolaridade = escolaridade;
-		this.data_nascimento = data_nascimento;
+		this.dataNascimento = dataNascimento;
 		this.ocupacao = ocupacao;
 		this.salario = salario;
-		this.local_trabalho = local_trabalho;
+		this.localTrabalho = localTrabalho;
 		this.aluno = aluno;
 	}
 
@@ -74,12 +72,12 @@ public class Parente {
 		this.escolaridade = escolaridade;
 	}
 
-	public Date getData_nascimento() {
-		return data_nascimento;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setData_nascimento(Date data_nascimento) {
-		this.data_nascimento = data_nascimento;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public String getOcupacao() {
@@ -98,12 +96,12 @@ public class Parente {
 		this.salario = salario;
 	}
 
-	public String getLocal_trabalho() {
-		return local_trabalho;
+	public String getLocalTrabalho() {
+		return localTrabalho;
 	}
 
-	public void setLocal_trabalho(String local_trabalho) {
-		this.local_trabalho = local_trabalho;
+	public void setLocalTrabalho(String localTrabalho) {
+		this.localTrabalho = localTrabalho;
 	}
 
 	public Aluno getAluno() {

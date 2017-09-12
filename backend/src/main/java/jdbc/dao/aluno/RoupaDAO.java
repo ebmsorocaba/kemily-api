@@ -23,8 +23,8 @@ public class RoupaDAO {
         PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO roupa (ra_aluno, tamanho_calca, tamanho_camiseta) VALUES (?, ?, ?)");
 
         stmt.setInt(1,roupa.getAluno().getRa());
-        stmt.setString(2,roupa.getTamanho_calca());
-        stmt.setString(3,roupa.getTamanho_camiseta());
+        stmt.setString(2,roupa.getTamanhoCalca());
+        stmt.setString(3,roupa.getTamanhoCamiseta());
 
         stmt.execute();
         stmt.close();
@@ -40,8 +40,8 @@ public class RoupaDAO {
         while (rs.next()) {
             Roupa roupa = new Roupa();
 
-            roupa.setTamanho_calca(rs.getString("tamanho_calca"));
-            roupa.setTamanho_camiseta(rs.getString("tamanho_camiseta"));
+            roupa.setTamanhoCalca(rs.getString("tamanho_calca"));
+            roupa.setTamanhoCamiseta(rs.getString("tamanho_camiseta"));
             roupa.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
 
             roupas.add(roupa);
@@ -66,8 +66,8 @@ public class RoupaDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next() == true) {
-                roupa.setTamanho_calca(rs.getString("tamanho_calca"));
-                roupa.setTamanho_camiseta(rs.getString("tamanho_camiseta"));
+                roupa.setTamanhoCalca(rs.getString("tamanho_calca"));
+                roupa.setTamanhoCamiseta(rs.getString("tamanho_camiseta"));
                 roupa.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
             }
             stmt.close();
@@ -104,8 +104,8 @@ public class RoupaDAO {
 
         PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE roupa SET tamanho_calca=?, tamanho_camiseta=? WHERE ra_aluno=?");
 
-        stmt.setString(1,roupa.getTamanho_calca());
-        stmt.setString(2,roupa.getTamanho_camiseta());
+        stmt.setString(1,roupa.getTamanhoCalca());
+        stmt.setString(2,roupa.getTamanhoCamiseta());
         stmt.setInt(3, ra);
 
 

@@ -141,7 +141,6 @@ CREATE TABLE turma (
 CREATE TABLE aluno (
   ra SERIAL PRIMARY KEY,
   nome VARCHAR(80) NOT NULL,
-  turma_educador TEXT NOT NULL REFERENCES turma(educador),
   data_nascimento DATE NOT NULL,
   rg VARCHAR(10),
   naturalidade VARCHAR(50) NOT NULL,
@@ -398,12 +397,12 @@ INSERT INTO turma(educador)
 INSERT INTO turma(educador)
   VALUES('Manuela');
 
-INSERT INTO aluno(nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
-  VALUES('Kemily', 'Vanessa', '12/12/2010', '758471231', 'Brasileira', 'SP', '10/07/2017', 'Carro', '');
-INSERT INTO aluno(nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
-  VALUES('Miriam', 'Marina', '07/10/2010', '758471232', 'Brasileira', 'SP', '10/07/2017', 'Onibus', '');
-INSERT INTO aluno(nome, turma_educador, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
-  VALUES('Douglas', 'Manuela', '14/07/2010', '758471233', 'Brasileira', 'SP', '10/07/2017', 'A pe', '');
+INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
+  VALUES('Kemily', '12/12/2010', '758471231', 'Brasileira', 'SP', '10/07/2017', 'Carro', '');
+INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
+  VALUES('Miriam', '07/10/2010', '758471232', 'Brasileira', 'SP', '10/07/2017', 'Onibus', '');
+INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
+  VALUES('Douglas', '14/07/2010', '758471233', 'Brasileira', 'SP', '10/07/2017', 'A pe', '');
 
 INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complemento, ra_aluno)
   VALUES('12345234', '312', 'Domingues', 'Centro', 'Sorocaba', '', '', 1);

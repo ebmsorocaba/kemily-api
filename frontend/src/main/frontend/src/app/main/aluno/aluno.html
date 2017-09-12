@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<link href="aluno.scss" rel="stylesheet" />
 <div id="alunos" class="page-layout simple inner-sidenav">
 
   <!-- HEADER -->
@@ -198,11 +197,8 @@
             <p class="texto nomeAluno">
               {{aluno.nome}}
             </p>
-            <p class="texto turmaAluno">
-              {{aluno.turma.educador}}
-            </p>
             <p class="data dataNascAluno">
-              {{aluno.data_nascimento | date : "dd/MM/yyyy"}}
+              {{aluno.dataNascimento | date : "dd/MM/yyyy"}}
             </p>
 
           </div>

@@ -12,18 +12,18 @@ import java.util.List;
 
 public class ImovelDAO {
     private Connection connection;
-    private Estrutura_FamiliarDAO estrutura_familiarDAO;
+    private EstruturaFamiliarDAO estruturaFamiliarDAO;
 
     public ImovelDAO() throws SQLException {
         this.connection = ConnectionFactory.getConnection();
-        this.estrutura_familiarDAO = new Estrutura_FamiliarDAO();
+        this.estruturaFamiliarDAO = new EstruturaFamiliarDAO();
     }
 
     public void adiciona(Imovel imovel) throws SQLException {
         PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO imovel (financiado, id_estrutura_familiar) VALUES (?, ?)");
 
         stmt.setBoolean(1,imovel.isFinanciado());
-        stmt.setInt(2, imovel.getEstrutura_familiar().getId());
+        stmt.setInt(2, imovel.getEstruturaFamiliar().getId());
 
         stmt.execute();
         stmt.close();
@@ -41,7 +41,7 @@ public class ImovelDAO {
 
             imovel.setId(rs.getInt("id"));
             imovel.setFinanciado(rs.getBoolean("financiado"));
-            imovel.setEstrutura_familiar(estrutura_familiarDAO.getEstrutura_Familiar(rs.getInt("id_estrutura_familiar")));
+            imovel.setEstruturaFamiliar(estruturaFamiliarDAO.getEstruturaFamiliar(rs.getInt("id_estrutura_familiar")));
 
             imoveis.add(imovel);
 
@@ -67,7 +67,7 @@ public class ImovelDAO {
             if (rs.next() == true) {
                 imovel.setId(rs.getInt("id"));
                 imovel.setFinanciado(rs.getBoolean("financiado"));
-                imovel.setEstrutura_familiar(estrutura_familiarDAO.getEstrutura_Familiar(rs.getInt("id_estrutura_familiar")));
+                imovel.setEstruturaFamiliar(estruturaFamiliarDAO.getEstruturaFamiliar(rs.getInt("id_estrutura_familiar")));
             }
             stmt.close();
         }
@@ -121,7 +121,7 @@ public class ImovelDAO {
         PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE imovel SET financiado=?, id_estrutura_familiar=? WHERE id=?");
 
         stmt.setBoolean(1,imovel.isFinanciado());
-        stmt.setInt(2, imovel.getEstrutura_familiar().getId());
+        stmt.setInt(2, imovel.getEstruturaFamiliar().getId());
         stmt.setInt(3, id);
 
         stmt.execute();

@@ -4,67 +4,67 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Despesa {
 
-	private Estrutura_Familiar estrutura_familiar;
+	private EstruturaFamiliar estruturaFamiliar;
 	private double agua;
-	private double energia_eletrica;
+	private double energiaEletrica;
 	private double telefone;
 	private double aluguel;
-	private double financiamento_casa;
-	private double financiamento_carro;
+	private double financiamentoCasa;
+	private double financiamentoCarro;
 	private double transporte;
 	private double alimentacao;
 	private double gas;
-	private double cartao_credito;
+	private double cartaoCredito;
 	private double emprestimo;
-	private double tv_cabo;
+	private double tvCabo;
 	private double educacao;
 	private double pensao;
-	private double convenio_medico;
+	private double convenioMedico;
 	
 	public Despesa() {};
 	
 	public Despesa(
-			@JsonProperty("estrutura_familiar")Estrutura_Familiar estrutura_familiar,
+			@JsonProperty("estruturaFamiliar")EstruturaFamiliar estruturaFamiliar,
 			@JsonProperty("agua")double agua,
-			@JsonProperty("energia_eletrica")double energia_eletrica,
+			@JsonProperty("energiaEletrica")double energiaEletrica,
 			@JsonProperty("telefone")double telefone,
 			@JsonProperty("aluguel")double aluguel,
-			@JsonProperty("financiamento_casa")double financiamento_casa,
-			@JsonProperty("financiamento_carro")double financiamento_carro,
+			@JsonProperty("financiamentoCasa")double financiamentoCasa,
+			@JsonProperty("financiamentoCarro")double financiamentoCarro,
 			@JsonProperty("transporte")double transporte,
 			@JsonProperty("alimentacao")double alimentacao,
 			@JsonProperty("gas")double gas,
-			@JsonProperty("cartao_credito")double cartao_credito,
+			@JsonProperty("cartaoCredito")double cartaoCredito,
 			@JsonProperty("emprestimo")double emprestimo,
-			@JsonProperty("tv_cabo")double tv_cabo,
+			@JsonProperty("tvCabo")double tvCabo,
 			@JsonProperty("educacao")double educacao,
 			@JsonProperty("pensao")double pensao,
-			@JsonProperty("convenio_medico")double convenio_medico) {
+			@JsonProperty("convenioMedico")double convenioMedico) {
 		
-		this.estrutura_familiar = estrutura_familiar;
+		this.estruturaFamiliar = estruturaFamiliar;
 		this.agua = agua;
-		this.energia_eletrica = energia_eletrica;
+		this.energiaEletrica = energiaEletrica;
 		this.telefone = telefone;
 		this.aluguel = aluguel;
-		this.financiamento_casa = financiamento_casa;
-		this.financiamento_carro = financiamento_carro;
+		this.financiamentoCasa = financiamentoCasa;
+		this.financiamentoCarro = financiamentoCarro;
 		this.transporte = transporte;
 		this.alimentacao = alimentacao;
 		this.gas = gas;
-		this.cartao_credito = cartao_credito;
+		this.cartaoCredito = cartaoCredito;
 		this.emprestimo = emprestimo;
-		this.tv_cabo = tv_cabo;
+		this.tvCabo = tvCabo;
 		this.educacao = educacao;
 		this.pensao = pensao;
-		this.convenio_medico = convenio_medico;
+		this.convenioMedico = convenioMedico;
 	}
 
-	public Estrutura_Familiar getEstrutura_familiar() {
-		return estrutura_familiar;
+	public EstruturaFamiliar getEstruturaFamiliar() {
+		return estruturaFamiliar;
 	}
 
-	public void setEstrutura_familiar(Estrutura_Familiar estrutura_familiar) {
-		this.estrutura_familiar = estrutura_familiar;
+	public void setEstruturaFamiliar(EstruturaFamiliar estruturaFamiliar) {
+		this.estruturaFamiliar = estruturaFamiliar;
 	}
 
 	public double getAgua() {
@@ -75,12 +75,12 @@ public class Despesa {
 		this.agua = agua;
 	}
 
-	public double getEnergia_eletrica() {
-		return energia_eletrica;
+	public double getEnergiaEletrica() {
+		return energiaEletrica;
 	}
 
-	public void setEnergia_eletrica(double energia_eletrica) {
-		this.energia_eletrica = energia_eletrica;
+	public void setEnergiaEletrica(double energiaEletrica) {
+		this.energiaEletrica = energiaEletrica;
 	}
 
 	public double getTelefone() {
@@ -99,20 +99,20 @@ public class Despesa {
 		this.aluguel = aluguel;
 	}
 
-	public double getFinanciamento_casa() {
-		return financiamento_casa;
+	public double getFinanciamentoCasa() {
+		return financiamentoCasa;
 	}
 
-	public void setFinanciamento_casa(double financiamento_casa) {
-		this.financiamento_casa = financiamento_casa;
+	public void setFinanciamentoCasa(double financiamentoCasa) {
+		this.financiamentoCasa = financiamentoCasa;
 	}
 
-	public double getFinanciamento_carro() {
-		return financiamento_carro;
+	public double getFinanciamentoCarro() {
+		return financiamentoCarro;
 	}
 
-	public void setFinanciamento_carro(double financiamento_carro) {
-		this.financiamento_carro = financiamento_carro;
+	public void setFinanciamentoCarro(double financiamentoCarro) {
+		this.financiamentoCarro = financiamentoCarro;
 	}
 
 	public double getTransporte() {
@@ -139,12 +139,12 @@ public class Despesa {
 		this.gas = gas;
 	}
 
-	public double getCartao_credito() {
-		return cartao_credito;
+	public double getCartaoCredito() {
+		return cartaoCredito;
 	}
 
-	public void setCartao_credito(double cartao_credito) {
-		this.cartao_credito = cartao_credito;
+	public void setCartaoCredito(double cartaoCredito) {
+		this.cartaoCredito = cartaoCredito;
 	}
 
 	public double getEmprestimo() {
@@ -155,12 +155,12 @@ public class Despesa {
 		this.emprestimo = emprestimo;
 	}
 
-	public double getTv_cabo() {
-		return tv_cabo;
+	public double getTvCabo() {
+		return tvCabo;
 	}
 
-	public void setTv_cabo(double tv_cabo) {
-		this.tv_cabo = tv_cabo;
+	public void setTvCabo(double tvCabo) {
+		this.tvCabo = tvCabo;
 	}
 
 	public double getEducacao() {
@@ -179,12 +179,12 @@ public class Despesa {
 		this.pensao = pensao;
 	}
 
-	public double getConvenio_medico() {
-		return convenio_medico;
+	public double getConvenioMedico() {
+		return convenioMedico;
 	}
 
-	public void setConvenio_medico(double convenio_medico) {
-		this.convenio_medico = convenio_medico;
+	public void setConvenioMedico(double convenioMedico) {
+		this.convenioMedico = convenioMedico;
 	}
 	
 	

@@ -2,8 +2,6 @@ package model.aluno;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import model.Aluno;
-
 public class Contato {
 
 	private int id;
