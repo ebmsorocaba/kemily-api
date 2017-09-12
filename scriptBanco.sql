@@ -42,7 +42,7 @@ DROP TABLE contato;
 DROP TABLE roupa;
 DROP TABLE aluno;
 DROP TABLE turma;
-
+DROP TABLE educador;
 
 
 /*---Fim da limpeza---*/
@@ -283,6 +283,15 @@ CREATE TABLE saude (
   problemas_psiquiatricos BOOLEAN NOT NULL
 );
 
+CREATE TABLE educador (
+  cpf VARCHAR(20) PRIMARY KEY,
+  nome TEXT not null,
+  data_nascimento DATE NOT NULL,
+  sexo TEXT NOT NULL,
+  telefone VARCHAR(20) NOT NULL,
+  email TEXT NOT NULL
+);
+
 /*---Fim da criação das tabelas---*/
 /*                                */
 
@@ -292,9 +301,6 @@ CREATE TABLE saude (
 /*                                */
 /**********************************/
 /*                                */
-
-
-
 
 INSERT INTO usuario(nome, senha, setor, email, ativo)
   VALUES('Admin', 'pass', 'Administração', 'diegoluizdb@gmail.com', TRUE);
@@ -512,6 +518,9 @@ INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, problemas_de_saude_na_famil
   VALUES(2, FALSE, FALSE, FALSE, FALSE, FALSE);
 INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos)
   VALUES(3, FALSE, TRUE, FALSE, TRUE, FALSE);
+
+INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email)
+  VALUES('45005944850', 'Diego Ferreira Silva', '10/09/1995', 'Masculino', '15997513436', 'diegofs01@hotmail.com');
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
