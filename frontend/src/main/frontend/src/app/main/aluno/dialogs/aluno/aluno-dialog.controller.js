@@ -992,7 +992,6 @@
         function(response) {
           console.error(response);
         });
-        // vm.alunos.unshift(vm.aluno);
       }
       //
       closeDialog()
