@@ -338,8 +338,13 @@
           'meioTransporte': '',
           'observacoes': ''
         },
+<<<<<<< HEAD
         'situacao': null,
         'numeroComodos': null,
+=======
+        'situacao': '',
+        'numeroComodos': '',
+>>>>>>> e01ee52... Corrige bug situacao
         'esgoto': false,
         'redeEletrica': false,
         'asfalto': false,
@@ -688,7 +693,7 @@
       vm.alunos.unshift(vm.aluno);
 
       closeDialog();
-      //}
+
     }
 
     /**
