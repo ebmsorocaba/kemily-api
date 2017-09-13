@@ -111,7 +111,7 @@ public class EducadorDAO {
 		stmt.setString(3, educador.getSexo());
 		stmt.setString(4, educador.getTelefone());
 		stmt.setString(5, educador.getEmail());
-		stmt.setString(6, educador.getCpf());
+		stmt.setString(6, cpf);
 		
 		stmt.execute();
 		
