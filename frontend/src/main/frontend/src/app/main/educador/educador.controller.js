@@ -10,12 +10,5 @@
     function EducadorController()
     {
         var vm = this;
-
-        // Data
-        //vm.helloText = SampleData.data.helloText;
-
-        // Methods
-
-        //////////
     }
 })();
