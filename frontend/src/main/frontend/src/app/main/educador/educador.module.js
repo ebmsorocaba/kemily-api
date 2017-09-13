@@ -16,7 +16,7 @@
                 views  : {
                     'content@app': {
                         templateUrl: 'app/main/educador/educador.html',
-                        controller : 'EducadorController as vm'
+                        controller : 'EducadoresController as vm'
                     }
                 },
                 resolve: {
