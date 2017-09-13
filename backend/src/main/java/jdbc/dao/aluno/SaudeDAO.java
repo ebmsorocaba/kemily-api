@@ -20,14 +20,19 @@ public class SaudeDAO {
 	}
 	
 	public void adiciona(Saude saude) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos) VALUES (?, ?, ?, ?, ?, ?)");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, tipo_tratamento_medico, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, tipo_alergia, toma_medicacao, tipo_medicacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		
 		stmt.setInt(1, saude.getAluno().getRa());
 		stmt.setBoolean(2, saude.isFazTratamentosMedicos());
-		stmt.setBoolean(3, saude.isProblemasSaudeFamilia());
-		stmt.setBoolean(4, saude.isPlanoSaude());
-		stmt.setBoolean(5, saude.isPessoasIdosas());
-		stmt.setBoolean(6, saude.isProblemasPsiquiatricos());
+		stmt.setString(3, saude.getTipoTratamentoMedico());
+		stmt.setBoolean(4, saude.isProblemasSaudeFamilia());
+		stmt.setBoolean(5, saude.isPlanoSaude());
+		stmt.setBoolean(6, saude.isPessoasIdosas());
+		stmt.setBoolean(7, saude.isProblemasPsiquiatricos());
+		stmt.setBoolean(8, saude.isPossuiAlergia());
+		stmt.setString(9, saude.getTipoAlergia());
+		stmt.setBoolean(10, saude.isTomaMedicacao());
+		stmt.setString(11, saude.getTipoMedicacao());
 		
 		stmt.execute();
 		stmt.close();
@@ -44,10 +49,15 @@ public class SaudeDAO {
 			
 			saude.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
 			saude.setFazTratamentosMedicos(rs.getBoolean("faz_tratamentos_medicos"));
+			saude.setTipoTratamentoMedico(rs.getString("tipo_tratamento_medico"));
 			saude.setProblemasSaudeFamilia(rs.getBoolean("problemas_de_saude_na_familia"));
 			saude.setPlanoSaude(rs.getBoolean("plano_de_saude"));
 			saude.setPessoasIdosas(rs.getBoolean("pessoas_idosas"));
 			saude.setProblemasPsiquiatricos(rs.getBoolean("problemas_psiquiatricos"));
+			saude.setPossuiAlergia(rs.getBoolean("possui_alergia"));
+			saude.setTipoAlergia(rs.getString("tipo_alergia"));
+			saude.setTomaMedicacao(rs.getBoolean("toma_medicacao"));
+			saude.setTipoMedicacao(rs.getString("tipo_medicacao"));
 			
 			saudes.add(saude);
 		}
@@ -69,10 +79,15 @@ public class SaudeDAO {
 			if(rs.next() == true) {
 				saude.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
 				saude.setFazTratamentosMedicos(rs.getBoolean("faz_tratamentos_medicos"));
+				saude.setTipoTratamentoMedico(rs.getString("tipo_tratamento_medico"));
 				saude.setProblemasSaudeFamilia(rs.getBoolean("problemas_de_saude_na_familia"));
 				saude.setPlanoSaude(rs.getBoolean("plano_de_saude"));
 				saude.setPessoasIdosas(rs.getBoolean("pessoas_idosas"));
 				saude.setProblemasPsiquiatricos(rs.getBoolean("problemas_psiquiatricos"));
+				saude.setPossuiAlergia(rs.getBoolean("possui_alergia"));
+				saude.setTipoAlergia(rs.getString("tipo_alergia"));
+				saude.setTomaMedicacao(rs.getBoolean("toma_medicacao"));
+				saude.setTipoMedicacao(rs.getString("tipo_medicacao"));
 			}
 			stmt.close();
 		} catch (SQLException ex) {
@@ -95,14 +110,19 @@ public class SaudeDAO {
 	}
 	
 	public void altera(Saude saude, int ra) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE saude SET faz_tratamentos_medicos = ?, problemas_de_saude_na_familia = ?, plano_de_saude = ?, pessoas_idosas = ?, problemas_psiquiatricos = ? WHERE ra_aluno = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE saude SET faz_tratamentos_medicos = ?, tipo_tratamento_medico = ?, problemas_de_saude_na_familia = ?, plano_de_saude = ?, pessoas_idosas = ?, problemas_psiquiatricos = ?, possui_alergia = ?, tipo_alergia = ?, toma_medicacao = ?, tipo_medicacao = ? WHERE ra_aluno = ?");
 		
 		stmt.setBoolean(1, saude.isFazTratamentosMedicos());
-		stmt.setBoolean(2, saude.isProblemasSaudeFamilia());
-		stmt.setBoolean(3, saude.isPlanoSaude());
-		stmt.setBoolean(4, saude.isPessoasIdosas());
-		stmt.setBoolean(5, saude.isProblemasPsiquiatricos());
-		stmt.setInt(6, ra);
+		stmt.setString(2, saude.getTipoTratamentoMedico());
+		stmt.setBoolean(3, saude.isProblemasSaudeFamilia());
+		stmt.setBoolean(4, saude.isPlanoSaude());
+		stmt.setBoolean(5, saude.isPessoasIdosas());
+		stmt.setBoolean(6, saude.isProblemasPsiquiatricos());
+		stmt.setBoolean(7, saude.isPossuiAlergia());
+		stmt.setString(8, saude.getTipoAlergia());
+		stmt.setBoolean(9, saude.isTomaMedicacao());
+		stmt.setString(10, saude.getTipoMedicacao());
+		stmt.setInt(11, ra);
 		
 		stmt.execute();
 		stmt.close();

@@ -20,7 +20,7 @@ public class AlunoDAO {
 
     public Aluno adiciona(Aluno aluno) throws SQLException {
     	try (
-    			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+    			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, etnia, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
     	){
 	
         stmt.setString(1,aluno.getNome());
@@ -30,7 +30,8 @@ public class AlunoDAO {
         stmt.setString(5,aluno.getEstado());
         stmt.setDate(6,aluno.getDataCadastro());
         stmt.setString(7,aluno.getMeioTransporte());
-        stmt.setString(8,aluno.getObservacoes());
+        stmt.setString(8, aluno.getEtnia());
+        stmt.setString(9,aluno.getObservacoes());
 
         // executa
         int ra = stmt.executeUpdate();
@@ -75,6 +76,7 @@ public class AlunoDAO {
             aluno.setDataNascimento(rs.getDate("data_nascimento"));
             aluno.setEstado(rs.getString("estado"));
             aluno.setMeioTransporte(rs.getString("meio_transporte"));
+            aluno.setEtnia(rs.getString("etnia"));
             aluno.setObservacoes(rs.getString("observacoes"));
             aluno.setNaturalidade(rs.getString("naturalidade"));
 
@@ -107,6 +109,7 @@ public class AlunoDAO {
                 aluno.setDataNascimento(rs.getDate("data_nascimento"));
                 aluno.setEstado(rs.getString("estado"));
                 aluno.setMeioTransporte(rs.getString("meio_transporte"));
+                aluno.setEtnia(rs.getString("etnia"));
                 aluno.setObservacoes(rs.getString("observacoes"));
                 aluno.setNaturalidade(rs.getString("naturalidade"));
             }
@@ -142,7 +145,7 @@ public class AlunoDAO {
 
     public void altera(Aluno aluno, int ra) throws SQLException {
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aluno SET nome=?, data_nascimento=?, rg=?, naturalidade=?, estado=?, data_cadastro=?, meio_transporte=?, observacoes=? WHERE ra=?");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aluno SET nome=?, data_nascimento=?, rg=?, naturalidade=?, estado=?, data_cadastro=?, meio_transporte=?, etnia=?, observacoes=? WHERE ra=?");
 
         stmt.setString(1,aluno.getNome());
         stmt.setDate(2,aluno.getDataNascimento());
@@ -151,8 +154,9 @@ public class AlunoDAO {
         stmt.setString(5,aluno.getEstado());
         stmt.setDate(6,aluno.getDataCadastro());
         stmt.setString(7,aluno.getMeioTransporte());
-        stmt.setString(8,aluno.getObservacoes());
-        stmt.setInt(9, ra);
+        stmt.setString(8, aluno.getEtnia());
+        stmt.setString(9,aluno.getObservacoes());
+        stmt.setInt(10, ra);
 
         stmt.execute();
         stmt.close();
