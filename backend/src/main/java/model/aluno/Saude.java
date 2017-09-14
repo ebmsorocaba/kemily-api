@@ -6,13 +6,13 @@ public class Saude {
 
 	private Aluno aluno;
 	private boolean fazTratamentosMedicos;
-	private String tipoTratamentoMedico;
+	private String descricaoTratamento;
 	private boolean problemasSaudeFamilia;
 	private boolean planoSaude;
 	private boolean pessoasIdosas;
 	private boolean problemasPsiquiatricos;
 	private boolean possuiAlergia;
-	private String tipoAlergia;
+	private String descricaoAlergia;
 	private boolean tomaMedicacao;
 	private String tipoMedicacao;
 	
@@ -21,25 +21,25 @@ public class Saude {
 	public Saude(
 			@JsonProperty("aluno")Aluno aluno,
 			@JsonProperty("fazTratamentosMedicos")boolean fazTratamentosMedicos,
-			@JsonProperty("tipoTratamentoMedico")String tipoTratamentoMedico,
+			@JsonProperty("descricaoTratamento")String descricaoTratamento,
 			@JsonProperty("problemasSaudeFamilia")boolean problemasSaudeFamilia,
 			@JsonProperty("planoSaude")boolean planoSaude,
 			@JsonProperty("pessoasIdosas")boolean pessoasIdosas,
 			@JsonProperty("problemasPsiquiatricos")boolean problemasPsiquiatricos,
 			@JsonProperty("possuiAlergia")boolean possuiAlergia,
-			@JsonProperty("tipoAlergia")String tipoAlergia,
+			@JsonProperty("descricaoAlergia")String descricaoAlergia,
 			@JsonProperty("tomaMedicacao")boolean tomaMedicacao,
 			@JsonProperty("tipoMedicacao")String tipoMedicacao) {
 		
 		this.aluno = aluno;
 		this.fazTratamentosMedicos = fazTratamentosMedicos;
-		this.tipoTratamentoMedico = tipoTratamentoMedico;
+		this.descricaoTratamento = descricaoTratamento;
 		this.problemasSaudeFamilia = problemasSaudeFamilia;
 		this.planoSaude = planoSaude;
 		this.pessoasIdosas = pessoasIdosas;
 		this.problemasPsiquiatricos = problemasPsiquiatricos;
 		this.possuiAlergia = possuiAlergia;
-		this.tipoAlergia = tipoAlergia;
+		this.descricaoAlergia = descricaoAlergia;
 		this.tomaMedicacao = tomaMedicacao;
 		this.tipoMedicacao = tipoMedicacao;
 	}
@@ -60,12 +60,12 @@ public class Saude {
 		this.fazTratamentosMedicos = fazTratamentosMedicos;
 	}
 
-	public String getTipoTratamentoMedico() {
-		return tipoTratamentoMedico;
+	public String getDescricaoTratamento() {
+		return descricaoTratamento;
 	}
 
-	public void setTipoTratamentoMedico(String tipoTratamentoMedico) {
-		this.tipoTratamentoMedico = tipoTratamentoMedico;
+	public void setDescricaoTratamento(String descricaoTratamento) {
+		this.descricaoTratamento = descricaoTratamento;
 	}
 
 	public boolean isProblemasSaudeFamilia() {
@@ -108,12 +108,12 @@ public class Saude {
 		this.possuiAlergia = possuiAlergia;
 	}
 
-	public String getTipoAlergia() {
-		return tipoAlergia;
+	public String getDescricaoAlergia() {
+		return descricaoAlergia;
 	}
 
-	public void setTipoAlergia(String tipoAlergia) {
-		this.tipoAlergia = tipoAlergia;
+	public void setDescricaoAlergia(String descricaoAlergia) {
+		this.descricaoAlergia = descricaoAlergia;
 	}
 
 	public boolean isTomaMedicacao() {

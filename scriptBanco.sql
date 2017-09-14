@@ -231,7 +231,7 @@ CREATE TABLE roupa (
 CREATE TABLE contato_responsavel (
   id_contato BIGINT PRIMARY KEY REFERENCES contato(id) on delete cascade,
   grau_parentesco VARCHAR(15) NOT NULL,
-  estado VARCHAR(10) NOT NULL
+  estado VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE contato_profissional (
@@ -275,14 +275,14 @@ CREATE TABLE parente (
   ocupacao TEXT NOT NULL,
   salario NUMERIC(12,2) NOT NULL,
   local_de_trabalho VARCHAR(50) NOT NULL,
-  condicao_de_trabalho VARCHAR(12) NOT NULL,
+  condicao_trabalho VARCHAR(12) NOT NULL,
   ra_aluno BIGINT REFERENCES aluno(ra) on delete cascade
 );
 
 CREATE TABLE saude (
   ra_aluno BIGINT PRIMARY KEY REFERENCES aluno(ra) on delete cascade,
   faz_tratamentos_medicos BOOLEAN NOT NULL,
-  tipo_tratamento_medico TEXT,
+  descricao_tratamento TEXT,
   problemas_de_saude_na_familia BOOLEAN NOT NULL,
   plano_de_saude BOOLEAN NOT NULL,
   pessoas_idosas BOOLEAN NOT NULL,
@@ -297,7 +297,7 @@ CREATE TABLE educador (
   cpf VARCHAR(20) PRIMARY KEY,
   nome TEXT not null,
   data_nascimento DATE NOT NULL,
-  sexo VARCHAR(10) NOT NULL,
+  sexo VARCHAR(30) NOT NULL,
   telefone VARCHAR(20) NOT NULL,
   email TEXT NOT NULL
 );
@@ -487,11 +487,11 @@ INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asf
 INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
   VALUES(3, 'Casa Própria', TRUE, TRUE, FALSE, 1, FALSE, TRUE, TRUE, 3);
 
-INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_de_trabalho, ra_aluno)
+INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
   VALUES('Marcia', 'Tia', 'Superior - Completo', '16/09/1982', 'Advogada', 2500.00, 'Advocacia', 'CLT',1);
-INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_de_trabalho, ra_aluno)
+INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
   VALUES('Paulo', 'Primo', 'Medio - Completo', '20/02/1992', 'Estagiario', 900.00, 'MotoresCia', 'CLT',2);
-INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_de_trabalho, ra_aluno)
+INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
   VALUES('Ricardo', 'Tio', 'Medio - Completo', '15/01/1987', 'Motorista', 1800.00, 'Transportadora', 'MEI', 3);
 
 INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
@@ -522,11 +522,11 @@ INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
 INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
   VALUES('Uno Mille', '1997', FALSE, 3);
 
-INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, tipo_tratamento_medico, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, tipo_alergia, toma_medicacao, tipo_medicacao)
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, tipo_alergia, toma_medicacao, tipo_medicacao)
   VALUES(1, TRUE, 'Doença do rato', TRUE, TRUE, TRUE, TRUE, TRUE, 'Amendoim', TRUE, 'Amoxilina 500 mg');
-INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, tipo_tratamento_medico, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, tipo_alergia, toma_medicacao, tipo_medicacao)
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, tipo_alergia, toma_medicacao, tipo_medicacao)
   VALUES(2, FALSE, '', FALSE, FALSE, FALSE, FALSE, FALSE, '', FALSE, '');
-INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, tipo_tratamento_medico, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, tipo_alergia, toma_medicacao, tipo_medicacao)
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, tipo_alergia, toma_medicacao, tipo_medicacao)
   VALUES(3, FALSE, '', TRUE, FALSE, TRUE, FALSE, TRUE, 'Lactose', FALSE, '');
 
 INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email)
