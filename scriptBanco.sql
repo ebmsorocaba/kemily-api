@@ -147,6 +147,7 @@ CREATE TABLE aluno (
   estado VARCHAR(2) NOT NULL,
   data_cadastro DATE NOT NULL,
   meio_transporte VARCHAR(20) NOT NULL,
+  etnia TEXT NOT NULL,
   observacoes TEXT NOT NULL
 );
 
@@ -212,6 +213,8 @@ CREATE TABLE contato (
   id SERIAL,
   nome VARCHAR(80) NOT NULL,
   telefone VARCHAR(20) NOT NULL,
+  email TEXT NOT NULL,
+  rede_social TEXT,
   tipo VARCHAR(15) NOT NULL,
   ra_aluno BIGINT NOT NULL,
   PRIMARY KEY (id),
@@ -221,13 +224,14 @@ CREATE TABLE contato (
 CREATE TABLE roupa (
   ra_aluno BIGINT PRIMARY KEY REFERENCES aluno(ra) on delete cascade,
   tamanho_camiseta VARCHAR(5) NOT NULL,
-  tamanho_calca VARCHAR(5) NOT NULL
+  tamanho_calca VARCHAR(5) NOT NULL,
+  tamanho_sapato VARCHAR(5) NOT NULL
 );
 
 CREATE TABLE contato_responsavel (
   id_contato BIGINT PRIMARY KEY REFERENCES contato(id) on delete cascade,
   grau_parentesco VARCHAR(15) NOT NULL,
-  presente BOOLEAN NOT NULL
+  estado VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE contato_profissional (
@@ -271,23 +275,29 @@ CREATE TABLE parente (
   ocupacao TEXT NOT NULL,
   salario NUMERIC(12,2) NOT NULL,
   local_de_trabalho VARCHAR(50) NOT NULL,
+  condicao_trabalho VARCHAR(12) NOT NULL,
   ra_aluno BIGINT REFERENCES aluno(ra) on delete cascade
 );
 
 CREATE TABLE saude (
   ra_aluno BIGINT PRIMARY KEY REFERENCES aluno(ra) on delete cascade,
   faz_tratamentos_medicos BOOLEAN NOT NULL,
+  descricao_tratamento TEXT,
   problemas_de_saude_na_familia BOOLEAN NOT NULL,
   plano_de_saude BOOLEAN NOT NULL,
   pessoas_idosas BOOLEAN NOT NULL,
-  problemas_psiquiatricos BOOLEAN NOT NULL
+  problemas_psiquiatricos BOOLEAN NOT NULL,
+  possui_alergia BOOLEAN NOT NULL,
+  descricao_alergia TEXT,
+  toma_medicacao BOOLEAN NOT NULL,
+  tipo_medicacao TEXT
 );
 
 CREATE TABLE educador (
   cpf VARCHAR(20) PRIMARY KEY,
   nome TEXT not null,
   data_nascimento DATE NOT NULL,
-  sexo TEXT NOT NULL,
+  sexo VARCHAR(30) NOT NULL,
   telefone VARCHAR(20) NOT NULL,
   email TEXT NOT NULL
 );
@@ -403,12 +413,12 @@ INSERT INTO turma(educador)
 INSERT INTO turma(educador)
   VALUES('Manuela');
 
-INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
-  VALUES('Kemily', '12/12/2010', '758471231', 'Brasileira', 'SP', '10/07/2017', 'Carro', '');
-INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
-  VALUES('Miriam', '07/10/2010', '758471232', 'Brasileira', 'SP', '10/07/2017', 'Onibus', '');
-INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes)
-  VALUES('Douglas', '14/07/2010', '758471233', 'Brasileira', 'SP', '10/07/2017', 'A pe', '');
+INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, etnia, observacoes)
+  VALUES('Kemily', '12/12/2010', '758471231', 'Brasileira', 'SP', '10/07/2017', 'Carro', 'Asiático', '');
+INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, etnia, observacoes)
+  VALUES('Miriam', '07/10/2010', '758471232', 'Brasileira', 'SP', '10/07/2017', 'Onibus', 'Negro', '');
+INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, etnia, observacoes)
+  VALUES('Douglas', '14/07/2010', '758471233', 'Brasileira', 'SP', '10/07/2017', 'A pe', 'Branco', '');
 
 INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complemento, ra_aluno)
   VALUES('12345234', '312', 'Domingues', 'Centro', 'Sorocaba', '', '', 1);
@@ -424,44 +434,44 @@ INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook
 INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
   VALUES(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE);
 
-INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Patricia', '12361415908', 'Responsavel', 1);
-INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Patrick', '12361415908', 'Responsavel', 1);
-INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Victoria', '54944391908', 'Responsavel', 2);
-INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Marcio', '12370984763', 'Responsavel', 2);
-INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Maria', '54944391908', 'Responsavel', 3);
-INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Mario', '54944391908', 'Responsavel', 3);
-INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Michelle', '28491237348', 'Responsavel', 1);
-INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Michelle', '28491237348', 'Responsavel', 2);
-INSERT INTO contato(nome, telefone, tipo, ra_aluno)
-  VALUES('Michelle', '28491237348', 'Responsavel', 3);
+INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
+  VALUES('Patricia', '12361415908', 'patricia@gmail.com', 'facebook.com/patricia.324', 'Responsavel', 1);
+INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
+  VALUES('Patrick', '12361415908', 'patrick@hotmail.com', '', 'Responsavel', 1);
+INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
+  VALUES('Victoria', '54944391908', 'victoria@live.com', '', 'Responsavel', 2);
+INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
+  VALUES('Marcio', '12370984763', 'marcio@bol.com.br', '', 'Responsavel', 2);
+INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
+  VALUES('Maria', '54944391908', 'maria@aol.com', '', 'Responsavel', 3);
+INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
+  VALUES('Mario', '54944391908', 'mario@gmail.com', '', 'Responsavel', 3);
+INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
+  VALUES('Michelle', '28491237348', 'michelle@myopera.com', 'linkedin.com/psiquiatria_michelle', 'Profissional', 1);
+INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
+  VALUES('Michelle', '28491237348', 'michelle@myopera.com', 'linkedin.com/psiquiatria_michelle', 'Profissional', 2);
+INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
+  VALUES('Michelle', '28491237348', 'michelle@myopera.com', 'linkedin.com/psiquiatria_michelle', 'Profissional', 3);
 
-INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca)
-  VALUES(1, 'G', 'G');
-INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca)
-  VALUES(2, 'P', 'M');
-INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca)
-  VALUES(3, 'M', 'G');
+INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca, tamanho_sapato)
+  VALUES(1, 'G', 'G', '20');
+INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca, tamanho_sapato)
+  VALUES(2, 'P', 'M', '22');
+INSERT INTO roupa(ra_aluno, tamanho_camiseta, tamanho_calca, tamanho_sapato)
+  VALUES(3, 'M', 'G', '26');
 
-INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
-  VALUES(1, 'Mae', TRUE);
-INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
-  VALUES(2, 'Pai', TRUE);
-INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
-  VALUES(3, 'Mae', TRUE);
-INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
-  VALUES(4, 'Pai', TRUE);
-INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
-  VALUES(5, 'Mae', TRUE);
-INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente)
-  VALUES(6, 'Pai', TRUE);
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, estado)
+  VALUES(1, 'Mae', 'Presente');
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, estado)
+  VALUES(2, 'Pai', 'Presente');
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, estado)
+  VALUES(3, 'Mae', 'Presente');
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, estado)
+  VALUES(4, 'Pai', 'Presente');
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, estado)
+  VALUES(5, 'Mae', 'Presente');
+INSERT INTO contato_responsavel(id_contato, grau_parentesco, estado)
+  VALUES(6, 'Pai', 'Presente');
 
 INSERT INTO contato_profissional(id_contato, cargo)
   VALUES(7, 'Psiquiatra');
@@ -477,12 +487,12 @@ INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asf
 INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
   VALUES(3, 'Casa Própria', TRUE, TRUE, FALSE, 1, FALSE, TRUE, TRUE, 3);
 
-INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno)
-  VALUES('Marcia', 'Tia', 'Superior - Completo', '16/09/1982', 'Advogada', 2500.00, 'Advocacia', 1);
-INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno)
-  VALUES('Paulo', 'Primo', 'Medio - Completo', '20/02/1992', 'Estagiario', 900.00, 'MotoresCia', 2);
-INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno)
-  VALUES('Ricardo', 'Tio', 'Medio - Completo', '15/01/1987', 'Motorista', 1800.00, 'Transportadora', 3);
+INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
+  VALUES('Marcia', 'Tia', 'Superior - Completo', '16/09/1982', 'Advogada', 2500.00, 'Advocacia', 'CLT',1);
+INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
+  VALUES('Paulo', 'Primo', 'Medio - Completo', '20/02/1992', 'Estagiario', 900.00, 'MotoresCia', 'CLT',2);
+INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
+  VALUES('Ricardo', 'Tio', 'Medio - Completo', '15/01/1987', 'Motorista', 1800.00, 'Transportadora', 'MEI', 3);
 
 INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)
   VALUES('Divorciados', 'Pai', TRUE, TRUE, TRUE, TRUE, 1);
@@ -512,12 +522,12 @@ INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
 INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
   VALUES('Uno Mille', '1997', FALSE, 3);
 
-INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos)
-  VALUES(1, TRUE, TRUE, TRUE, TRUE, TRUE);
-INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos)
-  VALUES(2, FALSE, FALSE, FALSE, FALSE, FALSE);
-INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos)
-  VALUES(3, FALSE, TRUE, FALSE, TRUE, FALSE);
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
+  VALUES(1, TRUE, 'Doença do rato', TRUE, TRUE, TRUE, TRUE, TRUE, 'Amendoim', TRUE, 'Amoxilina 500 mg');
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
+  VALUES(2, FALSE, '', FALSE, FALSE, FALSE, FALSE, FALSE, '', FALSE, '');
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
+  VALUES(3, FALSE, '', TRUE, FALSE, TRUE, FALSE, TRUE, 'Lactose', FALSE, '');
 
 INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email)
   VALUES('45005944850', 'Diego Ferreira Silva', '10/09/1995', 'Masculino', '15997513436', 'diegofs01@hotmail.com');

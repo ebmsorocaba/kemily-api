@@ -28,11 +28,11 @@ public class ContatoResponsavelDAO {
 			
 		} else {
 		
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO contato_responsavel(id_contato, grau_parentesco, presente) VALUES(?, ?, ?);");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO contato_responsavel(id_contato, grau_parentesco, estado) VALUES(?, ?, ?);");
 		
 			stmt.setInt(1, contatoResponsavel.getId());
 			stmt.setString(2, contatoResponsavel.getGrauParentesco());
-			stmt.setBoolean(3, contatoResponsavel.isPresente());
+			stmt.setString(3, contatoResponsavel.getEstado());
 			
 			stmt.execute();
 			stmt.close();
@@ -51,7 +51,7 @@ public class ContatoResponsavelDAO {
 			
 			resp.setId(rs.getInt("id_contato"));
 			resp.setGrauParentesco(rs.getString("grau_parentesco"));
-			resp.setPresente(rs.getBoolean("presente"));
+			resp.setEstado(rs.getString("estado"));
 			
 			responsaveis.add(resp);
 		}
@@ -73,7 +73,7 @@ public class ContatoResponsavelDAO {
 			if(rs.next() == true) {
 				contatoResponsavel.setId(rs.getInt("id_contato"));
 				contatoResponsavel.setGrauParentesco(rs.getString("grau_parentesco"));
-				contatoResponsavel.setPresente(rs.getBoolean("presente"));
+				contatoResponsavel.setEstado(rs.getString("estado"));
 			}
 			stmt.close();
 		} catch (SQLException ex) {
@@ -95,10 +95,10 @@ public class ContatoResponsavelDAO {
 	}
 	
 	public void altera(ContatoResponsavel contatoResponsavel, int id) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE contato_responsavel SET grau_parentesco = ?, presente = ? WHERE id_contato = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE contato_responsavel SET grau_parentesco = ?, estado = ? WHERE id_contato = ?");
 		
 		stmt.setString(1, contatoResponsavel.getGrauParentesco());
-		stmt.setBoolean(2, contatoResponsavel.isPresente());
+		stmt.setString(2, contatoResponsavel.getEstado());
 		stmt.setInt(3, id);
 		
 		stmt.execute();

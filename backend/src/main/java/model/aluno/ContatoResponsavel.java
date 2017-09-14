@@ -5,16 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ContatoResponsavel extends Contato{
 	
 	private String grauParentesco;
-	private boolean presente;
+	private String estado;
 	
 	public ContatoResponsavel() {};
 	
 	public ContatoResponsavel(
 			@JsonProperty("grauParentesco")String grauParentesco,
-			@JsonProperty("presente")boolean presente) {
+			@JsonProperty("estado")String estado) {
 		
 		this.grauParentesco = grauParentesco;
-		this.presente = presente;
+		this.estado = estado;
 	}
 
 	public String getGrauParentesco() {
@@ -25,12 +25,12 @@ public class ContatoResponsavel extends Contato{
 		this.grauParentesco = grauParentesco;
 	}
 
-	public boolean isPresente() {
-		return presente;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setPresente(boolean presente) {
-		this.presente = presente;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	
 }

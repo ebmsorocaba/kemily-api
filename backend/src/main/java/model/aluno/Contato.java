@@ -7,6 +7,8 @@ public class Contato {
 	private int id;
 	private String nome;
 	private String telefone;
+	private String email;
+	private String redeSocial;
 	private String tipo;
 	private Aluno aluno;
 	
@@ -16,12 +18,16 @@ public class Contato {
 			@JsonProperty("id")int id,
 			@JsonProperty("nome")String nome,
 			@JsonProperty("telefone")String telefone,
+			@JsonProperty("email")String email,
+			@JsonProperty("redeSocial")String redeSocial,
 			@JsonProperty("tipo")String tipo,
 			@JsonProperty("aluno")Aluno aluno) {
 		
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
+		this.email = email;
+		this.redeSocial = redeSocial;
 		this.tipo = tipo;
 		this.aluno = aluno;
 	}
@@ -48,6 +54,22 @@ public class Contato {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRedeSocial() {
+		return redeSocial;
+	}
+
+	public void setRedeSocial(String redeSocial) {
+		this.redeSocial = redeSocial;
 	}
 
 	public String getTipo() {

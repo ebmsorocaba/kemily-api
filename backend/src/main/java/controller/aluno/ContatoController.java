@@ -61,6 +61,8 @@ public class ContatoController {
 				ContatoResponsavel contatoResp = contatoResponsavelDAO.getContatoResponsavel(contato.getId()); 
 				contatoResp.setNome(contato.getNome());
 				contatoResp.setTelefone(contato.getTelefone());
+				contatoResp.setEmail(contato.getEmail());
+				contatoResp.setRedeSocial(contato.getRedeSocial());
 				contatoResp.setTipo(contato.getTipo());
 				contatoResp.setAluno(contato.getAluno());
 				
@@ -72,6 +74,8 @@ public class ContatoController {
 				
 				contatoProf.setNome(contato.getNome());
 				contatoProf.setTelefone(contato.getTelefone());
+				contatoProf.setEmail(contato.getEmail());
+				contatoProf.setRedeSocial(contato.getRedeSocial());
 				contatoProf.setTipo(contato.getTipo());
 				contatoProf.setAluno(contato.getAluno());
 				
@@ -109,6 +113,8 @@ public class ContatoController {
 			
 			contatoProf.setNome(contato.getNome());
 			contatoProf.setTelefone(contato.getTelefone());
+			contatoProf.setEmail(contato.getEmail());
+			contatoProf.setRedeSocial(contato.getRedeSocial());
 			contatoProf.setTipo(contato.getTipo());
 			contatoProf.setAluno(contato.getAluno());
 			
@@ -120,6 +126,8 @@ public class ContatoController {
 			
 			contatoResp.setNome(contato.getNome());
 			contatoResp.setTelefone(contato.getTelefone());
+			contatoResp.setEmail(contato.getEmail());
+			contatoResp.setRedeSocial(contato.getRedeSocial());
 			contatoResp.setTipo(contato.getTipo());
 			contatoResp.setAluno(contato.getAluno());
 			

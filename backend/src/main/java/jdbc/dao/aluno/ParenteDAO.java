@@ -20,7 +20,7 @@ public class ParenteDAO {
     }
 
     public void adiciona(Parente parente) throws SQLException {
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO parente (nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, ra_aluno) VALUES (?,?,?,?,?,?,?,?)");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO parente (nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno) VALUES (?,?,?,?,?,?,?,?,?)");
 
         stmt.setString(1,parente.getNome());
         stmt.setString(2,parente.getParentesco());
@@ -29,7 +29,8 @@ public class ParenteDAO {
         stmt.setString(5,parente.getOcupacao());
         stmt.setDouble(6,parente.getSalario());
         stmt.setString(7, parente.getLocalTrabalho());
-        stmt.setInt(8, parente.getAluno().getRa());
+        stmt.setString(8, parente.getCondicaoTrabalho());
+        stmt.setInt(9, parente.getAluno().getRa());
 
         // executa
         stmt.execute();
@@ -54,6 +55,7 @@ public class ParenteDAO {
             parente.setOcupacao(rs.getString("ocupacao"));
             parente.setSalario(rs.getDouble("salario"));
             parente.setLocalTrabalho(rs.getString("local_de_trabalho"));
+            parente.setCondicaoTrabalho(rs.getString("condicao_trabalho"));
             parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
 
 
@@ -87,6 +89,7 @@ public class ParenteDAO {
                 parente.setOcupacao(rs.getString("ocupacao"));
                 parente.setSalario(rs.getDouble("salario"));
                 parente.setLocalTrabalho(rs.getString("local_de_trabalho"));
+                parente.setCondicaoTrabalho(rs.getString("condicao_trabalho"));
                 parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
             }
             stmt.close();
@@ -134,7 +137,7 @@ public class ParenteDAO {
 
     public void altera(Parente parente, int id) throws SQLException {
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE parente SET nome=?, parentesco=?, escolaridade=?, data_nascimento=?, ocupacao=?, salario=?, local_de_trabalho=?, ra_aluno=? WHERE id=?");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE parente SET nome=?, parentesco=?, escolaridade=?, data_nascimento=?, ocupacao=?, salario=?, local_de_trabalho=?, condicao_trabalho=?, ra_aluno=? WHERE id=?");
 
         stmt.setString(1,parente.getNome());
         stmt.setString(2,parente.getParentesco());
@@ -143,8 +146,9 @@ public class ParenteDAO {
         stmt.setString(5,parente.getOcupacao());
         stmt.setDouble(6,parente.getSalario());
         stmt.setString(7, parente.getLocalTrabalho());
-        stmt.setInt(8, parente.getAluno().getRa());
-        stmt.setInt(9, id);
+        stmt.setString(8, parente.getCondicaoTrabalho());
+        stmt.setInt(9, parente.getAluno().getRa());
+        stmt.setInt(10, id);
 
         stmt.execute();
         stmt.close();
@@ -169,6 +173,7 @@ public class ParenteDAO {
                 parente.setOcupacao(rs.getString("ocupacao"));
                 parente.setSalario(rs.getDouble("salario"));
                 parente.setLocalTrabalho(rs.getString("local_de_trabalho"));
+                parente.setCondicaoTrabalho(rs.getString("condicao_trabalho"));
                 parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
             }
             stmt.close();

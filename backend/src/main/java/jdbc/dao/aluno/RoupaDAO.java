@@ -20,11 +20,12 @@ public class RoupaDAO {
     }
 
     public void adiciona(Roupa roupa) throws SQLException {
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO roupa (ra_aluno, tamanho_calca, tamanho_camiseta) VALUES (?, ?, ?)");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO roupa (ra_aluno, tamanho_calca, tamanho_camiseta, tamanho_sapato) VALUES (?, ?, ?, ?)");
 
-        stmt.setInt(1,roupa.getAluno().getRa());
-        stmt.setString(2,roupa.getTamanhoCalca());
-        stmt.setString(3,roupa.getTamanhoCamiseta());
+        stmt.setInt(1, roupa.getAluno().getRa());
+        stmt.setString(2, roupa.getTamanhoCalca());
+        stmt.setString(3, roupa.getTamanhoCamiseta());
+        stmt.setString(4, roupa.getTamanhoSapato());
 
         stmt.execute();
         stmt.close();
@@ -42,6 +43,7 @@ public class RoupaDAO {
 
             roupa.setTamanhoCalca(rs.getString("tamanho_calca"));
             roupa.setTamanhoCamiseta(rs.getString("tamanho_camiseta"));
+            roupa.setTamanhoSapato(rs.getString("tamanho_sapato"));
             roupa.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
 
             roupas.add(roupa);
@@ -68,6 +70,7 @@ public class RoupaDAO {
             if (rs.next() == true) {
                 roupa.setTamanhoCalca(rs.getString("tamanho_calca"));
                 roupa.setTamanhoCamiseta(rs.getString("tamanho_camiseta"));
+                roupa.setTamanhoSapato(rs.getString("tamanho_sapato"));
                 roupa.setAluno(alunoDAO.getAluno(rs.getInt("ra_aluno")));
             }
             stmt.close();
@@ -102,12 +105,12 @@ public class RoupaDAO {
 
     public void altera(Roupa roupa, int ra) throws SQLException {
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE roupa SET tamanho_calca=?, tamanho_camiseta=? WHERE ra_aluno=?");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE roupa SET tamanho_calca=?, tamanho_camiseta=?, tamanho_sapato=? WHERE ra_aluno=?");
 
         stmt.setString(1,roupa.getTamanhoCalca());
         stmt.setString(2,roupa.getTamanhoCamiseta());
-        stmt.setInt(3, ra);
-
+        stmt.setString(3, roupa.getTamanhoSapato());
+        stmt.setInt(4, ra);
 
         stmt.execute();
         stmt.close();
