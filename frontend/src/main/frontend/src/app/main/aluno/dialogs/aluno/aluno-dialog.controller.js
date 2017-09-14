@@ -145,7 +145,8 @@
       'M',
       'G',
       'GG',
-      'GGG'
+      'EG',
+      'EXG'
     ];
     vm.calcas = [
       '2',
@@ -168,7 +169,8 @@
       'M',
       'G',
       'GG',
-      'GGG'
+      'EG',
+      'EXG'
     ];
     vm.estadosCivis = [
       'Solteiros',
