@@ -4,13 +4,13 @@
   angular.module('app.educador').controller('EducadoresController', EducadoresController);
 
   /** @ngInject */
-  function EducadoresController($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window) {
+  function EducadoresController ($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window, Educadores) {
 
     var vm = this;
 
     // Data
 
-    vm.educadores = [];
+    vm.educadores = Educadores
     //vm.user = User.data;
     vm.listType = 'all';
     vm.listOrder = 'nome';
