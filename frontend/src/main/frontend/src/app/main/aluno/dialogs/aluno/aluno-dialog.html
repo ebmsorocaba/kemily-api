@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <md-dialog class="aluno-dialog">
 
-
-
   <!-- DIALOG TOOLBAR -->
   <!-- <md-toolbar class="md-accent" layout="column"> -->
 
@@ -53,12 +51,11 @@
                     <label>RG</label>
                     <input type="text" name="rg" ng-model="vm.aluno.rg" md-maxlength="12" mask="99.999.999-w" required>
                   </md-input-container>
-
                 </div>
 
 
                 <div layout="column" layout-gt-xs="row">
-                  <md-input-container flex="100" flex-gt-xs="50">
+                  <md-input-container flex="200" flex-gt-xs="50">
                     <input type="text" name="naturalidade" ng-model="vm.aluno.naturalidade" placeholder="Naturalidade" required>
                     <div ng-messages="wizardStep1.nat.$error" role="alert">
                       <div ng-message=" ">
@@ -67,7 +64,7 @@
                     </div>
                   </md-input-container>
 
-                  <md-input-container flex="100" flex-gt-xs="15">
+                  <md-input-container flex="50" flex-gt-xs="30">
                     <label>Estado</label>
                     <md-select ng-model="vm.aluno.estado" required>
                       <md-option ng-repeat="estado in vm.estados" value="{{estado}}">
@@ -76,8 +73,9 @@
                     </md-select>
                   </md-input-container>
 
-                  <md-input-container>
-                    <md-datepicker ng-model="vm.aluno.dataNascimento" md-placeholder="Nascimento" required md-open-on-focus></md-datepicker>
+                  <md-input-container flex="50" flex-gt-xs="30">
+                    <label>Data de Nascimento</label>
+                    <md-datepicker ng-model="vm.aluno.dataNascimento" required md-open-on-focus></md-datepicker>
                   </md-input-container>
                 </div>
 
@@ -105,6 +103,15 @@
                     <md-select ng-model="vm.roupa.tamanhoCalca" required>
                       <md-option ng-repeat="calca in vm.calcas" value="{{calca}}">
                         {{calca}}
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+
+                  <md-input-container flex="100" flex-gt-xs="20">
+                    <label>Tamanho do calçado</label>
+                    <md-select ng-model="vm.roupa.tamanhoSapato" required>
+                      <md-option ng-repeat="sapato in vm.sapatos" value="{{sapato}}">
+                        {{sapato}}
                       </md-option>
                     </md-select>
                   </md-input-container>
@@ -156,8 +163,6 @@
                   <md-input-container flex="100" flex-gt-xs="15">
                     <input type="text" name="telmae" ng-model="vm.maeContato.telefone" mask="(99) 9?9999-9999" placeholder="Telefone" required>
                   </md-input-container>
-
-
 
                   <md-input-container flex="150" flex-gt-xs="10">
                     Presente?
