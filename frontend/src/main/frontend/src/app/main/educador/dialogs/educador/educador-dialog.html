@@ -20,13 +20,13 @@
 
       <md-input-container class="md-icon-float md-block">
         <label>CPF</label>
-        <md-icon></md-icon>
-        <input ng-blur="vm.calculaCPF(vm.educador.cpf)" cpf ng-model="vm.educador.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newEducador" required>
+        <md-icon md-font-icon="">reorder</md-icon>
+        <input ng-model="vm.educador.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newEducador" required>
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
         <label>Sexo</label>
-        <md-icon md-font-icon="icon-phone"></md-icon>
+        <md-icon md-font-icon="icon-human"></md-icon>
         <input ng-model="vm.educador.sexo" type="text">
       </md-input-container>
 
@@ -36,8 +36,8 @@
         <input ng-model="vm.educador.telefone" type="text" mask="(99) 9?9999-9999">
       </md-input-container>
 
-      <md-input-container class="md-icon-float md-block">
-        <label>Nascimento</label>
+      <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="90">
+        <label>Data de Nascimento</label>
         <md-datepicker ng-model="vm.educador.dataNasc" md-placeholder="Nascimento" required md-open-on-focus></md-datepicker>
       </md-input-container>
 
@@ -60,7 +60,7 @@
 
       </div>
 
-      
+
     </md-dialog-actions>
 
   </form>
