@@ -24,7 +24,7 @@
             'ra': ''
           },
           'grauParentesco': '',
-          'presente': '',
+          'estado': '',
           cargo: ''
         }
       ];
@@ -131,6 +131,34 @@
       'SE',
       'TO'
     ];
+    vm.sapatos = [
+      '21',
+      '22',
+      '23',
+      '24',
+      '25',
+      '26',
+      '27',
+      '28',
+      '29',
+      '30',
+      '31',
+      '32',
+      '33',
+      '34',
+      '35',
+      '36',
+      '37',
+      '38',
+      '39',
+      '40',
+      '41',
+      '42',
+      '43',
+      '44',
+      '45',
+      '46'
+    ]
     vm.camisetas = [
       '2',
       '4',
@@ -172,6 +200,7 @@
       'EG',
       'EXG'
     ];
+    vm.calcados = []
     vm.estadosCivis = [
       'Solteiros',
       'Casados',
@@ -181,7 +210,7 @@
       'Pai Viúvo',
       'União Estável'
     ];
-    vm.situacoes = ['Casa Própria', 'Casa Alugada', 'Casa Cedida', 'Cada Financiada'];
+    vm.situacoes = ['Casa Própria', 'Casa Alugada', 'Casa Cedida', 'Casa Financiada'];
     vm.tiposContato = ['Generico', 'Responsavel', 'Profissional'];
 
     if (!vm.aluno) {
