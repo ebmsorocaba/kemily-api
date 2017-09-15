@@ -1,13 +1,19 @@
 (function() {
   'use strict';
 
-  angular.module('app.educador').controller('EducadorDialogController', EducadorDialogController);
+  angular.module('app.educador').controller('EducadorDialogController', EducadorDialogController)
 
   /** @ngInject */
-  function EducadorDialogController($mdDialog, Educador, Educadores, User, msUtils, api) {
+  function EducadorDialogController ($mdDialog, Educador, Educadores, User, msUtils, api) {
     var vm = this;
 
     // Methods
+    if (Educador !== undefined) {
+      vm.newEducador = false
+    } else {
+      vm.newEducador = true
+    }
+    vm.educadores = Educadores
     vm.addNewEducador = addNewEducador;
     vm.saveEducador = saveEducador;
     vm.closeDialog = closeDialog;
@@ -41,6 +47,10 @@
       //}
     }
 
+    function closeDialog () {
+      $mdDialog.hide()
+    }
+
     /**
      * Save new educador
      */
@@ -68,8 +78,7 @@
         }
       );
 
-      closeDialog();
+      closeDialog()
     }
-
   }
-})();
+})()
