@@ -28,7 +28,7 @@ DROP TABLE associado;
 DROP TABLE usuario;
 DROP TABLE boleto;
 DROP TABLE saude;
-DROP TABLE parente;
+DROP TABLE composicao_familiar;
 DROP TABLE automovel;
 DROP TABLE imovel;
 DROP TABLE despesa;
@@ -266,7 +266,7 @@ CREATE TABLE situacao_habitacional (
   id_aparelhos_eletronicos BIGINT REFERENCES aparelhos_eletronicos(id)
 );
 
-CREATE TABLE parente (
+CREATE TABLE composicao_familiar (
   id SERIAL PRIMARY KEY,
   nome TEXT NOT NULL,
   parentesco VARCHAR(20) NOT NULL,
@@ -487,11 +487,11 @@ INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asf
 INSERT INTO situacao_habitacional(ra_aluno, situacao, esgoto, rede_eletrica, asfalto, numero_comodos, alvenaria, madeira, area_irregular, id_aparelhos_eletronicos)
   VALUES(3, 'Casa Própria', TRUE, TRUE, FALSE, 1, FALSE, TRUE, TRUE, 3);
 
-INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
+INSERT INTO composicao_familiar(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
   VALUES('Marcia', 'Tia', 'Superior - Completo', '16/09/1982', 'Advogada', 2500.00, 'Advocacia', 'CLT',1);
-INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
+INSERT INTO composicao_familiar(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
   VALUES('Paulo', 'Primo', 'Medio - Completo', '20/02/1992', 'Estagiario', 900.00, 'MotoresCia', 'CLT',2);
-INSERT INTO parente(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
+INSERT INTO composicao_familiar(nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno)
   VALUES('Ricardo', 'Tio', 'Medio - Completo', '15/01/1987', 'Motorista', 1800.00, 'Transportadora', 'MEI', 3);
 
 INSERT INTO estrutura_familiar(estado_civil_pais, crianca_reside_com, problemas_financeiros, uso_de_alcool_drogas, alguem_agressivo, programas_sociais, ra_aluno)

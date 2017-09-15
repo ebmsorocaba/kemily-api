@@ -1,7 +1,7 @@
 package jdbc.dao.aluno;
 
 import jdbc.ConnectionFactory;
-import model.aluno.Parente;
+import model.aluno.ComposicaoFamiliar;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,17 +10,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParenteDAO {
+public class ComposicaoFamiliarDAO {
     private Connection connection;
     private AlunoDAO alunoDao;
 
-    public ParenteDAO() throws SQLException {
+    public ComposicaoFamiliarDAO() throws SQLException {
         this.connection = ConnectionFactory.getConnection();
         this.alunoDao = new AlunoDAO();
     }
 
-    public void adiciona(Parente parente) throws SQLException {
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO parente (nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno) VALUES (?,?,?,?,?,?,?,?,?)");
+    public void adiciona(ComposicaoFamiliar parente) throws SQLException {
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO composicao_familiar (nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno) VALUES (?,?,?,?,?,?,?,?,?)");
 
         stmt.setString(1,parente.getNome());
         stmt.setString(2,parente.getParentesco());
@@ -37,15 +37,15 @@ public class ParenteDAO {
         stmt.close();
     }
 
-    public List<Parente> getLista() throws SQLException {
+    public List<ComposicaoFamiliar> getLista() throws SQLException {
 
-        List<Parente> parentes = new ArrayList<Parente>();
+        List<ComposicaoFamiliar> parentes = new ArrayList<ComposicaoFamiliar>();
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM parente");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM composicao_familiar");
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
-            Parente parente = new Parente();
+            ComposicaoFamiliar parente = new ComposicaoFamiliar();
 
             parente.setId(rs.getInt("id"));
             parente.setNome(rs.getString("nome"));
@@ -70,12 +70,12 @@ public class ParenteDAO {
 
     }
 
-    public Parente getParente(int search) throws SQLException {
+    public ComposicaoFamiliar getParente(int search) throws SQLException {
 
-        Parente parente = new Parente();
+        ComposicaoFamiliar parente = new ComposicaoFamiliar();
 
         try {
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM parente WHERE " + "id = ?");
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM composicao_familiar WHERE " + "id = ?");
 
             stmt.setInt(1, search);
             ResultSet rs = stmt.executeQuery();
@@ -108,7 +108,7 @@ public class ParenteDAO {
 
         try {
 
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM parente WHERE id = ?");
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM composicao_familiar WHERE id = ?");
             stmt.setInt(1, search);
             stmt.execute();
             stmt.close();
@@ -123,7 +123,7 @@ public class ParenteDAO {
     public void excluirByAluno(int ra) {
     	try {
 
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM parente WHERE ra_aluno = ?");
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM composicao_familiar WHERE ra_aluno = ?");
             stmt.setInt(1, ra);
             stmt.execute();
             stmt.close();
@@ -135,9 +135,9 @@ public class ParenteDAO {
     }
 
 
-    public void altera(Parente parente, int id) throws SQLException {
+    public void altera(ComposicaoFamiliar parente, int id) throws SQLException {
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE parente SET nome=?, parentesco=?, escolaridade=?, data_nascimento=?, ocupacao=?, salario=?, local_de_trabalho=?, condicao_trabalho=?, ra_aluno=? WHERE id=?");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE composicao_familiar SET nome=?, parentesco=?, escolaridade=?, data_nascimento=?, ocupacao=?, salario=?, local_de_trabalho=?, condicao_trabalho=?, ra_aluno=? WHERE id=?");
 
         stmt.setString(1,parente.getNome());
         stmt.setString(2,parente.getParentesco());
@@ -154,12 +154,12 @@ public class ParenteDAO {
         stmt.close();
     }
     
-    public Parente getParenteAluno(int ra) throws SQLException {
+    public ComposicaoFamiliar getParenteAluno(int ra) throws SQLException {
 
-        Parente parente = new Parente();
+        ComposicaoFamiliar parente = new ComposicaoFamiliar();
 
         try {
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM parente WHERE " + "ra_aluno = ?");
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM composicao_familiar WHERE " + "ra_aluno = ?");
 
             stmt.setInt(1, ra);
             ResultSet rs = stmt.executeQuery();
