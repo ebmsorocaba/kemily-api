@@ -257,9 +257,9 @@
           getById : $resource(api.baseUrl + 'imovel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
-        api.parente = {
-          list  : $resource(api.baseUrl + 'parente'),
-          getById : $resource(api.baseUrl + 'parente/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        api.composicaoFamiliar = {
+          list  : $resource(api.baseUrl + 'composicaoFamiliar'),
+          getById : $resource(api.baseUrl + 'composicaoFamiliar/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
         api.roupa = {

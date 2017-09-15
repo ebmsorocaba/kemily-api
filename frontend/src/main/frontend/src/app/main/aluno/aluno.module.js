@@ -120,7 +120,7 @@
         msApiProvider.register('imoveis.imoveis', ['/api/imovel'])
         msApiProvider.register('automoveis.automoveis', ['/api/automovel'])
         msApiProvider.register('aparelhosEletronicos.aparelhosEletronicos', ['/api/aparelhosEletronicos'])
-        msApiProvider.register('parentes.parentes', ['/api/parente'])
+        msApiProvider.register('parentes.parentes', ['/api/composicaoFamiliar'])
 
 
         //msApiProvider.register('sample', ['app/data/sample/sample.json']);

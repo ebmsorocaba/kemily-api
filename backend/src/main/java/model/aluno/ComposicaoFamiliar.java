@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Parente {
+public class ComposicaoFamiliar {
 
 	private int id;
 	private String nome;
@@ -17,9 +17,9 @@ public class Parente {
 	private String condicaoTrabalho;
 	private Aluno aluno;
 	
-	public Parente() {};
+	public ComposicaoFamiliar() {};
 	
-	public Parente(
+	public ComposicaoFamiliar(
 			@JsonProperty("id")int id,
 			@JsonProperty("nome")String nome,
 			@JsonProperty("parentesco")String parentesco,

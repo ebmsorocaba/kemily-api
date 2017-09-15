@@ -20,77 +20,77 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import jdbc.dao.aluno.ParenteDAO;
-import model.aluno.Parente;
+import jdbc.dao.aluno.ComposicaoFamiliarDAO;
+import model.aluno.ComposicaoFamiliar;
 
 @RestController
-public class ParenteController {
-	private Map<Integer, Parente> parentes;
-	private ParenteDAO parenteDao = new ParenteDAO();
+public class ComposicaoFamiliarController {
+	private Map<Integer, ComposicaoFamiliar> parentes;
+	private ComposicaoFamiliarDAO parenteDao = new ComposicaoFamiliarDAO();
 	
-	public ParenteController() throws SQLException {
-		parentes = new HashMap<Integer, Parente>();
+	public ComposicaoFamiliarController() throws SQLException {
+		parentes = new HashMap<Integer, ComposicaoFamiliar>();
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/api/parente", method = RequestMethod.GET)
-	public ResponseEntity<List<Parente>> listar() throws SQLException {
+	@RequestMapping(value = "/api/composicaoFamiliar", method = RequestMethod.GET)
+	public ResponseEntity<List<ComposicaoFamiliar>> listar() throws SQLException {
 		int index = 0;
 		
-		List<Parente> parentesGetted = new ArrayList<Parente>();
-		parentes = new HashMap<Integer, Parente>();
+		List<ComposicaoFamiliar> parentesGetted = new ArrayList<ComposicaoFamiliar>();
+		parentes = new HashMap<Integer, ComposicaoFamiliar>();
 		
 		parentesGetted = parenteDao.getLista();
 		
-		for(Parente par : parentesGetted) {
+		for(ComposicaoFamiliar par : parentesGetted) {
 			parentes.put(index, par);
 			index++;
 		}
 		
-		return new ResponseEntity<List<Parente>>(new ArrayList<Parente>(parentes.values()), HttpStatus.OK);
+		return new ResponseEntity<List<ComposicaoFamiliar>>(new ArrayList<ComposicaoFamiliar>(parentes.values()), HttpStatus.OK);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/api/parente/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Parente> buscar(@PathVariable("id") int id) throws SQLException {
-		Parente parente = parenteDao.getParente(id);
+	@RequestMapping(value = "/api/composicaoFamiliar/{id}", method = RequestMethod.GET)
+	public ResponseEntity<ComposicaoFamiliar> buscar(@PathVariable("id") int id) throws SQLException {
+		ComposicaoFamiliar parente = parenteDao.getParente(id);
 		if(parente == null) {
-			return new ResponseEntity<Parente>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<ComposicaoFamiliar>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Parente>(parente, HttpStatus.OK);
+		return new ResponseEntity<ComposicaoFamiliar>(parente, HttpStatus.OK);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/api/parente/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/composicaoFamiliar/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("id") int id) throws SQLException {
 		parenteDao.excluir(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/api/parente", method = RequestMethod.POST)
-	public ResponseEntity<Parente> addParente(@RequestBody Parente parente) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	@RequestMapping(value = "/api/composicaoFamiliar", method = RequestMethod.POST)
+	public ResponseEntity<ComposicaoFamiliar> addParente(@RequestBody ComposicaoFamiliar parente) throws JsonParseException, JsonMappingException, IOException, SQLException {
 		parenteDao.adiciona(parente);
 		
-		return new ResponseEntity<Parente>(parente, HttpStatus.CREATED);
+		return new ResponseEntity<ComposicaoFamiliar>(parente, HttpStatus.CREATED);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/api/parente/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Parente> buscar(@RequestBody Parente parente, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	@RequestMapping(value = "/api/composicaoFamiliar/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<ComposicaoFamiliar> buscar(@RequestBody ComposicaoFamiliar parente, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
 		parenteDao.altera(parente, id);
-		return new ResponseEntity<Parente>(parente, HttpStatus.CREATED);
+		return new ResponseEntity<ComposicaoFamiliar>(parente, HttpStatus.CREATED);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/api/parente", method = RequestMethod.GET, params={"ra_aluno"})
-	public ResponseEntity<Parente> buscarAluno(@RequestParam("ra_aluno") int ra_aluno) throws SQLException {
-		Parente parente = parenteDao.getParenteAluno(ra_aluno);
+	@RequestMapping(value = "/api/composicaoFamiliar", method = RequestMethod.GET, params={"ra_aluno"})
+	public ResponseEntity<ComposicaoFamiliar> buscarAluno(@RequestParam("ra_aluno") int ra_aluno) throws SQLException {
+		ComposicaoFamiliar parente = parenteDao.getParenteAluno(ra_aluno);
 		if(parente == null) {
-			return new ResponseEntity<Parente>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<ComposicaoFamiliar>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Parente>(parente, HttpStatus.OK);
+		return new ResponseEntity<ComposicaoFamiliar>(parente, HttpStatus.OK);
 	}
 }
