@@ -279,7 +279,7 @@
 
         api.educador = {
           list: $resource(api.baseUrl + 'educador'),
-          getById : $resource(api.baseUrl + 'educador/:cpf' + '/', {cpf: '@cpf'}, {'update': {method: 'PUT'}})
+          getByCpf : $resource(api.baseUrl + 'educador/:cpf' + '/', {cpf: '@cpf'}, {'update': {method: 'PUT'}})
         }
 
         api.contato = {

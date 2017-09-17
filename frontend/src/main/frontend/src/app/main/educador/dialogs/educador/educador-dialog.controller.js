@@ -6,13 +6,30 @@
   /** @ngInject */
   function EducadorDialogController ($mdDialog, Educador, Educadores, User, msUtils, api) {
     var vm = this;
+    vm.title = 'Alterar Educador';
+    vm.educador = angular.copy(Educador);
+    vm.user = User;
+    vm.allFields = false;
 
+    if(!vm.educador) {
+      vm.educador = {
+        'cpf': '',
+        'nome': '',
+        'sexo': '',
+        'telefone': '',
+        'dataNasc': '',
+        'email': ''
+      };
+    } else {
+      vm.educador.dataNasc = new Date(vm.educador.dataNasc);
+    }
     // Methods
     if (Educador !== undefined) {
       vm.newEducador = false
     } else {
       vm.newEducador = true
     }
+
     vm.educadores = Educadores
     vm.addNewEducador = addNewEducador;
     vm.saveEducador = saveEducador;
