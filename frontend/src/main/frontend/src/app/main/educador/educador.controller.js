@@ -65,7 +65,7 @@
     }
 
     function deleteEducador(educador) {
-      console.log('deleteEducador @ educadores.controller.js');
+      console.log('deleteEducador @ educador.controller.js');
       api.educador.getByCpf.delete({
           'cpf': educador.cpf
         },

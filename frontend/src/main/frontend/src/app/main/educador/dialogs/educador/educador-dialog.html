@@ -53,13 +53,17 @@
         <md-button type="submit" ng-if="!vm.newEducador" ng-click="vm.saveEducador()" class="send-button md-accent md-raised" ng-disabled="EducadorForm.$invalid || EducadorForm.$pristine" aria-label="Salvar">
           Salvar
         </md-button>
-
         <md-button type="submit" ng-if="vm.newEducador" ng-click="vm.addNewEducador()" class="send-button md-accent md-raised" ng-disabled="EducadorForm.$invalid || EducadorForm.$pristine" aria-label="Adicionar educador">
           Adicionar Educador
         </md-button>
-
       </div>
 
+      <div ng-if="!vm.newEducador" layout="row">
+        <md-button class="md-icon-button" ng-click="vm.deleteEducadorConfirm($event)" aria-label="Apagar">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip><span>Apagar</span></md-tooltip>
+        </md-button>
+      </div>
 
     </md-dialog-actions>
 
