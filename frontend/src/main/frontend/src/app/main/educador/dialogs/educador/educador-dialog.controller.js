@@ -33,6 +33,7 @@
     vm.educadores = Educadores
     vm.addNewEducador = addNewEducador;
     vm.saveEducador = saveEducador;
+    vm.deleteEducadorConfirm = deleteEducadorConfirm;
     vm.closeDialog = closeDialog;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
@@ -96,6 +97,35 @@
       );
 
       closeDialog()
+    }
+
+    function deleteEducadorConfirm(ev) {
+      var confirm = $mdDialog.confirm()
+        .title('Você tem certeza de que deseja apagar este educador?')
+        .htmlContent('<b>' + vm.educador.nome + ' (' + vm.educador.cpf + '</b>' + ') será apagado(a).')
+        .ariaLabel('apagar educador')
+        .targetEvent(ev)
+        .ok('OK')
+        .cancel('Cancelar');
+
+      $mdDialog.show(confirm).then(function() {
+
+        console.log('deleteEducador @ educador.controller.js');
+        api.educador.getByCpf.delete({
+            'cpf': vm.educador.cpf
+          },
+          // Sucesso
+          function(response) {
+            console.log(response);
+          },
+          // Erro
+          function(response) {
+            console.error(response);
+          }
+        );
+
+        vm.educadores.splice(vm.educadores.indexOf(Educador), 1);
+      });
     }
   }
 })()
