@@ -4,7 +4,7 @@
   angular.module('app.aluno').controller('AlunoController', AlunoController);
 
   /** @ngInject */
-  function AlunoController($scope, $mdSidenav, User, Alunos, Enderecos, Roupas, Despesas, EstruturasFamiliares, SituacoesHabitacionais, AparelhosEletronicos, Contatos, Imoveis, Automoveis, Saudes, Parentes, msUtils, $mdDialog, $document, api, $window) {
+  function AlunoController($scope, $mdSidenav, User, Alunos, Enderecos, Roupas, Despesas, EstruturasFamiliares, SituacoesHabitacionais, AparelhosEletronicos, Contatos, Imoveis, Automoveis, Saudes, ComposicaoFamiliar, msUtils, $mdDialog, $document, api, $window) {
     var vm = this;
     var estruturaFamiliar = null;
     var situacaoHabitacional = null;
@@ -14,6 +14,7 @@
       'ra': '',
       'nome': '',
       'dataNascimento': '',
+      'etnia': '',
       'rg': '',
       'estado': '',
       'dataCadastro': new Date(),
@@ -146,7 +147,6 @@
       'fogao': '',
       'geladeira': '',
       'microondas': '',
-      'tablet': '',
       'maquinaLavar': '',
       'maquinaSecar': '',
       'telefoneFixo': '',
@@ -182,7 +182,6 @@
         'fogao': '',
         'geladeira': '',
         'microondas': '',
-        'tablet': '',
         'maquinaLavar': '',
         'maquinaSecar': '',
         'telefoneFixo': '',
@@ -190,7 +189,7 @@
       }
     };
 
-    var parentesVazio = [
+    var composicaoFamiliarVazio = [
       {
         'nome': '',
         'parentesco': '',
@@ -199,6 +198,7 @@
         'ocupacao': '',
         'salario': '',
         'localTrabalho': '',
+        'condicaoTrabalho': '',
         'aluno': {
           'ra': '',
           'nome': '',
@@ -216,16 +216,17 @@
       {
         'modelo': '',
         'ano': '',
+        'id': '',
         'financiado': '',
         'estruturaFamiliar': {
           'id': ''
         }
       }
     ];
-    var imoveisVazio = [        // Translation
-        // $translatePartialLoaderProvider.addPart('app/main/relatorio');
+    var imoveisVazio = [
       {
         'financiado': '',
+        'id': '',
         'estruturaFamiliar': {
           'id': ''
         }
@@ -236,6 +237,9 @@
         'nome': '',
         'telefone': '',
         'tipo': '',
+        'estado': '',
+        'email': '',
+        'redeSocial': '',
         'aluno': {
           'ra': ''
         },
@@ -248,6 +252,9 @@
       'nome': '',
       'telefone': '',
       'tipo': 'Responsavel',
+      'estado': '',
+      'email': '',
+      'redeSocial': '',
       'aluno': {
         'ra': ''
       },
@@ -259,6 +266,9 @@
       'nome': '',
       'telefone': '',
       'tipo': 'Responsavel',
+      'estado': '',
+      'email': '',
+      'redeSocial': '',
       'aluno': {
         'ra': ''
       },
@@ -269,7 +279,7 @@
     // Data
     vm.alunos = Alunos;
     vm.saudes = Saudes;
-    vm.parentes = Parentes;
+    vm.composicaoFamiliar = ComposicaoFamiliar;
     vm.enderecos = Enderecos;
     vm.despesas = Despesas;
     vm.roupas = Roupas;
@@ -331,7 +341,7 @@
           Endereco: vm.selectEndereco(aluno),
           Saude: vm.selectSaude(aluno),
           Contatos: vm.selectContato(aluno),
-          Parentes: vm.selectParente(aluno),
+          ComposicaoFamiliar: vm.selectParente(aluno),
           EstruturaFamiliar: vm.selectEstruturaFamiliar(aluno),
           SituacaoHabitacional: vm.selectSituacaoHabitacional(aluno),
           Imoveis: vm.selectImovel(estruturaFamiliar),
@@ -419,12 +429,12 @@
 
     function selectParente(aluno) {
       if (!aluno) {
-        return parentesVazio;
+        return composicaoFamiliarVazio;
       }
       var result = [];
-      vm.parentes.forEach(function(parente) {
-        if (parente.aluno.ra === aluno.ra) {
-          result.push(parente);
+      vm.composicaoFamiliar.forEach(function(composicaoFamiliar) {
+        if (composicaoFamiliar.aluno.ra === aluno.ra) {
+          result.push(composicaoFamiliar);
         }
       });
       return result;
