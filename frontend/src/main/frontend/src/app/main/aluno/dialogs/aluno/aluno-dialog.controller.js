@@ -73,12 +73,10 @@
     vm.situacaoHabitacional = angular.copy(SituacaoHabitacional);
     vm.despesa = angular.copy(Despesa);
     vm.aparelhosEletronicos = AparelhosEletronicos;
-    if (Automoveis !== undefined && Automoveis[0].id !== '') {
-      console.log(Automoveis[0])
+    if (Automoveis !== undefined) {
       vm.automoveis = angular.copy(Automoveis);
       vm.automovel = true;
     } else {
-      console.log(Automoveis[0])
       vm.automovel = false;
       vm.automoveis = [
         {
@@ -91,7 +89,7 @@
         }
       ];
     }
-    if (Imoveis !== undefined && Imoveis[0].id !== '') {
+    if (Imoveis !== undefined) {
       vm.imoveis = angular.copy(Imoveis);
       vm.imovel = true;
     } else {
