@@ -582,11 +582,11 @@
       if (vm.parentes.length > 1) {
         vm.parentes.splice(vm.parentes.indexOf(c), 1);
         if (vm.aluno.ra != '') {
-          api.parente.getById.delete(c, function(response) {}, function(response) {});
+          api.composicaoFamiliar.getById.delete(c, function(response) {}, function(response) {});
         }
       } else {
         if (vm.aluno.ra != '') {
-          api.parente.getById.delete(c, function(response) {}, function(response) {});
+          api.composicaoFamiliar.getById.delete(c, function(response) {}, function(response) {});
         }
         vm.parentes = [
           {
@@ -869,14 +869,14 @@
 
         vm.parentes.forEach(function(parente) {
           if (parente.id !== undefined) {
-            api.parente.getById.update({
+            api.composicaoFamiliar.getById.update({
               'id': parente.id
             }, parente, function(response) {}, function(response) {
               console.error(response);
             });
           } else {
             parente.aluno.ra = vm.aluno.ra;
-            api.parente.list.save(parente, function(response) {}, function(response) {});
+            api.composicaoFamiliar.list.save(parente, function(response) {}, function(response) {});
           }
         });
 
@@ -1015,7 +1015,7 @@
 
           vm.parentes.forEach(function(parente) {
             parente.aluno.ra = vm.aluno.ra;
-            api.parente.list.save(parente, function(response) {}, function(response) {});
+            api.composicaoFamiliar.list.save(parente, function(response) {}, function(response) {});
           });
 
         },

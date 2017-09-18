@@ -257,9 +257,9 @@
           getById : $resource(api.baseUrl + 'imovel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
-        api.parente = {
-          list  : $resource(api.baseUrl + 'parente'),
-          getById : $resource(api.baseUrl + 'parente/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        api.composicaoFamiliar = {
+          list  : $resource(api.baseUrl + 'composicaoFamiliar'),
+          getById : $resource(api.baseUrl + 'composicaoFamiliar/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
         api.roupa = {
@@ -275,6 +275,11 @@
         api.situacaoHabitacional = {
           list  : $resource(api.baseUrl + 'situacaoHabitacional'),
           getById : $resource(api.baseUrl + 'situacaoHabitacional/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
+        }
+
+        api.educador = {
+          list: $resource(api.baseUrl + 'educador'),
+          getByCpf : $resource(api.baseUrl + 'educador/:cpf' + '/', {cpf: '@cpf'}, {'update': {method: 'PUT'}})
         }
 
         api.contato = {
