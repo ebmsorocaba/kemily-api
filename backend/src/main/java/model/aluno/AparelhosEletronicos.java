@@ -12,7 +12,6 @@ public class AparelhosEletronicos {
     private boolean fogao;
     private boolean geladeira;
     private boolean microondas;
-    private boolean tablet;
     private boolean maquinaLavar;
     private boolean maquinaSecar;
     private boolean telefoneFixo;
@@ -29,7 +28,6 @@ public class AparelhosEletronicos {
             @JsonProperty("fogao")boolean fogao,
             @JsonProperty("geladeira")boolean geladeira,
             @JsonProperty("microondas")boolean microondas,
-            @JsonProperty("tablet")boolean tablet,
             @JsonProperty("maquinaLavar")boolean maquinaLavar,
             @JsonProperty("maquinaSecar")boolean maquinaSecar,
             @JsonProperty("telefoneFixo")boolean telefoneFixo,
@@ -43,7 +41,6 @@ public class AparelhosEletronicos {
         this.fogao = fogao;
         this.geladeira = geladeira;
         this.microondas = microondas;
-        this.tablet = tablet;
         this.maquinaLavar = maquinaLavar;
         this.maquinaSecar = maquinaSecar;
         this.telefoneFixo = telefoneFixo;
@@ -112,14 +109,6 @@ public class AparelhosEletronicos {
 
 	public void setMicroondas(boolean microondas) {
 		this.microondas = microondas;
-	}
-
-	public boolean isTablet() {
-		return tablet;
-	}
-
-	public void setTablet(boolean tablet) {
-		this.tablet = tablet;
 	}
 
 	public boolean isMaquinaLavar() {

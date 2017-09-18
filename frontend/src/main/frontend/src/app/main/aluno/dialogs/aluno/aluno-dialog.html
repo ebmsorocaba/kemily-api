@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <md-dialog class="aluno-dialog">
 
-
-
   <!-- DIALOG TOOLBAR -->
   <!-- <md-toolbar class="md-accent" layout="column"> -->
 
@@ -54,11 +52,15 @@
                     <input type="text" name="rg" ng-model="vm.aluno.rg" md-maxlength="12" mask="99.999.999-w" required>
                   </md-input-container>
 
+                  <md-input-container flex="100" flex-gt-xs="15">
+                    <label>Etnia</label>
+                    <input type="text" name="rg" ng-model="vm.aluno.etnia" required>
+                  </md-input-container>
                 </div>
 
 
                 <div layout="column" layout-gt-xs="row">
-                  <md-input-container flex="100" flex-gt-xs="50">
+                  <md-input-container flex="200" flex-gt-xs="50">
                     <input type="text" name="naturalidade" ng-model="vm.aluno.naturalidade" placeholder="Naturalidade" required>
                     <div ng-messages="wizardStep1.nat.$error" role="alert">
                       <div ng-message=" ">
@@ -67,7 +69,7 @@
                     </div>
                   </md-input-container>
 
-                  <md-input-container flex="100" flex-gt-xs="15">
+                  <md-input-container flex="50" flex-gt-xs="30">
                     <label>Estado</label>
                     <md-select ng-model="vm.aluno.estado" required>
                       <md-option ng-repeat="estado in vm.estados" value="{{estado}}">
@@ -76,8 +78,9 @@
                     </md-select>
                   </md-input-container>
 
-                  <md-input-container>
-                    <md-datepicker ng-model="vm.aluno.dataNascimento" md-placeholder="Nascimento" required md-open-on-focus></md-datepicker>
+                  <md-input-container flex="50" flex-gt-xs="30">
+                    <label>Data de Nascimento</label>
+                    <md-datepicker ng-model="vm.aluno.dataNascimento" required md-open-on-focus></md-datepicker>
                   </md-input-container>
                 </div>
 
@@ -108,6 +111,15 @@
                       </md-option>
                     </md-select>
                   </md-input-container>
+
+                  <md-input-container flex="100" flex-gt-xs="20">
+                    <label>Tamanho do calçado</label>
+                    <md-select ng-model="vm.roupa.tamanhoSapato" required>
+                      <md-option ng-repeat="sapato in vm.sapatos" value="{{sapato}}">
+                        {{sapato}}
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
                 </div>
               </form>
             </md-tab-body>
@@ -130,39 +142,59 @@
               <form name="wizardStep2" ms-form-wizard-form novalidate>
 
                 <div layout="column" layout-gt-xs="row" flex>
-                  <md-input-container flex="100" flex-gt-xs="70">
-                    <input type="text" name="nomepai" ng-model="vm.paiContato.nome" placeholder="Nome do Pai" required>
+                  <md-input-container flex="100" flex-gt-xs="50">
+                    <input type="text" name="nomepai" ng-model="vm.paiContato.nome" placeholder="Nome do Pai">
                   </md-input-container>
 
                   <md-input-container flex="150" flex-gt-xs="15">
-                    <input type="text" name="telpai" ng-model="vm.paiContato.telefone" mask="(99) 9?9999-9999" placeholder="Telefone" required>
+                    <input type="text" name="telpai" ng-model="vm.paiContato.telefone" mask="(99) 9?9999-9999" placeholder="Telefone">
+                  </md-input-container>
+
+                  <md-input-container flex="100" flex-gt-xs="30">
+                    <input type="text" name="emailpai" ng-model="vm.paiContato.email" placeholder="Email">
+                  </md-input-container>
+
+                  <md-input-container flex="100" flex-gt-xs="30">
+                    <input type="text" name="redepai" ng-model="vm.paiContato.redeSocial" placeholder="Rede Social">
                   </md-input-container>
 
 
-                  <md-input-container flex="150" flex-gt-xs="10">
-                    Presente?
-                    <md-checkbox ng-model="vm.paiContato.presente" aria-label="Presente">
-                    </md-checkbox>
+                  <md-input-container flex="100" flex-gt-xs="15">
+                    <label>Situação</label>
+                    <md-select ng-model="vm.paiContato.estado">
+                      <md-option ng-repeat="situacao in vm.status" value="{{situacao}}">
+                        {{situacao}}
+                      </md-option>
+                    </md-select>
                   </md-input-container>
 
                 </div>
 
 
                 <div layout="column" layout-gt-xs="row" flex>
-                  <md-input-container flex="150" flex-gt-xs="70">
-                    <input type="text" name="nomemae" ng-model="vm.maeContato.nome" placeholder="Nome da Mãe" required>
+                  <md-input-container flex="100" flex-gt-xs="50">
+                    <input type="text" name="nomemae" ng-model="vm.maeContato.nome" placeholder="Nome da Mãe">
                   </md-input-container>
 
                   <md-input-container flex="100" flex-gt-xs="15">
-                    <input type="text" name="telmae" ng-model="vm.maeContato.telefone" mask="(99) 9?9999-9999" placeholder="Telefone" required>
+                    <input type="text" name="telmae" ng-model="vm.maeContato.telefone" mask="(99) 9?9999-9999" placeholder="Telefone">
                   </md-input-container>
 
+                  <md-input-container flex="100" flex-gt-xs="30">
+                    <input type="text" name="emailmae" ng-model="vm.maeContato.email" placeholder="Email">
+                  </md-input-container>
 
+                  <md-input-container flex="100" flex-gt-xs="30">
+                    <input type="text" name="redemae" ng-model="vm.maeContato.redeSocial" placeholder="Rede Social">
+                  </md-input-container>
 
-                  <md-input-container flex="150" flex-gt-xs="10">
-                    Presente?
-                    <md-checkbox ng-model="vm.maeContato.presente" aria-label="Presente">
-                    </md-checkbox>
+                  <md-input-container flex="100" flex-gt-xs="15">
+                    <label>Situação</label>
+                    <md-select ng-model="vm.maeContato.estado">
+                      <md-option ng-repeat="situacao in vm.status" value="{{situacao}}">
+                        {{situacao}}
+                      </md-option>
+                    </md-select>
                   </md-input-container>
                 </div>
 
@@ -175,6 +207,14 @@
                     <input type="text" ng-model="c.telefone" mask="(99) 9?9999-9999" placeholder="Telefone">
                   </md-input-container>
 
+                  <md-input-container flex="100" flex-gt-xs="30">
+                    <input type="text" name="email" ng-model="c.email" placeholder="Email" >
+                  </md-input-container>
+
+                  <md-input-container flex="100" flex-gt-xs="30">
+                    <input type="text" name="rede" ng-model="c.redeSocial" placeholder="Rede Social" >
+                  </md-input-container>
+
                   <md-input-container flex="100" flex-gt-xs="15">
                     <label>Tipo</label>
                     <md-select ng-model="c.tipo">
@@ -185,9 +225,12 @@
                   </md-input-container>
 
                   <md-input-container flex="150" flex-gt-xs="10" ng-if="c.tipo == 'Responsavel'">
-                    Presente?
-                    <md-checkbox ng-model="c.presente" aria-label="Presente">
-                    </md-checkbox>
+                    <label>Situação</label>
+                    <md-select ng-model="c.estado">
+                      <md-option ng-repeat="situacao in vm.status" value="{{situacao}}">
+                        {{situacao}}
+                      </md-option>
+                    </md-select>
                   </md-input-container>
 
                   <md-input-container flex="100" flex-gt-xs="10" ng-if="c.tipo == 'Responsavel'">
@@ -280,12 +323,40 @@
             <md-tab-body>
               <form name="wizardStep4" ms-form-wizard-form novalidate>
 
-                <div layout="column" layout-gt-xs="row">
-                  <div flex="100" flex-gt-sm="50">
-                    Faz Tratamentos médicos?
+                <div layout="row" layout-gt-xs="row">
+                  <div flex="100" flex-gt-sm="30">
+                    A Criança faz Tratamentos médicos?
                     <md-checkbox ng-model="vm.saude.fazTratamentosMedicos" aria-label="Faz tratamentos médicos">
                     </md-checkbox>
                   </div>
+
+                  <md-input-container flex="100" flex-gt-xs="70" ng-if="vm.saude.fazTratamentosMedicos">
+                    <textarea rows="5" name="fazTratamentosMedicos" ng-model="vm.saude.descricaoTratamento" placeholder="Descrição do Tratamento"></textarea>
+                  </md-input-container>
+                </div>
+
+                <div layout="row" layout-gt-xs="row">
+                  <div flex="100" flex-gt-sm="20">
+                    Possui alguma alergia ?
+                    <md-checkbox ng-model="vm.saude.possuiAlergia" aria-label="Faz tratamentos médicos">
+                    </md-checkbox>
+                  </div>
+
+                  <md-input-container flex="100" flex-gt-xs="70" ng-if="vm.saude.possuiAlergia">
+                    <textarea rows="5" name="descricaoAlergia" ng-model="vm.saude.descricaoAlergia" placeholder="Descrição da Alergia"></textarea>
+                  </md-input-container>
+                </div>
+
+                <div layout="row" layout-gt-xs="row">
+                  <div flex="100" flex-gt-sm="20">
+                    Toma alguma medicação?
+                    <md-checkbox ng-model="vm.saude.tomaMedicacao" aria-label="Faz tratamentos médicos">
+                    </md-checkbox>
+                  </div>
+
+                  <md-input-container flex="100" flex-gt-xs="70" ng-if="vm.saude.tomaMedicacao">
+                    <textarea rows="5" name="tipoMedicacao" ng-model="vm.saude.tipoMedicacao" placeholder="Descrição da Medicação"></textarea>
+                  </md-input-container>
                 </div>
 
                 <div layout="column" layout-gt-xs="row">
@@ -387,6 +458,24 @@
                     </md-checkbox>
                   </div>
                 </div>
+              </form>
+            </md-tab-body>
+          </md-tab>
+
+          <!-- PASSO 6 / STEP 6-->
+          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid">
+            <md-tab-label>
+              <span class="ms-form-wizard-step-label">
+                              <span class="ms-form-wizard-step-number md-accent-bg"
+                                    ng-if="wizardStep6.$invalid">6</span>
+              <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep6.$valid">
+                                  <i class="icon-check s16"></i>
+                              </span>
+              <span class="ms-form-wizard-step-text">Bens Familiares</span>
+              </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="wizardStep6" ms-form-wizard-form novalidate>
 
                 <div layout="column" layout-gt-xs="row">
                   <div flex="100" flex-gt-sm="50">
@@ -451,25 +540,25 @@
             </md-tab-body>
           </md-tab>
 
-          <!-- PASSO 6 / STEP 6-->
-          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid">
+          <!-- PASSO 7 / STEP 7-->
+          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid">
             <md-tab-label>
               <span class="ms-form-wizard-step-label">
                               <span class="ms-form-wizard-step-number md-accent-bg"
-                                    ng-if="wizardStep6.$invalid">6</span>
-              <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep6.$valid">
+                                    ng-if="wizardStep7.$invalid">7</span>
+              <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep7.$valid">
                                   <i class="icon-check s16"></i>
                               </span>
               <span class="ms-form-wizard-step-text">Composição Familiar</span>
               </span>
             </md-tab-label>
             <md-tab-body>
-              <form name="wizardStep6" ms-form-wizard-form>
+              <form name="wizardStep7" ms-form-wizard-form>
 
-                <div layout="column" layout-gt-xs="column" ng-repeat="p in vm.parentes track by $index">
+                <div layout="column" layout-gt-xs="column" ng-repeat="p in vm.composicaoFamiliar track by $index">
                   <div layout="row" layout-gt-xs="row">
                     <md-input-container flex="100" flex-gt-xs="40">
-                      <input type="text" name="nomeParente" ng-model="p.nome" placeholder="Nome do parente">
+                      <input type="text" name="nomeParente" ng-model="p.nome" placeholder="Nome">
                     </md-input-container>
 
                     <md-input-container flex="100" flex-gt-xs="10">
@@ -485,7 +574,17 @@
                       </md-select>
                     </md-input-container>
 
-                    <md-input-container>
+                    <md-input-container flex="100" flex-gt-xs="15">
+                      <label>Condição de Trabalho</label>
+                      <md-select ng-model="p.condicaoTrabalho">
+                        <md-option ng-repeat="condicao in vm.condicoes" value="{{condicao}}">
+                          {{condicao}}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
+
+                    <md-input-container flex="50" flex-gt-xs="30">
+                      <label>Data de Nascimento</label>
                       <md-datepicker ng-model="p.dataNascimento" md-placeholder="Nascimento" md-open-on-focus ng-required="false" novalidate aria-invalid="false"></md-datepicker>
                     </md-input-container>
 
@@ -519,20 +618,20 @@
           </md-tab>
 
 
-          <!-- PASSO 7 / STEP 7-->
-          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid">
+          <!-- PASSO 8 / STEP 8-->
+          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid">
             <md-tab-label>
               <span class="ms-form-wizard-step-label">
                               <span class="ms-form-wizard-step-number md-accent-bg"
-                                    ng-if="wizardStep7.$invalid">7</span>
-              <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep7.$valid">
+                                    ng-if="wizardStep8.$invalid">8</span>
+              <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep8.$valid">
                                   <i class="icon-check s16"></i>
                               </span>
               <span class="ms-form-wizard-step-text">Situação Habitacional</span>
               </span>
             </md-tab-label>
             <md-tab-body>
-              <form name="wizardStep7" ms-form-wizard-form novalidate>
+              <form name="wizardStep8" ms-form-wizard-form novalidate>
 
                 <div layout="column" layout-gt-xs="row">
                   <md-input-container flex="100" flex-gt-xs="20">
@@ -601,20 +700,20 @@
             </md-tab-body>
           </md-tab>
 
-          <!-- PASSO 8 / STEP 8-->
-          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid">
+          <!-- PASSO 9 / STEP 9-->
+          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid || wizardStep8.$invalid">
             <md-tab-label>
               <span class="ms-form-wizard-step-label">
                               <span class="ms-form-wizard-step-number md-accent-bg"
-                                    ng-if="wizardStep8.$invalid">8</span>
-              <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep8.$valid">
+                                    ng-if="wizardStep9.$invalid">9</span>
+              <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep9.$valid">
                                   <i class="icon-check s16"></i>
                               </span>
               <span class="ms-form-wizard-step-text">Aparelhos eletrônicos</span>
               </span>
             </md-tab-label>
             <md-tab-body>
-              <form name="wizardStep8" ms-form-wizard-form novalidate>
+              <form name="wizardStep9" ms-form-wizard-form novalidate>
 
                 <div layout="column" layout-gt-xs="row">
 
@@ -674,32 +773,27 @@
                   </div>
 
                   <div flex="100" flex-gt-sm="50">
-                    Tablets
-                    <md-checkbox ng-model="vm.aparelhosEletronicos.tablet" aria-label="Tablets">
-                    </md-checkbox>
-                  </div>
-
-                  <div flex="100" flex-gt-sm="50">
                     Máquina de lavar
                     <md-checkbox ng-model="vm.aparelhosEletronicos.maquinaLavar" aria-label="Máquina de lavar">
                     </md-checkbox>
                   </div>
-                </div>
 
-                <div layout="column" layout-gt-xs="row">
                   <div flex="100" flex-gt-sm="50">
                     Máquina de secar
                     <md-checkbox ng-model="vm.aparelhosEletronicos.maquinaSecar" aria-label="Máquina de secar">
                     </md-checkbox>
                   </div>
+                </div>
 
-                  <div flex="100" flex-gt-sm="50">
+                <div layout="row" layout-gt-xs="row">
+
+                  <div flex="100" flex-gt-sm="35">
                     Telefone fixo
                     <md-checkbox ng-model="vm.aparelhosEletronicos.telefoneFixo" aria-label="Telefone fixo">
                     </md-checkbox>
                   </div>
 
-                  <div flex="100" flex-gt-sm="50">
+                  <div flex="100" flex-gt-sm="35">
                     Celular
                     <md-checkbox ng-model="vm.aparelhosEletronicos.celular" aria-label="Celular">
                     </md-checkbox>
@@ -710,12 +804,12 @@
             </md-tab-body>
           </md-tab>
 
-          <!-- PASSO 9 / STEP 9-->
-          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid || wizardStep8.$invalid">
+          <!-- PASSO 10 / STEP 10-->
+          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid || wizardStep8.$invalid || wizardStep9.$invalid">
             <md-tab-label>
               <span class="ms-form-wizard-step-label">
                               <span class="ms-form-wizard-step-number md-accent-bg"
-                                    ng-if="wizardStep9.$invalid">9</span>
+                                    ng-if="wizardStep10.$invalid">10</span>
               <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep9.$valid">
                                   <i class="icon-check s16"></i>
                               </span>
@@ -723,7 +817,7 @@
               </span>
             </md-tab-label>
             <md-tab-body>
-              <form name="wizardStep9" ms-form-wizard-form novalidate>
+              <form name="wizardStep10" ms-form-wizard-form novalidate>
 
                 <div layout="column" layout-gt-xs="row">
                   <md-input-container flex="100" flex-gt-xs="20">
@@ -799,13 +893,13 @@
           </md-tab>
 
 
-          <!-- PASSO 10 / STEP 10-->
-          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid || wizardStep8.$invalid || wizardStep9.$invalid">
+          <!-- PASSO 11 / STEP 11-->
+          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid || wizardStep7.$invalid || wizardStep8.$invalid || wizardStep9.$invalid || wizardStep10.$invalid">
             <md-tab-label>
               <span class="ms-form-wizard-step-label">
                               <span class="ms-form-wizard-step-number md-accent-bg"
-                                    ng-if="wizardStep10.$invalid">10</span>
-              <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep10.$valid">
+                                    ng-if="wizardStep11.$invalid">11</span>
+              <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep11.$valid">
                                   <i class="icon-check s16"></i>
                               </span>
               <span class="ms-form-wizard-step-text">Observações</span>
@@ -813,7 +907,7 @@
             </md-tab-label>
 
             <md-tab-body>
-              <form name="wizardStep10" ms-form-wizard-form novalidate>
+              <form name="wizardStep11" ms-form-wizard-form novalidate>
 
                 <div layout="column" layout-gt-xs="row">
                   <md-input-container flex="100">

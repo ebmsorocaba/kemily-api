@@ -4,16 +4,29 @@
   angular.module('app.aluno').controller('AlunoDialogController', AlunoDialogController);
 
   /** @ngInject */
-  function AlunoDialogController($window, $state, $mdDialog, Aluno, Roupa, Endereco, Saude, Contatos, PaiContato, MaeContato, Parentes, EstruturaFamiliar, SituacaoHabitacional, AparelhosEletronicos, Imoveis, Automoveis, Despesa, Alunos, User, msUtils, api) {
+  function AlunoDialogController($window, $state, $mdDialog, Aluno, Roupa, Endereco, Saude, Contatos, PaiContato, MaeContato, ComposicaoFamiliar, EstruturaFamiliar, SituacaoHabitacional, AparelhosEletronicos, Imoveis, Automoveis, Despesa, Alunos, User, msUtils, api) {
     var vm = this;
 
     // Data
     vm.title = 'Alterar Aluno';
+    vm.automovel = false;
+    vm.imovel = false;
     vm.roupa = angular.copy(Roupa);
     vm.endereco = angular.copy(Endereco);
     vm.saude = angular.copy(Saude);
-    if (Contatos !== '') {
+    if (Contatos !== '' || Contatos !== []) {
       vm.contatos = angular.copy(Contatos);
+      vm.contatos.push({
+        'nome': '',
+        'telefone': '',
+        'tipo': '',
+        'aluno': {
+          'ra': ''
+        },
+        'grauParentesco': '',
+        'estado': '',
+        cargo: ''
+      });
     } else {
       vm.contatos = [
         {
@@ -24,15 +37,15 @@
             'ra': ''
           },
           'grauParentesco': '',
-          'presente': '',
+          'estado': '',
           cargo: ''
         }
       ];
     }
-    if (Parentes != '') {
-      vm.parentes = angular.copy(Parentes);
+    if (ComposicaoFamiliar !== undefined){
+      vm.composicaoFamiliar = angular.copy(ComposicaoFamiliar);
     } else {
-      vm.parentes = [
+      vm.composicaoFamiliar = [
         {
           'nome': '',
           'parentesco': '',
@@ -41,6 +54,7 @@
           'ocupacao': '',
           'salario': '',
           'localTrabalho': '',
+          'condicaoTrabalho': '',
           'aluno': {
             'ra': '',
             'nome': '',
@@ -59,10 +73,11 @@
     vm.situacaoHabitacional = angular.copy(SituacaoHabitacional);
     vm.despesa = angular.copy(Despesa);
     vm.aparelhosEletronicos = AparelhosEletronicos;
-    if (Automoveis != '') {
+    if (Automoveis !== undefined) {
       vm.automoveis = angular.copy(Automoveis);
-      vm.automovel = true
+      vm.automovel = true;
     } else {
+      vm.automovel = false;
       vm.automoveis = [
         {
           'modelo': '',
@@ -74,10 +89,11 @@
         }
       ];
     }
-    if (Imoveis != '') {
+    if (Imoveis !== undefined) {
       vm.imoveis = angular.copy(Imoveis);
-      vm.imovel = true
+      vm.imovel = true;
     } else {
+      vm.imovel = false;
       vm.imoveis = [
         {
           'financiado': '',
@@ -131,6 +147,41 @@
       'SE',
       'TO'
     ];
+    vm.sapatos = [
+      '21',
+      '22',
+      '23',
+      '24',
+      '25',
+      '26',
+      '27',
+      '28',
+      '29',
+      '30',
+      '31',
+      '32',
+      '33',
+      '34',
+      '35',
+      '36',
+      '37',
+      '38',
+      '39',
+      '40',
+      '41',
+      '42',
+      '43',
+      '44',
+      '45',
+      '46'
+    ]
+    vm.condicoes = [
+      'CLT',
+      'MEI',
+      'ME',
+      'Informal',
+      'Desempregado'
+    ]
     vm.camisetas = [
       '2',
       '4',
@@ -147,6 +198,11 @@
       'GG',
       'EG',
       'EXG'
+    ];
+    vm.status = [
+      'Presente',
+      'Ausente',
+      'Falecido'
     ];
     vm.calcas = [
       '2',
@@ -181,7 +237,7 @@
       'Pai Viúvo',
       'União Estável'
     ];
-    vm.situacoes = ['Casa Própria', 'Casa Alugada', 'Casa Cedida', 'Cada Financiada'];
+    vm.situacoes = ['Casa Própria', 'Casa Alugada', 'Casa Cedida', 'Casa Financiada'];
     vm.tiposContato = ['Generico', 'Responsavel', 'Profissional'];
 
     if (!vm.aluno) {
@@ -191,6 +247,7 @@
         'dataNascimento': null,
         'rg': '',
         'estado': '',
+        'etnia': '',
         'dataCadastro': new Date(),
         'meioTransporte': '',
         'observacoes': '',
@@ -365,7 +422,7 @@
         }
       }
 
-      vm.parentes = [
+      vm.composicaoFamiliar = [
         {
           'nome': '',
           'parentesco': '',
@@ -374,6 +431,7 @@
           'ocupacao': '',
           'salario': '',
           'localTrabalho': '',
+          'condicaoTrabalho': '',
           'aluno': {
             'ra': '',
             'nome': '',
@@ -410,6 +468,9 @@
           'nome': '',
           'telefone': '',
           'tipo': '',
+          'estado': '',
+          'email': '',
+          'redeSocial': '',
           'aluno': {
             'ra': ''
           },
@@ -422,6 +483,9 @@
         'nome': '',
         'telefone': '',
         'tipo': 'Responsavel',
+        'estado': '',
+        'email': '',
+        'redeSocial': '',
         'aluno': {
           'ra': ''
         },
@@ -433,6 +497,9 @@
         'nome': '',
         'telefone': '',
         'tipo': 'Responsavel',
+        'estado': '',
+        'email': '',
+        'redeSocial': '',
         'aluno': {
           'ra': ''
         },
@@ -446,8 +513,8 @@
       // vm.aluno.tags = [];
     } else {
       vm.aluno.dataNascimento = new Date(vm.aluno.dataNascimento);
-      vm.parentes.forEach(function(parente) {
-        parente.dataNascimento = new Date(parente.dataNascimento);
+      vm.composicaoFamiliar.forEach(function(composicaoFamiliar) {
+        composicaoFamiliar.dataNascimento = new Date(composicaoFamiliar.dataNascimento);
       });
     }
 
@@ -489,6 +556,9 @@
         'nome': '',
         'telefone': '',
         'tipo': '',
+        'estado': '',
+        'email': '',
+        'redeSocial': '',
         'aluno': {
           'ra': ''
         },
@@ -514,6 +584,8 @@
             'nome': '',
             'telefone': '',
             'tipo': '',
+            'email': '',
+            'redeSocial': '',
             'aluno': {
               'ra': ''
             },
@@ -526,7 +598,7 @@
     }
 
     vm.addParente = function(c) {
-      var parente = {
+      var composicaoFamiliar = {
         'nome': '',
         'parentesco': '',
         'escolaridade': '',
@@ -534,6 +606,7 @@
         'ocupacao': '',
         'salario': '',
         'localTrabalho': '',
+        'condicaoTrabalho': '',
         'aluno': {
           'ra': '',
           'nome': '',
@@ -546,12 +619,12 @@
           'observacoes': ''
         }
       };
-      vm.parentes.push(parente);
+      vm.composicaoFamiliar.push(composicaoFamiliar);
     }
 
     vm.removeParente = function(c) {
-      if (vm.parentes.length > 1) {
-        vm.parentes.splice(vm.parentes.indexOf(c), 1);
+      if (vm.composicaoFamiliar.length > 1) {
+        vm.composicaoFamiliar.splice(vm.composicaoFamiliar.indexOf(c), 1);
         if (vm.aluno.ra != '') {
           api.composicaoFamiliar.getById.delete(c, function(response) {}, function(response) {});
         }
@@ -559,7 +632,7 @@
         if (vm.aluno.ra != '') {
           api.composicaoFamiliar.getById.delete(c, function(response) {}, function(response) {});
         }
-        vm.parentes = [
+        vm.composicaoFamiliar = [
           {
             'nome': '',
             'parentesco': '',
@@ -568,6 +641,7 @@
             'ocupacao': '',
             'salario': '',
             'localTrabalho': '',
+            'condicaoTrabalho': '',
             'aluno': {
               'ra': '',
               'nome': '',
@@ -585,8 +659,8 @@
     }
 
     vm.isLastParente = function(p) {
-      var index = vm.parentes.indexOf(p);
-      if (index == (vm.parentes.length - 1)) {
+      var index = vm.composicaoFamiliar.indexOf(p);
+      if (index == (vm.composicaoFamiliar.length - 1)) {
         return true;
       } else {
         return false;
@@ -838,16 +912,16 @@
           function(response) {});
         }
 
-        vm.parentes.forEach(function(parente) {
-          if (parente.id !== undefined) {
+        vm.composicaoFamiliar.forEach(function(composicaoFamiliar) {
+          if (composicaoFamiliar.id !== undefined) {
             api.composicaoFamiliar.getById.update({
-              'id': parente.id
-            }, parente, function(response) {}, function(response) {
+              'id': composicaoFamiliar.id
+            }, composicaoFamiliar, function(response) {}, function(response) {
               console.error(response);
             });
           } else {
-            parente.aluno.ra = vm.aluno.ra;
-            api.composicaoFamiliar.list.save(parente, function(response) {}, function(response) {});
+            composicaoFamiliar.aluno.ra = vm.aluno.ra;
+            api.composicaoFamiliar.list.save(composicaoFamiliar, function(response) {}, function(response) {});
           }
         });
 
@@ -984,9 +1058,9 @@
             console.error(response);
           });
 
-          vm.parentes.forEach(function(parente) {
-            parente.aluno.ra = vm.aluno.ra;
-            api.composicaoFamiliar.list.save(parente, function(response) {}, function(response) {});
+          vm.composicaoFamiliar.forEach(function(composicaoFamiliar) {
+            composicaoFamiliar.aluno.ra = vm.aluno.ra;
+            api.composicaoFamiliar.list.save(composicaoFamiliar, function(response) {}, function(response) {});
           });
 
         },

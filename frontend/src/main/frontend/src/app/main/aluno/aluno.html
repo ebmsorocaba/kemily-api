@@ -168,12 +168,6 @@
                   </md-button>
                 </md-menu-item>
 
-                <!-- <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'formaPgto'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'formaPgto' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>Forma de Pagamento</span>
-                  </md-button>
-                </md-menu-item> -->
-
               </md-menu-content>
 
             </md-menu>
@@ -203,11 +197,6 @@
 
           </div>
           <div class="md-secondary actions" layout="row" layout-align="start center">
-            <!-- <md-button class="md-icon-button  hide show-gt-xs" ng-click="$event.stopPropagation();vm.toggleInArray(contact.id, vm.user.starred)" aria-label="Toggle starred" translate translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
-              <md-icon ng-if="vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star" class="amber-fg"></md-icon>
-              <md-icon ng-if="!vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star-outline"></md-icon>
-            </md-button> -->
-
             <md-menu>
               <md-button class="md-icon-button" aria-label="Mais">
                 <md-icon md-font-icon="icon-dots-vertical" ng-click="$mdOpenMenu($event)"></md-icon>
@@ -225,17 +214,6 @@
                     Apagar aluno
                   </md-button>
                 </md-menu-item>
-
-                <!-- <md-divider ng-if="vm.user.groups"></md-divider>
-
-                <md-subheader class="md-no-sticky" ng-if="vm.user.groups">Groups</md-subheader>
-
-                <md-list-item ng-if="vm.user.groups" ng-repeat="group in vm.user.groups" ng-click="vm.toggleInArray(contact.id,group.contactIds)">
-                  <p class="pl-8" ng-style="vm.exists(contact.id,group.contactIds) && {'font-weight':'500'}">
-                    {{group.name}}
-                  </p>
-                </md-list-item> -->
-
               </md-menu-content>
             </md-menu>
 

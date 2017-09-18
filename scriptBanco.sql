@@ -183,7 +183,6 @@ CREATE TABLE aparelhos_eletronicos (
   fogao BOOLEAN NOT NULL,
   geladeira BOOLEAN NOT NULL,
   microondas BOOLEAN NOT NULL,
-  tablet BOOLEAN NOT NULL,
   maquina_de_lavar BOOLEAN NOT NULL,
   maquina_de_secar BOOLEAN NOT NULL,
   telefone_fixo BOOLEAN NOT NULL,
@@ -427,12 +426,12 @@ INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complem
 INSERT INTO endereco(cep, numero, rua, bairro, cidade, ponto_referencia, complemento, ra_aluno)
   VALUES('12345234', '311', 'Assis', 'Centro', 'Sorocaba', '', '', 3);
 
-INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
-  VALUES(TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE);
-INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
-  VALUES(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE);
-INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
-  VALUES(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE);
+INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
+  VALUES(TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE);
+INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
+  VALUES(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE);
+INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular)
+  VALUES(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE);
 
 INSERT INTO contato(nome, telefone, email, rede_social, tipo, ra_aluno)
   VALUES('Patricia', '12361415908', 'patricia@gmail.com', 'facebook.com/patricia.324', 'Responsavel', 1);

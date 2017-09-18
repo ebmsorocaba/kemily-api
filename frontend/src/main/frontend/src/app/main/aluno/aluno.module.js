@@ -61,9 +61,9 @@
                   Imoveis: function (msApi) {
                     return msApi.resolve('imoveis.imoveis@query');
                   },
-                  Parentes: function (msApi)
+                  ComposicaoFamiliar: function (msApi)
                   {
-                      return msApi.resolve('parentes.parentes@query');
+                      return msApi.resolve('composicaoFamiliar.composicaoFamiliar@query');
                   },
                   User: function ($window)
                   {
@@ -120,7 +120,7 @@
         msApiProvider.register('imoveis.imoveis', ['/api/imovel'])
         msApiProvider.register('automoveis.automoveis', ['/api/automovel'])
         msApiProvider.register('aparelhosEletronicos.aparelhosEletronicos', ['/api/aparelhosEletronicos'])
-        msApiProvider.register('parentes.parentes', ['/api/composicaoFamiliar'])
+        msApiProvider.register('composicaoFamiliar.composicaoFamiliar', ['/api/composicaoFamiliar'])
 
 
         //msApiProvider.register('sample', ['app/data/sample/sample.json']);
