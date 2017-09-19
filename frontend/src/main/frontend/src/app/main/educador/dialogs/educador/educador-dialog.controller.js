@@ -11,6 +11,17 @@
     vm.user = User;
     vm.allFields = false;
 
+    vm.sexos = [
+      'Masculino',
+      'Feminino'
+    ]
+
+    vm.cargos = [
+      'Auxiliar',
+      'Educador',
+      'Voluntário'
+    ];
+
     if(!vm.educador) {
       vm.educador = {
         'cpf': '',
@@ -18,10 +29,16 @@
         'sexo': '',
         'telefone': '',
         'dataNasc': '',
-        'email': ''
+        'email': '',
+        'cargo': '',
+        'numeroCarteiraProfissional': '',
+        'serieCarteiraProfissional': '',
+        'numeroPis': ''
       };
+      vm.title = 'Novo Educador';
     } else {
       vm.educador.dataNasc = new Date(vm.educador.dataNasc);
+      vm.title = 'Alterar Educador';
     }
     // Methods
     if (Educador !== undefined) {
@@ -128,4 +145,4 @@
       });
     }
   }
-})()
+})();
