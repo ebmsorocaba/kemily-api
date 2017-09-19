@@ -11,6 +11,10 @@ public class Educador {
 	private String sexo;
 	private String telefone;
 	private String email;
+	private String cargo;
+	private int numeroCarteiraProfissional;
+	private int serieCarteiraProfissional;
+	private long numeroPis;
 	
 	public Educador() {}
 	
@@ -72,6 +76,38 @@ public class Educador {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public int getNumeroCarteiraProfissional() {
+		return numeroCarteiraProfissional;
+	}
+
+	public void setNumeroCarteiraProfissional(int numeroCarteiraProfissional) {
+		this.numeroCarteiraProfissional = numeroCarteiraProfissional;
+	}
+
+	public int getSerieCarteiraProfissional() {
+		return serieCarteiraProfissional;
+	}
+
+	public void setSerieCarteiraProfissional(int serieCarteiraProfissional) {
+		this.serieCarteiraProfissional = serieCarteiraProfissional;
+	}
+
+	public long getNumeroPis() {
+		return numeroPis;
+	}
+
+	public void setNumeroPis(long numeroPis) {
+		this.numeroPis = numeroPis;
 	}
 	
 }
