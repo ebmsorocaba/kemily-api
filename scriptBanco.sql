@@ -302,7 +302,7 @@ CREATE TABLE educador (
   cargo VARCHAR(15) NOT NULL,
   numero_carteira_profissional NUMERIC(8,0) NOT NULL,
   serie_carteira_profissional NUMERIC(7,0) NOT NULL,
-  numero_pis NUMERIC(13,0) NOT NULL
+  numero_pis VARCHAR(20) NOT NULL
 );
 
 /*---Fim da criação das tabelas---*/
@@ -533,7 +533,7 @@ INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, probl
   VALUES(3, FALSE, '', TRUE, FALSE, TRUE, FALSE, TRUE, 'Lactose', FALSE, '');
 
 INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis)
-  VALUES('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com', 'Voluntaŕio', 012345, 01234, 12085259431);
+  VALUES('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com', 'Voluntário', 012345, 01234, '120.8525.943-1');
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */

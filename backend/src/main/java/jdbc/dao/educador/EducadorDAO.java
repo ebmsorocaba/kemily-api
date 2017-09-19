@@ -30,7 +30,7 @@ public class EducadorDAO {
 			stmt.setString(7, educador.getCargo());
 			stmt.setInt(8, educador.getNumeroCarteiraProfissional());
 			stmt.setInt(9, educador.getSerieCarteiraProfissional());
-			stmt.setLong(10, educador.getNumeroPis());
+			stmt.setString(10, educador.getNumeroPis());
 			
 			stmt.execute();
 			
@@ -59,7 +59,7 @@ public class EducadorDAO {
 			edu.setCargo(rs.getString("cargo"));
 			edu.setNumeroCarteiraProfissional(rs.getInt("numero_carteira_profissional"));
 			edu.setSerieCarteiraProfissional(rs.getInt("serie_carteira_profissional"));
-			edu.setNumeroPis(rs.getLong("numero_pis"));
+			edu.setNumeroPis(rs.getString("numero_pis"));
 			
 			educadores.add(edu);
 		}
@@ -89,7 +89,7 @@ public class EducadorDAO {
 				edu.setCargo(rs.getString("cargo"));
 				edu.setNumeroCarteiraProfissional(rs.getInt("numero_carteira_profissional"));
 				edu.setSerieCarteiraProfissional(rs.getInt("serie_carteira_profissional"));
-				edu.setNumeroPis(rs.getLong("numero_pis"));
+				edu.setNumeroPis(rs.getString("numero_pis"));
 			}
 			
 			stmt.close();
@@ -126,7 +126,7 @@ public class EducadorDAO {
 		stmt.setString(6, educador.getCargo());
 		stmt.setInt(7, educador.getNumeroCarteiraProfissional());
 		stmt.setInt(8, educador.getSerieCarteiraProfissional());
-		stmt.setLong(9, educador.getNumeroPis());
+		stmt.setString(9, educador.getNumeroPis());
 		stmt.setString(10, cpf);
 		
 		stmt.execute();

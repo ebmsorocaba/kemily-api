@@ -14,7 +14,7 @@ public class Educador {
 	private String cargo;
 	private int numeroCarteiraProfissional;
 	private int serieCarteiraProfissional;
-	private long numeroPis;
+	private String numeroPis;
 	
 	public Educador() {}
 	
@@ -24,7 +24,11 @@ public class Educador {
 			@JsonProperty("dataNasc") Date dataNasc,
 			@JsonProperty("sexo") String sexo,
 			@JsonProperty("telefone") String telefone,
-			@JsonProperty("email") String email) {
+			@JsonProperty("email") String email,
+			@JsonProperty("cargo") String cargo,
+			@JsonProperty("numeroCarteiraProfissional") int numeroCarteiraProfissional,
+			@JsonProperty("serieCarteiraProfissional") int serieCarteiraProfissional,
+			@JsonProperty("numeroPis") String numeroPis) {
 		
 		this.cpf = cpf;
 		this.nome = nome;
@@ -32,6 +36,10 @@ public class Educador {
 		this.sexo = sexo;
 		this.telefone = telefone;
 		this.email = email;
+		this.cargo = cargo;
+		this.numeroCarteiraProfissional = numeroCarteiraProfissional;
+		this.serieCarteiraProfissional = serieCarteiraProfissional;
+		this.numeroPis = numeroPis;
 	}
 	
 	public String getCpf() {
@@ -102,11 +110,11 @@ public class Educador {
 		this.serieCarteiraProfissional = serieCarteiraProfissional;
 	}
 
-	public long getNumeroPis() {
+	public String getNumeroPis() {
 		return numeroPis;
 	}
 
-	public void setNumeroPis(long numeroPis) {
+	public void setNumeroPis(String numeroPis) {
 		this.numeroPis = numeroPis;
 	}
 	

@@ -26,9 +26,15 @@
 
       <md-input-container class="md-icon-float md-block">
         <label>Sexo</label>
-        <md-icon md-font-icon="icon-human"></md-icon>
-        <input ng-model="vm.educador.sexo" type="text">
+        <md-icon md-font-icon="icon-gender-male-female"></md-icon>
+        <md-select ng-model="vm.educador.sexo" required>
+          <md-option ng-repeat="sexo in vm.sexos" value="{{sexo}}">
+            {{sexo}}
+          </md-option>
+        </md-select>
       </md-input-container>
+
+      </br>
 
       <md-input-container class="md-icon-float md-block">
         <label>Telefone</label>
@@ -47,6 +53,35 @@
         <input ng-model="vm.educador.email" type="email">
       </md-input-container>
 
+      <md-input-container class="md-icon-float md-block">
+        <label>Cargo</label>
+        <md-icon md-font-icon="icon-worker"></md-icon>
+        <md-select ng-model="vm.educador.cargo" required>
+          <md-option ng-repeat="cargo in vm.cargos" value="{{cargo}}">
+            {{cargo}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      </br>
+      
+      <md-input-container class="md-icon-float md-block">
+        <label>Numero da Carteira Profissional</label>
+        <md-icon md-font-icon="">reorder</md-icon>
+        <input ng-model="vm.educador.numeroCarteiraProfissional" type="text" mask="999999" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Série da Carteira Profissional</label>
+        <md-icon md-font-icon="">reorder</md-icon>
+        <input ng-model="vm.educador.serieCarteiraProfissional" type="text" mask="99999" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Número do PIS</label>
+        <md-icon md-font-icon="">reorder</md-icon>
+        <input ng-model="vm.educador.numeroPis" type="text" mask="999.9999.999-9" required>
+      </md-input-container>
 
     <md-dialog-actions layout="row" layout-align="space-between center">
       <div layout="row" layout-align="start center">
