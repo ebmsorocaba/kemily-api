@@ -20,7 +20,7 @@ public class SaudeDAO {
 	}
 	
 	public void adiciona(Saude saude) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, descricao_medicacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		
 		stmt.setInt(1, saude.getAluno().getRa());
 		stmt.setBoolean(2, saude.isFazTratamentosMedicos());
@@ -32,7 +32,7 @@ public class SaudeDAO {
 		stmt.setBoolean(8, saude.isPossuiAlergia());
 		stmt.setString(9, saude.getDescricaoAlergia());
 		stmt.setBoolean(10, saude.isTomaMedicacao());
-		stmt.setString(11, saude.getTipoMedicacao());
+		stmt.setString(11, saude.getDescricaoMedicacao());
 		
 		stmt.execute();
 		stmt.close();
@@ -57,7 +57,7 @@ public class SaudeDAO {
 			saude.setPossuiAlergia(rs.getBoolean("possui_alergia"));
 			saude.setDescricaoAlergia(rs.getString("descricao_alergia"));
 			saude.setTomaMedicacao(rs.getBoolean("toma_medicacao"));
-			saude.setTipoMedicacao(rs.getString("tipo_medicacao"));
+			saude.setDescricaoMedicacao(rs.getString("descricao_medicacao"));
 			
 			saudes.add(saude);
 		}
@@ -87,7 +87,7 @@ public class SaudeDAO {
 				saude.setPossuiAlergia(rs.getBoolean("possui_alergia"));
 				saude.setDescricaoAlergia(rs.getString("descricao_alergia"));
 				saude.setTomaMedicacao(rs.getBoolean("toma_medicacao"));
-				saude.setTipoMedicacao(rs.getString("tipo_medicacao"));
+				saude.setDescricaoMedicacao(rs.getString("descricao_medicacao"));
 			}
 			stmt.close();
 		} catch (SQLException ex) {
@@ -110,7 +110,7 @@ public class SaudeDAO {
 	}
 	
 	public void altera(Saude saude, int ra) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE saude SET faz_tratamentos_medicos = ?, descricao_tratamento = ?, problemas_de_saude_na_familia = ?, plano_de_saude = ?, pessoas_idosas = ?, problemas_psiquiatricos = ?, possui_alergia = ?, descricao_alergia = ?, toma_medicacao = ?, tipo_medicacao = ? WHERE ra_aluno = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE saude SET faz_tratamentos_medicos = ?, descricao_tratamento = ?, problemas_de_saude_na_familia = ?, plano_de_saude = ?, pessoas_idosas = ?, problemas_psiquiatricos = ?, possui_alergia = ?, descricao_alergia = ?, toma_medicacao = ?, descricao_medicacao = ? WHERE ra_aluno = ?");
 		
 		stmt.setBoolean(1, saude.isFazTratamentosMedicos());
 		stmt.setString(2, saude.getDescricaoTratamento());
@@ -121,7 +121,7 @@ public class SaudeDAO {
 		stmt.setBoolean(7, saude.isPossuiAlergia());
 		stmt.setString(8, saude.getDescricaoAlergia());
 		stmt.setBoolean(9, saude.isTomaMedicacao());
-		stmt.setString(10, saude.getTipoMedicacao());
+		stmt.setString(10, saude.getDescricaoMedicacao());
 		stmt.setInt(11, ra);
 		
 		stmt.execute();

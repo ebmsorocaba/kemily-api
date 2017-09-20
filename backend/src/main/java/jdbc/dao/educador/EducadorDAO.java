@@ -19,7 +19,7 @@ public class EducadorDAO {
 	
 	public void adiciona(Educador educador) throws SQLException {
 		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO educador (cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO educador (cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis, hora_entrada, hora_saida) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			stmt.setString(1, educador.getCpf());
 			stmt.setString(2, educador.getNome());
@@ -31,6 +31,8 @@ public class EducadorDAO {
 			stmt.setInt(8, educador.getNumeroCarteiraProfissional());
 			stmt.setInt(9, educador.getSerieCarteiraProfissional());
 			stmt.setString(10, educador.getNumeroPis());
+			stmt.setString(11, educador.getHoraEntrada());
+			stmt.setString(12, educador.getHoraSaida());
 			
 			stmt.execute();
 			
@@ -60,6 +62,8 @@ public class EducadorDAO {
 			edu.setNumeroCarteiraProfissional(rs.getInt("numero_carteira_profissional"));
 			edu.setSerieCarteiraProfissional(rs.getInt("serie_carteira_profissional"));
 			edu.setNumeroPis(rs.getString("numero_pis"));
+			edu.setHoraEntrada(rs.getString("hora_entrada"));
+			edu.setHoraSaida(rs.getString("hora_saida"));
 			
 			educadores.add(edu);
 		}
@@ -90,6 +94,8 @@ public class EducadorDAO {
 				edu.setNumeroCarteiraProfissional(rs.getInt("numero_carteira_profissional"));
 				edu.setSerieCarteiraProfissional(rs.getInt("serie_carteira_profissional"));
 				edu.setNumeroPis(rs.getString("numero_pis"));
+				edu.setHoraEntrada(rs.getString("hora_entrada"));
+				edu.setHoraSaida(rs.getString("hora_saida"));
 			}
 			
 			stmt.close();
@@ -116,7 +122,7 @@ public class EducadorDAO {
 	
 	public void altera(Educador educador, String cpf) throws SQLException {
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE educador SET nome = ?, data_nascimento = ?, sexo = ?, telefone = ?, email = ?, cargo = ?, numero_carteira_profissional = ?, serie_carteira_profissional = ?, numero_pis = ? WHERE cpf = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE educador SET nome = ?, data_nascimento = ?, sexo = ?, telefone = ?, email = ?, cargo = ?, numero_carteira_profissional = ?, serie_carteira_profissional = ?, numero_pis = ?, hora_entrada = ?, hora_saida = ? WHERE cpf = ?");
 		
 		stmt.setString(1, educador.getNome());
 		stmt.setDate(2, educador.getDataNasc());
@@ -127,7 +133,9 @@ public class EducadorDAO {
 		stmt.setInt(7, educador.getNumeroCarteiraProfissional());
 		stmt.setInt(8, educador.getSerieCarteiraProfissional());
 		stmt.setString(9, educador.getNumeroPis());
-		stmt.setString(10, cpf);
+		stmt.setString(10, educador.getHoraEntrada());
+		stmt.setString(11, educador.getHoraSaida());
+		stmt.setString(12, cpf);
 		
 		stmt.execute();
 		

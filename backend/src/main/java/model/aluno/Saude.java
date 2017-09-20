@@ -14,7 +14,7 @@ public class Saude {
 	private boolean possuiAlergia;
 	private String descricaoAlergia;
 	private boolean tomaMedicacao;
-	private String tipoMedicacao;
+	private String descricaoMedicacao;
 	
 	public Saude() {};
 	
@@ -29,7 +29,7 @@ public class Saude {
 			@JsonProperty("possuiAlergia")boolean possuiAlergia,
 			@JsonProperty("descricaoAlergia")String descricaoAlergia,
 			@JsonProperty("tomaMedicacao")boolean tomaMedicacao,
-			@JsonProperty("tipoMedicacao")String tipoMedicacao) {
+			@JsonProperty("descricaoMedicacao")String descricaoMedicacao) {
 		
 		this.aluno = aluno;
 		this.fazTratamentosMedicos = fazTratamentosMedicos;
@@ -41,7 +41,7 @@ public class Saude {
 		this.possuiAlergia = possuiAlergia;
 		this.descricaoAlergia = descricaoAlergia;
 		this.tomaMedicacao = tomaMedicacao;
-		this.tipoMedicacao = tipoMedicacao;
+		this.descricaoMedicacao = descricaoMedicacao;
 	}
 
 	public Aluno getAluno() {
@@ -124,12 +124,12 @@ public class Saude {
 		this.tomaMedicacao = tomaMedicacao;
 	}
 
-	public String getTipoMedicacao() {
-		return tipoMedicacao;
+	public String getDescricaoMedicacao() {
+		return descricaoMedicacao;
 	}
 
-	public void setTipoMedicacao(String tipoMedicacao) {
-		this.tipoMedicacao = tipoMedicacao;
+	public void setDescricaoMedicacao(String descricaoMedicacao) {
+		this.descricaoMedicacao = descricaoMedicacao;
 	}
 	
 	
