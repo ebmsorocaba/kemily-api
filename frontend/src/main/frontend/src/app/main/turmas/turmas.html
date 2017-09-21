@@ -1,13 +1,224 @@
-<div id="maintenance" class="flex-scrollable" layout="column" ms-scroll>
-    <div id="maintenance-form-wrapper" layout="column" layout-align="center center">
-        <div id="maintenance-form" class="md-whiteframe-8dp">
-            <div class="logo md-accent-bg">
-                <span>E</span>
-            </div>
-            <div class="title">Estamos trabalhando nessa página!</div>
-            <div class="subtitle">
-                Logo estará pronta. <br> Por favor olhe mais tarde.
-            </div>
-        </div>
+<!DOCTYPE html>
+<div id="turmas" class="page-layout simple inner-sidenav">
+
+  <!-- HEADER -->
+  <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+
+    <!-- APP TITLE -->
+    <div layout="row" layout-align="start center">
+      <!-- <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click="vm.toggleSidenav('sidenav')">
+                <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+            </md-button> -->
+
+      <div class="logo" layout="row" layout-align="start center">
+        <span class="logo-icon">
+          <md-icon md-font-icon="icon-school" class="s24"></md-icon>
+        </span>
+        <span class="logo-text">Turmas</span>
+      </div>
     </div>
+    <!-- / APP TITLE -->
+
+    <!-- SEARCH -->
+    <div class="search-input-wrapper" layout="row" layout-align="start center">
+      <label for="search">
+        <md-icon md-font-icon="icon-magnify"></md-icon>
+      </label>
+      <md-input-container md-no-float class="m-0">
+        <input id="search" placeholder="Pesquisar turmas..." type="text" ng-model="vm.search">
+      </md-input-container>
+    </div>
+    <!-- / SEARCH -->
+
+  </div>
+  <!-- / HEADER -->
+
+  <!-- SELECTED BAR -->
+  <div ng-show="vm.selectedTurmas.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
+
+    <div class="close-button-wrapper" ng-click="vm.selectedTurmas =[]">
+      <md-button layout="row" layout-align="start center">
+        <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+        <span>Voltar</span>
+      </md-button>
+    </div>
+
+    <div flex layout="row" layout-align="space-between center">
+
+      <div>
+        <span class="selected-turmas-count">
+        <span>{{vm.selectedTurmas.length}}</span>
+        <span>selecionado(s)</span>
+        </span>
+
+        <md-menu class="select-menu" ng-if="!vm.currentThread">
+          <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="multi select toggle">
+            <md-icon md-font-icon="icon-menu-down"></md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item>
+              <md-button ng-click="vm.selectAllTurmas()">
+                Selecionar todos
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="vm.deselectTurmas()">
+                Selecionar nenhum
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
+
+      <div class="multi-select-actions">
+        <md-button class="md-icon-button" ng-click="vm.deleteSelectedTurmas($event)" aria-label="apagar selecionados">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+        </md-button>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- / SELECTED BAR -->
+
+  <!-- CONTENT -->
+  <div class="content" md-background-bg layout="row" layout-align="start start">
+
+    <!-- MAIN -->
+    <div class="main scrollable" ms-scroll>
+
+      <!-- CONTACT LIST -->
+      <md-list class="turmas-list">
+
+        <!-- CONTACT LIST HEADER -->
+        <md-subheader class="md-no-sticky md-white-bg">
+
+          <div layout="row" layout-align="space-between center">
+
+            <div class="list-title" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
+              <span ng-if="vm.listType === 'all'">Turmas Cadastrados</span>
+              <!-- <span ng-if="vm.listType === 'frequent'" translate="CONTACTS.FREQUENTLY_CONTACTED">Frequnetly
+                                contacted</span>
+                            <span ng-if="vm.listType === 'starred'" translate="CONTACTS.STARRED_CONTACTS">Starred
+                                contacts</span>
+                            <span ng-if="vm.listType.name">{{vm.listType.name}}</span> -->
+
+              <span ng-if="filteredTurmas.length" class="secondary-text turmas-count">
+                                ({{filteredTurmas.length}})
+                            </span>
+            </div>
+
+            <!-- <div class="edit-group-form" ng-show="vm.listType.name" layout="row"
+                             layout-align="start center">
+                            <span ng-show="editGroupForm.$visible"
+                                  editable-text="vm.listType.name"
+                                  e-form="editGroupForm"
+                                  onaftersave="vm.editGroup()">
+                            </span>
+
+                            <md-button class="md-icon-button edit-group-button" ng-click="editGroupForm.$show()"
+                                       ng-hide="editGroupForm.$visible" aria-label="edit group name" translate
+                                       translate-attr-label="CONTACTS.EDIT_GROUP_NAME">
+                                <md-icon md-font-icon="icon-pencil s18"></md-icon>
+                            </md-button>
+
+                            <md-button class="md-icon-button edit-group-button" ng-click="vm.deleteGroup($event)"
+                                       ng-hide="editGroupForm.$visible" aria-label="delete group" translate
+                                       translate-attr-label="CONTACTS.DELETE_GROUP">
+                                <md-icon md-font-icon="icon-delete s18"></md-icon>
+                            </md-button>
+                        </div> -->
+
+            <div flex></div>
+
+            <span>Ordenar</span>
+            <md-menu>
+
+              <md-button class="md-icon-button" aria-label="Ordenar">
+                <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
+              </md-button>
+
+              <md-menu-content width="3">
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>Nome</span>
+                    <small>(A até Z)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                    <span>Nome</span>
+                    <small>(Z até A)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'ra'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'ra' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>RA</span>
+                    <small>(Crescente)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'ra'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'ra' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                    <span>RA</span>
+                    <small>(Decrescente)</small>
+                  </md-button>
+                </md-menu-item>
+
+              </md-menu-content>
+
+            </md-menu>
+
+          </div>
+
+        </md-subheader>
+        <!-- / CONTACT LIST HEADER -->
+
+        <!-- CONTACT ITEM -->
+        <md-list-item class="aluno-item md-white-bg" md-ink-ripple ng-repeat="aluno in vm.turmas | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredTurmas track by aluno.ra"
+          ng-click="vm.openTurmaDialog($event, aluno)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredTurmas.length - $index}" ng-class="{'selected': vm.isSelected(aluno)}">
+
+          <md-checkbox ng-checked="vm.exists(aluno, vm.selectedTurmas)" ng-click="vm.toggleSelectTurma(aluno, $event)" aria-label="{{vm.exists(aluno, vm.selectedTurmas) ? 'Deselect' : 'Select'}}">
+          </md-checkbox>
+          <div class="item" layout="row">
+            <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
+            <p class="numero raTurma">
+              {{aluno.ra}}
+            </p>
+            <p class="texto nomeTurma">
+              {{aluno.nome}}
+            </p>
+            <p class="data dataNascTurma">
+              {{aluno.dataNascimento | date : "dd/MM/yyyy"}}
+            </p>
+
+          </div>
+          
+
+        </md-list-item>
+        <!-- CONTACT ITEM -->
+
+      </md-list>
+      <!-- / CONTACT LIST -->
+
+      <!-- NO RESULTS -->
+      <md-list-item class="no-results md-white-bg" ng-show="filteredTurmas.length === 0">
+        <p>Nenhum aluno encontrado.</p>
+      </md-list-item>
+      <!-- / NO RESULTS -->
+
+    </div>
+    <!-- / MAIN -->
+
+  </div>
+  <!-- / CONTENT -->
+
+  <!-- ADD CONTACT BUTTON -->
+  <md-button class="md-fab md-accent md-icon-button" id="add-aluno-button" ng-click="vm.openTurmaDialog($event)" aria-label="Adicionar aluno">
+    <md-icon md-font-icon="icon-account-plus"></md-icon>
+  </md-button>
+  <!-- / ADD CONTACT BUTTON -->
 </div>
