@@ -40,6 +40,7 @@ DROP TABLE contato_responsavel;
 DROP TABLE contato_profissional;
 DROP TABLE contato;
 DROP TABLE roupa;
+DROP TABLE aluno_turma;
 DROP TABLE aluno;
 DROP TABLE turma;
 DROP TABLE educador;
@@ -133,10 +134,6 @@ CREATE TABLE pagamento_cartao (
 /*                         */
 /***************************/
 /*                         */
-
-CREATE TABLE turma (
-  educador TEXT PRIMARY KEY
-);
 
 CREATE TABLE aluno (
   ra SERIAL PRIMARY KEY,
@@ -307,6 +304,18 @@ CREATE TABLE educador (
   hora_saida VARCHAR(10) NOT NULL
 );
 
+CREATE TABLE turma (
+  id SERIAL PRIMARY KEY,
+  cpf_educador VARCHAR(20) REFERENCES educador(cpf),
+  descricao TEXT
+);
+
+CREATE TABLE aluno_turma (
+  ra_aluno BIGINT REFERENCES aluno(ra),
+  id_turma BIGINT REFERENCES turma(id),
+  PRIMARY KEY(ra_aluno, id_turma)
+);
+
 /*---Fim da criação das tabelas---*/
 /*                                */
 
@@ -410,13 +419,6 @@ INSERT INTO pagamento_boleto(id_pagamento, codigo_boleto)
 INSERT INTO pagamento_cartao(id_pagamento, numero_cartao)
   VALUES (5, '4396378924129673');
 */
-
-INSERT INTO turma(educador)
-  VALUES('Vanessa');
-INSERT INTO turma(educador)
-  VALUES('Marina');
-INSERT INTO turma(educador)
-  VALUES('Manuela');
 
 INSERT INTO aluno(nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, etnia, observacoes)
   VALUES('Kemily', '12/12/2010', '758471231', 'Brasileira', 'SP', '10/07/2017', 'Carro', 'Asiático', '');
@@ -534,8 +536,18 @@ INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, probl
 INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, descricao_medicacao)
   VALUES(3, FALSE, '', TRUE, FALSE, TRUE, FALSE, TRUE, 'Lactose', FALSE, '');
 
-INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis, hora_entrada, hora_saida)
-  VALUES('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com', 'Voluntário', 012345, 01234, '120.85259.43-1', '09:00', '15:00');
+INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis)
+  VALUES('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com', 'Voluntário', 012345, 01234, '120.85259.43-1');
+
+INSERT INTO turma(cpf_educador, descricao)
+  VALUES('450.059.448-50', 'Turma do Diego');
+
+INSERT INTO aluno_turma(ra_aluno, id_turma)
+  VALUES(1,1);
+INSERT INTO aluno_turma(ra_aluno, id_turma)
+  VALUES(2,1);
+INSERT INTO aluno_turma(ra_aluno, id_turma)
+  VALUES(3,1);
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
