@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.projeto', [])
+        .module('app.turmas', [])
         .config(config);
 
     /** @ngInject */
@@ -11,12 +11,12 @@
     {
         // State
         $stateProvider
-            .state('app.projeto', {
-                url    : '/projeto',
+            .state('app.turmas', {
+                url    : '/turmas',
                 views  : {
                     'content@app': {
-                        templateUrl: 'app/main/projeto/projeto.html',
-                        controller : 'ProjetoController as vm'
+                        templateUrl: 'app/main/turmas/turmas.html',
+                        controller : 'TurmasController as vm'
                     }
                 },
                 resolve: {
@@ -46,7 +46,6 @@
                   });
                   return $q.reject();
                 }
-
               } else {
                 // The next bit of code is asynchronously tricky.
 
@@ -61,6 +60,7 @@
               }
             }
 
+
         // Translation
         // $translatePartialLoaderProvider.addPart('app/main/relatorio');
 
@@ -74,11 +74,11 @@
         //     weight: 8
         // });
 
-        msNavigationServiceProvider.saveItem('social.projeto', {
-            title    : 'Gerenciar Projetos',
-            icon     : 'icon-table-edit',
-            state    : 'app.projeto',
-            weight   : 3
+        msNavigationServiceProvider.saveItem('social.turmas', {
+            title    : 'Gerenciar Turmas',
+            icon     : 'icon-document',
+            state    : 'app.turmas',
+            weight   : 4
         });
     }
 })();
