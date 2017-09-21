@@ -33,7 +33,9 @@
         'cargo': '',
         'numeroCarteiraProfissional': '',
         'serieCarteiraProfissional': '',
-        'numeroPis': ''
+        'numeroPis': '',
+        'horaEntrada': '',
+        'horaSaida': ''
       };
       vm.title = 'Novo Educador';
     } else {

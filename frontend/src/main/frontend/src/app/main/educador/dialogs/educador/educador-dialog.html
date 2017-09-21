@@ -80,7 +80,19 @@
       <md-input-container class="md-icon-float md-block">
         <label>Número do PIS</label>
         <md-icon md-font-icon="">reorder</md-icon>
-        <input ng-model="vm.educador.numeroPis" type="text" mask="999.9999.999-9" required>
+        <input ng-model="vm.educador.numeroPis" type="text" mask="999.99999.99-9" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Horário de Entrada</label>
+        <md-icon md-font-icon="icon-clock"></md-icon>
+        <input ng-model="vm.educador.horaEntrada" type="text" mask="99:99" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Horário de Saída</label>
+        <md-icon md-font-icon="icon-clock"></md-icon>
+        <input ng-model="vm.educador.horaSaida" type="text" mask="99:99" required>
       </md-input-container>
 
     <md-dialog-actions layout="row" layout-align="space-between center">

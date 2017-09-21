@@ -289,7 +289,7 @@ CREATE TABLE saude (
   possui_alergia BOOLEAN NOT NULL,
   descricao_alergia TEXT,
   toma_medicacao BOOLEAN NOT NULL,
-  tipo_medicacao TEXT
+  descricao_medicacao TEXT
 );
 
 CREATE TABLE educador (
@@ -302,7 +302,9 @@ CREATE TABLE educador (
   cargo VARCHAR(15) NOT NULL,
   numero_carteira_profissional NUMERIC(8,0) NOT NULL,
   serie_carteira_profissional NUMERIC(7,0) NOT NULL,
-  numero_pis VARCHAR(20) NOT NULL
+  numero_pis VARCHAR(20) NOT NULL,
+  hora_entrada VARCHAR(10) NOT NULL,
+  hora_saida VARCHAR(10) NOT NULL
 );
 
 /*---Fim da criação das tabelas---*/
@@ -525,15 +527,15 @@ INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
 INSERT INTO automovel(modelo, ano, financiado, id_estrutura_familiar)
   VALUES('Uno Mille', '1997', FALSE, 3);
 
-INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, descricao_medicacao)
   VALUES(1, TRUE, 'Doença do rato', TRUE, TRUE, TRUE, TRUE, TRUE, 'Amendoim', TRUE, 'Amoxilina 500 mg');
-INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, descricao_medicacao)
   VALUES(2, FALSE, '', FALSE, FALSE, FALSE, FALSE, FALSE, '', FALSE, '');
-INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
+INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, descricao_medicacao)
   VALUES(3, FALSE, '', TRUE, FALSE, TRUE, FALSE, TRUE, 'Lactose', FALSE, '');
 
-INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis)
-  VALUES('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com', 'Voluntário', 012345, 01234, '120.8525.943-1');
+INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis, hora_entrada, hora_saida)
+  VALUES('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com', 'Voluntário', 012345, 01234, '120.85259.43-1', '09:00', '15:00');
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
