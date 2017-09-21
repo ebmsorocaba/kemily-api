@@ -3,11 +3,11 @@
     'use strict';
 
     angular
-        .module('app.projeto')
-        .controller('ProjetoController', ProjetoController);
+        .module('app.turmas')
+        .controller('TurmasController', TurmasController);
 
     /** @ngInject */
-    function ProjetoController()
+    function TurmasController()
     {
         var vm = this;
 
