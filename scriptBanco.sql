@@ -536,8 +536,8 @@ INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, probl
 INSERT INTO saude(ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, descricao_medicacao)
   VALUES(3, FALSE, '', TRUE, FALSE, TRUE, FALSE, TRUE, 'Lactose', FALSE, '');
 
-INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis)
-  VALUES('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com', 'Voluntário', 012345, 01234, '120.85259.43-1');
+INSERT INTO educador(cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis, hora_entrada, hora_saida)
+  VALUES('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com', 'Voluntário', 012345, 01234, '120.85259.43-1', '10:30', '18:30');
 
 INSERT INTO turma(cpf_educador, descricao)
   VALUES('450.059.448-50', 'Turma do Diego');
