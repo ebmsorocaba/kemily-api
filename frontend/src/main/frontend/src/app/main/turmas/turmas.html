@@ -178,21 +178,21 @@
         <!-- / CONTACT LIST HEADER -->
 
         <!-- CONTACT ITEM -->
-        <md-list-item class="aluno-item md-white-bg" md-ink-ripple ng-repeat="aluno in vm.turmas | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredTurmas track by aluno.ra"
-          ng-click="vm.openTurmaDialog($event, aluno)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredTurmas.length - $index}" ng-class="{'selected': vm.isSelected(aluno)}">
+        <md-list-item class="turma-item md-white-bg" md-ink-ripple ng-repeat="turma in vm.turmas | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredTurmas track by turma.ra"
+          ng-click="vm.openTurmaDialog($event, turma)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredTurmas.length - $index}" ng-class="{'selected': vm.isSelected(turma)}">
 
-          <md-checkbox ng-checked="vm.exists(aluno, vm.selectedTurmas)" ng-click="vm.toggleSelectTurma(aluno, $event)" aria-label="{{vm.exists(aluno, vm.selectedTurmas) ? 'Deselect' : 'Select'}}">
+          <md-checkbox ng-checked="vm.exists(turma, vm.selectedTurmas)" ng-click="vm.toggleSelectTurma(turma, $event)" aria-label="{{vm.exists(turma, vm.selectedTurmas) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
           <div class="item" layout="row">
             <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
             <p class="numero raTurma">
-              {{aluno.ra}}
+              {{turma.id}}
             </p>
             <p class="texto nomeTurma">
-              {{aluno.nome}}
+              {{turma.cpf_educador}}
             </p>
-            <p class="data dataNascTurma">
-              {{aluno.dataNascimento | date : "dd/MM/yyyy"}}
+            <p class="texto descricao">
+              {{turma.descricao}}
             </p>
 
           </div>
@@ -206,7 +206,7 @@
 
       <!-- NO RESULTS -->
       <md-list-item class="no-results md-white-bg" ng-show="filteredTurmas.length === 0">
-        <p>Nenhum aluno encontrado.</p>
+        <p>Nenhum turma encontrada.</p>
       </md-list-item>
       <!-- / NO RESULTS -->
 
@@ -217,7 +217,7 @@
   <!-- / CONTENT -->
 
   <!-- ADD CONTACT BUTTON -->
-  <md-button class="md-fab md-accent md-icon-button" id="add-aluno-button" ng-click="vm.openTurmaDialog($event)" aria-label="Adicionar aluno">
+  <md-button class="md-fab md-accent md-icon-button" id="add-turma-button" ng-click="vm.openTurmaDialog($event)" aria-label="Adicionar turma">
     <md-icon md-font-icon="icon-account-plus"></md-icon>
   </md-button>
   <!-- / ADD CONTACT BUTTON -->

@@ -1,0 +1,48 @@
+<!-- DIALOG -->
+<md-dialog class="educador-dialog">
+
+  <form name="TurmaForm" class="md-inline-form" novalidate>
+
+    <div class=" md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+      <span class="title">{{vm.title}}</span>
+      <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Fechar diálogo">
+        <md-icon md-font-icon="icon-close"></md-icon>
+      </md-button>
+    </div>
+
+    <md-dialog-content ms-scroll>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>CPF do Educador</label>
+        <md-icon md-font-icon="">reorder</md-icon>
+        <input ng-model="vm.turma.cpf_educador" type="text" mask="999.999.999-99" required>
+      </md-input-container>
+
+      <div layout="column" layout-gt-xs="row">
+        <md-input-container flex="100">
+          <input type="text" name="observacoes" ng-model="vm.turma.descricao" placeholder="Descrição">
+        </md-input-container>
+      </div>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button type="submit" ng-if="!vm.newEducador" ng-click="vm.saveEducador()" class="send-button md-accent md-raised" ng-disabled="EducadorForm.$invalid || EducadorForm.$pristine" aria-label="Salvar">
+          Salvar
+        </md-button>
+        <md-button type="submit" ng-if="vm.newEducador" ng-click="vm.addNewEducador()" class="send-button md-accent md-raised" ng-disabled="EducadorForm.$invalid || EducadorForm.$pristine" aria-label="Adicionar educador">
+          Adicionar Educador
+        </md-button>
+      </div>
+
+      <div ng-if="!vm.newEducador" layout="row">
+        <md-button class="md-icon-button" ng-click="vm.deleteEducadorConfirm($event)" aria-label="Apagar">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip><span>Apagar</span></md-tooltip>
+        </md-button>
+      </div>
+
+    </md-dialog-actions>
+
+  </form>
+
+</md-dialog>
