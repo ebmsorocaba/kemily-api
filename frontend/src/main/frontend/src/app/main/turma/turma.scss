@@ -148,7 +148,7 @@
                     }
                 }
 
-                .aluno-item {
+                .turma-item {
                     position: absolute;
                     right: 0;
                     left: 0;
@@ -189,7 +189,7 @@
         }
     }
 
-    #add-aluno-button {
+    #add-turma-button {
         position: fixed;
         bottom: 8px;
         right: 8px;
@@ -209,4 +209,16 @@
             }
         }
     }
+}
+
+
+div.item p.descricaoTurma{
+    margin-right: 45px;
+    width: 200px;
+}
+
+div.item p.idTurma{
+
+    margin-right: 65px;
+    width: 70px;
 }

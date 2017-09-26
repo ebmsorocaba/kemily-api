@@ -282,6 +282,11 @@
           getByCpf : $resource(api.baseUrl + 'educador/:cpf' + '/', {cpf: '@cpf'}, {'update': {method: 'PUT'}})
         }
 
+        api.turma = {
+          list  : $resource(api.baseUrl + 'turma'),
+          getById : $resource(api.baseUrl + 'turma/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
         api.contato = {
           list  : $resource(api.baseUrl + 'contato'),
           profissional  : $resource(api.baseUrl + 'contato/profissional'),
