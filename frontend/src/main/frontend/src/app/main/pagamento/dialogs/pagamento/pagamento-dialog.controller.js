@@ -269,6 +269,9 @@
 
       for(var j = 0; j < vm.dadosLista.length; j++) {
 
+        vm.dadosLista[j].value = vm.dadosLista[j].value.replace(/\-/g, "");
+        vm.dadosLista[j].value = vm.dadosLista[j].value.replace(/\./g, "");
+
         if(vm.dadosLista[j].value.search(query) !== -1) {
 
           if(flag === 0) {
