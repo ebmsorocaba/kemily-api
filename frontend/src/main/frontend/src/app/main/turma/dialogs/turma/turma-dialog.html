@@ -24,8 +24,14 @@
         </md-input-container>
       </div>
 
+
+
     <md-dialog-actions layout="row" layout-align="space-between center">
       <div layout="row" layout-align="start center">
+        <md-button type="submit" ng-if="!vm.newTurma" ng-click="vm.saveTurma()" class="send-button md-accent md-raised" ng-disabled="TurmaForm.$invalid || TurmaForm.$pristine" aria-label="Salvar">
+          Salvar
+        </md-button>
+
         <md-button type="submit" ng-if="vm.newTurma" ng-click="vm.addNewTurma(); vm.routeReload();" class="send-button md-accent md-raised" ng-disabled="TurmaForm.$invalid || TurmaForm.$pristine" aria-label="Adicionar turma">
           Adicionar Turma
         </md-button>
