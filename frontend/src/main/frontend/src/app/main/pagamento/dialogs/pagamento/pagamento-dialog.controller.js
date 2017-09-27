@@ -262,7 +262,29 @@
 
     //procura o associado na lista
     function querySearch (query) {
-      var results = query ? vm.dadosLista.filter( createFilterFor(query) ) : vm.dadosLista;
+      //var results = query ? vm.dadosLista.filter( createFilterFor(query) ) : vm.dadosLista;
+      query = query.toLowerCase();
+      var results = [''];
+      var flag = 0;
+
+      for(var j = 0; j < vm.dadosLista.length; j++) {
+
+        vm.dadosLista[j].value = vm.dadosLista[j].value.replace(/\-/g, "");
+        vm.dadosLista[j].value = vm.dadosLista[j].value.replace(/\./g, "");
+
+        if(vm.dadosLista[j].value.search(query) !== -1) {
+
+          if(flag === 0) {
+            results.fill(vm.dadosLista[j]);
+            flag = 1;
+          } else {
+            results.push(vm.dadosLista[j]);
+          }
+
+        }
+
+      }
+
       var deferred = $q.defer();
       deferred.resolve( results );
       return deferred.promise;
