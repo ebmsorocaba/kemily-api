@@ -21,6 +21,9 @@
         authenticate: authenticate,
         Turmas: function(msApi) {
           return msApi.resolve('turmas.turmas@query')
+        },
+        AlunoTurma: function(msApi){
+          return msApi.resolve('alunoTurma.alunoTurma@query')
         }
       }
     });
@@ -51,6 +54,7 @@
     }
 
     msApiProvider.register('turmas.turmas', ['/api/turma'])
+    msApiProvider.register('alunoTurma.alunoTurma', ['/api/alunoTurma'])
 
     // Translation
     // $translatePartialLoaderProvider.addPart('app/main/relatorio');

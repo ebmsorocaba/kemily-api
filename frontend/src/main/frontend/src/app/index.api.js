@@ -287,6 +287,11 @@
           getById : $resource(api.baseUrl + 'turma/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
+        api.alunoTurma = {
+          list  : $resource(api.baseUrl + 'alunoTurma'),
+          getByRa : $resource(api.baseUrl + 'turma/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
+        }
+
         api.contato = {
           list  : $resource(api.baseUrl + 'contato'),
           profissional  : $resource(api.baseUrl + 'contato/profissional'),

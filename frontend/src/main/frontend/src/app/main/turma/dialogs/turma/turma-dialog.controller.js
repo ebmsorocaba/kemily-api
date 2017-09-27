@@ -4,7 +4,7 @@
   angular.module('app.turma').controller('TurmaDialogController', TurmaDialogController)
 
   /** @ngInject */
-  function TurmaDialogController ($mdDialog, $state, Turma, Turmas, User, msUtils, api) {
+  function TurmaDialogController ($mdDialog, $state, Turma, Turmas, AlunoTurma, User, msUtils, api) {
     var vm = this;
     vm.title = 'Alterar Turma';
     vm.turma = angular.copy(Turma);

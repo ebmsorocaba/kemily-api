@@ -4,7 +4,7 @@
   angular.module('app.turma').controller('TurmasController', TurmasController);
 
   /** @ngInject */
-  function TurmasController ($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window, Turmas) {
+  function TurmasController ($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window, Turmas, AlunoTurma) {
 
     var vm = this;
 
@@ -29,6 +29,7 @@
     vm.deleteTurma = deleteTurma;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
+
 
     function openTurmaDialog(ev, turma) {
       $mdDialog.show({
