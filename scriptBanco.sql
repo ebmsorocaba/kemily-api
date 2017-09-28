@@ -33,7 +33,6 @@ DROP TABLE automovel;
 DROP TABLE imovel;
 DROP TABLE despesa;
 DROP TABLE estrutura_familiar;
-DROP TABLE endereco;
 DROP TABLE situacao_habitacional;
 DROP TABLE aparelhos_eletronicos;
 DROP TABLE responsavel_legal;
@@ -43,6 +42,7 @@ DROP TABLE aluno_turma;
 DROP TABLE aluno;
 DROP TABLE turma;
 DROP TABLE educador;
+DROP TABLE endereco;
 
 
 /*---Fim da limpeza---*/
