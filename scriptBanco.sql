@@ -134,10 +134,6 @@ CREATE TABLE pagamento_cartao (
 /***************************/
 /*                         */
 
-CREATE TABLE turma (
-  educador TEXT PRIMARY KEY
-);
-
 CREATE TABLE endereco (
   cep              VARCHAR(15) NOT NULL,
   numero           VARCHAR(6)  NOT NULL,
@@ -433,12 +429,6 @@ INSERT INTO pagamento_cartao(id_pagamento, numero_cartao)
   VALUES (5, '4396378924129673');
 */
 
-INSERT INTO turma (educador)
-VALUES ('Vanessa');
-INSERT INTO turma (educador)
-VALUES ('Marina');
-INSERT INTO turma (educador)
-VALUES ('Manuela');
 
 INSERT INTO endereco (cep, numero, rua, bairro, cidade, ponto_referencia, complemento)
 VALUES ('12345234', '312', 'Domingues', 'Centro', 'Sorocaba', '', '');
