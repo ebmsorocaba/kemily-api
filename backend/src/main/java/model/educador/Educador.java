@@ -17,6 +17,8 @@ public class Educador {
 	private int serieCarteiraProfissional;
 	private String numeroPis;
 	private Endereco endereco;
+	private String horaEntrada;
+	private String horaSaida;
 	
 	public Educador() {}
 	
@@ -31,7 +33,9 @@ public class Educador {
 			@JsonProperty("numeroCarteiraProfissional") int numeroCarteiraProfissional,
 			@JsonProperty("serieCarteiraProfissional") int serieCarteiraProfissional,
 			@JsonProperty("numeroPis") String numeroPis,
-			@JsonProperty("endereco") Endereco endereco) {
+			@JsonProperty("endereco") Endereco endereco,
+      @JsonProperty("horaEntrada") String horaEntrada,
+			@JsonProperty("horaSaida") String horaSaida) {
 		
 		this.cpf = cpf;
 		this.nome = nome;
@@ -44,6 +48,8 @@ public class Educador {
 		this.serieCarteiraProfissional = serieCarteiraProfissional;
 		this.numeroPis = numeroPis;
 		this.endereco = endereco;
+		this.horaEntrada = horaEntrada;
+		this.horaSaida = horaSaida;
 	}
 
 	public Endereco getEndereco() {
@@ -128,6 +134,22 @@ public class Educador {
 
 	public void setNumeroPis(String numeroPis) {
 		this.numeroPis = numeroPis;
+	}
+
+	public String getHoraEntrada() {
+		return horaEntrada;
+	}
+
+	public void setHoraEntrada(String horaEntrada) {
+		this.horaEntrada = horaEntrada;
+	}
+
+	public String getHoraSaida() {
+		return horaSaida;
+	}
+
+	public void setHoraSaida(String horaSaida) {
+		this.horaSaida = horaSaida;
 	}
 	
 }

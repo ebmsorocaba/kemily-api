@@ -39,6 +39,7 @@ DROP TABLE aparelhos_eletronicos;
 DROP TABLE responsavel_legal;
 DROP TABLE contato;
 DROP TABLE roupa;
+DROP TABLE aluno_turma;
 DROP TABLE aluno;
 DROP TABLE turma;
 DROP TABLE educador;
@@ -311,7 +312,21 @@ CREATE TABLE educador (
   numero_pis                   VARCHAR(20)   NOT NULL,
   cep_educador                 VARCHAR(15)   NOT NULL,
   numero_educador              VARCHAR(6)    NOT NULL,
+  hora_entrada VARCHAR(10) NOT NULL,
+  hora_saida VARCHAR(10) NOT NULL,
   FOREIGN KEY (cep_educador, numero_educador) REFERENCES endereco (cep, numero) ON DELETE CASCADE
+);
+
+CREATE TABLE turma (
+  id SERIAL PRIMARY KEY,
+  cpf_educador VARCHAR(20) REFERENCES educador(cpf),
+  descricao TEXT
+);
+
+CREATE TABLE aluno_turma (
+  ra_aluno BIGINT REFERENCES aluno(ra),
+  id_turma BIGINT REFERENCES turma(id),
+  PRIMARY KEY(ra_aluno, id_turma)
 );
 
 /*---Fim da criação das tabelas---*/
@@ -523,9 +538,19 @@ VALUES (2, FALSE, '', FALSE, FALSE, FALSE, FALSE, FALSE, '', FALSE, '');
 INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
 VALUES (3, FALSE, '', TRUE, FALSE, TRUE, FALSE, TRUE, 'Lactose', FALSE, '');
 
-INSERT INTO educador (cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis, cep_educador, numero_educador)
+INSERT INTO educador (cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis, cep_educador, numero_educador,hora_entrada, hora_saida)
 VALUES ('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com',
-                          'Voluntário', 012345, 01234, '120.8525.943-1', '12345234', '318');
+                          'Voluntário', 012345, 01234, '120.8525.943-1', '12345234', '318', '10:30', '18:30');
+
+INSERT INTO turma(cpf_educador, descricao)
+  VALUES('450.059.448-50', 'Turma do Diego');
+
+INSERT INTO aluno_turma(ra_aluno, id_turma)
+  VALUES(1,1);
+INSERT INTO aluno_turma(ra_aluno, id_turma)
+  VALUES(2,1);
+INSERT INTO aluno_turma(ra_aluno, id_turma)
+  VALUES(3,1);
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
