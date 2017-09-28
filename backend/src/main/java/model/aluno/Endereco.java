@@ -22,8 +22,7 @@ public class Endereco {
             @JsonProperty("bairro")String bairro,
             @JsonProperty("cidade")String cidade,
             @JsonProperty("pontoReferencia")String pontoReferencia,
-            @JsonProperty("complemento")String complemento,
-            @JsonProperty("aluno")Aluno aluno) {
+            @JsonProperty("complemento")String complemento) {
         
         this.cep = cep;
         this.numero = numero;
@@ -32,7 +31,6 @@ public class Endereco {
         this.cidade = cidade;
         this.pontoReferencia = pontoReferencia;
         this.complemento = complemento;
-        this.aluno = aluno;
     }
 
     public String getCep() {
@@ -84,10 +82,4 @@ public class Endereco {
         this.complemento = complemento;
     }
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
 }
