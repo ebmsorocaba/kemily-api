@@ -80,6 +80,29 @@ public class ImovelDAO {
 
     }
 
+    public List<Imovel> getByEstruturaFamiliar(int id) throws SQLException {
+        List<Imovel> automoveis = new ArrayList<Imovel>();
+
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM imovel where id_estrutura_familiar = ?");
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Imovel imovel = new Imovel();
+
+            imovel.setId(rs.getInt("id"));
+            imovel.setFinanciado(rs.getBoolean("financiado"));
+            imovel.setEstruturaFamiliar(estruturaFamiliarDAO.getEstruturaFamiliar(rs.getInt("id_estrutura_familiar")));
+
+            automoveis.add(imovel);
+        }
+
+        rs.close();
+        stmt.close();
+
+        return automoveis;
+    }
+
 
     public void excluir(int id) {
 

@@ -2,17 +2,14 @@ package model.aluno;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Contato {
+public class Contato extends Pessoa{
 
 	private int id;
-	private String nome;
-	private String telefone;
-	private String email;
-	private String redeSocial;
-	private String tipo;
+	private boolean profissional;
+	private String cargo;
 	private Aluno aluno;
-	
-	public Contato() {};
+
+	public Contato () {}
 	
 	public Contato(
 			@JsonProperty("id")int id,
@@ -20,16 +17,23 @@ public class Contato {
 			@JsonProperty("telefone")String telefone,
 			@JsonProperty("email")String email,
 			@JsonProperty("redeSocial")String redeSocial,
-			@JsonProperty("tipo")String tipo,
+			@JsonProperty("cargo")String cargo,
+			@JsonProperty("profissional")Boolean profissional,
 			@JsonProperty("aluno")Aluno aluno) {
-		
+
+		super(nome, telefone, email, redeSocial);
 		this.id = id;
-		this.nome = nome;
-		this.telefone = telefone;
-		this.email = email;
-		this.redeSocial = redeSocial;
-		this.tipo = tipo;
+		this.profissional = profissional;
+		this.cargo = cargo;
 		this.aluno = aluno;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	public int getId() {
@@ -40,46 +44,6 @@ public class Contato {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getRedeSocial() {
-		return redeSocial;
-	}
-
-	public void setRedeSocial(String redeSocial) {
-		this.redeSocial = redeSocial;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
 	public Aluno getAluno() {
 		return aluno;
 	}
@@ -87,5 +51,12 @@ public class Contato {
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
-	
+
+	public boolean isProfissional() {
+		return profissional;
+	}
+
+	public void setProfissional(boolean profissional) {
+		this.profissional = profissional;
+	}
 }

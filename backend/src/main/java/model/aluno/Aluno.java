@@ -15,6 +15,7 @@ public class Aluno {
     private String meioTransporte;
     private String etnia;
     private String observacoes;
+    private Endereco endereco;
 
 
     public Aluno () {}
@@ -29,7 +30,9 @@ public class Aluno {
             @JsonProperty("dataCadastro") Date dataCadastro,
             @JsonProperty("meioTransporte") String meioTransporte,
             @JsonProperty("etnia") String etnia,
-            @JsonProperty("observacoes") String observacoes) {
+            @JsonProperty("observacoes") String observacoes,
+            @JsonProperty("endereco") Endereco endereco)
+    {
 
         this.ra = ra;
         this.nome = nome;
@@ -41,6 +44,15 @@ public class Aluno {
         this.meioTransporte = meioTransporte;
         this.etnia = etnia;
         this.observacoes = observacoes;
+        this.endereco = endereco;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     public int getRa() {

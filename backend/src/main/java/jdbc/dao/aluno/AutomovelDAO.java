@@ -88,6 +88,31 @@ public class AutomovelDAO {
 
     }
 
+    public List<Automovel> getByEstruturaFamiliar(int id) throws SQLException {
+        List<Automovel> automoveis = new ArrayList<Automovel>();
+
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM automovel where id_estrutura_familiar = ?");
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Automovel automovel = new Automovel();
+
+            automovel.setId(rs.getInt("id"));
+            automovel.setModelo(rs.getString("modelo"));
+            automovel.setAno(rs.getString("ano"));
+            automovel.setFinanciado(rs.getBoolean("financiado"));
+            automovel.setEstruturaFamiliar(estruturaFamiliarDAO.getEstruturaFamiliar(rs.getInt("id_estrutura_familiar")));
+
+            automoveis.add(automovel);
+        }
+
+        rs.close();
+        stmt.close();
+
+        return automoveis;
+    }
+
 
     public void excluir(int id) {
 
