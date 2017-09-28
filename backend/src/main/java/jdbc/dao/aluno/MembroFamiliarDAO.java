@@ -1,7 +1,7 @@
 package jdbc.dao.aluno;
 
 import jdbc.ConnectionFactory;
-import model.aluno.ComposicaoFamiliar;
+import model.aluno.MembroFamiliar;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,56 +10,56 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComposicaoFamiliarDAO {
+public class MembroFamiliarDAO {
     private Connection connection;
     private AlunoDAO alunoDao;
 
-    public ComposicaoFamiliarDAO() throws SQLException {
+    public MembroFamiliarDAO() throws SQLException {
         this.connection = ConnectionFactory.getConnection();
         this.alunoDao = new AlunoDAO();
     }
 
-    public void adiciona(ComposicaoFamiliar parente) throws SQLException {
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO composicao_familiar (nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno) VALUES (?,?,?,?,?,?,?,?,?)");
+    public void adiciona(MembroFamiliar membro) throws SQLException {
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO membro_familiar (nome, parentesco, escolaridade, data_nascimento, ocupacao, salario, local_de_trabalho, condicao_trabalho, ra_aluno) VALUES (?,?,?,?,?,?,?,?,?)");
 
-        stmt.setString(1,parente.getNome());
-        stmt.setString(2,parente.getParentesco());
-        stmt.setString(3,parente.getEscolaridade());
-        stmt.setDate(4,parente.getDataNascimento());
-        stmt.setString(5,parente.getOcupacao());
-        stmt.setDouble(6,parente.getSalario());
-        stmt.setString(7, parente.getLocalTrabalho());
-        stmt.setString(8, parente.getCondicaoTrabalho());
-        stmt.setInt(9, parente.getAluno().getRa());
+        stmt.setString(1,membro.getNome());
+        stmt.setString(2,membro.getParentesco());
+        stmt.setString(3,membro.getEscolaridade());
+        stmt.setDate(4,membro.getDataNascimento());
+        stmt.setString(5,membro.getOcupacao());
+        stmt.setDouble(6,membro.getSalario());
+        stmt.setString(7, membro.getLocalTrabalho());
+        stmt.setString(8, membro.getCondicaoTrabalho());
+        stmt.setInt(9, membro.getAluno().getRa());
 
         // executa
         stmt.execute();
         stmt.close();
     }
 
-    public List<ComposicaoFamiliar> getLista() throws SQLException {
+    public List<MembroFamiliar> getLista() throws SQLException {
 
-        List<ComposicaoFamiliar> parentes = new ArrayList<ComposicaoFamiliar>();
+        List<MembroFamiliar> parentes = new ArrayList<MembroFamiliar>();
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM composicao_familiar");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM membro_familiar");
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
-            ComposicaoFamiliar parente = new ComposicaoFamiliar();
+            MembroFamiliar membro = new MembroFamiliar();
 
-            parente.setId(rs.getInt("id"));
-            parente.setNome(rs.getString("nome"));
-            parente.setParentesco(rs.getString("parentesco"));
-            parente.setEscolaridade(rs.getString("escolaridade"));
-            parente.setDataNascimento(rs.getDate("data_nascimento"));
-            parente.setOcupacao(rs.getString("ocupacao"));
-            parente.setSalario(rs.getDouble("salario"));
-            parente.setLocalTrabalho(rs.getString("local_de_trabalho"));
-            parente.setCondicaoTrabalho(rs.getString("condicao_trabalho"));
-            parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
+            membro.setId(rs.getInt("id"));
+            membro.setNome(rs.getString("nome"));
+            membro.setParentesco(rs.getString("parentesco"));
+            membro.setEscolaridade(rs.getString("escolaridade"));
+            membro.setDataNascimento(rs.getDate("data_nascimento"));
+            membro.setOcupacao(rs.getString("ocupacao"));
+            membro.setSalario(rs.getDouble("salario"));
+            membro.setLocalTrabalho(rs.getString("local_de_trabalho"));
+            membro.setCondicaoTrabalho(rs.getString("condicao_trabalho"));
+            membro.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
 
 
-            parentes.add(parente);
+            parentes.add(membro);
 
         }
 
@@ -70,27 +70,27 @@ public class ComposicaoFamiliarDAO {
 
     }
 
-    public ComposicaoFamiliar getParente(int search) throws SQLException {
+    public MembroFamiliar getMembroFamiliar(int search) throws SQLException {
 
-        ComposicaoFamiliar parente = new ComposicaoFamiliar();
+        MembroFamiliar membro = new MembroFamiliar();
 
         try {
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM composicao_familiar WHERE " + "id = ?");
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM membro_familiar WHERE " + "id = ?");
 
             stmt.setInt(1, search);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next() == true) {
-                parente.setId(rs.getInt("id"));
-                parente.setNome(rs.getString("nome"));
-                parente.setParentesco(rs.getString("parentesco"));
-                parente.setEscolaridade(rs.getString("escolaridade"));
-                parente.setDataNascimento(rs.getDate("data_nascimento"));
-                parente.setOcupacao(rs.getString("ocupacao"));
-                parente.setSalario(rs.getDouble("salario"));
-                parente.setLocalTrabalho(rs.getString("local_de_trabalho"));
-                parente.setCondicaoTrabalho(rs.getString("condicao_trabalho"));
-                parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
+                membro.setId(rs.getInt("id"));
+                membro.setNome(rs.getString("nome"));
+                membro.setParentesco(rs.getString("parentesco"));
+                membro.setEscolaridade(rs.getString("escolaridade"));
+                membro.setDataNascimento(rs.getDate("data_nascimento"));
+                membro.setOcupacao(rs.getString("ocupacao"));
+                membro.setSalario(rs.getDouble("salario"));
+                membro.setLocalTrabalho(rs.getString("local_de_trabalho"));
+                membro.setCondicaoTrabalho(rs.getString("condicao_trabalho"));
+                membro.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
             }
             stmt.close();
         }
@@ -99,7 +99,7 @@ public class ComposicaoFamiliarDAO {
             System.out.println(ex.toString());
         }
 
-        return (parente);
+        return (membro);
 
     }
 
@@ -108,7 +108,7 @@ public class ComposicaoFamiliarDAO {
 
         try {
 
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM composicao_familiar WHERE id = ?");
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM membro_familiar WHERE id = ?");
             stmt.setInt(1, search);
             stmt.execute();
             stmt.close();
@@ -123,7 +123,7 @@ public class ComposicaoFamiliarDAO {
     public void excluirByAluno(int ra) {
     	try {
 
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM composicao_familiar WHERE ra_aluno = ?");
+            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM membro_familiar WHERE ra_aluno = ?");
             stmt.setInt(1, ra);
             stmt.execute();
             stmt.close();
@@ -135,55 +135,55 @@ public class ComposicaoFamiliarDAO {
     }
 
 
-    public void altera(ComposicaoFamiliar parente, int id) throws SQLException {
+    public void altera(MembroFamiliar membro, int id) throws SQLException {
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE composicao_familiar SET nome=?, parentesco=?, escolaridade=?, data_nascimento=?, ocupacao=?, salario=?, local_de_trabalho=?, condicao_trabalho=?, ra_aluno=? WHERE id=?");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE membro_familiar SET nome=?, parentesco=?, escolaridade=?, data_nascimento=?, ocupacao=?, salario=?, local_de_trabalho=?, condicao_trabalho=?, ra_aluno=? WHERE id=?");
 
-        stmt.setString(1,parente.getNome());
-        stmt.setString(2,parente.getParentesco());
-        stmt.setString(3,parente.getEscolaridade());
-        stmt.setDate(4,parente.getDataNascimento());
-        stmt.setString(5,parente.getOcupacao());
-        stmt.setDouble(6,parente.getSalario());
-        stmt.setString(7, parente.getLocalTrabalho());
-        stmt.setString(8, parente.getCondicaoTrabalho());
-        stmt.setInt(9, parente.getAluno().getRa());
+        stmt.setString(1,membro.getNome());
+        stmt.setString(2,membro.getParentesco());
+        stmt.setString(3,membro.getEscolaridade());
+        stmt.setDate(4,membro.getDataNascimento());
+        stmt.setString(5,membro.getOcupacao());
+        stmt.setDouble(6,membro.getSalario());
+        stmt.setString(7, membro.getLocalTrabalho());
+        stmt.setString(8, membro.getCondicaoTrabalho());
+        stmt.setInt(9, membro.getAluno().getRa());
         stmt.setInt(10, id);
 
         stmt.execute();
         stmt.close();
     }
     
-    public ComposicaoFamiliar getParenteAluno(int ra) throws SQLException {
+    public List<MembroFamiliar> getByAluno(int ra) throws SQLException {
 
-        ComposicaoFamiliar parente = new ComposicaoFamiliar();
+        List<MembroFamiliar> parentes = new ArrayList<MembroFamiliar>();
 
-        try {
-            PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM composicao_familiar WHERE " + "ra_aluno = ?");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM membro_familiar WHERE ra_aluno = ?");
+        stmt.setInt(1, ra);
+        ResultSet rs = stmt.executeQuery();
 
-            stmt.setInt(1, ra);
-            ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            MembroFamiliar membro = new MembroFamiliar();
 
-            if (rs.next() == true) {
-                parente.setId(rs.getInt("id"));
-                parente.setNome(rs.getString("nome"));
-                parente.setParentesco(rs.getString("parentesco"));
-                parente.setEscolaridade(rs.getString("escolaridade"));
-                parente.setDataNascimento(rs.getDate("data_nascimento"));
-                parente.setOcupacao(rs.getString("ocupacao"));
-                parente.setSalario(rs.getDouble("salario"));
-                parente.setLocalTrabalho(rs.getString("local_de_trabalho"));
-                parente.setCondicaoTrabalho(rs.getString("condicao_trabalho"));
-                parente.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
-            }
-            stmt.close();
+            membro.setId(rs.getInt("id"));
+            membro.setNome(rs.getString("nome"));
+            membro.setParentesco(rs.getString("parentesco"));
+            membro.setEscolaridade(rs.getString("escolaridade"));
+            membro.setDataNascimento(rs.getDate("data_nascimento"));
+            membro.setOcupacao(rs.getString("ocupacao"));
+            membro.setSalario(rs.getDouble("salario"));
+            membro.setLocalTrabalho(rs.getString("local_de_trabalho"));
+            membro.setCondicaoTrabalho(rs.getString("condicao_trabalho"));
+            membro.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
+
+            parentes.add(membro);
         }
 
-        catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }
 
-        return (parente);
+        stmt.close();
+
+
+        return parentes;
 
     }
 }
