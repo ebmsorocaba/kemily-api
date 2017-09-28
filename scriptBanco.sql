@@ -292,7 +292,7 @@ CREATE TABLE saude (
   possui_alergia                BOOLEAN NOT NULL,
   descricao_alergia             TEXT,
   toma_medicacao                BOOLEAN NOT NULL,
-  tipo_medicacao                TEXT
+  descricao_medicacao                TEXT
 );
 
 CREATE TABLE educador (
@@ -521,11 +521,11 @@ VALUES ('Golf', '2002', TRUE, 2);
 INSERT INTO automovel (modelo, ano, financiado, id_estrutura_familiar)
 VALUES ('Uno Mille', '1997', FALSE, 3);
 
-INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
+INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, descricao_medicacao, tipo_medicacao)
 VALUES (1, TRUE, 'Doença do rato', TRUE, TRUE, TRUE, TRUE, TRUE, 'Amendoim', TRUE, 'Amoxilina 500 mg');
-INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
+INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, descricao_medicacao, tipo_medicacao)
 VALUES (2, FALSE, '', FALSE, FALSE, FALSE, FALSE, FALSE, '', FALSE, '');
-INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, toma_medicacao, tipo_medicacao)
+INSERT INTO saude (ra_aluno, faz_tratamentos_medicos, descricao_tratamento, problemas_de_saude_na_familia, plano_de_saude, pessoas_idosas, problemas_psiquiatricos, possui_alergia, descricao_alergia, descricao_medicacao, tipo_medicacao)
 VALUES (3, FALSE, '', TRUE, FALSE, TRUE, FALSE, TRUE, 'Lactose', FALSE, '');
 
 INSERT INTO educador (cpf, nome, data_nascimento, sexo, telefone, email, cargo, numero_carteira_profissional, serie_carteira_profissional, numero_pis, cep_educador, numero_educador,hora_entrada, hora_saida)
