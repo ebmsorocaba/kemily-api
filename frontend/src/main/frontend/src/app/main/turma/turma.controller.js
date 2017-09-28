@@ -16,6 +16,7 @@
     vm.listOrder = 'descricao';
     vm.listOrderAsc = false;
     vm.selectedTurmas = [];
+    vm.alunoTurma = AlunoTurma;
 
 
     // Methods
@@ -29,6 +30,7 @@
     vm.deleteTurma = deleteTurma;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
+    vm.selectAlunoTurma = selectAlunoTurma;
 
 
     function openTurmaDialog(ev, turma) {
@@ -42,7 +44,8 @@
         locals: {
           Turma: turma,
           User: vm.user,
-          Turmas: vm.turmas
+          Turmas: vm.turmas,
+          AlunoTurma: vm.selectAlunoTurma(turma)
         }
       });
     }
@@ -63,6 +66,14 @@
       }, function() {
         //console.log('Cancelou');
       });
+    }
+
+    function selectAlunoTurma(turma) {
+      var result = [];
+      result = vm.alunoTurma.filter(function(el) {
+        return el.idTurma === turma.id;
+      });
+      return result;
     }
 
     function deleteTurma(turma) {
