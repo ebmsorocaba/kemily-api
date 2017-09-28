@@ -3,6 +3,7 @@ package model.educador;
 import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import model.aluno.Endereco;
 
 public class Educador {
 	private String cpf;
@@ -15,6 +16,7 @@ public class Educador {
 	private int numeroCarteiraProfissional;
 	private int serieCarteiraProfissional;
 	private String numeroPis;
+	private Endereco endereco;
 	
 	public Educador() {}
 	
@@ -28,7 +30,8 @@ public class Educador {
 			@JsonProperty("cargo") String cargo,
 			@JsonProperty("numeroCarteiraProfissional") int numeroCarteiraProfissional,
 			@JsonProperty("serieCarteiraProfissional") int serieCarteiraProfissional,
-			@JsonProperty("numeroPis") String numeroPis) {
+			@JsonProperty("numeroPis") String numeroPis,
+			@JsonProperty("endereco") Endereco endereco) {
 		
 		this.cpf = cpf;
 		this.nome = nome;
@@ -40,8 +43,17 @@ public class Educador {
 		this.numeroCarteiraProfissional = numeroCarteiraProfissional;
 		this.serieCarteiraProfissional = serieCarteiraProfissional;
 		this.numeroPis = numeroPis;
+		this.endereco = endereco;
 	}
-	
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
