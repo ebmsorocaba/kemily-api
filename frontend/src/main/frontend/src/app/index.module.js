@@ -36,7 +36,7 @@
 
             'app.educador',
 
-            'app.turmas',
+            'app.turma',
 
             'app.relatorioSocial',
 
