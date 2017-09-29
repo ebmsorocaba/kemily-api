@@ -289,7 +289,9 @@
 
         api.alunoTurma = {
           list  : $resource(api.baseUrl + 'alunoTurma'),
-          getByRa : $resource(api.baseUrl + 'turma/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
+          removeAluno: $resource(api.baseUrl + 'alunoTurma/:ra?id=:id', {ra: '@ra'}, {id: '@id'}),
+          getByRa : $resource(api.baseUrl + 'alunoTurma/aluno/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}}),
+          getById : $resource(api.baseUrl + 'alunoTurma/turma/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
         api.contato = {

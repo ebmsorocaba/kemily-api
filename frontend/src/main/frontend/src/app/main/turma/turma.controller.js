@@ -4,7 +4,7 @@
   angular.module('app.turma').controller('TurmasController', TurmasController);
 
   /** @ngInject */
-  function TurmasController ($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window, Turmas, AlunoTurma) {
+  function TurmasController ($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window, Turmas, AlunoTurma, Alunos) {
 
     var vm = this;
 
@@ -17,7 +17,7 @@
     vm.listOrderAsc = false;
     vm.selectedTurmas = [];
     vm.alunoTurma = AlunoTurma;
-
+    vm.alunos = Alunos;
 
     // Methods
     vm.openTurmaDialog = openTurmaDialog;
@@ -31,6 +31,8 @@
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
     vm.selectAlunoTurma = selectAlunoTurma;
+    vm.alunosNaTurma = alunosNaTurma;
+    vm.alunosForaTurma = alunosForaTurma;
 
 
     function openTurmaDialog(ev, turma) {
@@ -45,7 +47,9 @@
           Turma: turma,
           User: vm.user,
           Turmas: vm.turmas,
-          AlunoTurma: vm.selectAlunoTurma(turma)
+          AlunoTurma: vm.selectAlunoTurma(turma),
+          AlunosDentroTurma: vm.alunosNaTurma(turma),
+          AlunosForaTurma: vm.alunosForaTurma(turma)
         }
       });
     }
@@ -70,14 +74,73 @@
 
     function selectAlunoTurma(turma) {
       var result = [];
-      result = vm.alunoTurma.filter(function(el) {
-        return el.idTurma === turma.id;
-      });
+      if(turma !== undefined) {
+        result = vm.alunoTurma.filter(function(el) {
+          return el.idTurma === turma.id;
+        });
+      }
       return result;
+    }
+
+    function alunosNaTurma(turma) {
+      var lista = [];
+
+      if(turma !== undefined) {
+        var alunoTurma = vm.selectAlunoTurma(turma);
+        var i;
+        var j;
+
+        for(i = 0; i < alunoTurma.length; i++) {
+          for(j = 0; j < vm.alunos.length; j++) {
+            if(alunoTurma[i].raAluno === vm.alunos[j].aluno.ra) {
+              lista.push(vm.alunos[j]);
+            }
+          }
+        }
+      }
+
+      return lista;
+    }
+
+    function alunosForaTurma(turma) {
+      var lista = [];
+
+      if(turma !== undefined) {
+        var alunoTurma = vm.selectAlunoTurma(turma);
+        var i;
+        var j;
+
+        for(i = 0; i < vm.alunos.length; i++) {
+          lista.push(vm.alunos[i]);
+        }
+
+        for(i = 0; i < alunoTurma.length; i++) {
+          for(j = 0; j < lista.length; j++) {
+            if(alunoTurma[i].raAluno === lista[j].aluno.ra) {
+              lista.splice(j, 1);
+            }
+          }
+        }
+      }
+
+      return lista;
     }
 
     function deleteTurma(turma) {
       console.log('deleteTurma @ turma.controller.js');
+      console.log('tentando deletar aluno_turma');
+      api.alunoTurma.getById.delete({
+          'id': turma.id
+        },
+        // Sucesso
+        function(response) {
+          console.log(response);
+        },
+        // Erro
+        function(response) {
+          console.error(response);
+        }
+      );
       api.turma.getById.delete({
           'id': turma.id
         },
@@ -131,6 +194,8 @@
     function selectAllTurmas() {
       vm.selectedTurmas = $scope.filteredTurmas;
     }
+
+
 
   }
 

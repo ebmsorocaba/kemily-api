@@ -24,9 +24,41 @@
         </md-input-container>
       </div>
 
-      <div layout="column" layout-gt-xs="row" flex ng-repeat="c in vm.listaAlunoTurma track by $index" ng-if="vm.listaAlunoTurma == true">
+      <p><b>Alunos dentro da Turma:</b></p>
+      <md-list-item class="aluno-item md-white-bg"  ng-repeat="a in vm.alunosDentroTurma">
+        <div class="item" layout="row">
+          <p class="show-gt-xs numero">
+            {{a.aluno.ra}}
+          </p>
+          <p class="numero"></p>
+          <p class="show-gt-xs texto">
+            {{a.aluno.nome}}
+          </p>
+          <md-button class="md-raised md-warn adicionarButton" ng-click="vm.removerAluno(a)">
+            Remover
+          </md-button>
+        </div>
+      </md-list-item>
+
+      <p><b>Alunos fora da Turma:</b></p>
+      <md-list-item class="aluno-item md-white-bg" ng-repeat="a in vm.alunosForaTurma track by a.aluno.ra">
+        <div class="item" layout="row">
+          <p class="show-gt-xs numero">
+            {{a.aluno.ra}}
+          </p>
+          <p class="numero"></p>
+          <p class="show-gt-xs texto">
+            {{a.aluno.nome}}
+          </p>
+          <md-button class="md-raised md-accent adicionarButton" ng-click="vm.adicionarAluno(a)">
+            Adicionar
+          </md-button>
+        </div>
+      </md-list-item>
+
+      <div layout="column" layout-gt-xs="row" flex ng-repeat="aluno in vm.alunos track by a.aluno.ra">
         <md-input-container flex="100" flex-gt-xs="15">
-          <input type="text" ng-model="c.ra" placeholder="Ra do Aluno" value="{{c.ra}}">
+          <input type="text" ng-model="aluno.ra" placeholder="Ra do Aluno" value="{{aluno.ra}}">
         </md-input-container>
 
         <md-button class="md-raised md-accent adicionarButton" ng-click="vm.addAutomovel(c)" ng-if="vm.isLastAutomovel(c)">
@@ -38,7 +70,7 @@
         </md-button>
 
       </div>
-
+    </md-dialog-content>
 
 
     <md-dialog-actions layout="row" layout-align="space-between center">
