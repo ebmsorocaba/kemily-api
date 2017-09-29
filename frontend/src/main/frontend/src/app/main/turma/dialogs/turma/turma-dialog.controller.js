@@ -67,7 +67,7 @@
         );
 
         vm.alunosForaTurma.push(a);
-        vm.alunosDentroTurma.splice(vm.alunosDentroTurma.indexOf(a, 1));
+        vm.alunosDentroTurma.splice(vm.alunosDentroTurma.indexOf(a), 1);
     }
 
     function adicionarAluno(a) {
@@ -90,7 +90,7 @@
       );
 
       vm.alunosDentroTurma.push(a);
-      vm.alunosForaTurma.splice(vm.alunosForaTurma.indexOf(a, 1));
+      vm.alunosForaTurma.splice(vm.alunosForaTurma.indexOf(a), 1);
     }
     //////////
 
