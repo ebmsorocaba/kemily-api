@@ -71,15 +71,13 @@
     }
 
     function adicionarAluno(a) {
-      var lista = [];
       var at = {
         'raAluno': a.aluno.ra,
         'idTurma': Turma.id
       };
-      lista.push(at);
       console.log(at);
 
-      api.alunoTurma.list.save(lista,
+      api.alunoTurma.list.save(at,
         function(response) {
           console.log(response);
         },

@@ -114,8 +114,8 @@ public class AlunoTurmaController {
 
 	@CrossOrigin
 	@RequestMapping(value = "/api/alunoTurma", method = RequestMethod.POST)
-	public void addAlunoTurma(@RequestBody List<AlunoTurma> alunoTurma) throws JsonParseException, JsonMappingException, IOException, SQLException {
+	public ResponseEntity<AlunoTurma> addAlunoTurma(@RequestBody AlunoTurma alunoTurma) throws JsonParseException, JsonMappingException, IOException, SQLException {
 		alunoTurmaDao.adiciona(alunoTurma);
-		//return new ResponseEntity<int>(1, HttpStatus.CREATED);
+		return new ResponseEntity<AlunoTurma>(alunoTurma, HttpStatus.CREATED);
 	}
 }
