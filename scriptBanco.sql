@@ -231,11 +231,11 @@ CREATE TABLE responsavel_legal (
   nome            VARCHAR(80) NOT NULL,
   telefone        VARCHAR(20) NOT NULL,
   email           TEXT        NOT NULL,
-  rg              VARCHAR(10) NOT NULL,
+  rg              VARCHAR(20) NOT NULL,
   cpf             VARCHAR(20) NOT NULL,
   rede_social     TEXT,
-  grau_parentesco VARCHAR(15) NOT NULL,
-  estado          VARCHAR(15) NOT NULL,
+  grau_parentesco VARCHAR(30) NOT NULL,
+  estado          VARCHAR(20) NOT NULL,
   ra_aluno        BIGINT      NOT NULL,
   FOREIGN KEY (ra_aluno) REFERENCES aluno (ra) ON DELETE CASCADE
 );
@@ -320,7 +320,7 @@ CREATE TABLE turma (
 );
 
 CREATE TABLE aluno_turma (
-  ra_aluno BIGINT REFERENCES aluno(ra),
+  ra_aluno BIGINT REFERENCES aluno(ra) on delete CASCADE,
   id_turma BIGINT REFERENCES turma(id),
   PRIMARY KEY(ra_aluno, id_turma)
 );
