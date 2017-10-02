@@ -68,6 +68,7 @@ public class AlunoService {
 
     public void Post(AlunoDTO aluno) throws SQLException {
 
+        System.out.println(aluno.getEndereco());
         Endereco endereco = aluno.getEndereco();
         enderecoDAO.adiciona(endereco);
 
@@ -95,8 +96,14 @@ public class AlunoService {
 
 
         roupaDAO.adiciona(roupa);
+        saudeDAO.adiciona(saude);
         estruturaFamiliarDAO.adiciona(estruturaFamiliar);
         aparelhosEletronicosDAO.adiciona(aparelhosEletronicos);
+        despesa.setEstruturaFamiliar(aluno.getEstruturaFamiliar());
+        situacaoHabitacional.setAparelhosEletronicos(aluno.getAparelhosEletronicos());
+
+        despesaDAO.adiciona(despesa);
+        situacaoHabitacionalDAO.adicionar(situacaoHabitacional);
 
         for (Automovel a : automoveis) {
             a.setEstruturaFamiliar(aluno.getEstruturaFamiliar());
@@ -122,19 +129,13 @@ public class AlunoService {
             r.setAluno(aluno.getAluno());
             responsavelLegalDAO.adicionar(r);
         }
-
-        despesa.setEstruturaFamiliar(aluno.getEstruturaFamiliar());
-        situacaoHabitacional.setAparelhosEletronicos(aluno.getAparelhosEletronicos());
-
-        despesaDAO.adiciona(despesa);
-        situacaoHabitacionalDAO.adicionar(situacaoHabitacional);
     }
 
     public void Put(AlunoDTO aluno, int ra) throws SQLException {
         alunoDAO.altera(aluno.getAluno(), ra);
         roupaDAO.altera(aluno.getRoupa(), ra);
         estruturaFamiliarDAO.altera(aluno.getEstruturaFamiliar(), aluno.getEstruturaFamiliar().getId());
-        enderecoDAO.altera(aluno.getEndereco(), aluno.getEndereco().getCep(), aluno.getEndereco().getCep());
+        enderecoDAO.altera(aluno.getEndereco(), aluno.getEndereco().getCep(), aluno.getEndereco().getNumero());
         aparelhosEletronicosDAO.altera(aluno.getAparelhosEletronicos(), aluno.getAparelhosEletronicos().getId());
         despesaDAO.altera(aluno.getDespesa(), aluno.getDespesa().getEstruturaFamiliar().getId());
         situacaoHabitacionalDAO.altera(aluno.getSituacaoHabitacional(), ra);
