@@ -17,42 +17,10 @@ import java.util.Map;
 
 @RestController
 public class AutomovelController {
-    private Map<Integer, Automovel> automovels;
+
     private AutomovelDAO automovelDao = new AutomovelDAO();
 
-    public AutomovelController() throws SQLException {
-        automovels = new HashMap<Integer, Automovel>();
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "/api/automovel", method = RequestMethod.GET)
-    public ResponseEntity<List<Automovel>> listar() throws SQLException {
-        int index=0;
-
-        List<Automovel> automovelsGetted = new ArrayList<Automovel>();
-        automovels = new HashMap<Integer, Automovel>();
-
-        automovelsGetted = automovelDao.getLista();
-
-        for (Automovel usu : automovelsGetted) {
-            automovels.put(index, usu);
-            index++;
-        }
-
-        return new ResponseEntity<List<Automovel>>(new ArrayList<Automovel>(automovels.values()), HttpStatus.OK);
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "/api/automovel/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Automovel> buscar(@PathVariable("id") int id) throws SQLException {
-
-        Automovel automovel = automovelDao.getAutomovel(id);
-        if (automovel == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<Automovel>(automovel, HttpStatus.OK);
-    }
+    public AutomovelController() throws SQLException { }
 
     @CrossOrigin
     @RequestMapping(value = "/api/automovel/{id}", method = RequestMethod.DELETE)
@@ -61,20 +29,4 @@ public class AutomovelController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
-    @CrossOrigin
-    @RequestMapping(value = "/api/automovel", method = RequestMethod.POST)
-    public ResponseEntity<Automovel> addAutomovel(@RequestBody Automovel automovel) throws JsonParseException, JsonMappingException, IOException, SQLException {
-
-        automovelDao.adiciona(automovel);
-        return new ResponseEntity<Automovel>(automovel, HttpStatus.CREATED);
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "/api/automovel/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Automovel> updateAutomovel(@RequestBody Automovel automovel, @PathVariable("id") int id) throws JsonParseException, JsonMappingException, IOException, SQLException {
-
-        automovelDao.altera(automovel, id);
-        return new ResponseEntity<Automovel>(automovel, HttpStatus.CREATED);
-    }
 }

@@ -1,0 +1,161 @@
+<!-- DIALOG -->
+<md-dialog class="educador-dialog">
+
+  <form name="EducadorForm" class="md-inline-form" novalidate>
+
+    <div class=" md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+      <span class="title">{{vm.title}}</span>
+      <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Fechar diálogo">
+        <md-icon md-font-icon="icon-close"></md-icon>
+      </md-button>
+    </div>
+
+    <md-dialog-content ms-scroll>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Nome</label>
+        <md-icon md-font-icon="icon-account" class="name"></md-icon>
+        <input ng-model="vm.educador.nome" type="text" md-maxlength="80" required md-autofocus>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>CPF</label>
+        <md-icon md-font-icon="">reorder</md-icon>
+        <input ng-model="vm.educador.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newEducador" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Sexo</label>
+        <md-icon md-font-icon="icon-gender-male-female"></md-icon>
+        <md-select ng-model="vm.educador.sexo" required>
+          <md-option ng-repeat="sexo in vm.sexos" value="{{sexo}}">
+            {{sexo}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      </br>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Telefone</label>
+        <md-icon md-font-icon="icon-phone"></md-icon>
+        <input ng-model="vm.educador.telefone" type="text" mask="(99) 9?9999-9999">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="90">
+        <label>Data de Nascimento</label>
+        <md-datepicker ng-model="vm.educador.dataNasc" md-placeholder="Nascimento" required md-open-on-focus></md-datepicker>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>E-mail</label>
+        <md-icon md-font-icon="icon-email"></md-icon>
+        <input ng-model="vm.educador.email" type="email">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Cargo</label>
+        <md-icon md-font-icon="icon-worker"></md-icon>
+        <md-select ng-model="vm.educador.cargo" required>
+          <md-option ng-repeat="cargo in vm.cargos" value="{{cargo}}">
+            {{cargo}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      </br>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Rua</label>
+        <md-icon md-font-icon="icon-home"></md-icon>
+        <input ng-model="vm.educador.endereco.rua" type="text" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Nº</label>
+        <md-icon md-font-icon="icon-home"></md-icon>
+        <input ng-model="vm.educador.endereco.numero" mask="9?9?9?9" type="text" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Complemento</label>
+        <md-icon md-font-icon="icon-home"></md-icon>
+        <input ng-model="vm.educador.endereco.complemento" type="text">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Bairro</label>
+        <md-icon md-font-icon="icon-home"></md-icon>
+        <input ng-model="vm.educador.endereco.bairro" type="text" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Cidade</label>
+        <md-icon md-font-icon="icon-home"></md-icon>
+        <input ng-model="vm.educador.endereco.cidade" type="text" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>CEP</label>
+        <md-icon md-font-icon="icon-home"></md-icon>
+        <input mask="99999-999" ng-model="vm.educador.endereco.cep" type="text" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Ponto de referência</label>
+        <md-icon md-font-icon="icon-home"></md-icon>
+        <input ng-model="vm.educador.endereco.pontoReferencia"  type="text">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Numero da Carteira Profissional</label>
+        <md-icon md-font-icon="">reorder</md-icon>
+        <input ng-model="vm.educador.numeroCarteiraProfissional" type="text" mask="999999" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Série da Carteira Profissional</label>
+        <md-icon md-font-icon="">reorder</md-icon>
+        <input ng-model="vm.educador.serieCarteiraProfissional" type="text" mask="99999" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Número do PIS</label>
+        <md-icon md-font-icon="">reorder</md-icon>
+        <input ng-model="vm.educador.numeroPis" type="text" mask="999.99999.99-9" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Horário de Entrada</label>
+        <md-icon md-font-icon="icon-clock"></md-icon>
+        <input ng-model="vm.educador.horaEntrada" type="text" mask="99:99" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Horário de Saída</label>
+        <md-icon md-font-icon="icon-clock"></md-icon>
+        <input ng-model="vm.educador.horaSaida" type="text" mask="99:99" required>
+      </md-input-container>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button type="submit" ng-if="!vm.newEducador" ng-click="vm.saveEducador()" class="send-button md-accent md-raised" ng-disabled="EducadorForm.$invalid || EducadorForm.$pristine" aria-label="Salvar">
+          Salvar
+        </md-button>
+        <md-button type="submit" ng-if="vm.newEducador" ng-click="vm.addNewEducador()" class="send-button md-accent md-raised" ng-disabled="EducadorForm.$invalid || EducadorForm.$pristine" aria-label="Adicionar educador">
+          Adicionar Educador
+        </md-button>
+      </div>
+
+      <div ng-if="!vm.newEducador" layout="row">
+        <md-button class="md-icon-button" ng-click="vm.deleteEducadorConfirm($event)" aria-label="Apagar">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip><span>Apagar</span></md-tooltip>
+        </md-button>
+      </div>
+
+    </md-dialog-actions>
+
+  </form>
+
+</md-dialog>

@@ -22,12 +22,15 @@ public class ContatoDAO {
 	
 	public void adicionar(Contato contato) throws SQLException {
 		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO contato(nome, telefone, tipo, ra_aluno) VALUES (?, ?, ?, ?)");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO contato(nome, telefone, email, rede_social, cargo, profissional, ra_aluno) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			
 			stmt.setString(1, contato.getNome());
 			stmt.setString(2, contato.getTelefone());
-			stmt.setString(3, contato.getTipo());
-			stmt.setInt(4, contato.getAluno().getRa());
+			stmt.setString(3, contato.getEmail());
+			stmt.setString(4, contato.getRedeSocial());
+			stmt.setString(5, contato.getCargo());
+			stmt.setBoolean(6, contato.isProfissional());
+			stmt.setInt(7, contato.getAluno().getRa());
 			
 			stmt.execute();
 			stmt.close();
@@ -37,40 +40,7 @@ public class ContatoDAO {
 		}
 	}
 	
-	public Contato adicionarEspecializado(Contato contato) throws SQLException {
-		try (
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO contato(nome, telefone, tipo, ra_aluno) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-		) {
-		
-			stmt.setString(1, contato.getNome());
-			stmt.setString(2, contato.getTelefone());
-			stmt.setString(3, contato.getTipo());
-			stmt.setInt(4, contato.getAluno().getRa());
-			
-			int id = stmt.executeUpdate(); 
-			
-			if(id == 0) {
-				contato.setId(-1);
-				throw new SQLException("Falha na craição do contato, linha nao alterada");
-			} 
-			
-			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-				if(generatedKeys.next()) {
-					contato.setId(generatedKeys.getInt(1));
-				} else {
-					contato.setId(-1);
-					throw new SQLException("Falha na craição do contato, ID nao retornado"); 	
-				}
-			}
-			
-			stmt.close();
-		
-		} catch (SQLException ex) {
-			System.out.println(ex.toString());
-		}
-		
-		return contato;
-	}
+
 
 	public List<Contato> getLista() throws SQLException {
 		List<Contato> contatos = new ArrayList<Contato>();
@@ -84,8 +54,11 @@ public class ContatoDAO {
 			contato.setId(rs.getInt("id"));
 			contato.setNome(rs.getString("nome"));
 			contato.setTelefone(rs.getString("telefone"));
-			contato.setTipo(rs.getString("tipo"));
-			contato.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
+			contato.setEmail(rs.getString("email"));
+			contato.setRedeSocial(rs.getString("rede_social"));
+			contato.setProfissional(rs.getBoolean("profissional"));
+			contato.setCargo(rs.getString("cargo"));
+//			contato.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
 			
 			contatos.add(contato);
 		}
@@ -93,6 +66,34 @@ public class ContatoDAO {
 		rs.close();
 		stmt.close();
 		
+		return contatos;
+	}
+
+	public List<Contato> getByAluno(int ra) throws  SQLException {
+
+		List<Contato> contatos = new ArrayList<Contato>();
+
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM contato WHERE ra_aluno = ?");
+		stmt.setInt(1,  ra);
+		ResultSet rs = stmt.executeQuery();
+
+		while(rs.next()) {
+			Contato contato = new Contato();
+
+			contato.setId(rs.getInt("id"));
+			contato.setNome(rs.getString("nome"));
+			contato.setTelefone(rs.getString("telefone"));
+			contato.setEmail(rs.getString("email"));
+			contato.setRedeSocial(rs.getString("rede_social"));
+			contato.setProfissional(rs.getBoolean("profissional"));
+			contato.setCargo(rs.getString("cargo"));
+			contato.setAluno(alunoDao.getAluno(ra));
+
+			contatos.add(contato);
+		}
+
+		stmt.close();
+
 		return contatos;
 	}
 	
@@ -104,11 +105,14 @@ public class ContatoDAO {
 			stmt.setInt(1,  id);
 			ResultSet rs = stmt.executeQuery();
 			
-			if(rs.next() == true) {
+			if(rs.next()) {
 				contato.setId(rs.getInt("id"));
 				contato.setNome(rs.getString("nome"));
 				contato.setTelefone(rs.getString("telefone"));
-				contato.setTipo(rs.getString("tipo"));
+				contato.setEmail(rs.getString("email"));
+				contato.setRedeSocial(rs.getString("rede_social"));
+				contato.setProfissional(rs.getBoolean("profissional"));
+				contato.setCargo(rs.getString("cargo"));
 				contato.setAluno(alunoDao.getAluno(rs.getInt("ra_aluno")));
 			}
 			stmt.close();
@@ -149,13 +153,16 @@ public class ContatoDAO {
 	}
 	
 	public void altera(Contato contato, int id) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE contato SET nome = ?, telefone = ?, tipo = ?, ra_aluno = ? WHERE id = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE contato SET nome = ?, telefone = ?, email = ?, rede_social = ?, cargo = ?, profissional = ?,ra_aluno = ? WHERE id = ?");
 		
 		stmt.setString(1, contato.getNome());
 		stmt.setString(2, contato.getTelefone());
-		stmt.setString(3, contato.getTipo());
-		stmt.setInt(4, contato.getAluno().getRa());
-		stmt.setInt(5, id);
+		stmt.setString(3, contato.getEmail());
+		stmt.setString(4, contato.getRedeSocial());
+		stmt.setString(5, contato.getCargo());
+		stmt.setBoolean(6, contato.isProfissional());
+		stmt.setInt(7, contato.getAluno().getRa());
+		stmt.setInt(8, id);
 		
 		stmt.execute();
 		stmt.close();

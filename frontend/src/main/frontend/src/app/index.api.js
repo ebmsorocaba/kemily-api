@@ -1,5 +1,4 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
@@ -7,8 +6,7 @@
         .factory('api', apiService);
 
     /** @ngInject */
-    function apiService($resource)
-    {
+    function apiService($resource) {
         /**
          * You can use this service to define your API urls. The "api" service
          * is designed to work in parallel with "apiResolver" service which you can
@@ -190,100 +188,83 @@
 
         // APIs do EBM Kemily
         api.usuario = {
-            getUsuarios     : $resource(api.baseUrl + 'usuario'),
-            getByNome       : $resource(api.baseUrl + 'usuario/:nome', {nome: '@nome'}, {'update': {method: 'PUT'}}),
-            addUsuario      : $resource(api.baseUrl + 'usuario'),
-            login           : $resource(api.baseUrl + 'usuario/:nome?senha=:senha', {nome: '@nome'}, {senha: '@senha'}),
-            resetarSenha    : $resource(api.baseUrl + 'recuperarSenha/:nome', {nome: '@nome'})
+            getUsuarios: $resource(api.baseUrl + 'usuario'),
+            getByNome: $resource(api.baseUrl + 'usuario/:nome', { nome: '@nome' }, { 'update': { method: 'PUT' } }),
+            addUsuario: $resource(api.baseUrl + 'usuario'),
+            login: $resource(api.baseUrl + 'usuario/:nome?senha=:senha', { nome: '@nome' }, { senha: '@senha' }),
+            resetarSenha: $resource(api.baseUrl + 'recuperarSenha/:nome', { nome: '@nome' })
         }
 
         ///api/recuperarSenha/{nome}
         // API Associado
         api.associado = {
-          list      : $resource(api.baseUrl + 'associado'),
-          getByCpf  : $resource(api.baseUrl + 'associado/:cpf' + '/', {cpf: '@cpf'}, {'update': {method: 'PUT'}})
+            list: $resource(api.baseUrl + 'associado'),
+            getByCpf: $resource(api.baseUrl + 'associado/:cpf' + '/', { cpf: '@cpf' }, { 'update': { method: 'PUT' } })
         }
 
         api.formaPgto = {
-          list      : $resource(api.baseUrl + 'formaPgto'),
-          getByCpf  : $resource(api.baseUrl + 'formaPgto/:cpf', {cpf: '@cpf'})
+            list: $resource(api.baseUrl + 'formaPgto'),
+            getByCpf: $resource(api.baseUrl + 'formaPgto/:cpf', { cpf: '@cpf' })
         }
 
         api.pagamento = {
-          list     : $resource(api.baseUrl + 'pagamento'),
-          getById  : $resource(api.baseUrl + 'pagamento/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+            list: $resource(api.baseUrl + 'pagamento'),
+            getById: $resource(api.baseUrl + 'pagamento/:id' + '/', { id: '@id' }, { 'update': { method: 'PUT' } })
         }
 
         api.relatPagAssociado = {
-          list     : $resource(api.baseUrl + 'relatPagAssociado/:cpf/?dataInicio=:dataInicio&dataFim=:dataFim', {cpf: '@cpf'}, {dataInicio: '@dataInicio'}, {dataFim: '@dataFim'})
+            list: $resource(api.baseUrl + 'relatPagAssociado/:cpf/?dataInicio=:dataInicio&dataFim=:dataFim', { cpf: '@cpf' }, { dataInicio: '@dataInicio' }, { dataFim: '@dataFim' })
         }
 
         api.relatPag = {
-          list     : $resource(api.baseUrl + 'relatPag?dataInicio=:dataInicio&dataFim=:dataFim', {dataInicio: '@dataInicio'}, {dataFim: '@dataFim'})
+            list: $resource(api.baseUrl + 'relatPag?dataInicio=:dataInicio&dataFim=:dataFim', { dataInicio: '@dataInicio' }, { dataFim: '@dataFim' })
         }
 
         api.aluno = {
-          list  : $resource(api.baseUrl + 'aluno'),
-          getByRa : $resource(api.baseUrl + 'aluno/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
-        }
-
-        api.aparelhosEletronicos = {
-          list  : $resource(api.baseUrl + 'aparelhosEletronicos'),
-          getById : $resource(api.baseUrl + 'aparelhosEletronicos/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+            list: $resource(api.baseUrl + 'aluno'),
+            getByRa: $resource(api.baseUrl + 'aluno/:ra' + '/', { ra: '@ra' }, { 'update': { method: 'PUT' } })
         }
 
         api.automovel = {
-          list  : $resource(api.baseUrl + 'automovel'),
-          getById : $resource(api.baseUrl + 'automovel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
-        }
-
-        api.despesa = {
-          list  : $resource(api.baseUrl + 'despesa'),
-          getById : $resource(api.baseUrl + 'despesa/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
-        }
-
-        api.endereco = {
-          list  : $resource(api.baseUrl + 'endereco'),
-          getByCepNumero : $resource(api.baseUrl + 'endereco/:cep?numero=:numero', {cep: '@cep', numero: '@numero'}, {'update': {method: 'PUT'}})
-        }
-
-        api.estruturaFamiliar = {
-          list  : $resource(api.baseUrl + 'estruturaFamiliar'),
-          getById : $resource(api.baseUrl + 'estruturaFamiliar/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+            list: $resource(api.baseUrl + 'automovel'),
+            getById: $resource(api.baseUrl + 'automovel/:id' + '/', { id: '@id' }, { 'update': { method: 'PUT' } })
         }
 
         api.imovel = {
-          list  : $resource(api.baseUrl + 'imovel'),
-          getById : $resource(api.baseUrl + 'imovel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+            list: $resource(api.baseUrl + 'imovel'),
+            getById: $resource(api.baseUrl + 'imovel/:id' + '/', { id: '@id' }, { 'update': { method: 'PUT' } })
         }
 
-        api.parente = {
-          list  : $resource(api.baseUrl + 'parente'),
-          getById : $resource(api.baseUrl + 'parente/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        api.membroFamiliar = {
+            list: $resource(api.baseUrl + 'membroFamiliar'),
+            getById: $resource(api.baseUrl + 'membroFamiliar/:id' + '/', { id: '@id' }, { 'update': { method: 'PUT' } })
         }
 
-        api.roupa = {
-          list  : $resource(api.baseUrl + 'roupa'),
-          getById : $resource(api.baseUrl + 'roupa/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        api.responsavelLegal = {
+            list: $resource(api.baseUrl + 'responsavelLegal'),
+            getById: $resource(api.baseUrl + 'responsavelLegal/:id' + '/', { id: '@id' }, { 'update': { method: 'PUT' } })
         }
 
-        api.saude = {
-          list  : $resource(api.baseUrl + 'saude'),
-          getById : $resource(api.baseUrl + 'saude/:raAluno' + '/', {raAluno: '@raAluno'}, {'update': {method: 'PUT'}})
+        api.educador = {
+            list: $resource(api.baseUrl + 'educador'),
+            getByCpf: $resource(api.baseUrl + 'educador/:cpf' + '/', { cpf: '@cpf' }, { 'update': { method: 'PUT' } })
         }
 
-        api.situacaoHabitacional = {
-          list  : $resource(api.baseUrl + 'situacaoHabitacional'),
-          getById : $resource(api.baseUrl + 'situacaoHabitacional/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}})
+        api.turma = {
+          list  : $resource(api.baseUrl + 'turma'),
+          getById : $resource(api.baseUrl + 'turma/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
+        api.alunoTurma = {
+          list  : $resource(api.baseUrl + 'alunoTurma'),
+          removeAluno: $resource(api.baseUrl + 'alunoTurma/:ra?id=:id', {ra: '@ra'}, {id: '@id'}),
+          getByRa : $resource(api.baseUrl + 'alunoTurma/aluno/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}}),
+          getById : $resource(api.baseUrl + 'alunoTurma/turma/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
         }
 
         api.contato = {
-          list  : $resource(api.baseUrl + 'contato'),
-          profissional  : $resource(api.baseUrl + 'contato/profissional'),
-          responsavel : $resource(api.baseUrl + 'contato/responsavel'),
-          getById : $resource(api.baseUrl + 'contato/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}}),
-          getProfissionalById : $resource(api.baseUrl + 'contato/profissional/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}}),
-          getResponsavelById  : $resource(api.baseUrl + 'contato/responsavel/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+            list: $resource(api.baseUrl + 'contato'),
+            getById: $resource(api.baseUrl + 'contato/:id' + '/', { id: '@id' }, { 'update': { method: 'PUT' } })
         }
 
         return api;

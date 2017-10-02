@@ -1,9 +1,10 @@
 package controller.aluno;
 
+import DTO.AlunoDTO;
+import business.AlunoService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import jdbc.dao.aluno.AlunoDAO;
-import model.aluno.Aluno;
+import jdbc.dao.aluno.*;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,48 +12,34 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class AlunoController {
-    private Map<Integer, Aluno> alunos;
     private AlunoDAO alunoDao = new AlunoDAO();
+    private AlunoService alunoService = new AlunoService();
 
-    public AlunoController() throws SQLException {
-        alunos = new HashMap<Integer, Aluno>();
-    }
+    public AlunoController() throws SQLException { }
 
     @CrossOrigin
     @RequestMapping(value = "/api/aluno", method = RequestMethod.GET)
-    public ResponseEntity<List<Aluno>> listar() throws SQLException {
-        int index=0;
+    public ResponseEntity<List<AlunoDTO>> listar() throws SQLException {
+        List<AlunoDTO> alunos = alunoService.GetAll();
 
-        List<Aluno> alunosGetted = new ArrayList<Aluno>();
-        alunos = new HashMap<Integer, Aluno>();
-
-        alunosGetted = alunoDao.getLista();
-
-        for (Aluno usu : alunosGetted) {
-            alunos.put(index, usu);
-            index++;
-        }
-
-        return new ResponseEntity<List<Aluno>>(new ArrayList<Aluno>(alunos.values()), HttpStatus.OK);
+        return new ResponseEntity<List<AlunoDTO>>(alunos, HttpStatus.OK);
     }
 
     @CrossOrigin
     @RequestMapping(value = "/api/aluno/{ra}", method = RequestMethod.GET)
-    public ResponseEntity<Aluno> buscar(@PathVariable("ra") int ra) throws SQLException {
+    public ResponseEntity<AlunoDTO> buscar(@PathVariable("ra") int ra) throws SQLException {
 
-        Aluno aluno = alunoDao.getAluno(ra);
-        if (aluno == null) {
+        AlunoDTO alunoDTO = alunoService.GetSingle(ra);
+
+        if (alunoDTO.getAluno() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<Aluno>(aluno, HttpStatus.OK);
+        return new ResponseEntity<AlunoDTO>(alunoDTO, HttpStatus.OK);
     }
 
     @CrossOrigin
@@ -65,18 +52,18 @@ public class AlunoController {
 
     @CrossOrigin
     @RequestMapping(value = "/api/aluno", method = RequestMethod.POST)
-    public ResponseEntity<Aluno> addAluno(@RequestBody Aluno aluno) throws JsonParseException, JsonMappingException, IOException, SQLException {
+    public ResponseEntity<AlunoDTO> addAluno(@RequestBody AlunoDTO aluno) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
-        alunoDao.adiciona(aluno);
-        return new ResponseEntity<Aluno>(aluno, HttpStatus.CREATED);
+        alunoService.Post(aluno);
+        return new ResponseEntity<AlunoDTO>(aluno, HttpStatus.CREATED);
     }
 
     @CrossOrigin
     @RequestMapping(value = "/api/aluno/{ra}", method = RequestMethod.PUT)
-    public ResponseEntity<Aluno> updateAluno(@RequestBody Aluno aluno, @PathVariable("ra") int ra) throws JsonParseException, JsonMappingException, IOException, SQLException {
+    public ResponseEntity<AlunoDTO> updateAluno(@RequestBody AlunoDTO aluno, @PathVariable("ra") int ra) throws JsonParseException, JsonMappingException, IOException, SQLException {
+        alunoService.Put(aluno, ra);
 
-        alunoDao.altera(aluno, ra);
-        return new ResponseEntity<Aluno>(aluno, HttpStatus.CREATED);
+        return new ResponseEntity<AlunoDTO>(aluno, HttpStatus.CREATED);
     }
 
 }

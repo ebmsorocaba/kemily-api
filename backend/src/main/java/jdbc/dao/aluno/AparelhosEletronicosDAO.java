@@ -20,7 +20,7 @@ public class AparelhosEletronicosDAO {
 	
 	public AparelhosEletronicos adiciona(AparelhosEletronicos aparelhosEletronicos) throws SQLException {
 		try(
-				PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, tablet, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aparelhos_eletronicos(televisao, tv_assinatura, computador, notebook, fogao, geladeira, microondas, maquina_de_lavar, maquina_de_secar, telefone_fixo, celular) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 		){
 			stmt.setBoolean(1, aparelhosEletronicos.isTelevisao());
 			stmt.setBoolean(2, aparelhosEletronicos.isTvAssinatura());
@@ -29,11 +29,10 @@ public class AparelhosEletronicosDAO {
 			stmt.setBoolean(5, aparelhosEletronicos.isFogao());
 			stmt.setBoolean(6, aparelhosEletronicos.isGeladeira());
 			stmt.setBoolean(7, aparelhosEletronicos.isMicroondas());
-			stmt.setBoolean(8, aparelhosEletronicos.isTablet());
-			stmt.setBoolean(9, aparelhosEletronicos.isMaquinaLavar());
-			stmt.setBoolean(10, aparelhosEletronicos.isMaquinaSecar());
-			stmt.setBoolean(11, aparelhosEletronicos.isTelefoneFixo());
-			stmt.setBoolean(12, aparelhosEletronicos.isCelular());
+			stmt.setBoolean(8, aparelhosEletronicos.isMaquinaLavar());
+			stmt.setBoolean(9, aparelhosEletronicos.isMaquinaSecar());
+			stmt.setBoolean(10, aparelhosEletronicos.isTelefoneFixo());
+			stmt.setBoolean(11, aparelhosEletronicos.isCelular());
 			
 			int key = stmt.executeUpdate();
 			
@@ -76,7 +75,6 @@ public class AparelhosEletronicosDAO {
 			ae.setFogao(rs.getBoolean("fogao"));
 			ae.setGeladeira(rs.getBoolean("geladeira"));
 			ae.setMicroondas(rs.getBoolean("microondas"));
-			ae.setTablet(rs.getBoolean("tablet"));
 			ae.setMaquinaLavar(rs.getBoolean("maquina_de_lavar"));
 			ae.setMaquinaSecar(rs.getBoolean("maquina_de_secar"));
 			ae.setTelefoneFixo(rs.getBoolean("telefone_fixo"));
@@ -107,7 +105,6 @@ public class AparelhosEletronicosDAO {
 				ae.setFogao(rs.getBoolean("fogao"));
 				ae.setGeladeira(rs.getBoolean("geladeira"));
 				ae.setMicroondas(rs.getBoolean("microondas"));
-				ae.setTablet(rs.getBoolean("tablet"));
 				ae.setMaquinaLavar(rs.getBoolean("maquina_de_lavar"));
 				ae.setMaquinaSecar(rs.getBoolean("maquina_de_secar"));
 				ae.setTelefoneFixo(rs.getBoolean("telefone_fixo"));
@@ -134,7 +131,7 @@ public class AparelhosEletronicosDAO {
 	}
 	
 	public void altera(AparelhosEletronicos aparelhosEletronicos, int id) throws SQLException { 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aparelhos_eletronicos SET televisao = ?, tv_assinatura = ?, computador = ?, notebook = ?, fogao = ?, geladeira = ?, microondas = ?, tablet = ?, maquina_de_lavar = ?, maquina_de_secar = ?, telefone_fixo = ?, celular = ? WHERE id = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aparelhos_eletronicos SET televisao = ?, tv_assinatura = ?, computador = ?, notebook = ?, fogao = ?, geladeira = ?, microondas = ?, maquina_de_lavar = ?, maquina_de_secar = ?, telefone_fixo = ?, celular = ? WHERE id = ?");
 		
 		stmt.setBoolean(1, aparelhosEletronicos.isTelevisao());
 		stmt.setBoolean(2, aparelhosEletronicos.isTvAssinatura());
@@ -143,12 +140,11 @@ public class AparelhosEletronicosDAO {
 		stmt.setBoolean(5, aparelhosEletronicos.isFogao());
 		stmt.setBoolean(6, aparelhosEletronicos.isGeladeira());
 		stmt.setBoolean(7, aparelhosEletronicos.isMicroondas());
-		stmt.setBoolean(8, aparelhosEletronicos.isTablet());
-		stmt.setBoolean(9, aparelhosEletronicos.isMaquinaLavar());
-		stmt.setBoolean(10, aparelhosEletronicos.isMaquinaSecar());
-		stmt.setBoolean(11, aparelhosEletronicos.isTelefoneFixo());
-		stmt.setBoolean(12, aparelhosEletronicos.isCelular());
-		stmt.setInt(13, id);
+		stmt.setBoolean(8, aparelhosEletronicos.isMaquinaLavar());
+		stmt.setBoolean(9, aparelhosEletronicos.isMaquinaSecar());
+		stmt.setBoolean(10, aparelhosEletronicos.isTelefoneFixo());
+		stmt.setBoolean(11, aparelhosEletronicos.isCelular());
+		stmt.setInt(12, id);
 		
 		stmt.execute();
 		stmt.close();

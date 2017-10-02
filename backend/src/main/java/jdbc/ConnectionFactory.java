@@ -69,7 +69,7 @@ public class ConnectionFactory {
 		 	 * homologação:		"heroku-homologacao"
 			 */
 			
-			createConnectionPool("localhost");
+			createConnectionPool("heroku-test");
 		}
 		
 		if(conn == null || conn.isClosed()) {

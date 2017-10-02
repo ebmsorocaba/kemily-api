@@ -13,14 +13,20 @@ import java.util.List;
 
 public class AlunoDAO {
     private Connection connection;
+    private EnderecoDAO enderecoDAO;
+
+    public AlunoDAO(Connection connection) throws  SQLException {
+        this.connection = connection;
+    }
 
     public AlunoDAO() throws SQLException {
         this.connection = ConnectionFactory.getConnection();
+        enderecoDAO = new EnderecoDAO();
     }
 
     public Aluno adiciona(Aluno aluno) throws SQLException {
     	try (
-    			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+    			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno (nome, data_nascimento, rg, naturalidade, estado, data_cadastro, meio_transporte, etnia, observacoes, cep_aluno, numero_aluno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
     	){
 	
         stmt.setString(1,aluno.getNome());
@@ -30,7 +36,10 @@ public class AlunoDAO {
         stmt.setString(5,aluno.getEstado());
         stmt.setDate(6,aluno.getDataCadastro());
         stmt.setString(7,aluno.getMeioTransporte());
-        stmt.setString(8,aluno.getObservacoes());
+        stmt.setString(8, aluno.getEtnia());
+        stmt.setString(9,aluno.getObservacoes());
+        stmt.setString(10, aluno.getEndereco().getCep());
+        stmt.setString(11, aluno.getEndereco().getNumero());
 
         // executa
         int ra = stmt.executeUpdate();
@@ -75,8 +84,10 @@ public class AlunoDAO {
             aluno.setDataNascimento(rs.getDate("data_nascimento"));
             aluno.setEstado(rs.getString("estado"));
             aluno.setMeioTransporte(rs.getString("meio_transporte"));
+            aluno.setEtnia(rs.getString("etnia"));
             aluno.setObservacoes(rs.getString("observacoes"));
             aluno.setNaturalidade(rs.getString("naturalidade"));
+            aluno.setEndereco(enderecoDAO.getEndereco(rs.getString("cep_aluno"), rs.getString("numero_aluno")));
 
             alunos.add(aluno);
 
@@ -99,7 +110,7 @@ public class AlunoDAO {
             stmt.setInt(1, search);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next() == true) {
+            if (rs.next()) {
                 aluno.setRa(rs.getInt("ra"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setRg(rs.getString("rg"));
@@ -107,8 +118,10 @@ public class AlunoDAO {
                 aluno.setDataNascimento(rs.getDate("data_nascimento"));
                 aluno.setEstado(rs.getString("estado"));
                 aluno.setMeioTransporte(rs.getString("meio_transporte"));
+                aluno.setEtnia(rs.getString("etnia"));
                 aluno.setObservacoes(rs.getString("observacoes"));
                 aluno.setNaturalidade(rs.getString("naturalidade"));
+                aluno.setEndereco(enderecoDAO.getEndereco(rs.getString("cep_aluno"), rs.getString("numero_aluno")));
             }
             
             stmt.close();
@@ -142,7 +155,7 @@ public class AlunoDAO {
 
     public void altera(Aluno aluno, int ra) throws SQLException {
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aluno SET nome=?, data_nascimento=?, rg=?, naturalidade=?, estado=?, data_cadastro=?, meio_transporte=?, observacoes=? WHERE ra=?");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aluno SET nome=?, data_nascimento=?, rg=?, naturalidade=?, estado=?, data_cadastro=?, meio_transporte=?, etnia=?, observacoes=? WHERE ra=?");
 
         stmt.setString(1,aluno.getNome());
         stmt.setDate(2,aluno.getDataNascimento());
@@ -151,8 +164,9 @@ public class AlunoDAO {
         stmt.setString(5,aluno.getEstado());
         stmt.setDate(6,aluno.getDataCadastro());
         stmt.setString(7,aluno.getMeioTransporte());
-        stmt.setString(8,aluno.getObservacoes());
-        stmt.setInt(9, ra);
+        stmt.setString(8, aluno.getEtnia());
+        stmt.setString(9,aluno.getObservacoes());
+        stmt.setInt(10, ra);
 
         stmt.execute();
         stmt.close();

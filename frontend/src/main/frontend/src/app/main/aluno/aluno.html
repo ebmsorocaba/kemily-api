@@ -1,114 +1,114 @@
 <!DOCTYPE html>
 <div id="alunos" class="page-layout simple inner-sidenav">
 
-  <!-- HEADER -->
-  <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between center">
 
-    <!-- APP TITLE -->
-    <div layout="row" layout-align="start center">
-      <!-- <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click="vm.toggleSidenav('sidenav')">
+        <!-- APP TITLE -->
+        <div layout="row" layout-align="start center">
+            <!-- <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click="vm.toggleSidenav('sidenav')">
                 <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
             </md-button> -->
 
-      <div class="logo" layout="row" layout-align="start center">
-        <span class="logo-icon">
+            <div class="logo" layout="row" layout-align="start center">
+                <span class="logo-icon">
           <md-icon md-font-icon="icon-school" class="s24"></md-icon>
         </span>
-        <span class="logo-text">Alunos</span>
-      </div>
-    </div>
-    <!-- / APP TITLE -->
+                <span class="logo-text">Alunos</span>
+            </div>
+        </div>
+        <!-- / APP TITLE -->
 
-    <!-- SEARCH -->
-    <div class="search-input-wrapper" layout="row" layout-align="start center">
-      <label for="search">
+        <!-- SEARCH -->
+        <div class="search-input-wrapper" layout="row" layout-align="start center">
+            <label for="search">
         <md-icon md-font-icon="icon-magnify"></md-icon>
       </label>
-      <md-input-container md-no-float class="m-0">
-        <input id="search" placeholder="Pesquisar alunos..." type="text" ng-model="vm.search">
-      </md-input-container>
+            <md-input-container md-no-float class="m-0">
+                <input id="search" placeholder="Pesquisar alunos..." type="text" ng-model="vm.search">
+            </md-input-container>
+        </div>
+        <!-- / SEARCH -->
+
     </div>
-    <!-- / SEARCH -->
+    <!-- / HEADER -->
 
-  </div>
-  <!-- / HEADER -->
+    <!-- SELECTED BAR -->
+    <div ng-show="vm.selectedAlunos.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
 
-  <!-- SELECTED BAR -->
-  <div ng-show="vm.selectedAlunos.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
+        <div class="close-button-wrapper" ng-click="vm.selectedAlunos =[]">
+            <md-button layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+                <span>Voltar</span>
+            </md-button>
+        </div>
 
-    <div class="close-button-wrapper" ng-click="vm.selectedAlunos =[]">
-      <md-button layout="row" layout-align="start center">
-        <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
-        <span>Voltar</span>
-      </md-button>
-    </div>
+        <div flex layout="row" layout-align="space-between center">
 
-    <div flex layout="row" layout-align="space-between center">
-
-      <div>
-        <span class="selected-alunos-count">
+            <div>
+                <span class="selected-alunos-count">
         <span>{{vm.selectedAlunos.length}}</span>
-        <span>selecionado(s)</span>
-        </span>
+                <span>selecionado(s)</span>
+                </span>
 
-        <md-menu class="select-menu" ng-if="!vm.currentThread">
-          <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="multi select toggle">
-            <md-icon md-font-icon="icon-menu-down"></md-icon>
-          </md-button>
-          <md-menu-content width="3">
-            <md-menu-item>
-              <md-button ng-click="vm.selectAllAlunos()">
-                Selecionar todos
-              </md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="vm.deselectAlunos()">
-                Selecionar nenhum
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-      </div>
+                <md-menu class="select-menu" ng-if="!vm.currentThread">
+                    <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="multi select toggle">
+                        <md-icon md-font-icon="icon-menu-down"></md-icon>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <md-menu-item>
+                            <md-button ng-click="vm.selectAllAlunos()">
+                                Selecionar todos
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.deselectAlunos()">
+                                Selecionar nenhum
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
 
-      <div class="multi-select-actions">
-        <md-button class="md-icon-button" ng-click="vm.deleteSelectedAlunos($event)" aria-label="apagar selecionados">
-          <md-icon md-font-icon="icon-delete"></md-icon>
-        </md-button>
-      </div>
+            <div class="multi-select-actions">
+                <md-button class="md-icon-button" ng-click="vm.deleteSelectedAlunos($event)" aria-label="apagar selecionados">
+                    <md-icon md-font-icon="icon-delete"></md-icon>
+                </md-button>
+            </div>
+
+        </div>
 
     </div>
+    <!-- / SELECTED BAR -->
 
-  </div>
-  <!-- / SELECTED BAR -->
+    <!-- CONTENT -->
+    <div class="content" md-background-bg layout="row" layout-align="start start">
 
-  <!-- CONTENT -->
-  <div class="content" md-background-bg layout="row" layout-align="start start">
+        <!-- MAIN -->
+        <div class="main scrollable" ms-scroll>
 
-    <!-- MAIN -->
-    <div class="main scrollable" ms-scroll>
+            <!-- CONTACT LIST -->
+            <md-list class="alunos-list">
 
-      <!-- CONTACT LIST -->
-      <md-list class="alunos-list">
+                <!-- CONTACT LIST HEADER -->
+                <md-subheader class="md-no-sticky md-white-bg">
 
-        <!-- CONTACT LIST HEADER -->
-        <md-subheader class="md-no-sticky md-white-bg">
+                    <div layout="row" layout-align="space-between center">
 
-          <div layout="row" layout-align="space-between center">
-
-            <div class="list-title" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
-              <span ng-if="vm.listType === 'all'">Alunos Cadastrados</span>
-              <!-- <span ng-if="vm.listType === 'frequent'" translate="CONTACTS.FREQUENTLY_CONTACTED">Frequnetly
+                        <div class="list-title" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
+                            <span ng-if="vm.listType === 'all'">Alunos Cadastrados</span>
+                            <!-- <span ng-if="vm.listType === 'frequent'" translate="CONTACTS.FREQUENTLY_CONTACTED">Frequnetly
                                 contacted</span>
                             <span ng-if="vm.listType === 'starred'" translate="CONTACTS.STARRED_CONTACTS">Starred
                                 contacts</span>
                             <span ng-if="vm.listType.name">{{vm.listType.name}}</span> -->
 
-              <span ng-if="filteredAlunos.length" class="secondary-text alunos-count">
+                            <span ng-if="filteredAlunos.length" class="secondary-text alunos-count">
                                 ({{filteredAlunos.length}})
                             </span>
-            </div>
+                        </div>
 
-            <!-- <div class="edit-group-form" ng-show="vm.listType.name" layout="row"
+                        <!-- <div class="edit-group-form" ng-show="vm.listType.name" layout="row"
                              layout-align="start center">
                             <span ng-show="editGroupForm.$visible"
                                   editable-text="vm.listType.name"
@@ -129,139 +129,117 @@
                             </md-button>
                         </div> -->
 
-            <div flex></div>
+                        <div flex></div>
 
-            <span>Ordenar</span>
-            <md-menu>
+                        <span>Ordenar</span>
+                        <md-menu>
 
-              <md-button class="md-icon-button" aria-label="Ordenar">
-                <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
-              </md-button>
+                            <md-button class="md-icon-button" aria-label="Ordenar">
+                                <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
+                            </md-button>
 
-              <md-menu-content width="3">
+                            <md-menu-content width="3">
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>Nome</span>
-                    <small>(A até Z)</small>
-                  </md-button>
-                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                                        <span>Nome</span>
+                                        <small>(A até Z)</small>
+                                    </md-button>
+                                </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>Nome</span>
-                    <small>(Z até A)</small>
-                  </md-button>
-                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                                        <span>Nome</span>
+                                        <small>(Z até A)</small>
+                                    </md-button>
+                                </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'ra'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'ra' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>RA</span>
-                    <small>(Crescente)</small>
-                  </md-button>
-                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="vm.listOrder = 'ra'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'ra' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                                        <span>RA</span>
+                                        <small>(Crescente)</small>
+                                    </md-button>
+                                </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'ra'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'ra' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>RA</span>
-                    <small>(Decrescente)</small>
-                  </md-button>
-                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="vm.listOrder = 'ra'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'ra' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                                        <span>RA</span>
+                                        <small>(Decrescente)</small>
+                                    </md-button>
+                                </md-menu-item>
 
-                <!-- <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'formaPgto'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'formaPgto' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>Forma de Pagamento</span>
-                  </md-button>
-                </md-menu-item> -->
+                            </md-menu-content>
 
-              </md-menu-content>
+                        </md-menu>
 
-            </md-menu>
+                    </div>
 
-          </div>
+                </md-subheader>
+                <!-- / CONTACT LIST HEADER -->
 
-        </md-subheader>
-        <!-- / CONTACT LIST HEADER -->
+                <!-- CONTACT ITEM -->
+                <md-list-item class="aluno-item md-white-bg" md-ink-ripple ng-repeat="data in vm.datas | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredAlunos track by data.aluno.ra"
+                    ng-click="vm.openAlunoDialog($event, data)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredAlunos.length - $index}" ng-class="{'selected': vm.isSelected(data)}">
 
-        <!-- CONTACT ITEM -->
-        <md-list-item class="aluno-item md-white-bg" md-ink-ripple ng-repeat="aluno in vm.alunos | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredAlunos track by aluno.ra"
-          ng-click="vm.openAlunoDialog($event, aluno)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredAlunos.length - $index}" ng-class="{'selected': vm.isSelected(aluno)}">
+                    <md-checkbox ng-checked="vm.exists(data, vm.selectedAlunos)" ng-click="vm.toggleSelectAluno(data, $event)" aria-label="{{vm.exists(data, vm.selectedAlunos) ? 'Deselect' : 'Select'}}">
+                    </md-checkbox>
+                    <div class="item" layout="row">
+                        <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
+                        <p class="numero raAluno">
+                            {{data.aluno.ra}}
+                        </p>
+                        <p class="texto nomeAluno">
+                            {{data.aluno.nome}}
+                        </p>
+                        <p class="data dataNascAluno">
+                            {{data.aluno.dataNascimento | date : "dd/MM/yyyy"}}
+                        </p>
 
-          <md-checkbox ng-checked="vm.exists(aluno, vm.selectedAlunos)" ng-click="vm.toggleSelectAluno(aluno, $event)" aria-label="{{vm.exists(aluno, vm.selectedAlunos) ? 'Deselect' : 'Select'}}">
-          </md-checkbox>
-          <div class="item" layout="row">
-            <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
-            <p class="numero raAluno">
-              {{aluno.ra}}
-            </p>
-            <p class="texto nomeAluno">
-              {{aluno.nome}}
-            </p>
-            <p class="data dataNascAluno">
-              {{aluno.dataNascimento | date : "dd/MM/yyyy"}}
-            </p>
+                    </div>
+                    <div class="md-secondary actions" layout="row" layout-align="start center">
+                        <md-menu>
+                            <md-button class="md-icon-button" aria-label="Mais">
+                                <md-icon md-font-icon="icon-dots-vertical" ng-click="$mdOpenMenu($event)"></md-icon>
+                            </md-button>
 
-          </div>
-          <div class="md-secondary actions" layout="row" layout-align="start center">
-            <!-- <md-button class="md-icon-button  hide show-gt-xs" ng-click="$event.stopPropagation();vm.toggleInArray(contact.id, vm.user.starred)" aria-label="Toggle starred" translate translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
-              <md-icon ng-if="vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star" class="amber-fg"></md-icon>
-              <md-icon ng-if="!vm.exists(contact.id,vm.user.starred)" md-font-icon="icon-star-outline"></md-icon>
-            </md-button> -->
+                            <md-menu-content width="3">
+                                <md-menu-item>
+                                    <md-button ng-click="vm.openAlunoDialog($event, data)">
+                                        Editar aluno
+                                    </md-button>
+                                </md-menu-item>
 
-            <md-menu>
-              <md-button class="md-icon-button" aria-label="Mais">
-                <md-icon md-font-icon="icon-dots-vertical" ng-click="$mdOpenMenu($event)"></md-icon>
-              </md-button>
+                                <md-menu-item>
+                                    <md-button ng-click="vm.deleteAlunoConfirm(data, ev)">
+                                        Apagar aluno
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
 
-              <md-menu-content width="3">
-                <md-menu-item>
-                  <md-button ng-click="vm.openAlunoDialog($event, aluno)">
-                    Editar aluno
-                  </md-button>
-                </md-menu-item>
+                    </div>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.deleteAlunoConfirm(aluno, ev)">
-                    Apagar aluno
-                  </md-button>
-                </md-menu-item>
+                </md-list-item>
+                <!-- CONTACT ITEM -->
 
-                <!-- <md-divider ng-if="vm.user.groups"></md-divider>
+            </md-list>
+            <!-- / CONTACT LIST -->
 
-                <md-subheader class="md-no-sticky" ng-if="vm.user.groups">Groups</md-subheader>
+            <!-- NO RESULTS -->
+            <md-list-item class="no-results md-white-bg" ng-show="filteredAlunos.length === 0">
+                <p>Nenhum aluno encontrado.</p>
+            </md-list-item>
+            <!-- / NO RESULTS -->
 
-                <md-list-item ng-if="vm.user.groups" ng-repeat="group in vm.user.groups" ng-click="vm.toggleInArray(contact.id,group.contactIds)">
-                  <p class="pl-8" ng-style="vm.exists(contact.id,group.contactIds) && {'font-weight':'500'}">
-                    {{group.name}}
-                  </p>
-                </md-list-item> -->
-
-              </md-menu-content>
-            </md-menu>
-
-          </div>
-
-        </md-list-item>
-        <!-- CONTACT ITEM -->
-
-      </md-list>
-      <!-- / CONTACT LIST -->
-
-      <!-- NO RESULTS -->
-      <md-list-item class="no-results md-white-bg" ng-show="filteredAlunos.length === 0">
-        <p>Nenhum aluno encontrado.</p>
-      </md-list-item>
-      <!-- / NO RESULTS -->
+        </div>
+        <!-- / MAIN -->
 
     </div>
-    <!-- / MAIN -->
+    <!-- / CONTENT -->
 
-  </div>
-  <!-- / CONTENT -->
-
-  <!-- ADD CONTACT BUTTON -->
-  <md-button class="md-fab md-accent md-icon-button" id="add-aluno-button" ng-click="vm.openAlunoDialog($event)" aria-label="Adicionar aluno">
-    <md-icon md-font-icon="icon-account-plus"></md-icon>
-  </md-button>
-  <!-- / ADD CONTACT BUTTON -->
+    <!-- ADD CONTACT BUTTON -->
+    <md-button class="md-fab md-accent md-icon-button" id="add-aluno-button" ng-click="vm.openAlunoDialog($event)" aria-label="Adicionar aluno">
+        <md-icon md-font-icon="icon-account-plus"></md-icon>
+    </md-button>
+    <!-- / ADD CONTACT BUTTON -->
 </div>

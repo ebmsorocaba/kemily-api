@@ -1,13 +1,190 @@
-<div id="maintenance" class="flex-scrollable" layout="column" ms-scroll>
-    <div id="maintenance-form-wrapper" layout="column" layout-align="center center">
-        <div id="maintenance-form" class="md-whiteframe-8dp">
-            <div class="logo md-accent-bg">
-                <span>E</span>
-            </div>
-            <div class="title">Estamos trabalhando nessa página!</div>
-            <div class="subtitle">
-                Logo estará pronta. <br> Por favor olhe mais tarde.
-            </div>
-        </div>
+<div id="educadores" class="page-layout simple inner-sidenav">
+  <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+    <div layout="row" layout-align="start center">
+
+      <div class="logo" layout="row" layout-align="start center">
+        <span class="logo-icon">
+          <md-icon md-font-icon="icon-account-box" class="s24"></md-icon>
+        </span>
+        <span class="logo-text">Educadores</span>
+      </div>
+
     </div>
+    <div class="search-input-wrapper" layout="row" layout-align="start center">
+
+      <label for="search">
+        <md-icon md-font-icon="icon-magnify"></md-icon>
+      </label>
+      <md-input-container md-no-float class="m-0">
+        <input id="search" placeholder="Pesquisar educadores..." type="text" ng-model="vm.search">
+      </md-input-container>
+
+    </div>
+</div>
+
+  <div ng-show="vm.selectedEducadores.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
+
+    <div class="close-button-wrapper" ng-click="vm.selectedEducadores =[]">
+      <md-button layout="row" layout-align="start center">
+        <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+        <span>Voltar</span>
+      </md-button>
+    </div>
+
+    <div flex layout="row" layout-align="space-between center">
+
+      <div>
+        <span class="selected-educadores-count">
+        <span>{{vm.selectedEducadores.length}}</span>
+        <span>selecionado(s)</span>
+        </span>
+
+        <md-menu class="select-menu" ng-if="!vm.currentThread">
+          <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="multi select toggle">
+            <md-icon md-font-icon="icon-menu-down"></md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item>
+              <md-button ng-click="vm.selectAllEducadores()">
+                Selecionar todos
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="vm.deselectEducadores()">
+                Selecionar nenhum
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
+
+      <div class="multi-select-actions">
+        <md-button class="md-icon-button" ng-click="vm.deleteSelectedEducadores($event)" aria-label="apagar selecionados">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+        </md-button>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="content" md-background-bg layout="row" layout-align="start start">
+    <div class="main scrollable" ms-scroll>
+      <md-list class="educadores-list">
+        <md-subheader class="md-no-sticky md-white-bg">
+          <div layout="row" layout-align="space-between center">
+            <div class="list-title" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
+              <span ng-if="vm.listType === 'all'">Educadores Cadastrados</span>
+              <span ng-if="filteredEducadores.length" class="secondary-text educadores-count">
+                                ({{filteredEducadores.length}})
+                            </span>
+            </div>
+
+            <span>Ordenar</span>
+            <md-menu>
+              <md-button class="md-icon-button" aria-label="Ordenar">
+                <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
+              </md-button>
+
+              <md-menu-content width="3">
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>Nome</span>
+                    <small>(A até Z)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                    <span>Nome</span>
+                    <small>(Z até A)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'cpf'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'cpf' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>CPF</span>
+                    <small>(Crescente)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'cpf'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'cpf' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                    <span>CPF</span>
+                    <small>(Decrescente)</small>
+                  </md-button>
+                </md-menu-item>
+
+              </md-menu-content>
+
+            </md-menu>
+
+          </div>
+
+        </md-subheader>
+
+        <md-list-item class="educador-item md-white-bg" md-ink-ripple ng-repeat="educador in vm.educadores | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredEducadores track by educador.nome"
+          ng-click="vm.openEducadorDialog($event, educador)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredEducadores.length - $index}" ng-class="{'selected': vm.isSelected(educador)}">
+
+          <md-checkbox ng-checked="vm.exists(educador, vm.selectedEducadores)" ng-click="vm.toggleSelectEducador(educador, $event)" aria-label="{{vm.exists(educador, vm.selectedEducadores) ? 'Deselect' : 'Select'}}">
+          </md-checkbox>
+          <div class="item" layout="row">
+
+          <p class="text-truncate font-weight-600 texto nomeEducador">
+            {{educador.nome}}
+          </p>
+
+          <p class="hide show-gt-xs numero cpfEducador">
+            {{educador.cpf}}
+          </p>
+
+          <p class="hide show-gt-xs numero telefone">
+            {{educador.telefone}}
+          </p>
+
+          <p class="hide show-gt-sm texto emailEducador">
+            {{educador.email}}
+          </p>
+
+        </div>
+          <div class="md-secondary actions" layout="row" layout-align="start center">
+
+            <md-menu>
+              <md-button class="md-icon-button" aria-label="Mais">
+                <md-icon md-font-icon="icon-dots-vertical" ng-click="$mdOpenMenu($event)"></md-icon>
+              </md-button>
+
+              <md-menu-content width="3">
+                <md-menu-item>
+                  <md-button ng-click="vm.openEducadorDialog($event, educador)">
+                    Editar educador
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.deleteEducadorConfirm(educador, ev)">
+                    Apagar educador
+                  </md-button>
+                </md-menu-item>
+
+              </md-menu-content>
+            </md-menu>
+
+          </div>
+
+        </md-list-item>
+
+      </md-list>
+
+      <md-list-item class="no-results md-white-bg" ng-show="filteredEducadores.length === 0">
+        <p>Nenhum educador encontrado.</p>
+      </md-list-item>
+
+    </div>
+
+  </div>
+
+  <md-button class="md-fab md-accent md-icon-button" id="add-educador-button" ng-click="vm.openEducadorDialog($event)" aria-label="Adicionar educador">
+    <md-icon md-font-icon="icon-account-plus"></md-icon>
+  </md-button>
 </div>

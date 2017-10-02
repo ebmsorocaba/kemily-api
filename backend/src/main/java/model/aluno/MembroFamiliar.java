@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Parente {
+public class MembroFamiliar {
 
 	private int id;
 	private String nome;
@@ -14,11 +14,12 @@ public class Parente {
 	private String ocupacao;
 	private double salario;
 	private String localTrabalho;
+	private String condicaoTrabalho;
 	private Aluno aluno;
 	
-	public Parente() {};
+	public MembroFamiliar() {};
 	
-	public Parente(
+	public MembroFamiliar(
 			@JsonProperty("id")int id,
 			@JsonProperty("nome")String nome,
 			@JsonProperty("parentesco")String parentesco,
@@ -27,6 +28,7 @@ public class Parente {
 			@JsonProperty("ocupacao")String ocupacao,
 			@JsonProperty("salario")double salario,
 			@JsonProperty("localTrabalho")String localTrabalho,
+			@JsonProperty("condicaoTrabalho")String condicaoTrabalho,
 			@JsonProperty("aluno")Aluno aluno) {
 		
 		this.id = id;
@@ -37,6 +39,7 @@ public class Parente {
 		this.ocupacao = ocupacao;
 		this.salario = salario;
 		this.localTrabalho = localTrabalho;
+		this.condicaoTrabalho = condicaoTrabalho;
 		this.aluno = aluno;
 	}
 
@@ -102,6 +105,14 @@ public class Parente {
 
 	public void setLocalTrabalho(String localTrabalho) {
 		this.localTrabalho = localTrabalho;
+	}
+
+	public String getCondicaoTrabalho() {
+		return condicaoTrabalho;
+	}
+
+	public void setCondicaoTrabalho(String condicaoTrabalho) {
+		this.condicaoTrabalho = condicaoTrabalho;
 	}
 
 	public Aluno getAluno() {
