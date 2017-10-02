@@ -1,0 +1,98 @@
+<!-- DIALOG -->
+<md-dialog class="turma-dialog">
+
+  <form name="TurmaForm" class="md-inline-form" novalidate>
+
+    <div class=" md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+      <span class="title">{{vm.title}}</span>
+      <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Fechar diálogo">
+        <md-icon md-font-icon="icon-close"></md-icon>
+      </md-button>
+    </div>
+
+    <md-dialog-content ms-scroll>
+
+      <div layout="column" layout-gt-xs="row">
+        <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="30">
+          <label>Cpf do Educador</label>
+          <md-icon md-font-icon="">reorder</md-icon>
+          <input ng-model="vm.turma.cpfEducador" type="text" mask="999.999.999-99" ng-disabled="!vm.newTurma" required>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <input type="text" name="descricao" ng-model="vm.turma.descricao" placeholder="Descrição">
+        </md-input-container>
+      </div>
+
+      <p><b>Alunos dentro da Turma:</b></p>
+      <md-list-item class="aluno-item md-white-bg"  ng-repeat="a in vm.alunosDentroTurma">
+        <div class="item" layout="row">
+          <p class="show-gt-xs numero">
+            {{a.aluno.ra}}
+          </p>
+          <p class="numero"></p>
+          <p class="show-gt-xs texto">
+            {{a.aluno.nome}}
+          </p>
+          <md-button class="md-raised md-warn adicionarButton" ng-click="vm.removerAluno(a)">
+            Remover
+          </md-button>
+        </div>
+      </md-list-item>
+
+      <p><b>Alunos fora da Turma:</b></p>
+      <md-list-item class="aluno-item md-white-bg" ng-repeat="a in vm.alunosForaTurma track by a.aluno.ra">
+        <div class="item" layout="row">
+          <p class="show-gt-xs numero">
+            {{a.aluno.ra}}
+          </p>
+          <p class="numero"></p>
+          <p class="show-gt-xs texto">
+            {{a.aluno.nome}}
+          </p>
+          <md-button class="md-raised md-accent adicionarButton" ng-click="vm.adicionarAluno(a)">
+            Adicionar
+          </md-button>
+        </div>
+      </md-list-item>
+
+      <div layout="column" layout-gt-xs="row" flex ng-repeat="aluno in vm.alunos track by a.aluno.ra">
+        <md-input-container flex="100" flex-gt-xs="15">
+          <input type="text" ng-model="aluno.ra" placeholder="Ra do Aluno" value="{{aluno.ra}}">
+        </md-input-container>
+
+        <md-button class="md-raised md-accent adicionarButton" ng-click="vm.addAutomovel(c)" ng-if="vm.isLastAutomovel(c)">
+          Adicionar
+        </md-button>
+
+        <md-button class="md-raised md-warn adicionarButton" ng-click="vm.removeAutomovel(c)">
+          Remover
+        </md-button>
+
+      </div>
+    </md-dialog-content>
+
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button type="submit" ng-if="!vm.newTurma" ng-click="vm.saveTurma()" class="send-button md-accent md-raised" ng-disabled="TurmaForm.$invalid || TurmaForm.$pristine" aria-label="Salvar">
+          Salvar
+        </md-button>
+
+        <md-button type="submit" ng-if="vm.newTurma" ng-click="vm.addNewTurma(); vm.routeReload();" class="send-button md-accent md-raised" ng-disabled="TurmaForm.$invalid || TurmaForm.$pristine" aria-label="Adicionar turma">
+          Adicionar Turma
+        </md-button>
+      </div>
+
+      <div ng-if="!vm.newTurma" layout="row">
+        <md-button class="md-icon-button" ng-click="vm.deleteTurmaConfirm($event)" aria-label="Apagar">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip><span>Apagar</span></md-tooltip>
+        </md-button>
+      </div>
+
+    </md-dialog-actions>
+
+  </form>
+
+</md-dialog>

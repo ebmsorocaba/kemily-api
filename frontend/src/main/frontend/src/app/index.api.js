@@ -250,6 +250,18 @@
             getByCpf: $resource(api.baseUrl + 'educador/:cpf' + '/', { cpf: '@cpf' }, { 'update': { method: 'PUT' } })
         }
 
+        api.turma = {
+          list  : $resource(api.baseUrl + 'turma'),
+          getById : $resource(api.baseUrl + 'turma/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
+        api.alunoTurma = {
+          list  : $resource(api.baseUrl + 'alunoTurma'),
+          removeAluno: $resource(api.baseUrl + 'alunoTurma/:ra?id=:id', {ra: '@ra'}, {id: '@id'}),
+          getByRa : $resource(api.baseUrl + 'alunoTurma/aluno/:ra' + '/', {ra: '@ra'}, {'update': {method: 'PUT'}}),
+          getById : $resource(api.baseUrl + 'alunoTurma/turma/:id' + '/', {id: '@id'}, {'update': {method: 'PUT'}})
+        }
+
         api.contato = {
             list: $resource(api.baseUrl + 'contato'),
             getById: $resource(api.baseUrl + 'contato/:id' + '/', { id: '@id' }, { 'update': { method: 'PUT' } })

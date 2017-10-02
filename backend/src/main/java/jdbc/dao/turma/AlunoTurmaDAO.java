@@ -17,22 +17,15 @@ public class AlunoTurmaDAO {
 		this.connection = ConnectionFactory.getConnection();
 	}
 	
-	public void adiciona(List<AlunoTurma> listaAlunoTurma) throws SQLException {
+	public void adiciona(AlunoTurma alunoTurma) throws SQLException {
 		try {
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO aluno_turma (ra_aluno, id_turma) VALUES (?, ?)");
 			
-			//se a lista nao for vazia
-			if(!listaAlunoTurma.isEmpty()) {
-				
-				//loop na lista
-				for(AlunoTurma at : listaAlunoTurma) {
 					
-					stmt.setInt(1, at.getRaAluno());
-					stmt.setInt(2, at.getIdTurma());
-					
-					stmt.execute();
-				}
-			}
+			stmt.setInt(1, alunoTurma.getRaAluno());
+			stmt.setInt(2, alunoTurma.getIdTurma());
+			
+			stmt.execute();
 			
 			stmt.close();
 			
