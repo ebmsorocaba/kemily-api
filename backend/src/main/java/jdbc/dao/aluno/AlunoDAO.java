@@ -155,7 +155,7 @@ public class AlunoDAO {
 
     public void altera(Aluno aluno, int ra) throws SQLException {
 
-        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aluno SET nome=?, data_nascimento=?, rg=?, naturalidade=?, estado=?, data_cadastro=?, meio_transporte=?, etnia=?, observacoes=?, cep_aluno = ?, numero_aluno = ? WHERE ra=?");
+        PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE aluno SET nome=?, data_nascimento=?, rg=?, naturalidade=?, estado=?, data_cadastro=?, meio_transporte=?, etnia=?, observacoes=? WHERE ra=?");
 
         stmt.setString(1,aluno.getNome());
         stmt.setDate(2,aluno.getDataNascimento());
@@ -166,9 +166,7 @@ public class AlunoDAO {
         stmt.setString(7,aluno.getMeioTransporte());
         stmt.setString(8, aluno.getEtnia());
         stmt.setString(9,aluno.getObservacoes());
-        stmt.setString(10, aluno.getEndereco().getCep());
-        stmt.setString(11, aluno.getEndereco().getNumero());
-        stmt.setInt(12, ra);
+        stmt.setInt(10, ra);
 
         stmt.execute();
         stmt.close();
