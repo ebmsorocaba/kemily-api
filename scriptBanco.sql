@@ -39,6 +39,7 @@ DROP TABLE responsavel_legal;
 DROP TABLE contato;
 DROP TABLE roupa;
 DROP TABLE aluno_turma;
+DROP TABLE historico_ocorrencia;
 DROP TABLE aluno;
 DROP TABLE turma;
 DROP TABLE educador;
@@ -325,6 +326,14 @@ CREATE TABLE aluno_turma (
   PRIMARY KEY(ra_aluno, id_turma)
 );
 
+CREATE TABLE historico_ocorrencia (
+  data_ocorrencia TIMESTAMP,
+  ra_aluno BIGINT REFERENCES aluno(ra) on delete CASCADE,
+  nome_aluno VARCHAR(80) NOT NULL,
+  descricao_ocorrencia TEXT NOT NULL,
+  PRIMARY KEY(data_ocorrencia, ra_aluno)
+);
+
 /*---Fim da criação das tabelas---*/
 /*                                */
 
@@ -541,6 +550,9 @@ INSERT INTO aluno_turma(ra_aluno, id_turma)
   VALUES(2,1);
 INSERT INTO aluno_turma(ra_aluno, id_turma)
   VALUES(3,1);
+
+INSERT INTO historico_ocorrencia (data_ocorrencia, ra_aluno, nome_aluno, descricao_ocorrencia)
+  VALUES('04/10/2017 21:00:00', 1, 'Kemily', 'Teste');
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
