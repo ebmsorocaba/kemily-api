@@ -1,14 +1,11 @@
 package jdbc.dao.historicoOcorrencia;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import jdbc.ConnectionFactory;
@@ -23,12 +20,11 @@ public class HistoricoOcorrenciaDAO {
 	
 	public void adiciona(HistoricoOcorrencia histOcorrencia) throws SQLException {
 		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO historico_ocorrencia (data_ocorrencia, ra_aluno, nome_aluno, descricao_ocorrencia) VALUES (?, ?, ?, ?)");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO historico_ocorrencia (data, ra_aluno, descricao) VALUES (?, ?, ?)");
 			
-			stmt.setTimestamp(1, histOcorrencia.getDataOcorrencia());
+			stmt.setTimestamp(1, histOcorrencia.getData());
 			stmt.setInt(2, histOcorrencia.getRaAluno());
-			stmt.setString(3, histOcorrencia.getNomeAluno());
-			stmt.setString(4, histOcorrencia.getDescricaoOcorrencia());
+			stmt.setString(3, histOcorrencia.getDescricao());
 			
 			stmt.execute();
 			
@@ -47,10 +43,9 @@ public class HistoricoOcorrenciaDAO {
 		while(rs.next()) {
 			HistoricoOcorrencia ho = new HistoricoOcorrencia();
 			
-			ho.setDataOcorrencia(rs.getTimestamp("data_ocorrencia"));
+			ho.setData(rs.getTimestamp("data"));
 			ho.setRaAluno(rs.getInt("ra_aluno"));
-			ho.setNomeAluno(rs.getString("nome_aluno"));
-			ho.setDescricaoOcorrencia(rs.getString("descricao_ocorrencia"));
+			ho.setDescricao(rs.getString("descricao"));
 			
 			ocorrencias.add(ho);
 		}
@@ -65,7 +60,7 @@ public class HistoricoOcorrenciaDAO {
 		HistoricoOcorrencia ho = new HistoricoOcorrencia();
 		
 		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM historico_ocorrencia WHERE data_ocorrencia = ? AND ra_aluno = ?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM historico_ocorrencia WHERE data = ? AND ra_aluno = ?");
 			
 			stmt.setTimestamp(1, data);
 			stmt.setInt(2, raAluno);
@@ -73,10 +68,9 @@ public class HistoricoOcorrenciaDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) {
-				ho.setDataOcorrencia(rs.getTimestamp("data_ocorrencia"));
+				ho.setData(rs.getTimestamp("data"));
 				ho.setRaAluno(rs.getInt("ra_aluno"));
-				ho.setNomeAluno(rs.getString("nome_aluno"));
-				ho.setDescricaoOcorrencia(rs.getString("descricao_ocorrencia"));
+				ho.setDescricao(rs.getString("descricao"));
 			}
 			
 			stmt.close();
@@ -90,7 +84,7 @@ public class HistoricoOcorrenciaDAO {
 	public List<HistoricoOcorrencia> getListaByData(Timestamp data) throws SQLException {
 		List<HistoricoOcorrencia> ocorrenciasByData = new ArrayList<HistoricoOcorrencia>();
 		
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM historico_ocorrencia WHERE data_ocorrencia::date = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM historico_ocorrencia WHERE data::date = ?");
 		
 		stmt.setTimestamp(1, data);
 		
@@ -99,10 +93,9 @@ public class HistoricoOcorrenciaDAO {
 		while(rs.next()) {
 			HistoricoOcorrencia ho = new HistoricoOcorrencia();
 			
-			ho.setDataOcorrencia(rs.getTimestamp("data_ocorrencia"));
+			ho.setData(rs.getTimestamp("data"));
 			ho.setRaAluno(rs.getInt("ra_aluno"));
-			ho.setNomeAluno(rs.getString("nome_aluno"));
-			ho.setDescricaoOcorrencia(rs.getString("descricao_ocorrencia"));
+			ho.setDescricao(rs.getString("descricao"));
 			
 			ocorrenciasByData.add(ho);
 		}
@@ -125,10 +118,9 @@ public class HistoricoOcorrenciaDAO {
 		while(rs.next()) {
 			HistoricoOcorrencia ho = new HistoricoOcorrencia();
 			
-			ho.setDataOcorrencia(rs.getTimestamp("data_ocorrencia"));
+			ho.setData(rs.getTimestamp("data"));
 			ho.setRaAluno(rs.getInt("ra_aluno"));
-			ho.setNomeAluno(rs.getString("nome_aluno"));
-			ho.setDescricaoOcorrencia(rs.getString("descricao_ocorrencia"));
+			ho.setDescricao(rs.getString("descricao"));
 			
 			ocorrenciasByAluno.add(ho);
 		}
@@ -141,7 +133,7 @@ public class HistoricoOcorrenciaDAO {
 	 
 	public void excluir(Timestamp data, int raAluno) {
 		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM historico_ocorrencia WHERE data_ocorrencia::date = ? AND ra_aluno = ?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM historico_ocorrencia WHERE data::date = ? AND ra_aluno = ?");
 			
 			stmt.setTimestamp(1, data);
 			stmt.setInt(2, raAluno);
@@ -157,7 +149,7 @@ public class HistoricoOcorrenciaDAO {
 	
 	public void excluirByData(Timestamp data) {
 		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM historico_ocorrencia WHERE data_ocorrencia::date = ?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM historico_ocorrencia WHERE data::date = ?");
 			
 			stmt.setTimestamp(1, data);
 			
@@ -186,9 +178,9 @@ public class HistoricoOcorrenciaDAO {
 	}
 	
 	public void altera(Timestamp data, int raAluno, HistoricoOcorrencia ho) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE historico_ocorrencia SET descricao_ocorrencia = ? WHERE data_ocorrencia = ? AND ra_aluno = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE historico_ocorrencia SET descricao = ? WHERE data = ? AND ra_aluno = ?");
 		
-		stmt.setString(1, ho.getDescricaoOcorrencia());
+		stmt.setString(1, ho.getDescricao());
 		stmt.setTimestamp(2, data);
 		stmt.setInt(3, raAluno);
 		
@@ -196,18 +188,5 @@ public class HistoricoOcorrenciaDAO {
 		
 		stmt.close();
 	}
-	
-	public static void main(String args[]) throws SQLException {
-		HistoricoOcorrencia ho = new HistoricoOcorrencia();
-		ho.setDataOcorrencia(Timestamp.valueOf(LocalDateTime.now()));
-		ho.setRaAluno(1);
-		ho.setNomeAluno("Kemily");
-		ho.setDescricaoOcorrencia("Teste4");
-		
-		HistoricoOcorrenciaDAO hoDAO = new HistoricoOcorrenciaDAO();
-		
-		System.out.println(ho.getDataOcorrencia().toString());
-		
-		hoDAO.adiciona(ho);
-	}
+
 }

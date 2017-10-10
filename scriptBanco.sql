@@ -327,11 +327,10 @@ CREATE TABLE aluno_turma (
 );
 
 CREATE TABLE historico_ocorrencia (
-  data_ocorrencia TIMESTAMP,
+  data TIMESTAMP,
   ra_aluno BIGINT REFERENCES aluno(ra) on delete CASCADE,
-  nome_aluno VARCHAR(80) NOT NULL,
-  descricao_ocorrencia TEXT NOT NULL,
-  PRIMARY KEY(data_ocorrencia, ra_aluno)
+  descricao TEXT NOT NULL,
+  PRIMARY KEY(data, ra_aluno)
 );
 
 /*---Fim da criação das tabelas---*/
@@ -551,9 +550,8 @@ INSERT INTO aluno_turma(ra_aluno, id_turma)
 INSERT INTO aluno_turma(ra_aluno, id_turma)
   VALUES(3,1);
 
-INSERT INTO historico_ocorrencia (data_ocorrencia, ra_aluno, nome_aluno, descricao_ocorrencia)
-  VALUES('04/10/2017 21:00:00', 1, 'Kemily', 'Teste');
+INSERT INTO historico_ocorrencia (data, ra_aluno, descricao)
+  VALUES('10/10/2017 15:35:00', 1, 'Teste');
 
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
-;

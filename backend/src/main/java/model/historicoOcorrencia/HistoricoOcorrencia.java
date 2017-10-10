@@ -1,35 +1,33 @@
 package model.historicoOcorrencia;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HistoricoOcorrencia {
-	private Timestamp dataOcorrencia;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy kk:mm:ss")
+	private Timestamp data;
 	private int raAluno;
-	private String nomeAluno;
-	private String descricaoOcorrencia;
+	private String descricao;
 	
 	public HistoricoOcorrencia() {}
 	
 	public HistoricoOcorrencia(
-			@JsonProperty("dataOcorrencia")Timestamp dataOcorrencia,
+			@JsonProperty("data")Timestamp data,
 			@JsonProperty("raAluno")int raAluno,
-			@JsonProperty("nomeAluno")String nomeAluno,
-			@JsonProperty("descricaoOcorrencia")String descricaoOcorrencia) {
+			@JsonProperty("descricao")String descricao) {
 		
-		this.dataOcorrencia = dataOcorrencia;
+		this.data = data;
 		this.raAluno = raAluno;
-		this.nomeAluno = nomeAluno;
-		this.descricaoOcorrencia = descricaoOcorrencia;
+		this.descricao = descricao;
 	}
 	
-	public Timestamp getDataOcorrencia() {
-		return dataOcorrencia;
+	public Timestamp getData() {
+		return data;
 	}
-	public void setDataOcorrencia(Timestamp dataOcorrencia) {
-		this.dataOcorrencia = dataOcorrencia;
+	public void setData(Timestamp data) {
+		this.data = data;
 	}
 	
 	public int getRaAluno() {
@@ -39,18 +37,11 @@ public class HistoricoOcorrencia {
 		this.raAluno = raAluno;
 	}
 	
-	public String getNomeAluno() {
-		return nomeAluno;
+	public String getDescricao() {
+		return descricao;
 	}
-	public void setNomeAluno(String nomeAluno) {
-		this.nomeAluno = nomeAluno;
-	}
-	
-	public String getDescricaoOcorrencia() {
-		return descricaoOcorrencia;
-	}
-	public void setDescricaoOcorrencia(String descricaoOcorrencia) {
-		this.descricaoOcorrencia = descricaoOcorrencia;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 }
