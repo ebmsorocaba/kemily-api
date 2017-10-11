@@ -19,8 +19,19 @@
           <input ng-model="vm.turma.cpfEducador" type="text" mask="999.999.999-99" ng-disabled="!vm.newTurma" required>
         </md-input-container>
 
+        <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="20">
+          <label>Período</label>
+          <md-icon md-font-icon="icon-clock"></md-icon>
+          <md-select ng-model="vm.turma.periodo" required>
+            <md-option ng-repeat="periodo in vm.periodos" value="{{periodo}}">
+              {{periodo}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
         <md-input-container flex="100" flex-gt-xs="50">
-          <input type="text" name="descricao" ng-model="vm.turma.descricao" placeholder="Descrição">
+          <md-icon md-font-icon="icon-clipboard-text"></md-icon>
+          <input type="text" name="nome" ng-model="vm.turma.nome" placeholder="Nome">
         </md-input-container>
       </div>
 

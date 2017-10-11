@@ -317,12 +317,13 @@ CREATE TABLE educador (
 CREATE TABLE turma (
   id SERIAL PRIMARY KEY,
   cpf_educador VARCHAR(20) REFERENCES educador(cpf),
-  descricao TEXT
+  periodo TEXT,
+  nome TEXT
 );
 
 CREATE TABLE aluno_turma (
   ra_aluno BIGINT REFERENCES aluno(ra) on delete CASCADE,
-  id_turma BIGINT REFERENCES turma(id),
+  id_turma BIGINT REFERENCES turma(id) on delete CASCADE,
   PRIMARY KEY(ra_aluno, id_turma)
 );
 
@@ -540,8 +541,10 @@ INSERT INTO educador (cpf, nome, data_nascimento, sexo, telefone, email, cargo, 
 VALUES ('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com',
                           'Voluntário', 012345, 01234, '120.8525.943-1', '12345234', '318', '10:30', '18:30');
 
-INSERT INTO turma(cpf_educador, descricao)
-  VALUES('450.059.448-50', 'Turma do Diego');
+INSERT INTO turma(cpf_educador, periodo, nome)
+  VALUES('450.059.448-50', 'Manhã', 'Turma do Diego Manha');
+INSERT INTO turma(cpf_educador, periodo, nome)
+  VALUES('450.059.448-50', 'Tarde', 'Turma do Diego Tarde');
 
 INSERT INTO aluno_turma(ra_aluno, id_turma)
   VALUES(1,1);
