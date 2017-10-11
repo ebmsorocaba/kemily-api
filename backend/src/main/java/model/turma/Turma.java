@@ -5,18 +5,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Turma {
 	private int id;
 	private String cpfEducador;
-	private String descricao;
+	private String periodo;
+	private String nome;
 
 	public Turma() {}
 	
 	public Turma(
 			@JsonProperty("id")int id,
 			@JsonProperty("cpfEducador")String cpfEducador,
-			@JsonProperty("descricao")String descricao) {
+			@JsonProperty("periodo")String periodo,
+			@JsonProperty("nome")String nome) {
 		
 		this.id = id;
 		this.cpfEducador = cpfEducador;
-		this.descricao = descricao;
+		this.periodo = periodo;
+		this.nome = nome;
 	}
 
 	public int getId() {
@@ -35,12 +38,20 @@ public class Turma {
 		this.cpfEducador = cpfEducador;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getPeriodo() {
+		return periodo;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 }

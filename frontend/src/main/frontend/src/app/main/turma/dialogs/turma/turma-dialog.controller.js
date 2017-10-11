@@ -11,11 +11,17 @@
     vm.user = User;
     vm.allFields = false;
 
+    vm.periodos = [
+      'Manhã',
+      'Tarde'
+    ];
+
     if(!vm.turma) {
       vm.turma = {
         'id': '',
-        'descricao': '',
-        'cpfEducador': '',
+        'nome': '',
+        'periodo': '',
+        'cpfEducador': ''
       };
       vm.title = 'Novo Turma';
     } else {
@@ -41,11 +47,6 @@
     vm.alunoTurma = AlunoTurma;
     vm.alunosDentroTurma = AlunosDentroTurma;
     vm.alunosForaTurma = AlunosForaTurma;
-    console.log('-----');
-    console.log(vm.alunoTurma);
-    console.log(vm.alunosDentroTurma);
-    console.log(vm.alunosForaTurma);
-
 
     function removerAluno(a) {
       // Cria o novo registro no BD
@@ -161,7 +162,7 @@
     function deleteTurmaConfirm(ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar este turma?')
-        .htmlContent('<b>' + vm.turma.descricao + ' (' + vm.turma.id + '</b>' + ') será apagado(a).')
+        .htmlContent('<b>' + vm.turma.nome + ' (' + vm.turma.id + '</b>' + ') será apagado(a).')
         .ariaLabel('apagar turma')
         .targetEvent(ev)
         .ok('OK')

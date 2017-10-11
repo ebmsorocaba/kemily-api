@@ -13,7 +13,7 @@
     vm.turmas = Turmas
     //vm.user = User.data;
     vm.listType = 'all';
-    vm.listOrder = 'descricao';
+    vm.listOrder = 'nome';
     vm.listOrderAsc = false;
     vm.selectedTurmas = [];
     vm.alunoTurma = AlunoTurma;
@@ -57,8 +57,8 @@
     function deleteTurmaConfirm(turma, ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar este turma?')
-        .htmlContent('<b>' + turma.descricao + ' (' + turma.id + ')</b>' + ' será apagado(a).')
-        .ariaLabel('apagar contato')
+        .htmlContent('<b>' + turma.nome + ' (' + turma.id + ')</b>' + ' será apagado(a).')
+        .ariaLabel('apagar turma')
         .targetEvent(ev)
         .ok('Sim')
         .cancel('Cancelar');
@@ -160,7 +160,7 @@
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar os turmas selecionados?')
         .htmlContent('<b>' + vm.selectedTurmas.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
-        .ariaLabel('apagar contatos')
+        .ariaLabel('apagar turmas')
         .targetEvent(ev)
         .ok('Sim')
         .cancel('Cancelar');
