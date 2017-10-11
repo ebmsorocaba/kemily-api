@@ -1,14 +1,7 @@
 <div id="contacts" class="page-layout simple left-sidenav inner-sidenav">
 
-  <!-- HEADER -->
   <div class="header md-accent-bg" layout="row" layout-align="space-between center">
-
-    <!-- APP TITLE -->
     <div layout="row" layout-align="start center">
-      <!-- <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click="vm.toggleSidenav('sidenav')">
-                <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
-            </md-button> -->
-
       <div class="logo" layout="row" layout-align="start center">
         <span class="logo-icon">
           <md-icon md-font-icon="icon-document" class="s24"></md-icon>
@@ -16,23 +9,18 @@
         <span class="logo-text">Relatório Financeiro</span>
       </div>
     </div>
-
   </div>
-  <!-- / HEADER -->
 
-  <!-- CONTENT -->
   <div class="content" md-background-bg layout="row" layout-align="start start">
 
-    <!-- MAIN -->
     <div class="main scrollable" ms-scroll>
 
-      <!-- ENTRADA DE PAGAMENTO -->
       <form name="informaPgto" ng-show="vm.searched == false">
         <md-card>
           <md-card-header>
             <md-card-header-text>
-              <span class="md-title">Consulta de Pagamentos</span></br>
-              <span class="md-subhead">Por favor, informe os dados referentes a consulta desejada.</span>
+              <h1 class="md-title">Consulta de Pagamentos</h1>
+              <h2 class="md-subhead">Por favor, informe os dados referentes a consulta desejada.</h2>
             </md-card-header-text>
           </md-card-header>
 
@@ -58,10 +46,9 @@
           <md-button ng-click="vm.limpaForm()">Limpar</md-button>
         </div>
       </form>
-      <!-- / ENTRADA DE PAGAMENTO -->
 
       <form name="dataPgto" ng-show="vm.searched == true">
-        <md-card> <!-- Esconde tabela caso pagamentos for vazio -->
+        <md-card>
           <div class="simple-table-container md-whiteframe-4dp" id="pagamentosTable">
             <div class="table-title">
               Pagamentos:
@@ -71,15 +58,10 @@
 
               <thead>
                 <tr ng-repeat="pagamento in vm.pagamentos | limitTo:1">
-                  <th ng-if="$index == 0">Cliente</th>
+                  <th class="cliente" ng-if="$index == 0">Cliente</th>
                   <th class="dataPagamento" ng-repeat="pag in pagamento.pagamentos | limitTo:$index.length"> {{pag.dataPgto | date : "_/MM/yyyy"}} </th>
-                  <th>Total</th>
-                </tr><!--
-                <tr ng-repeat="pagamento in vm.pagamentos">
-
-                  <th ng-repeat-start="pag in pagamento.pagamentos"> {{pag.dataPgto}} </th>
-                  <th ng-repeat-end></th>
-                </tr> -->
+                  <th class="total">Total</th>
+                </tr>
               </thead>
 
               <tbody>
@@ -93,28 +75,22 @@
 
               </tbody>
             </table>
-
-
         </div>
       </md-card>
-      </br>
-      <div layout="row" layout-align="center"> <!-- Retirar os styles daqui -->
+
+      <div layout="row" layout-align="center">
         <md-button ng-click="vm.novaConsulta()" class="md-accent md-raised">Nova Consulta</md-button>
         <md-button ng-click="vm.exportarExcel()" class="btnExcel">
-          <md-icon md-font-icon="icon-file-excel" class="iconExcel" style="color: white;"></md-icon>
+          <md-icon md-font-icon="icon-file-excel" class="iconExcel"></md-icon>
           Excel
         </md-button>
         <md-button ng-click="vm.exportarPdf()" class="btnPdf">
-          <md-icon md-font-icon="icon-file-pdf" class="iconPdf" style="color: white;"></md-icon>
+          <md-icon md-font-icon="icon-file-pdf" class="iconPdf"></md-icon>
           PDF
         </md-button>
       </div>
-      </br>
-      </br>
-    </form>
-
-</div>
-    <!-- / MAIN -->
-</div>
-  <!-- / CONTENT -->
+     </form>
+     
+    </div>
+  </div>
 </div>
