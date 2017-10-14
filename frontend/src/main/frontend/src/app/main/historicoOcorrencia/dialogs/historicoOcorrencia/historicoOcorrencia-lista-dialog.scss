@@ -1,0 +1,27 @@
+md-dialog {
+    
+    &.ocorrencia-dialog {
+        
+        width: 800px;
+        height: 400px;
+
+        .title {
+            font-size: 20px;
+        }
+    
+        div.item p.date{
+            width: 100px;
+            text-align: left;
+        }
+
+        div.item p.numero {
+            width: 100px;
+            text-align: left;
+        }
+
+        div.item p.texto{
+            width: 220px;
+            text-align: left;
+        }
+    }
+}   
