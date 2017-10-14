@@ -4,7 +4,7 @@
 
       <div class="logo" layout="row" layout-align="start center">
         <span class="logo-icon">
-          <md-icon md-font-icon="icon-account-box" class="s24"></md-icon>
+          <md-icon md-font-icon="icon-school" class="s24"></md-icon>
         </span>
         <span class="logo-text">Educadores</span>
       </div>
@@ -72,14 +72,15 @@
       <md-list class="educadores-list">
         <md-subheader class="md-no-sticky md-white-bg">
           <div layout="row" layout-align="space-between center">
-            <div class="list-title" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
+            <div class="list-title" layout="row" layout-align="space-between center" ng-hide="editGroupForm.$visible">
               <span ng-if="vm.listType === 'all'">Educadores Cadastrados</span>
               <span ng-if="filteredEducadores.length" class="secondary-text educadores-count">
-                                ({{filteredEducadores.length}})
-                            </span>
+                  ({{filteredEducadores.length}})</span>
+
             </div>
 
-            <span>Ordenar</span>
+            <span class="ordenar">Ordenar</span>
+
             <md-menu>
               <md-button class="md-icon-button" aria-label="Ordenar">
                 <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
@@ -121,16 +122,24 @@
 
           </div>
 
+          <div class="atributos" layout-align="space-around end">
+            <label>Nome</label>
+            <label>CPF</label>
+            <label>Telefone</label>
+            <label>Email</label>
+          </div>
         </md-subheader>
+
+
 
         <md-list-item class="educador-item md-white-bg" md-ink-ripple ng-repeat="educador in vm.educadores | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredEducadores track by educador.nome"
           ng-click="vm.openEducadorDialog($event, educador)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredEducadores.length - $index}" ng-class="{'selected': vm.isSelected(educador)}">
 
           <md-checkbox ng-checked="vm.exists(educador, vm.selectedEducadores)" ng-click="vm.toggleSelectEducador(educador, $event)" aria-label="{{vm.exists(educador, vm.selectedEducadores) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
-          <div class="item" layout="row">
+          <div class="item">
 
-          <p class="text-truncate font-weight-600 texto nomeEducador">
+          <p class="text-truncate font-weight-20 texto nomeEducador">
             {{educador.nome}}
           </p>
 

@@ -67,7 +67,7 @@
 
     msNavigationServiceProvider.saveItem('social.educador', {
       title: 'Gerenciar Educadores',
-      icon: 'icon-human',
+      icon: 'icon-school',
       state: 'app.educador',
       weight: 2
     });
