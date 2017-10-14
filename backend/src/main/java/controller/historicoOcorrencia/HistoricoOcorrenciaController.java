@@ -1,7 +1,8 @@
 package controller.historicoOcorrencia;
 
+import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.Time;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -32,15 +33,6 @@ public class HistoricoOcorrenciaController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value="/api/historicoOcorrencia/data/{data}", method = RequestMethod.GET)
-	public ResponseEntity<List<HistoricoOcorrencia>> listarByData(@PathVariable("data") Timestamp data) throws SQLException {
-		List<HistoricoOcorrencia> ocorrenciasByData = historicoOcorrenciaDAO.getListaByData(data);
-		
-		return new ResponseEntity<List<HistoricoOcorrencia>>(ocorrenciasByData, HttpStatus.OK);
-		
-	}
-	
-	@CrossOrigin
 	@RequestMapping(value="/api/historicoOcorrencia/aluno/{ra}", method = RequestMethod.GET)
 	public ResponseEntity<List<HistoricoOcorrencia>> listarByAluno(@PathVariable("ra") int ra) throws SQLException {
 		List<HistoricoOcorrencia> ocorrenciasByAluno = historicoOcorrenciaDAO.getListaByAluno(ra);
@@ -50,29 +42,9 @@ public class HistoricoOcorrenciaController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value="/api/historicoOcorrencia/{data}", method = RequestMethod.GET, params={"ra"})
-	public ResponseEntity<HistoricoOcorrencia> buscar(@PathVariable("data") Timestamp data, @RequestParam("ra") int ra) throws SQLException {
-		HistoricoOcorrencia ho = historicoOcorrenciaDAO.getHistoricoOcorrencia(data, ra);
-		
-		if(ho == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-
-		return new ResponseEntity<HistoricoOcorrencia>(ho, HttpStatus.OK);
-		
-	}
-	
-	@CrossOrigin
-	@RequestMapping(value="/api/historicoOcorrencia/{data}", method = RequestMethod.DELETE, params={"ra"})
-	public ResponseEntity<?> deletar(@PathVariable("data") Timestamp data, @RequestParam("ra") int ra) throws SQLException {
-		historicoOcorrenciaDAO.excluir(data, ra);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
-	
-	@CrossOrigin
-	@RequestMapping(value="/api/historicoOcorrencia/data/{data}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deletar(@PathVariable("data") Timestamp data) throws SQLException {
-		historicoOcorrenciaDAO.excluirByData(data);
+	@RequestMapping(value="/api/historicoOcorrencia/{data}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deletar(@PathVariable("data") Date data, @RequestParam("hora") Time hora, @RequestParam("ra") int ra) throws SQLException {
+		historicoOcorrenciaDAO.excluir(data, hora, ra);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
@@ -85,18 +57,15 @@ public class HistoricoOcorrenciaController {
 	
 	@CrossOrigin
 	@RequestMapping(value="/api/historicoOcorrencia", method = RequestMethod.POST)
-	public ResponseEntity<?> addHistoricoOcorrencia(@RequestBody HistoricoOcorrencia ho) throws SQLException {
-		ho.getData().setNanos(0);
+	public ResponseEntity<HistoricoOcorrencia> addHistoricoOcorrencia(@RequestBody HistoricoOcorrencia ho) throws SQLException {
 		historicoOcorrenciaDAO.adiciona(ho);
 		return new ResponseEntity<HistoricoOcorrencia>(ho, HttpStatus.CREATED);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value="/api/historicoOcorrencia/{data}", method = RequestMethod.PUT, params={"ra"})
-	public ResponseEntity<?> deletar(@PathVariable("data") Timestamp data, @RequestParam("ra") int ra, @RequestBody HistoricoOcorrencia ho) throws SQLException {
-		data.setNanos(0);
-		ho.getData().setNanos(0);
-		historicoOcorrenciaDAO.altera(data, ra, ho);
+	@RequestMapping(value="/api/historicoOcorrencia/{ra}", method = RequestMethod.PUT)
+	public ResponseEntity<HistoricoOcorrencia> updateOcorrencia(@PathVariable("ra") int ra, @RequestBody HistoricoOcorrencia ho) throws SQLException {
+		historicoOcorrenciaDAO.altera(ra, ho);
 		return new ResponseEntity<HistoricoOcorrencia>(ho, HttpStatus.CREATED);
 	}
 }

@@ -44,6 +44,8 @@
 
             'app.minhaConta',
 
-            'app.esqueciSenha'
+            'app.esqueciSenha',
+            
+            'app.historicoOcorrencia'
         ])
 })();
