@@ -37,8 +37,8 @@
 
                         <md-tab-body>
                             <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
-                                <div layout="column" layout-gt-xs="row" flex>
-                                    <md-input-container flex="100" flex-gt-xs="50">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-around none" style="height: 100vh, width: 100vh">
+                                    <md-input-container flex="100" flex-gt-xs="30">
                                         <input type="text" name="nome" ng-model="vm.data.aluno.nome" placeholder="Nome" required>
                                         <div ng-messages="wizardStep1.firstname.$error" role="alert">
                                             <div ng-message=" ">
@@ -59,8 +59,8 @@
                                 </div>
 
 
-                                <div layout="column" layout-gt-xs="row">
-                                    <md-input-container flex="200" flex-gt-xs="50">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" >
+                                    <md-input-container flex="100" flex-gt-xs="20">
                                         <input type="text" name="naturalidade" ng-model="vm.data.aluno.naturalidade" placeholder="Naturalidade" required>
                                         <div ng-messages="wizardStep1.nat.$error" role="alert">
                                             <div ng-message=" ">
@@ -69,7 +69,7 @@
                                         </div>
                                     </md-input-container>
 
-                                    <md-input-container flex="50" flex-gt-xs="30">
+                                    <md-input-container flex="100" flex-gt-xs="15">
                                         <label>Estado</label>
                                         <md-select ng-model="vm.data.aluno.estado" required>
                                             <md-option ng-repeat="estado in vm.estados" value="{{estado}}">
@@ -78,21 +78,13 @@
                                         </md-select>
                                     </md-input-container>
 
-                                    <md-input-container flex="50" flex-gt-xs="30">
+                                    <md-input-container flex="100" flex-gt-xs="30">
                                         <label>Data de Nascimento</label>
                                         <md-datepicker ng-model="vm.data.aluno.dataNascimento" required md-open-on-focus></md-datepicker>
                                     </md-input-container>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row">
-                                    <md-input-container flex="100" flex-gt-xs="20">
-                                        <input type="text" name="meioTrasnporte" ng-model="vm.data.aluno.meioTransporte" placeholder="Meio de transporte" required>
-                                        <div ng-messages="wizardStep1.meiotransporte.$error" role="alert">
-                                            <div ng-message=" ">
-                                                <span>O meio de transporte é requerido.</span>
-                                            </div>
-                                        </div>
-                                    </md-input-container>
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-around none" style="height: 100vh, width: 100vh">
 
                                     <md-input-container flex="100" flex-gt-xs="20">
                                         <label>Tamanho da camiseta</label>
@@ -103,7 +95,7 @@
                                         </md-select>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100" flex-gt-xs="15">
                                         <label>Tamanho da calça</label>
                                         <md-select ng-model="vm.data.roupa.tamanhoCalca" required>
                                             <md-option ng-repeat="calca in vm.calcas" value="{{calca}}">
@@ -119,6 +111,15 @@
                                                 {{sapato}}
                                             </md-option>
                                         </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="15">
+                                        <input type="text" name="meioTrasnporte" ng-model="vm.data.aluno.meioTransporte" placeholder="Meio de transporte" required>
+                                        <div ng-messages="wizardStep1.meiotransporte.$error" role="alert">
+                                            <div ng-message=" ">
+                                                <span>O meio de transporte é requerido.</span>
+                                            </div>
+                                        </div>
                                     </md-input-container>
                                 </div>
                             </form>
@@ -142,8 +143,9 @@
                             <form name="wizardStep2" ms-form-wizard-form novalidate>
 
                                 <div layout="column" layout-gt-xs="column" flex>
-                                    <div layout="row" layout-gt-xs="row" flex>
-                                        <md-input-container flex="100" flex-gt-xs="50">
+                                  <h2>Dados do pai</h2>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
+                                        <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="text" name="nomepai" ng-model="vm.pai.nome" placeholder="Nome do Pai">
                                         </md-input-container>
 
@@ -151,21 +153,22 @@
                                             <input type="text" name="telpai" ng-model="vm.pai.telefone" mask="(99) 9?9999-9999" placeholder="Telefone">
                                         </md-input-container>
 
+                                        <md-input-container flex="100" flex-gt-xs="15">
+                                            <input type="text" name="rg" ng-model="vm.pai.rg" md-maxlength="12" mask="99.999.999-w" placeholder="RG">
+                                        </md-input-container>
+
+                                        <md-input-container flex="100" flex-gt-xs="15">
+                                            <input type="text" name="cpf" ng-model="vm.pai.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
+                                        </md-input-container>
+                                    </div>
+
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="email" name="emailpai" ng-model="vm.pai.email" placeholder="Email">
                                         </md-input-container>
 
-                                        <md-input-container flex="100" flex-gt-xs="30">
+                                        <md-input-container flex="100" flex-gt-xs="40">
                                             <input type="text" name="redepai" ng-model="vm.pai.redeSocial" placeholder="Rede Social">
-                                        </md-input-container>
-                                    </div>
-                                    <div layout="row" layout-gt-xs="row" flex>
-                                        <md-input-container flex="100" flex-gt-xs="30">
-                                            <input type="text" name="rg" ng-model="vm.pai.rg" md-maxlength="12" mask="99.999.999-w" placeholder="RG">
-                                        </md-input-container>
-
-                                        <md-input-container flex="100" flex-gt-xs="30">
-                                            <input type="text" name="cpf" ng-model="vm.pai.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
                                         </md-input-container>
 
                                         <md-input-container flex="100" flex-gt-xs="15">
@@ -180,7 +183,8 @@
                                 </div>
 
                                 <div layout="column" layout-gt-xs="column" flex>
-                                    <div layout="row" layout-gt-xs="row" flex>
+                                  <h2>Dados da mãe</h2>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="50">
                                             <input type="text" name="nomemae" ng-model="vm.mae.nome" placeholder="Nome da Mãe">
                                         </md-input-container>
@@ -197,7 +201,7 @@
                                             <input type="text" name="redemae" ng-model="vm.mae.redeSocial" placeholder="Rede Social">
                                         </md-input-container>
                                     </div>
-                                    <div layout="row" layout-gt-xs="row" flex>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="text" name="rg" ng-model="vm.mae.rg" md-maxlength="12" mask="99.999.999-w" placeholder="RG">
                                         </md-input-container>
@@ -218,7 +222,8 @@
                                 </div>
 
                                 <div layout="column" layout-gt-xs="column" flex ng-repeat="c in vm.data.responsavelLegalList track by $index">
-                                    <div layout="row" layout-gt-xs="row" flex>
+                                  <h2>Outros responsáveis?</h2>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="text" ng-model="c.nome" placeholder="Nome" value="{{c.nome}}">
                                         </md-input-container>
@@ -235,7 +240,7 @@
                                             <input type="text" name="rede" ng-model="c.redeSocial" placeholder="Rede Social">
                                         </md-input-container>
                                     </div>
-                                    <div layout="row" layout-gt-xs="row" flex>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
 
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="text" name="rg" ng-model="c.rg" md-maxlength="12" mask="99.999.999-w" placeholder="RG">
