@@ -318,7 +318,7 @@
                                             </md-checkbox>
                                         </div>
 
-                                        <md-input-container flex="100" flex-gt-xs="40" ng-if="c.profissional">
+                                        <md-input-container flex="100" flex-gt-xs="30" ng-if="c.profissional">
                                             <input type="text" ng-model="c.cargo" placeholder="Cargo">
                                         </md-input-container>
 
@@ -351,7 +351,7 @@
                         <md-tab-body>
                             <form name="wizardStep4" ms-form-wizard-form novalidate>
 
-                                <div layout="column" layout-gt-xs="row">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
                                     <md-input-container flex="100" flex-gt-xs="50">
                                         <input type="text" name="rua" ng-model="vm.data.endereco.rua" placeholder="Rua" required>
                                     </md-input-container>
@@ -361,12 +361,12 @@
                                         <input type="text" name="numero" ng-model="vm.data.endereco.numero" mask="9?9?9?9" placeholder="Nº" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="15">
+                                    <md-input-container flex="100" flex-gt-xs="25">
                                         <input type="text" name="complemento" ng-model="vm.data.endereco.complemento" placeholder="Complemento">
                                     </md-input-container>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
                                     <md-input-container flex="100" flex-gt-xs="15">
                                         <input type="text" name="bairro" ng-model="vm.data.endereco.bairro" placeholder="Bairro" required>
                                     </md-input-container>
@@ -404,7 +404,9 @@
                         <md-tab-body>
                             <form name="wizardStep5" ms-form-wizard-form novalidate>
 
-                                <div layout="row" layout-gt-xs="row">
+                              <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
+
+                                <div layout="column" layout-gt-xs="row">
                                     <div flex="100" flex-gt-sm="30">
                                         A Criança faz Tratamentos médicos?
                                         <md-checkbox ng-model="vm.data.saude.fazTratamentosMedicos" aria-label="Faz tratamentos médicos">
@@ -416,7 +418,7 @@
                                     </md-input-container>
                                 </div>
 
-                                <div layout="row" layout-gt-xs="row">
+                                <div layout="column" layout-gt-xs="row">
                                     <div flex="100" flex-gt-sm="20">
                                         Possui alguma alergia ?
                                         <md-checkbox ng-model="vm.data.saude.possuiAlergia" aria-label="Faz tratamentos médicos">
@@ -428,7 +430,7 @@
                                     </md-input-container>
                                 </div>
 
-                                <div layout="row" layout-gt-xs="row">
+                                <div layout="column" layout-gt-xs="row">
                                     <div flex="100" flex-gt-sm="20">
                                         Toma alguma medicação?
                                         <md-checkbox ng-model="vm.data.saude.tomaMedicacao" aria-label="Faz tratamentos médicos">
@@ -440,21 +442,24 @@
                                     </md-input-container>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row">
-                                    <div flex="100" flex-gt-sm="50">
-                                        Problemas de saúde na família?
-                                        <md-checkbox ng-model="vm.data.saude.problemasSaudeFamilia" aria-label="Problemas de saúde na família?">
-                                        </md-checkbox>
-                                    </div>
-                                </div>
+                            </div>
 
-                                <div layout="column" layout-gt-xs="row">
-                                    <div flex="100" flex-gt-sm="50">
-                                        Possui plano de saúde?
-                                        <md-checkbox ng-model="vm.data.saude.planoSaude" aria-label="Possui plano de saúde">
-                                        </md-checkbox>
-                                    </div>
-                                </div>
+                            <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
+                              <div layout="column" layout-gt-xs="row">
+                                  <div flex="100" flex-gt-sm="50">
+                                      Problemas de saúde na família?
+                                      <md-checkbox ng-model="vm.data.saude.problemasSaudeFamilia" aria-label="Problemas de saúde na família?">
+                                      </md-checkbox>
+                                  </div>
+                              </div>
+
+                              <div layout="column" layout-gt-xs="row">
+                                  <div flex="100" flex-gt-sm="50">
+                                      Possui plano de saúde?
+                                      <md-checkbox ng-model="vm.data.saude.planoSaude" aria-label="Possui plano de saúde">
+                                      </md-checkbox>
+                                  </div>
+                              </div>
 
                                 <div layout="column" layout-gt-xs="row">
                                     <div flex="100" flex-gt-sm="50">
@@ -471,6 +476,8 @@
                                         </md-checkbox>
                                     </div>
                                 </div>
+                              </div>
+
 
                             </form>
                         </md-tab-body>
@@ -492,7 +499,7 @@
                         <md-tab-body>
                             <form name="wizardStep6" ms-form-wizard-form novalidate>
 
-                                <div layout="column" layout-gt-xs="row">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
                                     <md-input-container flex="100" flex-gt-xs="50" placeholder="Criança reside com:">
                                         <input type="text" name="criancaResideCom" ng-model="vm.data.estruturaFamiliar.criancaResideCom" placeholder="Criança reside com:" required>
                                     </md-input-container>
@@ -508,36 +515,38 @@
 
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row">
-                                    <div flex="100" flex-gt-sm="50">
-                                        Possui problemas finaceiros?
-                                        <md-checkbox ng-model="vm.data.estruturaFamiliar.problemasFinanceiros" aria-label="Possui problemas financeiros">
-                                        </md-checkbox>
-                                    </div>
-                                </div>
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
+                                  <div layout="column" layout-gt-xs="row">
+                                      <div flex="100" flex-gt-sm="50">
+                                          Possui problemas finaceiros?
+                                          <md-checkbox ng-model="vm.data.estruturaFamiliar.problemasFinanceiros" aria-label="Possui problemas financeiros">
+                                          </md-checkbox>
+                                      </div>
+                                  </div>
 
-                                <div layout="column" layout-gt-xs="row">
-                                    <div flex="100" flex-gt-sm="50">
-                                        Familiares com problemas com uso de alcool/drogas?
-                                        <md-checkbox ng-model="vm.data.estruturaFamiliar.usoAlcoolDrogas" aria-label="Familiares com problemas com uso de alcool/drogas">
-                                        </md-checkbox>
-                                    </div>
-                                </div>
+                                  <div layout="column" layout-gt-xs="row">
+                                      <div flex="100" flex-gt-sm="50">
+                                          Familiares com problemas com uso de alcool/drogas?
+                                          <md-checkbox ng-model="vm.data.estruturaFamiliar.usoAlcoolDrogas" aria-label="Familiares com problemas com uso de alcool/drogas">
+                                          </md-checkbox>
+                                      </div>
+                                  </div>
 
-                                <div layout="column" layout-gt-xs="row">
-                                    <div flex="100" flex-gt-sm="50">
-                                        Alguém agressivo na família?
-                                        <md-checkbox ng-model="vm.data.estruturaFamiliar.alguemAgressivo" aria-label="Alguém agressivo na família">
-                                        </md-checkbox>
-                                    </div>
-                                </div>
+                                  <div layout="column" layout-gt-xs="row">
+                                      <div flex="100" flex-gt-sm="50">
+                                          Alguém agressivo na família?
+                                          <md-checkbox ng-model="vm.data.estruturaFamiliar.alguemAgressivo" aria-label="Alguém agressivo na família">
+                                          </md-checkbox>
+                                      </div>
+                                  </div>
 
-                                <div layout="column" layout-gt-xs="row">
-                                    <div flex="100" flex-gt-sm="50">
-                                        Participa de programas sociais?
-                                        <md-checkbox ng-model="vm.data.estruturaFamiliar.programasSociais" aria-label="Participa de programas sociais">
-                                        </md-checkbox>
-                                    </div>
+                                  <div layout="column" layout-gt-xs="row">
+                                      <div flex="100" flex-gt-sm="50">
+                                          Participa de programas sociais?
+                                          <md-checkbox ng-model="vm.data.estruturaFamiliar.programasSociais" aria-label="Participa de programas sociais">
+                                          </md-checkbox>
+                                      </div>
+                                 </div>
                                 </div>
                             </form>
                         </md-tab-body>
