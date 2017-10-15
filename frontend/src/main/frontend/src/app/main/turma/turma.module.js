@@ -75,7 +75,7 @@
 
     msNavigationServiceProvider.saveItem('social.turma', {
       title: 'Gerenciar Turmas',
-      icon: 'icon-human',
+      icon: 'icon-people',
       state: 'app.turma',
       weight: 2
     });
