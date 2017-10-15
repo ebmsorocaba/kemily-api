@@ -72,53 +72,61 @@
       <md-list class="turmas-list">
         <md-subheader class="md-no-sticky md-white-bg">
           <div layout="row" layout-align="space-between center">
-            <div class="list-title" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
+            <div class="list-title" layout="row" ng-hide="editGroupForm.$visible">
               <span ng-if="vm.listType === 'all'">Turmas Cadastrados</span>
               <span ng-if="filteredTurmas.length" class="secondary-text turmas-count">
                                 ({{filteredTurmas.length}})
                             </span>
             </div>
+            <div>
+              <span>Ordenar</span>
+              <md-menu>
+                <md-button class="md-icon-button" aria-label="Ordenar">
+                  <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
+                </md-button>
 
-            <span>Ordenar</span>
-            <md-menu>
-              <md-button class="md-icon-button" aria-label="Ordenar">
-                <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
-              </md-button>
+                <md-menu-content width="3">
 
-              <md-menu-content width="3">
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'descricao'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'descricao' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                      <span>Descricao</span>
+                      <small>(A até Z)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'descricao'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'descricao' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>Descricao</span>
-                    <small>(A até Z)</small>
-                  </md-button>
-                </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'descricao'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'descricao' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                      <span>Descricao</span>
+                      <small>(Z até A)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'descricao'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'descricao' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>Descricao</span>
-                    <small>(Z até A)</small>
-                  </md-button>
-                </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                      <span>Id</span>
+                      <small>(Crescente)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>Id</span>
-                    <small>(Crescente)</small>
-                  </md-button>
-                </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                      <span>Id</span>
+                      <small>(Decrescente)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>Id</span>
-                    <small>(Decrescente)</small>
-                  </md-button>
-                </md-menu-item>
+                </md-menu-content>
 
-              </md-menu-content>
+              </md-menu>
+            </div>
 
-            </md-menu>
+          </div>
 
+          <div class="atributos" layout-align="space-around end">
+            <label>Id da Turma</label>
+            <label>Nome da Turma</label>
+            <label>Período</label>
+            <label>Cpf do Educador</label>
           </div>
 
         </md-subheader>
@@ -128,7 +136,7 @@
 
           <md-checkbox ng-checked="vm.exists(turma, vm.selectedTurmas)" ng-click="vm.toggleSelectTurma(turma, $event)" aria-label="{{vm.exists(turma, vm.selectedTurmas) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
-          <div class="item" layout="row">
+          <div class="item" layout="row" layout-align="space-around end">
 
           <p class="hide show-gt-xs numero idTurma">
             {{turma.id}}
@@ -141,7 +149,6 @@
           <p class="ride show-gt-sm texto periodoTurma">
             {{turma.periodo}}
           </p>
-          
 
           <p class="hide show-gt-sm texto cpfEducador">
             {{turma.cpfEducador}}
