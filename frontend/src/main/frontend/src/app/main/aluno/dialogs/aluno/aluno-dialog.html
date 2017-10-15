@@ -84,7 +84,7 @@
                                     </md-input-container>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-around none" style="height: 100vh, width: 100vh">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
 
                                     <md-input-container flex="100" flex-gt-xs="15">
                                         <label>Tam. da camiseta</label>
@@ -185,7 +185,7 @@
                                 <div layout="column" layout-gt-xs="column" flex>
                                   <h2>Dados da mãe</h2>
                                     <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
-                                        <md-input-container flex="100" flex-gt-xs="50">
+                                        <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="text" name="nomemae" ng-model="vm.mae.nome" placeholder="Nome da Mãe">
                                         </md-input-container>
 
@@ -193,21 +193,21 @@
                                             <input type="text" name="telmae" ng-model="vm.mae.telefone" mask="(99) 9?9999-9999" placeholder="Telefone">
                                         </md-input-container>
 
-                                        <md-input-container flex="100" flex-gt-xs="30">
-                                            <input type="email" name="emailmae" ng-model="vm.mae.email" placeholder="Email">
+                                        <md-input-container flex="100" flex-gt-xs="15">
+                                            <input type="text" name="rg" ng-model="vm.mae.rg" md-maxlength="12" mask="99.999.999-w" placeholder="RG">
                                         </md-input-container>
 
-                                        <md-input-container flex="100" flex-gt-xs="30">
-                                            <input type="text" name="redemae" ng-model="vm.mae.redeSocial" placeholder="Rede Social">
+                                        <md-input-container flex="100" flex-gt-xs="15">
+                                            <input type="text" name="cpf" ng-model="vm.mae.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
                                         </md-input-container>
                                     </div>
                                     <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
-                                            <input type="text" name="rg" ng-model="vm.mae.rg" md-maxlength="12" mask="99.999.999-w" placeholder="RG">
+                                            <input type="email" name="emailmae" ng-model="vm.mae.email" placeholder="Email">
                                         </md-input-container>
 
-                                        <md-input-container flex="100" flex-gt-xs="30">
-                                            <input type="text" name="cpf" ng-model="vm.mae.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
+                                        <md-input-container flex="100" flex-gt-xs="40">
+                                            <input type="text" name="redemae" ng-model="vm.mae.redeSocial" placeholder="Rede Social">
                                         </md-input-container>
 
                                         <md-input-container flex="100" flex-gt-xs="15">
@@ -232,25 +232,27 @@
                                             <input type="text" ng-model="c.telefone" mask="(99) 9?9999-9999" placeholder="Telefone">
                                         </md-input-container>
 
-                                        <md-input-container flex="100" flex-gt-xs="30">
-                                            <input type="email" name="email" ng-model="c.email" placeholder="Email">
-                                        </md-input-container>
-
-                                        <md-input-container flex="100" flex-gt-xs="30">
-                                            <input type="text" name="rede" ng-model="c.redeSocial" placeholder="Rede Social">
-                                        </md-input-container>
-                                    </div>
-                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
-
-                                        <md-input-container flex="100" flex-gt-xs="30">
+                                        <md-input-container flex="100" flex-gt-xs="15">
                                             <input type="text" name="rg" ng-model="c.rg" md-maxlength="12" mask="99.999.999-w" placeholder="RG">
                                         </md-input-container>
 
-                                        <md-input-container flex="50" flex-gt-xs="20">
+                                        <md-input-container flex="50" flex-gt-xs="15">
                                             <input type="text" name="cpf" ng-model="c.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
                                         </md-input-container>
 
-                                        <md-input-container flex="100" flex-gt-xs="30">
+
+                                    </div>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
+
+                                        <md-input-container flex="100" flex-gt-xs="25">
+                                            <input type="email" name="email" ng-model="c.email" placeholder="Email">
+                                        </md-input-container>
+
+                                        <md-input-container flex="100" flex-gt-xs="35">
+                                            <input type="text" name="rede" ng-model="c.redeSocial" placeholder="Rede Social">
+                                        </md-input-container>
+
+                                        <md-input-container flex="100" flex-gt-xs="15">
                                             <input type="text" ng-model="c.grauParentesco" placeholder="Grau Parentesco">
                                         </md-input-container>
 
