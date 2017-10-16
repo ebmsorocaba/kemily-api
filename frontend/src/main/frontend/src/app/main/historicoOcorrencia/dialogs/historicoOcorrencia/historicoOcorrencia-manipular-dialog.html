@@ -1,0 +1,56 @@
+<!-- DIALOG -->
+<md-dialog class="manipularOcorrencia-dialog">
+
+    <form name="OcorrenciaForm" class="md-inline-form" novalidate>
+
+        <div class=" md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+            <span class="title">{{vm.title}}</span>
+            <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Fechar diálogo">
+                <md-icon md-font-icon="icon-close"></md-icon>
+            </md-button>
+        </div>
+
+        <md-dialog-content ms-scroll>
+
+            <md-input-container class="md-icon-float md-block">
+                <label>Data da Ocorrencia</label>
+                <md-icon class="date">date_range</md-icon>
+                <input ng-model="vm.ocorrencia.data" type="text" mask="99/99/9999" md-autofocus ng-disabled="!vm.newOcorrencia">
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block">
+                <label>Hora da Ocorrencia</label>
+                <md-icon class="date">alarm</md-icon>
+                <input ng-model="vm.ocorrencia.hora" type="text" mask="99:99" ng-disabled="!vm.newOcorrencia">
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block">
+                <label>Descricao</label>
+                <md-icon md-font-icon="">reorder</md-icon>
+                <textarea rows="5" ng-model="vm.ocorrencia.descricao" type="text"></textarea>
+            </md-input-container>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button type="submit" ng-if="!vm.newOcorrencia" ng-click="vm.salvarOcorrencia()" class="send-button md-accent md-raised" ng-disabled="OcorrenciaForm.$invalid || OcorrenciaForm.$pristine" aria-label="Salvar Ocorrencia">
+                    Salvar Ocorrencia
+                </md-button>
+                <md-button type="submit" ng-if="vm.newOcorrencia" ng-click="vm.adicionarOcorrencia()" class="send-button md-accent md-raised" ng-disabled="OcorrenciaForm.$invalid || OcorrenciaForm.$pristine" aria-label="Adicionar Ocorrencia">
+                    Adicionar Ocorrencia
+                </md-button>
+            </div>
+
+            <div ng-if="!vm.newOcorrencia" layout="row">
+                <md-button class="md-icon-button" ng-click="vm.deletarOcorrencia($event, vm.ocorrencia)" aria-label="Apagar">
+                    <md-icon md-font-icon="icon-delete"></md-icon>
+                    <md-tooltip><span>Apagar</span></md-tooltip>
+                </md-button>
+            </div>
+
+        </md-dialog-actions>
+
+    </form>
+
+</md-dialog>

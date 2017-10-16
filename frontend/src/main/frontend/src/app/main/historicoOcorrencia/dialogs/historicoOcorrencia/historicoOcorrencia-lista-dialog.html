@@ -1,0 +1,77 @@
+<!-- DIALOG -->
+<md-dialog class="ocorrencia-dialog">
+
+    <div class=" md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+        <span class="title">{{vm.title}}</span>
+        <label for="search">
+        Buscar
+      </label>
+        <md-input-container md-no-float class="m-0">
+            <input id="search" class="search" placeholder="Pesquisar Datas..." type="text" mask="99/99/9999" ng-model="vm.search">
+        </md-input-container>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Fechar diálogo">
+            <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+    </div>
+
+    <div class="search-input-wrapper" layout="row" layout-align="start center">
+
+    </div>
+
+    <md-dialog-content ms-scroll>
+
+        <md-list>
+            <md-subheader class="md-no-sticky md-white-bg">
+
+                <div layout="row" layout-align="space-between center">
+                    <div class="list-title titleHeader" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
+                        <span>Ocorrencias </span>
+                        <span ng-if="vm.ocorrencias.length" class="secondary-text">({{vm.ocorrencias.length}})</span>
+                    </div>
+                </div>
+
+                <div layout="row" layout-align="space-between center">
+
+                    <div class="item" layout="row" layout-align="space-between center">
+                        <p class="header">Data</p>
+                        <p class="header">Hora</p>
+                        <p class="header">Descrição</p>
+                    </div>
+
+                </div>
+
+            </md-subheader>
+            <md-list-item class="ocorrencia-item md-white-bg" md-ink-ripple ng-repeat="oco in vm.ocorrencias | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredOcorrencias track by (oco.data + oco.hora)"
+                ng-click="vm.openManipularOcorrenciaDialog($event, oco)" ng-class="{'selected': vm.isSelected(oco)}">
+                <div class="item" layout="row" layout-align="space-between center">
+                    <p class="date data">{{vm.formataData(oco.data)}}</p>
+                    <p class="number numero">{{vm.formataHora(oco.hora)}}</p>
+                    <p class="text descricao">{{oco.descricao}}</p>
+                </div>
+            </md-list-item>
+            <md-list-item class="no-results md-white-bg list-title" ng-show="vm.ocorrencias.length === 0">
+                <p>Nenhuma Ocorrencia Cadastrada</p>
+            </md-list-item>
+        </md-list>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-accent" ng-click="vm.openManipularOcorrenciaDialog($event)">
+            Adicionar Ocorrencia
+        </md-button>
+        <md-menu class="select-menu">
+            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="multi select toggle">
+                <md-icon md-font-icon="icon-menu-down"></md-icon>
+            </md-button>
+            <md-menu-content width="3">
+                <md-menu-item>
+                    <md-button ng-click="vm.deletarTodasAsOcorrencias(ev)">
+                        Deletar TODAS as ocorrencias
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </md-dialog-actions>
+
+</md-dialog>
