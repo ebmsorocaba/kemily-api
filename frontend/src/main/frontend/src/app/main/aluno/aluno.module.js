@@ -66,7 +66,7 @@
 
     msNavigationServiceProvider.saveItem('social.aluno', {
       title: 'Gerenciar Alunos',
-      icon: 'icon-school',
+      icon: 'icon-library',
       state: 'app.aluno',
       weight: 1
     });
