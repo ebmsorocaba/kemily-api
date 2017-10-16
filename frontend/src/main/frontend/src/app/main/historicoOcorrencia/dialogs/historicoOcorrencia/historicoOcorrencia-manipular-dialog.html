@@ -14,13 +14,13 @@
 
             <md-input-container class="md-icon-float md-block">
                 <label>Data da Ocorrencia</label>
-                <md-icon md-font-icon="icon-account" class="date"></md-icon>
+                <md-icon class="date">date_range</md-icon>
                 <input ng-model="vm.ocorrencia.data" type="text" mask="99/99/9999" md-autofocus ng-disabled="!vm.newOcorrencia">
             </md-input-container>
 
             <md-input-container class="md-icon-float md-block">
                 <label>Hora da Ocorrencia</label>
-                <md-icon md-font-icon="icon-account" class="date"></md-icon>
+                <md-icon class="date">alarm</md-icon>
                 <input ng-model="vm.ocorrencia.hora" type="text" mask="99:99" ng-disabled="!vm.newOcorrencia">
             </md-input-container>
 
