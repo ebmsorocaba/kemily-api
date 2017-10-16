@@ -131,7 +131,21 @@
             </md-menu>
 
           </div>
+          <div class="atributos" layout="row" layout-align="space-around end">
 
+              <label>Nome</label>
+
+              <label>Cpf</label>
+
+              <label>Telefone</label>
+
+              <label>Email</label>
+
+              <label>Paga em:</label>
+
+              <label>Valor</label>
+
+          </div>
         </md-subheader>
 
         <md-list-item class="associado-item md-white-bg" md-ink-ripple ng-repeat="associado in vm.associados | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredAssociados track by associado.nome"
