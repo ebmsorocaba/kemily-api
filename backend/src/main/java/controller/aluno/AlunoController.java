@@ -8,21 +8,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import jdbc.dao.aluno.*;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
@@ -88,6 +81,8 @@ public class AlunoController {
             HSSFWorkbook excel = alunoExcel.gerarExcel();
         	
         	excel.write(response.getOutputStream());
+        	
+        	excel.close();
         	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
