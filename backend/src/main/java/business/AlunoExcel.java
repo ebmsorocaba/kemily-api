@@ -1,6 +1,7 @@
 package business;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -182,14 +183,19 @@ public class AlunoExcel {
 		
 		Aluno alu = aluno.getAluno();
 		Roupa roupa = aluno.getRoupa();
+		SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
 		
+		String rg = alu.getRg();
+		
+		rg = rg.substring(0, 2).concat(".").concat(rg.substring(2,5)).concat(".").concat(rg.substring(5,8)).concat("-").concat(rg.substring(8));
+
 		dadosGerais.createCell(0).setCellValue(alu.getRa());
 		dadosGerais.createCell(1).setCellValue(alu.getNome());
-		dadosGerais.createCell(2).setCellValue(alu.getRg());
+		dadosGerais.createCell(2).setCellValue(rg);
 		dadosGerais.createCell(3).setCellValue(alu.getEtnia());
 		dadosGerais.createCell(4).setCellValue(alu.getNaturalidade());
 		dadosGerais.createCell(5).setCellValue(alu.getEstado());
-		dadosGerais.createCell(6).setCellValue(String.valueOf(alu.getDataNascimento()));
+		dadosGerais.createCell(6).setCellValue(data.format(alu.getDataNascimento()));
 		dadosGerais.createCell(7).setCellValue(roupa.getTamanhoCamiseta());
 		dadosGerais.createCell(8).setCellValue(roupa.getTamanhoCalca());
 		dadosGerais.createCell(9).setCellValue(roupa.getTamanhoSapato());
@@ -212,12 +218,16 @@ public class AlunoExcel {
 		
 		Endereco end = aluno.getEndereco();
 		
+		String cep = end.getCep();
+		
+		cep = cep.substring(0, 5).concat("-").concat(cep.substring(5));
+		
 		endereco.createCell(11).setCellValue(end.getRua());
 		endereco.createCell(12).setCellValue(end.getNumero());
 		endereco.createCell(13).setCellValue(end.getComplemento());
 		endereco.createCell(14).setCellValue(end.getBairro());
 		endereco.createCell(15).setCellValue(end.getCidade());
-		endereco.createCell(16).setCellValue(end.getCep());
+		endereco.createCell(16).setCellValue(cep);
 		endereco.createCell(17).setCellValue(end.getPontoReferencia());
 		
 	}
@@ -244,8 +254,11 @@ public class AlunoExcel {
 			
 			System.out.println("tamanho do rl: " + rl.size());
 			
+			
+			
 			for(int i = 0; i < rl.size(); i++) {
 				System.out.println("linha: " + linha + ", i: " + i);
+				
 				if(i == 0) {
 				
 					resp.createCell(18).setCellValue(rl.get(i).getNome());
@@ -434,13 +447,15 @@ public class AlunoExcel {
 		
 		List<MembroFamiliar> mf = aluno.getMembroFamiliarList();
 		
+		SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+		
 		String quebraLinha = System.lineSeparator();
 		
 		for(int i = 0; i < mf.size(); i++) {
 			if(i == 0) {
 				cf.createCell(54).setCellValue(mf.get(i).getNome());
 				cf.createCell(55).setCellValue(mf.get(i).getParentesco());
-				cf.createCell(56).setCellValue(String.valueOf(mf.get(i).getDataNascimento()));
+				cf.createCell(56).setCellValue(data.format(mf.get(i).getDataNascimento()));
 				cf.createCell(57).setCellValue(mf.get(i).getEscolaridade());
 				cf.createCell(58).setCellValue(mf.get(i).getOcupacao());
 				cf.createCell(59).setCellValue(mf.get(i).getCondicaoTrabalho());
@@ -449,7 +464,7 @@ public class AlunoExcel {
 			} else {
 				cf.getCell(54).setCellValue(cf.getCell(54).getStringCellValue().concat(quebraLinha + mf.get(i).getNome()));
 				cf.getCell(55).setCellValue(cf.getCell(55).getStringCellValue().concat(quebraLinha + mf.get(i).getParentesco()));
-				cf.getCell(56).setCellValue(cf.getCell(56).getStringCellValue().concat(quebraLinha + String.valueOf(mf.get(i).getDataNascimento())));
+				cf.getCell(56).setCellValue(cf.getCell(56).getStringCellValue().concat(quebraLinha + data.format(mf.get(i).getDataNascimento())));
 				cf.getCell(57).setCellValue(cf.getCell(57).getStringCellValue().concat(quebraLinha + mf.get(i).getEscolaridade()));
 				cf.getCell(58).setCellValue(cf.getCell(58).getStringCellValue().concat(quebraLinha + mf.get(i).getOcupacao()));
 				cf.getCell(59).setCellValue(cf.getCell(59).getStringCellValue().concat(quebraLinha + mf.get(i).getCondicaoTrabalho()));
