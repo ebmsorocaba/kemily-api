@@ -20,10 +20,11 @@ public class TurmaDAO {
 	public void adiciona(Turma turma) throws SQLException {
 		try {
 			
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO turma (cpf_educador, descricao) VALUES (?, ?)");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO turma (cpf_educador, periodo, nome) VALUES (?, ?, ?)");
 			
 			stmt.setString(1, turma.getCpfEducador());
-			stmt.setString(2, turma.getDescricao());
+			stmt.setString(2, turma.getPeriodo());
+			stmt.setString(3, turma.getNome());
 			
 			stmt.execute();
 			
@@ -46,7 +47,8 @@ public class TurmaDAO {
 				
 				t.setId(rs.getInt("id"));
 				t.setCpfEducador(rs.getString("cpf_educador"));
-				t.setDescricao(rs.getString("descricao"));
+				t.setPeriodo(rs.getString("periodo"));
+				t.setNome(rs.getString("nome"));
 				
 				turmas.add(t);
 			}
@@ -75,7 +77,8 @@ public class TurmaDAO {
 				
 				turma.setId(rs.getInt("id"));
 				turma.setCpfEducador(rs.getString("cpf_educador"));
-				turma.setDescricao(rs.getString("descricao"));
+				turma.setPeriodo(rs.getString("periodo"));
+				turma.setNome(rs.getString("nome"));
 			
 			}
 			
@@ -101,11 +104,12 @@ public class TurmaDAO {
 	}
 	
 	public void altera(Turma turma, int id) throws SQLException {
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE turma SET cpf_educador = ?, descricao = ? WHERE id = ?");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE turma SET cpf_educador = ?, periodo = ?, nome = ? WHERE id = ?");
 		
 		stmt.setString(1, turma.getCpfEducador());
-		stmt.setString(2, turma.getDescricao());
-		stmt.setInt(3, id);
+		stmt.setString(2, turma.getPeriodo());
+		stmt.setString(3, turma.getNome());
+		stmt.setInt(4, id);
 		
 		stmt.execute();
 		

@@ -39,6 +39,7 @@ DROP TABLE responsavel_legal;
 DROP TABLE contato;
 DROP TABLE roupa;
 DROP TABLE aluno_turma;
+DROP TABLE historico_ocorrencia;
 DROP TABLE aluno;
 DROP TABLE turma;
 DROP TABLE educador;
@@ -316,13 +317,22 @@ CREATE TABLE educador (
 CREATE TABLE turma (
   id SERIAL PRIMARY KEY,
   cpf_educador VARCHAR(20) REFERENCES educador(cpf),
-  descricao TEXT
+  periodo TEXT,
+  nome TEXT
 );
 
 CREATE TABLE aluno_turma (
   ra_aluno BIGINT REFERENCES aluno(ra) on delete CASCADE,
-  id_turma BIGINT REFERENCES turma(id),
+  id_turma BIGINT REFERENCES turma(id) on delete CASCADE,
   PRIMARY KEY(ra_aluno, id_turma)
+);
+
+CREATE TABLE historico_ocorrencia (
+  data DATE,
+  hora TIME,
+  ra_aluno BIGINT REFERENCES aluno(ra) on delete CASCADE,
+  descricao TEXT NOT NULL,
+  PRIMARY KEY(data, hora, ra_aluno)
 );
 
 /*---Fim da criação das tabelas---*/
@@ -532,8 +542,10 @@ INSERT INTO educador (cpf, nome, data_nascimento, sexo, telefone, email, cargo, 
 VALUES ('450.059.448-50', 'Diego Ferreira Silva', '16/09/1995', 'Masculino', '(15) 99751-3436', 'diegofs01@hotmail.com',
                           'Voluntário', 012345, 01234, '120.8525.943-1', '12345234', '318', '10:30', '18:30');
 
-INSERT INTO turma(cpf_educador, descricao)
-  VALUES('450.059.448-50', 'Turma do Diego');
+INSERT INTO turma(cpf_educador, periodo, nome)
+  VALUES('450.059.448-50', 'Manhã', 'Turma do Diego Manha');
+INSERT INTO turma(cpf_educador, periodo, nome)
+  VALUES('450.059.448-50', 'Tarde', 'Turma do Diego Tarde');
 
 INSERT INTO aluno_turma(ra_aluno, id_turma)
   VALUES(1,1);
@@ -542,6 +554,8 @@ INSERT INTO aluno_turma(ra_aluno, id_turma)
 INSERT INTO aluno_turma(ra_aluno, id_turma)
   VALUES(3,1);
 
+INSERT INTO historico_ocorrencia (data, hora, ra_aluno, descricao)
+  VALUES('10/10/2017', '15:35:00', 1, 'Teste');
+
 /*---Fim de inserção de dados de exemplo---*/
 /*                                         */
-;

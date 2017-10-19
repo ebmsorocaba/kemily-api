@@ -1,21 +1,15 @@
-<!-- DIALOG -->
+
 <md-dialog class="associado-dialog">
 
   <form name="AssociadoForm" class="md-inline-form" novalidate>
 
-    <!-- DIALOG TOOLBAR -->
-    <!-- <md-toolbar class="md-accent" layout="column"> -->
-
-    <!-- TOOLBAR TOP -->
     <div class=" md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
       <span class="title">{{vm.title}}</span>
       <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Fechar diálogo">
         <md-icon md-font-icon="icon-close"></md-icon>
       </md-button>
     </div>
-    <!-- / TOOLBAR TOP -->
 
-    <!-- DIALOG CONTENT -->
     <md-dialog-content ms-scroll>
 
       <md-input-container class="md-icon-float md-block">
@@ -26,7 +20,7 @@
 
       <md-input-container class="md-icon-float md-block">
         <label>CPF</label>
-        <md-icon></md-icon>
+        <md-icon md-font-icon="icon-account-circle"></md-icon>
         <input ng-blur="vm.calculaCPF(vm.associado.cpf)" cpf ng-model="vm.associado.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newAssociado" required>
       </md-input-container>
 
@@ -42,18 +36,6 @@
         <input ng-model="vm.associado.email" type="email">
       </md-input-container>
 
-      <!-- Desativado temporariamente -->
-      <!-- <md-input-container class="md-icon-float md-block">
-        <label>Forma de Pagamento</label>
-        <md-icon md-font-icon="icon-format-list-bulleted"></md-icon>
-        <md-select ng-model="vm.contact.formaPgto" ng-model-options="{trackBy: '$value'}">
-          <md-option ng-value="fp" ng-repeat="fp in vm.listaPgtos">
-            {{fp}}
-          </md-option>
-        </md-select>
-      </md-input-container> -->
-
-      <!-- Este input só aparece se "Cartão" for selecionado no [md-select] acima: -->
       <md-input-container class="md-icon-float md-block" ng-if="vm.associado.formaPgto == 'Cartão'">
         <label>Número do Cartão (somente números)</label>
         <md-icon md-font-icon="icon-credit-card"></md-icon>
@@ -74,9 +56,7 @@
       </md-input-container>
 
     </md-dialog-content>
-    <!-- / DIALOG CONTENT -->
 
-    <!-- DIALOG ACTIONS -->
     <md-dialog-actions layout="row" layout-align="space-between center">
       <div layout="row" layout-align="start center">
         <md-button type="submit" ng-if="!vm.newAssociado" ng-click="vm.saveAssociado()" class="send-button md-accent md-raised" ng-disabled="AssociadoForm.$invalid || AssociadoForm.$pristine" aria-label="Salvar">
@@ -96,9 +76,6 @@
         </md-button>
       </div>
     </md-dialog-actions>
-    <!-- / DIALOG ACTIONS -->
 
   </form>
-
 </md-dialog>
-<!-- / DIALOG -->

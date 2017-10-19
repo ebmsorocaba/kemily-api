@@ -243,36 +243,27 @@
     }
 }
 
-div.item p.pagamentoAluno{
-    margin-right: -30px;
-    width: 70px;
-}
 
-div.item p.valorAluno{
-
-    margin-right: 30px;
-    width: 70px;
+div.item p.raAluno{
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 div.item p.nomeAluno{
-    margin-right: 45px;
+    margin-left: 155px;
+    margin-right: 85px;
     width: 200px;
 }
 
-div.item p.cpfAluno{
+div.item p.dataNascAluno{
 
-    margin-right: 65px;
-    width: 70px;
 }
 
-
-div.item p.telefone{
-    margin-right: 65px;
-    width: 70px;
+.ralabel{
+  margin-left: -70px;
 }
-
-div.item p.emailAluno{
-
-    margin-right: 70px;
-    width: 150px;
+.atributos{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }

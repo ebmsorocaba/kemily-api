@@ -117,7 +117,7 @@
                         .editable-controls {
                             display: flex;
                             flex-direction: row;
-                            align-items: center;
+                            align-items: space-between;
                             justify-content: flex-start;
 
                             .editable-input {
@@ -212,13 +212,22 @@
 }
 
 
-div.item p.descricaoTurma{
-    margin-right: 45px;
+div.item p.nomeTurma{
+    margin-left: 110px;
+    margin-right: 95px;
     width: 200px;
 }
 
-div.item p.idTurma{
+div.item p.periodoTurma{
+    margin-left: 95px;
+}
 
-    margin-right: 65px;
+div.item p.cpfEducador{
+    margin-left: 135px;
+}
+
+div.item p.idTurma{
+    margin-right: 110px;
+    margin-left: -20px;
     width: 70px;
 }

@@ -1,4 +1,4 @@
-#pagamentos {
+#historicoOcorrencia {
     position: relative;
 
     > .header {
@@ -92,7 +92,7 @@
             right: 0;
             bottom: 0;
 
-            .pagamentos-list {
+            .ocorrencia-list {
                 position: relative;
                 padding-bottom: 0;
 
@@ -104,7 +104,7 @@
                         padding: 16px;
                     }
 
-                    .pagamentos-count {
+                    .alunos-count {
                         padding-left: 4px;
                     }
 
@@ -127,9 +127,6 @@
                                 font-size: 13px;
                             }
 
-                            .editable-buttons {
-
-                            }
                         }
 
                         .edit-group-button {
@@ -148,7 +145,7 @@
                     }
                 }
 
-                .pagamento-item {
+                .ocorrencia-item {
                     position: absolute;
                     right: 0;
                     left: 0;
@@ -189,18 +186,54 @@
         }
     }
 
-    #add-pagamento-button {
+    #add-ocorrencia-button {
         position: fixed;
         bottom: 8px;
         right: 8px;
         padding: 0;
     }
+
+    md-list-item, md-list-item .md-list-item-inner {
+        min-height: 48px;
+        height: 48px;
+    }
+
+    div.item p.data{
+        width: 200px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    div.item p.texto{
+        width: 220px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    div.item p.numero{
+        width: 50px;
+        padding-right: 140px;
+        font-weight: bold;
+        text-align: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    md-icon {
+        color: #000;
+    }
+
 }
 
 // RESPONSIVE
 @media screen and (min-width: $layout-breakpoint-md) {
 
-    #pagamentos {
+    #ocorrencia {
 
         > .content {
 
@@ -209,32 +242,4 @@
             }
         }
     }
-}
-
-
-div.item p.id{
-    margin-left: -20px;
-    margin-right: 100px;
-    width: 40px;
-    text-align: right;
-}
-
-div.item p.cpf{
-    margin-right: 80px;
-}
-
-div.item p.nome{
-    margin-right: 35px;
-}
-
-div.item p.formaPagamento{
-    margin-right: 100px;
-}
-
-div.item p.dataPagamento{
-    margin-right: 30px;
-}
-
-div.item p.valorPago{
-    margin-right: 120px;
 }

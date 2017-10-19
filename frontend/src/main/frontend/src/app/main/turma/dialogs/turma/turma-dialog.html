@@ -12,19 +12,30 @@
 
     <md-dialog-content ms-scroll>
 
-      <div layout="column" layout-gt-xs="row">
-        <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="30">
+      <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-around none" style="height: 100vh, width: 100vh">
+        <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="20">
           <label>Cpf do Educador</label>
-          <md-icon md-font-icon="">reorder</md-icon>
+          <md-icon md-font-icon="icon-account-circle"></md-icon>
           <input ng-model="vm.turma.cpfEducador" type="text" mask="999.999.999-99" ng-disabled="!vm.newTurma" required>
         </md-input-container>
 
-        <md-input-container flex="100" flex-gt-xs="50">
-          <input type="text" name="descricao" ng-model="vm.turma.descricao" placeholder="Descrição">
+        <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="15">
+          <label>Período</label>
+          <md-icon md-font-icon="icon-clock"></md-icon>
+          <md-select ng-model="vm.turma.periodo" required>
+            <md-option ng-repeat="periodo in vm.periodos" value="{{periodo}}">
+              {{periodo}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="30">
+          <md-icon md-font-icon="icon-clipboard-text"></md-icon>
+          <input type="text" name="nome" ng-model="vm.turma.account" placeholder="Nome da Turma">
         </md-input-container>
       </div>
 
-      <p><b>Alunos dentro da Turma:</b></p>
+      <h3>Alunos dentro da Turma:</h3>
       <md-list-item class="aluno-item md-white-bg"  ng-repeat="a in vm.alunosDentroTurma">
         <div class="item" layout="row">
           <p class="show-gt-xs numero">
@@ -40,7 +51,7 @@
         </div>
       </md-list-item>
 
-      <p><b>Alunos fora da Turma:</b></p>
+      <h3>Alunos fora da Turma:</h3>
       <md-list-item class="aluno-item md-white-bg" ng-repeat="a in vm.alunosForaTurma track by a.aluno.ra">
         <div class="item" layout="row">
           <p class="show-gt-xs numero">
