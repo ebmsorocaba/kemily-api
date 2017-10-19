@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 
 import DTO.AlunoDTO;
 import model.aluno.Aluno;
@@ -32,6 +34,12 @@ public class AlunoExcel {
 		
 		HSSFWorkbook alunoExcel = new HSSFWorkbook();
 		
+		CellStyle style = alunoExcel.createCellStyle();
+		Font font = alunoExcel.createFont();
+		
+		font.setBold(true);
+		style.setFont(font);
+		
 		List<AlunoDTO> alunos = service.GetAll();
 		
 		int linha = 2;
@@ -40,7 +48,7 @@ public class AlunoExcel {
 			
 			HSSFSheet sheet = alunoExcel.createSheet();
 			
-			criarCabecalhoDialog(sheet);
+			criarCabecalhoDialog(sheet, style);
 			
 			System.out.println(alunos.size());
 			
@@ -60,6 +68,10 @@ public class AlunoExcel {
 				preencherDespesas(sheet, linha, aluno);
 				preencherObservacoes(sheet, linha, aluno);
 				
+				for(int i = 0; i < sheet.getRow(1).getLastCellNum(); i++) {
+					sheet.getRow(1).getCell(i).setCellStyle(style);
+				}
+				
 				System.out.println("incrementando linha");
 				linha++;
 			}
@@ -78,7 +90,7 @@ public class AlunoExcel {
 		return alunoExcel;
 	}
 	
-	public void criarCabecalhoDialog(HSSFSheet sheet) {
+	public void criarCabecalhoDialog(HSSFSheet sheet, CellStyle style) {
 		
 		try {
 			
@@ -96,6 +108,19 @@ public class AlunoExcel {
 			rowTop.createCell(70).setCellValue("Aparelhos Eletronicos");
 			rowTop.createCell(81).setCellValue("Despesas");
 			rowTop.createCell(96).setCellValue("Observações");
+			
+			rowTop.getCell(0).setCellStyle(style);
+			rowTop.getCell(11).setCellStyle(style);
+			rowTop.getCell(18).setCellStyle(style);
+			rowTop.getCell(26).setCellStyle(style);
+			rowTop.getCell(32).setCellStyle(style);
+			rowTop.getCell(38).setCellStyle(style);
+			rowTop.getCell(48).setCellStyle(style);
+			rowTop.getCell(54).setCellStyle(style);
+			rowTop.getCell(62).setCellStyle(style);
+			rowTop.getCell(70).setCellStyle(style);
+			rowTop.getCell(81).setCellStyle(style);
+			rowTop.getCell(96).setCellStyle(style);
 			
 		} catch (Exception ex) {
 			System.out.println("Erro de Exception no try criarCabecalhoDialog()");
