@@ -187,6 +187,9 @@
                 box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
             }
         }
+        md-icon {
+            color: #757575;
+        }
     }
 
     #add-associado-button {
@@ -219,7 +222,6 @@ div.item p.pagamentoAssociado{
 
 div.item p.valorAssociado{
 
-    margin-right: 30px;
     width: 70px;
 }
 
@@ -236,12 +238,11 @@ div.item p.cpfAssociado{
 
 
 div.item p.telefone{
-    margin-right: 95px;
     width: 70px;
 }
 
 div.item p.emailAssociado{
-    margin-left: 25px;
+    margin-left: -90px;
     margin-right: 70px;
     width: 150px;
 }
