@@ -187,14 +187,21 @@
                 box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
             }
         }
+
+        md-icon {
+            color: #757575;
+        }
     }
+
 
     #add-usuario-button {
         position: fixed;
         bottom: 8px;
         right: 8px;
         padding: 0;
+        color: #FFF;
     }
+
 }
 
 // RESPONSIVE
