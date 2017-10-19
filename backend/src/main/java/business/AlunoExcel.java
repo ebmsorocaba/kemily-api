@@ -6,8 +6,11 @@ import java.util.List;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 import DTO.AlunoDTO;
 import model.aluno.Aluno;
@@ -34,11 +37,22 @@ public class AlunoExcel {
 		
 		HSSFWorkbook alunoExcel = new HSSFWorkbook();
 		
-		CellStyle style = alunoExcel.createCellStyle();
+		CellStyle styleCabecalho = alunoExcel.createCellStyle();
 		Font font = alunoExcel.createFont();
 		
 		font.setBold(true);
-		style.setFont(font);
+		styleCabecalho.setFont(font);
+		styleCabecalho.setBorderBottom(BorderStyle.THIN);
+		styleCabecalho.setBorderTop(BorderStyle.THIN);
+		styleCabecalho.setBorderLeft(BorderStyle.THIN);
+		styleCabecalho.setBorderRight(BorderStyle.THIN);
+		styleCabecalho.setAlignment(HorizontalAlignment.CENTER);
+		
+		CellStyle styleBorda = alunoExcel.createCellStyle();
+		styleBorda.setBorderBottom(BorderStyle.THIN);
+		styleBorda.setBorderTop(BorderStyle.THIN);
+		styleBorda.setBorderLeft(BorderStyle.THIN);
+		styleBorda.setBorderRight(BorderStyle.THIN);
 		
 		List<AlunoDTO> alunos = service.GetAll();
 		
@@ -48,7 +62,7 @@ public class AlunoExcel {
 			
 			HSSFSheet sheet = alunoExcel.createSheet();
 			
-			criarCabecalhoDialog(sheet, style);
+			criarCabecalhoDialog(sheet, styleCabecalho);
 			
 			System.out.println(alunos.size());
 			
@@ -68,12 +82,18 @@ public class AlunoExcel {
 				preencherDespesas(sheet, linha, aluno);
 				preencherObservacoes(sheet, linha, aluno);
 				
-				for(int i = 0; i < sheet.getRow(1).getLastCellNum(); i++) {
-					sheet.getRow(1).getCell(i).setCellStyle(style);
+				for(int i = 0; i < sheet.getRow(linha).getLastCellNum(); i++) {
+					sheet.getRow(linha).getCell(i).setCellStyle(styleBorda);
+					//sheet.autoSizeColumn(i);
 				}
 				
 				System.out.println("incrementando linha");
 				linha++;
+			}
+			
+			for(int i = 0; i < sheet.getRow(1).getLastCellNum(); i++) {
+				sheet.getRow(1).getCell(i).setCellStyle(styleCabecalho);
+				sheet.autoSizeColumn(i);
 			}
 			
 			//alunoExcel.write();
@@ -121,6 +141,18 @@ public class AlunoExcel {
 			rowTop.getCell(70).setCellStyle(style);
 			rowTop.getCell(81).setCellStyle(style);
 			rowTop.getCell(96).setCellStyle(style);
+			
+			sheet.addMergedRegion(new CellRangeAddress(0,0,0,10));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,11,17));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,18,25));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,26,31));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,32,37));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,38,47));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,48,53));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,54,61));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,62,69));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,70,80));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,81,95));
 			
 		} catch (Exception ex) {
 			System.out.println("Erro de Exception no try criarCabecalhoDialog()");
