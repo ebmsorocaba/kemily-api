@@ -65,8 +65,6 @@ public class AlunoExcel {
 			
 			criarCabecalhoDialog(sheet, styleCabecalho);
 			
-			System.out.println(alunos.size());
-			
 			for(AlunoDTO aluno : alunos) {
 				int tamanho = getTamanho(aluno);
 				
@@ -88,7 +86,6 @@ public class AlunoExcel {
 					//sheet.autoSizeColumn(i);
 				}
 				
-				System.out.println("incrementando linha");
 				linha++;
 			}
 			
@@ -250,14 +247,9 @@ public class AlunoExcel {
 			
 			List<ResponsavelLegal> rl = aluno.getResponsavelLegalList(); 
 			
-			String quebraLinha = System.lineSeparator();
-			
-			System.out.println("tamanho do rl: " + rl.size());
-			
-			
+			String quebraLinha = System.lineSeparator();			
 			
 			for(int i = 0; i < rl.size(); i++) {
-				System.out.println("linha: " + linha + ", i: " + i);
 				
 				if(i == 0) {
 				

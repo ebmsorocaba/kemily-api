@@ -243,6 +243,13 @@
     </div>
     <!-- / CONTENT -->
 
+    <div layout="row" layout-align="center">
+        <md-button ng-click="vm.exportarExcel()" class="btnExcel">
+            <md-icon md-font-icon="icon-file-excel" class="iconExcel"></md-icon>
+            Excel
+        </md-button>
+    </div>
+
     <!-- ADD CONTACT BUTTON -->
     <md-button class="md-fab md-accent md-icon-button" id="add-aluno-button" ng-click="vm.openAlunoDialog($event)" aria-label="Adicionar aluno">
         <md-icon md-font-icon="icon-account-plus"></md-icon>

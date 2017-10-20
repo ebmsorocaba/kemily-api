@@ -222,7 +222,8 @@
 
         api.aluno = {
             list: $resource(api.baseUrl + 'aluno'),
-            getByRa: $resource(api.baseUrl + 'aluno/:ra' + '/', { ra: '@ra' }, { 'update': { method: 'PUT' } })
+            getByRa: $resource(api.baseUrl + 'aluno/:ra' + '/', { ra: '@ra' }, { 'update': { method: 'PUT' } }),
+            excel: $resource(api.baseUrl + 'aluno/excel')
         }
 
         api.automovel = {

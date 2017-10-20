@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -76,13 +77,18 @@ public class AlunoController {
     public void baixarExcel(HttpServletResponse response) throws SQLException {
 
         try {
-        	response.setHeader("Content-disposition", "attachment; filename=alunos.xls");
+        	
+        	response.setContentType("application/vnd.ms-excel");
+        	
+        	String fileName = "alunos.xls";
+        	
+        	response.setHeader("Content-disposition", "attachment; filename=" + fileName);
         	
             HSSFWorkbook excel = alunoExcel.gerarExcel();
+
+            OutputStream out = response.getOutputStream();
         	
-        	excel.write(response.getOutputStream());
-        	
-        	excel.close();
+        	excel.write(out);
         	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

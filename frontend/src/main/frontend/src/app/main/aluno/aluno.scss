@@ -227,6 +227,10 @@
         white-space: nowrap;
     }
 
+    .md-button.btnExcel {
+        color: white;
+        background-color: rgb(69, 137, 96); 
+    }
 }
 
 // RESPONSIVE
@@ -267,3 +271,4 @@ div.item p.dataNascAluno{
   margin-top: 10px;
   margin-bottom: 5px;
 }
+
