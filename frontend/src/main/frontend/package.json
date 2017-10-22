@@ -1,7 +1,9 @@
 {
   "name": "fuse",
   "version": "1.4.3",
-  "dependencies": {},
+  "dependencies": {
+    "angular-material-data-table": "^0.10.10"
+  },
   "scripts": {
     "gulp": "gulp",
     "build": "gulp",
