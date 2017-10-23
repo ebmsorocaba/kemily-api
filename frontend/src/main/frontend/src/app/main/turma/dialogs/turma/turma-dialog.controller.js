@@ -25,7 +25,7 @@
       };
       vm.title = 'Novo Turma';
     } else {
-      vm.turma.dataNasc = new Date(vm.turma.dataNasc);
+      setIdadeAluno();
       vm.title = 'Alterar Turma';
     }
     // Methods
@@ -76,7 +76,6 @@
         'raAluno': a.aluno.ra,
         'idTurma': Turma.id
       };
-      console.log(at);
 
       api.alunoTurma.list.save(at,
         function(response) {
@@ -199,5 +198,37 @@
         vm.turmas.splice(vm.turmas.indexOf(vm.turma), 1);
       });
     }
+
+    function setIdadeAluno() {
+      AlunosDentroTurma.forEach(function (a) {
+        a.aluno.idade = CalcularIdade(a.aluno);
+      });
+      AlunosForaTurma.forEach(function (a) {
+        a.aluno.idade = CalcularIdade(a.aluno);
+      });
+    }
+
+    function CalcularIdade(a) {
+      var idade = new Date();
+      var ano_atual = idade.getFullYear();
+      var mes_atual = idade.getMonth() + 1;
+      var dia_atual = idade.getDate();
+
+      var dataAluno = new Date(a.dataNascimento);
+
+      var ano_aniversario = dataAluno.getFullYear();
+      var mes_aniversario = dataAluno.getMonth();
+      var dia_aniversario = dataAluno.getDate();
+
+      var quantos_anos = ano_atual - ano_aniversario;
+
+      if (mes_atual < mes_aniversario || mes_atual == mes_aniversario && dia_atual < dia_aniversario) {
+        quantos_anos--;
+      }
+
+      return quantos_anos < 0 ? 0 : quantos_anos;
+
+    }
+
   }
 })();

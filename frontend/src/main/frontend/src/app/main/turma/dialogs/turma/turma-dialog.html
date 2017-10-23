@@ -45,6 +45,13 @@
           <p class="show-gt-xs texto">
             {{a.aluno.nome}}
           </p>
+          <p class="numero">
+            {{a.aluno.idade}}
+          </p>
+          <p class="texto"></p>
+          <p class="data">
+            {{a.aluno.dataNascimento}}
+          </p>
           <md-button class="md-raised md-warn adicionarButton" ng-click="vm.removerAluno(a)">
             Remover
           </md-button>
@@ -60,6 +67,13 @@
           <p class="numero"></p>
           <p class="show-gt-xs texto">
             {{a.aluno.nome}}
+          </p>
+          <p class="numero">
+            {{a.aluno.idade}}
+          </p>
+          <p class="texto"></p>
+          <p class="data">
+            {{a.aluno.dataNascimento}}
           </p>
           <md-button class="md-raised md-accent adicionarButton" ng-click="vm.adicionarAluno(a)">
             Adicionar
