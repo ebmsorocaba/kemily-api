@@ -69,6 +69,15 @@
                                         </div>
                                     </md-input-container>
 
+                                    <md-input-container flex="100" flex-gt-xs="20">
+                                        <input type="text" name="escola" ng-model="vm.data.aluno.escola" placeholder="Escola" required>
+                                        <div ng-messages="wizardStep1.nat.$error" role="alert">
+                                            <div ng-message=" ">
+                                                <span>A Escola é requerida.</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
                                     <md-input-container flex="100" flex-gt-xs="15">
                                         <label>Estado</label>
                                         <md-select ng-model="vm.data.aluno.estado" required>

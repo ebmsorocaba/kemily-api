@@ -210,7 +210,8 @@
                 'dataCadastro': new Date(),
                 'meioTransporte': '',
                 'observacoes': '',
-                'naturalidade': ''
+                'naturalidade': '',
+                'escola': ''
             };
 
             vm.data.roupa = {
