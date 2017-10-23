@@ -43,16 +43,6 @@
 	    <version>1.4</version>
 	</dependency>
 
-    <!--
-
-		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <type>jar</type>
-		    <scope>compile</scope>
-		</dependency>
-		-->
-
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
@@ -64,10 +54,32 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+      <version>1.5.2.RELEASE</version>
+    </dependency>
+
   </dependencies>
 
   <properties>
     <java.version>1.8</java.version>
+    <flyway.version>4.0.3</flyway.version>
+    <flyway.schemas>public</flyway.schemas>
+    <flyway.locations>filesystem:src/main/resources/db/migrations</flyway.locations>
+    <flyway.sqlMigrationPrefix>V</flyway.sqlMigrationPrefix>
+    <flyway.sqlMigrationSeparator>__</flyway.sqlMigrationSeparator>
+    <flyway.sqlMigrationSuffix>.sql</flyway.sqlMigrationSuffix>
+    <flyway.validateOnMigrate>true</flyway.validateOnMigrate>
+    <postgres.driver.version>9.2-1002.jdbc4</postgres.driver.version>
+    <database.url>jdbc:postgresql://localhost:5432/ebm_admin</database.url>
+    <database.user>postgres</database.user>
+    <databese.password>postgres</databese.password>
   </properties>
 
   <build>
@@ -78,6 +90,53 @@
         <configuration>
           <executable>true</executable>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals><goal>copy</goal></goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.flywaydb</groupId>
+                  <artifactId>flyway-core</artifactId>
+                  <destFileName>flyway.jar</destFileName>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.postgresql</groupId>
+                  <artifactId>postgresql</artifactId>
+                  <destFileName>postgres.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-maven-plugin</artifactId>
+        <version>${flyway.version}</version>
+        <configuration>
+          <sqlMigrationSeparator>__</sqlMigrationSeparator>
+          <locations>
+            <location>filesystem:src/main/resources/db/migrations</location>
+          </locations>
+          <url>${database.url}</url>
+          <user>${database.user}</user>
+          <password>${databese.password}</password>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.driver.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>
