@@ -67,19 +67,56 @@ public class AlunoExcel {
 			
 			for(AlunoDTO aluno : alunos) {
 				int tamanho = getTamanho(aluno);
+				int numCelula = 0;
+				System.out.println("Última Célula: " + numCelula);
 				
-				preencherDadosGerais(sheet, linha, aluno, tamanho);
-				preencherEndereco(sheet, linha, aluno);
-				preencherResponsaveisLegais(sheet, linha, aluno);
-				preencherContatos(sheet, linha, aluno);
-				preencherEstruturaFamiliar(sheet, linha, aluno);
-				preencherSaude(sheet, linha, aluno);
-				preencherBens(sheet, linha, aluno);
-				preencherComposicaoFamiliar(sheet, linha, aluno);
-				preencherSituacaoHabitacional(sheet, linha, aluno);
-				preencherAparelhosEletronicos(sheet, linha, aluno);
-				preencherDespesas(sheet, linha, aluno);
-				preencherObservacoes(sheet, linha, aluno);
+				preencherDadosGerais(sheet, linha, aluno, tamanho, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherEndereco(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherResponsaveisLegais(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherContatos(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherEstruturaFamiliar(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherSaude(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherBens(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherComposicaoFamiliar(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherSituacaoHabitacional(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherAparelhosEletronicos(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherDespesas(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
+				
+				preencherObservacoes(sheet, linha, aluno, numCelula);
+				
+				numCelula = sheet.getRow(linha).getLastCellNum();
 				
 				for(int i = 0; i < sheet.getRow(linha).getLastCellNum(); i++) {
 					sheet.getRow(linha).getCell(i).setCellStyle(styleBorda);
@@ -140,18 +177,6 @@ public class AlunoExcel {
 			rowTop.getCell(82).setCellStyle(style);
 			rowTop.getCell(97).setCellStyle(style);
 			
-			sheet.addMergedRegion(new CellRangeAddress(0,0,0,11));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,12,18));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,19,26));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,27,32));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,33,38));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,39,48));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,49,54));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,55,62));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,63,70));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,71,81));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,82,96));
-			
 		} catch (Exception ex) {
 			System.out.println("Erro de Exception no try criarCabecalhoDialog()");
 			System.out.println(ex.toString());
@@ -159,21 +184,21 @@ public class AlunoExcel {
 		
 	}
 	
-	public void preencherDadosGerais(HSSFSheet sheet, int linha, AlunoDTO aluno, int tamanhoLinha) {
+	public void preencherDadosGerais(HSSFSheet sheet, int linha, AlunoDTO aluno, int tamanhoLinha, int celulaInicial) {
 		
 		HSSFRow rowHead = sheet.createRow(1);
-		rowHead.createCell(0).setCellValue("RA");
-		rowHead.createCell(1).setCellValue("Nome");
-		rowHead.createCell(2).setCellValue("RG");
-		rowHead.createCell(3).setCellValue("Etnia");
-		rowHead.createCell(4).setCellValue("Naturalidade");
-		rowHead.createCell(5).setCellValue("Estado");
-		rowHead.createCell(6).setCellValue("Data de Nascimento");
-		rowHead.createCell(7).setCellValue("Camiseta");
-		rowHead.createCell(8).setCellValue("Calça");
-		rowHead.createCell(9).setCellValue("Calçado");
-		rowHead.createCell(10).setCellValue("Transporte");
-		rowHead.createCell(11).setCellValue("Escola");
+		rowHead.createCell(celulaInicial).setCellValue("RA");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Nome");
+		rowHead.createCell(celulaInicial + 2).setCellValue("RG");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Etnia");
+		rowHead.createCell(celulaInicial + 4).setCellValue("Naturalidade");
+		rowHead.createCell(celulaInicial + 5).setCellValue("Estado");
+		rowHead.createCell(celulaInicial + 6).setCellValue("Data de Nascimento");
+		rowHead.createCell(celulaInicial + 7).setCellValue("Camiseta");
+		rowHead.createCell(celulaInicial + 8).setCellValue("Calça");
+		rowHead.createCell(celulaInicial + 9).setCellValue("Calçado");
+		rowHead.createCell(celulaInicial + 10).setCellValue("Transporte");
+		rowHead.createCell(celulaInicial + 11).setCellValue("Escola");
 		
 		HSSFRow dadosGerais = sheet.createRow(linha);
 		
@@ -187,31 +212,35 @@ public class AlunoExcel {
 		
 		rg = rg.substring(0, 2).concat(".").concat(rg.substring(2,5)).concat(".").concat(rg.substring(5,8)).concat("-").concat(rg.substring(8));
 
-		dadosGerais.createCell(0).setCellValue(alu.getRa());
-		dadosGerais.createCell(1).setCellValue(alu.getNome());
-		dadosGerais.createCell(2).setCellValue(rg);
-		dadosGerais.createCell(3).setCellValue(alu.getEtnia());
-		dadosGerais.createCell(4).setCellValue(alu.getNaturalidade());
-		dadosGerais.createCell(5).setCellValue(alu.getEstado());
-		dadosGerais.createCell(6).setCellValue(data.format(alu.getDataNascimento()));
-		dadosGerais.createCell(7).setCellValue(roupa.getTamanhoCamiseta());
-		dadosGerais.createCell(8).setCellValue(roupa.getTamanhoCalca());
-		dadosGerais.createCell(9).setCellValue(roupa.getTamanhoSapato());
-		dadosGerais.createCell(10).setCellValue(alu.getMeioTransporte());
-		dadosGerais.createCell(10).setCellValue(alu.getEscola());
+		dadosGerais.createCell(celulaInicial).setCellValue(alu.getRa());
+		dadosGerais.createCell(celulaInicial + 1).setCellValue(alu.getNome());
+		dadosGerais.createCell(celulaInicial + 2).setCellValue(rg);
+		dadosGerais.createCell(celulaInicial + 3).setCellValue(alu.getEtnia());
+		dadosGerais.createCell(celulaInicial + 4).setCellValue(alu.getNaturalidade());
+		dadosGerais.createCell(celulaInicial + 5).setCellValue(alu.getEstado());
+		dadosGerais.createCell(celulaInicial + 6).setCellValue(data.format(alu.getDataNascimento()));
+		dadosGerais.createCell(celulaInicial + 7).setCellValue(roupa.getTamanhoCamiseta());
+		dadosGerais.createCell(celulaInicial + 8).setCellValue(roupa.getTamanhoCalca());
+		dadosGerais.createCell(celulaInicial + 9).setCellValue(roupa.getTamanhoSapato());
+		dadosGerais.createCell(celulaInicial + 10).setCellValue(alu.getMeioTransporte());
+		dadosGerais.createCell(celulaInicial + 11).setCellValue(alu.getEscola());
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(dadosGerais.getLastCellNum() - 1)));
+		}
 		
 	}
 	
-	public void preencherEndereco(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherEndereco(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(11).setCellValue("Rua");
-		rowHead.createCell(12).setCellValue("Numero");
-		rowHead.createCell(13).setCellValue("Complemento");
-		rowHead.createCell(14).setCellValue("Bairro");
-		rowHead.createCell(15).setCellValue("Cidade");
-		rowHead.createCell(16).setCellValue("CEP");
-		rowHead.createCell(17).setCellValue("Ponto de Referencia");
+		rowHead.createCell(celulaInicial).setCellValue("Rua");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Numero");
+		rowHead.createCell(celulaInicial + 2).setCellValue("Complemento");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Bairro");
+		rowHead.createCell(celulaInicial + 4).setCellValue("Cidade");
+		rowHead.createCell(celulaInicial + 5).setCellValue("CEP");
+		rowHead.createCell(celulaInicial + 6).setCellValue("Ponto de Referencia");
 		
 		HSSFRow endereco = sheet.getRow(linha);
 		
@@ -221,27 +250,31 @@ public class AlunoExcel {
 		
 		cep = cep.substring(0, 5).concat("-").concat(cep.substring(5));
 		
-		endereco.createCell(11).setCellValue(end.getRua());
-		endereco.createCell(12).setCellValue(end.getNumero());
-		endereco.createCell(13).setCellValue(end.getComplemento());
-		endereco.createCell(14).setCellValue(end.getBairro());
-		endereco.createCell(15).setCellValue(end.getCidade());
-		endereco.createCell(16).setCellValue(cep);
-		endereco.createCell(17).setCellValue(end.getPontoReferencia());
+		endereco.createCell(celulaInicial).setCellValue(end.getRua());
+		endereco.createCell(celulaInicial + 1).setCellValue(end.getNumero());
+		endereco.createCell(celulaInicial + 2).setCellValue(end.getComplemento());
+		endereco.createCell(celulaInicial + 3).setCellValue(end.getBairro());
+		endereco.createCell(celulaInicial + 4).setCellValue(end.getCidade());
+		endereco.createCell(celulaInicial + 5).setCellValue(cep);
+		endereco.createCell(celulaInicial + 6).setCellValue(end.getPontoReferencia());
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(endereco.getLastCellNum() - 1)));
+		}
 		
 	}
 	
-	public void preencherResponsaveisLegais(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherResponsaveisLegais(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		try {
 			HSSFRow rowHead = sheet.getRow(1);
-			rowHead.createCell(18).setCellValue("Nome");
-			rowHead.createCell(19).setCellValue("Telefone");
-			rowHead.createCell(20).setCellValue("RG");
-			rowHead.createCell(21).setCellValue("CPF");
-			rowHead.createCell(22).setCellValue("Email");
-			rowHead.createCell(23).setCellValue("Rede Social");
-			rowHead.createCell(24).setCellValue("Parentesco");
-			rowHead.createCell(25).setCellValue("Situação");
+			rowHead.createCell(celulaInicial).setCellValue("Nome");
+			rowHead.createCell(celulaInicial + 1).setCellValue("Telefone");
+			rowHead.createCell(celulaInicial + 2).setCellValue("RG");
+			rowHead.createCell(celulaInicial + 3).setCellValue("CPF");
+			rowHead.createCell(celulaInicial + 4).setCellValue("Email");
+			rowHead.createCell(celulaInicial + 5).setCellValue("Rede Social");
+			rowHead.createCell(celulaInicial + 6).setCellValue("Parentesco");
+			rowHead.createCell(celulaInicial + 7).setCellValue("Situação");
 			
 			HSSFRow resp = sheet.getRow(linha);
 			
@@ -255,26 +288,30 @@ public class AlunoExcel {
 				
 				if(i == 0) {
 				
-					resp.createCell(18).setCellValue(rl.get(i).getNome());
-					resp.createCell(19).setCellValue(rl.get(i).getTelefone());
-					resp.createCell(20).setCellValue(rl.get(i).getRg());
-					resp.createCell(21).setCellValue(rl.get(i).getCpf());
-					resp.createCell(22).setCellValue(rl.get(i).getEmail());
-					resp.createCell(23).setCellValue(rl.get(i).getRedeSocial());
-					resp.createCell(24).setCellValue(rl.get(i).getGrauParentesco());
-					resp.createCell(25).setCellValue(rl.get(i).getEstado());
+					resp.createCell(celulaInicial).setCellValue(rl.get(i).getNome());
+					resp.createCell(celulaInicial + 1).setCellValue(rl.get(i).getTelefone());
+					resp.createCell(celulaInicial + 2).setCellValue(rl.get(i).getRg());
+					resp.createCell(celulaInicial + 3).setCellValue(rl.get(i).getCpf());
+					resp.createCell(celulaInicial + 4).setCellValue(rl.get(i).getEmail());
+					resp.createCell(celulaInicial + 5).setCellValue(rl.get(i).getRedeSocial());
+					resp.createCell(celulaInicial + 6).setCellValue(rl.get(i).getGrauParentesco());
+					resp.createCell(celulaInicial + 7).setCellValue(rl.get(i).getEstado());
 				
 				} else {
-					resp.getCell(18).setCellValue(resp.getCell(18).getStringCellValue().concat(quebraLinha + rl.get(i).getNome()));
-					resp.getCell(19).setCellValue(resp.getCell(19).getStringCellValue().concat(quebraLinha + rl.get(i).getTelefone()));
-					resp.getCell(20).setCellValue(resp.getCell(20).getStringCellValue().concat(quebraLinha + rl.get(i).getRg()));
-					resp.getCell(21).setCellValue(resp.getCell(21).getStringCellValue().concat(quebraLinha + rl.get(i).getCpf()));
-					resp.getCell(22).setCellValue(resp.getCell(22).getStringCellValue().concat(quebraLinha + rl.get(i).getEmail()));
-					resp.getCell(23).setCellValue(resp.getCell(23).getStringCellValue().concat(quebraLinha + rl.get(i).getRedeSocial()));
-					resp.getCell(24).setCellValue(resp.getCell(24).getStringCellValue().concat(quebraLinha + rl.get(i).getGrauParentesco()));
-					resp.getCell(25).setCellValue(resp.getCell(25).getStringCellValue().concat(quebraLinha + rl.get(i).getEstado()));
+					resp.getCell(celulaInicial).setCellValue(resp.getCell(celulaInicial).getStringCellValue().concat(quebraLinha + rl.get(i).getNome()));
+					resp.getCell(celulaInicial + 1).setCellValue(resp.getCell(celulaInicial + 1).getStringCellValue().concat(quebraLinha + rl.get(i).getTelefone()));
+					resp.getCell(celulaInicial + 2).setCellValue(resp.getCell(celulaInicial + 2).getStringCellValue().concat(quebraLinha + rl.get(i).getRg()));
+					resp.getCell(celulaInicial + 3).setCellValue(resp.getCell(celulaInicial + 3).getStringCellValue().concat(quebraLinha + rl.get(i).getCpf()));
+					resp.getCell(celulaInicial + 4).setCellValue(resp.getCell(celulaInicial + 4).getStringCellValue().concat(quebraLinha + rl.get(i).getEmail()));
+					resp.getCell(celulaInicial + 5).setCellValue(resp.getCell(celulaInicial + 5).getStringCellValue().concat(quebraLinha + rl.get(i).getRedeSocial()));
+					resp.getCell(celulaInicial + 6).setCellValue(resp.getCell(celulaInicial + 6).getStringCellValue().concat(quebraLinha + rl.get(i).getGrauParentesco()));
+					resp.getCell(celulaInicial + 7).setCellValue(resp.getCell(celulaInicial + 7).getStringCellValue().concat(quebraLinha + rl.get(i).getEstado()));
 				}
 				
+			}
+			
+			if(linha == 2) {
+				sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(resp.getLastCellNum() - 1)));
 			}
 			
 		} catch (Exception ex) {
@@ -283,14 +320,14 @@ public class AlunoExcel {
 		}
 	}
 	
-	public void preencherContatos(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherContatos(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(26).setCellValue("Nome");
-		rowHead.createCell(27).setCellValue("Telefone");
-		rowHead.createCell(28).setCellValue("Email");
-		rowHead.createCell(29).setCellValue("Rede Social");
-		rowHead.createCell(30).setCellValue("É Contato Profissional?");
-		rowHead.createCell(31).setCellValue("Cargo");
+		rowHead.createCell(celulaInicial).setCellValue("Nome");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Telefone");
+		rowHead.createCell(celulaInicial + 2).setCellValue("Email");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Rede Social");
+		rowHead.createCell(celulaInicial + 4).setCellValue("É Contato Profissional?");
+		rowHead.createCell(celulaInicial + 5).setCellValue("Cargo");
 		
 		HSSFRow contato = sheet.getRow(linha);
 		
@@ -302,84 +339,96 @@ public class AlunoExcel {
 		
 		for(int i = 0; i < listaContatos.size(); i++) {
 			if(i == 0) {
-				contato.createCell(26).setCellValue(listaContatos.get(i).getNome());
-				contato.createCell(27).setCellValue(listaContatos.get(i).getTelefone());
-				contato.createCell(28).setCellValue(listaContatos.get(i).getEmail());
-				contato.createCell(29).setCellValue(listaContatos.get(i).getRedeSocial());
-				contato.createCell(30).setCellValue(String.valueOf(listaContatos.get(i).isProfissional()));
-				contato.createCell(31).setCellValue(listaContatos.get(i).getCargo());
+				contato.createCell(celulaInicial).setCellValue(listaContatos.get(i).getNome());
+				contato.createCell(celulaInicial + 1).setCellValue(listaContatos.get(i).getTelefone());
+				contato.createCell(celulaInicial + 2).setCellValue(listaContatos.get(i).getEmail());
+				contato.createCell(celulaInicial + 3).setCellValue(listaContatos.get(i).getRedeSocial());
+				contato.createCell(celulaInicial + 4).setCellValue(String.valueOf(listaContatos.get(i).isProfissional()));
+				contato.createCell(celulaInicial + 5).setCellValue(listaContatos.get(i).getCargo());
 			} else {
-				contato.getCell(26).setCellValue(contato.getCell(26).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getNome()));
-				contato.getCell(27).setCellValue(contato.getCell(27).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getTelefone()));
-				contato.getCell(28).setCellValue(contato.getCell(28).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getEmail()));
-				contato.getCell(29).setCellValue(contato.getCell(29).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getRedeSocial()));
-				contato.getCell(30).setCellValue(contato.getCell(30).getStringCellValue().concat(quebraLinha + String.valueOf(listaContatos.get(i).isProfissional())));
-				contato.getCell(31).setCellValue(contato.getCell(31).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getCargo()));
+				contato.getCell(celulaInicial).setCellValue(contato.getCell(celulaInicial).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getNome()));
+				contato.getCell(celulaInicial + 1).setCellValue(contato.getCell(celulaInicial + 1).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getTelefone()));
+				contato.getCell(celulaInicial + 2).setCellValue(contato.getCell(celulaInicial + 2).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getEmail()));
+				contato.getCell(celulaInicial + 3).setCellValue(contato.getCell(celulaInicial + 3).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getRedeSocial()));
+				contato.getCell(celulaInicial + 4).setCellValue(contato.getCell(celulaInicial + 4).getStringCellValue().concat(quebraLinha + String.valueOf(listaContatos.get(i).isProfissional())));
+				contato.getCell(celulaInicial + 5).setCellValue(contato.getCell(celulaInicial + 5).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getCargo()));
 			}
+		}
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(contato.getLastCellNum() - 1)));
 		}
 	
 	}
 	
-	public void preencherEstruturaFamiliar(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherEstruturaFamiliar(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(32).setCellValue("Criança Reside Com?");
-		rowHead.createCell(33).setCellValue("Estado Civil dos Pais");
-		rowHead.createCell(34).setCellValue("Possui Problemas Financeiros?");
-		rowHead.createCell(35).setCellValue("Familiares com Problemas de Álcool/Drogas?");
-		rowHead.createCell(36).setCellValue("Alguem Agressivo na Família?");
-		rowHead.createCell(37).setCellValue("Participa de Programas Sociais?");
+		rowHead.createCell(celulaInicial).setCellValue("Criança Reside Com?");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Estado Civil dos Pais");
+		rowHead.createCell(celulaInicial + 2).setCellValue("Possui Problemas Financeiros?");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Familiares com Problemas de Álcool/Drogas?");
+		rowHead.createCell(celulaInicial + 4).setCellValue("Alguem Agressivo na Família?");
+		rowHead.createCell(celulaInicial + 5).setCellValue("Participa de Programas Sociais?");
 		
 		HSSFRow efLinha = sheet.getRow(linha);
 		
 		EstruturaFamiliar ef = aluno.getEstruturaFamiliar();
 		
-		efLinha.createCell(32).setCellValue(String.valueOf(ef.getCriancaResideCom()));
-		efLinha.createCell(33).setCellValue(String.valueOf(ef.getEstadoCivilPais()));
-		efLinha.createCell(34).setCellValue(String.valueOf(ef.isProblemasFinanceiros()));
-		efLinha.createCell(35).setCellValue(String.valueOf(ef.isUsoAlcoolDrogas()));
-		efLinha.createCell(36).setCellValue(String.valueOf(ef.isAlguemAgressivo()));
-		efLinha.createCell(37).setCellValue(String.valueOf(ef.isProgramasSociais()));
+		efLinha.createCell(celulaInicial).setCellValue(String.valueOf(ef.getCriancaResideCom()));
+		efLinha.createCell(celulaInicial + 1).setCellValue(String.valueOf(ef.getEstadoCivilPais()));
+		efLinha.createCell(celulaInicial + 2).setCellValue(String.valueOf(ef.isProblemasFinanceiros()));
+		efLinha.createCell(celulaInicial + 3).setCellValue(String.valueOf(ef.isUsoAlcoolDrogas()));
+		efLinha.createCell(celulaInicial + 4).setCellValue(String.valueOf(ef.isAlguemAgressivo()));
+		efLinha.createCell(celulaInicial + 5).setCellValue(String.valueOf(ef.isProgramasSociais()));
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(efLinha.getLastCellNum() - 1)));
+		}
 		
 	}
 	
-	public void preencherSaude(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherSaude(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(38).setCellValue("Criança Faz Tratamentos Médicos?");
-		rowHead.createCell(39).setCellValue("Descrição do Tratamento");
-		rowHead.createCell(40).setCellValue("Criança Possui Alguma Alergia?");
-		rowHead.createCell(41).setCellValue("Descrição da Alergia");
-		rowHead.createCell(42).setCellValue("Criança Toma Alguma Medidação?");
-		rowHead.createCell(43).setCellValue("Descriçaõ da Medicação");
-		rowHead.createCell(44).setCellValue("Problemas de Saúde na Família?");
-		rowHead.createCell(45).setCellValue("Possui Plano de Saúde?");
-		rowHead.createCell(46).setCellValue("Pessoas Idosas no Lar?");
-		rowHead.createCell(47).setCellValue("Pessoas com Problemas Psíquiatricos na Familia?");
+		rowHead.createCell(celulaInicial).setCellValue("Criança Faz Tratamentos Médicos?");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Descrição do Tratamento");
+		rowHead.createCell(celulaInicial + 2).setCellValue("Criança Possui Alguma Alergia?");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Descrição da Alergia");
+		rowHead.createCell(celulaInicial + 4).setCellValue("Criança Toma Alguma Medidação?");
+		rowHead.createCell(celulaInicial + 5).setCellValue("Descriçaõ da Medicação");
+		rowHead.createCell(celulaInicial + 6).setCellValue("Problemas de Saúde na Família?");
+		rowHead.createCell(celulaInicial + 7).setCellValue("Possui Plano de Saúde?");
+		rowHead.createCell(celulaInicial + 8).setCellValue("Pessoas Idosas no Lar?");
+		rowHead.createCell(celulaInicial + 9).setCellValue("Pessoas com Problemas Psíquiatricos na Familia?");
 		
 		HSSFRow saudeLinha = sheet.getRow(linha);
 		
 		Saude saude = aluno.getSaude();
 		
-		saudeLinha.createCell(38).setCellValue(String.valueOf(saude.isFazTratamentosMedicos()));
-		saudeLinha.createCell(39).setCellValue(saude.getDescricaoTratamento());
-		saudeLinha.createCell(40).setCellValue(String.valueOf(saude.isPossuiAlergia()));
-		saudeLinha.createCell(41).setCellValue(saude.getDescricaoAlergia());
-		saudeLinha.createCell(42).setCellValue(String.valueOf(saude.isTomaMedicacao()));
-		saudeLinha.createCell(43).setCellValue(saude.getDescricaoMedicacao());
-		saudeLinha.createCell(44).setCellValue(String.valueOf(saude.isProblemasSaudeFamilia()));
-		saudeLinha.createCell(45).setCellValue(String.valueOf(saude.isPlanoSaude()));
-		saudeLinha.createCell(46).setCellValue(String.valueOf(saude.isPessoasIdosas()));
-		saudeLinha.createCell(47).setCellValue(String.valueOf(saude.isProblemasPsiquiatricos()));
+		saudeLinha.createCell(celulaInicial).setCellValue(String.valueOf(saude.isFazTratamentosMedicos()));
+		saudeLinha.createCell(celulaInicial + 1).setCellValue(saude.getDescricaoTratamento());
+		saudeLinha.createCell(celulaInicial + 2).setCellValue(String.valueOf(saude.isPossuiAlergia()));
+		saudeLinha.createCell(celulaInicial + 3).setCellValue(saude.getDescricaoAlergia());
+		saudeLinha.createCell(celulaInicial + 4).setCellValue(String.valueOf(saude.isTomaMedicacao()));
+		saudeLinha.createCell(celulaInicial + 5).setCellValue(saude.getDescricaoMedicacao());
+		saudeLinha.createCell(celulaInicial + 6).setCellValue(String.valueOf(saude.isProblemasSaudeFamilia()));
+		saudeLinha.createCell(celulaInicial + 7).setCellValue(String.valueOf(saude.isPlanoSaude()));
+		saudeLinha.createCell(celulaInicial + 8).setCellValue(String.valueOf(saude.isPessoasIdosas()));
+		saudeLinha.createCell(celulaInicial + 9).setCellValue(String.valueOf(saude.isProblemasPsiquiatricos()));
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(saudeLinha.getLastCellNum() - 1)));
+		}
 	}
 	
-	public void preencherBens(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherBens(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(48).setCellValue("Possui Automovéis?");
-		rowHead.createCell(49).setCellValue("Modelo");
-		rowHead.createCell(50).setCellValue("Ano");
-		rowHead.createCell(51).setCellValue("Financiado?");
-		rowHead.createCell(52).setCellValue("Possui Imóveis?");
-		rowHead.createCell(53).setCellValue("Financiado?");
+		rowHead.createCell(celulaInicial).setCellValue("Possui Automovéis?");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Modelo");
+		rowHead.createCell(celulaInicial + 2).setCellValue("Ano");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Financiado?");
+		rowHead.createCell(celulaInicial + 4).setCellValue("Possui Imóveis?");
+		rowHead.createCell(celulaInicial + 5).setCellValue("Financiado?");
 		
 		HSSFRow bens = sheet.getRow(linha);
 		
@@ -389,53 +438,57 @@ public class AlunoExcel {
 		String quebraLinha = System.lineSeparator();
 		
 		if(autos.size() > 0) {
-			bens.createCell(48).setCellValue("true");
+			bens.createCell(celulaInicial).setCellValue("true");
 			
 			for(int i = 0; i < autos.size(); i++) {
 				if(i == 0) {
-					bens.createCell(49).setCellValue(autos.get(i).getModelo());
-					bens.createCell(50).setCellValue(autos.get(i).getAno());
-					bens.createCell(51).setCellValue(String.valueOf(autos.get(i).isFinanciado()));
+					bens.createCell(celulaInicial + 1).setCellValue(autos.get(i).getModelo());
+					bens.createCell(celulaInicial + 2).setCellValue(autos.get(i).getAno());
+					bens.createCell(celulaInicial + 3).setCellValue(String.valueOf(autos.get(i).isFinanciado()));
 				} else {
-					bens.getCell(49).setCellValue(bens.getCell(49).getStringCellValue().concat(quebraLinha + autos.get(i).getModelo()));
-					bens.getCell(50).setCellValue(bens.getCell(50).getStringCellValue().concat(quebraLinha + autos.get(i).getAno()));
-					bens.getCell(51).setCellValue(bens.getCell(51).getStringCellValue().concat(quebraLinha + String.valueOf(autos.get(i).isFinanciado())));
+					bens.getCell(celulaInicial + 1).setCellValue(bens.getCell(celulaInicial + 1).getStringCellValue().concat(quebraLinha + autos.get(i).getModelo()));
+					bens.getCell(celulaInicial + 2).setCellValue(bens.getCell(celulaInicial + 2).getStringCellValue().concat(quebraLinha + autos.get(i).getAno()));
+					bens.getCell(celulaInicial + 3).setCellValue(bens.getCell(celulaInicial + 3).getStringCellValue().concat(quebraLinha + String.valueOf(autos.get(i).isFinanciado())));
 				}
 			}
 		} else {
-			bens.createCell(48).setCellValue("false");
-			bens.createCell(49).setCellValue("");
-			bens.createCell(50).setCellValue("");
-			bens.createCell(51).setCellValue("");
+			bens.createCell(celulaInicial).setCellValue("false");
+			bens.createCell(celulaInicial + 1).setCellValue("");
+			bens.createCell(celulaInicial + 2).setCellValue("");
+			bens.createCell(celulaInicial + 3).setCellValue("");
 		}
 		
 		if(imoveis.size() > 0) {
-			bens.createCell(52).setCellValue("true");
+			bens.createCell(celulaInicial + 4).setCellValue("true");
 			
 			for(int i = 0; i < imoveis.size(); i++) {
 				if(i == 0) {
-					bens.createCell(53).setCellValue(String.valueOf(imoveis.get(i).isFinanciado()));
+					bens.createCell(celulaInicial + 5).setCellValue(String.valueOf(imoveis.get(i).isFinanciado()));
 				} else {
-					bens.getCell(53).setCellValue(bens.getCell(53).getStringCellValue().concat(String.valueOf(quebraLinha + imoveis.get(i).isFinanciado())));
+					bens.getCell(celulaInicial + 5).setCellValue(bens.getCell(celulaInicial + 5).getStringCellValue().concat(String.valueOf(quebraLinha + imoveis.get(i).isFinanciado())));
 				}
 			}
 		} else {
-			bens.createCell(52).setCellValue("false");
-			bens.createCell(53).setCellValue("");
+			bens.createCell(celulaInicial + 4).setCellValue("false");
+			bens.createCell(celulaInicial + 5).setCellValue("");
+		}
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(bens.getLastCellNum() - 1)));
 		}
 		
 	}
 	
-	public void preencherComposicaoFamiliar(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherComposicaoFamiliar(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(54).setCellValue("Nome");
-		rowHead.createCell(55).setCellValue("Parentesco");
-		rowHead.createCell(56).setCellValue("Data de Nascimento");
-		rowHead.createCell(57).setCellValue("Escolaridade");
-		rowHead.createCell(58).setCellValue("Ocupação");
-		rowHead.createCell(59).setCellValue("Condição de Trabalho");
-		rowHead.createCell(60).setCellValue("Renda");
-		rowHead.createCell(61).setCellValue("Local de Trabalho");
+		rowHead.createCell(celulaInicial).setCellValue("Nome");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Parentesco");
+		rowHead.createCell(celulaInicial + 2).setCellValue("Data de Nascimento");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Escolaridade");
+		rowHead.createCell(celulaInicial + 4).setCellValue("Ocupação");
+		rowHead.createCell(celulaInicial + 5).setCellValue("Condição de Trabalho");
+		rowHead.createCell(celulaInicial + 6).setCellValue("Renda");
+		rowHead.createCell(celulaInicial + 7).setCellValue("Local de Trabalho");
 		
 		HSSFRow cf = sheet.getRow(linha);
 		
@@ -447,129 +500,145 @@ public class AlunoExcel {
 		
 		for(int i = 0; i < mf.size(); i++) {
 			if(i == 0) {
-				cf.createCell(54).setCellValue(mf.get(i).getNome());
-				cf.createCell(55).setCellValue(mf.get(i).getParentesco());
-				cf.createCell(56).setCellValue(data.format(mf.get(i).getDataNascimento()));
-				cf.createCell(57).setCellValue(mf.get(i).getEscolaridade());
-				cf.createCell(58).setCellValue(mf.get(i).getOcupacao());
-				cf.createCell(59).setCellValue(mf.get(i).getCondicaoTrabalho());
-				cf.createCell(60).setCellValue(String.valueOf(mf.get(i).getSalario()));
-				cf.createCell(61).setCellValue(mf.get(i).getLocalTrabalho());
+				cf.createCell(celulaInicial).setCellValue(mf.get(i).getNome());
+				cf.createCell(celulaInicial + 1).setCellValue(mf.get(i).getParentesco());
+				cf.createCell(celulaInicial + 2).setCellValue(data.format(mf.get(i).getDataNascimento()));
+				cf.createCell(celulaInicial + 3).setCellValue(mf.get(i).getEscolaridade());
+				cf.createCell(celulaInicial + 4).setCellValue(mf.get(i).getOcupacao());
+				cf.createCell(celulaInicial + 5).setCellValue(mf.get(i).getCondicaoTrabalho());
+				cf.createCell(celulaInicial + 6).setCellValue(String.valueOf(mf.get(i).getSalario()));
+				cf.createCell(celulaInicial + 7).setCellValue(mf.get(i).getLocalTrabalho());
 			} else {
-				cf.getCell(54).setCellValue(cf.getCell(54).getStringCellValue().concat(quebraLinha + mf.get(i).getNome()));
-				cf.getCell(55).setCellValue(cf.getCell(55).getStringCellValue().concat(quebraLinha + mf.get(i).getParentesco()));
-				cf.getCell(56).setCellValue(cf.getCell(56).getStringCellValue().concat(quebraLinha + data.format(mf.get(i).getDataNascimento())));
-				cf.getCell(57).setCellValue(cf.getCell(57).getStringCellValue().concat(quebraLinha + mf.get(i).getEscolaridade()));
-				cf.getCell(58).setCellValue(cf.getCell(58).getStringCellValue().concat(quebraLinha + mf.get(i).getOcupacao()));
-				cf.getCell(59).setCellValue(cf.getCell(59).getStringCellValue().concat(quebraLinha + mf.get(i).getCondicaoTrabalho()));
-				cf.getCell(60).setCellValue(cf.getCell(60).getStringCellValue().concat(quebraLinha + String.valueOf(mf.get(i).getSalario())));
-				cf.getCell(61).setCellValue(cf.getCell(61).getStringCellValue().concat(quebraLinha + mf.get(i).getLocalTrabalho()));
+				cf.getCell(celulaInicial).setCellValue(cf.getCell(celulaInicial).getStringCellValue().concat(quebraLinha + mf.get(i).getNome()));
+				cf.getCell(celulaInicial + 1).setCellValue(cf.getCell(celulaInicial + 1).getStringCellValue().concat(quebraLinha + mf.get(i).getParentesco()));
+				cf.getCell(celulaInicial + 2).setCellValue(cf.getCell(celulaInicial + 2).getStringCellValue().concat(quebraLinha + data.format(mf.get(i).getDataNascimento())));
+				cf.getCell(celulaInicial + 3).setCellValue(cf.getCell(celulaInicial + 3).getStringCellValue().concat(quebraLinha + mf.get(i).getEscolaridade()));
+				cf.getCell(celulaInicial + 4).setCellValue(cf.getCell(celulaInicial + 4).getStringCellValue().concat(quebraLinha + mf.get(i).getOcupacao()));
+				cf.getCell(celulaInicial + 5).setCellValue(cf.getCell(celulaInicial + 5).getStringCellValue().concat(quebraLinha + mf.get(i).getCondicaoTrabalho()));
+				cf.getCell(celulaInicial + 6).setCellValue(cf.getCell(celulaInicial + 6).getStringCellValue().concat(quebraLinha + String.valueOf(mf.get(i).getSalario())));
+				cf.getCell(celulaInicial + 7).setCellValue(cf.getCell(celulaInicial + 7).getStringCellValue().concat(quebraLinha + mf.get(i).getLocalTrabalho()));
 			}
+		}
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(cf.getLastCellNum() - 1)));
 		}
 	}
 	
-	public void preencherSituacaoHabitacional(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherSituacaoHabitacional(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(62).setCellValue("Situação do Imóvel");
-		rowHead.createCell(63).setCellValue("Nº de Comodos");
-		rowHead.createCell(64).setCellValue("Esgoto?");
-		rowHead.createCell(65).setCellValue("Rede Elétrica?");
-		rowHead.createCell(66).setCellValue("Asfalto?");
-		rowHead.createCell(67).setCellValue("Alvenaria?");
-		rowHead.createCell(68).setCellValue("Casa de Madeira?");
-		rowHead.createCell(69).setCellValue("Imovel Construido em Área Irregular?");
+		rowHead.createCell(celulaInicial).setCellValue("Situação do Imóvel");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Nº de Comodos");
+		rowHead.createCell(celulaInicial + 2).setCellValue("Esgoto?");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Rede Elétrica?");
+		rowHead.createCell(celulaInicial + 4).setCellValue("Asfalto?");
+		rowHead.createCell(celulaInicial + 5).setCellValue("Alvenaria?");
+		rowHead.createCell(celulaInicial + 6).setCellValue("Casa de Madeira?");
+		rowHead.createCell(celulaInicial + 7).setCellValue("Imovel Construido em Área Irregular?");
 		
 		HSSFRow shLinha = sheet.getRow(linha);
 		
 		SituacaoHabitacional sh = aluno.getSituacaoHabitacional();
 		
-		shLinha.createCell(62).setCellValue(sh.getSituacao());
-		shLinha.createCell(63).setCellValue(String.valueOf(sh.getNumeroComodos()));
-		shLinha.createCell(64).setCellValue(String.valueOf(sh.getEsgoto()));
-		shLinha.createCell(65).setCellValue(String.valueOf(sh.getRedeEletrica()));
-		shLinha.createCell(66).setCellValue(String.valueOf(sh.getAsfalto()));
-		shLinha.createCell(67).setCellValue(String.valueOf(sh.getAlvenaria()));
-		shLinha.createCell(68).setCellValue(String.valueOf(sh.getMadeira()));
-		shLinha.createCell(69).setCellValue(String.valueOf(sh.getAreaIrregular()));
+		shLinha.createCell(celulaInicial).setCellValue(sh.getSituacao());
+		shLinha.createCell(celulaInicial + 1).setCellValue(String.valueOf(sh.getNumeroComodos()));
+		shLinha.createCell(celulaInicial + 2).setCellValue(String.valueOf(sh.getEsgoto()));
+		shLinha.createCell(celulaInicial + 3).setCellValue(String.valueOf(sh.getRedeEletrica()));
+		shLinha.createCell(celulaInicial + 4).setCellValue(String.valueOf(sh.getAsfalto()));
+		shLinha.createCell(celulaInicial + 5).setCellValue(String.valueOf(sh.getAlvenaria()));
+		shLinha.createCell(celulaInicial + 6).setCellValue(String.valueOf(sh.getMadeira()));
+		shLinha.createCell(celulaInicial + 7).setCellValue(String.valueOf(sh.getAreaIrregular()));
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(shLinha.getLastCellNum() - 1)));
+		}
 	}
 	
-	public void preencherAparelhosEletronicos(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherAparelhosEletronicos(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(70).setCellValue("Televisão");
-		rowHead.createCell(71).setCellValue("TV por Assinatura/Internet");
-		rowHead.createCell(72).setCellValue("Computador");
-		rowHead.createCell(73).setCellValue("Notebook");
-		rowHead.createCell(74).setCellValue("Fogão");
-		rowHead.createCell(75).setCellValue("Geladeira");
-		rowHead.createCell(76).setCellValue("Microondas");
-		rowHead.createCell(77).setCellValue("Máquina de Lavar");
-		rowHead.createCell(78).setCellValue("Máquina de Secar");
-		rowHead.createCell(79).setCellValue("Telefone Fixo");
-		rowHead.createCell(80).setCellValue("Celular");
+		rowHead.createCell(celulaInicial).setCellValue("Televisão");
+		rowHead.createCell(celulaInicial + 1).setCellValue("TV por Assinatura/Internet");
+		rowHead.createCell(celulaInicial + 2).setCellValue("Computador");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Notebook");
+		rowHead.createCell(celulaInicial + 4).setCellValue("Fogão");
+		rowHead.createCell(celulaInicial + 5).setCellValue("Geladeira");
+		rowHead.createCell(celulaInicial + 6).setCellValue("Microondas");
+		rowHead.createCell(celulaInicial + 7).setCellValue("Máquina de Lavar");
+		rowHead.createCell(celulaInicial + 8).setCellValue("Máquina de Secar");
+		rowHead.createCell(celulaInicial + 9).setCellValue("Telefone Fixo");
+		rowHead.createCell(celulaInicial + 10).setCellValue("Celular");
 		
 		HSSFRow aeLinha = sheet.getRow(linha);
 		
 		AparelhosEletronicos ae = aluno.getAparelhosEletronicos();
 		
-		aeLinha.createCell(70).setCellValue(String.valueOf(ae.isTelevisao()));
-		aeLinha.createCell(71).setCellValue(String.valueOf(ae.isTvAssinatura()));
-		aeLinha.createCell(72).setCellValue(String.valueOf(ae.isComputador()));
-		aeLinha.createCell(73).setCellValue(String.valueOf(ae.isNotebook()));
-		aeLinha.createCell(74).setCellValue(String.valueOf(ae.isFogao()));
-		aeLinha.createCell(75).setCellValue(String.valueOf(ae.isGeladeira()));
-		aeLinha.createCell(76).setCellValue(String.valueOf(ae.isMicroondas()));
-		aeLinha.createCell(77).setCellValue(String.valueOf(ae.isMaquinaLavar()));
-		aeLinha.createCell(78).setCellValue(String.valueOf(ae.isMaquinaSecar()));
-		aeLinha.createCell(79).setCellValue(String.valueOf(ae.isTelefoneFixo()));
-		aeLinha.createCell(80).setCellValue(String.valueOf(ae.isCelular()));
+		aeLinha.createCell(celulaInicial).setCellValue(String.valueOf(ae.isTelevisao()));
+		aeLinha.createCell(celulaInicial + 1).setCellValue(String.valueOf(ae.isTvAssinatura()));
+		aeLinha.createCell(celulaInicial + 2).setCellValue(String.valueOf(ae.isComputador()));
+		aeLinha.createCell(celulaInicial + 3).setCellValue(String.valueOf(ae.isNotebook()));
+		aeLinha.createCell(celulaInicial + 4).setCellValue(String.valueOf(ae.isFogao()));
+		aeLinha.createCell(celulaInicial + 5).setCellValue(String.valueOf(ae.isGeladeira()));
+		aeLinha.createCell(celulaInicial + 6).setCellValue(String.valueOf(ae.isMicroondas()));
+		aeLinha.createCell(celulaInicial + 7).setCellValue(String.valueOf(ae.isMaquinaLavar()));
+		aeLinha.createCell(celulaInicial + 8).setCellValue(String.valueOf(ae.isMaquinaSecar()));
+		aeLinha.createCell(celulaInicial + 9).setCellValue(String.valueOf(ae.isTelefoneFixo()));
+		aeLinha.createCell(celulaInicial + 10).setCellValue(String.valueOf(ae.isCelular()));
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(aeLinha.getLastCellNum() - 1)));
+		}
 	}
 	
-	public void preencherDespesas(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherDespesas(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(81).setCellValue("Água");
-		rowHead.createCell(82).setCellValue("Energia Elétrica");
-		rowHead.createCell(83).setCellValue("Telefone");
-		rowHead.createCell(84).setCellValue("Aluguel");
-		rowHead.createCell(85).setCellValue("Financiamento Casa");
-		rowHead.createCell(86).setCellValue("Financiamento Carro");
-		rowHead.createCell(87).setCellValue("Transporte");
-		rowHead.createCell(88).setCellValue("Alimentação");
-		rowHead.createCell(89).setCellValue("Gás");
-		rowHead.createCell(90).setCellValue("Cartão de Crédito");
-		rowHead.createCell(91).setCellValue("Empréstimo");
-		rowHead.createCell(92).setCellValue("TV por Assinatura/Internet");
-		rowHead.createCell(93).setCellValue("Educação");
-		rowHead.createCell(94).setCellValue("Pensão");
-		rowHead.createCell(95).setCellValue("Convênio Médico");
+		rowHead.createCell(celulaInicial).setCellValue("Água");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Energia Elétrica");
+		rowHead.createCell(celulaInicial + 2).setCellValue("Telefone");
+		rowHead.createCell(celulaInicial + 3).setCellValue("Aluguel");
+		rowHead.createCell(celulaInicial + 4).setCellValue("Financiamento Casa");
+		rowHead.createCell(celulaInicial + 5).setCellValue("Financiamento Carro");
+		rowHead.createCell(celulaInicial + 6).setCellValue("Transporte");
+		rowHead.createCell(celulaInicial + 7).setCellValue("Alimentação");
+		rowHead.createCell(celulaInicial + 8).setCellValue("Gás");
+		rowHead.createCell(celulaInicial + 9).setCellValue("Cartão de Crédito");
+		rowHead.createCell(celulaInicial + 10).setCellValue("Empréstimo");
+		rowHead.createCell(celulaInicial + 11).setCellValue("TV por Assinatura/Internet");
+		rowHead.createCell(celulaInicial + 12).setCellValue("Educação");
+		rowHead.createCell(celulaInicial + 13).setCellValue("Pensão");
+		rowHead.createCell(celulaInicial + 14).setCellValue("Convênio Médico");
 		
 		HSSFRow despesaLinha = sheet.getRow(linha);
 		
 		Despesa despesa = aluno.getDespesa();
 		
-		despesaLinha.createCell(81).setCellValue(String.valueOf(despesa.getAgua()));
-		despesaLinha.createCell(82).setCellValue(String.valueOf(despesa.getEnergiaEletrica()));
-		despesaLinha.createCell(83).setCellValue(String.valueOf(despesa.getTelefone()));
-		despesaLinha.createCell(84).setCellValue(String.valueOf(despesa.getAluguel()));
-		despesaLinha.createCell(85).setCellValue(String.valueOf(despesa.getFinanciamentoCasa()));
-		despesaLinha.createCell(86).setCellValue(String.valueOf(despesa.getFinanciamentoCarro()));
-		despesaLinha.createCell(87).setCellValue(String.valueOf(despesa.getTransporte()));
-		despesaLinha.createCell(88).setCellValue(String.valueOf(despesa.getAlimentacao()));
-		despesaLinha.createCell(89).setCellValue(String.valueOf(despesa.getGas()));
-		despesaLinha.createCell(90).setCellValue(String.valueOf(despesa.getCartaoCredito()));
-		despesaLinha.createCell(91).setCellValue(String.valueOf(despesa.getEmprestimo()));
-		despesaLinha.createCell(92).setCellValue(String.valueOf(despesa.getTvCabo()));
-		despesaLinha.createCell(93).setCellValue(String.valueOf(despesa.getEducacao()));
-		despesaLinha.createCell(94).setCellValue(String.valueOf(despesa.getPensao()));
-		despesaLinha.createCell(95).setCellValue(String.valueOf(despesa.getConvenioMedico()));
+		despesaLinha.createCell(celulaInicial).setCellValue(String.valueOf(despesa.getAgua()));
+		despesaLinha.createCell(celulaInicial + 1).setCellValue(String.valueOf(despesa.getEnergiaEletrica()));
+		despesaLinha.createCell(celulaInicial + 2).setCellValue(String.valueOf(despesa.getTelefone()));
+		despesaLinha.createCell(celulaInicial + 3).setCellValue(String.valueOf(despesa.getAluguel()));
+		despesaLinha.createCell(celulaInicial + 4).setCellValue(String.valueOf(despesa.getFinanciamentoCasa()));
+		despesaLinha.createCell(celulaInicial + 5).setCellValue(String.valueOf(despesa.getFinanciamentoCarro()));
+		despesaLinha.createCell(celulaInicial + 6).setCellValue(String.valueOf(despesa.getTransporte()));
+		despesaLinha.createCell(celulaInicial + 7).setCellValue(String.valueOf(despesa.getAlimentacao()));
+		despesaLinha.createCell(celulaInicial + 8).setCellValue(String.valueOf(despesa.getGas()));
+		despesaLinha.createCell(celulaInicial + 9).setCellValue(String.valueOf(despesa.getCartaoCredito()));
+		despesaLinha.createCell(celulaInicial + 10).setCellValue(String.valueOf(despesa.getEmprestimo()));
+		despesaLinha.createCell(celulaInicial + 11).setCellValue(String.valueOf(despesa.getTvCabo()));
+		despesaLinha.createCell(celulaInicial + 12).setCellValue(String.valueOf(despesa.getEducacao()));
+		despesaLinha.createCell(celulaInicial + 13).setCellValue(String.valueOf(despesa.getPensao()));
+		despesaLinha.createCell(celulaInicial + 14).setCellValue(String.valueOf(despesa.getConvenioMedico()));
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(despesaLinha.getLastCellNum() - 1)));
+		}
 	}
 	
-	public void preencherObservacoes(HSSFSheet sheet, int linha, AlunoDTO aluno) {
+	public void preencherObservacoes(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		HSSFRow rowHead = sheet.getRow(1);
-		rowHead.createCell(96).setCellValue("Observações");
+		rowHead.createCell(celulaInicial).setCellValue("Observações");
 		
 		HSSFRow obsLinha = sheet.getRow(linha);
 		
-		obsLinha.createCell(96).setCellValue(aluno.getAluno().getObservacoes());
+		obsLinha.createCell(celulaInicial).setCellValue(aluno.getAluno().getObservacoes());
 	}
 	
 	public int getTamanho(AlunoDTO aluno) {
