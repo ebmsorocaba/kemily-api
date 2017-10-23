@@ -115,42 +115,42 @@ public class AlunoExcel {
 			HSSFRow rowTop = sheet.createRow(0);		
 			
 			rowTop.createCell(0).setCellValue("Dados Gerais");
-			rowTop.createCell(11).setCellValue("Endereço");
-			rowTop.createCell(18).setCellValue("Responsáveis Legais");
-			rowTop.createCell(26).setCellValue("Contatos");
-			rowTop.createCell(32).setCellValue("Estrutura Familiar");
-			rowTop.createCell(38).setCellValue("Saúde");
-			rowTop.createCell(48).setCellValue("Bens Familiares");
-			rowTop.createCell(54).setCellValue("Composição Familiar");
-			rowTop.createCell(62).setCellValue("Situação Habitacional");
-			rowTop.createCell(70).setCellValue("Aparelhos Eletronicos");
-			rowTop.createCell(81).setCellValue("Despesas");
-			rowTop.createCell(96).setCellValue("Observações");
+			rowTop.createCell(12).setCellValue("Endereço");
+			rowTop.createCell(19).setCellValue("Responsáveis Legais");
+			rowTop.createCell(27).setCellValue("Contatos");
+			rowTop.createCell(33).setCellValue("Estrutura Familiar");
+			rowTop.createCell(39).setCellValue("Saúde");
+			rowTop.createCell(49).setCellValue("Bens Familiares");
+			rowTop.createCell(55).setCellValue("Composição Familiar");
+			rowTop.createCell(63).setCellValue("Situação Habitacional");
+			rowTop.createCell(71).setCellValue("Aparelhos Eletronicos");
+			rowTop.createCell(82).setCellValue("Despesas");
+			rowTop.createCell(97).setCellValue("Observações");
 			
 			rowTop.getCell(0).setCellStyle(style);
-			rowTop.getCell(11).setCellStyle(style);
-			rowTop.getCell(18).setCellStyle(style);
-			rowTop.getCell(26).setCellStyle(style);
-			rowTop.getCell(32).setCellStyle(style);
-			rowTop.getCell(38).setCellStyle(style);
-			rowTop.getCell(48).setCellStyle(style);
-			rowTop.getCell(54).setCellStyle(style);
-			rowTop.getCell(62).setCellStyle(style);
-			rowTop.getCell(70).setCellStyle(style);
-			rowTop.getCell(81).setCellStyle(style);
-			rowTop.getCell(96).setCellStyle(style);
+			rowTop.getCell(12).setCellStyle(style);
+			rowTop.getCell(19).setCellStyle(style);
+			rowTop.getCell(27).setCellStyle(style);
+			rowTop.getCell(33).setCellStyle(style);
+			rowTop.getCell(39).setCellStyle(style);
+			rowTop.getCell(49).setCellStyle(style);
+			rowTop.getCell(55).setCellStyle(style);
+			rowTop.getCell(63).setCellStyle(style);
+			rowTop.getCell(71).setCellStyle(style);
+			rowTop.getCell(82).setCellStyle(style);
+			rowTop.getCell(97).setCellStyle(style);
 			
-			sheet.addMergedRegion(new CellRangeAddress(0,0,0,10));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,11,17));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,18,25));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,26,31));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,32,37));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,38,47));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,48,53));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,54,61));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,62,69));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,70,80));
-			sheet.addMergedRegion(new CellRangeAddress(0,0,81,95));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,0,11));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,12,18));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,19,26));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,27,32));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,33,38));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,39,48));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,49,54));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,55,62));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,63,70));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,71,81));
+			sheet.addMergedRegion(new CellRangeAddress(0,0,82,96));
 			
 		} catch (Exception ex) {
 			System.out.println("Erro de Exception no try criarCabecalhoDialog()");
@@ -173,6 +173,7 @@ public class AlunoExcel {
 		rowHead.createCell(8).setCellValue("Calça");
 		rowHead.createCell(9).setCellValue("Calçado");
 		rowHead.createCell(10).setCellValue("Transporte");
+		rowHead.createCell(11).setCellValue("Escola");
 		
 		HSSFRow dadosGerais = sheet.createRow(linha);
 		
@@ -197,6 +198,7 @@ public class AlunoExcel {
 		dadosGerais.createCell(8).setCellValue(roupa.getTamanhoCalca());
 		dadosGerais.createCell(9).setCellValue(roupa.getTamanhoSapato());
 		dadosGerais.createCell(10).setCellValue(alu.getMeioTransporte());
+		dadosGerais.createCell(10).setCellValue(alu.getEscola());
 		
 	}
 	
