@@ -68,7 +68,6 @@ public class AlunoExcel {
 			for(AlunoDTO aluno : alunos) {
 				int tamanho = getTamanho(aluno);
 				int numCelula = 0;
-				System.out.println("Última Célula: " + numCelula);
 				
 				preencherDadosGerais(sheet, linha, aluno, tamanho, numCelula);
 				
@@ -120,7 +119,6 @@ public class AlunoExcel {
 				
 				for(int i = 0; i < sheet.getRow(linha).getLastCellNum(); i++) {
 					sheet.getRow(linha).getCell(i).setCellStyle(styleBorda);
-					//sheet.autoSizeColumn(i);
 				}
 				
 				linha++;
@@ -130,8 +128,6 @@ public class AlunoExcel {
 				sheet.getRow(1).getCell(i).setCellStyle(styleCabecalho);
 				sheet.autoSizeColumn(i);
 			}
-			
-			//alunoExcel.write();
 			
 			alunoExcel.close();
 			
@@ -278,8 +274,6 @@ public class AlunoExcel {
 			
 			HSSFRow resp = sheet.getRow(linha);
 			
-			//resp.setHeightInPoints((aluno.getResponsavelLegalList().size() * sheet.getDefaultRowHeightInPoints()));
-			
 			List<ResponsavelLegal> rl = aluno.getResponsavelLegalList(); 
 			
 			String quebraLinha = System.lineSeparator();			
@@ -331,8 +325,6 @@ public class AlunoExcel {
 		
 		HSSFRow contato = sheet.getRow(linha);
 		
-		//contato.setHeightInPoints((aluno.getContatoList().size() * sheet.getDefaultRowHeightInPoints()));
-		
 		List<Contato> listaContatos = aluno.getContatoList();
 		
 		String quebraLinha = System.lineSeparator();
@@ -343,14 +335,26 @@ public class AlunoExcel {
 				contato.createCell(celulaInicial + 1).setCellValue(listaContatos.get(i).getTelefone());
 				contato.createCell(celulaInicial + 2).setCellValue(listaContatos.get(i).getEmail());
 				contato.createCell(celulaInicial + 3).setCellValue(listaContatos.get(i).getRedeSocial());
-				contato.createCell(celulaInicial + 4).setCellValue(String.valueOf(listaContatos.get(i).isProfissional()));
+				
+				if(listaContatos.get(i).isProfissional()) {
+					contato.createCell(celulaInicial + 4).setCellValue("Sim");
+				} else {
+					contato.createCell(celulaInicial + 4).setCellValue("Não");
+				}
+				
 				contato.createCell(celulaInicial + 5).setCellValue(listaContatos.get(i).getCargo());
 			} else {
 				contato.getCell(celulaInicial).setCellValue(contato.getCell(celulaInicial).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getNome()));
 				contato.getCell(celulaInicial + 1).setCellValue(contato.getCell(celulaInicial + 1).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getTelefone()));
 				contato.getCell(celulaInicial + 2).setCellValue(contato.getCell(celulaInicial + 2).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getEmail()));
 				contato.getCell(celulaInicial + 3).setCellValue(contato.getCell(celulaInicial + 3).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getRedeSocial()));
-				contato.getCell(celulaInicial + 4).setCellValue(contato.getCell(celulaInicial + 4).getStringCellValue().concat(quebraLinha + String.valueOf(listaContatos.get(i).isProfissional())));
+				
+				if(listaContatos.get(i).isProfissional()) {
+					contato.getCell(celulaInicial + 4).setCellValue(contato.getCell(celulaInicial + 4).getStringCellValue().concat(quebraLinha + "Sim"));
+				} else {
+					contato.getCell(celulaInicial + 4).setCellValue(contato.getCell(celulaInicial + 4).getStringCellValue().concat(quebraLinha + "Não"));
+				}
+				
 				contato.getCell(celulaInicial + 5).setCellValue(contato.getCell(celulaInicial + 5).getStringCellValue().concat(quebraLinha + listaContatos.get(i).getCargo()));
 			}
 		}
@@ -375,17 +379,36 @@ public class AlunoExcel {
 		
 		EstruturaFamiliar ef = aluno.getEstruturaFamiliar();
 		
-		efLinha.createCell(celulaInicial).setCellValue(String.valueOf(ef.getCriancaResideCom()));
-		efLinha.createCell(celulaInicial + 1).setCellValue(String.valueOf(ef.getEstadoCivilPais()));
-		efLinha.createCell(celulaInicial + 2).setCellValue(String.valueOf(ef.isProblemasFinanceiros()));
-		efLinha.createCell(celulaInicial + 3).setCellValue(String.valueOf(ef.isUsoAlcoolDrogas()));
-		efLinha.createCell(celulaInicial + 4).setCellValue(String.valueOf(ef.isAlguemAgressivo()));
-		efLinha.createCell(celulaInicial + 5).setCellValue(String.valueOf(ef.isProgramasSociais()));
+		efLinha.createCell(celulaInicial).setCellValue(ef.getCriancaResideCom());
+		efLinha.createCell(celulaInicial + 1).setCellValue(ef.getEstadoCivilPais());
+		
+		if(ef.isProblemasFinanceiros()) {	
+			efLinha.createCell(celulaInicial + 2).setCellValue("Sim");
+		} else {
+			efLinha.createCell(celulaInicial + 2).setCellValue("Não");
+		}
+		
+		if(ef.isUsoAlcoolDrogas()) {
+			efLinha.createCell(celulaInicial + 3).setCellValue("Sim");
+		} else {
+			efLinha.createCell(celulaInicial + 3).setCellValue("Sim");
+		}
+		
+		if(ef.isAlguemAgressivo()) {
+			efLinha.createCell(celulaInicial + 4).setCellValue("Sim");
+		} else {
+			efLinha.createCell(celulaInicial + 4).setCellValue("Sim");
+		}
+		
+		if(ef.isProgramasSociais()) {
+			efLinha.createCell(celulaInicial + 5).setCellValue("Sim");
+		} else {
+			efLinha.createCell(celulaInicial + 5).setCellValue("Sim");
+		}
 		
 		if(linha == 2) {
 			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(efLinha.getLastCellNum() - 1)));
 		}
-		
 	}
 	
 	public void preencherSaude(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
@@ -405,16 +428,53 @@ public class AlunoExcel {
 		
 		Saude saude = aluno.getSaude();
 		
-		saudeLinha.createCell(celulaInicial).setCellValue(String.valueOf(saude.isFazTratamentosMedicos()));
+		if(saude.isFazTratamentosMedicos()) {
+			saudeLinha.createCell(celulaInicial).setCellValue("Sim");	
+		} else {
+			saudeLinha.createCell(celulaInicial).setCellValue("Não");
+		}
+		
 		saudeLinha.createCell(celulaInicial + 1).setCellValue(saude.getDescricaoTratamento());
-		saudeLinha.createCell(celulaInicial + 2).setCellValue(String.valueOf(saude.isPossuiAlergia()));
+		
+		if(saude.isPossuiAlergia()) {
+			saudeLinha.createCell(celulaInicial + 2).setCellValue("Sim");
+		} else {
+			saudeLinha.createCell(celulaInicial + 2).setCellValue("Não");
+		}
+		
 		saudeLinha.createCell(celulaInicial + 3).setCellValue(saude.getDescricaoAlergia());
-		saudeLinha.createCell(celulaInicial + 4).setCellValue(String.valueOf(saude.isTomaMedicacao()));
+		
+		if(saude.isTomaMedicacao()) {
+			saudeLinha.createCell(celulaInicial + 4).setCellValue("Sim");			
+		} else {
+			saudeLinha.createCell(celulaInicial + 4).setCellValue("Não");
+		}
+		
 		saudeLinha.createCell(celulaInicial + 5).setCellValue(saude.getDescricaoMedicacao());
-		saudeLinha.createCell(celulaInicial + 6).setCellValue(String.valueOf(saude.isProblemasSaudeFamilia()));
-		saudeLinha.createCell(celulaInicial + 7).setCellValue(String.valueOf(saude.isPlanoSaude()));
-		saudeLinha.createCell(celulaInicial + 8).setCellValue(String.valueOf(saude.isPessoasIdosas()));
-		saudeLinha.createCell(celulaInicial + 9).setCellValue(String.valueOf(saude.isProblemasPsiquiatricos()));
+		
+		if(saude.isProblemasSaudeFamilia()) {
+			saudeLinha.createCell(celulaInicial + 6).setCellValue("Sim");
+		} else {
+			saudeLinha.createCell(celulaInicial + 6).setCellValue("Não");
+		}
+		
+		if(saude.isPlanoSaude()) {
+			saudeLinha.createCell(celulaInicial + 7).setCellValue("Sim");
+		} else {
+			saudeLinha.createCell(celulaInicial + 7).setCellValue("Não");
+		}
+		
+		if(saude.isPessoasIdosas()) {
+			saudeLinha.createCell(celulaInicial + 8).setCellValue("Sim");
+		} else {
+			saudeLinha.createCell(celulaInicial + 8).setCellValue("Não");
+		}
+		
+		if(saude.isProblemasPsiquiatricos()) {
+			saudeLinha.createCell(celulaInicial + 9).setCellValue("Sim");
+		} else {
+			saudeLinha.createCell(celulaInicial + 9).setCellValue("Não");
+		}
 		
 		if(linha == 2) {
 			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(saudeLinha.getLastCellNum() - 1)));
@@ -438,38 +498,57 @@ public class AlunoExcel {
 		String quebraLinha = System.lineSeparator();
 		
 		if(autos.size() > 0) {
-			bens.createCell(celulaInicial).setCellValue("true");
+			bens.createCell(celulaInicial).setCellValue("Sim");
 			
 			for(int i = 0; i < autos.size(); i++) {
 				if(i == 0) {
 					bens.createCell(celulaInicial + 1).setCellValue(autos.get(i).getModelo());
 					bens.createCell(celulaInicial + 2).setCellValue(autos.get(i).getAno());
-					bens.createCell(celulaInicial + 3).setCellValue(String.valueOf(autos.get(i).isFinanciado()));
+					
+					if(autos.get(i).isFinanciado()) {
+						bens.createCell(celulaInicial + 3).setCellValue("Sim");
+					} else {
+						bens.createCell(celulaInicial + 3).setCellValue("Não");
+					}	
 				} else {
 					bens.getCell(celulaInicial + 1).setCellValue(bens.getCell(celulaInicial + 1).getStringCellValue().concat(quebraLinha + autos.get(i).getModelo()));
 					bens.getCell(celulaInicial + 2).setCellValue(bens.getCell(celulaInicial + 2).getStringCellValue().concat(quebraLinha + autos.get(i).getAno()));
-					bens.getCell(celulaInicial + 3).setCellValue(bens.getCell(celulaInicial + 3).getStringCellValue().concat(quebraLinha + String.valueOf(autos.get(i).isFinanciado())));
+					
+					if(autos.get(i).isFinanciado()) {
+						bens.getCell(celulaInicial + 3).setCellValue(bens.getCell(celulaInicial + 3).getStringCellValue().concat(quebraLinha + "Sim"));
+					} else {
+						bens.getCell(celulaInicial + 3).setCellValue(bens.getCell(celulaInicial + 3).getStringCellValue().concat(quebraLinha + "Não"));
+					}
 				}
 			}
 		} else {
-			bens.createCell(celulaInicial).setCellValue("false");
+			bens.createCell(celulaInicial).setCellValue("Não");
 			bens.createCell(celulaInicial + 1).setCellValue("");
 			bens.createCell(celulaInicial + 2).setCellValue("");
 			bens.createCell(celulaInicial + 3).setCellValue("");
 		}
 		
 		if(imoveis.size() > 0) {
-			bens.createCell(celulaInicial + 4).setCellValue("true");
+			bens.createCell(celulaInicial + 4).setCellValue("Sim");
 			
 			for(int i = 0; i < imoveis.size(); i++) {
 				if(i == 0) {
-					bens.createCell(celulaInicial + 5).setCellValue(String.valueOf(imoveis.get(i).isFinanciado()));
+					if(imoveis.get(i).isFinanciado()) {
+						bens.createCell(celulaInicial + 5).setCellValue("Sim");	
+					} else {
+						bens.createCell(celulaInicial + 5).setCellValue("Não");
+					}
 				} else {
-					bens.getCell(celulaInicial + 5).setCellValue(bens.getCell(celulaInicial + 5).getStringCellValue().concat(String.valueOf(quebraLinha + imoveis.get(i).isFinanciado())));
+					if(imoveis.get(i).isFinanciado()) {
+						bens.getCell(celulaInicial + 5).setCellValue(bens.getCell(celulaInicial + 5).getStringCellValue().concat(quebraLinha + "Sim"));	
+					} else {
+						bens.getCell(celulaInicial + 5).setCellValue(bens.getCell(celulaInicial + 5).getStringCellValue().concat(quebraLinha + "Não"));
+					}
+					
 				}
 			}
 		} else {
-			bens.createCell(celulaInicial + 4).setCellValue("false");
+			bens.createCell(celulaInicial + 4).setCellValue("Não");
 			bens.createCell(celulaInicial + 5).setCellValue("");
 		}
 		
@@ -542,13 +621,42 @@ public class AlunoExcel {
 		
 		shLinha.createCell(celulaInicial).setCellValue(sh.getSituacao());
 		shLinha.createCell(celulaInicial + 1).setCellValue(String.valueOf(sh.getNumeroComodos()));
-		shLinha.createCell(celulaInicial + 2).setCellValue(String.valueOf(sh.getEsgoto()));
-		shLinha.createCell(celulaInicial + 3).setCellValue(String.valueOf(sh.getRedeEletrica()));
-		shLinha.createCell(celulaInicial + 4).setCellValue(String.valueOf(sh.getAsfalto()));
-		shLinha.createCell(celulaInicial + 5).setCellValue(String.valueOf(sh.getAlvenaria()));
-		shLinha.createCell(celulaInicial + 6).setCellValue(String.valueOf(sh.getMadeira()));
-		shLinha.createCell(celulaInicial + 7).setCellValue(String.valueOf(sh.getAreaIrregular()));
+		if(sh.getEsgoto()) {
+			shLinha.createCell(celulaInicial + 2).setCellValue("Sim");
+		} else {
+			shLinha.createCell(celulaInicial + 2).setCellValue("Não");
+		}
 		
+		if(sh.getRedeEletrica()) {
+			shLinha.createCell(celulaInicial + 3).setCellValue("Sim");
+		} else {
+			shLinha.createCell(celulaInicial + 3).setCellValue("Não");
+		}
+		
+		if(sh.getAsfalto()) {
+			shLinha.createCell(celulaInicial + 4).setCellValue("Sim");
+		} else {
+			shLinha.createCell(celulaInicial + 4).setCellValue("Não");
+		}
+		
+		if(sh.getAlvenaria()) {
+			shLinha.createCell(celulaInicial + 5).setCellValue("Sim");
+		} else {
+			shLinha.createCell(celulaInicial + 5).setCellValue("Não");
+		}
+		
+		if(sh.getMadeira()) {
+			shLinha.createCell(celulaInicial + 6).setCellValue("Sim");
+		} else {
+			shLinha.createCell(celulaInicial + 6).setCellValue("Não");
+		}
+		
+		if(sh.getAreaIrregular()) {
+			shLinha.createCell(celulaInicial + 7).setCellValue("Sim");
+		} else {
+			shLinha.createCell(celulaInicial + 7).setCellValue("Não");
+		}
+			
 		if(linha == 2) {
 			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(shLinha.getLastCellNum() - 1)));
 		}
@@ -572,17 +680,71 @@ public class AlunoExcel {
 		
 		AparelhosEletronicos ae = aluno.getAparelhosEletronicos();
 		
-		aeLinha.createCell(celulaInicial).setCellValue(String.valueOf(ae.isTelevisao()));
-		aeLinha.createCell(celulaInicial + 1).setCellValue(String.valueOf(ae.isTvAssinatura()));
-		aeLinha.createCell(celulaInicial + 2).setCellValue(String.valueOf(ae.isComputador()));
-		aeLinha.createCell(celulaInicial + 3).setCellValue(String.valueOf(ae.isNotebook()));
-		aeLinha.createCell(celulaInicial + 4).setCellValue(String.valueOf(ae.isFogao()));
-		aeLinha.createCell(celulaInicial + 5).setCellValue(String.valueOf(ae.isGeladeira()));
-		aeLinha.createCell(celulaInicial + 6).setCellValue(String.valueOf(ae.isMicroondas()));
-		aeLinha.createCell(celulaInicial + 7).setCellValue(String.valueOf(ae.isMaquinaLavar()));
-		aeLinha.createCell(celulaInicial + 8).setCellValue(String.valueOf(ae.isMaquinaSecar()));
-		aeLinha.createCell(celulaInicial + 9).setCellValue(String.valueOf(ae.isTelefoneFixo()));
-		aeLinha.createCell(celulaInicial + 10).setCellValue(String.valueOf(ae.isCelular()));
+		if(ae.isTelevisao()) {
+			aeLinha.createCell(celulaInicial).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial).setCellValue("Nao");
+		}
+		
+		if(ae.isTvAssinatura()) {
+			aeLinha.createCell(celulaInicial + 1).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 1).setCellValue("Nao");
+		}
+		
+		if(ae.isComputador()) {
+			aeLinha.createCell(celulaInicial + 2).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 2).setCellValue("Nao");
+		}
+		
+		if(ae.isNotebook()) {
+			aeLinha.createCell(celulaInicial + 3).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 3).setCellValue("Nao");
+		}
+		
+		if(ae.isFogao()) {
+			aeLinha.createCell(celulaInicial + 4).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 4).setCellValue("Nao");
+		}
+		
+		if(ae.isGeladeira()) {
+			aeLinha.createCell(celulaInicial + 5).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 5).setCellValue("Nao");
+		}
+		
+		if(ae.isMicroondas()) {
+			aeLinha.createCell(celulaInicial + 6).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 6).setCellValue("Nao");
+		}
+		
+		if(ae.isMaquinaLavar()) {
+			aeLinha.createCell(celulaInicial + 7).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 7).setCellValue("Nao");
+		}
+		
+		if(ae.isMaquinaSecar()) {
+			aeLinha.createCell(celulaInicial + 8).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 8).setCellValue("Nao");
+		}
+		
+		if(ae.isTelefoneFixo()) {
+			aeLinha.createCell(celulaInicial + 9).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 9).setCellValue("Nao");
+		}
+		
+		if(ae.isCelular()) {
+			aeLinha.createCell(celulaInicial + 10).setCellValue("Sim");
+		} else {
+			aeLinha.createCell(celulaInicial + 10).setCellValue("Nao");
+		}
 		
 		if(linha == 2) {
 			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(aeLinha.getLastCellNum() - 1)));
