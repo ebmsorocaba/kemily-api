@@ -14,11 +14,28 @@
         </md-button>
     </div>
 
-    <div class="search-input-wrapper" layout="row" layout-align="start center">
-
-    </div>
-
     <md-dialog-content ms-scroll>
+
+        <div layout="row">
+            <span class="text">Filtrar Ocorrencias?</span>
+            <md-checkbox ng-model="vm.filtro" aria-label="Deseja filtrar as ocorrencias?" ng-change="vm.resetarFiltro()">
+            </md-checkbox>
+        </div>
+
+        <div ng-if="vm.filtro == true" class="search-input-wrapper" layout="row" layout-align="space-between center">
+            <p class="text">Mes Inicial:</p>
+            <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
+            <p class="text">Mes Final:</p>
+            <input type="number" min="1" max="12" placeholder="12" ng-model="vm.mesFinal">
+            <md-button class="md-raised md-accent" ng-click="vm.filtrarOcorrencias(vm.mesInicial, vm.mesFinal)" aria-label="Filtrar Ocorrencias">
+                Filtrar
+                <md-icon md-font-icon="icon-magnify"></md-icon>
+            </md-button>
+            <md-button class="md-raised md-warn" ng-click="vm.resetarFiltro()" aria-label="Resetar Filtro">
+                Resetar Filtro
+                <md-icon md-font-icon="icon-close"></md-icon>
+            </md-button>
+        </div>
 
         <md-list>
             <md-subheader class="md-no-sticky md-white-bg">

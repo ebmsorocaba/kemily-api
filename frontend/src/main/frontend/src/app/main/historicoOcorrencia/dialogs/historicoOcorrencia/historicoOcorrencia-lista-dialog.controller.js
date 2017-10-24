@@ -31,6 +31,8 @@
     vm.deletarTodasAsOcorrencias = deletarTodasAsOcorrencias;
     vm.formataData = formataData;
     vm.formataHora = formataHora;
+    vm.filtrarOcorrencias = filtrarOcorrencias;
+    vm.resetarFiltro = resetarFiltro;
 
     function formataData(data) {
       var aux = new Date(data);
@@ -114,6 +116,43 @@
   function closeDialog() {
     $mdDialog.hide();
     vm.routeReload();
+  }
+
+  function filtrarOcorrencias(mesInicial, mesFinal) {
+    vm.ocorrencias = popularLista();
+    var filtro = [];
+    if(mesFinal !== undefined && mesFinal !== '' && mesFinal !== null) {
+      if(
+        (mesInicial < mesFinal) && 
+        (mesInicial >= 1 && mesInicial <= 12) && 
+        (mesFinal >= 1 && mesFinal <= 12)
+      ) {
+        vm.ocorrencias.forEach(function (oco) {
+          var temp = new Date(oco.data);
+          var mes = temp.getMonth() + 1;
+          if(mes >= mesInicial && mes <= mesFinal) {
+            filtro.push(oco);
+          }
+        }); 
+      } 
+    } else {
+      if(mesInicial >= 1 && mesInicial <= 12) {
+        vm.ocorrencias.forEach(function (oco) {
+          var temp = new Date(oco.data);
+          var mes = temp.getMonth() + 1;
+          if(mes == mesInicial) {
+            filtro.push(oco);
+          }
+        }); 
+      }
+    }
+    vm.ocorrencias = filtro;
+  }
+
+  function resetarFiltro() {
+    vm.mesInicial = '';
+    vm.mesFinal = '';
+    vm.ocorrencias = popularLista();
   }
 }
 })();
