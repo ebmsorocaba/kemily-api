@@ -202,10 +202,15 @@
     function setIdadeAluno() {
       AlunosDentroTurma.forEach(function (a) {
         a.aluno.idade = CalcularIdade(a.aluno);
+        var aux = a.aluno.dataNascimento;
+        a.aluno.dataNascimento = aux.substring(8) + '/' + aux.substring(5, 7) + '/' + aux.substring(0, 4);
       });
       AlunosForaTurma.forEach(function (a) {
         a.aluno.idade = CalcularIdade(a.aluno);
+        var aux = a.aluno.dataNascimento;
+        a.aluno.dataNascimento = aux.substring(8) + '/' + aux.substring(5, 7) + '/' + aux.substring(0, 4);
       });
+
     }
 
     function CalcularIdade(a) {
