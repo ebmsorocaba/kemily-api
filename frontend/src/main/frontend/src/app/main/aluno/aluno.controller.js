@@ -26,6 +26,7 @@
     vm.deleteAluno = deleteAluno;
     vm.toggleInArray = msUtils.toggleInArray;
     vm.exists = msUtils.exists;
+    vm.exportarExcel = exportarExcel;
 
     function openAlunoDialog (ev, data) {
       ev.preventDefault()
@@ -124,6 +125,25 @@
     function selectAllAlunos () {
       vm.selectedAlunos = $scope.filteredAlunos;
     }
+
+    function exportarExcel() {
+      
+      window.open('/api/aluno/excel', '_blank');
+
+      /* api.aluno.excel.get(
+        function(response) {
+          var blob = new Blob([response], {type: 'application/vnd.ms-excel'});
+          console.log(blob);
+          var objectUrl = URL.createObjectURL(blob);
+          $window.open(objectUrl, '_blank');
+        },
+
+        function(response) {
+          console.error(response);
+        }
+      ); */
+    }
+
   }
 
 })();
