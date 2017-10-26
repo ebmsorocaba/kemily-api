@@ -33,6 +33,13 @@
     vm.formataHora = formataHora;
     vm.filtrarOcorrencias = filtrarOcorrencias;
     vm.resetarFiltro = resetarFiltro;
+    vm.resetarValores = resetarValores;
+
+    vm.filtros = [
+      'Somente um Mês',
+      'Entre dois ou mais Mêses do Mesmo Ano',
+      'Entre Mêses e Anos'
+    ];
 
     function formataData(data) {
       var aux = new Date(data);
@@ -118,40 +125,105 @@
     vm.routeReload();
   }
 
-  function filtrarOcorrencias(mesInicial, mesFinal) {
+  function filtrarOcorrencias(mesInicial, mesFinal, anoInicial, anoFinal, tipoFiltro) {
     vm.ocorrencias = popularLista();
     var filtro = [];
-    if(mesFinal !== undefined && mesFinal !== '' && mesFinal !== null) {
+
+    if(tipoFiltro === 'Somente um Mês') {
+
+      if(anoInicial === '' || anoInicial === null || anoInicial === undefined) {
+        anoInicial = new Date().getFullYear();
+      }
+
+      if(mesInicial >= 1 && mesInicial <= 12) {
+        vm.ocorrencias.forEach(function (oco) {        
+          var mes = new Date(oco.data).getMonth() + 1;
+          var ano = new Date(oco.data).getFullYear();
+
+          if(mes === mesInicial && ano === anoInicial) {          
+            filtro.push(oco);
+          }
+        }); 
+      }
+
+    }
+
+    if(tipoFiltro === 'Entre dois ou mais Mêses do Mesmo Ano') {
+
+      if(anoInicial === '' || anoInicial === null || anoInicial === undefined) {
+        anoInicial = new Date().getFullYear();
+      }
+      
       if(
         (mesInicial < mesFinal) && 
         (mesInicial >= 1 && mesInicial <= 12) && 
         (mesFinal >= 1 && mesFinal <= 12)
       ) {
         vm.ocorrencias.forEach(function (oco) {
-          var temp = new Date(oco.data);
-          var mes = temp.getMonth() + 1;
-          if(mes >= mesInicial && mes <= mesFinal) {
-            filtro.push(oco);
-          }
-        }); 
-      } 
-    } else {
-      if(mesInicial >= 1 && mesInicial <= 12) {
-        vm.ocorrencias.forEach(function (oco) {
-          var temp = new Date(oco.data);
-          var mes = temp.getMonth() + 1;
-          if(mes == mesInicial) {
+          var mes = new Date(oco.data).getMonth() + 1;
+          var ano = new Date(oco.data).getFullYear();
+
+          if(mes >= mesInicial && mes <= mesFinal && ano === anoInicial) {
             filtro.push(oco);
           }
         }); 
       }
+    
     }
+    
+    if(tipoFiltro === 'Entre Mêses e Anos') {
+
+      if(
+        (mesInicial !== '' && mesInicial !== null && mesInicial !== undefined) &&
+        (mesFinal !== '' && mesFinal !== null && mesFinal !== undefined) &&
+        (anoInicial !== '' && anoInicial !== null && anoInicial !== undefined) &&
+        (anoFinal !== '' && anoFinal !== null && anoFinal !== undefined)
+      ) {
+
+        if(anoInicial < anoFinal) {
+
+          vm.ocorrencias.forEach(function (oco) {
+            var data = new Date(oco.data);
+            data.setDate(1);
+            data.setHours(0);
+            data.setMinutes(0);
+
+            var dataInicial = new Date(anoInicial, mesInicial - 1);
+            dataInicial.setHours(0);
+            dataInicial.setMinutes(0);
+
+            var dataFinal = new Date(anoFinal, mesFinal - 1);
+            dataFinal.setHours(0);
+            dataFinal.setMinutes(0);
+
+            if(data >= dataInicial && data <= dataFinal) {
+              filtro.push(oco);
+            }
+          }); 
+
+        }
+
+      }
+      
+    }
+
     vm.ocorrencias = filtro;
   }
 
   function resetarFiltro() {
     vm.mesInicial = '';
     vm.mesFinal = '';
+    vm.anoInicial = '';
+    vm.anoFinal = '';
+    vm.tipoFiltro = '';
+    vm.ocorrencias = popularLista();
+  }
+
+  function resetarValores() {
+    vm.mesInicial = '';
+    vm.mesFinal = '';
+    vm.anoInicial = '';
+    vm.anoFinal = '';
     vm.ocorrencias = popularLista();
   }
 }
