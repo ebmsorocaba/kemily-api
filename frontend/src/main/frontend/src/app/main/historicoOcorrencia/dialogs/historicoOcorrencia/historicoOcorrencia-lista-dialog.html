@@ -14,11 +14,75 @@
         </md-button>
     </div>
 
-    <div class="search-input-wrapper" layout="row" layout-align="start center">
-
-    </div>
-
     <md-dialog-content ms-scroll>
+
+        <div class="text textoFiltro" layout="row">
+            <span>Filtrar Ocorrencias?</span>
+            <md-checkbox ng-model="vm.filtro" aria-label="Deseja filtrar as ocorrencias?" ng-change="vm.resetarFiltro()">
+            </md-checkbox>
+            <div ng-if="vm.filtro == true" layout="row">
+                <span> Tipo de Filtro?</span>
+                <md-select ng-model="vm.tipoFiltro">
+                    <md-option ng-repeat="filtro in vm.filtros" value="{{filtro}}">
+                        {{filtro}}
+                    </md-option>
+                </md-select>
+            </div>
+        </div>
+
+        <div ng-if="vm.filtro == true">
+            <div class="search-input-wrapper textoFiltro" layout="row" layout-align="left center">
+
+                <div ng-if="vm.tipoFiltro == 'Somente um Mês'" layout="row" layout-align="space-around center">
+                    <p class="text">Mes:</p>
+                    <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
+
+                    <p class="text">Ano:</p>
+                    <input type="number" min="2000" placeholder="2017" ng-model="vm.anoInicial">
+                </div>
+
+                <div ng-if="vm.tipoFiltro == 'Entre dois ou mais Mêses do Mesmo Ano'" layout="row" layout-align="space-around center">
+                    <p class="text">Mes Inicial: </p>
+                    <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
+
+                    <p class="text">Mes Final: </p>
+                    <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesFinal">
+
+                    <p class="text">Ano: </p>
+                    <input type="number" min="2000" placeholder="2017" ng-model="vm.anoInicial">
+                </div>
+
+                <div ng-if="vm.tipoFiltro == 'Entre Mêses e Anos'" layout="row" layout-align="space-around center">
+                    <p class="text">Mes Inicial:</p>
+                    <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
+
+                    <p class="text">Ano Inicial:</p>
+                    <input type="number" min="2000" placeholder="2017" ng-model="vm.anoInicial">
+
+                    <p class="text">Mes Final:</p>
+                    <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesFinal">
+
+                    <p class="text">Ano Final:</p>
+                    <input type="number" min="2000" placeholder="2017" ng-model="vm.anoFinal">
+                </div>
+                
+            </div>
+
+            <div ng-if="vm.tipoFiltro !== ''" class="search-input-wrapper" layout="row" layout-align="left center">
+                <md-button class="md-raised md-accent" ng-click="vm.filtrarOcorrencias(vm.mesInicial, vm.mesFinal, vm.anoInicial, vm.anoFinal, vm.tipoFiltro)" aria-label="Filtrar Ocorrencias">
+                    Filtrar Ocorrencias
+                    <md-icon md-font-icon="icon-magnify"></md-icon>
+                </md-button>
+                <md-button class="md-raised md-warn" ng-click="vm.resetarValores()" aria-label="Resetar Filtro">
+                    Resetar Valores
+                    <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+                <md-button class="md-raised md-warn" ng-click="vm.resetarFiltro()" aria-label="Resetar Filtro">
+                    Resetar Filtro
+                    <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+            </div>
+        </div>
 
         <md-list>
             <md-subheader class="md-no-sticky md-white-bg">

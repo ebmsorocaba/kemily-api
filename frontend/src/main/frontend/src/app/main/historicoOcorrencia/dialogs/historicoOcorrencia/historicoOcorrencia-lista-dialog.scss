@@ -1,7 +1,7 @@
 md-dialog {
     &.ocorrencia-dialog {
-        width: 800px;
-        height: 400px;
+        width: 1000px;
+        height: 900px;
         .title {
             font-size: 20px;
         }
@@ -29,6 +29,9 @@ md-dialog {
         md-icon {
             color: #000;
             // background-color: #000;
+        }
+        .textoFiltro {
+            font-size: 12px;
         }
     }
 }
