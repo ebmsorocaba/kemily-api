@@ -27,6 +27,9 @@
         },
         Alunos: function(msApi){
           return msApi.resolve('alunos.alunos@query')
+        },
+        Educadores: function(msApi) {
+          return msApi.resolve('educadores.educadores@query')
         }
       }
     });
@@ -59,6 +62,7 @@
     msApiProvider.register('turmas.turmas', ['/api/turma'])
     msApiProvider.register('alunoTurma.alunoTurma', ['/api/alunoTurma'])
     msApiProvider.register('alunos.alunos', ['/api/aluno'])
+    msApiProvider.register('educadores.educadores', ['/api/educador'])
 
     // Translation
     // $translatePartialLoaderProvider.addPart('app/main/relatorio');

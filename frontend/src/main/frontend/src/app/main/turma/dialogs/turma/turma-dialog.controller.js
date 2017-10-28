@@ -4,7 +4,7 @@
   angular.module('app.turma').controller('TurmaDialogController', TurmaDialogController)
 
   /** @ngInject */
-  function TurmaDialogController ($mdDialog, $state, Turma, Turmas, AlunoTurma, User, msUtils, api, AlunosDentroTurma, AlunosForaTurma) {
+  function TurmaDialogController ($mdDialog, $state, Turma, Turmas, AlunoTurma, User, msUtils, api, AlunosDentroTurma, AlunosForaTurma, Educadores) {
     var vm = this;
     vm.title = 'Alterar Turma';
     vm.turma = angular.copy(Turma);
@@ -26,6 +26,7 @@
       vm.title = 'Novo Turma';
     } else {
       setIdadeAluno();
+      buscarNomeEducador(vm.turma.cpfEducador);
       vm.title = 'Alterar Turma';
     }
     // Methods
@@ -235,5 +236,12 @@
 
     }
 
+    function buscarNomeEducador(cpf) {
+      Educadores.forEach(function(edu) {        
+        if(edu.cpf == cpf) {
+          vm.nomeEducador =  edu.nome;
+        }
+      });
+    }
   }
 })();
