@@ -2,11 +2,11 @@
   "use strict";
 
   angular
-  .module("app.historicoOcorrencia")
-  .controller(
-    "HistoricoOcorrenciaListaDialogController",
-    HistoricoOcorrenciaListaDialogController
-  );
+    .module("app.historicoOcorrencia")
+    .controller(
+      "HistoricoOcorrenciaListaDialogController",
+      HistoricoOcorrenciaListaDialogController
+    );
 
   /** @ngInject */
   function HistoricoOcorrenciaListaDialogController(
@@ -19,7 +19,7 @@
     api
   ) {
     var vm = this;
-    vm.title = "Ocorrencias do Aluno(a) " + Aluno.nome;
+    vm.title = "Ocorrencias do Aluno(a): " + Aluno.nome;
     vm.aluno = angular.copy(Aluno);
     vm.user = User;
     vm.allFields = false;
@@ -43,7 +43,7 @@
 
     function formataData(data) {
       var aux = new Date(data);
-      aux.setDate(aux.getDate() + 2)
+      aux.setDate(aux.getDate() + 1)
       return aux.toLocaleDateString("pt-BR");
     };
 
@@ -83,148 +83,148 @@
 
     function deletarTodasAsOcorrencias(ev) {
       var confirm = $mdDialog
-      .confirm()
-      .title(
-        "Você tem certeza de que deseja apagar TODAS as ocorrencias do aluno?"
-      )
-      .htmlContent(
-        "<b>As ocorrencias do " +
-        vm.aluno.nome +
-        " (" +
-        vm.aluno.ra +
-        ")</b>" +
-        " serão apagadas."
-      )
-      .ariaLabel("apagar todas as ocorrencias")
-      .targetEvent(ev)
-      .ok("Sim")
-      .cancel("Cancelar");
+        .confirm()
+        .title(
+          "Você tem certeza de que deseja apagar TODAS as ocorrencias do aluno?"
+        )
+        .htmlContent(
+          "<b>As ocorrencias do " +
+          vm.aluno.nome +
+          " (" +
+          vm.aluno.ra +
+          ")</b>" +
+          " serão apagadas."
+        )
+        .ariaLabel("apagar todas as ocorrencias")
+        .targetEvent(ev)
+        .ok("Sim")
+        .cancel("Cancelar");
       $mdDialog.show(confirm).then(function() {
         api.historicoOcorrencia.getByAluno.delete({
-          ra: vm.aluno.ra
-        },
-        function(response) {
-          console.log(response);
-        },
-        // Erro
-        function(response) {
-          console.error(response);
+            ra: vm.aluno.ra
+          },
+          function(response) {
+            console.log(response);
+          },
+          // Erro
+          function(response) {
+            console.error(response);
+          }
+        );
+
+        closeDialog();
+      });
+    }
+
+    vm.routeReload = function() {
+      $state.reload();
+    };
+
+    function closeDialog() {
+      $mdDialog.hide();
+      vm.routeReload();
+    }
+
+    function filtrarOcorrencias(mesInicial, mesFinal, anoInicial, anoFinal, tipoFiltro) {
+      vm.ocorrencias = popularLista();
+      var filtro = [];
+
+      if (tipoFiltro === 'Somente um Mês') {
+
+        if (anoInicial === '' || anoInicial === null || anoInicial === undefined) {
+          anoInicial = new Date().getFullYear();
         }
-      );
 
-      closeDialog();
-    });
-  }
+        if (mesInicial >= 1 && mesInicial <= 12) {
+          vm.ocorrencias.forEach(function(oco) {
+            var mes = new Date(oco.data).getMonth() + 1;
+            var ano = new Date(oco.data).getFullYear();
 
-  vm.routeReload = function() {
-    $state.reload();
-  };
-
-  function closeDialog() {
-    $mdDialog.hide();
-    vm.routeReload();
-  }
-
-  function filtrarOcorrencias(mesInicial, mesFinal, anoInicial, anoFinal, tipoFiltro) {
-    vm.ocorrencias = popularLista();
-    var filtro = [];
-
-    if(tipoFiltro === 'Somente um Mês') {
-
-      if(anoInicial === '' || anoInicial === null || anoInicial === undefined) {
-        anoInicial = new Date().getFullYear();
-      }
-
-      if(mesInicial >= 1 && mesInicial <= 12) {
-        vm.ocorrencias.forEach(function (oco) {        
-          var mes = new Date(oco.data).getMonth() + 1;
-          var ano = new Date(oco.data).getFullYear();
-
-          if(mes === mesInicial && ano === anoInicial) {          
-            filtro.push(oco);
-          }
-        }); 
-      }
-
-    }
-
-    if(tipoFiltro === 'Entre dois ou mais Mêses do Mesmo Ano') {
-
-      if(anoInicial === '' || anoInicial === null || anoInicial === undefined) {
-        anoInicial = new Date().getFullYear();
-      }
-      
-      if(
-        (mesInicial < mesFinal) && 
-        (mesInicial >= 1 && mesInicial <= 12) && 
-        (mesFinal >= 1 && mesFinal <= 12)
-      ) {
-        vm.ocorrencias.forEach(function (oco) {
-          var mes = new Date(oco.data).getMonth() + 1;
-          var ano = new Date(oco.data).getFullYear();
-
-          if(mes >= mesInicial && mes <= mesFinal && ano === anoInicial) {
-            filtro.push(oco);
-          }
-        }); 
-      }
-    
-    }
-    
-    if(tipoFiltro === 'Entre Mêses e Anos') {
-
-      if(
-        (mesInicial !== '' && mesInicial !== null && mesInicial !== undefined) &&
-        (mesFinal !== '' && mesFinal !== null && mesFinal !== undefined) &&
-        (anoInicial !== '' && anoInicial !== null && anoInicial !== undefined) &&
-        (anoFinal !== '' && anoFinal !== null && anoFinal !== undefined)
-      ) {
-
-        if(anoInicial < anoFinal) {
-
-          vm.ocorrencias.forEach(function (oco) {
-            var data = new Date(oco.data);
-            data.setDate(1);
-            data.setHours(0);
-            data.setMinutes(0);
-
-            var dataInicial = new Date(anoInicial, mesInicial - 1);
-            dataInicial.setHours(0);
-            dataInicial.setMinutes(0);
-
-            var dataFinal = new Date(anoFinal, mesFinal - 1);
-            dataFinal.setHours(0);
-            dataFinal.setMinutes(0);
-
-            if(data >= dataInicial && data <= dataFinal) {
+            if (mes === mesInicial && ano === anoInicial) {
               filtro.push(oco);
             }
-          }); 
+          });
+        }
+
+      }
+
+      if (tipoFiltro === 'Entre dois ou mais Mêses do Mesmo Ano') {
+
+        if (anoInicial === '' || anoInicial === null || anoInicial === undefined) {
+          anoInicial = new Date().getFullYear();
+        }
+
+        if (
+          (mesInicial < mesFinal) &&
+          (mesInicial >= 1 && mesInicial <= 12) &&
+          (mesFinal >= 1 && mesFinal <= 12)
+        ) {
+          vm.ocorrencias.forEach(function(oco) {
+            var mes = new Date(oco.data).getMonth() + 1;
+            var ano = new Date(oco.data).getFullYear();
+
+            if (mes >= mesInicial && mes <= mesFinal && ano === anoInicial) {
+              filtro.push(oco);
+            }
+          });
+        }
+
+      }
+
+      if (tipoFiltro === 'Entre Mêses e Anos') {
+
+        if (
+          (mesInicial !== '' && mesInicial !== null && mesInicial !== undefined) &&
+          (mesFinal !== '' && mesFinal !== null && mesFinal !== undefined) &&
+          (anoInicial !== '' && anoInicial !== null && anoInicial !== undefined) &&
+          (anoFinal !== '' && anoFinal !== null && anoFinal !== undefined)
+        ) {
+
+          if (anoInicial < anoFinal) {
+
+            vm.ocorrencias.forEach(function(oco) {
+              var data = new Date(oco.data);
+              data.setDate(1);
+              data.setHours(0);
+              data.setMinutes(0);
+
+              var dataInicial = new Date(anoInicial, mesInicial - 1);
+              dataInicial.setHours(0);
+              dataInicial.setMinutes(0);
+
+              var dataFinal = new Date(anoFinal, mesFinal - 1);
+              dataFinal.setHours(0);
+              dataFinal.setMinutes(0);
+
+              if (data >= dataInicial && data <= dataFinal) {
+                filtro.push(oco);
+              }
+            });
+
+          }
 
         }
 
       }
-      
+
+      vm.ocorrencias = filtro;
     }
 
-    vm.ocorrencias = filtro;
-  }
+    function resetarFiltro() {
+      vm.mesInicial = '';
+      vm.mesFinal = '';
+      vm.anoInicial = '';
+      vm.anoFinal = '';
+      vm.tipoFiltro = '';
+      vm.ocorrencias = popularLista();
+    }
 
-  function resetarFiltro() {
-    vm.mesInicial = '';
-    vm.mesFinal = '';
-    vm.anoInicial = '';
-    vm.anoFinal = '';
-    vm.tipoFiltro = '';
-    vm.ocorrencias = popularLista();
+    function resetarValores() {
+      vm.mesInicial = '';
+      vm.mesFinal = '';
+      vm.anoInicial = '';
+      vm.anoFinal = '';
+      vm.ocorrencias = popularLista();
+    }
   }
-
-  function resetarValores() {
-    vm.mesInicial = '';
-    vm.mesFinal = '';
-    vm.anoInicial = '';
-    vm.anoFinal = '';
-    vm.ocorrencias = popularLista();
-  }
-}
 })();
