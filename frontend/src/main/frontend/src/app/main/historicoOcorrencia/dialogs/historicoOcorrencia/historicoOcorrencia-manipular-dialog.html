@@ -15,7 +15,7 @@
             <md-input-container class="md-icon-float md-block">
                 <label>Data da Ocorrencia</label>
                 <md-icon class="date">date_range</md-icon>
-                <input ng-model="vm.ocorrencia.data" type="text" mask="99/99/9999" md-autofocus ng-disabled="!vm.newOcorrencia">
+                <md-datepicker ng-model="vm.ocorrencia.data" required md-open-on-focus ng-disabled="!vm.newOcorrencia"></md-datepicker>
             </md-input-container>
 
             <md-input-container class="md-icon-float md-block">
