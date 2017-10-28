@@ -11,7 +11,6 @@
     // Data
 
     vm.turmas = Turmas
-    //vm.user = User.data;
     vm.listType = 'all';
     vm.listOrder = 'nome';
     vm.listOrderAsc = false;
