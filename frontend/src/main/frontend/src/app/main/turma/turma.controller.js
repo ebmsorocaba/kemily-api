@@ -4,7 +4,7 @@
   angular.module('app.turma').controller('TurmasController', TurmasController);
 
   /** @ngInject */
-  function TurmasController ($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window, Turmas, AlunoTurma, Alunos) {
+  function TurmasController ($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window, Turmas, AlunoTurma, Alunos, Educadores) {
 
     var vm = this;
 
@@ -17,6 +17,7 @@
     vm.selectedTurmas = [];
     vm.alunoTurma = AlunoTurma;
     vm.alunos = Alunos;
+    vm.educadores = Educadores;
 
     // Methods
     vm.openTurmaDialog = openTurmaDialog;
@@ -48,7 +49,8 @@
           Turmas: vm.turmas,
           AlunoTurma: vm.selectAlunoTurma(turma),
           AlunosDentroTurma: vm.alunosNaTurma(turma),
-          AlunosForaTurma: vm.alunosForaTurma(turma)
+          AlunosForaTurma: vm.alunosForaTurma(turma),
+          Educadores: vm.educadores
         }
       });
     }
