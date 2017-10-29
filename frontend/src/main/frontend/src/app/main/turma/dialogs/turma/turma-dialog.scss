@@ -153,8 +153,14 @@ md-dialog {
 
 }
 
-.aluno-item{
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
+.alunosinout {
+  margin-bottom: -7px;
+}
+
+.headers {
+  margin-bottom: -14px;
+
+  h3 {
+    font-weight: bold;
+  }
 }
