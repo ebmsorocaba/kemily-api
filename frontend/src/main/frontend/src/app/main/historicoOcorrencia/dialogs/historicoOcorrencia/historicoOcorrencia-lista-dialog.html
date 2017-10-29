@@ -13,197 +13,133 @@
       <md-icon md-font-icon="icon-close"></md-icon>
     </md-button>
   </div>
-
   <md-dialog-content ms-scroll>
+    <div class="headers">
 
-    <div class="text textoFiltro" layout="row">
-      <span>Filtrar Ocorrencias?</span>
-      <md-checkbox ng-model="vm.filtro" aria-label="Deseja filtrar as ocorrencias?" ng-change="vm.resetarFiltro()">
-      </md-checkbox>
-      <div ng-if="vm.filtro == true" layout="row">
-        <span> Tipo de Filtro?</span>
-        <md-select ng-model="vm.tipoFiltro">
-          <md-option ng-repeat="filtro in vm.filtros" value="{{filtro}}">
-            {{filtro}}
-          </md-option>
-        </md-select>
-      </div>
-    </div>
-    <md-dialog-content ms-scroll>
-      <div class="headers">
+      <div layout="row" layout-align="space-between center">
+        <div class="list-title titleHeader" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
+          <span>Ocorrencias </span>
+          <span ng-if="vm.ocorrencias.length" class="secondary-text">({{vm.ocorrencias.length}})</span>
+        </div>
 
-        <div layout="row" layout-align="space-between center">
-            <div class="list-title titleHeader" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
-                <span>Ocorrencias </span>
-                <span ng-if="vm.ocorrencias.length" class="secondary-text">({{vm.ocorrencias.length}})</span>
+        <div class="filtro">
+          <div class="text textoFiltro" layout="row">
+            <span>Filtrar Ocorrencias?</span>
+            <md-checkbox ng-model="vm.filtro" aria-label="Deseja filtrar as ocorrencias?" ng-change="vm.resetarFiltro()">
+            </md-checkbox>
+
+            <div ng-if="vm.filtro == true" layout="row">
+              <span> Tipo de Filtro?</span>
+              <md-select ng-model="vm.tipoFiltro">
+                <md-option ng-repeat="filtro in vm.filtros" value="{{filtro}}">
+                  {{filtro}}
+                </md-option>
+              </md-select>
             </div>
 
-            <div class="filtro">
-              <div class="text textoFiltro" layout="row">
-                  <span>Filtrar Ocorrencias?</span>
-                  <md-checkbox ng-model="vm.filtro" aria-label="Deseja filtrar as ocorrencias?" ng-change="vm.resetarFiltro()">
-                  </md-checkbox>
+            <div ng-if="vm.filtro == true">
+              <div class="search-input-wrapper textoFiltro" layout="row" layout-align="space-around center">
 
-                  <div ng-if="vm.filtro == true" layout="row">
-                      <span> Tipo de Filtro?</span>
-                      <md-select ng-model="vm.tipoFiltro">
-                          <md-option ng-repeat="filtro in vm.filtros" value="{{filtro}}">
-                              {{filtro}}
-                          </md-option>
-                      </md-select>
-                  </div>
+                <div ng-if="vm.tipoFiltro == 'Somente um Mês'" layout="row" layout-align="space-around center">
+                  <p class="text">Mes:</p>
+                  <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
 
-                  <div ng-if="vm.filtro == true">
-                      <div class="search-input-wrapper textoFiltro" layout="row" layout-align="space-around center">
+                  <p class="text">Ano:</p>
+                  <input type="number" min="2000" placeholder="2017" ng-model="vm.anoInicial">
+                </div>
 
-                          <div ng-if="vm.tipoFiltro == 'Somente um Mês'" layout="row" layout-align="space-around center">
-                              <p class="text">Mes:</p>
-                              <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
+                <div ng-if="vm.tipoFiltro == 'Entre dois ou mais Meses do Mesmo Ano'" layout="row" layout-align="space-around center">
+                  <p class="text">Mes Inicial: </p>
+                  <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
 
-                              <p class="text">Ano:</p>
-                              <input type="number" min="2000" placeholder="2017" ng-model="vm.anoInicial">
-                          </div>
+                  <p class="text">Mes Final: </p>
+                  <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesFinal">
 
-                          <div ng-if="vm.tipoFiltro == 'Entre dois ou mais Meses do Mesmo Ano'" layout="row" layout-align="space-around center">
-                              <p class="text">Mes Inicial: </p>
-                              <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
+                  <p class="text">Ano: </p>
+                  <input type="number" min="2000" placeholder="2017" ng-model="vm.anoInicial">
+                </div>
 
-                              <p class="text">Mes Final: </p>
-                              <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesFinal">
+                <div ng-if="vm.tipoFiltro == 'Entre Meses e Anos'" layout="row" layout-align="space-around center">
+                  <p class="text">Mes Inicial:</p>
+                  <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
 
-                              <p class="text">Ano: </p>
-                              <input type="number" min="2000" placeholder="2017" ng-model="vm.anoInicial">
-                          </div>
+                  <p class="text">Ano Inicial:</p>
+                  <input type="number" min="2000" placeholder="2017" ng-model="vm.anoInicial">
 
-                          <div ng-if="vm.tipoFiltro == 'Entre Meses e Anos'" layout="row" layout-align="space-around center">
-                              <p class="text">Mes Inicial:</p>
-                              <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesInicial">
+                  <p class="text">Mes Final:</p>
+                  <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesFinal">
 
-                              <p class="text">Ano Inicial:</p>
-                              <input type="number" min="2000" placeholder="2017" ng-model="vm.anoInicial">
-
-                              <p class="text">Mes Final:</p>
-                              <input type="number" min="1" max="12" placeholder="1" ng-model="vm.mesFinal">
-
-                              <p class="text">Ano Final:</p>
-                              <input type="number" min="2000" placeholder="2017" ng-model="vm.anoFinal">
-                          </div>
-
-                      </div>
-
-                      <div ng-if="vm.tipoFiltro !== ''" class="filterbuttons" layout="row" layout-align="left center">
-                          <md-button class="md-raised md-accent" ng-click="vm.filtrarOcorrencias(vm.mesInicial, vm.mesFinal, vm.anoInicial, vm.anoFinal, vm.tipoFiltro)" aria-label="Filtrar Ocorrencias">
-                              Filtrar Ocorrencias
-                              <md-icon md-font-icon="icon-magnify"></md-icon>
-                          </md-button>
-                          <md-button class="md-raised md-warn" ng-click="vm.resetarValores()" aria-label="Resetar Filtro">
-                              Resetar Valores
-                              <md-icon md-font-icon="icon-close"></md-icon>
-                          </md-button>
-                          <md-button class="md-raised md-warn" ng-click="vm.resetarFiltro()" aria-label="Resetar Filtro">
-                              Resetar Filtro
-                              <md-icon md-font-icon="icon-close"></md-icon>
-                          </md-button>
-                      </div>
-                  </div>
+                  <p class="text">Ano Final:</p>
+                  <input type="number" min="2000" placeholder="2017" ng-model="vm.anoFinal">
+                </div>
 
               </div>
 
+              <div ng-if="vm.tipoFiltro !== ''" class="filterbuttons" layout="row" layout-align="left center">
+                <md-button class="md-raised md-accent" ng-click="vm.filtrarOcorrencias(vm.mesInicial, vm.mesFinal, vm.anoInicial, vm.anoFinal, vm.tipoFiltro)" aria-label="Filtrar Ocorrencias">
+                  Filtrar Ocorrencias
+                  <md-icon md-font-icon="icon-magnify"></md-icon>
+                </md-button>
+                <md-button class="md-raised md-warn" ng-click="vm.resetarValores()" aria-label="Resetar Filtro">
+                  Resetar Valores
+                  <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+                <md-button class="md-raised md-warn" ng-click="vm.resetarFiltro()" aria-label="Resetar Filtro">
+                  Resetar Filtro
+                  <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+              </div>
             </div>
+
+          </div>
+
         </div>
-
-        <md-list>
-            <md-subheader class="md-no-sticky md-white-bg">
-
-                <div layout="row" layout-align="space-between center">
-
-                    <div class="item" layout="row" layout-align="space-between center">
-                        <p class="header">Data</p>
-                        <p class="header">Hora</p>
-                        <p class="header">Descrição</p>
-                    </div>
-
-                </div>
-
-            </md-subheader>
-            <md-list-item class="ocorrencia-item md-white-bg" md-ink-ripple ng-repeat="oco in vm.ocorrencias | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredOcorrencias track by (oco.data + oco.hora)"
-                ng-click="vm.openManipularOcorrenciaDialog($event, oco)" ng-class="{'selected': vm.isSelected(oco)}">
-                <div class="item" layout="row" layout-align="space-between center">
-                    <p class="date data">{{vm.formataData(oco.data)}}</p>
-                    <p class="number numero">{{vm.formataHora(oco.hora)}}</p>
-                    <p class="text descricao">{{oco.descricao}}</p>
-                </div>
-            </md-list-item>
-            <md-list-item class="no-results md-white-bg list-title" ng-show="vm.ocorrencias.length === 0">
-                <p>Nenhuma Ocorrencia Cadastrada</p>
-            </md-list-item>
-        </md-list>
-
-    </md-dialog-content>
-
-    <md-dialog-actions layout="row" layout-align="center">
-        <md-button class="md-raised md-accent" ng-click="vm.openManipularOcorrenciaDialog($event)">
-            Adicionar Ocorrencia
-        </md-button>
-        <md-button class="md-raised md-warn" ng-click="vm.resetarFiltro()" aria-label="Resetar Filtro">
-          Resetar Filtro
-          <md-icon md-font-icon="icon-close"></md-icon>
-        </md-button>
       </div>
-    </div>
 
-    <md-list>
-      <md-subheader class="md-no-sticky md-white-bg">
+      <md-list>
+        <md-subheader class="md-no-sticky md-white-bg">
 
-        <div layout="row" layout-align="space-between center">
-          <div class="list-title titleHeader" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
-            <span>Ocorrencias </span>
-            <span ng-if="vm.ocorrencias.length" class="secondary-text">({{vm.ocorrencias.length}})</span>
+          <div layout="row" layout-align="space-between center">
+
+            <div class="item" layout="row" layout-align="space-between center">
+              <p class="header">Data</p>
+              <p class="header">Hora</p>
+              <p class="header">Descrição</p>
+            </div>
+
           </div>
-        </div>
 
-        <div layout="row" layout-align="space-between center">
-
+        </md-subheader>
+        <md-list-item class="ocorrencia-item md-white-bg" md-ink-ripple ng-repeat="oco in vm.ocorrencias | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredOcorrencias track by (oco.data + oco.hora)"
+          ng-click="vm.openManipularOcorrenciaDialog($event, oco)" ng-class="{'selected': vm.isSelected(oco)}">
           <div class="item" layout="row" layout-align="space-between center">
-            <p class="header">Data</p>
-            <p class="header">Hora</p>
-            <p class="header">Descrição</p>
+            <p class="date data">{{vm.formataData(oco.data)}}</p>
+            <p class="number numero">{{vm.formataHora(oco.hora)}}</p>
+            <p class="text descricao">{{oco.descricao}}</p>
           </div>
-
-        </div>
-
-      </md-subheader>
-      <md-list-item class="ocorrencia-item md-white-bg" md-ink-ripple ng-repeat="oco in vm.ocorrencias | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredOcorrencias track by (oco.data + oco.hora)"
-        ng-click="vm.openManipularOcorrenciaDialog($event, oco)" ng-class="{'selected': vm.isSelected(oco)}">
-        <div class="item" layout="row" layout-align="space-between center">
-          <p class="date data">{{vm.formataData(oco.data)}}</p>
-          <p class="number numero">{{vm.formataHora(oco.hora)}}</p>
-          <p class="text descricao">{{oco.descricao}}</p>
-        </div>
-      </md-list-item>
-      <md-list-item class="no-results md-white-bg list-title" ng-show="vm.ocorrencias.length === 0">
-        <p>Nenhuma Ocorrencia Cadastrada</p>
-      </md-list-item>
-    </md-list>
-
-    <div class="simple-table-container md-whiteframe-4dp display-table" id="ocorrenciasTable">
-      <table class="simple" ms-responsive-table>
-        <thead>
-          <tr ng-repeat="oco in vm.ocorrencias | limitTo:1">
-            <th>Data</th>
-            <th>Hora</th>
-            <th>Descrição</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="oco in vm.ocorrencias">
-            <td>{{vm.formataData(oco.data)}}</td>
-            <td>{{vm.formataHora(oco.hora)}}</td>
-            <td>{{oco.descricao}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        </md-list-item>
+        <md-list-item class="no-results md-white-bg list-title" ng-show="vm.ocorrencias.length === 0">
+          <p>Nenhuma Ocorrencia Cadastrada</p>
+        </md-list-item>
+      </md-list>
+      <div class="simple-table-container md-whiteframe-4dp display-table" id="ocorrenciasTable">
+        <table class="simple" ms-responsive-table>
+          <thead>
+            <tr ng-repeat="oco in vm.ocorrencias | limitTo:1">
+              <th>Data</th>
+              <th>Hora</th>
+              <th>Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="oco in vm.ocorrencias">
+              <td>{{vm.formataData(oco.data)}}</td>
+              <td>{{vm.formataHora(oco.hora)}}</td>
+              <td>{{oco.descricao}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   </md-dialog-content>
 
   <md-dialog-actions layout="row" layout-align="center">
