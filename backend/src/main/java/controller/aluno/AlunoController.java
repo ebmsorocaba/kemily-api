@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -80,7 +81,7 @@ public class AlunoController {
         	
         	response.setContentType("application/vnd.ms-excel");
         	
-        	String fileName = "alunos.xls";
+        	String fileName = "alunos-" + LocalDateTime.now() + ".xls";
         	
         	response.setHeader("Content-disposition", "attachment; filename=" + fileName);
         	
