@@ -19,7 +19,7 @@
           <input ng-model="vm.turma.cpfEducador" type="text" mask="999.999.999-99" ng-disabled="!vm.newTurma" required>
         </md-input-container>
 
-        <md-input-container>
+        <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="25">
           <label>Nome do Educador</label>
           <md-icon md-font-icon="icon-account"></md-icon>
           <input ng-model="vm.nomeEducador" type="text" disabled>
@@ -35,56 +35,68 @@
           </md-select>
         </md-input-container>
 
-        <md-input-container flex="100" flex-gt-xs="30">
+        <md-input-container flex="100" flex-gt-xs="25">
           <md-icon md-font-icon="icon-clipboard-text"></md-icon>
           <input type="text" name="nome" ng-model="vm.turma.nome" placeholder="Nome da Turma">
         </md-input-container>
       </div>
 
-      <h3>Alunos dentro da Turma:</h3>
-      <md-list-item class="aluno-item md-white-bg"  ng-repeat="a in vm.alunosDentroTurma">
-        <div class="item" layout="row">
-          <p class="show-gt-xs numero">
+      <h2 class="alunosinout">Alunos dentro da Turma:</h2>
+      <div class="headers" display="flex" layout="row" layout-margin layout-padding>
+        <h3 flex="20">RA</h3>
+        <h3 flex="20">Nome</h3>
+        <h3 flex="20">Idade</h3>
+        <h3 flex="15">Data de nascimento</h3>
+      </div>
+      <md-list-item class="aluno-item md-white-bg"  ng-repeat="a in vm.alunosDentroTurma" display="flex" layout-margin layout-padding>
+          <p class="show-gt-xs numero" flex="20">
             {{a.aluno.ra}}
           </p>
-          <p class="numero"></p>
-          <p class="show-gt-xs texto">
+
+          <p class="show-gt-xs texto" flex="20">
             {{a.aluno.nome}}
           </p>
-          <p class="numero">
-            {{a.aluno.idade}}
+
+          <p class="numero" flex="20">
+            {{a.aluno.idade}} anos
           </p>
-          <p class="texto"></p>
-          <p class="data">
+
+          <p class="data" flex="20">
             {{a.aluno.dataNascimento}}
           </p>
+
           <md-button class="md-raised md-warn adicionarButton" ng-click="vm.removerAluno(a)">
             Remover
           </md-button>
-        </div>
       </md-list-item>
 
-      <h3>Alunos fora da Turma:</h3>
-      <md-list-item class="aluno-item md-white-bg" ng-repeat="a in vm.alunosForaTurma track by a.aluno.ra">
-        <div class="item" layout="row">
-          <p class="show-gt-xs numero">
+      <h2 class="alunosinout">Alunos fora da Turma:</h2>
+      <div class="headers" display="flex" layout="row" layout-margin layout-padding>
+        <h3 flex="20">RA</h3>
+        <h3 flex="20">Nome</h3>
+        <h3 flex="20">Idade</h3>
+        <h3 flex="15">Data de nascimento</h3>
+      </div>
+
+      <md-list-item class="aluno-item md-white-bg" ng-repeat="a in vm.alunosForaTurma track by a.aluno.ra" display="flex" layout-margin layout-padding>
+          <p class="show-gt-xs numero" flex="20">
             {{a.aluno.ra}}
           </p>
-          <p class="numero"></p>
-          <p class="show-gt-xs texto">
+
+          <p class="show-gt-xs texto" flex="20">
             {{a.aluno.nome}}
           </p>
-          <p class="numero">
-            {{a.aluno.idade}}
+          <p class="numero" flex="20">
+            {{a.aluno.idade}} anos
           </p>
-          <p class="texto"></p>
-          <p class="data">
+
+          <p class="data" flex="20">
             {{a.aluno.dataNascimento}}
           </p>
+
           <md-button class="md-raised md-accent adicionarButton" ng-click="vm.adicionarAluno(a)">
             Adicionar
           </md-button>
-        </div>
       </md-list-item>
 
       <div layout="column" layout-gt-xs="row" flex ng-repeat="aluno in vm.alunos track by a.aluno.ra">

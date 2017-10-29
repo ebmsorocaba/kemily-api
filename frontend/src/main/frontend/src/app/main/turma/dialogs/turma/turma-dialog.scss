@@ -5,9 +5,9 @@ md-dialog {
      width: 12px;
     }
     &.turma-dialog {
-        max-width: 1400px;
-        width: 1400px;
-        height: 1000px;
+        max-width: 1200px;
+        width: 1300px;
+        height: 500px;
 
         md-toolbar {
             height: 240px;
@@ -151,4 +151,16 @@ md-dialog {
     }
 
 
+}
+
+.alunosinout {
+  margin-bottom: -7px;
+}
+
+.headers {
+  margin-bottom: -14px;
+
+  h3 {
+    font-weight: bold;
+  }
 }
