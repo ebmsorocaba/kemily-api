@@ -11,6 +11,7 @@
   /** @ngInject */
   function HistoricoOcorrenciaListaDialogController(
     $mdDialog,
+    $filter,
     $state,
     Aluno,
     Ocorrencias,
@@ -34,6 +35,7 @@
     vm.filtrarOcorrencias = filtrarOcorrencias;
     vm.resetarFiltro = resetarFiltro;
     vm.resetarValores = resetarValores;
+    vm.exportarExcel = exportarExcel
 
     vm.filtros = [
       'Somente um Mês',
@@ -63,6 +65,14 @@
       });
       return lista;
     }
+
+    function exportarExcel(nome){
+      var blob = new Blob([document.getElementById('ocorrenciasTable').innerHTML], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+      });
+
+      saveAs(blob,  Aluno.nome + " - Historico" +".xls");
+    };
 
     function openManipularOcorrenciaDialog(ev, ocorrencia) {
       $mdDialog.show({
