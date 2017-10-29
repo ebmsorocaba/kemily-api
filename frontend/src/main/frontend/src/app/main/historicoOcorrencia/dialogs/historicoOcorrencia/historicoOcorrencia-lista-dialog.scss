@@ -1,6 +1,6 @@
 md-dialog {
     &.ocorrencia-dialog {
-        width: 1000px;
+        width: 1100px;
         height: 900px;
         .title {
             font-size: 20px;
@@ -34,4 +34,9 @@ md-dialog {
             font-size: 12px;
         }
     }
+}
+
+.filterbuttons{
+  font-size: 10px;
+  line-height: 20px;
 }
