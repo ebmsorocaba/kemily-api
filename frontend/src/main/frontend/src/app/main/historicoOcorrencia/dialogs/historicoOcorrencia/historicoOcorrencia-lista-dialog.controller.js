@@ -39,8 +39,8 @@
 
     vm.filtros = [
       'Somente um Mês',
-      'Entre dois ou mais Mêses do Mesmo Ano',
-      'Entre Mêses e Anos'
+      'Entre dois ou mais Meses do Mesmo Ano',
+      'Entre Meses e Anos'
     ];
 
     function formataData(data) {
@@ -158,7 +158,7 @@
 
       }
 
-      if (tipoFiltro === 'Entre dois ou mais Mêses do Mesmo Ano') {
+      if (tipoFiltro === 'Entre dois ou mais Meses do Mesmo Ano') {
 
         if (anoInicial === '' || anoInicial === null || anoInicial === undefined) {
           anoInicial = new Date().getFullYear();
@@ -181,7 +181,7 @@
 
       }
 
-      if (tipoFiltro === 'Entre Mêses e Anos') {
+      if (tipoFiltro === 'Entre Meses e Anos') {
 
         if (
           (mesInicial !== '' && mesInicial !== null && mesInicial !== undefined) &&
