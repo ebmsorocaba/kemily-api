@@ -13,13 +13,13 @@
     <md-dialog-content ms-scroll>
 
       <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-around none" style="height: 100vh, width: 100vh">
-        <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="20">
+        <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="15">
           <label>Cpf do Educador</label>
           <md-icon md-font-icon="icon-account-circle"></md-icon>
           <input ng-model="vm.turma.cpfEducador" type="text" mask="999.999.999-99" ng-disabled="!vm.newTurma" required>
         </md-input-container>
 
-        <md-input-container>
+        <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="25">
           <label>Nome do Educador</label>
           <md-icon md-font-icon="icon-account"></md-icon>
           <input ng-model="vm.nomeEducador" type="text" disabled>
@@ -35,7 +35,7 @@
           </md-select>
         </md-input-container>
 
-        <md-input-container flex="100" flex-gt-xs="30">
+        <md-input-container flex="100" flex-gt-xs="25">
           <md-icon md-font-icon="icon-clipboard-text"></md-icon>
           <input type="text" name="nome" ng-model="vm.turma.nome" placeholder="Nome da Turma">
         </md-input-container>
