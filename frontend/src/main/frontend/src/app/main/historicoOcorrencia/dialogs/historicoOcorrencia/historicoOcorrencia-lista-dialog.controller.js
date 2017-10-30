@@ -67,8 +67,8 @@
     }
 
     function exportarExcel(nome){
-      var blob = new Blob([document.getElementById('ocorrenciasTable').innerHTML], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+      var blob = new Blob(["\ufeff", document.getElementById('ocorrenciasTable').innerHTML], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8"
       });
 
       saveAs(blob,  Aluno.nome + " - Historico" +".xls");
