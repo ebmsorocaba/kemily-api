@@ -26,10 +26,6 @@ md-dialog {
         .search {
             margin-top: 22px;
         }
-        md-icon {
-            color: #000;
-            // background-color: #000;
-        }
         .textoFiltro {
             font-size: 12px;
         }
@@ -37,9 +33,9 @@ md-dialog {
     .display-table {
       display: none;
     }
-}
 
-.filterbuttons{
-  font-size: 10px;
-  line-height: 20px;
+    .filterbuttons{
+      font-size: 10px;
+      line-height: 20px;
+    }
 }
