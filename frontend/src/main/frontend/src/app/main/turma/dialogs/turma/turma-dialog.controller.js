@@ -10,6 +10,7 @@
     vm.turma = angular.copy(Turma);
     vm.user = User;
     vm.allFields = false;
+    vm.educadores = Educadores;
 
     vm.periodos = [
       'Manhã',
@@ -26,7 +27,7 @@
       vm.title = 'Novo Turma';
     } else {
       setIdadeAluno();
-      buscarNomeEducador(vm.turma.cpfEducador);
+      buscarEducador(vm.turma.cpfEducador);
       vm.title = 'Alterar Turma';
     }
     // Methods
@@ -48,6 +49,7 @@
     vm.alunoTurma = AlunoTurma;
     vm.alunosDentroTurma = AlunosDentroTurma;
     vm.alunosForaTurma = AlunosForaTurma;
+    vm.setarCpf = setarCpf;
 
     function removerAluno(a) {
       // Cria o novo registro no BD
@@ -97,26 +99,27 @@
      * Add new turma
      */
     function addNewTurma() {
-      // Cria o novo registro no BD
-      // TODO Tratar de como enviar a [formaPgto] ao BD
-      //if(vm.ok == true){
-        api.turma.list.save(vm.turma,
-          // Exibe o resultado no console do navegador:
-          // Sucesso
-          function(response) {
-            console.log(response);
-          },
-          // Erro
-          function(response) {
-            console.error(response);
-          }
-        );
+    // Cria o novo registro no BD
+    // TODO Tratar de como enviar a [formaPgto] ao BD
+    //if(vm.ok == true)        
 
-      // Adiciona uma nova linha no topo da lista na tela
-        vm.turmas.unshift(vm.turma);
+      api.turma.list.save(vm.turma,
+        // Exibe o resultado no console do navegador:
+        // Sucesso
+        function(response) {
+          console.log(response);
+        },
+        // Erro
+        function(response) {
+          console.error(response);
+        }
+      );
 
-        closeDialog();
-      //}
+    // Adiciona uma nova linha no topo da lista na tela
+      vm.turmas.unshift(vm.turma);
+
+      closeDialog();
+    //}
     }
 
     vm.routeReload = function() {
@@ -236,12 +239,19 @@
 
     }
 
-    function buscarNomeEducador(cpf) {
-      Educadores.forEach(function(edu) {        
-        if(edu.cpf == cpf) {
-          vm.nomeEducador =  edu.nome;
+    function buscarEducador(cpf) {
+      vm.educadores.forEach(function(edu) {        
+        if(edu.cpf === cpf) {
+          //por algum motivo estranho o ng-repeat transforma o objeto/json em string
+          //para que o valor seja selecionado automaticamente pelo ng-select
+          vm.educador = JSON.stringify(edu);
         }
       });
+    }
+
+    function setarCpf(edu) {
+      //transformando a string em objeto/json para setar o cpf
+      vm.turma.cpfEducador = JSON.parse(edu).cpf;
     }
   }
 })();
