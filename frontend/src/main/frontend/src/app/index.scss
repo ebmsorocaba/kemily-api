@@ -45,6 +45,10 @@ div.item p.numero{
   color: #FFF;
   background-color: #407F59;
 
+  &:hover {
+    background-color: #45A160;
+  }
+
   md-icon {
     color: #FFF;
   }
@@ -53,6 +57,10 @@ div.item p.numero{
 .md-button.md-default-theme.btnPdf {
   color: #FFF;
   background-color: #DA473E;
+
+  &:hover {
+    background-color: #FF5349;
+  }
 
   md-icon {
     color: #FFF;
