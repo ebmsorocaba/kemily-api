@@ -38,14 +38,12 @@
 
             'app.turma',
 
-            'app.relatorioSocial',
-
             'app.login',
 
             'app.minhaConta',
 
             'app.esqueciSenha',
-            
+
             'app.historicoOcorrencia'
         ])
 })();
