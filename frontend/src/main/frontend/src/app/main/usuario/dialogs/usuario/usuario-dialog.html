@@ -41,8 +41,8 @@
 
      <md-input-container class="mc-icon-float">
         <md-icon md-font-icon="icon-cog-box"></md-icon>
-        <md-switch md-no-ink ng-model="vm.usuario.ativo" ng-true-value="'Sim'" ng-false-value="'Não'">
-          Ativo ? {{vm.usuario.ativo}}
+        <md-switch md-no-ink ng-model="vm.usuario.ativo" ng-true-value="true" ng-false-value="false">
+          Ativo ? {{vm.usuario.ativo ? 'Sim' : 'Não'}}
         </md-switch>
      </md-input-container>
 
