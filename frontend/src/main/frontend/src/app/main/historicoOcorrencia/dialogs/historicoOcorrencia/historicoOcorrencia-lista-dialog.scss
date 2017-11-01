@@ -38,4 +38,12 @@ md-dialog {
       font-size: 10px;
       line-height: 20px;
     }
+
+    md-dialog-content {
+      padding-top: 5px;
+    }
+
+    .tableheader .md-subheader-inner {
+      padding-top: 0px;
+    }
 }

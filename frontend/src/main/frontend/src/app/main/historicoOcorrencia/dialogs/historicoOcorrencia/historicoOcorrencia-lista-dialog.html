@@ -5,11 +5,9 @@
   </div>
 
   <md-dialog-content ms-scroll>
-    <div class="headers">
-
-      <div layout="row" layout-align="space-between center">
-        <div class="list-title titleHeader" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
-          <span>Ocorrencias </span>
+      <div class="header" layout="row" layout-align="space-between center">
+        <div class="titleHeader" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
+          <h3>Ocorrencias </h3>
           <span ng-if="vm.ocorrencias.length" class="secondary-text">({{vm.ocorrencias.length}})</span>
         </div>
 
@@ -88,19 +86,17 @@
       </div>
 
       <md-list>
-        <md-subheader class="md-no-sticky md-white-bg">
 
+        <md-subheader class="tableheader">
           <div layout="row" layout-align="space-between center">
-
             <div class="item" layout="row" layout-align="space-between center">
               <p class="header">Data</p>
               <p class="header">Hora</p>
               <p class="header">Descrição</p>
             </div>
-
           </div>
-
         </md-subheader>
+
         <md-list-item class="ocorrencia-item md-white-bg" md-ink-ripple ng-repeat="oco in vm.ocorrencias | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredOcorrencias track by (oco.data + oco.hora)"
           ng-click="vm.openManipularOcorrenciaDialog($event, oco)" ng-class="{'selected': vm.isSelected(oco)}">
           <div class="item" layout="row" layout-align="space-between center">
@@ -109,10 +105,13 @@
             <p class="text descricao">{{oco.descricao}}</p>
           </div>
         </md-list-item>
+
         <md-list-item class="no-results md-white-bg list-title" ng-show="vm.ocorrencias.length === 0">
           <p>Nenhuma Ocorrencia Cadastrada</p>
         </md-list-item>
+        
       </md-list>
+
       <div class="simple-table-container md-whiteframe-4dp display-table" id="ocorrenciasTable">
         <table class="simple" ms-responsive-table>
           <thead>

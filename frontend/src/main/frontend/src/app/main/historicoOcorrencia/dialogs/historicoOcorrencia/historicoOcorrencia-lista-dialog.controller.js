@@ -20,7 +20,7 @@
     api
   ) {
     var vm = this;
-    vm.title = "Ocorrencias do Aluno(a): " + Aluno.nome;
+    vm.title = "Aluno(a): " + Aluno.nome;
     vm.aluno = angular.copy(Aluno);
     vm.user = User;
     vm.allFields = false;
