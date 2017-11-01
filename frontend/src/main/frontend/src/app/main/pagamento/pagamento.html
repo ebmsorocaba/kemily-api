@@ -1,9 +1,7 @@
 <div id="pagamentos" class="page-layout simple inner-sidenav">
 
-  <!-- HEADER -->
   <div class="header md-accent-bg" layout="row" layout-align="space-between center">
 
-    <!-- APP TITLE -->
     <div layout="row" layout-align="start center">
       <div class="logo" layout="row" layout-align="start center">
         <span class="logo-icon">
@@ -12,9 +10,7 @@
         <span class="logo-text">Gerenciar Pagamentos</span>
       </div>
     </div>
-    <!-- / APP TITLE -->
 
-    <!-- SEARCH -->
     <div class="search-input-wrapper" layout="row" layout-align="start center">
       <label for="search">
         <md-icon md-font-icon="icon-magnify"></md-icon>
@@ -23,12 +19,9 @@
         <input id="search" placeholder="Pesquisar pagamentos..." type="text" ng-model="vm.search">
       </md-input-container>
     </div>
-    <!-- / SEARCH -->
 
   </div>
-  <!-- / HEADER -->
 
-  <!-- SELECTED BAR -->
   <div ng-show="vm.selectedPagamentos.length > 0" class="selected-bar header animate-slide-down md-accent-bg" layout="row" layout-align="start center">
 
     <div class="close-button-wrapper" ng-click="vm.selectedPagamentos =[]">
@@ -75,18 +68,13 @@
     </div>
 
   </div>
-  <!-- / SELECTED BAR -->
 
-  <!-- CONTENT -->
   <div class="content" md-background-bg layout="row" layout-align="start start">
 
-    <!-- MAIN -->
     <div class="main scrollable" ms-scroll>
 
-      <!-- CONTACT LIST -->
       <md-list class="pagamentos-list">
 
-        <!-- CONTACT LIST HEADER -->
         <md-subheader class="md-no-sticky md-white-bg">
 
           <div layout="row" layout-align="space-between center">
@@ -231,26 +219,19 @@
           </div>
 
         </md-list-item>
-        <!-- CONTACT ITEM -->
 
       </md-list>
-      <!-- / CONTACT LIST -->
 
-      <!-- NO RESULTS -->
       <md-list-item class="no-results md-white-bg" ng-show="filteredPagamentos.length === 0">
         <p>Nenhum pagamento encontrado.</p>
       </md-list-item>
-      <!-- / NO RESULTS -->
 
     </div>
-    <!-- / MAIN -->
 
   </div>
-  <!-- / CONTENT -->
 
-  <!-- ADD CONTACT BUTTON -->
   <md-button class="md-fab md-accent md-icon-button" id="add-pagamento-button" ng-click="vm.openPagamentoDialog($event)" aria-label="Adicionar pagamento">
     <md-icon md-font-icon="icon-square-inc-cash"></md-icon>
   </md-button>
-  <!-- / ADD CONTACT BUTTON -->
+
 </div>
