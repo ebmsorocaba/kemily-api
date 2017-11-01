@@ -77,71 +77,67 @@
 
         <md-subheader class="md-no-sticky md-white-bg">
 
-          <div layout="row" layout-align="space-between center">
+            <div class="list-title" layout="row" layout-align="space-between center" ng-hide="editGroupForm.$visible">
+              <div>
+                <span ng-if="vm.listType === 'all'">Associados Cadastrados</span>
+                <span ng-if="filteredAssociados.length" class="secondary-text associados-count">({{filteredAssociados.length}})</span>
+              </div>
 
-            <div class="list-title" layout="row" layout-align="start center" ng-hide="editGroupForm.$visible">
-              <span ng-if="vm.listType === 'all'">Associados Cadastrados</span>
+              <div>
+                <span>Ordenar</span>
+                <md-menu>
 
-              <span ng-if="filteredAssociados.length" class="secondary-text associados-count">
-                                ({{filteredAssociados.length}})
-                            </span>
-            </div>
-
-            <div flex></div>
-
-            <span>Ordenar</span>
-            <md-menu>
-
-              <md-button class="md-icon-button" aria-label="Ordenar">
-                <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
-              </md-button>
-
-              <md-menu-content width="3">
-
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>Nome</span>
-                    <small>(A até Z)</small>
+                  <md-button class="md-icon-button" aria-label="Ordenar">
+                    <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
                   </md-button>
-                </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>Nome</span>
-                    <small>(Z até A)</small>
-                  </md-button>
-                </md-menu-item>
+                  <md-menu-content width="3">
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'cpf'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'cpf' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>CPF</span>
-                    <small>(Crescente)</small>
-                  </md-button>
-                </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                        <span>Nome</span>
+                        <small>(A até Z)</small>
+                      </md-button>
+                    </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'cpf'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'cpf' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>CPF</span>
-                    <small>(Decrescente)</small>
-                  </md-button>
-                </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="vm.listOrder = 'nome'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'nome' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                        <span>Nome</span>
+                        <small>(Z até A)</small>
+                      </md-button>
+                    </md-menu-item>
 
-              </md-menu-content>
+                    <md-menu-item>
+                      <md-button ng-click="vm.listOrder = 'cpf'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'cpf' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                        <span>CPF</span>
+                        <small>(Crescente)</small>
+                      </md-button>
+                    </md-menu-item>
 
-            </md-menu>
+                    <md-menu-item>
+                      <md-button ng-click="vm.listOrder = 'cpf'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'cpf' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                        <span>CPF</span>
+                        <small>(Decrescente)</small>
+                      </md-button>
+                    </md-menu-item>
+
+                  </md-menu-content>
+
+                </md-menu>
+              </div>
 
           </div>
           <div class="atributos" layout="row" layout-align="space-around end">
 
               <label>Nome</label>
 
-              <label>Cpf</label>
+              <label hide show-gt-xs>Cpf</label>
 
-              <label>Telefone</label>
+              <label hide show-gt-xs>Telefone</label>
 
-              <label>Email</label>
+              <label hide show-gt-xs>Email</label>
 
-              <label>Paga em:</label>
+              <label hide show-gt-xs>Paga em:</label>
 
               <label>Valor</label>
 
@@ -153,7 +149,7 @@
 
           <md-checkbox ng-checked="vm.exists(associado, vm.selectedAssociados)" ng-click="vm.toggleSelectAssociado(associado, $event)" aria-label="{{vm.exists(associado, vm.selectedAssociados) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
-          <div class="item" layout="row">
+          <div class="item" layout="row" flex>
 
           <p class="text-truncate font-weight-600 texto nomeAssociado">
             {{associado.nome}}
@@ -167,11 +163,11 @@
             {{associado.celular}}
           </p>
 
-          <p class="hide show-gt-sm texto emailAssociado">
+          <p class="hide show-gt-xs texto emailAssociado">
             {{associado.email}}
           </p>
 
-          <p class="hide show texto pagamentoAssociado">
+          <p class="hide show-gt-xs texto pagamentoAssociado">
             Dinheiro
           </p>
 
