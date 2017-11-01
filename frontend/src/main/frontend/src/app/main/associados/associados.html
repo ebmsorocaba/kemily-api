@@ -153,7 +153,7 @@
 
           <md-checkbox ng-checked="vm.exists(associado, vm.selectedAssociados)" ng-click="vm.toggleSelectAssociado(associado, $event)" aria-label="{{vm.exists(associado, vm.selectedAssociados) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
-          <div class="item" layout="row">
+          <div class="item" layout="row" flex>
 
           <p class="text-truncate font-weight-600 texto nomeAssociado">
             {{associado.nome}}
@@ -167,7 +167,7 @@
             {{associado.celular}}
           </p>
 
-          <p class="hide show-gt-sm texto emailAssociado">
+          <p class="hide show-gt-xs texto emailAssociado">
             {{associado.email}}
           </p>
 
