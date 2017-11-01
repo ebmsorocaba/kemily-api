@@ -43,8 +43,6 @@
       'Entre Meses e Anos'
     ];
 
-    vm.meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
     function formataData(data) {
       var aux = new Date(data);
       aux.setDate(aux.getDate() + 1)
@@ -138,7 +136,6 @@
     }
 
     function filtrarOcorrencias(mesInicial, mesFinal, anoInicial, anoFinal, tipoFiltro) {
-      debugger;
       vm.ocorrencias = popularLista();
       var filtro = [];
       mesInicial = mesInicial*1;
@@ -153,9 +150,6 @@
         if (mesInicial >= 1 && mesInicial <= 12) {
           vm.ocorrencias.forEach(function(oco) {
 
-            if(mesInicial === 10) {
-              console.log('Ai meu cu');
-            }
             var mes = new Date(oco.data).getMonth() + 1;
             var ano = new Date(oco.data).getFullYear();
 
