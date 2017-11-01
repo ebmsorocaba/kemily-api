@@ -22,7 +22,7 @@
         <md-input-container class="md-icon-float md-block" flex="100" flex-gt-xs="25" required>
           <label>Nome do Educador</label>
           <md-icon md-font-icon="icon-account"></md-icon>
-          <md-select ng-model="vm.educador" ng-change="vm.setarCpf(vm.educador)">
+          <md-select ng-model="vm.educador" ng-change="vm.setarCpf(vm.educador)" ng-disabled="!vm.newTurma">
             <md-option ng-repeat="edu in vm.educadores" value="{{edu}}">
               {{edu.nome}}
             </md-option>
