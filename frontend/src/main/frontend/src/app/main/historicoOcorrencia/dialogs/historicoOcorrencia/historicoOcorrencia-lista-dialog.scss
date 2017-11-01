@@ -19,6 +19,7 @@ md-dialog {
         }
         p.header {
             margin-right: 70px;
+            font-size: 15px;
         }
         .titleHeader {
             margin-bottom: 20px;
@@ -27,15 +28,29 @@ md-dialog {
             margin-top: 22px;
         }
         .textoFiltro {
-            font-size: 12px;
+            font-size: 14px;
         }
     }
     .display-table {
       display: none;
     }
 
-    .filterbuttons{
-      font-size: 10px;
-      line-height: 20px;
+    .inputAno {
+      width: 45px;
+      margin-left: 3px;
+      margin-right: 3px;
     }
+
+    .filterbuttons .md-button{
+      min-width: 30px;
+    }
+
+    md-dialog-content {
+      padding-top: 5px;
+    }
+
+    .tableheader .md-subheader-inner {
+      padding-top: 0px;
+    }
+
 }

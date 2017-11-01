@@ -20,7 +20,7 @@
     api
   ) {
     var vm = this;
-    vm.title = "Ocorrencias do Aluno(a): " + Aluno.nome;
+    vm.title = "Aluno(a): " + Aluno.nome;
     vm.aluno = angular.copy(Aluno);
     vm.user = User;
     vm.allFields = false;
@@ -138,6 +138,8 @@
     function filtrarOcorrencias(mesInicial, mesFinal, anoInicial, anoFinal, tipoFiltro) {
       vm.ocorrencias = popularLista();
       var filtro = [];
+      mesInicial = mesInicial*1;
+      mesFinal = mesFinal*1;
 
       if (tipoFiltro === 'Somente um Mês') {
 
@@ -147,6 +149,7 @@
 
         if (mesInicial >= 1 && mesInicial <= 12) {
           vm.ocorrencias.forEach(function(oco) {
+
             var mes = new Date(oco.data).getMonth() + 1;
             var ano = new Date(oco.data).getFullYear();
 
