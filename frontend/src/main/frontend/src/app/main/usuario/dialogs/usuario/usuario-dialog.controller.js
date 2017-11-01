@@ -3,7 +3,26 @@
 
   angular
     .module('app.usuario')
-    .controller('UsuarioDialogController', UsuarioDialogController);
+    .controller('UsuarioDialogController', UsuarioDialogController)
+    .directive('compareTo', function() {
+      return {
+        require: "ngModel",
+        scope: {
+          otherModelValue: "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel) {
+            
+          ngModel.$validators.compareTo = function(modelValue) {
+            return modelValue == scope.otherModelValue;
+          };
+
+          scope.$watch("otherModelValue", function() {
+            ngModel.$validate();
+          });
+        }
+      };
+    }
+  );
 
   /** @ngInject */
   function UsuarioDialogController($mdDialog, Usuario, Usuarios, User, msUtils, api) {
