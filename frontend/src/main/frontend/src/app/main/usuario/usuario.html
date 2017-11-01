@@ -86,7 +86,7 @@
             </div>
 
             <div>
-              <span>Ordenar</span>
+              <span hide show-gt-xs texto>Ordenar</span>
               <md-menu>
 
                 <md-button class="md-icon-button" aria-label="Ordenar">
@@ -129,6 +129,13 @@
             </div>
           </div>
 
+          <div class="atributos" layout-align="space-around center">
+            <label flex="20">Usuario</label>
+            <label hide show-gt-xs flex="20">Email</label>
+            <label hide show-gt-xs flex="15">Setor</label>
+            <label hide show-gt-xs flex="10">Ativo?</label>
+          </div>
+
         </md-subheader>
 
         <md-list-item class="usuario-item md-white-bg" md-ink-ripple ng-repeat="usuario in vm.usuarios | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredUsuarios track by usuario.nome "
@@ -136,17 +143,17 @@
 
           <md-checkbox ng-checked="vm.exists(usuario, vm.selectedUsuarios)" ng-click="vm.toggleSelectUsuario(usuario, $event)" aria-label="{{vm.exists(usuario, vm.selectedUsuarios) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
-          <div class="item" layout="row">
+          <div class="item" layout="row" flex>
 
             <p class="text-truncate font-weight-600 texto usuario">
               {{usuario.nome}}
             </p>
 
-            <p class="hide show-gt-sm texto email">
+            <p class="hide show-gt-xs texto email">
               {{usuario.email}}
             </p>
 
-            <p class="hide show-gt-sm texto setor">
+            <p class="hide show-gt-xs texto setor">
               {{usuario.setor}}
             </p>
 
