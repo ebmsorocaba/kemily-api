@@ -52,6 +52,15 @@
       vm.title = 'Novo Usuário';
       vm.newUsuario = true;
       // vm.usuario.tags = [];
+    } else {
+      
+      vm.usuario.confirmaSenha = vm.usuario.senha;
+
+      if(vm.usuario.ativo === true) {
+        vm.usuario.ativo = 'Sim';
+      } else {
+        vm.usuario.ativo = 'Não';
+      }
     }
 
     // Methods
@@ -69,6 +78,13 @@
     function addNewUsuario() {
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
+
+      if(vm.usuario.ativo === 'Sim') {
+        vm.usuario.ativo = true;
+      } else {
+        vm.usuario.ativo = false;
+      }
+
       api.usuario.addUsuario.save(vm.usuario,
         // Exibe o resultado no console do navegador:
         // Sucesso
@@ -92,6 +108,12 @@
      */
     function saveUsuario() {
       // Atualiza a linha na tela:
+      if(vm.usuario.ativo === 'Sim') {
+        vm.usuario.ativo = true;
+      } else {
+        vm.usuario.ativo = false;
+      }
+
       for (var i = 0; i < vm.usuarios.length; i++) {
         if (vm.usuarios[i].nome === vm.usuario.nome) {
           vm.usuarios[i] = angular.copy(vm.usuario);
