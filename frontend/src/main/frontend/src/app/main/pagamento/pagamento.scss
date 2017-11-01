@@ -211,30 +211,13 @@
     }
 }
 
-
-div.item p.id{
-    margin-left: -20px;
-    margin-right: 100px;
-    width: 40px;
-    text-align: right;
+div.item p.nome {
+  position: relative;
+  left: 5px;
 }
-
-div.item p.cpf{
-    margin-right: 80px;
-}
-
-div.item p.nome{
-    margin-right: 35px;
-}
-
-div.item p.formaPagamento{
-    margin-right: 100px;
-}
-
-div.item p.dataPagamento{
-    margin-right: 30px;
-}
-
-div.item p.valorPago{
-    margin-right: 120px;
+@media (min-width: 468px) {
+  div.item p.valorPago {
+    position: relative;
+    right: 60px;
+  }
 }

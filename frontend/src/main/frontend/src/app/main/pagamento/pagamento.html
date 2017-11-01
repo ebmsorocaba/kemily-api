@@ -87,87 +87,85 @@
               </span>
             </div>
 
-            <div flex></div>
+            <div>
+              <span hide show-gt-sm>Ordenar</span>
+              <md-menu>
 
-            <span>Ordenar</span>
-            <md-menu>
+                <md-button class="md-icon-button" aria-label="Ordenar">
+                  <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
+                </md-button>
 
-              <md-button class="md-icon-button" aria-label="Ordenar">
-                <md-icon md-font-icon="icon-sort-alphabetical" ng-click="$mdOpenMenu($event)"></md-icon>
-              </md-button>
+                <md-menu-content width="3">
 
-              <md-menu-content width="3">
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                      <span>Id</span>
+                      <small>(Crescente)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>Id</span>
-                    <small>(Crescente)</small>
-                  </md-button>
-                </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                      <span>Id</span>
+                      <small>(Decrescente)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'id'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'id' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>Id</span>
-                    <small>(Decrescente)</small>
-                  </md-button>
-                </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'formaPgto.associado.nome'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'formaPgto.associado.nome' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                      <span>Nome</span>
+                      <small>(A até Z)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'formaPgto.associado.nome'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'formaPgto.associado.nome' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>Nome</span>
-                    <small>(A até Z)</small>
-                  </md-button>
-                </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'formaPgto.associado.nome'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'formaPgto.associado.nome' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                      <span>Nome</span>
+                      <small>(Z até A)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'formaPgto.associado.nome'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'formaPgto.associado.nome' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>Nome</span>
-                    <small>(Z até A)</small>
-                  </md-button>
-                </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'formaPgto.associado.cpf'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'formaPgto.associado.cpf' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                      <span>CPF</span>
+                      <small>(Crescente)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'formaPgto.associado.cpf'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'formaPgto.associado.cpf' && vm.listOrderAsc=== false && {'font-weight':'500'}">
-                    <span>CPF</span>
-                    <small>(Crescente)</small>
-                  </md-button>
-                </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="vm.listOrder = 'formaPgto.associado.cpf'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'formaPgto.associado.cpf' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                      <span>CPF</span>
+                      <small>(Decrescente)</small>
+                    </md-button>
+                  </md-menu-item>
 
-                <md-menu-item>
-                  <md-button ng-click="vm.listOrder = 'formaPgto.associado.cpf'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'formaPgto.associado.cpf' && vm.listOrderAsc=== true && {'font-weight':'500'}">
-                    <span>CPF</span>
-                    <small>(Decrescente)</small>
-                  </md-button>
-                </md-menu-item>
+                </md-menu-content>
 
-              </md-menu-content>
-
-            </md-menu>
+              </md-menu>
+            </div>
 
           </div>
 
           <div class="atributos" layout-align="space-around end">
-            <label>Id</label>
-            <label>Cpf</label>
+            <label hide show-gt-sm>Id</label>
+            <label hide show-gt-sm>Cpf</label>
             <label>Nome</label>
             <label>Valor</label>
-            <label>Forma de Pgto</label>
-            <label>Data de Pgto</label>
+            <label hide show-gt-sm>Forma de Pgto</label>
+            <label hide show-gt-sm>Data de Pgto</label>
           </div>
 
         </md-subheader>
-        <!-- / CONTACT LIST HEADER -->
 
-        <!-- CONTACT ITEM -->
         <md-list-item class="pagamento-item md-white-bg" md-ink-ripple ng-repeat="pagamento in vm.pagamentos | filter: vm.search | filter: global.search | filterByIds:vm.filterIds |  orderBy: vm.listOrder :vm.listOrderAsc | filter:query as filteredPagamentos track by pagamento.id"
           ng-click="vm.openPagamentoDialog($event, pagamento)" ng-style="{'transform': 'translate3d(0px, '+$index * 100+'%, 0px)', 'z-index': filteredPagamentos.length - $index}" ng-class="{'selected': vm.isSelected(pagamento)}">
 
           <md-checkbox ng-checked="vm.exists(pagamento, vm.selectedPagamentos)" ng-click="vm.toggleSelectPagamento(pagamento, $event)" aria-label="{{vm.exists(pagamento, vm.selectedPagamentos) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
 
-          <div class="item" layout="row">
+          <div class="item" layout="row" flex layout-align="space-around between">
 
-            <p class="text-truncate font-weight-600 id">
+            <p class=" hide show-gt-sm text-truncate font-weight-600 id">
               {{pagamento.id}}
             </p>
 
@@ -175,17 +173,16 @@
               {{pagamento.formaPgto.associado.cpf}}
             </p>
 
-            <p class="hide show-gt-sm texto nome">
+            <p class="texto nome">
               {{pagamento.formaPgto.associado.nome}}
             </p>
 
-            <p class="hide show-gt-xs numero valorPago">
+            <p class="numero valorPago">
               {{pagamento.valorPago | currency : "R$ "}}
             </p>
 
             <p class="hide show-gt-sm texto formaPagamento">
               {{pagamento.formaPgto.formaPagamento}}
-              <!-- {{contact.formaPgto}} -->
             </p>
 
             <p class="hide show-gt-xs data dataPagamento">
@@ -193,7 +190,6 @@
             </p>
 
           </div>
-          <!-- Temporário -->
 
           <div class="actions" layout="row" layout-align="start center">
             <md-menu>
