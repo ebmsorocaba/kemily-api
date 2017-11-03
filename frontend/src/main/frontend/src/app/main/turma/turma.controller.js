@@ -43,6 +43,7 @@
         parent: (angular.element(document.body)),
         targetEvent: ev,
         clickOutsideToClose: false,
+        escapeToClose: false,
         locals: {
           Turma: turma,
           User: vm.user,
