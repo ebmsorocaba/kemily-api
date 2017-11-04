@@ -50,6 +50,7 @@
     vm.alunosDentroTurma = AlunosDentroTurma;
     vm.alunosForaTurma = AlunosForaTurma;
     vm.setarCpf = setarCpf;
+    vm.fecharDialog = fecharDialog;
 
     function removerAluno(a) {
       // Cria o novo registro no BD
@@ -206,13 +207,11 @@
     function setIdadeAluno() {
       AlunosDentroTurma.forEach(function (a) {
         a.aluno.idade = CalcularIdade(a.aluno);
-        var aux = a.aluno.dataNascimento;
-        a.aluno.dataNascimento = aux.substring(8) + '/' + aux.substring(5, 7) + '/' + aux.substring(0, 4);
+        a.aluno.dataNascimento = new Date(a.aluno.dataNascimento).toLocaleDateString();
       });
       AlunosForaTurma.forEach(function (a) {
         a.aluno.idade = CalcularIdade(a.aluno);
-        var aux = a.aluno.dataNascimento;
-        a.aluno.dataNascimento = aux.substring(8) + '/' + aux.substring(5, 7) + '/' + aux.substring(0, 4);
+        a.aluno.dataNascimento = new Date(a.aluno.dataNascimento).toLocaleDateString();
       });
 
     }
@@ -252,6 +251,13 @@
     function setarCpf(edu) {
       //transformando a string em objeto/json para setar o cpf
       vm.turma.cpfEducador = JSON.parse(edu).cpf;
+    }
+
+    function fecharDialog(ev) {
+      var tecla = ev.which || ev.keyCode;
+      if(tecla == 27) {        
+        closeDialog();
+      }
     }
   }
 })();
