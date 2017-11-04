@@ -105,7 +105,8 @@ public class UsuarioController {
 		mailMessage.setTo(usuario.getEmail());
 		mailMessage.setFrom("testingx99999@gmail.com");
 		mailMessage.setSubject("Cadastro no EBM");
-		mailMessage.setText("Saudações, senhor(a) " + usuario.getNome() + " seu cadastro no sistema do Educandario Bezerra de Menezes acaba de ser realizado, e você ja pode acessa-lo");
+		mailMessage.setText("Saudações, senhor(a) " + usuario.getNome() + " seu cadastro no sistema do Educandario Bezerra de Menezes acaba de ser realizado, e você ja pode acessa-lo" + "\n"
+		+ "Seus dados cadastrais foram os seguintes:" + "\n" + "Nome: " + usuario.getNome() + "\n" + "Email: " + usuario.getEmail() + "\n" + "Senha: " + usuario.getSenha() + "\n" + "Setor: " + usuario.getSetor());
 		javaMailSender.send(mailMessage);
 
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
