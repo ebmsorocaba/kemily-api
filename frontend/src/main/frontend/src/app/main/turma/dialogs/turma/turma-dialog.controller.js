@@ -206,20 +206,12 @@
 
     function setIdadeAluno() {
       AlunosDentroTurma.forEach(function (a) {
-        console.log(a.aluno.dataNascimento);
         a.aluno.idade = CalcularIdade(a.aluno);
-        /* var aux = a.aluno.dataNascimento;
-        a.aluno.dataNascimento = aux.substring(8) + '/' + aux.substring(5, 7) + '/' + aux.substring(0, 4); */
         a.aluno.dataNascimento = new Date(a.aluno.dataNascimento).toLocaleDateString();
-        console.log(a.aluno.dataNascimento);
       });
       AlunosForaTurma.forEach(function (a) {
         a.aluno.idade = CalcularIdade(a.aluno);
-        console.log(a.aluno.dataNascimento);
-        /* var aux = a.aluno.dataNascimento;
-        a.aluno.dataNascimento = aux.substring(8) + '/' + aux.substring(5, 7) + '/' + aux.substring(0, 4); */
         a.aluno.dataNascimento = new Date(a.aluno.dataNascimento).toLocaleDateString();
-        console.log(a.aluno.dataNascimento);
       });
 
     }
