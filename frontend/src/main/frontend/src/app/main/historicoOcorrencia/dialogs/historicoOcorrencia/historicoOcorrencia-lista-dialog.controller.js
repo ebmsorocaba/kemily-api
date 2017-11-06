@@ -150,7 +150,6 @@
             mesInicial = mesInicial * 1;
             mesFinal = mesFinal * 1;
 
-
             if (tipoFiltro === 'Somente um Mês') {
 
                 if (anoInicial === '' || anoInicial === null || anoInicial === undefined) {

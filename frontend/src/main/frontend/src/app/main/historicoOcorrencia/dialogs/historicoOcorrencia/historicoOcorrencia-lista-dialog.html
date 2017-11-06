@@ -107,7 +107,7 @@
                   </md-select>
 
                   <label>Ano Inicial</label>
-                  <input class="inputAno" ng-model="vm.anoInicial" minlength="2000">
+                  <input type="number" class="inputAno" ng-model="vm.anoInicial" min="2000">
 
                   <md-select ng-model="vm.mesFinal" placeholder="Mês Final">
                     <md-option value="1">Janeiro</md-option>
@@ -125,7 +125,7 @@
                   </md-select>
 
                   <label>Ano Final</label>
-                  <input class="inputAno" ng-model="vm.anoFinal" minlength="2000">
+                  <input type="number" class="inputAno" ng-model="vm.anoFinal" min="2000">
                 </div>
 
                 <div ng-if="vm.tipoFiltro !== ''" class="filterbuttons" layout="row">
