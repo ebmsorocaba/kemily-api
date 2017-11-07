@@ -19,6 +19,8 @@
     vm.alunos = Alunos;
     vm.educadores = Educadores;
 
+    removerAlunosInativos();
+
     // Methods
     vm.openTurmaDialog = openTurmaDialog;
     vm.deleteTurmaConfirm = deleteTurmaConfirm;
@@ -33,7 +35,6 @@
     vm.selectAlunoTurma = selectAlunoTurma;
     vm.alunosNaTurma = alunosNaTurma;
     vm.alunosForaTurma = alunosForaTurma;
-
 
     function openTurmaDialog(ev, turma) {
       $mdDialog.show({
@@ -89,16 +90,14 @@
 
       if(turma !== undefined) {
         var alunoTurma = vm.selectAlunoTurma(turma);
-        var i;
-        var j;
 
-        for(i = 0; i < alunoTurma.length; i++) {
-          for(j = 0; j < vm.alunos.length; j++) {
-            if(alunoTurma[i].raAluno === vm.alunos[j].aluno.ra) {
-              lista.push(vm.alunos[j]);
+        alunoTurma.forEach(function(at) {
+          vm.alunos.forEach(function(alu) {
+            if(at.raAluno === alu.aluno.ra) {
+              lista.push(alu);
             }
-          }
-        }
+          });
+        });
       }
 
       return lista;
@@ -109,20 +108,18 @@
 
       if(turma !== undefined) {
         var alunoTurma = vm.selectAlunoTurma(turma);
-        var i;
-        var j;
 
-        for(i = 0; i < vm.alunos.length; i++) {
-          lista.push(vm.alunos[i]);
-        }
+        vm.alunos.forEach(function(alu) {
+          lista.push(alu);
+        });
 
-        for(i = 0; i < alunoTurma.length; i++) {
-          for(j = 0; j < lista.length; j++) {
-            if(alunoTurma[i].raAluno === lista[j].aluno.ra) {
-              lista.splice(j, 1);
+        alunoTurma.forEach(function(at) {
+          lista.forEach(function(alu) {
+            if(at.raAluno === alu.aluno.ra) {
+              lista.splice(lista.indexOf(alu), 1);
             }
-          }
-        }
+          });
+        });
       }
 
       return lista;
@@ -197,7 +194,13 @@
       vm.selectedTurmas = $scope.filteredTurmas;
     }
 
-
+    function removerAlunosInativos() {
+      vm.alunos.forEach(function(alu) {
+        if(alu.aluno.ativo === false) {
+          vm.alunos.splice(vm.alunos.indexOf(alu), 1);
+        }
+      });
+    }
 
   }
 
