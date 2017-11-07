@@ -797,10 +797,21 @@ public class AlunoExcel {
 	public void preencherObservacoes(HSSFSheet sheet, int linha, AlunoDTO aluno, int celulaInicial) {
 		HSSFRow rowHead = sheet.getRow(1);
 		rowHead.createCell(celulaInicial).setCellValue("Observações");
+		rowHead.createCell(celulaInicial + 1).setCellValue("Ativo");
 		
 		HSSFRow obsLinha = sheet.getRow(linha);
 		
 		obsLinha.createCell(celulaInicial).setCellValue(aluno.getAluno().getObservacoes());
+		
+		if(aluno.getAluno().isAtivo()) {
+			obsLinha.createCell(celulaInicial + 1).setCellValue("Sim");
+		} else {
+			obsLinha.createCell(celulaInicial + 1).setCellValue("Não");
+		}
+		
+		if(linha == 2) {
+			sheet.addMergedRegion(new CellRangeAddress(0,0,celulaInicial,(obsLinha.getLastCellNum() - 1)));
+		}
 	}
 	
 	public int getTamanho(AlunoDTO aluno) {
