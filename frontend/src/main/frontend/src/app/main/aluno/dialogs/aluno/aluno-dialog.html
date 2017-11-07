@@ -991,11 +991,18 @@
                         <md-tab-body>
                             <form name="wizardStep12" ms-form-wizard-form novalidate>
 
-                                <div layout="column" layout-gt-xs="row">
+                                <div layout="row" layout-gt-xs="row">
                                     <md-input-container flex="100">
                                         <textarea rows="5" name="observacoes" ng-model="vm.data.aluno.observacoes" placeholder="Digite aqui suas observações sobre o aluno"></textarea>
                                     </md-input-container>
                                 </div>
+
+                                <md-input-container>
+                                    Aluno Ativo?
+                                    <md-switch md-no-ink ng-model="vm.data.aluno.ativo" ng-true-value="true" ng-false-value="false">
+                                        {{vm.data.aluno.ativo ? 'Sim' : 'Não'}}
+                                    </md-switch>
+                                </md-input-container>
 
                             </form>
                         </md-tab-body>

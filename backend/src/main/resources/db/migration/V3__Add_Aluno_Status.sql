@@ -1,2 +1,2 @@
 ALTER TABLE aluno
-  ADD status BOOLEAN;
+  ADD ativo BOOLEAN;

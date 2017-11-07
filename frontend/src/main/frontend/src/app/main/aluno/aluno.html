@@ -138,6 +138,20 @@
                   </md-button>
                 </md-menu-item>
 
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'ativo'; vm.listOrderAsc = true" ng-style="vm.listOrder === 'ativo' && vm.listOrderAsc=== true && {'font-weight':'500'}">
+                    <span>Status</span>
+                    <small>(Crescente)</small>
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="vm.listOrder = 'ativo'; vm.listOrderAsc = false" ng-style="vm.listOrder === 'ativo' && vm.listOrderAsc=== false && {'font-weight':'500'}">
+                    <span>Status</span>
+                    <small>(Decrescente)</small>
+                  </md-button>
+                </md-menu-item>
+
               </md-menu-content>
 
             </md-menu>
@@ -148,6 +162,7 @@
             <label class="ralabel">RA</label>
             <label>Nome</label>
             <label>Nascimento</label>
+            <label>Ativo</label>
           </div>
 
         </md-subheader>
@@ -169,6 +184,9 @@
             </p>
             <p class="data dataNascAluno">
               {{data.aluno.dataNascimento | date : "dd/MM/yyyy"}}
+            </p>
+            <p class="texto">
+              {{data.aluno.ativo ? "Sim" : "Não"}}
             </p>
 
           </div>
