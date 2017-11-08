@@ -1,0 +1,2 @@
+ALTER TABLE aluno
+  ADD ativo BOOLEAN;

@@ -15,6 +15,8 @@
     vm.listOrderAsc = false;
     vm.selectedAlunos = [];
 
+    ordenarListaByStatus();
+
     // Methods
     vm.openAlunoDialog = openAlunoDialog;
     vm.deleteAlunoConfirm = deleteAlunoConfirm;
@@ -142,6 +144,22 @@
           console.error(response);
         }
       ); */
+    }
+
+    function ordenarListaByStatus() {
+      var listaAtivo = [];
+      var listaInativo = [];
+
+      vm.datas.forEach(function(a) {
+        if(a.aluno.ativo == true) {
+          listaAtivo.push(a);
+        } else {
+          listaInativo.push(a);
+        }
+      });
+
+      vm.datas = listaAtivo;
+      vm.datas = vm.datas.concat(listaInativo);
     }
 
   }
