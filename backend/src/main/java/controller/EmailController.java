@@ -69,7 +69,6 @@ public class EmailController {
 
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(usuario.getEmail());
-        //mailMessage.setReplyTo("diegoluizbaptista@gmail.com");
         mailMessage.setFrom("testingx99999@gmail.com");
         mailMessage.setSubject("Mudança de senha");
         mailMessage.setText("Saudações, senhor(a) " + usuario.getNome() + " sua senha foi resetada para a senha padrão SENHA@123, pedimos para que assim que acessar sua conta já a altere.");

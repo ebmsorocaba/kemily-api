@@ -4,20 +4,22 @@
   angular.module('app.turma').controller('TurmasController', TurmasController);
 
   /** @ngInject */
-  function TurmasController ($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window, Turmas, AlunoTurma, Alunos) {
+  function TurmasController ($scope, $mdSidenav, User, msUtils, $mdDialog, $document, api, $window, Turmas, AlunoTurma, Alunos, Educadores) {
 
     var vm = this;
 
     // Data
 
     vm.turmas = Turmas
-    //vm.user = User.data;
     vm.listType = 'all';
-    vm.listOrder = 'descricao';
+    vm.listOrder = 'nome';
     vm.listOrderAsc = false;
     vm.selectedTurmas = [];
     vm.alunoTurma = AlunoTurma;
     vm.alunos = Alunos;
+    vm.educadores = Educadores;
+
+    removerAlunosInativos();
 
     // Methods
     vm.openTurmaDialog = openTurmaDialog;
@@ -34,7 +36,6 @@
     vm.alunosNaTurma = alunosNaTurma;
     vm.alunosForaTurma = alunosForaTurma;
 
-
     function openTurmaDialog(ev, turma) {
       $mdDialog.show({
         controller: 'TurmaDialogController',
@@ -43,13 +44,15 @@
         parent: (angular.element(document.body)),
         targetEvent: ev,
         clickOutsideToClose: false,
+        escapeToClose: false,
         locals: {
           Turma: turma,
           User: vm.user,
           Turmas: vm.turmas,
           AlunoTurma: vm.selectAlunoTurma(turma),
           AlunosDentroTurma: vm.alunosNaTurma(turma),
-          AlunosForaTurma: vm.alunosForaTurma(turma)
+          AlunosForaTurma: vm.alunosForaTurma(turma),
+          Educadores: vm.educadores
         }
       });
     }
@@ -57,8 +60,8 @@
     function deleteTurmaConfirm(turma, ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar este turma?')
-        .htmlContent('<b>' + turma.descricao + ' (' + turma.id + ')</b>' + ' será apagado(a).')
-        .ariaLabel('apagar contato')
+        .htmlContent('<b>' + turma.nome + ' (' + turma.id + ')</b>' + ' será apagado(a).')
+        .ariaLabel('apagar turma')
         .targetEvent(ev)
         .ok('Sim')
         .cancel('Cancelar');
@@ -87,16 +90,14 @@
 
       if(turma !== undefined) {
         var alunoTurma = vm.selectAlunoTurma(turma);
-        var i;
-        var j;
 
-        for(i = 0; i < alunoTurma.length; i++) {
-          for(j = 0; j < vm.alunos.length; j++) {
-            if(alunoTurma[i].raAluno === vm.alunos[j].aluno.ra) {
-              lista.push(vm.alunos[j]);
+        alunoTurma.forEach(function(at) {
+          vm.alunos.forEach(function(alu) {
+            if(at.raAluno === alu.aluno.ra) {
+              lista.push(alu);
             }
-          }
-        }
+          });
+        });
       }
 
       return lista;
@@ -107,20 +108,18 @@
 
       if(turma !== undefined) {
         var alunoTurma = vm.selectAlunoTurma(turma);
-        var i;
-        var j;
 
-        for(i = 0; i < vm.alunos.length; i++) {
-          lista.push(vm.alunos[i]);
-        }
+        vm.alunos.forEach(function(alu) {
+          lista.push(alu);
+        });
 
-        for(i = 0; i < alunoTurma.length; i++) {
-          for(j = 0; j < lista.length; j++) {
-            if(alunoTurma[i].raAluno === lista[j].aluno.ra) {
-              lista.splice(j, 1);
+        alunoTurma.forEach(function(at) {
+          lista.forEach(function(alu) {
+            if(at.raAluno === alu.aluno.ra) {
+              lista.splice(lista.indexOf(alu), 1);
             }
-          }
-        }
+          });
+        });
       }
 
       return lista;
@@ -160,7 +159,7 @@
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar os turmas selecionados?')
         .htmlContent('<b>' + vm.selectedTurmas.length + ' selecionado(s)</b>' + ' será(ão) apagado(s).')
-        .ariaLabel('apagar contatos')
+        .ariaLabel('apagar turmas')
         .targetEvent(ev)
         .ok('Sim')
         .cancel('Cancelar');
@@ -195,7 +194,13 @@
       vm.selectedTurmas = $scope.filteredTurmas;
     }
 
-
+    function removerAlunosInativos() {
+      vm.alunos.forEach(function(alu) {
+        if(alu.aluno.ativo === false) {
+          vm.alunos.splice(vm.alunos.indexOf(alu), 1);
+        }
+      });
+    }
 
   }
 

@@ -222,7 +222,8 @@
 
         api.aluno = {
             list: $resource(api.baseUrl + 'aluno'),
-            getByRa: $resource(api.baseUrl + 'aluno/:ra' + '/', { ra: '@ra' }, { 'update': { method: 'PUT' } })
+            getByRa: $resource(api.baseUrl + 'aluno/:ra' + '/', { ra: '@ra' }, { 'update': { method: 'PUT' } }),
+            excel: $resource(api.baseUrl + 'aluno/excel')
         }
 
         api.automovel = {
@@ -265,6 +266,13 @@
         api.contato = {
             list: $resource(api.baseUrl + 'contato'),
             getById: $resource(api.baseUrl + 'contato/:id' + '/', { id: '@id' }, { 'update': { method: 'PUT' } })
+        }
+
+        api.historicoOcorrencia = {
+            list: $resource(api.baseUrl + 'historicoOcorrencia'),
+            getByAluno: $resource(api.baseUrl + 'historicoOcorrencia/aluno/:ra', {ra: '@ra'}),
+            ocorrencia: $resource(api.baseUrl + 'historicoOcorrencia/:ra', {ra: '@ra'}, {'update': {method: 'PUT'}}),
+            deletarOcorrencia: $resource(api.baseUrl+ 'historicoOcorrencia/:data?hora=:hora&ra=:ra', {data: '@data'}, {hora: '@hora'}, {ra: '@ra'})
         }
 
         return api;

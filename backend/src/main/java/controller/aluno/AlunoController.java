@@ -1,23 +1,30 @@
 package controller.aluno;
 
 import DTO.AlunoDTO;
+import business.AlunoExcel;
 import business.AlunoService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import jdbc.dao.aluno.*;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class AlunoController {
     private AlunoDAO alunoDao = new AlunoDAO();
     private AlunoService alunoService = new AlunoService();
+    private AlunoExcel alunoExcel = new AlunoExcel();
 
     public AlunoController() throws SQLException { }
 
@@ -64,6 +71,32 @@ public class AlunoController {
         alunoService.Put(aluno, ra);
 
         return new ResponseEntity<AlunoDTO>(aluno, HttpStatus.CREATED);
+    }
+    
+    @CrossOrigin
+    @RequestMapping(value = "/api/aluno/excel", method = RequestMethod.GET)
+    public void baixarExcel(HttpServletResponse response) throws SQLException {
+
+        try {
+        	
+        	response.setContentType("application/vnd.ms-excel");
+        	
+        	String fileName = "alunos-" + LocalDateTime.now() + ".xls";
+        	
+        	response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+        	
+            HSSFWorkbook excel = alunoExcel.gerarExcel();
+
+            OutputStream out = response.getOutputStream();
+        	
+        	excel.write(out);
+        	
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
     }
 
 }

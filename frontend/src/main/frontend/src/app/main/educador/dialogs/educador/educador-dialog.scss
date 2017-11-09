@@ -84,5 +84,18 @@ md-dialog {
             background-color: rgba(0, 0, 0, 0.03);
             border-top: 1px solid rgba(0, 0, 0, 0.12);
         }
+
+    }
+
+    .md-datepicker-button.md-icon-button{
+      display: none;
+    }
+
+    .md-datepicker-input{
+      margin-left: 22px;
+    }
+
+    .nascEducador{
+      margin-right: 25px;
     }
 }
