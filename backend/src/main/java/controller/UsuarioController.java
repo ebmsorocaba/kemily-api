@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +40,8 @@ public class UsuarioController {
 
 	private Map<Integer, Usuario> usuarios;
 	private UsuarioDAO usuarioDao = new UsuarioDAO();
+
+	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	public UsuarioController() throws SQLException {
 	  usuarios = new HashMap<Integer, Usuario>();
@@ -144,8 +148,7 @@ public class UsuarioController {
 			usuario = null;
 			return new ResponseEntity<Usuario>(usuario, HttpStatus.NOT_FOUND);
 		}
-		
-		if(usuario.getSenha().equals(senha)){
+		if(passwordEncoder.matches(senha, usuario.getSenha())){
 			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 		}
 		else{
