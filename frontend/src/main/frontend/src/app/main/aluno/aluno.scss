@@ -201,30 +201,22 @@
         height: 48px;
     }
 
-    div.item p.data{
-        width: 200px;
-        text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
     div.item p.texto{
         width: 220px;
         text-align: left;
-        overflow: hidden;
-        text-overflow: ellipsis;
         white-space: nowrap;
     }
 
-    div.item p.numero{
-        width: 50px;
-        padding-right: 140px;
-        font-weight: bold;
-        text-align: right;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    div.item p.nomeAluno {
+        position: relative;
+        left: 100px;
+    }
+
+    @media (max-width: 468px) {
+      div.item p.nomeAluno {
+        position: relative;
+        left: 15px;  
+      }
     }
 
     .md-button.btnExcel {
@@ -234,43 +226,4 @@
         bottom: 8px;
         right: 500px;
     }
-}
-
-// RESPONSIVE
-@media screen and (min-width: $layout-breakpoint-md) {
-
-    #alunos {
-
-        > .content {
-
-            .main {
-                left: 45px;
-            }
-        }
-    }
-}
-
-
-div.item p.raAluno{
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
-div.item p.nomeAluno{
-    margin-left: 155px;
-    margin-right: 85px;
-    width: 200px;
-}
-
-div.item p.dataNascAluno{
-
-}
-
-.ralabel{
-  margin-left: -70px;
-}
-.atributos{
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 5px;
 }
