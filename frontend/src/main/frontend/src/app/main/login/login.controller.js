@@ -33,15 +33,15 @@
               vm.usuario = response;
 
               $window.localStorage.setItem("currentUser", angular.toJson(vm.usuario));
-              //$window.localStorage.setItem("currentUser", vm.usuario);
-              if(vm.usuario.setor == "Social" && vm.usuario.ativo==true){
+
+              if (vm.usuario.setor == "Social" && vm.usuario.ativo==true){
                 $window.location.href = '/#/educador';
-              }
-              else if(vm.usuario.setor == "Administração" && vm.usuario.ativo==true){
+              } else if (vm.usuario.setor == "Administração" && vm.usuario.ativo==true){
                 $window.location.href = '/#/usuario';
-              }
-              else if(vm.usuario.setor == "Financeiro" && vm.usuario.ativo==true){
+              } else if (vm.usuario.setor == "Financeiro" && vm.usuario.ativo==true){
                 $window.location.href = '/#/associado';
+              } else if(vm.usuario.setor == "Desenvolvimento" && vm.usuario.ativo==true){
+                $window.location.href = '/#/usuario';
               }
 
 
