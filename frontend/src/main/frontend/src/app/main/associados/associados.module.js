@@ -123,13 +123,13 @@
 
           if (User != null) {
             // Resolve the promise successfully
-            if(User.setor == 'Financeiro' || User.setor == "Administração"){
+            if(User.setor == 'Financeiro' || User.setor == "Desenvolvimento"){
               return $q.when();
             }
             else{
               var confirm = $mdDialog.alert()
                     .title('Não permitido!')
-                    .textContent('Apenas adminitradores e o setor financeiro pode acessar esse módulo.')
+                    .textContent('Apenas o setor financeiro pode acessar esse módulo.')
                     .ariaLabel('OK')
                     .ok('OK')
 

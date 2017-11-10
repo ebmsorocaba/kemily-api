@@ -195,6 +195,7 @@
         right: 8px;
         padding: 0;
     }
+
 }
 
 // RESPONSIVE
@@ -211,36 +212,13 @@
     }
 }
 
-div.item p.pagamentoEducador{
-    margin-right: -30px;
-    width: 70px;
+div.item{
+  display: flex;
+  flex-flow: row;
 }
 
-div.item p.valorEducador{
-
-    margin-right: 30px;
-    width: 70px;
-}
-
-div.item p.nomeEducador{
-    margin-right: 45px;
-    width: 200px;
-}
-
-div.item p.cpfEducador{
-
-    margin-right: 65px;
-    width: 70px;
-}
-
-
-div.item p.telefone{
-    margin-right: 65px;
-    width: 70px;
-}
-
-div.item p.emailEducador{
-
-    margin-right: 70px;
-    width: 150px;
+.atributos{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }

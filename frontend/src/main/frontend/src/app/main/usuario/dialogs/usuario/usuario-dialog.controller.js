@@ -3,7 +3,26 @@
 
   angular
     .module('app.usuario')
-    .controller('UsuarioDialogController', UsuarioDialogController);
+    .controller('UsuarioDialogController', UsuarioDialogController)
+    .directive('compareTo', function() {
+      return {
+        require: "ngModel",
+        scope: {
+          otherModelValue: "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel) {
+            
+          ngModel.$validators.compareTo = function(modelValue) {
+            return modelValue == scope.otherModelValue;
+          };
+
+          scope.$watch("otherModelValue", function() {
+            ngModel.$validate();
+          });
+        }
+      };
+    }
+  );
 
   /** @ngInject */
   function UsuarioDialogController($mdDialog, Usuario, Usuarios, User, msUtils, api) {
@@ -33,6 +52,10 @@
       vm.title = 'Novo Usuário';
       vm.newUsuario = true;
       // vm.usuario.tags = [];
+    } else {
+      
+      vm.usuario.confirmaSenha = vm.usuario.senha;
+
     }
 
     // Methods
@@ -50,6 +73,7 @@
     function addNewUsuario() {
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
+
       api.usuario.addUsuario.save(vm.usuario,
         // Exibe o resultado no console do navegador:
         // Sucesso
@@ -73,6 +97,7 @@
      */
     function saveUsuario() {
       // Atualiza a linha na tela:
+
       for (var i = 0; i < vm.usuarios.length; i++) {
         if (vm.usuarios[i].nome === vm.usuario.nome) {
           vm.usuarios[i] = angular.copy(vm.usuario);

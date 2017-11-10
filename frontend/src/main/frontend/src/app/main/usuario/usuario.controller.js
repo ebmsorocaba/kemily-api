@@ -22,6 +22,12 @@
     vm.selectedUsuarios = [];
     // vm.newGroupName = '';
 
+    vm.usuarios.forEach(function (user) {
+      if(User.nome === user.nome) {
+        vm.usuarios.splice(vm.usuarios.indexOf(user), 1);
+      }
+    });
+
     // Methods
     // vm.filterChange = filterChange;
     vm.openUsuarioDialog = openUsuarioDialog;

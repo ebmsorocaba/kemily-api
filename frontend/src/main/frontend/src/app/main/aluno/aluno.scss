@@ -187,6 +187,28 @@
                 box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
             }
         }
+        md-list-item, md-list-item .md-list-item-inner {
+            min-height: 48px;
+            height: 48px;
+        }
+
+        div.item p.texto{
+            width: 220px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        div.item p.nomeAluno {
+            position: relative;
+            left: 100px;
+        }
+
+        @media (max-width: 468px) {
+          div.item p.nomeAluno {
+            position: relative;
+            left: 15px;
+          }
+        }
     }
 
     #add-aluno-button {
@@ -196,83 +218,11 @@
         padding: 0;
     }
 
-    md-list-item, md-list-item .md-list-item-inner {
-        min-height: 48px;
-        height: 48px;
+    .md-button.btnExcel {
+        color: white;
+        background-color: rgb(69, 137, 96);
+        position: fixed;
+        bottom: 8px;
+        right: 500px;
     }
-
-    div.item p.data{
-        width: 200px;
-        text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    div.item p.texto{
-        width: 220px;
-        text-align: left;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    div.item p.numero{
-        width: 50px;
-        padding-right: 140px;
-        font-weight: bold;
-        text-align: right;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-}
-
-// RESPONSIVE
-@media screen and (min-width: $layout-breakpoint-md) {
-
-    #alunos {
-
-        > .content {
-
-            .main {
-                left: 45px;
-            }
-        }
-    }
-}
-
-div.item p.pagamentoAluno{
-    margin-right: -30px;
-    width: 70px;
-}
-
-div.item p.valorAluno{
-
-    margin-right: 30px;
-    width: 70px;
-}
-
-div.item p.nomeAluno{
-    margin-right: 45px;
-    width: 200px;
-}
-
-div.item p.cpfAluno{
-
-    margin-right: 65px;
-    width: 70px;
-}
-
-
-div.item p.telefone{
-    margin-right: 65px;
-    width: 70px;
-}
-
-div.item p.emailAluno{
-
-    margin-right: 70px;
-    width: 150px;
 }

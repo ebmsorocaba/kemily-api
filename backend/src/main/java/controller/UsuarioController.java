@@ -6,8 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,8 +41,17 @@ public class UsuarioController {
 	private Map<Integer, Usuario> usuarios;
 	private UsuarioDAO usuarioDao = new UsuarioDAO();
 
+	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 	public UsuarioController() throws SQLException {
 	  usuarios = new HashMap<Integer, Usuario>();
+	}
+
+	private JavaMailSender javaMailSender;
+
+	@Autowired
+	void MailSubmissionController(JavaMailSender javaMailSender) {
+		this.javaMailSender = javaMailSender;
 	}
 
 	@CrossOrigin
@@ -89,8 +103,16 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
 		//Usuario usuario = new ObjectMapper().readValue(usuarioJSON, Usuario.class); //Aqui o json é convertido em objeto Java Aluno
-		System.out.println("Usuario que chegou no backend: " + usuario.getNome());
 		usuarioDao.adiciona(usuario);
+
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+		mailMessage.setTo(usuario.getEmail());
+		mailMessage.setFrom("testingx99999@gmail.com");
+		mailMessage.setSubject("Cadastro no EBM");
+		mailMessage.setText("Saudações, senhor(a) " + usuario.getNome() + " seu cadastro no sistema do Educandario Bezerra de Menezes acaba de ser realizado, e você ja pode acessa-lo" + "\n"
+		+ "Seus dados cadastrais foram os seguintes:" + "\n" + "Nome: " + usuario.getNome() + "\n" + "Email: " + usuario.getEmail() + "\n" + "Senha: " + usuario.getSenha() + "\n" + "Setor: " + usuario.getSetor());
+		javaMailSender.send(mailMessage);
+
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
 
@@ -126,8 +148,7 @@ public class UsuarioController {
 			usuario = null;
 			return new ResponseEntity<Usuario>(usuario, HttpStatus.NOT_FOUND);
 		}
-		
-		if(usuario.getSenha().equals(senha)){
+		if(passwordEncoder.matches(senha, usuario.getSenha())){
 			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 		}
 		else{

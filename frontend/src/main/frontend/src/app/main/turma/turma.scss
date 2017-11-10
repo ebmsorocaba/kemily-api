@@ -117,7 +117,7 @@
                         .editable-controls {
                             display: flex;
                             flex-direction: row;
-                            align-items: center;
+                            align-items: space-between;
                             justify-content: flex-start;
 
                             .editable-input {
@@ -209,16 +209,4 @@
             }
         }
     }
-}
-
-
-div.item p.descricaoTurma{
-    margin-right: 45px;
-    width: 200px;
-}
-
-div.item p.idTurma{
-
-    margin-right: 65px;
-    width: 70px;
 }

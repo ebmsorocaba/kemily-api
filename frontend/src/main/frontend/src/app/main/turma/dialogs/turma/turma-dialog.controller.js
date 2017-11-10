@@ -4,22 +4,30 @@
   angular.module('app.turma').controller('TurmaDialogController', TurmaDialogController)
 
   /** @ngInject */
-  function TurmaDialogController ($mdDialog, $state, Turma, Turmas, AlunoTurma, User, msUtils, api, AlunosDentroTurma, AlunosForaTurma) {
+  function TurmaDialogController ($mdDialog, $state, Turma, Turmas, AlunoTurma, User, msUtils, api, AlunosDentroTurma, AlunosForaTurma, Educadores) {
     var vm = this;
     vm.title = 'Alterar Turma';
     vm.turma = angular.copy(Turma);
     vm.user = User;
     vm.allFields = false;
+    vm.educadores = Educadores;
+
+    vm.periodos = [
+      'Manhã',
+      'Tarde'
+    ];
 
     if(!vm.turma) {
       vm.turma = {
         'id': '',
-        'descricao': '',
-        'cpfEducador': '',
+        'nome': '',
+        'periodo': '',
+        'cpfEducador': ''
       };
       vm.title = 'Novo Turma';
     } else {
-      vm.turma.dataNasc = new Date(vm.turma.dataNasc);
+      setIdadeAluno();
+      buscarEducador(vm.turma.cpfEducador);
       vm.title = 'Alterar Turma';
     }
     // Methods
@@ -41,11 +49,8 @@
     vm.alunoTurma = AlunoTurma;
     vm.alunosDentroTurma = AlunosDentroTurma;
     vm.alunosForaTurma = AlunosForaTurma;
-    console.log('-----');
-    console.log(vm.alunoTurma);
-    console.log(vm.alunosDentroTurma);
-    console.log(vm.alunosForaTurma);
-
+    vm.setarCpf = setarCpf;
+    vm.fecharDialog = fecharDialog;
 
     function removerAluno(a) {
       // Cria o novo registro no BD
@@ -75,7 +80,6 @@
         'raAluno': a.aluno.ra,
         'idTurma': Turma.id
       };
-      console.log(at);
 
       api.alunoTurma.list.save(at,
         function(response) {
@@ -96,26 +100,27 @@
      * Add new turma
      */
     function addNewTurma() {
-      // Cria o novo registro no BD
-      // TODO Tratar de como enviar a [formaPgto] ao BD
-      //if(vm.ok == true){
-        api.turma.list.save(vm.turma,
-          // Exibe o resultado no console do navegador:
-          // Sucesso
-          function(response) {
-            console.log(response);
-          },
-          // Erro
-          function(response) {
-            console.error(response);
-          }
-        );
+    // Cria o novo registro no BD
+    // TODO Tratar de como enviar a [formaPgto] ao BD
+    //if(vm.ok == true)        
 
-      // Adiciona uma nova linha no topo da lista na tela
-        vm.turmas.unshift(vm.turma);
+      api.turma.list.save(vm.turma,
+        // Exibe o resultado no console do navegador:
+        // Sucesso
+        function(response) {
+          console.log(response);
+        },
+        // Erro
+        function(response) {
+          console.error(response);
+        }
+      );
 
-        closeDialog();
-      //}
+    // Adiciona uma nova linha no topo da lista na tela
+      vm.turmas.unshift(vm.turma);
+
+      closeDialog();
+    //}
     }
 
     vm.routeReload = function() {
@@ -161,7 +166,7 @@
     function deleteTurmaConfirm(ev) {
       var confirm = $mdDialog.confirm()
         .title('Você tem certeza de que deseja apagar este turma?')
-        .htmlContent('<b>' + vm.turma.descricao + ' (' + vm.turma.id + '</b>' + ') será apagado(a).')
+        .htmlContent('<b>' + vm.turma.nome + ' (' + vm.turma.id + '</b>' + ') será apagado(a).')
         .ariaLabel('apagar turma')
         .targetEvent(ev)
         .ok('OK')
@@ -197,6 +202,62 @@
 
         vm.turmas.splice(vm.turmas.indexOf(vm.turma), 1);
       });
+    }
+
+    function setIdadeAluno() {
+      AlunosDentroTurma.forEach(function (a) {
+        a.aluno.idade = CalcularIdade(a.aluno);
+        a.aluno.dataNascimento = new Date(a.aluno.dataNascimento).toLocaleDateString();
+      });
+      AlunosForaTurma.forEach(function (a) {
+        a.aluno.idade = CalcularIdade(a.aluno);
+        a.aluno.dataNascimento = new Date(a.aluno.dataNascimento).toLocaleDateString();
+      });
+
+    }
+
+    function CalcularIdade(a) {
+      var idade = new Date();
+      var ano_atual = idade.getFullYear();
+      var mes_atual = idade.getMonth() + 1;
+      var dia_atual = idade.getDate();
+
+      var dataAluno = new Date(a.dataNascimento);
+
+      var ano_aniversario = dataAluno.getFullYear();
+      var mes_aniversario = dataAluno.getMonth();
+      var dia_aniversario = dataAluno.getDate();
+
+      var quantos_anos = ano_atual - ano_aniversario;
+
+      if (mes_atual < mes_aniversario || mes_atual == mes_aniversario && dia_atual < dia_aniversario) {
+        quantos_anos--;
+      }
+
+      return quantos_anos < 0 ? 0 : quantos_anos;
+
+    }
+
+    function buscarEducador(cpf) {
+      vm.educadores.forEach(function(edu) {        
+        if(edu.cpf === cpf) {
+          //por algum motivo estranho o ng-repeat transforma o objeto/json em string
+          //para que o valor seja selecionado automaticamente pelo ng-select
+          vm.educador = JSON.stringify(edu);
+        }
+      });
+    }
+
+    function setarCpf(edu) {
+      //transformando a string em objeto/json para setar o cpf
+      vm.turma.cpfEducador = JSON.parse(edu).cpf;
+    }
+
+    function fecharDialog(ev) {
+      var tecla = ev.which || ev.keyCode;
+      if(tecla == 27) {        
+        closeDialog();
+      }
     }
   }
 })();

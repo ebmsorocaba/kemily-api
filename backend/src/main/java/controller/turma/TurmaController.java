@@ -3,9 +3,7 @@ package controller.turma;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,29 +22,18 @@ import model.turma.Turma;
 
 @RestController
 public class TurmaController {
-	private Map<Integer, Turma> turmas;
 	private TurmaDAO turmaDao = new TurmaDAO();
 	
-	public TurmaController() throws SQLException {
-		turmas = new HashMap<Integer, Turma>();
-	}
+	public TurmaController() throws SQLException {}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/api/turma", method = RequestMethod.GET)
 	public ResponseEntity<List<Turma>> listar() throws SQLException {
-		int index = 0;
+		List<Turma> turmas = new ArrayList<Turma>();
 		
-		List<Turma> turmasGetted = new ArrayList<Turma>();
-		turmas = new HashMap<Integer, Turma>();
+		turmas = turmaDao.getLista();
 		
-		turmasGetted = turmaDao.getLista();
-		
-		for(Turma t : turmasGetted) {
-			turmas.put(index, t);
-			index++;
-		}
-		
-		return new ResponseEntity<List<Turma>>(new ArrayList<Turma>(turmas.values()), HttpStatus.OK);
+		return new ResponseEntity<List<Turma>>(turmas, HttpStatus.OK);
 	}
 	
 	@CrossOrigin

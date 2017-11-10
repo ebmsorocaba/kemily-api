@@ -40,3 +40,29 @@ div.item p.numero{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.md-button.md-default-theme.btnExcel {
+  color: #FFF;
+  background-color: #407F59;
+
+  &:hover {
+    background-color: #45A160;
+  }
+
+  md-icon {
+    color: #FFF;
+  }
+}
+
+.md-button.md-default-theme.btnPdf {
+  color: #FFF;
+  background-color: #DA473E;
+
+  &:hover {
+    background-color: #FF5349;
+  }
+
+  md-icon {
+    color: #FFF;
+  }
+}
