@@ -62,7 +62,7 @@
             vm.ocorrencia.dataSearch = undefined;
             vm.ocorrencia.horaSearch = undefined;
             //Descomentar a linha abaixo se for fazer o deploy no heroku
-            // vm.ocorrencia.data.setDate(vm.ocorrencia.data.getDate() - 1) 
+            vm.ocorrencia.data.setDate(vm.ocorrencia.data.getDate() - 1) 
 
             api.historicoOcorrencia.ocorrencia.update({
                     'ra': vm.ocorrencia.raAluno
