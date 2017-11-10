@@ -159,10 +159,10 @@
           </div>
 
           <div class="atributos" layout-align="space-around end">
-            <label class="ralabel">RA</label>
+            <label hide show-gt-xs>RA</label>
             <label>Nome</label>
-            <label>Nascimento</label>
-            <label>Ativo</label>
+            <label hide show-gt-xs>Nascimento</label>
+            <label hide show-gt-xs>Ativo</label>
           </div>
 
         </md-subheader>
@@ -174,23 +174,22 @@
 
           <md-checkbox ng-checked="vm.exists(data, vm.selectedAlunos)" ng-click="vm.toggleSelectAluno(data, $event)" aria-label="{{vm.exists(data, vm.selectedAlunos) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
-          <div class="item" layout="row">
-            <!-- <img class="md-avatar" ng-if="contact.avatar" alt="{{contact.name}}" ng-src="{{contact.avatar}}" /> -->
-            <p class="numero raAluno">
+          <div class="item" layout="row" flex>
+            <p hide show-gt-xs class="numero raAluno" flex="5">
               {{data.aluno.ra}}
             </p>
             <p class="texto nomeAluno">
               {{data.aluno.nome}}
             </p>
-            <p class="data dataNascAluno">
+            <p hide show-gt-xs class="texto dataNascAluno" flex="15">
               {{data.aluno.dataNascimento | date : "dd/MM/yyyy"}}
             </p>
-            <p class="texto">
+            <p hide show-gt-xs flex="10">
               {{data.aluno.ativo ? "Sim" : "Não"}}
             </p>
 
           </div>
-          <div class="md-secondary actions" layout="row" layout-align="start center">
+          <div class="actions" layout="row" >
             <md-menu>
               <md-button class="md-icon-button" aria-label="Mais">
                 <md-icon md-font-icon="icon-dots-vertical" ng-click="$mdOpenMenu($event)"></md-icon>
