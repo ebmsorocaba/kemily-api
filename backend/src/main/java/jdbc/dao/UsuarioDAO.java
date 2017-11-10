@@ -45,7 +45,7 @@ public class UsuarioDAO {
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM usuario");
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM usuario WHERE setor != 'Desenvolvimento'");
 		ResultSet rs = stmt.executeQuery();
 
 		while (rs.next()) {
