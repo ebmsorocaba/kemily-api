@@ -89,12 +89,12 @@
 
                     <md-checkbox ng-checked="vm.exists(alu, vm.selectedAlunos)" ng-click="vm.toggleSelectAluno(alu, $event)" aria-label="{{vm.exists(alu, vm.selectedAlunos) ? 'Deselect' : 'Select'}}">
                     </md-checkbox>
-                    <div class="item" layout="row">
+                    <div class="item" layout="row" flex>
 
-                        <p class="numero raAluno">
+                        <p class="raAluno" flex="20">
                             {{alu.ra}}
                         </p>
-                        <p class="text nome">
+                        <p class="nome" flex="70">
                             {{alu.nome}}
                         </p>
 
