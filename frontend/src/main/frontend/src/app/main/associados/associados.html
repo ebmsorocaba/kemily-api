@@ -151,27 +151,27 @@
           </md-checkbox>
           <div class="item" layout="row" flex>
 
-          <p class="text-truncate font-weight-600 texto nomeAssociado">
+          <p class="text-truncate font-weight-600 texto nomeAssociado" flex="20">
             {{associado.nome}}
           </p>
 
-          <p class="hide show-gt-xs numero cpfAssociado">
+          <p class="hide show-gt-xs numero cpfAssociado" flex="20">
             {{associado.cpf}}
           </p>
 
-          <p class="hide show-gt-xs numero telefone">
+          <p class="hide show-gt-xs telefone" flex="40">
             {{associado.celular}}
           </p>
 
-          <p class="hide show-gt-xs texto emailAssociado">
+          <p class="hide show-gt-xs emailAssociado" flex="25">
             {{associado.email}}
           </p>
 
-          <p class="hide show-gt-xs texto pagamentoAssociado">
+          <p class="hide show-gt-xs texto pagamentoAssociado" flex="20">
             Dinheiro
           </p>
 
-          <p class="hide show numero valorAssociado">
+          <p class="hide show numero valorAssociado" flex="20">
             {{associado.valorAtual | currency : "R$ "}}
           </p>
         </div>
