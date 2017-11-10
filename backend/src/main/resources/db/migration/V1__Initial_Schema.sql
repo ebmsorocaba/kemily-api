@@ -1,3 +1,5 @@
+SET datestyle = "ISO, DMY";
+
 /***************************/
 /*                         */
 /** Modulo Administrativo **/

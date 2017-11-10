@@ -9,21 +9,21 @@ import org.postgresql.jdbc3.Jdbc3ConnectionPool;
 import org.postgresql.jdbc3.Jdbc3PoolingDataSource;
 
 public class ConnectionFactory {
-	
+
 	private static Connection conn;
 	private static Jdbc3PoolingDataSource dataSource;
-	
+
 	/** NOTA DO DIEGO FERREIRA*/
-	
+
 	//Eu criei a função createConnectionPool() com uma string pra cada tipo de conexão (localhost, heroku testing, heroku homologação)
 	//Pra alterar a conexão, troca a 'entrada' da função na linha 72.
 	/*As Strings são:
 	 * 'localhost' para o localhost,
 	 * 'heroku-test' para o heroku-test,
-	 * 'heroku-homologacao' para o heroku-homologação. 
+	 * 'heroku-homologacao' para o heroku-homologação.
 	 */
 
-	
+
 	private static void createConnectionPool(String tipo) {
 		if(tipo.equals("localhost")) {
 			//LOCALHOST
@@ -57,28 +57,28 @@ public class ConnectionFactory {
 			}
 		}
 	}
-	
+
 	public static Connection getConnection() throws SQLException {
-		
+
 		if(dataSource == null) {
-			
+
 			//Aqui que muda a string de conexão
 			/**
 			 * localhost:		"localhost"
 		 	 * teste:			"heroku-test"
 		 	 * homologação:		"heroku-homologacao"
 			 */
-			
+
 			createConnectionPool("heroku-test");
 		}
-		
+
 		if(conn == null || conn.isClosed()) {
 			conn = dataSource.getConnection();
 		}
-		
+
 		return conn;
 	}
-		
+
 		//Class.forName("org.postgresql.Driver");
 
 		/** Heroku Testing */
