@@ -214,33 +214,10 @@
 div.item{
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
 }
-div.item p.nomeEducador{
-    margin-left: 30px;
-    margin-right: 30px;
-    width: 800px;
-}
-
-div.item p.cpfEducador{
-    margin-right: 165px;
-    width: 70px;
-}
-
-
-div.item p.telefone{
-    margin-right: 170px;
-    width: 70px;
-}
-
 
 .atributos{
   display: flex;
   margin-top: 10px;
   margin-bottom: 5px;
-}
-
-.ordenar{
-  display: flex;
-  margin-left: 800px;
 }
