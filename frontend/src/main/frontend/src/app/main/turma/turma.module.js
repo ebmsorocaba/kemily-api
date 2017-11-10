@@ -37,10 +37,10 @@
     function authenticate($q, User, $state, $timeout, $mdDialog) {
       if (User != null) {
         // Resolve the promise successfully
-        if (User.setor == 'Social' || User.setor == "Administração") {
+        if (User.setor == 'Social' || User.setor == "Desenvolvimento") {
           return $q.when();
         } else {
-          var confirm = $mdDialog.alert().title('Não permitido!').textContent('Apenas adminitradores e o setor social pode acessar esse módulo.').ariaLabel('OK').ok('OK')
+          var confirm = $mdDialog.alert().title('Não permitido!').textContent('Apenas o setor social pode acessar esse módulo.').ariaLabel('OK').ok('OK')
 
           $mdDialog.show(confirm).then(function() {});
           return $q.reject();
