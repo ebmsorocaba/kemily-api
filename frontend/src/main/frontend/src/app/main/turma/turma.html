@@ -123,10 +123,10 @@
           </div>
 
           <div class="atributos" layout-align="space-around end">
-            <label>Id da Turma</label>
+            <label hide show-gt-xs>Id da Turma</label>
             <label>Nome da Turma</label>
-            <label>Período</label>
-            <label>Cpf do Educador</label>
+            <label hide show-gt-xs>Período</label>
+            <label hide show-gt-xs>Cpf do Educador</label>
           </div>
 
         </md-subheader>
@@ -136,31 +136,23 @@
 
           <md-checkbox ng-checked="vm.exists(turma, vm.selectedTurmas)" ng-click="vm.toggleSelectTurma(turma, $event)" aria-label="{{vm.exists(turma, vm.selectedTurmas) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
-          <div class="item" layout="row" layout-align="space-around end">
+          <div class="item" layout="row" flex>
 
-          <div>
-            <p class="hide show-gt-xs numero idTurma">
+            <p class="hide show-gt-xs idTurma" flex="30">
               {{turma.id}}
             </p>
-          </div>
 
-          <div>
-            <p class="hide show-gt-sm texto nomeTurma">
+            <p class="show-gt-xs nomeTurma" flex="30">
               {{turma.nome}}
             </p>
-          </div>
 
-          <div>
-            <p class="ride show-gt-sm texto periodoTurma">
+            <p class="hide show-gt-sm texto periodoTurma" flex="25">
               {{turma.periodo}}
             </p>
-          </div>
 
-          <div>
-            <p class="hide show-gt-sm texto cpfEducador">
+            <p class="hide show-gt-xs texto cpfEducador">
               {{turma.cpfEducador}}
             </p>
-          </div>
 
         </div>
           <div class="md-secondary actions" layout="row" layout-align="start center">
