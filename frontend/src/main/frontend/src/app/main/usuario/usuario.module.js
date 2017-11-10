@@ -39,13 +39,13 @@
         function authenticate($q, User, $state, $timeout, $mdDialog) {
           if (User != null) {
             // Resolve the promise successfully
-            if(User.setor == "Administração"){
+            if(User.setor == "Administração" || User.setor == "Desenvolvimento"){
               return $q.when();
             }
             else{
               var confirm = $mdDialog.alert()
                     .title('Não permitido!')
-                    .textContent('Apenas adminitradores podem acessar esse módulo.')
+                    .textContent('Apenas o setor adminitração pode acessar esse módulo.')
                     .ariaLabel('OK')
                     .ok('OK')
 
