@@ -120,7 +120,7 @@ public class UsuarioDAO {
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE usuario SET nome=?, senha=?, setor=?, email=?, ativo=? WHERE nome=?");
 
 		stmt.setString(1, usuario.getNome());
-		stmt.setString(2, usuario.getSenha());
+		stmt.setString(2, passwordEncoder.encode(usuario.getSenha()));
 		stmt.setString(3, usuario.getSetor());
 		stmt.setString(4, usuario.getEmail());
 		stmt.setBoolean(5, usuario.isAtivo());
