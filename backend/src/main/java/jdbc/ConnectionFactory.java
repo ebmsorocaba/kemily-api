@@ -53,7 +53,15 @@ public class ConnectionFactory {
 					pool.setSsl(true);
 					pool.setMaxConnections(15);
 					dataSource = pool;
-				}
+				} else {
+					if(tipo.equals("producao")) {
+						//PRODUCAO
+						Jdbc3PoolingDataSource pool = new Jdbc3PoolingDataSource();
+						pool.setUrl("jdbc:postgresql://localhost:5432/kemily");
+						pool.setUser("postgres");
+						pool.setPassword("k3m1l1");
+						dataSource = pool;
+					}
 			}
 		}
 	}
