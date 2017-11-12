@@ -25,47 +25,49 @@ public class ConnectionFactory {
 
 
 	private static void createConnectionPool(String tipo) {
-		if(tipo.equals("localhost")) {
-			//LOCALHOST
-			Jdbc3PoolingDataSource pool = new Jdbc3PoolingDataSource();
-			pool.setUrl("jdbc:postgresql://localhost:5432/ebm_admin");
-			pool.setUser("postgres");
-			pool.setPassword("postgres");
-			pool.setMaxConnections(15);
-			dataSource = pool;
-		} else {
-			if(tipo.equals("heroku-test")) {
-				//HEROKU TESTING
+			if(tipo.equals("localhost")) {
+				//LOCALHOST
 				Jdbc3PoolingDataSource pool = new Jdbc3PoolingDataSource();
-				pool.setUrl("jdbc:postgresql://ec2-107-22-236-252.compute-1.amazonaws.com:5432/d3k8ui2hd4460h?sslmode=require");
-				pool.setUser("uimgbmczwnxbtx");
-				pool.setPassword("20bd33bf81cf0b1ec35371a0c742783c027b8c5ff856067b6a456501ae83c06e");
-				pool.setSsl(true);
+				pool.setUrl("jdbc:postgresql://localhost:5432/ebm_admin");
+				pool.setUser("postgres");
+				pool.setPassword("postgres");
 				pool.setMaxConnections(15);
 				dataSource = pool;
 			} else {
-				if(tipo.equals("heroku-homologacao")) {
-					//HEROKU HOMOLOGAÇÃO
+				if(tipo.equals("heroku-test")) {
+					//HEROKU TESTING
 					Jdbc3PoolingDataSource pool = new Jdbc3PoolingDataSource();
-					pool.setUrl("jdbc:postgresql://ec2-50-17-236-15.compute-1.amazonaws.com:5432/d18n1ki8qe2orj?sslmode=require");
-					pool.setUser("pjcvqvzaytfmmi");
-					pool.setPassword("9416bca22c6cf3392b8c9483de6c78cd52cf96b1d2f3504ea51de2eae260d9ba");
+					pool.setUrl("jdbc:postgresql://ec2-107-22-236-252.compute-1.amazonaws.com:5432/d3k8ui2hd4460h?sslmode=require");
+					pool.setUser("uimgbmczwnxbtx");
+					pool.setPassword("20bd33bf81cf0b1ec35371a0c742783c027b8c5ff856067b6a456501ae83c06e");
 					pool.setSsl(true);
 					pool.setMaxConnections(15);
 					dataSource = pool;
 				} else {
-					if(tipo.equals("producao")) {
-						//PRODUCAO
+					if(tipo.equals("heroku-homologacao")) {
+						//HEROKU HOMOLOGAÇÃO
 						Jdbc3PoolingDataSource pool = new Jdbc3PoolingDataSource();
-						pool.setUrl("jdbc:postgresql://localhost:5432/kemily");
-						pool.setUser("postgres");
-						pool.setPassword("k3m1l1");
+						pool.setUrl("jdbc:postgresql://ec2-50-17-236-15.compute-1.amazonaws.com:5432/d18n1ki8qe2orj?sslmode=require");
+						pool.setUser("pjcvqvzaytfmmi");
+						pool.setPassword("9416bca22c6cf3392b8c9483de6c78cd52cf96b1d2f3504ea51de2eae260d9ba");
+						pool.setSsl(true);
+						pool.setMaxConnections(15);
 						dataSource = pool;
+					} else {
+						if(tipo.equals("producao")) {
+							//PRODUÇÃO
+							Jdbc3PoolingDataSource pool = new Jdbc3PoolingDataSource();
+							pool.setUrl("jdbc:postgresql://localhost:5432/kemily");
+							pool.setUser("postgres");
+							pool.setPassword("k3m1l1");
+							pool.setSsl(false);
+							pool.setMaxConnections(15);
+							dataSource = pool;
 					}
+				}
 			}
 		}
 	}
-
 	public static Connection getConnection() throws SQLException {
 
 		if(dataSource == null) {
@@ -76,8 +78,7 @@ public class ConnectionFactory {
 		 	 * teste:			"heroku-test"
 		 	 * homologação:		"heroku-homologacao"
 			 */
-
-			createConnectionPool("heroku-homologacao");
+			createConnectionPool("producao");
 		}
 
 		if(conn == null || conn.isClosed()) {
