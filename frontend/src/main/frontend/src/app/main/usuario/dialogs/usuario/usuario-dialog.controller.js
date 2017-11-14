@@ -149,23 +149,33 @@
 
         // TODO Remover também a [formaPgto] do Associado.
 
+        if(vm.user.nome !== vm.usuario.nome) {
         // Remove o Associado do BD
-        console.log('deleteUsuario @ usuarios.controller.js');
-          api.usuario.getByNome.delete({
-            'nome': vm.usuario.nome
-          },
-          // Sucesso
-          function(response) {
-            console.log(response);
-          },
-          // Erro
-          function(response) {
-            console.error(response);
-          }
-        );
+          console.log('deleteUsuario @ usuarios.controller.js');
+            api.usuario.getByNome.delete({
+              'nome': vm.usuario.nome
+            },
+            // Sucesso
+            function(response) {
+              console.log(response);
+            },
+            // Erro
+            function(response) {
+              console.error(response);
+            }
+          );
 
-        // Remove a da lista na tela a linha deste Associado
-        vm.usuarios.splice(vm.usuarios.indexOf(Usuario), 1);
+          // Remove a da lista na tela a linha deste Associado
+          vm.usuarios.splice(vm.usuarios.indexOf(Usuario), 1);
+        } else {
+          var erro = $mdDialog.confirm()
+          .title('ERRO!')
+          .htmlContent('<p><b>USUÁRIO LOGADO NAO PODE SE EXCLUIR!</b></p>')
+          .ariaLabel('erro')
+          .ok('OK')
+  
+          $mdDialog.show(erro);
+        }
       });
     }
 

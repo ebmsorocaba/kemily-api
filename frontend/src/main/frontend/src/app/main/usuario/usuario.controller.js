@@ -14,19 +14,13 @@
     // vm.formaPgto = FormaPgto;
 
     vm.usuarios = Usuarios;
-    vm.user = User.data;
+    vm.user = User;
     // vm.filterIds = null;
     vm.listType = 'all';
     vm.listOrder = 'nome';
     vm.listOrderAsc = false;
     vm.selectedUsuarios = [];
     // vm.newGroupName = '';
-
-    vm.usuarios.forEach(function (user) {
-      if(User.nome === user.nome) {
-        vm.usuarios.splice(vm.usuarios.indexOf(user), 1);
-      }
-    });
 
     // Methods
     // vm.filterChange = filterChange;
@@ -124,24 +118,35 @@
     function deleteUsuario(usuario) {
 
       // TODO Remover também a [formaPgto] do Associado.
+      if(User.nome !== usuario.nome) {
 
-      // Remove o Associado do BD
-      console.log('deleteUsuario @ usuarios.controller.js');
-        api.usuario.getByNome.delete({
-          'nome': usuario.nome
-        },
-        // Sucesso
-        function(response) {
-          console.log(response);
-        },
-        // Erro
-        function(response) {
-          console.error(response);
-        }
-      );
+        // Remove o Associado do BD
 
-      // Remove a da lista na tela a linha deste Associado
-      vm.usuarios.splice(vm.usuarios.indexOf(usuario), 1);
+        console.log('deleteUsuario @ usuarios.controller.js');
+          api.usuario.getByNome.delete({
+            'nome': usuario.nome
+          },
+          // Sucesso
+          function(response) {
+            console.log(response);
+          },
+          // Erro
+          function(response) {
+            console.error(response);
+          }
+        );
+
+        // Remove a da lista na tela a linha deste Associado
+        vm.usuarios.splice(vm.usuarios.indexOf(usuario), 1);
+      } else {
+        var erro = $mdDialog.confirm()
+        .title('ERRO!')
+        .htmlContent('<p><b>USUÁRIO LOGADO NAO PODE SE EXCLUIR!</b></p>')
+        .ariaLabel('erro')
+        .ok('OK')
+
+        $mdDialog.show(erro);
+      }
     }
 
     /**
