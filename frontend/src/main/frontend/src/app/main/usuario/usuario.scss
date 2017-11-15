@@ -198,22 +198,72 @@
         color: #FFF;
     }
 
-}
+    .atributosUsuario {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-around;
 
-// RESPONSIVE
-@media screen and (min-width: $layout-breakpoint-md) {
+      .usuarioNome,.usuarioEmail,.usuarioAtivo,.usuarioSetor {
+        position: relative;
+      }
 
-    #usuarios {
-
-        > .content {
-
-            .main {
-                left: 45px;
-            }
+      @media (min-width: 1280px) {
+        .usuarioNome {
+          right: 30px;
         }
-    }
-}
 
-.item {
-  
+        .usuarioEmail {
+          right: 10px;
+        }
+
+        .usuarioAtivo {
+          right: 10px;
+        }
+
+      }
+
+      @media (min-width: 1366px) {
+        .usuarioNome {
+          right: 40px
+        }
+
+        .usuarioEmail {
+          right: 15px;
+        }
+
+        .usuarioAtivo {
+          right: 0px;
+        }
+      }
+
+      @media (min-width: 1600px) {
+        .usuarioNome {
+          right: 80px;
+        }
+
+        .usuarioEmail {
+          right: 20px;
+        }
+
+        .usuarioAtivo {
+          left: 30px;
+        }
+      }
+
+      @media (min-width: 1680px) {
+        .usuarioNome {
+          right: 115px;
+        }
+
+        .usuarioEmail {
+          right: 30px;
+        }
+
+        .usuarioAtivo {
+          left: 70px;
+        }
+      }
+
+    }
+
 }
