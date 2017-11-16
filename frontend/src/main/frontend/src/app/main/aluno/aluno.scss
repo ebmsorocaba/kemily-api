@@ -215,6 +215,13 @@
         right: 500px;
     }
 
+    .nomeAlunocontent {
+      width: 80px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     .atributosAluno {
       display: flex;
       flex-flow: row;
