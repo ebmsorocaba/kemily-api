@@ -4,7 +4,7 @@
   angular.module('app.educador').controller('EducadorDialogController', EducadorDialogController)
 
   /** @ngInject */
-  function EducadorDialogController ($mdDialog, Educador, Educadores, User, msUtils, api) {
+  function EducadorDialogController ($mdDialog, $state, Educador, Educadores, User, msUtils, api) {
     var vm = this;
     vm.title = 'Alterar Educador';
     vm.educador = angular.copy(Educador);
@@ -40,6 +40,7 @@
       vm.title = 'Novo Educador';
     } else {
       vm.educador.dataNasc = new Date(vm.educador.dataNasc);
+      formataHora();
       vm.title = 'Alterar Educador';
     }
     // Methods
@@ -65,6 +66,9 @@
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
       //if(vm.ok == true){
+        vm.educador.horaEntrada = new Date(vm.educador.horaEntrada).toLocaleTimeString();
+        vm.educador.horaSaida = new Date(vm.educador.horaSaida).toLocaleTimeString();
+
         api.educador.list.save(vm.educador,
           // Exibe o resultado no console do navegador:
           // Sucesso
@@ -85,14 +89,20 @@
     }
 
     function closeDialog () {
-      $mdDialog.hide()
+      $mdDialog.hide();
+      $state.reload()
     }
 
     /**
      * Save new educador
      */
     function saveEducador() {
+
+      vm.educador.horaEntrada = new Date(vm.educador.horaEntrada).toLocaleTimeString();
+      vm.educador.horaSaida = new Date(vm.educador.horaSaida).toLocaleTimeString();
+
       // Atualiza a linha na tela:
+
       for (var i = 0; i < vm.educadores.length; i++) {
         if (vm.educadores[i].cpf === vm.educador.cpf) {
           vm.educadores[i] = angular.copy(vm.educador);
@@ -115,7 +125,7 @@
         }
       );
 
-      closeDialog()
+      closeDialog();
     }
 
     function deleteEducadorConfirm(ev) {
@@ -145,6 +155,27 @@
 
         vm.educadores.splice(vm.educadores.indexOf(Educador), 1);
       });
+    }
+
+    function formataHora() {
+
+      var teste = new Date();
+
+      teste.setHours(vm.educador.horaEntrada.substring(0,2));
+      teste.setMinutes(vm.educador.horaEntrada.substring(3,5));
+      teste.setSeconds(0);
+      teste.setMilliseconds(0);
+
+      vm.educador.horaEntrada = teste;
+
+      teste = new Date();
+
+      teste.setHours(vm.educador.horaSaida.substring(0,2));
+      teste.setMinutes(vm.educador.horaSaida.substring(3,5));
+      teste.setSeconds(0);
+      teste.setMilliseconds(0);
+
+      vm.educador.horaSaida = teste;
     }
   }
 })();
