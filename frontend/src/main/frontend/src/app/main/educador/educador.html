@@ -122,11 +122,11 @@
              </div>
             </div>
 
-            <div class="atributos" layout-align="space-around end">
-              <label>Nome</label>
-              <label hide show-gt-xs>CPF</label>
-              <label hide show-gt-xs>Telefone</label>
-              <label hide show-gt-xs>Email</label>
+            <div class="atributosEducador">
+              <label class="educadorNome">Nome</label>
+              <label hide show-gt-xs class="educadorCpf">CPF</label>
+              <label hide show-gt-xs class="educadorTelefone">Telefone</label>
+              <label hide show-gt-xs class="educadorEmail">Email</label>
             </div>
           </md-subheader>
 
@@ -137,21 +137,21 @@
 
             <md-checkbox ng-checked="vm.exists(educador, vm.selectedEducadores)" ng-click="vm.toggleSelectEducador(educador, $event)" aria-label="{{vm.exists(educador, vm.selectedEducadores) ? 'Deselect' : 'Select'}}">
             </md-checkbox>
-            <div class="item" flex>
+            <div class="item" flex layout-align="space-between">
 
-            <p class="text-truncate font-weight-20 texto nomeEducador" flex="50">
+            <p class="text-truncate font-weight-20 texto">
               {{educador.nome}}
             </p>
 
-            <p class="hide show-gt-xs cpfEducador" flex="25">
+            <p class="hide show-gt-xs numero">
               {{educador.cpf}}
             </p>
 
-            <p class="hide show-gt-xs telefone" flex="50">
+            <p class="hide show-gt-xs numero">
               {{educador.telefone}}
             </p>
 
-            <p class="hide show-gt-xs emailEducador" flex="30">
+            <p class="hide show-gt-xs texto">
               {{educador.email}}
             </p>
 
