@@ -195,28 +195,43 @@
         right: 8px;
         padding: 0;
     }
-}
 
-// RESPONSIVE
-@media screen and (min-width: $layout-breakpoint-md) {
+    .atributosAssociado {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-around;
 
-    #associados {
+      .associadoNome, .associadoCpf, .associadoPago, .associadoEmail, .associadoTelefone, .associadoValor {
+        position: relative;
+      }
 
-        > .content {
-
-            .main {
-                left: 45px;
-            }
+      @media (min-width: 1280px) {
+        .associadoCpf, .associadoTelefone, .associadoEmail {
+          left: 40px;
         }
+        .associadoPago {
+          left: 15px;
+        }
+      }
+
+      @media (min-width: 1600px) {
+        .associadoPago {
+          left: 25px;
+        }
+
+        .associadoValor {
+          left: 15px;
+        }
+      }
+
+      @media (min-width: 1980px) {
+        .associadoCpf {
+          left: 20px;
+        }
+        .associadoPago, .associadoValor {
+          left: 45px;
+        }
+      }
+
     }
-}
-
-div.item p.telefone {
-  position: relative;
-  left: 60px;
-}
-
-div.item p.emailAssociado {
-    position: relative;
-    right: 60px;
 }
