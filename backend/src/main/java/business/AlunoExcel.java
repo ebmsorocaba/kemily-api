@@ -391,19 +391,19 @@ public class AlunoExcel {
 		if(ef.isUsoAlcoolDrogas()) {
 			efLinha.createCell(celulaInicial + 3).setCellValue("Sim");
 		} else {
-			efLinha.createCell(celulaInicial + 3).setCellValue("Sim");
+			efLinha.createCell(celulaInicial + 3).setCellValue("Não");
 		}
 		
 		if(ef.isAlguemAgressivo()) {
 			efLinha.createCell(celulaInicial + 4).setCellValue("Sim");
 		} else {
-			efLinha.createCell(celulaInicial + 4).setCellValue("Sim");
+			efLinha.createCell(celulaInicial + 4).setCellValue("Não");
 		}
 		
 		if(ef.isProgramasSociais()) {
 			efLinha.createCell(celulaInicial + 5).setCellValue("Sim");
 		} else {
-			efLinha.createCell(celulaInicial + 5).setCellValue("Sim");
+			efLinha.createCell(celulaInicial + 5).setCellValue("Não");
 		}
 		
 		if(linha == 2) {
