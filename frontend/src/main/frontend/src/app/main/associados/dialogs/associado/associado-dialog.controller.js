@@ -125,7 +125,7 @@
         // Remove o Associado do BD
         console.log('deleteAssociado @ associados.controller.js');
         api.associado.getByCpf.delete({
-            'cpf': associado.cpf
+            'cpf': vm.associado.cpf
           },
           // Sucesso
           function(response) {
