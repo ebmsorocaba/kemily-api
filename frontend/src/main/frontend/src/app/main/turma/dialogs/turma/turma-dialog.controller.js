@@ -24,7 +24,7 @@
         'periodo': '',
         'cpfEducador': ''
       };
-      vm.title = 'Novo Turma';
+      vm.title = 'Nova Turma';
     } else {
       setIdadeAluno();
       buscarEducador(vm.turma.cpfEducador);
