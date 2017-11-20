@@ -50,7 +50,7 @@
                     </md-select>
 
                     <label>Ano</label>
-                    <input class="inputAno" ng-model="vm.anoInicial" minlength="2000">
+                    <input class="inputAno" type="number" ng-model="vm.anoInicial" min="2000">
 
                 </div>
 
@@ -87,7 +87,7 @@
                   </md-select>
 
                   <label>Ano</label>
-                  <input class="inputAno" ng-model="vm.anoInicial" minlength="2000">
+                  <input class="inputAno" type="number" ng-model="vm.anoInicial" min="2000">
                 </div>
 
                 <div ng-if="vm.tipoFiltro == 'Entre Meses e Anos'" layout="row" layout-align="space-around center">
@@ -107,7 +107,7 @@
                   </md-select>
 
                   <label>Ano Inicial</label>
-                  <input type="number" class="inputAno" ng-model="vm.anoInicial" min="2000">
+                  <input class="inputAno" type="number" ng-model="vm.anoInicial" min="2000">
 
                   <md-select ng-model="vm.mesFinal" placeholder="Mês Final">
                     <md-option value="1">Janeiro</md-option>

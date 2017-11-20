@@ -156,7 +156,7 @@
                     anoInicial = new Date().getFullYear();
                 }
 
-                vm.anoInicial = anoInicial
+                vm.anoInicial = anoInicial;
 
                 if (mesInicial >= 1 && mesInicial <= 12) {
                     vm.ocorrencias.forEach(function(oco) {
