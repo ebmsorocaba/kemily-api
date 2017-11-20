@@ -21,7 +21,7 @@
       <md-input-container class="md-icon-float md-block">
         <label>CPF</label>
         <md-icon md-font-icon="icon-account-circle"></md-icon>
-        <input ng-model="vm.educador.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newEducador" required>
+        <input cpf ng-model="vm.educador.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newEducador" required>
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
@@ -129,13 +129,13 @@
       <md-input-container class="md-icon-float md-block">
         <label>Horário de Entrada</label>
         <md-icon md-font-icon="icon-clock"></md-icon>
-        <input ng-model="vm.educador.horaEntrada" type="text" mask="99:99" required>
+        <input ng-model="vm.tempHoraEntrada" type="time" required>
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
         <label>Horário de Saída</label>
         <md-icon md-font-icon="icon-clock"></md-icon>
-        <input ng-model="vm.educador.horaSaida" type="text" mask="99:99" required>
+        <input ng-model="vm.tempHoraSaida" type="time" required>
       </md-input-container>
 
     <md-dialog-actions layout="row" layout-align="space-between center">
