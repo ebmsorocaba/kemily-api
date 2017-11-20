@@ -66,8 +66,8 @@
       // Cria o novo registro no BD
       // TODO Tratar de como enviar a [formaPgto] ao BD
       //if(vm.ok == true){
-        vm.educador.horaEntrada = new Date(vm.educador.horaEntrada).toLocaleTimeString();
-        vm.educador.horaSaida = new Date(vm.educador.horaSaida).toLocaleTimeString();
+        vm.educador.horaEntrada = vm.tempHoraEntrada.toLocaleTimeString();
+        vm.educador.horaSaida = vm.tempHoraSaida.toLocaleTimeString();
 
         api.educador.list.save(vm.educador,
           // Exibe o resultado no console do navegador:
@@ -98,9 +98,8 @@
      */
     function saveEducador() {
 
-      vm.educador.horaEntrada = new Date(vm.educador.horaEntrada).toLocaleTimeString();
-      vm.educador.horaSaida = new Date(vm.educador.horaSaida).toLocaleTimeString();
-
+      vm.educador.horaEntrada = vm.tempHoraEntrada.toLocaleTimeString();
+      vm.educador.horaSaida = vm.tempHoraSaida.toLocaleTimeString();
       // Atualiza a linha na tela:
 
       for (var i = 0; i < vm.educadores.length; i++) {
@@ -166,7 +165,7 @@
       teste.setSeconds(0);
       teste.setMilliseconds(0);
 
-      vm.educador.horaEntrada = teste;
+      vm.tempHoraEntrada = teste;
 
       teste = new Date();
 
@@ -175,7 +174,7 @@
       teste.setSeconds(0);
       teste.setMilliseconds(0);
 
-      vm.educador.horaSaida = teste;
+      vm.tempHoraSaida = teste;
     }
   }
 })();
