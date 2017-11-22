@@ -139,7 +139,8 @@
             'Informal',
             'Desempregado',
             'Estudante',
-            'Do Lar'
+            'Do Lar',
+            'Aposentado'
         ]
         vm.camisetas = [
             '2',
