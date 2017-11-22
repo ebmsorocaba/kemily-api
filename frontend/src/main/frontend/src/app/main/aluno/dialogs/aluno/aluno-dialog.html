@@ -97,7 +97,7 @@
 
                                     <md-input-container flex="100" flex-gt-xs="15">
                                         <label>Tam. da camiseta</label>
-                                        <md-select ng-model="vm.data.roupa.tamanhoCamiseta" required>
+                                        <md-select ng-model="vm.data.roupa.tamanhoCamiseta">
                                             <md-option ng-repeat="camiseta in vm.camisetas" value="{{camiseta}}">
                                                 {{camiseta}}
                                             </md-option>
@@ -106,7 +106,7 @@
 
                                     <md-input-container flex="100" flex-gt-xs="15">
                                         <label>Tam. da calça</label>
-                                        <md-select ng-model="vm.data.roupa.tamanhoCalca" required>
+                                        <md-select ng-model="vm.data.roupa.tamanhoCalca">
                                             <md-option ng-repeat="calca in vm.calcas" value="{{calca}}">
                                                 {{calca}}
                                             </md-option>
@@ -115,7 +115,7 @@
 
                                     <md-input-container flex="100" flex-gt-xs="15">
                                         <label>Tam. do calçado</label>
-                                        <md-select ng-model="vm.data.roupa.tamanhoSapato" required>
+                                        <md-select ng-model="vm.data.roupa.tamanhoSapato">
                                             <md-option ng-repeat="sapato in vm.sapatos" value="{{sapato}}">
                                                 {{sapato}}
                                             </md-option>
