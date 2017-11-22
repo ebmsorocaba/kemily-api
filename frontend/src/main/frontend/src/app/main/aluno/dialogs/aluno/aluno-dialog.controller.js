@@ -71,7 +71,9 @@
             'Medio - Incompleto',
             'Medio - Completo',
             'Superior - Incompleto',
-            'Superior - Completo'
+            'Superior - Completo',
+            'Analfabeto',
+            'Semi-Analfabeto'
         ];
         vm.estados = [
             'AC',
