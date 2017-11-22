@@ -1,7 +1,77 @@
 (function() {
   'use strict';
 
-  angular.module('app.aluno', []).config(config);
+  angular.module('app.aluno', []).config(config)
+  .directive('cpf', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, element, attr, mCtrl) {
+        function myValidation(strCPF) {
+
+          var Soma;
+          var Resto;
+          Soma = 0;
+          var i;
+          var flag = 0;
+
+          //retirar mascara
+          if(strCPF != null){
+            strCPF = strCPF.replace(/\-/g,"");
+            strCPF = strCPF.replace(/\./g,"");
+          }
+          else{
+
+            mCtrl.$setValidity('cpf', false);
+            //console.log("1");
+            return strCPF;
+          }
+          //verificar se os numeros do cpf são todos iguais ex: 000.000.000-00
+          for(i=0; i<11; i++){
+              if(strCPF[i] == strCPF[i+1]){
+                  flag++;
+              }
+          }
+
+          if(flag==10){
+
+              mCtrl.$setValidity('cpf', false);
+              //console.log("2");
+              return strCPF;
+          }
+
+          for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+          Resto = (Soma * 10) % 11;
+
+          if ((Resto == 10) || (Resto == 11))  Resto = 0;
+          if (Resto != parseInt(strCPF.substring(9, 10)) ){
+
+            mCtrl.$setValidity('cpf', false);
+            //console.log("3");
+            return strCPF;
+          }
+
+          Soma = 0;
+          for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+          Resto = (Soma * 10) % 11;
+
+          if ((Resto == 10) || (Resto == 11))  Resto = 0;
+          if (Resto != parseInt(strCPF.substring(10, 11) ) ){
+
+            mCtrl.$setValidity('cpf', false);
+            //console.log("4");
+            return strCPF;
+          }
+
+
+          mCtrl.$setValidity('cpf', true);
+          //console.log("5");
+          return strCPF;
+
+        }
+        mCtrl.$parsers.push(myValidation);
+      }
+    };
+  });
 
   /** @ngInject */
   function config($stateProvider, msApiProvider, msNavigationServiceProvider) {
