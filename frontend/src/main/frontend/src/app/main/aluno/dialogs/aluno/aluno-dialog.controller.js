@@ -71,7 +71,9 @@
             'Medio - Incompleto',
             'Medio - Completo',
             'Superior - Incompleto',
-            'Superior - Completo'
+            'Superior - Completo',
+            'Analfabeto',
+            'Semi-Analfabeto'
         ];
         vm.estados = [
             'AC',
@@ -137,7 +139,8 @@
             'Informal',
             'Desempregado',
             'Estudante',
-            'Do Lar'
+            'Do Lar',
+            'Aposentado'
         ]
         vm.camisetas = [
             '2',
@@ -445,6 +448,11 @@
             vm.data.membroFamiliarList.forEach(function(membroFamiliar) {
                 membroFamiliar.dataNascimento = new Date(membroFamiliar.dataNascimento);
             });
+            if(vm.data.automovelList.length > 0) {
+                vm.data.automovelList.forEach(function (auto) {
+                    auto.ano = Number.parseInt(auto.ano);
+                });
+            }
         }
 
         // Methods
