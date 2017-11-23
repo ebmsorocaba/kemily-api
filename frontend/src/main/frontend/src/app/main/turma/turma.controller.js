@@ -35,6 +35,7 @@
     vm.selectAlunoTurma = selectAlunoTurma;
     vm.alunosNaTurma = alunosNaTurma;
     vm.alunosForaTurma = alunosForaTurma;
+    vm.procura = nomeEducador;
 
     function openTurmaDialog(ev, turma) {
       $mdDialog.show({
@@ -202,6 +203,13 @@
       });
     }
 
+    function nomeEducador (cpf) {
+      var result = Educadores.find(function (c) {
+        return cpf === c.cpf
+      })
+
+      return result.nome
+    }
   }
 
 })();
