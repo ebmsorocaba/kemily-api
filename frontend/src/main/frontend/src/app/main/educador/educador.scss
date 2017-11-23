@@ -217,8 +217,54 @@ div.item{
   flex-flow: row;
 }
 
-.atributos{
+.atributosEducador{
   display: flex;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  flex-flow: row;
+  justify-content: space-around;
+
+  .educadorNome, .educadorEmail, .educadorCpf, .educadorTelefone {
+    position: relative;
+  }
+
+  @media (min-width: 1280px) {
+    .educadorNome {
+      right: 20px;
+    }
+
+    .educadorTelefone {
+      left: 20px;
+    }
+
+    .educadorEmail {
+      left: 30px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .educadorNome {
+      right: 50px;
+    }
+
+    .educadorTelefone {
+      left: 30px;
+    }
+
+    .educadorEmail {
+      left: 40px;
+    }
+  }
+
+  @media (min-width: 1980px) {
+    .educadorNome {
+      right: 100px;
+    }
+
+    .educadorTelefone {
+      left: 50px;
+    }
+
+    .educadorEmail {
+      left: 100px;
+    }
+  }
 }

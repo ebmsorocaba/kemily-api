@@ -129,11 +129,11 @@
             </div>
           </div>
 
-          <div class="atributos" layout-align="space-around center">
-            <label flex="20">Usuario</label>
-            <label hide show-gt-xs flex="20">Email</label>
-            <label hide show-gt-xs flex="15">Setor</label>
-            <label hide show-gt-xs flex="10">Ativo?</label>
+          <div class="atributosUsuario">
+            <label class="usuarioNome">Usuario</label>
+            <label hide show-gt-xs class="usuarioEmail">Email</label>
+            <label hide show-gt-xs class="usuarioSetor">Setor</label>
+            <label hide show-gt-xs class="usuarioAtivo">Ativo?</label>
           </div>
 
         </md-subheader>
@@ -143,25 +143,25 @@
 
           <md-checkbox ng-checked="vm.exists(usuario, vm.selectedUsuarios)" ng-click="vm.toggleSelectUsuario(usuario, $event)" aria-label="{{vm.exists(usuario, vm.selectedUsuarios) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
-          <div class="item" layout="row" flex>
+          <div class="item" layout="row" flex layout-align="space-between center">
 
-            <p class="text-truncate font-weight-600 texto usuario" flex="20">
+            <p class="text-truncate font-weight-600 texto usuario">
               {{usuario.nome}}
             </p>
 
-            <p class="hide show-gt-xs texto email" flex="40">
+            <p class="hide show-gt-xs texto email">
               {{usuario.email}}
             </p>
 
-            <p class="hide show-gt-xs texto setor" flex="30">
+            <p class="hide show-gt-xs texto setor">
               {{usuario.setor}}
             </p>
 
-            <p ng-show="usuario.ativo == true" class="hide show-gt-xs texto ativo" flex="10">
+            <p ng-show="usuario.ativo == true" class="hide show-gt-xs texto ativo">
               Ativado
             </p>
 
-            <p ng-show="usuario.ativo == false" class="hide show-gt-xs texto usuario ativo" flex="20">
+            <p ng-show="usuario.ativo == false" class="hide show-gt-xs texto usuario ativo">
               Desativado
             </p>
           </div>

@@ -69,7 +69,7 @@
       });
 
       msNavigationServiceProvider.saveItem('social.historicoOcorrencia', {
-        title: 'Gerenciar Ocorrencias',
+        title: 'Histórico de Ocorrências',
         icon: 'icon-clipboard-alert',
         state: 'app.historicoOcorrencia',
         weight: 3

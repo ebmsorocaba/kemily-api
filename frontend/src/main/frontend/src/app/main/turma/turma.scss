@@ -195,18 +195,64 @@
         right: 8px;
         padding: 0;
     }
-}
 
-// RESPONSIVE
-@media screen and (min-width: $layout-breakpoint-md) {
+    .atributosTurma {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-around;
 
-    #turmas {
+      .nomeTurma, .idTurma, .periodoTurma, .educadorNome {
+        position: relative;
+      }
 
-        > .content {
-
-            .main {
-                left: 45px;
-            }
+      @media (min-width: 1280px) {
+        .idTurma {
+          right: 50px;
         }
+
+        .nomeTurma {
+          right: 70px;
+        }
+
+        .periodoTurma {
+          right: 30px;
+        }
+
+        .educadorNome {
+          left: 45px;
+        }
+      }
+
+      @media (min-width: 1600px) {
+        .idTurma {
+          right: 80px;
+        }
+
+        .periodoTurma {
+          right: 18px;
+        }
+
+        .educadorNome {
+          left: 75px;
+        }
+      }
+
+      @media (min-width: 1980px) {
+        .idTurma {
+          right: 120px;
+        }
+
+        .nomeTurma {
+          right: 85px;
+        }
+
+        .periodoTurma {
+          right: 3px;
+        }
+
+        .educadorNome {
+          left: 120px;
+        }
+      }
     }
 }

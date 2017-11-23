@@ -198,17 +198,6 @@
             white-space: nowrap;
         }
 
-        div.item p.nomeAluno {
-            position: relative;
-            left: 100px;
-        }
-
-        @media (max-width: 468px) {
-          div.item p.nomeAluno {
-            position: relative;
-            left: 15px;
-          }
-        }
     }
 
     #add-aluno-button {
@@ -225,4 +214,82 @@
         bottom: 8px;
         right: 500px;
     }
+
+    .nomeAlunocontent {
+      width: 80px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .atributosAluno {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-around;
+
+      .raAluno, .nomeAluno, .nascAluno, .ativoAluno {
+        position: relative;
+      }
+
+      @media (min-width: 1280px) {
+        .raAluno {
+          position: relative;
+          right: 48px;
+        }
+
+        .nomeAluno {
+          right: 45px;
+        }
+
+        .nascAluno {
+          right: 10px;
+        }
+
+        .ativoAluno {
+          right: 10px;
+        }
+      }
+
+      @media (min-width: 1366px) {
+        .raAluno {
+          right: 60px;
+        }
+
+        .nomeAluno {
+          right: 53px;
+        }
+      }
+
+      @media (min-width: 1600px) {
+        .raAluno {
+          right: 85px;
+        }
+
+        .nomeAluno {
+          right: 70px;
+        }
+
+        .ativoAluno {
+          right: 5px;
+        }
+      }
+
+      @media (min-width: 1680px) {
+        .raAluno {
+          right: 130px;
+        }
+
+        .nomeAluno {
+          right: 100px;
+        }
+
+        .nascAluno {
+          right: 20px
+        }
+
+        .ativoAluno {
+          left: 5px;
+        }
+    }
+  }
 }
