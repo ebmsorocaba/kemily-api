@@ -200,16 +200,29 @@
 
 }
 
-// RESPONSIVE
-@media screen and (min-width: $layout-breakpoint-md) {
+.atributosOcorrencia {
+  display: flex;
+  flex-flow: row;
 
-    #ocorrencia {
+  .labelRA, .labelNome {
+    position: relative;
+  }
 
-        > .content {
+  .labelRA {
+    left: 80px;
+  }
 
-            .main {
-                left: 45px;
-            }
-        }
-    }
+  .labelNome {
+    left: 110px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .nomeAluno {
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }

@@ -7,7 +7,7 @@
                 <span class="logo-icon">
           <md-icon md-font-icon="icon-account-box" class="s24"></md-icon>
         </span>
-                <span class="logo-text">Histórico de Ocorrencias</span>
+                <span class="logo-text">Ocorrencias</span>
             </div>
         </div>
 
@@ -77,9 +77,9 @@
 
                     </div>
 
-                    <div class="atributos" layout-align="space-around start">
-                      <label class="labelRA" flex="10">RA</label>
-                      <label class="labelNome" flex="70">Nome</label>
+                    <div class="atributosOcorrencia">
+                      <label class="labelRA">RA</label>
+                      <label class="labelNome">Nome</label>
                     </div>
 
                 </md-subheader>
@@ -89,12 +89,12 @@
 
                     <md-checkbox ng-checked="vm.exists(alu, vm.selectedAlunos)" ng-click="vm.toggleSelectAluno(alu, $event)" aria-label="{{vm.exists(alu, vm.selectedAlunos) ? 'Deselect' : 'Select'}}">
                     </md-checkbox>
-                    <div class="item" layout="row" flex>
+                    <div class="item" layout="row" flex layout-margin layout-padding>
 
-                        <p class="raAluno" flex="20">
+                        <p class="raAluno">
                             {{alu.ra}}
                         </p>
-                        <p class="nome" flex="70">
+                        <p class="nomeAluno">
                             {{alu.nome}}
                         </p>
 
