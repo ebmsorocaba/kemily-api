@@ -195,29 +195,71 @@
         right: 8px;
         padding: 0;
     }
-}
 
-// RESPONSIVE
-@media screen and (min-width: $layout-breakpoint-md) {
+    .atributosPagamento {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-around;
 
-    #pagamentos {
+      .idPagamento, .cpfPagamento, .nomePagamento, .valorPagamento, .formaPagamento, .dataPagamento {
+        position: relative;
+      }
 
-        > .content {
-
-            .main {
-                left: 45px;
-            }
+      @media (min-width: 1200px) {
+        .idPagamento {
+          right: 3px;
         }
-    }
-}
 
-div.item p.nome {
-  position: relative;
-  left: 5px;
-}
-@media (min-width: 468px) {
-  div.item p.valorPago {
-    position: relative;
-    right: 60px;
-  }
+        .valorPagamento {
+          left: 60px;
+        }
+      }
+
+      @media (min-width: 1366px) {
+        .idPagamento {
+          right: 7px;
+        }
+
+        .cpfPagamento {
+          right: 10px;
+        }
+      }
+
+      @media (min-width: 1600px) {
+        .idPagamento {
+          right: 25px;
+        }
+
+        .formaPagamento {
+          left: 15px;
+        }
+
+        .dataPagamento {
+          left: 15px;
+        }
+      }
+
+      @media (min-width: 1980px) {
+        .idPagamento {
+          right: 60px;
+        }
+
+        .cpfPagamento {
+          right: 30px;
+        }
+
+        .valorPagamento {
+          left: 70px
+        }
+
+        .formaPagamento {
+          left: 30px;
+        }
+
+        .dataPagamento {
+          left: 50px;
+        }
+      }
+
+    }
 }

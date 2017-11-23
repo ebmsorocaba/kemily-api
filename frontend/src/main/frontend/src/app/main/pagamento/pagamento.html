@@ -146,13 +146,13 @@
 
           </div>
 
-          <div class="atributos" layout-align="space-around end">
-            <label hide show-gt-sm>Id</label>
-            <label hide show-gt-sm>Cpf</label>
-            <label>Nome</label>
-            <label>Valor</label>
-            <label hide show-gt-sm>Forma de Pgto</label>
-            <label hide show-gt-sm>Data de Pgto</label>
+          <div class="atributosPagamento">
+            <label hide show-gt-sm class="idPagamento">Id</label>
+            <label hide show-gt-sm class="cpfPagamento">Cpf</label>
+            <label class="nomePagamento">Nome</label>
+            <label class="valorPagamento">Valor</label>
+            <label hide show-gt-sm class="formaPagamento">Forma de Pgto</label>
+            <label hide show-gt-sm class="dataPagamento">Data de Pgto</label>
           </div>
 
         </md-subheader>
@@ -163,25 +163,25 @@
           <md-checkbox ng-checked="vm.exists(pagamento, vm.selectedPagamentos)" ng-click="vm.toggleSelectPagamento(pagamento, $event)" aria-label="{{vm.exists(pagamento, vm.selectedPagamentos) ? 'Deselect' : 'Select'}}">
           </md-checkbox>
 
-          <div class="item" layout="row" flex layout-align="space-around between">
+          <div class="item" layout="row" flex layout-align="space-between">
 
             <p class=" hide show-gt-sm text-truncate font-weight-600 id">
               {{pagamento.id}}
             </p>
 
-            <p class="hide show-gt-sm numero cpf">
+            <p class="hide show-gt-sm numero">
               {{pagamento.formaPgto.associado.cpf}}
             </p>
 
-            <p class="texto nome">
+            <p class="texto">
               {{pagamento.formaPgto.associado.nome}}
             </p>
 
-            <p class="numero valorPago">
+            <p class="numero">
               {{pagamento.valorPago | currency : "R$ "}}
             </p>
 
-            <p class="hide show-gt-sm texto formaPagamento">
+            <p class="hide show-gt-sm texto">
               {{pagamento.formaPgto.formaPagamento}}
             </p>
 
