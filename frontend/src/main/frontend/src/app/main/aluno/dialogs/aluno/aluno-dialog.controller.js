@@ -446,7 +446,11 @@
         } else {
             vm.data.aluno.dataNascimento = new Date(vm.data.aluno.dataNascimento);
             vm.data.membroFamiliarList.forEach(function(membroFamiliar) {
-                membroFamiliar.dataNascimento = new Date(membroFamiliar.dataNascimento);
+                if(membroFamiliar.id !== "") {
+                    membroFamiliar.dataNascimento = new Date(membroFamiliar.dataNascimento);
+                } else {
+                    membroFamiliar.dataNascimento = new Date();
+                }
             });
             if(vm.data.automovelList.length > 0) {
                 vm.data.automovelList.forEach(function (auto) {
@@ -754,6 +758,12 @@
 
             vm.data.responsavelLegalList.push(vm.mae);
             vm.data.responsavelLegalList.push(vm.pai);
+
+            vm.data.automovelList.forEach(function (auto) {
+                if(isNaN(auto.ano)) {
+                    auto.ano = 0;
+                }
+            });
 
             if (vm.data.aluno.ra != '') {
                 //Atualiza ALUNO
