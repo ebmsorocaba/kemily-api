@@ -1,5 +1,8 @@
 
 target/
+backend/target.mv.db
+backend/target.trace.db
+
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
