@@ -765,6 +765,14 @@
                 }
             });
 
+            if (!vm.automovel) {
+              vm.data.automovelList = []
+            }
+
+            if (!vm.imovel) {
+                vm.data.imovelList = []
+            }
+
             if (vm.data.aluno.ra != '') {
                 //Atualiza ALUNO
 

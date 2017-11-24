@@ -27,7 +27,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import jdbc.dao.UsuarioDAO;
-import model.RelatPagAssociado;
 import model.Usuario;
 
 import java.sql.SQLException;
@@ -119,19 +118,19 @@ public class UsuarioController {
 	@CrossOrigin
 	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario, @PathVariable("nome") String nome) throws JsonParseException, JsonMappingException, IOException, SQLException {
-
-		//Usuario usuario = new ObjectMapper().readValue(usuarioJSON, Usuario.class); //Aqui o json é convertido em objeto Java Aluno
-		System.out.println("Alterar usuario de Nome: " + nome);
-		System.out.println("Usuario que chegou no backend para alteração: ");
-		System.out.println("Nome: " + usuario.getNome());
-		System.out.println("Senha: " + usuario.getSenha());
-		System.out.println("Email: " + usuario.getEmail());
-		System.out.println("Setor: " + usuario.getSetor());
-		System.out.println("Ativo: " + usuario.isAtivo());
-
-
-		usuarioDao.altera(usuario, nome);
-		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
+		if (usuario.getUsuarioSenha() != null) {
+			Usuario userDb = usuarioDao.getUsuario(nome);
+			if (passwordEncoder.matches(usuario.getUsuarioSenha().getSenhaAntiga(), userDb.getSenha()) && !passwordEncoder.matches(usuario.getUsuarioSenha().getSenhaNova(), userDb.getSenha())) {
+				userDb.setSenha(usuario.getUsuarioSenha().getSenhaNova());
+				usuarioDao.altera(userDb, nome);
+				return new ResponseEntity<Usuario>(HttpStatus.CREATED);
+			} else {
+				return new ResponseEntity<Usuario>(HttpStatus.BAD_REQUEST);
+			}
+		} else {
+			usuarioDao.altera(usuario, nome);
+			return new ResponseEntity<Usuario>(HttpStatus.CREATED);
+		}
 	}
 	
 	
@@ -139,7 +138,7 @@ public class UsuarioController {
 	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.GET, params={"senha"})
 	public ResponseEntity<Usuario> login(@PathVariable("nome") String nome, @RequestParam("senha") String senha) throws SQLException, ParseException {
 	
-		Usuario usuario = new Usuario();
+		Usuario usuario;
 		
 		try{
 			usuario = usuarioDao.getUsuario(nome);
@@ -155,6 +154,26 @@ public class UsuarioController {
 			usuario = null;
 			return new ResponseEntity<Usuario>(usuario, HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@CrossOrigin
+	@RequestMapping(value = "/api/recuperarSenha/{nome}", method = RequestMethod.GET)
+	public ResponseEntity<SimpleMailMessage> recuperarSenha(@PathVariable("nome") String nome) throws SQLException, ParseException {
+
+		Usuario usuario = new Usuario();
+		usuario = usuarioDao.getUsuario(nome);
+		usuario.setSenha("SENHA@123");
+		usuarioDao.altera(usuario, nome);
+
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+		mailMessage.setTo(usuario.getEmail());
+		mailMessage.setFrom("testingx99999@gmail.com");
+		mailMessage.setSubject("Mudança de senha");
+		mailMessage.setText("Saudações, senhor(a) " + usuario.getNome() + " sua senha foi resetada para a senha padrão SENHA@123, pedimos para que assim que acessar sua conta já a altere.");
+		javaMailSender.send(mailMessage);
+		//return mailMessage;
+
+		return new ResponseEntity<SimpleMailMessage>(mailMessage, HttpStatus.CREATED);
 	}
 	
 }

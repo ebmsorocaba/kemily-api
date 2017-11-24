@@ -1,5 +1,6 @@
 package model;
 
+import DTO.UsuarioSenha;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Usuario {
@@ -9,7 +10,8 @@ public class Usuario {
     private String setor;
     private String email;
     private boolean ativo;
-    
+    private UsuarioSenha usuarioSenha;
+
     public Usuario() {};
     
     public Usuario(
@@ -65,9 +67,12 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
-	public void resetarSenha(String newSenha){
-		
+
+	public UsuarioSenha getUsuarioSenha() {
+		return usuarioSenha;
 	}
-	
+
+	public void setUsuarioSenha(UsuarioSenha usuarioSenha) {
+		this.usuarioSenha = usuarioSenha;
+	}
 }

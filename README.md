@@ -30,8 +30,11 @@ pool.setUser("nome_de_usuario_no_banco_de_dados");
 pool.setPassword("senha_do_usuario_no_banco_de_dados");
 ```
 
-3. Execute o script SQL no banco de dados em seu servidor. O arquivo está na raiz do projeto, chamado:  
-`scriptBanco.sql`
+3. Populando o banco e rodando as migrations:
+No pom.xml localizado na pasta backend do projeto, altere as linhas 91, 92 e 93
+e prencha elas com os dados de conexão do banco em que sua aplicação vai conectar, após fazer isso, caso seja a primeira vez em que roda a aplicação rode o comando mvn flyway:clean dentro da pasta backend, e após isso rode o comando mvn flyway:migrate. 
+
+OBS: O comando mvn flyway:migrate deve ser executado todas as vezes em que uma migration nova for criada.
 
 4. No **diretório raiz**, use o **Maven** para construir o projeto e transferir suas dependências:  
 `mvn clean install`
@@ -41,6 +44,10 @@ pool.setPassword("senha_do_usuario_no_banco_de_dados");
 
 **Pronto!** O projeto agora está em execução na **porta 8080**. Basta acessar a seguinte URL no seu navegador:  
 >http://localhost:8080/
+
+6. Após esse processo haverá um usuario com acesso total ao sistema, ele deve ser usado somente para testes no ambiente de desenvolvimento e seus dados de login são:
+Login: backdoor
+Senha: K3M1ly
 
 #### Atenção!
 Se o projeto apresentar erros, tente as seguintes soluções:  
