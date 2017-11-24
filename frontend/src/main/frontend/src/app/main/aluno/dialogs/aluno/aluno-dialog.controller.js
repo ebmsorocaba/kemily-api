@@ -759,6 +759,12 @@
             vm.data.responsavelLegalList.push(vm.mae);
             vm.data.responsavelLegalList.push(vm.pai);
 
+            vm.data.automovelList.forEach(function (auto) {
+                if(isNaN(auto.ano)) {
+                    auto.ano = 0;
+                }
+            });
+
             if (vm.data.aluno.ra != '') {
                 //Atualiza ALUNO
 
