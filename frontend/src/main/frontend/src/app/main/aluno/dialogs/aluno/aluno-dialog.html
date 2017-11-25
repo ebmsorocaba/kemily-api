@@ -303,7 +303,7 @@
                             <form name="wizardStep3" ms-form-wizard-form novalidate>
 
                                 <div layout="column" layout-gt-xs="column" flex ng-repeat="c in vm.data.contatoList track by $index">
-                                    <div layout="row" layout-gt-xs="row" flex>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-align="space-between none" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="text" ng-model="c.nome" placeholder="Nome" value="{{c.nome}}">
                                         </md-input-container>
@@ -320,12 +320,11 @@
                                             <input type="text" name="rede" ng-model="c.redeSocial" placeholder="Rede Social">
                                         </md-input-container>
                                     </div>
-                                    <div layout="row" layout-gt-xs="row" flex>
-                                        <div flex="50" flex-gt-sm="20">
+                                    <div layout="row" layout-gt-xs="row" flex layout-align="start center">
+                                      <div flex="50" flex-gt-sm="50">
                                             É contato profissional ?
                                             <md-checkbox ng-model="c.profissional" aria-label="Contato Profissional ?">
                                             </md-checkbox>
-                                        </div>
 
                                         <md-input-container flex="100" flex-gt-xs="30" ng-if="c.profissional">
                                             <input type="text" ng-model="c.cargo" placeholder="Cargo">
@@ -338,6 +337,7 @@
                                         <md-button class="md-raised md-warn adicionarButton" ng-click="vm.removeContato(c)">
                                             Remover
                                         </md-button>
+                                      </div>
                                     </div>
                                 </div>
                             </form>
@@ -360,7 +360,7 @@
                         <md-tab-body>
                             <form name="wizardStep4" ms-form-wizard-form novalidate>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh">
                                     <md-input-container flex="100" flex-gt-xs="50">
                                         <input type="text" name="rua" ng-model="vm.data.endereco.rua" placeholder="Rua" required>
                                     </md-input-container>
@@ -375,7 +375,7 @@
                                     </md-input-container>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh">
                                     <md-input-container flex="100" flex-gt-xs="15">
                                         <input type="text" name="bairro" ng-model="vm.data.endereco.bairro" placeholder="Bairro" required>
                                     </md-input-container>
