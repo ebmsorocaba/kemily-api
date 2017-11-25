@@ -153,7 +153,7 @@
 
                                 <div layout="column" layout-gt-xs="column" flex>
                                   <h2>Dados do pai</h2>
-                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="text" name="nomepai" ng-model="vm.pai.nome" placeholder="Nome do Pai">
                                         </md-input-container>
@@ -171,7 +171,7 @@
                                         </md-input-container>
                                     </div>
 
-                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
+                                    <div layout="row" layout-gt-xs="row" layout-margin  layout-align="space-between none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="email" name="emailpai" ng-model="vm.pai.email" placeholder="Email">
                                         </md-input-container>
@@ -193,7 +193,7 @@
 
                                 <div layout="column" layout-gt-xs="column" flex>
                                   <h2>Dados da mãe</h2>
-                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="text" name="nomemae" ng-model="vm.mae.nome" placeholder="Nome da Mãe">
                                         </md-input-container>
@@ -210,7 +210,7 @@
                                             <input type="text" cpf name="cpf" ng-model="vm.mae.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
                                         </md-input-container>
                                     </div>
-                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="email" name="emailmae" ng-model="vm.mae.email" placeholder="Email">
                                         </md-input-container>
@@ -232,7 +232,7 @@
 
                                 <div layout="column" layout-gt-xs="column" flex ng-repeat="c in vm.data.responsavelLegalList track by $index">
                                   <h2>Outros responsáveis?</h2>
-                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh" flex>
                                         <md-input-container flex="100" flex-gt-xs="30">
                                             <input type="text" ng-model="c.nome" placeholder="Nome" value="{{c.nome}}">
                                         </md-input-container>
@@ -251,7 +251,7 @@
 
 
                                     </div>
-                                    <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
+                                    <div layout="row" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh" flex>
 
                                         <md-input-container flex="100" flex-gt-xs="25">
                                             <input type="email" name="email" ng-model="c.email" placeholder="Email">
