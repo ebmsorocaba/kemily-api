@@ -91,6 +91,24 @@ md-dialog {
             border-top: 1px solid rgba(0, 0, 0, 0.12);
         }
     }
+
+    .telefoneFixo, .telefoneCelular {
+      position: relative;
+    }
+
+    .telefoneFixo {
+      left: 75px;
+    }
+
+    .telefoneCelular {
+      @media (min-width: 1280px){
+        left: 218px;
+      }
+
+      @media (min-width: 1400px) {
+        left: 237px;
+      }
+    }
 }
 
 

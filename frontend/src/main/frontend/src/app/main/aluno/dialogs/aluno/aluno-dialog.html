@@ -655,7 +655,7 @@
                             <form name="wizardStep8" ms-form-wizard-form>
 
                                 <div layout="column" layout-gt-xs="column" ng-repeat="p in vm.data.membroFamiliarList track by $index">
-                                    <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
+                                    <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh">
                                         <md-input-container flex="100" flex-gt-xs="40">
                                             <input type="text" name="nomeParente" ng-model="p.nome" placeholder="Nome">
                                         </md-input-container>
@@ -664,9 +664,9 @@
                                             <input type="text" name="parentesco" ng-model="p.parentesco" placeholder="Parentesco">
                                         </md-input-container>
 
-                                        <md-input-container flex="50" flex-gt-xs="20">
+                                        <md-input-container flex="50" flex-gt-xs="15">
                                             <label>Data de Nascimento</label>
-                                            <md-datepicker ng-model="p.dataNascimento" md-placeholder="Nascimento" md-open-on-focus ng-required="false" novalidate aria-invalid="false"></md-datepicker>
+                                            <input ng-model="p.dataNascimento" md-placeholder="Nascimento" md-open-on-focus ng-required="false" novalidate aria-invalid="false"></md-datepicker>
                                         </md-input-container>
 
                                         <md-input-container flex="100" flex-gt-xs="15">
@@ -680,7 +680,7 @@
 
                                     </div>
 
-                                    <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
+                                    <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh">
                                         <md-input-container flex="100" flex-gt-xs="40">
                                             <input type="text" name="ocupacao" ng-model="p.ocupacao" placeholder="Ocupação">
                                         </md-input-container>
@@ -747,7 +747,7 @@
                                     </md-input-container>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-around none" style="height: 100vh, width: 100vh">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-around center" style="height: 100vh, width: 100vh">
                                     <div flex="100" flex-gt-xs="25">
                                         Esgoto?
                                         <md-checkbox ng-model="vm.data.situacaoHabitacional.esgoto" aria-label="Esgoto">
@@ -867,15 +867,15 @@
                                     </div>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-around none" style="height: 100vh, width: 100vh">
+                                <div layout="column" layout-gt-xs="row" layout-margin style="height: 100vh, width: 100vh">
 
-                                    <div flex="100" flex-gt-xs="35">
+                                    <div class="telefoneFixo" flex="100" flex-gt-xs="20">
                                         Telefone fixo
                                         <md-checkbox ng-model="vm.data.aparelhosEletronicos.telefoneFixo" aria-label="Telefone fixo">
                                         </md-checkbox>
                                     </div>
 
-                                    <div flex="100" flex-gt-xs="20">
+                                    <div class="telefoneCelular" flex="100" flex-gt-xs="20">
                                         Celular
                                         <md-checkbox ng-model="vm.data.aparelhosEletronicos.celular" aria-label="Celular">
                                         </md-checkbox>
@@ -901,71 +901,71 @@
                         <md-tab-body>
                             <form name="wizardStep11" ms-form-wizard-form novalidate>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh">
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="start none" style="height: 100vh, width: 100vh">
+                                    <md-input-container flex="100">
                                         <input type="text" name="agua" ng-model="vm.data.despesa.agua" ui-money-mask placeholder="Água" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="energiaEletrica" ng-model="vm.data.despesa.energiaEletrica" ui-money-mask placeholder="Energia elétrica" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="telefone" ng-model="vm.data.despesa.telefone" ui-money-mask placeholder="Telefone" required>
                                     </md-input-container>
 
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="aluguel" ng-model="vm.data.despesa.aluguel" ui-money-mask placeholder="Aluguel" required>
                                     </md-input-container>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh">
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="start none" style="height: 100vh, width: 100vh">
+                                    <md-input-container flex="100">
                                         <input type="text" name="financiamentoCasa" ng-model="vm.data.despesa.financiamentoCasa" ui-money-mask placeholder="Financiamento da casa" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="financiamentoCarro" ng-model="vm.data.despesa.financiamentoCarro" ui-money-mask placeholder="Financiamento do carro" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="transporte" ng-model="vm.data.despesa.transporte" ui-money-mask placeholder="Transporte" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="alimentacao" ng-model="vm.data.despesa.alimentacao" ui-money-mask placeholder="Alimentação" required>
                                     </md-input-container>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh">
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="start none" style="height: 100vh, width: 100vh">
+                                    <md-input-container flex="100">
                                         <input type="text" name="gas" ng-model="vm.data.despesa.gas" ui-money-mask placeholder="Gás" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="cartaoCredito" ng-model="vm.data.despesa.cartaoCredito" ui-money-mask placeholder="Cartão de crédito" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="emprestimo" ng-model="vm.data.despesa.emprestimo" ui-money-mask placeholder="Empréstimo" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="tvCabo" ng-model="vm.data.despesa.tvCabo" ui-money-mask placeholder="TV por assinatura/internet" required>
                                     </md-input-container>
                                 </div>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh">
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="start none" style="height: 100vh, width: 100vh">
+                                    <md-input-container flex="100">
                                         <input type="text" name="educacao" ng-model="vm.data.despesa.educacao" ui-money-mask placeholder="Educação" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="pensao" ng-model="vm.data.despesa.pensao" ui-money-mask placeholder="Pensão" required>
                                     </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
+                                    <md-input-container flex="100">
                                         <input type="text" name="convenioMedico" ng-model="vm.data.despesa.convenioMedico" ui-money-mask placeholder="Convenio médico" required>
                                     </md-input-container>
                                 </div>
