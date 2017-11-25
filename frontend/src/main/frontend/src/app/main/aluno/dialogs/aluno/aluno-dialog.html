@@ -36,104 +36,104 @@
                         </md-tab-label>
 
                         <md-tab-body>
-                            <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-around none" style="height: 100vh, width: 100vh">
-                                    <md-input-container flex="100" flex-gt-xs="30">
-                                        <input type="text" name="nome" ng-model="vm.data.aluno.nome" placeholder="Nome" required>
-                                        <div ng-messages="wizardStep1.firstname.$error" role="alert">
-                                            <div ng-message=" ">
-                                                <span>O nome é requerido.</span>
-                                            </div>
-                                        </div>
-                                    </md-input-container>
+                          <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
+                              <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between center" style="height: 100vh, width: 100vh">
+                                  <md-input-container class="inputNomeAluno" flex="100" flex-gt-xs="30">
+                                      <input type="text" name="nome" ng-model="vm.data.aluno.nome" placeholder="Nome" required>
+                                      <div ng-messages="wizardStep1.firstname.$error" role="alert">
+                                          <div ng-message=" ">
+                                              <span>O nome é requerido.</span>
+                                          </div>
+                                      </div>
+                                  </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="15">
-                                        <label>RG</label>
-                                        <input type="text" name="rg" ng-model="vm.data.aluno.rg" md-maxlength="12" mask="99.999.999-w">
-                                    </md-input-container>
+                                  <md-input-container class="inputRGAluno"flex="100" flex-gt-xs="15">
+                                      <label>RG</label>
+                                      <input type="text" name="rg" ng-model="vm.data.aluno.rg" md-maxlength="12" mask="99.999.999-w">
+                                  </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="15">
-                                        <label>Etnia</label>
-                                        <input type="text" name="rg" ng-model="vm.data.aluno.etnia" required>
-                                    </md-input-container>
-                                </div>
+                                  <md-input-container class="inputEtniaAluno" flex="100" flex-gt-xs="15">
+                                      <label>Etnia</label>
+                                      <input type="text" name="rg" ng-model="vm.data.aluno.etnia" required>
+                                  </md-input-container>
+                              </div>
 
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" >
-                                    <md-input-container flex="100" flex-gt-xs="20">
-                                        <input type="text" name="naturalidade" ng-model="vm.data.aluno.naturalidade" placeholder="Naturalidade" required>
-                                        <div ng-messages="wizardStep1.nat.$error" role="alert">
-                                            <div ng-message=" ">
-                                                <span>A naturalidade é requerida.</span>
-                                            </div>
-                                        </div>
-                                    </md-input-container>
+                              <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between center" style="height: 100vh, width: 100vh" >
+                                  <md-input-container flex="100" flex-gt-xs="15">
+                                      <input type="text" name="naturalidade" ng-model="vm.data.aluno.naturalidade" placeholder="Naturalidade" required>
+                                      <div ng-messages="wizardStep1.nat.$error" role="alert">
+                                          <div ng-message=" ">
+                                              <span>A naturalidade é requerida.</span>
+                                          </div>
+                                      </div>
+                                  </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="20">
-                                        <input type="text" name="escola" ng-model="vm.data.aluno.escola" placeholder="Escola" required>
-                                        <div ng-messages="wizardStep1.nat.$error" role="alert">
-                                            <div ng-message=" ">
-                                                <span>A Escola é requerida.</span>
-                                            </div>
-                                        </div>
-                                    </md-input-container>
+                                  <md-input-container flex="100" flex-gt-xs="15">
+                                      <input type="text" name="escola" ng-model="vm.data.aluno.escola" placeholder="Escola" required>
+                                      <div ng-messages="wizardStep1.nat.$error" role="alert">
+                                          <div ng-message=" ">
+                                              <span>A Escola é requerida.</span>
+                                          </div>
+                                      </div>
+                                  </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="15">
-                                        <label>Estado</label>
-                                        <md-select ng-model="vm.data.aluno.estado" required>
-                                            <md-option ng-repeat="estado in vm.estados" value="{{estado}}">
-                                                {{estado}}
-                                            </md-option>
-                                        </md-select>
-                                    </md-input-container>
+                                  <md-input-container flex="100" flex-gt-xs="15">
+                                      <label>Estado</label>
+                                      <md-select ng-model="vm.data.aluno.estado" required>
+                                          <md-option ng-repeat="estado in vm.estados" value="{{estado}}">
+                                              {{estado}}
+                                          </md-option>
+                                      </md-select>
+                                  </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="30">
-                                        <label>Data de Nascimento</label>
-                                        <md-datepicker ng-model="vm.data.aluno.dataNascimento" required md-open-on-focus></md-datepicker>
-                                    </md-input-container>
-                                </div>
+                                  <md-input-container flex="100" flex-gt-xs="15">
+                                      <label>Data de Nascimento</label>
+                                      <input ng-model="vm.data.aluno.dataNascimento" required></md-datepicker>
+                                  </md-input-container>
+                              </div>
 
-                                <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh">
+                              <div layout="column" layout-gt-xs="row" layout-margin layout-align="space-between none" style="height: 100vh, width: 100vh">
 
-                                    <md-input-container flex="100" flex-gt-xs="15">
-                                        <label>Tam. da camiseta</label>
-                                        <md-select ng-model="vm.data.roupa.tamanhoCamiseta">
-                                            <md-option ng-repeat="camiseta in vm.camisetas" value="{{camiseta}}">
-                                                {{camiseta}}
-                                            </md-option>
-                                        </md-select>
-                                    </md-input-container>
+                                  <md-input-container flex="100" flex-gt-xs="15">
+                                      <label>Tam. da camiseta</label>
+                                      <md-select ng-model="vm.data.roupa.tamanhoCamiseta">
+                                          <md-option ng-repeat="camiseta in vm.camisetas" value="{{camiseta}}">
+                                              {{camiseta}}
+                                          </md-option>
+                                      </md-select>
+                                  </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="15">
-                                        <label>Tam. da calça</label>
-                                        <md-select ng-model="vm.data.roupa.tamanhoCalca">
-                                            <md-option ng-repeat="calca in vm.calcas" value="{{calca}}">
-                                                {{calca}}
-                                            </md-option>
-                                        </md-select>
-                                    </md-input-container>
+                                  <md-input-container flex="100" flex-gt-xs="15">
+                                      <label>Tam. da calça</label>
+                                      <md-select ng-model="vm.data.roupa.tamanhoCalca">
+                                          <md-option ng-repeat="calca in vm.calcas" value="{{calca}}">
+                                              {{calca}}
+                                          </md-option>
+                                      </md-select>
+                                  </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="15">
-                                        <label>Tam. do calçado</label>
-                                        <md-select ng-model="vm.data.roupa.tamanhoSapato">
-                                            <md-option ng-repeat="sapato in vm.sapatos" value="{{sapato}}">
-                                                {{sapato}}
-                                            </md-option>
-                                        </md-select>
-                                    </md-input-container>
+                                  <md-input-container flex="100" flex-gt-xs="15">
+                                      <label>Tam. do calçado</label>
+                                      <md-select ng-model="vm.data.roupa.tamanhoSapato">
+                                          <md-option ng-repeat="sapato in vm.sapatos" value="{{sapato}}">
+                                              {{sapato}}
+                                          </md-option>
+                                      </md-select>
+                                  </md-input-container>
 
-                                    <md-input-container flex="100" flex-gt-xs="15">
-                                        <input type="text" name="meioTrasnporte" ng-model="vm.data.aluno.meioTransporte" placeholder="Meio de transporte" required>
-                                        <div ng-messages="wizardStep1.meiotransporte.$error" role="alert">
-                                            <div ng-message=" ">
-                                                <span>O meio de transporte é requerido.</span>
-                                            </div>
-                                        </div>
-                                    </md-input-container>
-                                </div>
-                            </form>
-                        </md-tab-body>
-                    </md-tab>
+                                  <md-input-container flex="100" flex-gt-xs="15">
+                                      <input type="text" name="meioTrasnporte" ng-model="vm.data.aluno.meioTransporte" placeholder="Meio de transporte" required>
+                                      <div ng-messages="wizardStep1.meiotransporte.$error" role="alert">
+                                          <div ng-message=" ">
+                                              <span>O meio de transporte é requerido.</span>
+                                          </div>
+                                      </div>
+                                  </md-input-container>
+                              </div>
+                          </form>
+                      </md-tab-body>
+                  </md-tab>
 
                     <!-- PASSO 2 / STEP 2-->
                     <md-tab ng-disabled="wizardStep1.$invalid">
