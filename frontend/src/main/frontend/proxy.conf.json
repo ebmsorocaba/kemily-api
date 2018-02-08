@@ -1,0 +1,11 @@
+/*
+Não sei por que isso está aqui, aparentemente
+é uma configuração de proxy do angular-cli.
+*/
+
+{
+  "/api": {
+    "target": "http://localhost:8080",
+    "secure": false
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "TOOLBAR": {
+        "TOGGLE_NAVIGATION": "Toggle navigation",
+        "TOGGLE_NAVIGATION_FOLD": "Toggle navigation fold",
+        "TOGGLE_NAVIGATION_MODE": "Toggle navigation mode",
+        "SEARCH": "Pesquisa",
+        "USER_SETTINGS": "Ajustes de usuário",
+        "TOGGLE_QUICK_PANEL": "Toggle quick panel",
+        "ENGLISH": "Inglês",
+        "BRAZILIAN": "Português (Brasil)"
+    }
+}

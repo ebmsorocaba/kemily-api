@@ -1,0 +1,74 @@
+<md-dialog class="usuario-dialog">
+
+<form name="usuarioForm" class="md-inline-form" novalidate>
+
+	<div class="md-toolbar-tools md-toolbar-tools-top" layout="row"
+		layout-align="space-between center">
+		<span class="title">{{vm.title}}</span>
+		<md-button class="md-icon-button" ng-click="vm.closeDialog()"
+			aria-label="Fechar diálogo"> <md-icon
+			md-font-icon="icon-close"></md-icon> </md-button>
+	</div>
+
+	<md-dialog-content ms-scroll>
+
+	<div>
+		<md-input-container class="md-icon-float md-block">
+		<label>Nome</label> <md-icon md-font-icon="icon-account" class="name"></md-icon>
+		<input ng-model="vm.usuario.nome" type="text"
+			ng-disabled="!vm.newUsuario" md-maxlength="80" required md-autofocus>
+		</md-input-container>
+	</div>
+
+	<md-input-container class="md-icon-float md-block">
+	<label>Senha</label> <md-icon md-font-icon="icon-key"></md-icon> <input
+		ng-model="vm.newSenha" type="password"> </md-input-container> <md-input-container
+		class="md-icon-float md-block"> <label>Confirmar
+		Senha</label> <md-icon md-font-icon="icon-key"></md-icon> <input
+		name="confirmarSenha" ng-model="vm.usuario.confirmaSenha"
+		type="password" compare-to="vm.newSenha">
+	<div ng-messages="usuarioForm.confirmarSenha.$error" role="alert"
+		multiple>
+		<div ng-message="compareTo">
+			<span>As senhas precisam ser iguais</span>
+		</div>
+	</div>
+	</md-input-container> <md-input-container class="md-icon-float md-block">
+	<label>E-mail</label> <md-icon md-font-icon="icon-email"></md-icon> <input
+		ng-model="vm.usuario.email" type="email" required> </md-input-container> <md-input-container
+		class="md-icon-float md-block"> <label>Setor</label>
+	<md-icon md-font-icon="icon-format-list-bulleted"></md-icon> <md-select
+		ng-model="vm.usuario.setor"> <md-option ng-value="fp"
+		ng-repeat="fp in vm.listaSetores"> {{fp}} </md-option> </md-select> </md-input-container> <md-input-container
+		class="mc-icon-float"> <md-icon
+		md-font-icon="icon-cog-box"></md-icon> <md-switch md-no-ink
+		ng-model="vm.usuario.ativo" ng-true-value="true"
+		ng-false-value="false"> Ativo ? {{vm.usuario.ativo ? 'Sim'
+	: 'Não'}} </md-switch> </md-input-container> </md-dialog-content>
+
+	<md-dialog-actions layout="row" layout-align="space-between center">
+	<div layout="row" layout-align="start center">
+		<md-button type="submit" ng-if="!vm.newUsuario"
+			ng-click="vm.alterUsuarioConfirm($event)"
+			class="send-button md-accent md-raised"
+			ng-disabled="usuarioForm.$invalid || usuarioForm.$pristine"
+			aria-label="Salvar"> Salvar </md-button>
+
+		<md-button type="submit" ng-if="vm.newUsuario"
+			ng-click="vm.addNewUsuario()" class="send-button md-accent md-raised"
+			ng-disabled="usuarioForm.$invalid || usuarioForm.$pristine"
+			aria-label="Adicionar usuário"> Adicionar Usuário </md-button>
+
+	</div>
+
+	<div ng-if="!vm.newUsuario" layout="row">
+		<md-button class="md-icon-button"
+			ng-click="vm.deleteUsuarioConfirm($event)" aria-label="Apagar">
+		<md-icon md-font-icon="icon-delete"></md-icon> <md-tooltip>
+		<span>Apagar</span></md-tooltip> </md-button>
+	</div>
+	</md-dialog-actions>
+
+</form>
+
+</md-dialog>

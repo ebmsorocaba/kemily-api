@@ -1,0 +1,3 @@
+ALTER TABLE roupa ALTER COLUMN tamanho_camiseta DROP NOT NULL;
+ALTER TABLE roupa ALTER COLUMN tamanho_calca DROP NOT NULL;
+ALTER TABLE roupa ALTER COLUMN tamanho_sapato DROP NOT NULL;

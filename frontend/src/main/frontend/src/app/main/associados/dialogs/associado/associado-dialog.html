@@ -1,0 +1,81 @@
+
+<md-dialog class="associado-dialog">
+
+  <form name="AssociadoForm" class="md-inline-form" novalidate>
+
+    <div class=" md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+      <span class="title">{{vm.title}}</span>
+      <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Fechar diálogo">
+        <md-icon md-font-icon="icon-close"></md-icon>
+      </md-button>
+    </div>
+
+    <md-dialog-content ms-scroll>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Nome</label>
+        <md-icon md-font-icon="icon-account" class="name"></md-icon>
+        <input ng-model="vm.associado.nome" type="text" md-maxlength="80" required md-autofocus>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>CPF</label>
+        <md-icon md-font-icon="icon-account-circle"></md-icon>
+        <input ng-blur="vm.calculaCPF(vm.associado.cpf)" cpf ng-model="vm.associado.cpf" type="text" mask="999.999.999-99" ng-disabled="!vm.newAssociado" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Celular</label>
+        <md-icon md-font-icon="icon-phone"></md-icon>
+        <input ng-model="vm.associado.celular" type="text" mask="(99) 9?9999-9999" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>E-mail</label>
+        <md-icon md-font-icon="icon-email"></md-icon>
+        <input ng-model="vm.associado.email" type="email" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block" ng-if="vm.associado.formaPgto == 'Cartão'">
+        <label>Número do Cartão (somente números)</label>
+        <md-icon md-font-icon="icon-credit-card"></md-icon>
+        <input ng-model="vm.associado.cartao.numero" type="number" md-maxlength="16">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Valor Mensal (em reais)</label>
+        <md-icon md-font-icon="icon-currency-usd"></md-icon>
+        <input ng-model="vm.associado.valorAtual" type="text" ui-money-mask required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>Vencimento</label>
+        <md-icon md-font-icon="icon-calendar-select"></md-icon>
+        <input ng-model="vm.associado.vencAtual" type="number" min="1" max="31" required>
+        <div class="hint" ng-if="showHints">Dia de vencimento, de 1 até 31.</div>
+      </md-input-container>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button type="submit" ng-if="!vm.newAssociado" ng-click="vm.saveAssociado()" class="send-button md-accent md-raised" ng-disabled="AssociadoForm.$invalid || AssociadoForm.$pristine" aria-label="Salvar">
+          Salvar
+        </md-button>
+
+        <md-button type="submit" ng-if="vm.newAssociado" ng-click="vm.addNewAssociado()" class="send-button md-accent md-raised" ng-disabled="AssociadoForm.$invalid || AssociadoForm.$pristine" aria-label="Adicionar associado">
+          Adicionar Associado
+        </md-button>
+
+      </div>
+
+      <div ng-if="!vm.newAssociado" layout="row">
+        <md-button class="md-icon-button" ng-click="vm.deleteAssociadoConfirm($event)" aria-label="Apagar">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip><span>Apagar</span></md-tooltip>
+        </md-button>
+      </div>
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>

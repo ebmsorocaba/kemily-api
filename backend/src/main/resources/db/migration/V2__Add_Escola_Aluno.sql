@@ -1,0 +1,2 @@
+ALTER TABLE aluno
+  ADD escola VARCHAR(50);
