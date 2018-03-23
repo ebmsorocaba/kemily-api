@@ -54,14 +54,14 @@
 
                                     <md-input-container flex="100" flex-gt-xs="15">
                                         <label>Etnia</label>
-                                        <input type="text" name="rg" ng-model="vm.data.aluno.etnia" required>
+                                        <input type="text" name="rg" ng-model="vm.data.aluno.etnia">
                                     </md-input-container>
                                 </div>
 
 
                                 <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" >
                                     <md-input-container flex="100" flex-gt-xs="20">
-                                        <input type="text" name="naturalidade" ng-model="vm.data.aluno.naturalidade" placeholder="Naturalidade" required>
+                                        <input type="text" name="naturalidade" ng-model="vm.data.aluno.naturalidade" placeholder="Naturalidade">
                                         <div ng-messages="wizardStep1.nat.$error" role="alert">
                                             <div ng-message=" ">
                                                 <span>A naturalidade é requerida.</span>
@@ -70,7 +70,7 @@
                                     </md-input-container>
 
                                     <md-input-container flex="100" flex-gt-xs="20">
-                                        <input type="text" name="escola" ng-model="vm.data.aluno.escola" placeholder="Escola" required>
+                                        <input type="text" name="escola" ng-model="vm.data.aluno.escola" placeholder="Escola">
                                         <div ng-messages="wizardStep1.nat.$error" role="alert">
                                             <div ng-message=" ">
                                                 <span>A Escola é requerida.</span>
@@ -123,7 +123,7 @@
                                     </md-input-container>
 
                                     <md-input-container flex="100" flex-gt-xs="15">
-                                        <input type="text" name="meioTrasnporte" ng-model="vm.data.aluno.meioTransporte" placeholder="Meio de transporte" required>
+                                        <input type="text" name="meioTrasnporte" ng-model="vm.data.aluno.meioTransporte" placeholder="Meio de transporte">
                                         <div ng-messages="wizardStep1.meiotransporte.$error" role="alert">
                                             <div ng-message=" ">
                                                 <span>O meio de transporte é requerido.</span>
@@ -167,7 +167,7 @@
                                         </md-input-container>
 
                                         <md-input-container flex="100" flex-gt-xs="15">
-                                            <input type="text" cpf name="cpf" ng-model="vm.pai.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
+                                            <input type="text" name="cpf" ng-model="vm.pai.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
                                         </md-input-container>
                                     </div>
 
@@ -207,7 +207,7 @@
                                         </md-input-container>
 
                                         <md-input-container flex="100" flex-gt-xs="15">
-                                            <input type="text" cpf name="cpf" ng-model="vm.mae.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
+                                            <input type="text" name="cpf" ng-model="vm.mae.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
                                         </md-input-container>
                                     </div>
                                     <div layout="row" layout-gt-xs="row" layout-margin layout-padding layout-align="space-around none" style="height: 100vh, width: 100vh" flex>
@@ -246,7 +246,7 @@
                                         </md-input-container>
 
                                         <md-input-container flex="50" flex-gt-xs="15">
-                                            <input type="text" cpf name="cpf" ng-model="c.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
+                                            <input type="text" name="cpf" ng-model="c.cpf" md-maxlength="14" mask="999.999.999-99" placeholder="CPF">
                                         </md-input-container>
 
 
@@ -515,7 +515,7 @@
 
                                     <md-input-container flex="100" flex-gt-xs="20">
                                         <label>Estado civil dos pais</label>
-                                        <md-select ng-model="vm.data.estruturaFamiliar.estadoCivilPais" required>
+                                        <md-select ng-model="vm.data.estruturaFamiliar.estadoCivilPais">
                                             <md-option ng-repeat="estadoCivil in vm.estadosCivis" value="{{estadoCivil}}">
                                                 {{estadoCivil}}
                                             </md-option>
@@ -589,7 +589,7 @@
                                         </md-input-container>
 
                                         <md-input-container flex="100" flex-gt-xs="5">
-                                            <input type="number" ng-model="c.ano" placeholder="Ano">
+                                            <input type="text" ng-model="c.ano" placeholder="Ano">
                                         </md-input-container>
 
                                         <p>
@@ -735,7 +735,7 @@
                                 <div layout="column" layout-gt-xs="row" layout-margin layout-padding layout-align="space-between none" style="height: 100vh, width: 100vh">
                                     <md-input-container flex="100" flex-gt-xs="20">
                                         <label>Situação do imóvel</label>
-                                        <md-select ng-model="vm.data.situacaoHabitacional.situacao" required>
+                                        <md-select ng-model="vm.data.situacaoHabitacional.situacao">
                                             <md-option ng-repeat="situacao in vm.situacoes" value="{{situacao}}">
                                                 {{situacao}}
                                             </md-option>
@@ -743,7 +743,7 @@
                                     </md-input-container>
 
                                     <md-input-container flex="100" flex-gt-xs="15">
-                                        <input type="text" name="numeroComodos" ng-model="vm.data.situacaoHabitacional.numeroComodos" placeholder="Nº de cômodos" required mask="9?9">
+                                        <input type="text" name="numeroComodos" ng-model="vm.data.situacaoHabitacional.numeroComodos" placeholder="Nº de cômodos" mask="9?9">
                                     </md-input-container>
                                 </div>
 
