@@ -10,7 +10,6 @@
     function LoginController(api, $window, $mdDialog, $scope)
     {
         var vm = this;
-
         vm.usuario;
 
         vm.login = login;
@@ -23,6 +22,7 @@
         //   console.log(vm.currentUser.nome);
 
         function login(ev){
+          vm.usuario.senha = angular.copy($scope.password);
           api.usuario.login.get({
               'nome': vm.usuario.nome,
               'senha': vm.usuario.senha
@@ -40,7 +40,7 @@
                 $window.location.href = '/#/usuario';
               } else if (vm.usuario.setor == "Financeiro" && vm.usuario.ativo==true){
                 $window.location.href = '/#/associado';
-              } else if(vm.usuario.setor == "Desenvolvimento" && vm.usuario.ativo==true){
+              } else if(vm.usuario.setor == "Desenvolvimento" && vm.usuario.ativo==true){              
                 $window.location.href = '/#/usuario';
               }
 
