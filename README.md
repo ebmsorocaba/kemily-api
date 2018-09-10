@@ -51,8 +51,8 @@ pool.setPassword("senha_do_usuario_no_banco_de_dados");
 
 1. Após certificar-se que está com o `node` e o `npm` instalado
 2. Vá até a pasta onde se encontra o frontend: "seu-caminho"/kemily/frontend/src/main/frontend
-3. Instale o bower globalmente rodando o comando
-4. Instale o gulp globalmente inserindo o comando
+3. Instale o bower globalmente rodando o comando `npm install -g bower`
+4. Instale o gulp globalmente inserindo o comando `npm install -g gulp`
 5. Após instale as dependencias do `npm` rodando o comando `npm install`
 6. Instale as dependencias do `bower` rodando o comando `bower install`
 7. Em seguida rode o projeto com o comando `gulp serve`
