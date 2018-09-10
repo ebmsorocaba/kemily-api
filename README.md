@@ -19,7 +19,11 @@
 
 >_**Obs.:** É necessário estar **conectado à Internet** para fazer a transferência das dependências do projeto._
 
-#### Executando o projeto localmente
+#### Atenção com o setup fique ligado
+
+* Provavelmete você terá que configurar o JAVA_HOME, variavel de ambiente do sistema operacional.
+
+#### Executando o projeto localmente backend
 1. Configure o arquivo de conexão com os dados do seu servidor PostgreSQL  
 `backend/src/main/java/jdbc/ConnectionFactory.java`
 
@@ -41,6 +45,23 @@ pool.setPassword("senha_do_usuario_no_banco_de_dados");
 
 **Pronto!** O projeto agora está em execução na **porta 8080**. Basta acessar a seguinte URL no seu navegador:  
 >http://localhost:8080/
+
+
+#### Executando o projeto localmente frontend
+
+1. Após certificar-se que está com o `node` e o `npm` instalado
+2. Vá até a pasta onde se encontra o frontend: "seu-caminho"/kemily/frontend/src/main/frontend
+3. Instale o bower globalmente rodando o comando
+4. Instale o gulp globalmente inserindo o comando
+5. Após instale as dependencias do `npm` rodando o comando `npm install`
+6. Instale as dependencias do `bower` rodando o comando `bower install`
+7. Em seguida rode o projeto com o comando `gulp serve`
+
+#### Após estar com o frontend e o backend rodando localmente
+
+1. Após esse processo haverá um usuario com acesso total ao sistema, ele deve ser usado somente para testes no ambiente de desenvolvimento e seus dados de login são:
+Login: backdoor
+Senha: K3M1ly
 
 #### Atenção!
 Se o projeto apresentar erros, tente as seguintes soluções:  
