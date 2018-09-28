@@ -40,40 +40,21 @@
                         <goals>
                             <goal>npm</goal>
                         </goals>
-                    </execution>
-
-                    <execution>
-                        <id>bower install</id>
-                        <goals>
-                            <goal>bower</goal>
-                        </goals>
                         <configuration>
                             <arguments>install</arguments>
-
                         </configuration>
                     </execution>
 
-                    <!-- <execution>
-                        <id>gulp build</id>
-                        <goals>
-                            <goal>gulp</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>build</arguments>
-
-                        </configuration>
-                    </execution> -->
-
                     <execution>
-                        <id>npm run build</id> <!-- Aqui chama o json para dar gulp build -->
+                        <id>npm run build</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
-
                         <configuration>
                             <arguments>run build</arguments>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
         </plugins>
@@ -87,28 +68,7 @@
                 </includes>
                 <targetPath>static</targetPath>
             </resource>
-            <!--
-            <resource>
-                <directory>target/classes/frontend</directory>
-                <targetPath>static</targetPath>
-            </resource>
 
-            <resource>
-                <directory>${project.basedir}/src/main/frontend/dist/assets/icons/fonts</directory>
-                <filtering>true</filtering>
-                <excludes>
-                    <exclude>static/assets/icons/fonts/**</exclude>
-                </excludes>
-            </resource>
-
-            <resource>
-                <directory>${project.basedir}/src/main/frontend/dist/assets/icons/fonts</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>static/assets/icons/fonts/**</include>
-                </includes>
-            </resource>
-          -->
         </resources>
 
     </build>
