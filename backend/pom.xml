@@ -83,7 +83,7 @@
     <postgres.driver.version>9.2-1002.jdbc4</postgres.driver.version>
     <database.url>jdbc:postgresql://localhost:5432/ebm_admin</database.url>
     <database.user>postgres</database.user>
-    <databese.password>postgres</databese.password>
+    <databese.password>bgxeso2d</databese.password>
   </properties>
 
   <build>

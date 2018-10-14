@@ -30,7 +30,7 @@ public class ConnectionFactory {
 				Jdbc3PoolingDataSource pool = new Jdbc3PoolingDataSource();
 				pool.setUrl("jdbc:postgresql://localhost:5432/ebm_admin");
 				pool.setUser("postgres");
-				pool.setPassword("postgres");
+				pool.setPassword("bgxeso2d");
 				pool.setMaxConnections(15);
 				dataSource = pool;
 			} else {
