@@ -39,7 +39,7 @@ public class PagamentoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/api/pagamento", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/pagamentos", method = RequestMethod.GET)
 	public ResponseEntity<List<Pagamento>> listar() throws SQLException {
 		int index=0;
 

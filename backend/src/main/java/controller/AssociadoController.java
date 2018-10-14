@@ -41,7 +41,7 @@ public class AssociadoController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/api/associado", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/associados", method = RequestMethod.GET)
 	public ResponseEntity<List<Associado>> listar() throws SQLException {
 		int index=0;
 

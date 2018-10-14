@@ -54,7 +54,7 @@ public class UsuarioController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/api/usuario", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/usuarios", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> listar() throws SQLException {
 		int index=0;
 
