@@ -27,7 +27,7 @@ import model.FormaPagamento;
 
 import java.sql.SQLException;
 
-
+@CrossOrigin(origins = "http://localhost:8081/")
 @RestController
  //E isso
 public class AssociadoController {
@@ -40,7 +40,6 @@ public class AssociadoController {
 		associados = new HashMap<Integer, Associado>();
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/associados", method = RequestMethod.GET)
 	public ResponseEntity<List<Associado>> listar() throws SQLException {
 		int index=0;
@@ -58,7 +57,6 @@ public class AssociadoController {
 		return new ResponseEntity<List<Associado>>(new ArrayList<Associado>(associados.values()), HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/associado/{cpf}", method = RequestMethod.GET)
 	public ResponseEntity<Associado> buscar(@PathVariable("cpf") String cpf) throws SQLException {
 
@@ -70,7 +68,6 @@ public class AssociadoController {
 	  return new ResponseEntity<Associado>(associado, HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/associado/{cpf}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("cpf") String cpf) {
 		//Aluno aluno = alunos.remove(id);
@@ -83,8 +80,6 @@ public class AssociadoController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-
-	@CrossOrigin
 	@RequestMapping(value = "/api/associado", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Associado> addAssociado(@RequestBody Associado associado) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
@@ -110,7 +105,7 @@ public class AssociadoController {
 	 * @throws SQLException
 	 * @since 15/05/2017
 	 */
-	@CrossOrigin
+
 	@RequestMapping(value = "/api/associado/{cpf}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Associado> updateUsuario(@RequestBody Associado associado, @PathVariable("cpf") String cpf) throws JsonParseException, JsonMappingException, IOException, SQLException {
 

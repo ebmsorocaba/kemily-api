@@ -32,7 +32,7 @@ import model.Usuario;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-
+@CrossOrigin(origins = "http://localhost:8081/")
 @RestController
  //E isso
 public class UsuarioController {
@@ -53,7 +53,6 @@ public class UsuarioController {
 		this.javaMailSender = javaMailSender;
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/usuarios", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> listar() throws SQLException {
 		int index=0;
@@ -71,7 +70,6 @@ public class UsuarioController {
 		return new ResponseEntity<List<Usuario>>(new ArrayList<Usuario>(usuarios.values()), HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> buscar(@PathVariable("nome") String nome) throws SQLException {
 
@@ -83,7 +81,6 @@ public class UsuarioController {
 	  return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("nome") String nome) {
 		//Aluno aluno = alunos.remove(id);
@@ -97,7 +94,6 @@ public class UsuarioController {
 	}
 
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/usuario", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
@@ -115,7 +111,6 @@ public class UsuarioController {
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario, @PathVariable("nome") String nome) throws JsonParseException, JsonMappingException, IOException, SQLException {
 		if (usuario.getUsuarioSenha() != null) {
@@ -133,8 +128,6 @@ public class UsuarioController {
 		}
 	}
 	
-	
-	@CrossOrigin
 	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.GET, params={"senha"})
 	public ResponseEntity<Usuario> login(@PathVariable("nome") String nome, @RequestParam("senha") String senha) throws SQLException, ParseException {
 	
@@ -156,7 +149,6 @@ public class UsuarioController {
 		}
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/recuperarSenha/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<SimpleMailMessage> recuperarSenha(@PathVariable("nome") String nome) throws SQLException, ParseException {
 

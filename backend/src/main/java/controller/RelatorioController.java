@@ -25,7 +25,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-
+@CrossOrigin(origins = "http://localhost:8081/")
 @RestController
  //E isso
 public class RelatorioController {
@@ -39,7 +39,6 @@ public class RelatorioController {
 		pagRelat = new HashMap<Integer, RelatPag>();
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/relatPagAssociado/{cpf}", method = RequestMethod.GET, params={"dataInicio", "dataFim"})
 	public ResponseEntity<List<RelatPagAssociado>> listar(@PathVariable("cpf") String cpf, @RequestParam("dataInicio") String dataInicio, @RequestParam("dataFim") String dataFim) throws SQLException, ParseException {
 		int index=0;
@@ -83,10 +82,6 @@ public class RelatorioController {
 
 		return new ResponseEntity<List<RelatPagAssociado>>(new ArrayList<RelatPagAssociado>(pagRelatAssociados.values()), HttpStatus.OK);
 	}
-
-
-	
-	
 	
 	@RequestMapping(value = "/api/relatPag", method = RequestMethod.GET, params={"dataInicio", "dataFim"})
 	public ResponseEntity<List<RelatPag>> listarAll(@RequestParam("dataInicio") String dataInicio, @RequestParam("dataFim") String dataFim) throws SQLException, ParseException {

@@ -25,7 +25,7 @@ import model.FormaPagamento;
 
 import java.sql.SQLException;
 
-
+@CrossOrigin(origins = "http://localhost:8081/")
 @RestController
  //E isso
 public class FormaPagamentoController {
@@ -37,7 +37,6 @@ public class FormaPagamentoController {
 		formasPgto = new HashMap<Integer, FormaPagamento>();
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/formaPgto", method = RequestMethod.GET)
 	public ResponseEntity<List<FormaPagamento>> listar() throws SQLException {
 		int index=0;
@@ -55,7 +54,6 @@ public class FormaPagamentoController {
 		return new ResponseEntity<List<FormaPagamento>>(new ArrayList<FormaPagamento>(formasPgto.values()), HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/formaPgto/{cpf}/{formaPgto}", method = RequestMethod.GET)
 	public ResponseEntity<FormaPagamento> buscar(@PathVariable("cpf") String cpf, @PathVariable("formaPgto") String formaPgto) throws SQLException {
 
@@ -67,7 +65,6 @@ public class FormaPagamentoController {
 	  return new ResponseEntity<FormaPagamento>(formaPgtoObj, HttpStatus.OK);
 	}
 	
-	@CrossOrigin
 	@RequestMapping(value = "/api/formaPgto/{cpf}", method = RequestMethod.GET)
 	public ResponseEntity<FormaPagamento> buscar(@PathVariable("cpf") String cpf) throws SQLException {
 
@@ -80,7 +77,6 @@ public class FormaPagamentoController {
 	}
 
 /*
-	@CrossOrigin
 	@RequestMapping(value = "/formasPgto/{cpf}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("cpf") String cpf) {
 		//Aluno aluno = alunos.remove(id);
@@ -97,7 +93,6 @@ public class FormaPagamentoController {
 
 //TODO Verificar os deletes e melhorar o controller do pagamento
 	
-	@CrossOrigin
 	@RequestMapping(value = "/api/formaPgto", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<FormaPagamento> addFormaPagamento(@RequestBody FormaPagamento formaPgto) throws JsonParseException, JsonMappingException, IOException, SQLException {
 

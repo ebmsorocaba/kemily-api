@@ -25,7 +25,7 @@ import model.Cartao;
 
 import java.sql.SQLException;
 
-
+@CrossOrigin(origins = "http://localhost:8081/")
 @RestController
  //E isso
 public class CartaoController {
@@ -37,7 +37,6 @@ public class CartaoController {
 		cartoes = new HashMap<Integer, Cartao>();
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/cartao", method = RequestMethod.GET)
 	public ResponseEntity<List<Cartao>> listar() throws SQLException {
 		int index=0;
@@ -54,7 +53,6 @@ public class CartaoController {
 		return new ResponseEntity<List<Cartao>>(new ArrayList<Cartao>(cartoes.values()), HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/cartao/{numero}", method = RequestMethod.GET)
 	public ResponseEntity<Cartao> buscar(@PathVariable("numero") Long numero) throws SQLException {
 
@@ -66,7 +64,6 @@ public class CartaoController {
 	  return new ResponseEntity<Cartao>(cartao, HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/api/cartao/{numero}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("numero") Long numero) {
 		//Aluno aluno = alunos.remove(id);
@@ -79,8 +76,6 @@ public class CartaoController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-
-	@CrossOrigin
 	@RequestMapping(value = "/api/cartao", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Cartao> addCartao(@RequestBody Cartao cartao) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
