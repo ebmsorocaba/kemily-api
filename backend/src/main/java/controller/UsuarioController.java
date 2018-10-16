@@ -32,7 +32,7 @@ import model.Usuario;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-@CrossOrigin(origins = "http://localhost:8081/")
+@CrossOrigin //(origins = "http://localhost:8081/")
 @RestController
  //E isso
 public class UsuarioController {

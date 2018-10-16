@@ -25,7 +25,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-@CrossOrigin(origins = "http://localhost:8081/")
+@CrossOrigin //(origins = "http://localhost:8081/")
 @RestController
  //E isso
 public class RelatorioController {

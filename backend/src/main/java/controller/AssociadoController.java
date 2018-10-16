@@ -27,7 +27,7 @@ import model.FormaPagamento;
 
 import java.sql.SQLException;
 
-@CrossOrigin(origins = "http://localhost:8081/")
+@CrossOrigin //(origins = "http://localhost:8081/")
 @RestController
  //E isso
 public class AssociadoController {
