@@ -26,7 +26,7 @@ import model.Pagamento;
 
 import java.sql.SQLException;
 
-
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
  //E isso
 public class PagamentoController {
@@ -38,8 +38,8 @@ public class PagamentoController {
 		pagamentos = new HashMap<Integer, Pagamento>();
 	}
 
-	@CrossOrigin
-	@RequestMapping(value = "/api/pagamento", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/api/pagamentos", method = RequestMethod.GET)
 	public ResponseEntity<List<Pagamento>> listar() throws SQLException {
 		int index=0;
 
@@ -56,7 +56,7 @@ public class PagamentoController {
 		return new ResponseEntity<List<Pagamento>>(new ArrayList<Pagamento>(pagamentos.values()), HttpStatus.OK);
 	}
 
-	@CrossOrigin
+	
 	@RequestMapping(value = "/api/pagamento/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Pagamento> buscar(@PathVariable("id") Long id) throws SQLException {
 
@@ -68,7 +68,7 @@ public class PagamentoController {
 	  return new ResponseEntity<Pagamento>(pagamento, HttpStatus.OK);
 	}
 
-	@CrossOrigin
+	
 	@RequestMapping(value = "/api/pagamento/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("id") Long id) {
 		//Aluno aluno = alunos.remove(id);
@@ -82,7 +82,7 @@ public class PagamentoController {
 	}
 
 
-	@CrossOrigin
+	
 	@RequestMapping(value = "/api/pagamento", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Pagamento> addPagamento(@RequestBody Pagamento pagamento) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
@@ -92,7 +92,7 @@ public class PagamentoController {
 		return new ResponseEntity<Pagamento>(pagamento, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
 	
-	@CrossOrigin
+	
 	@RequestMapping(value = "/api/pagamento/{id}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Pagamento> updateUsuario(@RequestBody Pagamento pagamento, @PathVariable("id") String id) throws JsonParseException, JsonMappingException, IOException, SQLException {
 

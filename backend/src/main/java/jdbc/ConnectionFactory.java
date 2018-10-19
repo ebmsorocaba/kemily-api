@@ -28,7 +28,7 @@ public class ConnectionFactory {
 			if(tipo.equals("localhost")) {
 				//LOCALHOST
 				Jdbc3PoolingDataSource pool = new Jdbc3PoolingDataSource();
-				pool.setUrl("jdbc:postgresql://localhost:5432/ebm_admin");
+				pool.setUrl("jdbc:postgresql://localhost:5432/postgres");
 				pool.setUser("postgres");
 				pool.setPassword("postgres");
 				pool.setMaxConnections(15);
@@ -78,7 +78,7 @@ public class ConnectionFactory {
 		 	 * teste:			"heroku-test"
 		 	 * homologação:		"heroku-homologacao"
 			 */
-			createConnectionPool("producao");
+			createConnectionPool("localhost");
 		}
 
 		if(conn == null || conn.isClosed()) {
