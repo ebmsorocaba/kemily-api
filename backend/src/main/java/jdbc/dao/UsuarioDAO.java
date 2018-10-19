@@ -97,35 +97,36 @@ public class UsuarioDAO {
 
 	}
 
-//por email
-	public Usuario getUsuarioPorEmail(String search) throws SQLException {
+	// --------------- buscar por email
+		public Usuario getUsuarioPorEmail(String email, String senha) throws SQLException {
 
-		Usuario usuario = new Usuario();
+			Usuario usuario = new Usuario();
 
-		try {
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM usuario WHERE " + "email = ?");
+			try {
+				PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM usuario WHERE " + "email = ?" + "AND senha = ?");
 
-			stmt.setString(1, search); //Note que essa variavel é passada da função principal
-			ResultSet rs = stmt.executeQuery();
+				stmt.setString(1, email); //Note que essa variavel é passada da função principal
+				stmt.setString(2, senha);
+				ResultSet rs = stmt.executeQuery();
 
-			if (rs.next()) {
-				usuario.setNome(rs.getString("nome"));
-				usuario.setSenha(rs.getString("senha"));
-				usuario.setSetor(rs.getString("setor"));
-				usuario.setEmail(rs.getString("email"));
-				usuario.setAtivo(rs.getBoolean("ativo"));
+				if (rs.next()) {
+					usuario.setNome(rs.getString("nome"));
+					usuario.setSenha(rs.getString("senha"));
+					usuario.setSetor(rs.getString("setor"));
+					usuario.setEmail(rs.getString("email"));
+					usuario.setAtivo(rs.getBoolean("ativo"));
+				}
 			}
+
+		    catch (SQLException ex) {
+		    	System.out.println(ex.toString());
+		    }
+
+			return (usuario);
+
 		}
-
-	    catch (SQLException ex) {
-	    	System.out.println(ex.toString());
-	    }
-
-		return (usuario);
-
-	}
-// fim
-
+		
+	// ----------------------------
 	public void excluir(String search) {
 
     try {

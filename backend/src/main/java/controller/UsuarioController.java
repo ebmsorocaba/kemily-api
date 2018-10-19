@@ -53,7 +53,50 @@ public class UsuarioController {
 	void MailSubmissionController(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
+	
+	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.GET, params={"senha"})
+	public ResponseEntity<Usuario> login(@PathVariable("nome") String nome, @RequestParam("senha") String senha) throws SQLException, ParseException {
+	
+		Usuario usuario = new Usuario();
+		
+		try{
+			usuario = usuarioDao.getUsuario(nome);
+		} catch (SQLException ex){
+			System.out.println(ex.toString());
+			usuario = null;
+			return new ResponseEntity<Usuario>(usuario, HttpStatus.NOT_FOUND);
+		}
+		if(passwordEncoder.matches(senha, usuario.getSenha())){
+			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+		}
+		else{
+			usuario = null;
+			return new ResponseEntity<Usuario>(usuario, HttpStatus.NOT_FOUND);
+		}
+	}
+/*-----------------------
+	@RequestMapping(value = "/api/login", method = RequestMethod.POST)
+	public ResponseEntity<Usuario> fazerlogin(@RequestBody("email") String email, @("senha") String senha) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
+	  Usuario usuario = usuarioDao.getUsuarioPorEmail(email, senha);
+	  if (usuario == null) {
+	    return new ResponseEntity<>(HttpStatus.SEE_OTHER);
+	  }
+
+	  return new ResponseEntity<>(HttpStatus.OK);
+	}
+//-----------------------
+
+	@RequestMapping(value = "/api/login", method = RequestMethod.POST) //Esse metodo recebe uma String em formato de JSON
+	public ResponseEntity<Usuario> Login(@RequestBody Usuario usuario) throws JsonParseException, JsonMappingException, IOException, SQLException {
+
+		Usuario user = usuarioDao.getUsuario(usuario.getNome());
+		
+		if (user.getEmail() == usuario.getEmail() && user.getSetor() == usuario.getSetor()) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.SEE_OTHER);
+	}	*/
 	
 	@RequestMapping(value = "/api/usuarios", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> listar() throws SQLException {
@@ -132,29 +175,6 @@ public class UsuarioController {
 
 		usuarioDao.altera(usuario, nome);
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
-	}
-	
-	
-	
-	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.GET, params={"senha"})
-	public ResponseEntity<Usuario> login(@PathVariable("nome") String nome, @RequestParam("senha") String senha) throws SQLException, ParseException {
-	
-		Usuario usuario = new Usuario();
-		
-		try{
-			usuario = usuarioDao.getUsuario(nome);
-		} catch (SQLException ex){
-			System.out.println(ex.toString());
-			usuario = null;
-			return new ResponseEntity<Usuario>(usuario, HttpStatus.NOT_FOUND);
-		}
-		if(passwordEncoder.matches(senha, usuario.getSenha())){
-			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
-		}
-		else{
-			usuario = null;
-			return new ResponseEntity<Usuario>(usuario, HttpStatus.NOT_FOUND);
-		}
 	}
 	
 }
