@@ -34,6 +34,19 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>0.7.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.2</version>
+      <scope>provided</scope>
+    </dependency>
 	
 	<dependency>
 	    <groupId>javax.mail</groupId>
@@ -81,9 +94,9 @@
     <flyway.sqlMigrationSuffix>.sql</flyway.sqlMigrationSuffix>
     <flyway.validateOnMigrate>true</flyway.validateOnMigrate>
     <postgres.driver.version>9.2-1002.jdbc4</postgres.driver.version>
-    <database.url>jdbc:postgresql://localhost:5432/ebm_admin</database.url>
+    <database.url>jdbc:postgresql://localhost:5432/postgres</database.url>
     <database.user>postgres</database.user>
-    <databese.password>bgxeso2d</databese.password>
+    <databese.password>postgres</databese.password>
   </properties>
 
   <build>
