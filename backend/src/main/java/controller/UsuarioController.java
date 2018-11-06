@@ -24,7 +24,7 @@ import model.RelatPagAssociado;
 import model.Usuario;
 
 
-@CrossOrigin(origins = "http://localhost:8081")
+//@CrossOrigin(origins = "http://localhost:8081")
 @RestController
  //E isso
 public class UsuarioController {
@@ -39,17 +39,6 @@ public class UsuarioController {
 	  usuarios = new HashMap<Integer, Usuario>();
 	}
 
-<<<<<<< Updated upstream
-	private JavaMailSender javaMailSender;
-
-	@Autowired
-	void MailSubmissionController(JavaMailSender javaMailSender) {
-		this.javaMailSender = javaMailSender;
-	}
-
-	
-=======
->>>>>>> Stashed changes
 	@RequestMapping(value = "/api/usuarios", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> listar() throws SQLException {
 		int index=0;
@@ -67,14 +56,10 @@ public class UsuarioController {
 		return new ResponseEntity<List<Usuario>>(new ArrayList<Usuario>(usuarios.values()), HttpStatus.OK);
 	}
 
-<<<<<<< Updated upstream
-	
-	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.GET)
-	public ResponseEntity<Usuario> buscar(@PathVariable("nome") String nome) throws SQLException {
-=======
+
 	@RequestMapping(value = "/api/usuario/{codigo}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> buscar(@PathVariable("codigo") Integer codigo) throws SQLException {
->>>>>>> Stashed changes
+
 
 	  Usuario usuario = usuarioDao.getUsuario(codigo);
 	  if (usuario == null) {
@@ -84,18 +69,6 @@ public class UsuarioController {
 	  return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
 
-<<<<<<< Updated upstream
-	
-	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deletar(@PathVariable("nome") String nome) {
-		//Aluno aluno = alunos.remove(id);
-
-		/*Configurar caso não ache o objeto a ser excluido*/
-		//if (aluno == null) {
-	    //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		//}
-		usuarioDao.excluir(nome);
-=======
 	@RequestMapping(value = "/api/usuario/{codigo}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("codigo") Integer codigo) {
 		
@@ -103,7 +76,6 @@ public class UsuarioController {
 		
 		usuarioDao.excluir(codigo);
 		
->>>>>>> Stashed changes
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
@@ -117,28 +89,6 @@ public class UsuarioController {
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
 
-<<<<<<< Updated upstream
-	
-	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
-	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario, @PathVariable("nome") String nome) throws JsonParseException, JsonMappingException, IOException, SQLException {
-
-		//Usuario usuario = new ObjectMapper().readValue(usuarioJSON, Usuario.class); //Aqui o json é convertido em objeto Java Aluno
-		System.out.println("Alterar usuario de Nome: " + nome);
-		System.out.println("Usuario que chegou no backend para alteração: ");
-		System.out.println("Nome: " + usuario.getNome());
-		System.out.println("Senha: " + usuario.getSenha());
-		System.out.println("Email: " + usuario.getEmail());
-		System.out.println("Setor: " + usuario.getSetor());
-		System.out.println("Ativo: " + usuario.isAtivo());
-
-
-		usuarioDao.altera(usuario, nome);
-		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
-	}
-	
-	
-	
-=======
 	@RequestMapping(value = "/api/usuario/{codigo}", method = RequestMethod.PUT) //Esse metodo recebe uma String em formato de JSON
 	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario, @PathVariable("codigo") Integer codigo) throws JsonParseException, JsonMappingException, IOException, SQLException {
 		
@@ -147,7 +97,7 @@ public class UsuarioController {
 		}
 
 	/*
->>>>>>> Stashed changes
+
 	@RequestMapping(value = "/api/usuario/{nome}", method = RequestMethod.GET, params={"senha"})
 	public ResponseEntity<Usuario> login(@PathVariable("nome") String nome, @RequestParam("senha") String senha) throws SQLException, ParseException {
 	
@@ -191,6 +141,5 @@ public class UsuarioController {
 		return new ResponseEntity<SimpleMailMessage>(mailMessage, HttpStatus.CREATED);
 	}
 	*/
->>>>>>> Stashed changes
 	
 }

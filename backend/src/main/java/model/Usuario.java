@@ -1,9 +1,5 @@
 package model;
 
-<<<<<<< Updated upstream
-import com.fasterxml.jackson.annotation.JsonProperty;
-=======
->>>>>>> Stashed changes
 
 public class Usuario {
 	
@@ -14,14 +10,7 @@ public class Usuario {
     
     //@JsonIgnore
     private String senha;
-<<<<<<< Updated upstream
-    private String setor;
-    private String email;
-    private boolean ativo;
-    
-    public Usuario() {};
-=======
->>>>>>> Stashed changes
+
     
     private String perguntasecreta;
     private String respostasecreta;
@@ -88,14 +77,8 @@ public class Usuario {
 		this.codigo = codigo;
 	}
     
-<<<<<<< Updated upstream
-	public void resetarSenha(String newSenha){
-		
-	}
-	
-}
-=======
+
     
     
 }
->>>>>>> Stashed changes
+
