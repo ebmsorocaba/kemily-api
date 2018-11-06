@@ -1,30 +1,52 @@
 package model;
 
+<<<<<<< Updated upstream
 import com.fasterxml.jackson.annotation.JsonProperty;
+=======
+>>>>>>> Stashed changes
 
 public class Usuario {
-
+	
+	private Integer codigo;
+	
+    private String email;
     private String nome;
+    
+    //@JsonIgnore
     private String senha;
+<<<<<<< Updated upstream
     private String setor;
     private String email;
     private boolean ativo;
     
     public Usuario() {};
+=======
+>>>>>>> Stashed changes
     
-    public Usuario(
-    		@JsonProperty("nome")String nome, 
-    		@JsonProperty("senha")String senha, 
-    		@JsonProperty("setor")String setor,
-    		@JsonProperty("email")String email, 
-    		@JsonProperty("ativo")boolean ativo) {
+    private String perguntasecreta;
+    private String respostasecreta;
+    
+    public Usuario() {
     	
-        this.nome = nome;
-        this.senha = senha;
-        this.setor = setor;
-        this.email = email;
-        this.ativo = ativo;
-    } //JsonProperty no constructor serve para dar apoio ao Jackson Object Mapper
+    }
+
+	public Usuario(Integer codigo, String email, String nome, String senha, String perguntasecreta, String respostasecreta) {
+		super();
+		this.codigo = codigo;
+		this.email = email;
+		this.nome = nome;
+		this.senha = senha;
+		this.perguntasecreta = perguntasecreta;
+		this.respostasecreta = respostasecreta;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getNome() {
 		return nome;
@@ -42,32 +64,38 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public boolean isAtivo() {
-		return ativo;
+	public String getPerguntasecreta() {
+		return perguntasecreta;
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setPerguntasecreta(String perguntasecreta) {
+		this.perguntasecreta = perguntasecreta;
 	}
 
-	public String getSetor() {
-		return setor;
+	public String getRespostasecreta() {
+		return respostasecreta;
 	}
 
-	public void setSetor(String setor) {
-		this.setor = setor;
+	public void setRespostasecreta(String respostasecreta) {
+		this.respostasecreta = respostasecreta;
 	}
 
-	public String getEmail() {
-		return email;
+	public Integer getCodigo() {
+		return codigo;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
     
+<<<<<<< Updated upstream
 	public void resetarSenha(String newSenha){
 		
 	}
 	
 }
+=======
+    
+    
+}
+>>>>>>> Stashed changes
