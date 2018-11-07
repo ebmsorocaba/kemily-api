@@ -1,5 +1,10 @@
 package model;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import domain.enums.Perfil;
 
 public class Usuario {
 	
@@ -10,13 +15,13 @@ public class Usuario {
     
     //@JsonIgnore
     private String senha;
-
+    
+    private Set<Integer> perfis = new HashSet<>();
     
     private String perguntasecreta;
     private String respostasecreta;
     
     public Usuario() {
-    	
     }
 
 	public Usuario(Integer codigo, String email, String nome, String senha, String perguntasecreta, String respostasecreta) {
@@ -27,6 +32,7 @@ public class Usuario {
 		this.senha = senha;
 		this.perguntasecreta = perguntasecreta;
 		this.respostasecreta = respostasecreta;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public String getEmail() {
@@ -52,7 +58,17 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+	
+	// retorna em formato enumerado (ex: "ROLE_ADMIN") OBS: ele é armazenado como inteiro
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	// recebe no formato enumerado (ex: "ROLE_ADMIN") e guarda em uma coleção de inteiros.
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
+	}
+	
 	public String getPerguntasecreta() {
 		return perguntasecreta;
 	}

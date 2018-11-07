@@ -9,15 +9,26 @@ SET datestyle = "ISO, DMY";
 
 CREATE TABLE usuario (
   codigo  			SERIAL	PRIMARY KEY,
-  email 			VARCHAR(50) 	NOT NULL,
-  nome 				VARCHAR(50) 	NOT NULL	UNIQUE,
+  email 			VARCHAR(50) 	NOT NULL	UNIQUE,
+  nome 				VARCHAR(50) 	NOT NULL,
   senha 			VARCHAR(60) 	NOT NULL,
   perguntasecreta 	VARCHAR(100)	NOT NULL,
   respostasecreta 	VARCHAR(100)    NOT NULL 
 );
 
-INSERT INTO usuario (email, nome, senha, perguntasecreta, respostasecreta) VALUES ('felipe@luz', 'Felipe', 'dota2', 'Qual nome do seu jogo preferido', 'dota 2');
+CREATE TABLE perfil (
+  codigo_usu  		INT		NOT NULL,
+  perfil 			INT 	NOT NULL
+);
 
+INSERT INTO perfil (codigo_usu, perfil) VALUES (1, 2);
+INSERT INTO perfil (codigo_usu, perfil) VALUES (2, 2);
+INSERT INTO perfil (codigo_usu, perfil) VALUES (2, 1);
+
+
+INSERT INTO usuario (email, nome, senha, perguntasecreta, respostasecreta) VALUES ('felipe@luz', 'Felipe', '$2a$10$seZfixnw6yZmEXZhG2EkjubDZP1a4JQXCuoZVDgwMzb5PUguWUQ/C', 'Qual nome do seu jogo preferido', '$2a$10$RxMS4lIRlrhjl24Z/M31Tuu/UL.psQQArEN3.s1Wpia0K1Dn6NZDu');
+
+/* senha: dota2  respostasecreta: dota */
 
 /***********************/
 /*                     */

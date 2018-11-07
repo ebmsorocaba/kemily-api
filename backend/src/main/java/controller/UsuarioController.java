@@ -55,14 +55,26 @@ public class UsuarioController {
 
 		return new ResponseEntity<List<Usuario>>(new ArrayList<Usuario>(usuarios.values()), HttpStatus.OK);
 	}
+	
 
+	@RequestMapping(value = "/api/perfis/{codigo}", method = RequestMethod.GET)
+	public ResponseEntity<Usuario> buscarperfis(@PathVariable("codigo") Integer codigo) throws SQLException {
+
+
+	  Usuario usuario = usuarioDao.getPerfis(codigo);
+	  if (usuario == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
+
+	  return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/api/usuario/{codigo}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> buscar(@PathVariable("codigo") Integer codigo) throws SQLException {
 
 
 	  Usuario usuario = usuarioDao.getUsuario(codigo);
-	  if (usuario == null) {
+	  if (usuario.getCodigo() == null) {
 	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	  }
 
