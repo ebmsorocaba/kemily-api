@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+import domain.enums.Perfil;
 import jdbc.dao.UsuarioDAO;
 import model.Usuario;
+import security.UserSS;
+import security.UserService;
 
 
 //@CrossOrigin(origins = "http://localhost:8081")
@@ -72,7 +75,12 @@ public class UsuarioController {
 	@RequestMapping(value = "/api/usuario/{codigo}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> buscar(@PathVariable("codigo") Integer codigo) throws SQLException {
 
-
+		
+		UserSS user = UserService.authenticated();
+		if (user==null || !user.hasRole(Perfil.ADMIN) && !codigo.equals(user.getId())) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+		
 	  Usuario usuario = usuarioDao.getUsuario(codigo);
 	  if (usuario.getCodigo() == null) {
 	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
