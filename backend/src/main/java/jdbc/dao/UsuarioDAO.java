@@ -34,7 +34,7 @@ public class UsuarioDAO {
 			stmt.setString(2, usuario.getNome());
 			stmt.setString(3, passwordEncoder.encode(usuario.getSenha()));
 			stmt.setString(4, usuario.getPerguntasecreta());
-			stmt.setString(5, usuario.getRespostasecreta());
+			stmt.setString(5, passwordEncoder.encode(usuario.getRespostasecreta()));
 
 			// executa
 			stmt.execute();
@@ -198,7 +198,7 @@ public class UsuarioDAO {
 			stmt.setString(3, usuario.getNome());
 			stmt.setString(4, passwordEncoder.encode(usuario.getSenha()));
 			stmt.setString(5, usuario.getPerguntasecreta());
-			stmt.setString(6, usuario.getRespostasecreta());
+			stmt.setString(6, passwordEncoder.encode(usuario.getRespostasecreta()));
 			stmt.setInt(7, codigo);
 
 			stmt.execute();

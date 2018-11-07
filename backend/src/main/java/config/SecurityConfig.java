@@ -40,8 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	};
  	private static final String[] PUBLIC_MATCHERS_GET = {
  			//definir gets publicos
- 			
-			"/produtos/**",
+			"/Login/recuperarSenha/**",
 	};
  	
  	//todo mundo pode criar um novo usuario
