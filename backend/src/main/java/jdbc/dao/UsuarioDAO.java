@@ -30,7 +30,7 @@ public class UsuarioDAO {
 
 		public void adiciona(Usuario usuario) throws SQLException {
 			// prepared statement para inserção
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO usuario ( email, nome, senha, perguntasecreta, respostasecreta, ativo) VALUES ( ?, ?, ?, ?, ?, ?)");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO usuario ( email, nome, senha, perguntasecreta, respostasecreta, ativo, setor) VALUES ( ?, ?, ?, ?, ?, ?, ?)");
 			// seta os valores
 			stmt.setString(1, usuario.getEmail());
 			stmt.setString(2, usuario.getNome());
@@ -38,6 +38,7 @@ public class UsuarioDAO {
 			stmt.setString(4, usuario.getPerguntasecreta());
 			stmt.setString(5, passwordEncoder.encode(usuario.getRespostasecreta()));
 			stmt.setBoolean(6, usuario.isAtivo());
+			stmt.setString(7, usuario.getSetor());
 
 			// executa
 			stmt.execute();
@@ -63,7 +64,7 @@ public class UsuarioDAO {
 				usuario.setPerguntasecreta(rs.getString("perguntasecreta"));
 				usuario.setRespostasecreta(rs.getString("respostasecreta"));
 				usuario.setAtivo(rs.getBoolean("ativo"));
-				
+				usuario.setSetor(rs.getString("setor"));
 			
 				
 				// adicionando o objeto à lista
@@ -99,6 +100,7 @@ public class UsuarioDAO {
 					usuario.setPerguntasecreta(rs.getString("perguntasecreta"));
 					usuario.setRespostasecreta(rs.getString("respostasecreta"));
 					usuario.setAtivo(rs.getBoolean("ativo"));
+					usuario.setSetor(rs.getString("setor"));
 					}
 				
 			}
@@ -132,6 +134,7 @@ public class UsuarioDAO {
 					usuario.setPerguntasecreta(rs.getString("perguntasecreta"));
 					usuario.setRespostasecreta(rs.getString("respostasecreta"));
 					usuario.setAtivo(rs.getBoolean("ativo"));
+					usuario.setSetor(rs.getString("setor"));
 					
 					
 				}
@@ -169,7 +172,7 @@ public class UsuarioDAO {
 
 		public void altera(Usuario usuario, Integer codigo) throws SQLException {
 
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE usuario SET codigo=?, email=?, nome=?, senha=?, perguntasecreta=?, respostasecreta=?, ativo=? WHERE codigo=?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE usuario SET codigo=?, email=?, nome=?, senha=?, perguntasecreta=?, respostasecreta=?, ativo=?, setor=? WHERE codigo=?");
 			
 			stmt.setInt(1, usuario.getCodigo());
 			stmt.setString(2, usuario.getEmail());
@@ -178,7 +181,8 @@ public class UsuarioDAO {
 			stmt.setString(5, usuario.getPerguntasecreta());
 			stmt.setString(6, passwordEncoder.encode(usuario.getRespostasecreta()));
 			stmt.setBoolean(7, usuario.isAtivo());
-			stmt.setInt(8, codigo);
+			stmt.setString(8, usuario.getSetor());
+			stmt.setInt(9, codigo);
 
 			stmt.execute();
 			stmt.close();

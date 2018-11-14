@@ -21,12 +21,13 @@ public class Usuario {
     private String perguntasecreta;
     private String respostasecreta;
     private boolean ativo;
+    private String setor;
     
 
 	public Usuario() {
     }
 
-	public Usuario(Integer codigo, String email, String nome, String senha, String perguntasecreta, String respostasecreta, boolean ativo) {
+	public Usuario(Integer codigo, String email, String nome, String senha, String perguntasecreta, String respostasecreta, boolean ativo, String setor) {
 		super();
 		this.codigo = codigo;
 		this.email = email;
@@ -36,6 +37,7 @@ public class Usuario {
 		this.respostasecreta = respostasecreta;
 		addPerfil(Perfil.CLIENTE);
 		this.setAtivo(ativo);
+		this.setSetor(setor);
 	}
 
 	public String getEmail() {
@@ -102,6 +104,14 @@ public class Usuario {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
 	}
     
 
