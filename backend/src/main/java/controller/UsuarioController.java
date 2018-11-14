@@ -47,7 +47,7 @@ public class UsuarioController {
 	  usuarios = new HashMap<Integer, Usuario>();
 	}
 	//lista de usuarios (somente Admin)
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/api/usuarios", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> listar() throws SQLException {
 		int index=0;

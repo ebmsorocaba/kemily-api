@@ -36,7 +36,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 
 	private static final String[] PUBLIC_MATCHERS = {
 			// definir endpoints publicos de todas requisições rest
-			"/h2-console/**"
+			"/h2-console/**",
+			"/api/associados",
+			"/api/associado/**",
+			"/api/associado",
+			"/api/pagamentos",
+			"/api/pagamento/**",
+			"/api/pagamento",
+			"/api/usuario/**",
+			"/api/usuarios",
+			"/api/usuario"
 	};
  	private static final String[] PUBLIC_MATCHERS_GET = {
  			//definir gets publicos
