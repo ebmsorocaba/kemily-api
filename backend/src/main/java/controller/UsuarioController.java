@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import domain.enums.Perfil;
+import jdbc.dao.PerfilDAO;
 import jdbc.dao.UsuarioDAO;
 import model.Usuario;
 import security.UserSS;
@@ -36,6 +38,7 @@ public class UsuarioController {
 
 	private Map<Integer, Usuario> usuarios;
 	private UsuarioDAO usuarioDao = new UsuarioDAO();
+	private PerfilDAO perfilDao = new PerfilDAO();
 	
 	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -68,7 +71,7 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> buscarperfis(@PathVariable("codigo") Integer codigo) throws SQLException {
 
 
-	  Usuario usuario = usuarioDao.getPerfis(codigo);
+	  Usuario usuario = perfilDao.getPerfis(codigo);
 	  if (usuario == null) {
 	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	  }
@@ -80,11 +83,11 @@ public class UsuarioController {
 	@RequestMapping(value = "/api/usuario/{codigo}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> buscar(@PathVariable("codigo") Integer codigo) throws SQLException {
 
-		// só retorna o usuario logado, a menos que seja admin
+		/* só retorna o usuario logado, a menos que seja admin
 		UserSS user = UserService.authenticated();
 		if (user==null || !user.hasRole(Perfil.ADMIN) && !codigo.equals(user.getId())) {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
+		}*/
 		
 	  Usuario usuario = usuarioDao.getUsuario(codigo);
 	  if (usuario.getCodigo() == null) {
@@ -102,6 +105,7 @@ public class UsuarioController {
 		// tem que dar uma arrumada aqui	
 		
 		usuarioDao.excluir(codigo);
+		perfilDao.excluir(codigo);
 		
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

@@ -20,11 +20,13 @@ public class Usuario {
     
     private String perguntasecreta;
     private String respostasecreta;
+    private boolean ativo;
     
-    public Usuario() {
+
+	public Usuario() {
     }
 
-	public Usuario(Integer codigo, String email, String nome, String senha, String perguntasecreta, String respostasecreta) {
+	public Usuario(Integer codigo, String email, String nome, String senha, String perguntasecreta, String respostasecreta, boolean ativo) {
 		super();
 		this.codigo = codigo;
 		this.email = email;
@@ -33,6 +35,7 @@ public class Usuario {
 		this.perguntasecreta = perguntasecreta;
 		this.respostasecreta = respostasecreta;
 		addPerfil(Perfil.CLIENTE);
+		this.setAtivo(ativo);
 	}
 
 	public String getEmail() {
@@ -59,7 +62,7 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	// retorna em formato enumerado (ex: "ROLE_ADMIN") OBS: ele é armazenado como inteiro
+	// retorna em formato enumerado (ex: "ROLE_ADMIN") OBS: aqui ele é armazenado como inteiro
 	public Set<Perfil> getPerfis() {
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
@@ -91,6 +94,14 @@ public class Usuario {
 
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
     
 

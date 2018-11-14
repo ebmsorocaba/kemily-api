@@ -13,7 +13,8 @@ CREATE TABLE usuario (
   nome 				VARCHAR(50) 	NOT NULL,
   senha 			VARCHAR(60) 	NOT NULL,
   perguntasecreta 	VARCHAR(100)	NOT NULL,
-  respostasecreta 	VARCHAR(100)    NOT NULL 
+  respostasecreta 	VARCHAR(100)    NOT NULL,
+  ativo				BOOLEAN     	NOT NULL
 );
 
 CREATE TABLE perfil (
@@ -26,7 +27,7 @@ INSERT INTO perfil (codigo_usu, perfil) VALUES (2, 2);
 INSERT INTO perfil (codigo_usu, perfil) VALUES (2, 1);
 
 
-INSERT INTO usuario (email, nome, senha, perguntasecreta, respostasecreta) VALUES ('felipe@luz', 'Felipe', '$2a$10$seZfixnw6yZmEXZhG2EkjubDZP1a4JQXCuoZVDgwMzb5PUguWUQ/C', 'Qual nome do seu jogo preferido', '$2a$10$RxMS4lIRlrhjl24Z/M31Tuu/UL.psQQArEN3.s1Wpia0K1Dn6NZDu');
+INSERT INTO usuario (email, nome, senha, perguntasecreta, respostasecreta, ativo) VALUES ('felipe@luz', 'Felipe', '$2a$10$seZfixnw6yZmEXZhG2EkjubDZP1a4JQXCuoZVDgwMzb5PUguWUQ/C', 'Qual nome do seu jogo preferido', '$2a$10$RxMS4lIRlrhjl24Z/M31Tuu/UL.psQQArEN3.s1Wpia0K1Dn6NZDu', true);
 
 /* senha: dota2  respostasecreta: dota */
 

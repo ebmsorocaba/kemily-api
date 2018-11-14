@@ -25,16 +25,19 @@ public class UsuarioDAO {
 		public UsuarioDAO() throws SQLException {
 			this.connection = ConnectionFactory.getConnection();
 		}
+		
+		private PerfilDAO perfilDao = new PerfilDAO();
 
 		public void adiciona(Usuario usuario) throws SQLException {
 			// prepared statement para inserção
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO usuario ( email, nome, senha, perguntasecreta, respostasecreta) VALUES ( ?, ?, ?, ?, ?)");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("INSERT INTO usuario ( email, nome, senha, perguntasecreta, respostasecreta, ativo) VALUES ( ?, ?, ?, ?, ?, ?)");
 			// seta os valores
 			stmt.setString(1, usuario.getEmail());
 			stmt.setString(2, usuario.getNome());
 			stmt.setString(3, passwordEncoder.encode(usuario.getSenha()));
 			stmt.setString(4, usuario.getPerguntasecreta());
 			stmt.setString(5, passwordEncoder.encode(usuario.getRespostasecreta()));
+			stmt.setBoolean(6, usuario.isAtivo());
 
 			// executa
 			stmt.execute();
@@ -53,14 +56,13 @@ public class UsuarioDAO {
 				Usuario usuario = new Usuario();
 				
 				usuario.setCodigo(rs.getInt("codigo"));
-				usuario = getPerfis(usuario.getCodigo());
-				usuario.setCodigo(rs.getInt("codigo"));
+				usuario = perfilDao.getPerfis(usuario.getCodigo());
 				usuario.setEmail(rs.getString("email"));
 				usuario.setNome(rs.getString("nome"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setPerguntasecreta(rs.getString("perguntasecreta"));
 				usuario.setRespostasecreta(rs.getString("respostasecreta"));
-				
+				usuario.setAtivo(rs.getBoolean("ativo"));
 				
 			
 				
@@ -74,30 +76,6 @@ public class UsuarioDAO {
 
 			return usuarios;
 
-		}
-// --------------------------------- PEGAR PERFIS
-		public Usuario getPerfis(Integer codigo) throws SQLException {
-			Usuario usuario = new Usuario();
-			try {
-				
-			// Statement para pegar os perfis
-			PreparedStatement stmt2 = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM perfil WHERE " + "codigo_usu = ?");
-			// pelo codigo do usuario na busca, ele busca os perfis no formato inteiro
-			stmt2.setInt(1, codigo); 
-			// tras nesse resultset
-			ResultSet rs2 = stmt2.executeQuery();
-			// e para cada perfil
-			while (rs2.next()) {
-				// ele instancia um perfil do tipo enumerado para esse usuario
-				usuario.addPerfil(Perfil.toEnum(rs2.getInt("perfil")));
-			}
-			}
-			catch(SQLException ex) {
-		    	System.out.println(ex.toString());
-		    }
-
-
-			return (usuario);
 		}
 		
 		
@@ -114,13 +92,13 @@ public class UsuarioDAO {
 
 				if (rs.next()) {
 					usuario.setCodigo(rs.getInt("codigo"));
-					usuario = getPerfis(usuario.getCodigo());
-					usuario.setCodigo(rs.getInt("codigo"));
+					usuario = perfilDao.getPerfis(usuario.getCodigo());
 					usuario.setEmail(rs.getString("email"));
 					usuario.setNome(rs.getString("nome"));
 					usuario.setSenha(rs.getString("senha"));
 					usuario.setPerguntasecreta(rs.getString("perguntasecreta"));
 					usuario.setRespostasecreta(rs.getString("respostasecreta"));
+					usuario.setAtivo(rs.getBoolean("ativo"));
 					}
 				
 			}
@@ -147,13 +125,13 @@ public class UsuarioDAO {
 
 				if (rs.next()) {
 					usuario.setCodigo(rs.getInt("codigo"));
-					usuario = getPerfis(usuario.getCodigo());
-					usuario.setCodigo(rs.getInt("codigo"));
+					usuario = perfilDao.getPerfis(usuario.getCodigo());
 					usuario.setEmail(rs.getString("email"));
 					usuario.setNome(rs.getString("nome"));
 					usuario.setSenha(rs.getString("senha"));
 					usuario.setPerguntasecreta(rs.getString("perguntasecreta"));
 					usuario.setRespostasecreta(rs.getString("respostasecreta"));
+					usuario.setAtivo(rs.getBoolean("ativo"));
 					
 					
 				}
@@ -191,7 +169,7 @@ public class UsuarioDAO {
 
 		public void altera(Usuario usuario, Integer codigo) throws SQLException {
 
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE usuario SET codigo=?, email=?, nome=?, senha=?, perguntasecreta=?, respostasecreta=? WHERE codigo=?");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("UPDATE usuario SET codigo=?, email=?, nome=?, senha=?, perguntasecreta=?, respostasecreta=?, ativo=? WHERE codigo=?");
 			
 			stmt.setInt(1, usuario.getCodigo());
 			stmt.setString(2, usuario.getEmail());
@@ -199,7 +177,8 @@ public class UsuarioDAO {
 			stmt.setString(4, passwordEncoder.encode(usuario.getSenha()));
 			stmt.setString(5, usuario.getPerguntasecreta());
 			stmt.setString(6, passwordEncoder.encode(usuario.getRespostasecreta()));
-			stmt.setInt(7, codigo);
+			stmt.setBoolean(7, usuario.isAtivo());
+			stmt.setInt(8, codigo);
 
 			stmt.execute();
 			stmt.close();
