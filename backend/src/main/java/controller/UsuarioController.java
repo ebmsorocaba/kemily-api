@@ -31,7 +31,7 @@ import security.UserSS;
 import security.UserService;
 
 
-@CrossOrigin(origins = "http://localhost:8081")
+//@CrossOrigin(origins = "http://localhost:8081")
 @RestController
  //E isso
 public class UsuarioController {
