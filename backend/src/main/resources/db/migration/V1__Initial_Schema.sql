@@ -8,12 +8,22 @@ SET datestyle = "ISO, DMY";
 /*                         */
 
 CREATE TABLE usuario (
-  nome  VARCHAR(50) NOT NULL PRIMARY KEY,
-  senha VARCHAR(60) NOT NULL,
-  setor VARCHAR(20) NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  ativo BOOLEAN     NOT NULL -- Indica para o sistema de login se o usuário pode logar.
+  codigo  			SERIAL	PRIMARY KEY,
+  email 			VARCHAR(50) 	NOT NULL	UNIQUE,
+  nome 				VARCHAR(50) 	NOT NULL,
+  senha 			VARCHAR(60) 	NOT NULL,
+  perguntasecreta 	VARCHAR(100)	NOT NULL,
+  respostasecreta 	VARCHAR(100)    NOT NULL,
+  ativo				BOOLEAN     	NOT NULL,
+  setor			 	VARCHAR(100)    NOT NULL
 );
+
+
+INSERT INTO usuario (email, nome, senha, perguntasecreta, respostasecreta, ativo, setor) VALUES ('felipe@luz', 'Felipe', '$2a$10$seZfixnw6yZmEXZhG2EkjubDZP1a4JQXCuoZVDgwMzb5PUguWUQ/C', 'Qual nome do seu jogo preferido', '$2a$10$RxMS4lIRlrhjl24Z/M31Tuu/UL.psQQArEN3.s1Wpia0K1Dn6NZDu', true, 'financeiro');
+/* senha: dota2  respostasecreta: dota */
+
+INSERT INTO usuario (email, nome, senha, perguntasecreta, respostasecreta, ativo, setor) VALUES ('admin@admin', 'admin', '$2a$10$RDCA8772eMDUSQGF9zwPsunuL5h76GuvQpDBVQwqgFpz/j5Gc9l6y', 'Qual nome do seu cachorro', '$2a$10$b/V28KFPdtIM15wfbmnb3eZxf/vlhTdp3ZjT7jsxV2.g8syuXkjne', true, 'administrativo');
+/* senha: admin  respostasecreta: bob */
 
 /***********************/
 /*                     */
@@ -278,14 +288,6 @@ CREATE TABLE historico_ocorrencia (
   descricao TEXT NOT NULL,
   PRIMARY KEY(data, hora, ra_aluno)
 );
-
-INSERT INTO usuario (nome, senha, setor, email, ativo) VALUES ('Admin', '$2a$10$.ftntIO9USDMztB2RTy2vextNjGvChmXK35Ny.xZ5QF2njtHC30Pi', 'Administração', 'diegoluizdb@gmail.com', true);
-INSERT INTO usuario (nome, senha, setor, email, ativo) VALUES ('Ronaldo Pereira', '$2a$10$R4oXnFR2pxNsaENP8GcCc..TUkzwLTXsNy1CWFGpXVOad6hkRka6S', 'Financeiro', 'diegoluizdb@gmail.com', true);
-INSERT INTO usuario (nome, senha, setor, email, ativo) VALUES ('Carlos Eduardo', '$2a$10$w8bEcV4kEQbDsdBv.Lt0meZAeOqqjyPizDqLYovKetnVMC5QRRwKm', 'Financeiro', 'diegoluizdb@gmail.com', true);
-INSERT INTO usuario (nome, senha, setor, email, ativo) VALUES ('Elias Humberto', '$2a$10$jTK689tKBh5Pr/FLDxrFq.Dh2Sw0fIBdcun1zWZRmLjjmz5J3EgqK', 'Social', 'diegoluizdb@gmail.com', true);
-INSERT INTO usuario (nome, senha, setor, email, ativo) VALUES ('Financeiro', '$2a$10$eS2lIfVL9BAy16roFEi4B.yY1193HDwKZ1jjLQfQzKIyyt9dPg9L2', 'Financeiro', 'diegoluizdb@gmail.com', true);
-INSERT INTO usuario (nome, senha, setor, email, ativo) VALUES ('Administração', '$2a$10$UNDmpVNu4DjmgIpbx0xAfuLYmr3FChSfOj8SriGfen6sSmMCtoSxG', 'Administração', 'diegoluizdb@gmail.com', true);
-INSERT INTO usuario (nome, senha, setor, email, ativo) VALUES ('Social', '$2a$10$nYGhq5OCY.5IZc66zm/kFOvrgZ96.ZBVL9xhqjDKWbvdvqLLBec0e', 'Social', 'diegoluizdb@gmail.com', true);
 
 INSERT INTO associado (cpf, nome, email, valor_atual, venc_atual)
 VALUES ('444.444.444-44', 'Godoy Oliveira', 'godoy@gmail.com', 10.44, 12);

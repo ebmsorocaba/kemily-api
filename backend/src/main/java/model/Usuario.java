@@ -1,32 +1,45 @@
 package model;
 
-import DTO.UsuarioSenha;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Usuario {
-
-    private String nome;
-    private String senha;
-    private String setor;
+	
+	private Integer codigo;
+	
     private String email;
-    private boolean ativo;
-    private UsuarioSenha usuarioSenha;
-
-    public Usuario() {};
+    private String nome;
     
-    public Usuario(
-    		@JsonProperty("nome")String nome, 
-    		@JsonProperty("senha")String senha, 
-    		@JsonProperty("setor")String setor,
-    		@JsonProperty("email")String email, 
-    		@JsonProperty("ativo")boolean ativo) {
-    	
-        this.nome = nome;
-        this.senha = senha;
-        this.setor = setor;
-        this.email = email;
-        this.ativo = ativo;
-    } //JsonProperty no constructor serve para dar apoio ao Jackson Object Mapper
+    //@JsonIgnore
+    private String senha;
+    
+    
+    private String perguntasecreta;
+    private String respostasecreta;
+    private boolean ativo;
+    private String setor;
+    
+
+	public Usuario() {
+    }
+
+	public Usuario(Integer codigo, String email, String nome, String senha, String perguntasecreta, String respostasecreta, boolean ativo, String setor) {
+		super();
+		this.codigo = codigo;
+		this.email = email;
+		this.nome = nome;
+		this.senha = senha;
+		this.perguntasecreta = perguntasecreta;
+		this.respostasecreta = respostasecreta;
+		this.setAtivo(ativo);
+		this.setSetor(setor);
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getNome() {
 		return nome;
@@ -42,6 +55,30 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String getPerguntasecreta() {
+		return perguntasecreta;
+	}
+
+	public void setPerguntasecreta(String perguntasecreta) {
+		this.perguntasecreta = perguntasecreta;
+	}
+
+	public String getRespostasecreta() {
+		return respostasecreta;
+	}
+
+	public void setRespostasecreta(String respostasecreta) {
+		this.respostasecreta = respostasecreta;
+	}
+
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public boolean isAtivo() {
@@ -59,20 +96,9 @@ public class Usuario {
 	public void setSetor(String setor) {
 		this.setor = setor;
 	}
+    
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public UsuarioSenha getUsuarioSenha() {
-		return usuarioSenha;
-	}
-
-	public void setUsuarioSenha(UsuarioSenha usuarioSenha) {
-		this.usuarioSenha = usuarioSenha;
-	}
+    
+    
 }
+
