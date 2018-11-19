@@ -28,7 +28,7 @@ public class PagamentoDAO {
 		stmt.setDouble(1,pagamento.getValorPago());
 		stmt.setDate(2,pagamento.getDataPgto());
 		stmt.setString(3, pagamento.getFormapgto());
-		stmt.setString(4, pagamento.getCpf_associado());
+		stmt.setString(4, pagamento.getCpfassociado());
 		// executa
 		stmt.execute();
 		stmt.close();
@@ -111,7 +111,7 @@ public class PagamentoDAO {
 		stmt.setDouble(1,pagamento.getValorPago());
 		stmt.setDate(2,pagamento.getDataPgto());
 		stmt.setString(3, pagamento.getFormapgto());
-		stmt.setString(4, pagamento.getCpf_associado());
+		stmt.setString(4, pagamento.getCpfassociado());
 		stmt.setInt(5,id);
 		
 		stmt.execute();

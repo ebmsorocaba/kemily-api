@@ -11,7 +11,6 @@ public class Pagamento {
 	private double valorPago;
 	private Date dataPgto;
 	private String formapgto;
-	@JsonIgnore
 	private String cpfassociado;
 	
 	private Associado associado;
@@ -62,11 +61,11 @@ public class Pagamento {
 		this.associado = associado;
 	}
 
-	public String getCpf_associado() {
+	public String getCpfassociado() {
 		return cpfassociado;
 	}
 
-	public void setCpf_associado(String cpfassociado) {
+	public void setCpfassociado(String cpfassociado) {
 		this.cpfassociado = cpfassociado;
 	}
 

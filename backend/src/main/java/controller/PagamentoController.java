@@ -82,7 +82,7 @@ public class PagamentoController {
 	public ResponseEntity<Pagamento> addPagamento(@RequestBody Pagamento pagamento) throws JsonParseException, JsonMappingException, IOException, SQLException {
 
 		//Pagamento pagamento = new ObjectMapper().readValue(pagamentoJSON, Pagamento.class); //Aqui o json é convertido em objeto Java Aluno
-		System.out.println("Valor do pagamento que chegou no backend: " + pagamento.getValorPago());
+		//System.out.println("Valor do pagamento que chegou no backend: " + pagamento.getValorPago());
 		pagamentoDao.adiciona(pagamento);
 		return new ResponseEntity<Pagamento>(pagamento, HttpStatus.CREATED); //Aqui ele retorna o objecto aluno como confirmação que deu tudo certo, lá no t ele vai tranformar em JSON novamente
 	}
