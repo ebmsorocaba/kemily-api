@@ -4,17 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.MaskFormatter;
+
 import jdbc.ConnectionFactory;
+
 import model.Pagamento;
 
 public class PagamentoDAO {
 	// a conexão com o banco de dados
 	private Connection connection;
-
-	AssociadoDAO associadoDAO = new AssociadoDAO();
+	private AssociadoDAO associadoDAO = new AssociadoDAO();
 	
 	public PagamentoDAO() throws SQLException {
 		this.connection = ConnectionFactory.getConnection();
@@ -34,7 +37,7 @@ public class PagamentoDAO {
 		stmt.close();
 	}
 
-	public List<Pagamento> getLista() throws SQLException {
+	public List<Pagamento> getLista() throws SQLException, Exception {
 
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM pagamento");
 		ResultSet rs = stmt.executeQuery();
@@ -42,6 +45,7 @@ public class PagamentoDAO {
 		List<Pagamento> pagamentos = new ArrayList<Pagamento>();
 		while (rs.next()) {
 			// criando o objeto Aluno
+			
 			Pagamento pagamento = new Pagamento();
 
 			pagamento.setId(rs.getInt("id"));
@@ -49,6 +53,7 @@ public class PagamentoDAO {
 			pagamento.setDataPgto(rs.getDate("data_pgto"));
 			pagamento.setFormapgto(rs.getString("forma_pgto"));
 			pagamento.setAssociado(associadoDAO.getAssociado(rs.getString("cpf_associado")));
+
 
 			// adicionando o objeto à lista
 			pagamentos.add(pagamento);
