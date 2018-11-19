@@ -20,9 +20,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import jdbc.dao.AssociadoDAO;
 import jdbc.dao.PagamentoDAO;
-import model.Associado;
 import model.Pagamento;
 
 import java.sql.SQLException;
@@ -34,7 +32,6 @@ public class PagamentoController {
 
 	private Map<Integer, Pagamento> pagamentos;
 	private PagamentoDAO pagamentoDao = new PagamentoDAO();
-	private AssociadoDAO associadoDAO = new AssociadoDAO();
 	
 	public PagamentoController() throws SQLException {
 		pagamentos = new HashMap<Integer, Pagamento>();
@@ -47,12 +44,8 @@ public class PagamentoController {
 		List<Pagamento> pagamentosGetted = new ArrayList<Pagamento>();
 		pagamentos = new HashMap<Integer, Pagamento>();
 
-		try {
 			pagamentosGetted = pagamentoDao.getLista();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		
 		
 		for (Pagamento pag : pagamentosGetted) { //Coloca todos pagamentos vindos do SELECT da DAO em um hashmap

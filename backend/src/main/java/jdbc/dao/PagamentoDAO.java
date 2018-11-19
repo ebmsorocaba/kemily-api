@@ -4,11 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.text.MaskFormatter;
+
 
 import jdbc.ConnectionFactory;
 
@@ -17,8 +16,8 @@ import model.Pagamento;
 public class PagamentoDAO {
 	// a conexão com o banco de dados
 	private Connection connection;
-	private AssociadoDAO associadoDAO = new AssociadoDAO();
 	
+	private AssociadoDAO associadoDAO = new AssociadoDAO();
 	public PagamentoDAO() throws SQLException {
 		this.connection = ConnectionFactory.getConnection();
 	}
@@ -37,7 +36,7 @@ public class PagamentoDAO {
 		stmt.close();
 	}
 
-	public List<Pagamento> getLista() throws SQLException, Exception {
+	public List<Pagamento> getLista() throws SQLException{
 
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM pagamento");
 		ResultSet rs = stmt.executeQuery();
