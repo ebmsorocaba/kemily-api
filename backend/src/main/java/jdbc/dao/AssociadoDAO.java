@@ -100,26 +100,6 @@ public class AssociadoDAO {
 			PreparedStatement stmt = (PreparedStatement) this.connection
 					.prepareStatement("DELETE FROM pagamento WHERE cpf_associado = ?");
 			
-			stmt.setString(1, search);
-			stmt.execute();
-			
-			//tenta apagar da tabela de associado_forma_pagamento
-			stmt = (PreparedStatement) this.connection
-					.prepareStatement("DELETE FROM associado_forma_pagamento WHERE cpf_associado = ?");
-			
-			stmt.setString(1, search);
-			stmt.execute();
-			
-			
-			//tenta apagar da tabela de cartao
-			stmt = (PreparedStatement) this.connection
-					.prepareStatement("DELETE FROM cartao WHERE cpf_associado = ?");
-			
-			
-			stmt.setString(1, search);
-			stmt.execute();
-			
-			
 			//tenta apagar da tabela de associado
 			stmt = (PreparedStatement) this.connection
 					.prepareStatement("DELETE FROM associado WHERE cpf = ?");

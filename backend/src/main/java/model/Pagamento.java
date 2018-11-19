@@ -12,18 +12,19 @@ public class Pagamento {
 	private Date dataPgto;
 	private String formapgto;
 	@JsonIgnore
-	private String cpf_associado;
+	private String cpfassociado;
+	
 	private Associado associado;
 	
 	public Pagamento() {};
 
-	public Pagamento(Integer id, double valorPago, Date dataPgto, String formapgto, String cpf_associado) {
+	public Pagamento(Integer id, double valorPago, Date dataPgto, String formapgto, String cpfassociado) {
 		super();
 		this.id = id;
 		this.valorPago = valorPago;
 		this.dataPgto = dataPgto;
 		this.formapgto = formapgto;
-		this.cpf_associado = cpf_associado;
+		this.cpfassociado = cpfassociado;
 	}
 
 
@@ -62,11 +63,11 @@ public class Pagamento {
 	}
 
 	public String getCpf_associado() {
-		return cpf_associado;
+		return cpfassociado;
 	}
 
-	public void setCpf_associado(String cpf_associado) {
-		this.cpf_associado = cpf_associado;
+	public void setCpf_associado(String cpfassociado) {
+		this.cpfassociado = cpfassociado;
 	}
 
 	public String getFormapgto() {
