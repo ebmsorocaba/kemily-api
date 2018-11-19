@@ -20,7 +20,6 @@ public class RelatorioDAO {
 
 	private Connection connection;
 	private AssociadoDAO associadoDao = new AssociadoDAO();
-	private FormaPagamentoDAO formPagDAO = new FormaPagamentoDAO();
 
 	public RelatorioDAO() throws SQLException {
 		this.connection = ConnectionFactory.getConnection();
@@ -143,9 +142,7 @@ public class RelatorioDAO {
 					
 					pag.setId(rs.getInt("id"));
 					pag.setValorPago(rs.getDouble("valor_pago"));
-					pag.setVencimento(rs.getDate("vencimento"));
 					pag.setDataPgto(rs.getDate("data_pgto"));
-					pag.setFormaPgto(formPagDAO.getFormaPgto(a.getCpf(),rs.getString("forma_pgto_efetuada")));	
 					
 					
 				}

@@ -28,7 +28,7 @@ import jdbc.dao.UsuarioDAO;
 import model.Usuario;
 
 
-//@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin //(origins = "http://localhost:8081")
 @RestController
  //E isso
 public class UsuarioController {
@@ -81,7 +81,7 @@ public class UsuarioController {
 	}
 	
 	//deleta um usuario especifico (somente ADMIN)
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/api/usuario/{codigo}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("codigo") Integer codigo) {
 		
