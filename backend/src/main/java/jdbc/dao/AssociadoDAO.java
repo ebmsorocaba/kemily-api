@@ -96,20 +96,12 @@ public class AssociadoDAO {
 	public void excluir(String search) {
 		try {
 			
-			//TODO melhorar isso aqui
-			
-			//tenta apagar da tabela de pagamento
-			PreparedStatement stmt = (PreparedStatement) this.connection
-					.prepareStatement("DELETE FROM pagamento WHERE cpf_associado = ?");
-			
 			//tenta apagar da tabela de associado
-			stmt = (PreparedStatement) this.connection
+			PreparedStatement stmt = (PreparedStatement) this.connection
 					.prepareStatement("DELETE FROM associado WHERE cpf = ?");
-			
 			
 			stmt.setString(1, search);
 			stmt.execute();
-			
 			stmt.close();
 			
 		} catch (SQLException ex) {

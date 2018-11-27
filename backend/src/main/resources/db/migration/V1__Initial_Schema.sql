@@ -47,7 +47,7 @@ CREATE TABLE pagamento (
   valor_pago         	NUMERIC(12, 2) 	NOT NULL,
   data_pgto           	DATE           	NOT NULL,
   forma_pgto			VARCHAR(20)    	NOT NULL,
-  cpf_associado      	VARCHAR(11)   	NOT NULL REFERENCES associado (cpf)
+  cpf_associado      	VARCHAR(11)   	NOT NULL REFERENCES associado (cpf) on delete CASCADE
 );
 
 /***************************/
