@@ -11,6 +11,8 @@ public class Pagamento {
 	private double valorPago;
 	private Date dataPgto;
 	private String formapgto;
+	
+	@JsonIgnore
 	private String cpfassociado;
 	
 	private Associado associado;

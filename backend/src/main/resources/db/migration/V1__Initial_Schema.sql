@@ -257,14 +257,14 @@ CREATE TABLE historico_ocorrencia (
   PRIMARY KEY(data, hora, ra_aluno)
 );
 
-INSERT INTO associado (cpf, nome, email, valor_atual, venc_atual)
-VALUES ('44444444444', 'Godoy Oliveira', 'godoy@gmail.com', 10.44, 12);
 INSERT INTO associado (cpf, nome, celular, email, valor_atual, venc_atual)
-VALUES ('55555555555', 'Solange Goes', '(15) 99779-0000', 'solange@hotmail.com', 15.20, 05);
+VALUES ('44444444444', 'Godoy Oliveira', '15999990000', 'godoy@gmail.com', 10.44, 12);
 INSERT INTO associado (cpf, nome, celular, email, valor_atual, venc_atual)
-VALUES ('66666666666', 'Jonathan Nunes', '(11) 98881-5555', 'jojo@uol.com', 200.11, 12);
+VALUES ('55555555555', 'Solange Goes', '15997790000', 'solange@hotmail.com', 15.20, 05);
 INSERT INTO associado (cpf, nome, celular, email, valor_atual, venc_atual)
-VALUES ('33333333333', 'Cleiton Soares', '(15) 90099-1122', 'cletinho@gmail.com', 500.99, 05);
+VALUES ('66666666666', 'Jonathan Nunes', '11988815555', 'jojo@uol.com', 200.11, 12);
+INSERT INTO associado (cpf, nome, celular, email, valor_atual, venc_atual)
+VALUES ('33333333333', 'Cleiton Soares', '15900991122', 'cletinho@gmail.com', 500.99, 05);
 
 INSERT INTO pagamento (valor_pago, data_pgto, forma_pgto, cpf_associado)
 VALUES 				  (10, '15/10/17', 'Boleto', '44444444444');
@@ -276,10 +276,10 @@ INSERT INTO pagamento (valor_pago, data_pgto, forma_pgto, cpf_associado)
 VALUES 				  (10, '15/10/17', 'Dinheiro', '66666666666');
 
 INSERT INTO pagamento (valor_pago, data_pgto, forma_pgto, cpf_associado)
-VALUES 				  (10, '15/1/17', 'Cartao', '33333333333');
+VALUES 				  (10, '15/1/17', 'Cartão', '33333333333');
 
 INSERT INTO pagamento (valor_pago, data_pgto, forma_pgto, cpf_associado)
-VALUES 				  (10, '15/1/17', 'Cartao', '55555555555');
+VALUES 				  (10, '15/1/17', 'Cartão', '55555555555');
 
 
 INSERT INTO endereco (cep, numero, rua, bairro, cidade, ponto_referencia, complemento)

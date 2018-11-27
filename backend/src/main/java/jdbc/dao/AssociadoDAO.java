@@ -48,7 +48,7 @@ public class AssociadoDAO {
 			// criando o objeto Associado
 			Associado associado = new Associado();
 
-			associado.setCpf(cpfformat(rs.getString("cpf")));
+			associado.setCpf(rs.getString("cpf"));
 			associado.setNome(rs.getString("nome"));
 			associado.setCelular(rs.getString("celular"));
 			associado.setEmail(rs.getString("email"));
@@ -78,7 +78,7 @@ public class AssociadoDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next() == true) {
-				associado.setCpf(cpfformat(rs.getString("cpf")));
+				associado.setCpf(rs.getString("cpf"));
 				associado.setNome(rs.getString("nome"));
 				associado.setCelular(rs.getString("celular"));
 				associado.setEmail(rs.getString("email"));
@@ -136,16 +136,6 @@ public class AssociadoDAO {
 
 		stmt.execute();
 		stmt.close();
-	}
-
-
-	public String cpfformat(String cpf) {
-		
-		String cpf_formatado = "";
-
-		cpf_formatado = cpf.substring(0,3) + "." + cpf.substring(3,6) + "." + cpf.substring(6,9) + "-" + cpf.substring(9,11);
-
-		return cpf_formatado;
 	}
 	
 }
