@@ -1,6 +1,7 @@
 package jdbc.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,6 +40,37 @@ public class PagamentoDAO {
 	public List<Pagamento> getLista() throws SQLException{
 
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM pagamento");
+		ResultSet rs = stmt.executeQuery();
+
+		List<Pagamento> pagamentos = new ArrayList<Pagamento>();
+		while (rs.next()) {
+			// criando o objeto Aluno
+			
+			Pagamento pagamento = new Pagamento();
+
+			pagamento.setId(rs.getInt("id"));
+			pagamento.setValorPago(rs.getDouble("valor_pago"));
+			pagamento.setDataPgto(rs.getDate("data_pgto"));
+			pagamento.setFormapgto(rs.getString("forma_pgto"));
+			pagamento.setAssociado(associadoDAO.getAssociado(rs.getString("cpf_associado")));
+
+
+			// adicionando o objeto à lista
+			pagamentos.add(pagamento);
+
+		}
+		rs.close();
+		stmt.close();
+		return pagamentos;
+
+	}
+	// -----------------------------------------------> busca por data
+	public List<Pagamento> getListabyDate(Date dataInicio, Date dataFim) throws SQLException{
+
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM pagamento WHERE data_pgto >= ? AND data_pgto <= ?");
+		stmt.setDate(1, dataInicio);
+		stmt.setDate(2, dataFim);
+		
 		ResultSet rs = stmt.executeQuery();
 
 		List<Pagamento> pagamentos = new ArrayList<Pagamento>();
