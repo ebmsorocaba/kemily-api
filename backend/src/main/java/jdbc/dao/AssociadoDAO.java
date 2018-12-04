@@ -112,7 +112,7 @@ public class AssociadoDAO {
 	public void altera(Associado associado, String cpf) throws SQLException {
 
 		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(
-				"UPDATE associado SET cpf=?, SET nome=?, celular=?, email=?, valor_atual=?, venc_atual=? WHERE cpf=?");
+				"UPDATE associado SET cpf=?, nome=?, celular=?, email=?, valor_atual=?, venc_atual=? WHERE cpf=?");
 
 		// TODO Perguntar para o Polis como deve fazer com a tabela de
 		// pagamento, se deve alterar o cpf do associado
