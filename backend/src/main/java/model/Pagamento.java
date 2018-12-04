@@ -12,7 +12,7 @@ public class Pagamento {
 	private Date dataPgto;
 	private String formapgto;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	private String cpfassociado;
 	
 	private Associado associado;
